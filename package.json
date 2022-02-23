@@ -1,0 +1,21 @@
+{
+  "name": "lab.printlake.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn --cwd packages/lab dev",
+    "build": "yarn --cwd packages/lab build",
+    "start": "yarn --cwd packages/lab start"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+      "node": ">=16",
+      "pnpm": ">=6"
+  }
+}
