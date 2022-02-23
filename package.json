@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "engines": {
-      "node": ">=14",
-      "pnpm": ">=3"
+      "node": ">=14"
   }
 }
