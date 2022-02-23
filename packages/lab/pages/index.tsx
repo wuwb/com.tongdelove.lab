@@ -24,6 +24,9 @@ export default function Home() {
           MUI v5 + Next.js with TypeScript example
         </Typography>
       </Box>
+      <div className="text-lg bg-red-500">
+        tailwind test
+      </div>
     </Container>
   );
 }
