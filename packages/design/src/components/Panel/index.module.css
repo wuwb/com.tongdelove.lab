@@ -1,0 +1,57 @@
+/* 公共 */
+.subTitle {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* 文字选择 */
+.fontPickerWrap {
+    width: 279px;
+    padding: 16px 0 0 12px;
+    .fontPickers {
+
+    }
+    .fontPicker {
+        width: 256px;
+        background: rgba(0,0,0,.02);
+        text-align: center;
+        height: 48px;
+        line-height: 48px;
+        cursor: pointer;
+        color: rgba(0,0,0,.85);
+    }
+    .fontPickerTitle {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .fontPickerSubtitle {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .fontPickerText {
+        font-family: siyuan2;
+        font-weight: 400;
+    }
+}
+
+/* 背景颜色选择 */
+.colorItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .colorItem {
+        width: 36px;
+        height: 36px;
+        margin: 12px 2px 0;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .grayLine {
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        background: rgba(0,0,0,.06);
+    }
+}
+
+

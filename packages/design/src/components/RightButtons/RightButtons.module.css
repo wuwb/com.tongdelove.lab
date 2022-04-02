@@ -1,0 +1,14 @@
+.rightButtons {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    border-radius: 4px;
+    pointer-events: auto;
+}
+
+.btn {
+    padding: 5px;
+    display: inline-block;
+}

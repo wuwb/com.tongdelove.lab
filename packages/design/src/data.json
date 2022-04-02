@@ -1,0 +1,2314 @@
+{
+    "id": 1129795,
+    "length": 55,
+    "width": 55,
+    "height": 160,
+    "thickness": 0.5,
+    "inless": 0.3,
+    "outless": 0.2,
+    "background": "rgba(208, 238, 255, 1)",
+    "images": null,
+    "membrane_id": null,
+    "is_mode": 0,
+    "design_data": [
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "cfc6a612-4859-4bc3-9e2a-eae31ddcd067",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 18.31569389914901,
+                "height": 18.657753423652736,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 157.10258653090142,
+                "top": 192.90899972932766,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 18.315693899149007,
+                "height": 18.657753423652736
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 69.22466985587342,
+            "height": 70.5174932555879,
+            "x": 614.215683228417,
+            "y": 746.6147164123627,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "1c42cf57-71dd-4a4f-adea-34a0cd274bb8",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 13.767818285407117,
+                "height": 14.024942771221902,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 128.6309122828938,
+                "top": 199.0418103817585,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 13.767818285407115,
+                "height": 14.024942771221902
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 52.035848638377104,
+            "height": 53.0076577186335,
+            "x": 471.25381359076846,
+            "y": 814.174895559207,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "08e0bfce-d399-4436-87cc-17ad5350cbe7",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 9.247202354152677,
+                "height": 9.419900896597625,
+                "rotate": 360,
+                "opacity": 70,
+                "left": 165.17107807589775,
+                "top": 125.58009910340238,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 9.247202354152675,
+                "height": 9.419900896597625
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 34.95005614209444,
+            "height": 35.60277504268152,
+            "x": 624.2686415541134,
+            "y": 518.0980123654684,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/3ec32a02-fba9-4bdc-902a-c091e8797888.svg",
+            "id": 175613,
+            "uuid": "5685c435-cf42-4abc-99dd-94edb48d45b8",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 15.529803656783047,
+                "height": 58.83787423096686,
+                "left": 156.51186016327483,
+                "top": 69.13517472345,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 15.529803656783047,
+                "height": 58.83787423096686
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_5685c435-cf42-4abc-99dd-94edb48d45b80",
+                    "index": "0"
+                }
+            ],
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "225509d2-0087-4e7d-a109-580a47a83e11",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【功能主治】虚拟",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 43.34360568762139,
+                "height": 3.223904555277624,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.5781971561893,
+                "top": 183.92158454727274,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 3,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "e80e42c7-1324-4a94-bfec-9fb680868eb7",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【规         格】虚拟",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 41.506955295891316,
+                "height": 3.220367221232947,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.5781971561893,
+                "top": 186.89063292331878,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 4,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "barcode",
+            "codeMode": "EAN13",
+            "value": "0000000000000",
+            "displayValue": true,
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "qricon": null,
+            "fills": [
+                {
+                    "index": 0,
+                    "class": "foreground",
+                    "color": "#000000"
+                },
+                {
+                    "index": 1,
+                    "class": "background",
+                    "color": "#ffffff"
+                }
+            ],
+            "style": {
+                "position": "absolute",
+                "top": 200.0391020648206,
+                "left": 183.57819715618933,
+                "rotate": 360,
+                "color": "#000000",
+                "opacity": 100,
+                "fontFamily": "f99066",
+                "fontSize": 14,
+                "width": 24.112815637987676,
+                "height": 12.056407818993852,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "uuid": "aca6bf2e-d278-4b39-913a-004aa22ac3fe",
+            "locked": false,
+            "sort": 1,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/materials/d23292d6-dc4a-4587-ae0f-3fd567f3a5f8.svg",
+            "id": 110217,
+            "uuid": "28218917-9f05-4e5c-9bc1-ae721f85a7b9",
+            "can_set_color": 1,
+            "attr_aspect": 0,
+            "is_container": 0,
+            "style": {
+                "position": "absolute",
+                "top": 203.75595268037335,
+                "left": 209.4873786674646,
+                "width": 6.781563416889381,
+                "height": 7.055324714401293,
+                "rotate": 360,
+                "opacity": 100,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_28218917-9f05-4e5c-9bc1-ae721f85a7b90",
+                    "index": "0"
+                }
+            ],
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 6.781563416889381,
+                "height": 7.055324714401293
+            },
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/bacbe21b-0dad-471c-bffc-756e518f1b62.svg",
+            "id": 111384,
+            "uuid": "f547dae4-9299-48e4-89af-bf017b28a205",
+            "can_set_color": 1,
+            "attr_aspect": 0,
+            "is_container": 0,
+            "style": {
+                "position": "absolute",
+                "top": 204.2877082205571,
+                "left": 217.48626584500752,
+                "width": 7.34080573314402,
+                "height": 6.937443751453045,
+                "rotate": 360,
+                "opacity": 100,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.34080573314402,
+                "height": 6.937443751453045
+            },
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "34fa9ee7-c215-422b-bce9-3857b361fa5f",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【贮         藏】虚拟",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 41.506955295891316,
+                "height": 3.220367221232947,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.49652235205434,
+                "top": 190.11100014455172,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 5,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "53fdb2cb-9fb9-48c9-8dbe-71d17189afc8",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【批准文号】虚拟",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 41.506955295891316,
+                "height": 3.220367221232947,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.57819715618933,
+                "top": 193.33136736578467,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 6,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "78d54488-950d-4f08-b5a4-c181482b3772",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "保质期： 24个月\n生产日期： 见外包装\n生产日期： 2021.01.01\n储存条件： 通风干燥/常温保存\n执行标准： GB/T202101\n生产商： 杭州片段网络科技有限公司\n地址： 杭州市西湖区西湖国际大厦B2座\n客服电话： 0571-87150783\n官网： www.baoxiaohe.com",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.4533874708622556,
+                "fontSize": 2.1583671692889097,
+                "width": 39.88769340250954,
+                "height": 31.080487237760302,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 75.55615329874523,
+                "top": 178.5743809476199,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 1,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "f0561e17-5de9-489a-849b-c8cc2d0a8d75",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "B A O X I A O H E",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 4.63387150367335,
+                "fontSize": 3.861559586394463,
+                "width": 28.14814222624581,
+                "height": 4.826949483709967,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 116.97031591162589,
+                "top": 84.65918427449857,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "width": 106.38667928156246,
+            "height": 18.243588600065337,
+            "x": 440.2027688050733,
+            "y": 323.4011942739085,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "035ad782-7872-4d9e-a1c1-cc3a0e85a110",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 53.76189576076209,
+                "height": 54.76594008480487,
+                "rotate": 360,
+                "opacity": 80,
+                "left": 128.1309122828938,
+                "top": 134.9786021716442,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 53.76189576076208,
+                "height": 54.76594008480487
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 203.19456665726176,
+            "height": 206.9893798505394,
+            "x": 494.04446122981255,
+            "y": 576.2970790807744,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "e27f3490-f630-4b82-a4dd-d5a869835fde",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "小\n儿\n肚\n脐\n贴",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 10.736184497167041,
+                "fontSize": 8.258603459359264,
+                "width": 8.522053269996123,
+                "height": 53.46242005416331,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 160.10240678729625,
+                "top": 71.32189726659273,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 198,
+            "width": 31.561731506911663,
+            "x": 599.1693163363371,
+            "y": 282.6252503975745,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/616ab1e5-7051-47f7-a5af-2393ec8b2878.svg",
+            "id": 175543,
+            "uuid": "d2c2593c-eb55-4980-abd2-0e9e94483940",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 128.1309122828938,
+                "top": 191.26885937633807,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_d2c2593c-eb55-4980-abd2-0e9e944839400",
+                    "index": "0"
+                }
+            ],
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/8786d4c7-1d41-4147-95ec-430bd6ce092b.svg",
+            "id": 175545,
+            "uuid": "3bf91f6f-1ad5-479f-9f08-fd2357da77f8",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 128.1309122828938,
+                "top": 211.0204872377231,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_3bf91f6f-1ad5-479f-9f08-fd2357da77f80",
+                    "index": "0"
+                }
+            ],
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/98f48071-c898-4ebb-811f-1271914ad9cd.svg",
+            "id": 175544,
+            "uuid": "018eaaa4-c0b1-4c8a-8649-823dc39235c0",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 128.1309122828938,
+                "top": 201.24453990701832,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_018eaaa4-c0b1-4c8a-8649-823dc39235c00",
+                    "index": "0"
+                }
+            ],
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "3e57a6b0-3a8b-4182-be34-077450a02b46",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "亲肤敷垫",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.889491000658262,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 137.47050805648746,
+                "top": 193.71058937871913,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "90d02a2a-2fa3-464e-b520-d0d8d5bbe0d3",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "防水透气",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.8719274404110178,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 137.37782866173868,
+                "top": 203.6950516895231,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "9bb0aa99-b6f4-4675-ac86-5458581390a2",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "一脸多用",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.8719274404110178,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 137.35512985653165,
+                "top": 213.47099902022774,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/c114129e-1138-445e-a689-6fb9ad5f56e6.svg",
+            "id": 175614,
+            "uuid": "a4cbe443-d990-479c-aeaf-d0ded36deefb",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 42.80158087891368,
+                "height": 58.555177689724644,
+                "left": 132.7753238252582,
+                "top": 129,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 42.80158087891368,
+                "height": 58.555177689724644
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_a4cbe443-d990-479c-aeaf-d0ded36deefb0",
+                    "index": "0"
+                },
+                {
+                    "color": "rgb(255, 207, 207)",
+                    "type": "fill",
+                    "class": "svgcolor_a4cbe443-d990-479c-aeaf-d0ded36deefb1",
+                    "index": "0"
+                }
+            ],
+            "width": 161.76975450490187,
+            "height": 221.31090780631175,
+            "x": 501.8279955659902,
+            "y": 553.70078740815,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "18741743-747b-47f7-89e5-83ee222f19e7",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 25.814095155589825,
+                "height": 26.296193030943883,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 118.85901497229736,
+                "top": 108.70380696905612,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 25.814095155589822,
+                "height": 26.29619303094388
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 97.56508405378155,
+            "height": 99.38718625986576,
+            "x": 449.23092273527726,
+            "y": 454.31360114828425,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "acfd42c9-52b0-4a33-9421-1f8761b8ee01",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "X I A O E R D U Q I T I E",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.611789475127123,
+                "fontSize": 3.0098245626059397,
+                "width": 30.273551745261386,
+                "height": 3.5284647571928076,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 138.6274565059657,
+                "top": 86.37113139726493,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 13.335929791123306,
+            "width": 114.41972313305531,
+            "x": 514.3898900802106,
+            "y": 325.06854129828906,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "720be429-4d71-4173-a8e7-75ef016f50fd",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "品\n质\n保\n证\n\n妈\n妈\n放\n心",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 4.51473684390891,
+                "fontSize": 3.0098245626059397,
+                "width": 2.9386507149069985,
+                "height": 39.4268970916689,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 147.061349285093,
+                "top": 71.99858790323064,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 149.01504412776222,
+            "width": 11.106711363559917,
+            "x": 544.906243009509,
+            "y": 285.3489936533942,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/8a9824df-f9ab-41b1-8a81-c2d9bdb14be4.svg",
+            "id": 175612,
+            "uuid": "ddea6792-0942-485c-b1d4-fb142b0db263",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 5.3649034033489045,
+                "height": 14.189978593049943,
+                "left": 167.55337702670153,
+                "top": 203.92549794119813,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 5.3649034033489045,
+                "height": 14.189978593049943
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_ddea6792-0942-485c-b1d4-fb142b0db2630",
+                    "index": "0"
+                }
+            ],
+            "width": 20.276800264866566,
+            "height": 53.6314151554713,
+            "x": 392.50775904793244,
+            "y": 601.464411299397,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "1ba43397-5963-4c48-bdd6-10cf1822e3ce",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "10片/盒",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.527233970971994,
+                "fontSize": 2.93936164247666,
+                "width": 11.92943770896565,
+                "height": 3.496559328489923,
+                "textAlign": "center",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 164.34282339273622,
+                "top": 209.40576398243516,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "width": 45.08763858560244,
+            "height": 13.215342344055852,
+            "x": 625.8075215043873,
+            "y": 794.4548560060394,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/4b157157-4aeb-4227-aa7d-cd49049e8fc8.svg",
+            "id": 109199,
+            "uuid": "8ac8727a-4dd8-45be-97e5-2d0ea5852d3b",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 15.683664979880191,
+                "height": 45.065476190431305,
+                "rotate": 360,
+                "opacity": 100,
+                "left": 107.60201421131468,
+                "top": 93.42579365084453,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 15.68366497988019,
+                "height": 45.065476190431305
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "width": 59.27684401914873,
+            "height": 170.32620922569998,
+            "x": 404.9970130252754,
+            "y": 353.10536183415667,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/4b157157-4aeb-4227-aa7d-cd49049e8fc8.svg",
+            "id": 109199,
+            "uuid": "8def9f9b-bbb9-48d7-8de2-fc8a90d3ca9d",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 9.248466071186385,
+                "height": 64.95609099912116,
+                "rotate": 360,
+                "opacity": 100,
+                "left": 178.07819715618933,
+                "top": 118.1564807899685,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 9.248466071186385,
+                "height": 64.95609099912116
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "width": 34.95483239545025,
+            "height": 245.50333606258587,
+            "x": 673.0514538266608,
+            "y": 446.5756754319557,
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "0c9643e4-c8f9-4aae-aaf1-bec966b1277c",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【产品成分】枇杷叶、百部、白前、桑白皮、   桔梗、薄荷脑",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 43.34360568762139,
+                "height": 6.447809110555248,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.5781971561893,
+                "top": 171.46285819454363,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 1,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "36bafd37-4dfb-4574-8d74-ba9a14703371",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "【性        状】本品为淡棕色澄清液体，气香、 \n   味甜",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.226820839318478,
+                "fontSize": 2.1512138928789852,
+                "width": 43.34360568762139,
+                "height": 6.447809110555248,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 183.5781971561893,
+                "top": 178.03560800737955,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "sort": 2,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "77bcb52f-6d66-43f3-aace-3d7feebf15b2",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 18.31569389914901,
+                "height": 18.657753423652736,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 46.74357155860406,
+                "top": 193.4446932460309,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 18.315693899149007,
+                "height": 18.657753423652736
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 69.22466985587342,
+            "height": 70.5174932555879,
+            "x": 614.215683228417,
+            "y": 746.6147164123627,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "5b4e3a52-aa11-4933-a47a-b7b9803210d7",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 13.767818285407117,
+                "height": 14.024942771221902,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 18.271897310596444,
+                "top": 199.57750389846177,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 13.767818285407115,
+                "height": 14.024942771221902
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 52.035848638377104,
+            "height": 53.0076577186335,
+            "x": 471.25381359076846,
+            "y": 814.174895559207,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "86d41142-887d-47cb-8962-c058d577cfd7",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 9.247202354152677,
+                "height": 9.419900896597625,
+                "rotate": 360,
+                "opacity": 70,
+                "left": 54.812063103600394,
+                "top": 126.11579262010561,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 9.247202354152675,
+                "height": 9.419900896597625
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 34.95005614209444,
+            "height": 35.60277504268152,
+            "x": 624.2686415541134,
+            "y": 518.0980123654684,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/3ec32a02-fba9-4bdc-902a-c091e8797888.svg",
+            "id": 175613,
+            "uuid": "791583d6-f9c9-412b-8287-411d2639febf",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 15.529803656783047,
+                "height": 58.83787423096686,
+                "left": 46.15284519097747,
+                "top": 69.67086824015324,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 15.529803656783047,
+                "height": 58.83787423096686
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_791583d6-f9c9-412b-8287-411d2639febf0",
+                    "index": "0"
+                }
+            ],
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "0970c7f8-a6c5-4e75-868d-c387f7119213",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "B A O X I A O H E",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 4.63387150367335,
+                "fontSize": 3.861559586394463,
+                "width": 28.14814222624581,
+                "height": 4.826949483709967,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 6.61130093932853,
+                "top": 85.1948777912018,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "width": 106.38667928156246,
+            "height": 18.243588600065337,
+            "x": 440.2027688050733,
+            "y": 323.4011942739085,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "3883cea6-48fd-486e-909f-7dca102e8c26",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 53.76189576076209,
+                "height": 54.76594008480487,
+                "rotate": 360,
+                "opacity": 80,
+                "left": 17.771897310596444,
+                "top": 135.51429568834746,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 53.76189576076208,
+                "height": 54.76594008480487
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 203.19456665726176,
+            "height": 206.9893798505394,
+            "x": 494.04446122981255,
+            "y": 576.2970790807744,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "f9282813-3250-4b45-8331-3e033c13b60a",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "小\n儿\n肚\n脐\n贴",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 10.736184497167041,
+                "fontSize": 8.258603459359264,
+                "width": 8.522053269996123,
+                "height": 53.46242005416331,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 49.74339181499889,
+                "top": 71.85759078329596,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 198,
+            "width": 31.561731506911663,
+            "x": 599.1693163363371,
+            "y": 282.6252503975745,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/616ab1e5-7051-47f7-a5af-2393ec8b2878.svg",
+            "id": 175543,
+            "uuid": "234796ad-77ee-4c17-bb72-6d92ec5799a4",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 17.771897310596444,
+                "top": 191.80455289304132,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_234796ad-77ee-4c17-bb72-6d92ec5799a40",
+                    "index": "0"
+                }
+            ],
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/8786d4c7-1d41-4147-95ec-430bd6ce092b.svg",
+            "id": 175545,
+            "uuid": "3f34a547-7b34-425c-893b-e8284b92e1f3",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 17.771897310596444,
+                "top": 211.55618075442635,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_3f34a547-7b34-425c-893b-e8284b92e1f30",
+                    "index": "0"
+                }
+            ],
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/98f48071-c898-4ebb-811f-1271914ad9cd.svg",
+            "id": 175544,
+            "uuid": "195345d5-fe20-492d-b3dd-c11afd257e7d",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 0,
+                "opacity": 100,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042,
+                "left": 17.771897310596444,
+                "top": 201.7802334237216,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 7.77295100542042,
+                "height": 7.77295100542042
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "fill",
+                    "class": "svgcolor_195345d5-fe20-492d-b3dd-c11afd257e7d0",
+                    "index": "0"
+                }
+            ],
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "fd6f23d2-0046-4ef1-8526-51148b2f6754",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "亲肤敷垫",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.889491000658262,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 27.1114930841901,
+                "top": 194.24628289542238,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "ef0ed0cc-8101-4d98-abae-92420da3f460",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "防水透气",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.8719274404110178,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 27.018813689441316,
+                "top": 204.23074520622635,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "2b92b57f-8f10-468d-a177-c3ed033640bd",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "一脸多用",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 2.7739113587680437,
+                "fontSize": 2.3115927989733684,
+                "width": 9.381629638675983,
+                "height": 2.8719274404110178,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 0,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 26.996114884234288,
+                "top": 214.00669253693098,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/c114129e-1138-445e-a689-6fb9ad5f56e6.svg",
+            "id": 175614,
+            "uuid": "10c90ecb-6d79-4213-b3c8-f5f5ebf305fe",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 42.80158087891368,
+                "height": 58.555177689724644,
+                "left": 22.41630885296084,
+                "top": 129.53569351670325,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 42.80158087891368,
+                "height": 58.555177689724644
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_10c90ecb-6d79-4213-b3c8-f5f5ebf305fe0",
+                    "index": "0"
+                },
+                {
+                    "color": "rgb(255, 207, 207)",
+                    "type": "fill",
+                    "class": "svgcolor_10c90ecb-6d79-4213-b3c8-f5f5ebf305fe1",
+                    "index": "0"
+                }
+            ],
+            "width": 161.76975450490187,
+            "height": 221.31090780631175,
+            "x": 501.8279955659902,
+            "y": 553.70078740815,
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/44855f93-f0d0-46a2-9f98-2925b4ab9d5c.svg",
+            "id": 99171,
+            "uuid": "931c1372-3a75-4fbb-b660-8c6ea09c439f",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 25.814095155589825,
+                "height": 26.296193030943883,
+                "rotate": 360,
+                "opacity": 50,
+                "left": 8.5,
+                "top": 109.23950048575935,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 25.814095155589822,
+                "height": 26.29619303094388
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "sort": 1,
+            "width": 97.56508405378155,
+            "height": 99.38718625986576,
+            "x": 449.23092273527726,
+            "y": 454.31360114828425,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "e2c12501-2cf4-40bd-98b1-27e74bd49c77",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "X I A O E R D U Q I T I E",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.611789475127123,
+                "fontSize": 3.0098245626059397,
+                "width": 30.273551745261386,
+                "height": 3.5284647571928076,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 28.26844153366835,
+                "top": 86.90682491396817,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 13.335929791123306,
+            "width": 114.41972313305531,
+            "x": 514.3898900802106,
+            "y": 325.06854129828906,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "uuid": "c799ebe2-91f2-4983-bea0-d5e7d1fb56b5",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "品\n质\n保\n证\n\n妈\n妈\n放\n心",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 4.51473684390891,
+                "fontSize": 3.0098245626059397,
+                "width": 2.9386507149069985,
+                "height": 39.4268970916689,
+                "textAlign": "left",
+                "fontFamily": "f99066",
+                "rotate": 360,
+                "color": "rgba(85, 181, 172, 1)",
+                "fontWeight": "bold",
+                "fontStyle": "normal",
+                "left": 36.70233431279564,
+                "top": 72.53428141993388,
+                "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "height": 149.01504412776222,
+            "width": 11.106711363559917,
+            "x": 544.906243009509,
+            "y": 285.3489936533942,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//yun.baoxiaohe.com/user-materials/8a9824df-f9ab-41b1-8a81-c2d9bdb14be4.svg",
+            "id": 175612,
+            "uuid": "943b6fbe-9db7-46c0-b3aa-c43924b1ff06",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "rotate": 360,
+                "opacity": 100,
+                "width": 5.3649034033489045,
+                "height": 14.189978593049943,
+                "left": 57.194362054404166,
+                "top": 204.4611914579014,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 5.3649034033489045,
+                "height": 14.189978593049943
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgb(85, 181, 172)",
+                    "type": "fill",
+                    "class": "svgcolor_943b6fbe-9db7-46c0-b3aa-c43924b1ff060",
+                    "index": "0"
+                }
+            ],
+            "width": 20.276800264866566,
+            "height": 53.6314151554713,
+            "x": 392.50775904793244,
+            "y": 601.464411299397,
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        },
+        {
+            "uuid": "fe1bc1a8-6e73-4ad4-9b68-5688db6e6895",
+            "type": "font",
+            "src": "https://cdn.baoxiaohe.com/5225a97f-55e0-495f-a65e-ad2ad498e7a3.otf",
+            "value": "10片/盒",
+            "example": "思源黑体-常规",
+            "id": 99066,
+            "style": {
+                "position": "absolute",
+                "lineHeight": 3.527233970971994,
+                "fontSize": 2.93936164247666,
+                "width": 11.92943770896565,
+                "height": 3.496559328489923,
+                "textAlign": "center",
+                "fontFamily": "f99066",
+                "rotate": 90,
+                "color": "rgba(255, 255, 255, 1)",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "left": 53.98380842043886,
+                "top": 209.94145749913844,
+                "cmyk": "{\"c\":0,\"m\":0,\"y\":0,\"k\":0}",
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false,
+                "vertical": 0
+            },
+            "locked": false,
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            },
+            "sort": 1,
+            "width": 45.08763858560244,
+            "height": 13.215342344055852,
+            "x": 625.8075215043873,
+            "y": 794.4548560060394,
+            "_selected": false,
+            "_loaded": true,
+            "_editing": false,
+            "_level": 1
+        },
+        {
+            "type": "img",
+            "src": "//cdn.baoxiaohe.com/4b157157-4aeb-4227-aa7d-cd49049e8fc8.svg",
+            "id": 109199,
+            "uuid": "9a309d45-877c-4149-b254-d294b2051e27",
+            "can_set_color": 1,
+            "style": {
+                "position": "absolute",
+                "width": 9.248466071186385,
+                "height": 64.95609099912116,
+                "rotate": 360,
+                "opacity": 100,
+                "left": 67.71918218389197,
+                "top": 118.69217430667173,
+                "craft": 0,
+                "lengthLock": false,
+                "rotateX": false,
+                "rotateY": false
+            },
+            "bg": {
+                "x": 0,
+                "y": 0,
+                "width": 9.248466071186385,
+                "height": 64.95609099912116
+            },
+            "locked": false,
+            "fills": [
+                {
+                    "color": "rgba(85, 181, 172, 1)",
+                    "type": "globalFill"
+                }
+            ],
+            "width": 34.95483239545025,
+            "height": 245.50333606258587,
+            "x": 673.0514538266608,
+            "y": 446.5756754319557,
+            "sort": 1,
+            "isCutout": false,
+            "_selected": false,
+            "_loaded": true,
+            "_level": 1
+        }
+    ],
+    "inside_design_data": [],
+    "by_project_id": null,
+    "material_obj": "50e84c56-afca-4463-857f-8a1cceac2532",
+    "material_jpg": null,
+    "material_mtl": null,
+    "is_render": 0,
+    "line_guides": [
+        {
+            "type": "x",
+            "x": 0,
+            "y": 110.59790038931166
+        },
+        {
+            "type": "y",
+            "x": 220.79685064689383,
+            "y": 0
+        }
+    ],
+    "screenshot_id": 5543661,
+    "screenshot": "//yun.baoxiaohe.com/screenshot/5e270f13-da61-42a2-9374-4ee4b166a5f1.png",
+    "color_history": [
+        {
+            "rgba": "rgba(85,181,172,1)",
+            "cmyk": {
+                "c": 53,
+                "m": 0,
+                "y": 5,
+                "k": 29
+            }
+        },
+        {
+            "rgba": "rgba(255,255,255,1)",
+            "cmyk": {
+                "c": 0,
+                "m": 0,
+                "y": 0,
+                "k": 0
+            }
+        },
+        {
+            "rgba": "rgba(208,238,255,1)",
+            "cmyk": {
+                "c": 19,
+                "m": 7,
+                "y": 0,
+                "k": 0
+            }
+        }
+    ],
+    "inside_background": null,
+    "face_background": {
+        "F": {
+            "rgba": "rgba(208, 238, 255, 1)",
+            "cmyk": "{\"c\":19,\"m\":7,\"y\":0,\"k\":0}"
+        },
+        "H": {
+            "rgba": "rgba(208, 238, 255, 1)",
+            "cmyk": "{\"c\":19,\"m\":7,\"y\":0,\"k\":0}"
+        },
+        "FR": {
+            "rgba": "rgba(85, 181, 172, 1)",
+            "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}"
+        },
+        "FL": {
+            "rgba": "rgba(85, 181, 172, 1)",
+            "cmyk": "{\"c\":53,\"m\":0,\"y\":5,\"k\":29}"
+        }
+    },
+    "inside_face_background": {},
+    "show_bleed_line": 1,
+    "show_material": 1,
+    "size_type": "dm",
+    "mch_id": 0,
+    "by_mode_id": 2939,
+    "by_work_id": null,
+    "by_ai_project_id": 0,
+    "rotate": 0,
+    "extend_attrs": {
+        "trademark": "",
+        "productName": "",
+        "nameModified": false
+    },
+    "size_option": null,
+    "enterpriseId": null,
+    "enterpriseUid": null,
+    "create_time": "1623684004223",
+    "update_time": "1623684004223",
+    "is_delete": 0,
+    "science_id": 8,
+    "user_id": 315889,
+    "cate_id": 7,
+    "project_name": "小儿护脐贴 医药包装",
+    "price": "90.00",
+    "cate": {
+        "id": 7,
+        "name": "反向插锁盒",
+        "image": "//cdn.baoxiaohe.com/e599cb6d-feb4-4ccf-aa70-976489583e3a.jpg",
+        "sort": 100010,
+        "remarks": "管式盒-防尘摇翼与顶盖部分相互锁合,上下管口压翼分别相对的两边板延伸而成的结构,法式对压翼管式盒,上",
+        "faces": "[]",
+        "cate_no": "100010",
+        "defaultSize": [
+            {
+                "length": "120",
+                "width": "80",
+                "height": "200",
+                "remark": ""
+            },
+            {
+                "length": "120",
+                "width": "60",
+                "height": "168",
+                "remark": ""
+            },
+            {
+                "length": "90",
+                "width": "90",
+                "height": "90",
+                "remark": ""
+            }
+        ],
+        "lengthLimit": "15,2000",
+        "widthLimit": "10,2000",
+        "heightLimit": "20,2000",
+        "code": "Pair",
+        "minThickness": "0.2",
+        "price": "0.00",
+        "discount": 1,
+        "mu_price": "0.00",
+        "mu_discount": 1,
+        "min_thickness": "0.2",
+        "complex_type": 0,
+        "size_options": [],
+        "map_options": null,
+        "create_time": "1585550467392",
+        "update_time": "1618393065381",
+        "is_delete": 0,
+        "cate_top_id": 1
+    },
+    "science_image": "//cdn.baoxiaohe.com/94e8078a-9931-42cd-97ed-57883bd88085.jpg",
+    "bleedline": 3,
+    "science_name": "白卡纸",
+    "def_line_color": "#999999",
+    "membrane_name": "",
+    "project_id": 1129795,
+    "isAuto": 0
+}

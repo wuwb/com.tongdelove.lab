@@ -1,0 +1,10 @@
+.header {
+    .btnArea {
+      text-align: right;
+    }
+  }
+  .saveForm {
+    .formIpt {
+      margin-bottom: 20px;
+    }
+  }

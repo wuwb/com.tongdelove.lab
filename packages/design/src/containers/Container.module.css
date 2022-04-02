@@ -1,0 +1,85 @@
+.attrSetting {
+  width: 220px;
+  padding: 0 0 60px 0;
+  height: 100%;
+  box-shadow: -2px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  right: 0;
+
+  &:hover .btnDrawRightHide {
+    display: block;
+  }
+  .tit {
+    margin-bottom: 16px;
+    color: #000;
+    font-weight: bold;
+  }
+  .posWrap {
+    padding: 20px;
+    .posItem {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.5);
+      .posTit {
+        margin-right: 50px;
+      }
+      .pos {
+        margin-right: 40px;
+        color: #000;
+        &::before {
+          content: attr(data-flag);
+          color: rgba(0, 0, 0, 0.4);
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  .graphWrap {
+    .graphTable {
+      .iptControl {
+        margin-bottom: 18px;
+        display: flex;
+        align-items: flex-start;
+        .iptLabel {
+          width: 108px;
+          flex-shrink: 0;
+          color: rgba(0, 0, 0, 0.5);
+        }
+        .cpSelector {
+          /* img {
+            width: 100%;
+          } */
+        }
+        .colorSelector {
+          /* span {
+            display: inline-block;
+            margin-right: 10px;
+            width: 42px;
+            height: 16px;
+          } */
+        }
+      }
+    }
+  }
+}
+
+.editorCenter {
+    position: absolute;
+    left: 52px;
+    top: 54px;
+    z-index: 0;
+    right: 20px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f3f5;
+    overflow: hidden;
+}
+
+.leftIndent {
+    left: 302px;
+}
+.rightIndent {
+    right: 220px;
+}
