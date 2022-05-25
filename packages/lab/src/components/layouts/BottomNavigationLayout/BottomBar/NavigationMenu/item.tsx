@@ -1,6 +1,6 @@
 import { FC, ReactNode, MouseEvent, useState, useContext } from 'react';
 import clsx from 'clsx';
-import { SidebarContext } from 'src/contexts/SidebarContext';
+import { SidebarContext } from '@/contexts/SidebarContext';
 import NextLink from 'next/link';
 
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import KeyboardArrowDownTwoToneIcon from '@mui/icons-material/KeyboardArrowDownTwoTone';
 import KeyboardArrowUpTwoToneIcon from '@mui/icons-material/KeyboardArrowUpTwoTone';
-import Scrollbar from 'src/components/Scrollbar';
+import Scrollbar from '@/components/common/Scrollbar';
 
 const IndicatorWrapper = styled(Box)(
   ({ theme }) => `
@@ -75,7 +75,7 @@ const PopoverWrapper = styled(Popover)(
           color: ${theme.colors.alpha.black[100]} !important;
         }
       }
-    }  
+    }
   }
 `
 );

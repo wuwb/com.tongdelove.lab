@@ -13,7 +13,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import FeatherIcon from "feather-icons-react";
 import LogoIcon from "../logo/LogoIcon";
 import Menuitems from "./MenuItems";
 import { useRouter } from "next/router";
@@ -61,14 +60,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: propTyp
                   }}
                 >
                   <ListItemIcon>
-                    <FeatherIcon
-                      style={{
-                        color: `${location === item.href ? "white" : ""} `,
-                      }}
-                      icon={item.icon}
-                      width="20"
-                      height="20"
-                    />
+                    {item.icon}
                   </ListItemIcon>
 
                   <ListItemText onClick={onSidebarClose}>

@@ -1,11 +1,8 @@
 import React, { useRef, memo, useState, useEffect } from 'react';
 import { Input, Modal, Tooltip } from 'antd';
 import Badge from '@mui/material/Badge';
-import classnames from 'classnames';
-import {
-  ArrowLeftOutlined,
-  RedoOutlined,
-} from '@ant-design/icons';
+import RedoIcon from '@mui/icons-material/Redo';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import QRCode from 'qrcode.react';
 import req from '@/utils/req';
 import { uuid } from '@/utils/tool';
@@ -177,7 +174,7 @@ const HeaderComponent = memo((props) => {
             edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}
             onClick={toBack}
           >
-            <ArrowLeftOutlined />
+            <ChevronLeftIcon />
           </IconButton>
           <Typography variant="h6" component="div" color="inherit">
             海维设计
@@ -234,7 +231,7 @@ const HeaderComponent = memo((props) => {
         visible={showModalIframe}
         footer={null}
         width={414}
-        closeIcon={<RedoOutlined />}
+        closeIcon={<RedoIcon />}
         destroyOnClose={true}
         onCancel={handleReloadPage}
         maskClosable={false}

@@ -13,18 +13,14 @@ import {
   Tooltip,
   styled
 } from '@mui/material';
-import Text from 'src/components/Text';
+import { Text } from '@/components/ui';
 
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
-import internationalization from 'src/i18n/i18n';
+import internationalization from '@/i18n/i18n';
 import { useTranslation } from 'react-i18next';
 
-import deFlag from 'country-flag-icons/3x2/DE.svg';
 import usFlag from 'country-flag-icons/3x2/US.svg';
-import esFlag from 'country-flag-icons/3x2/ES.svg';
-import frFlag from 'country-flag-icons/3x2/FR.svg';
 import cnFlag from 'country-flag-icons/3x2/CN.svg';
-import aeFlag from 'country-flag-icons/3x2/AE.svg';
 
 const SectionHeading = styled(Typography)(
   ({ theme }) => `
@@ -84,7 +80,6 @@ function LanguageSwitcher() {
     <>
       <Tooltip arrow title={t('Language Switcher')}>
         <IconButtonPrimary color="primary" ref={ref} onClick={handleOpen}>
-          {getLanguage === 'de' && <ImageWrapper alt="German" src={deFlag} />}
           {getLanguage === 'en' && <ImageWrapper alt="English" src={usFlag} />}
           {getLanguage === 'en-US' && (
             <ImageWrapper alt="English" src={usFlag} />
@@ -92,10 +87,7 @@ function LanguageSwitcher() {
           {getLanguage === 'en-GB' && (
             <ImageWrapper alt="English" src={usFlag} />
           )}
-          {getLanguage === 'es' && <ImageWrapper alt="Spanish" src={esFlag} />}
-          {getLanguage === 'fr' && <ImageWrapper alt="French" src={frFlag} />}
           {getLanguage === 'cn' && <ImageWrapper alt="Chinese" src={cnFlag} />}
-          {getLanguage === 'ae' && <ImageWrapper alt="Arabic" src={aeFlag} />}
         </IconButtonPrimary>
       </Tooltip>
       <Popover
@@ -145,54 +137,6 @@ function LanguageSwitcher() {
               />
             </ListItem>
             <ListItem
-              className={getLanguage === 'de' ? 'active' : ''}
-              button
-              onClick={() => {
-                switchLanguage({ lng: 'de' });
-                handleClose();
-              }}
-            >
-              <ImageWrapper alt="German" src={deFlag} />
-              <ListItemText
-                sx={{
-                  pl: 1
-                }}
-                primary="German"
-              />
-            </ListItem>
-            <ListItem
-              className={getLanguage === 'es' ? 'active' : ''}
-              button
-              onClick={() => {
-                switchLanguage({ lng: 'es' });
-                handleClose();
-              }}
-            >
-              <ImageWrapper alt="Spanish" src={esFlag} />
-              <ListItemText
-                sx={{
-                  pl: 1
-                }}
-                primary="Spanish"
-              />
-            </ListItem>
-            <ListItem
-              className={getLanguage === 'fr' ? 'active' : ''}
-              button
-              onClick={() => {
-                switchLanguage({ lng: 'fr' });
-                handleClose();
-              }}
-            >
-              <ImageWrapper alt="French" src={frFlag} />
-              <ListItemText
-                sx={{
-                  pl: 1
-                }}
-                primary="French"
-              />
-            </ListItem>
-            <ListItem
               className={getLanguage === 'cn' ? 'active' : ''}
               button
               onClick={() => {
@@ -206,22 +150,6 @@ function LanguageSwitcher() {
                   pl: 1
                 }}
                 primary="Chinese"
-              />
-            </ListItem>
-            <ListItem
-              className={getLanguage === 'ae' ? 'active' : ''}
-              button
-              onClick={() => {
-                switchLanguage({ lng: 'ae' });
-                handleClose();
-              }}
-            >
-              <ImageWrapper alt="Arabic" src={aeFlag} />
-              <ListItemText
-                sx={{
-                  pl: 1
-                }}
-                primary="Arabic"
               />
             </ListItem>
           </List>

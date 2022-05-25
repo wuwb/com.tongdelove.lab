@@ -1,0 +1,19 @@
+@import "styles";
+
+.logo {
+  a {
+    font-size: 1em;
+    font-weight: 400;
+    color: $white;
+
+    span {
+      color: $white;
+    }
+
+    p {
+      display: inline;
+      margin: 0;
+      margin-left: $margin * $goldenRatioDecrease;
+    }
+  }
+}

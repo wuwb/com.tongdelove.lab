@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { Box, Card, Tooltip, IconButton, alpha, styled } from '@mui/material';
-import { SidebarContext } from 'src/contexts/SidebarContext';
+import { SidebarContext } from '@/contexts/SidebarContext';
 import Logo from './Logo';
 import NavigationMenu from './NavigationMenu';
 import LanguageSwitcher from './LanguageSwitcher';

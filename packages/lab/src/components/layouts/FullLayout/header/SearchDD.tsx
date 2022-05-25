@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import FeatherIcon from "feather-icons-react";
+import CircleIcon from '@mui/icons-material/Circle';
 import { IconButton, Input, Box, Drawer } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchDD = () => {
   // drawer top
@@ -19,7 +20,7 @@ const SearchDD = () => {
         onClick={() => setShowDrawer2(true)}
         size="large"
       >
-        <FeatherIcon icon="search" width="20" height="20" />
+        <SearchIcon width="20" height="20" />
       </IconButton>
       <Drawer
         anchor="top"
@@ -45,7 +46,7 @@ const SearchDD = () => {
               }}
               onClick={handleDrawerClose2}
             >
-              <FeatherIcon icon="x-circle" />
+              <CircleIcon />
             </IconButton>
           </Box>
         </Box>

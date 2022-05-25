@@ -1,6 +1,6 @@
 import React from "react";
-import FeatherIcon from "feather-icons-react";
 import Image from "next/image";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import userimg from "@/assets/images/users/user2.jpg";
 import {
   Box,
@@ -66,7 +66,7 @@ const ProfileDD = () => {
             >
               Julia
             </Typography>
-            <FeatherIcon icon="chevron-down" width="20" height="20" />
+            <KeyboardArrowDownIcon width="20" height="20" />
           </Box>
         </Box>
       </Button>

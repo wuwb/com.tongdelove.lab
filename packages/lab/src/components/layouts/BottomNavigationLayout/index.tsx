@@ -3,12 +3,12 @@ import { Box, Drawer, useTheme, styled } from '@mui/material';
 import PropTypes from 'prop-types';
 
 import BottomBar from './BottomBar';
-import { SidebarContext } from 'src/contexts/SidebarContext';
-import SidebarMenu from 'src/layouts/BoxedSidebarLayout/Sidebar/SidebarMenu';
-import ThemeSettings from './ThemeSettings';
-import Scrollbar from 'src/components/Scrollbar';
-import Logo from 'src/components/LogoSign';
-import SidebarTopSection from 'src/layouts/AccentHeaderLayout/Sidebar/SidebarTopSection';
+import { SidebarContext } from '@/contexts/SidebarContext';
+import SidebarMenu from '@/components/layouts/BoxedSidebarLayout/Sidebar/SidebarMenu';
+import ThemeSettings from '@/components/common/ThemeSettings';
+import Scrollbar from '@/components/common/Scrollbar';
+import Logo from '@/components/common/LogoSign';
+import SidebarTopSection from '@/components/layouts/AccentHeaderLayout/Sidebar/SidebarTopSection';
 
 interface BottomNavigationLayoutProps {
   children?: ReactNode;

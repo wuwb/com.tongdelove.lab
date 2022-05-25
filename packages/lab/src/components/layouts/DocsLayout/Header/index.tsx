@@ -1,8 +1,8 @@
 import { Card, Box, Button, styled } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import Link from 'src/components/Link';
+import Link from '@/components/ui/Link';
 
-import Logo from 'src/components/Logo';
+import Logo from '@/components/common/Logo';
 
 const HeaderWrapper = styled(Card)(
   ({ theme }) => `

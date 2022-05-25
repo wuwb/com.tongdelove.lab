@@ -1,0 +1,19 @@
+.comp-wrapper {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+
+.comp-wrapper--fullscreen {
+  position: unset;
+  right: unset;
+  top: unset;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  height: 100%;
+}
+
+.comp-wrapper--alwaysDarkMode,
+:global(.@{THEME--DARK}) .comp-wrapper {
+}

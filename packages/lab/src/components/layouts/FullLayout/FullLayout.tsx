@@ -5,9 +5,9 @@ import {
   Container,
   Box,
 } from "@mui/material";
-import Header from "./header/Header";
-import Sidebar from "./sidebar/Sidebar";
-import Footer from "./footer/Footer";
+import Header from "./Header/Header";
+import Sidebar from "./Sidebar/Sidebar";
+import Footer from "./Footer/Footer";
 
 const MainWrapper = experimentalStyled("div")(() => ({
   display: "flex",

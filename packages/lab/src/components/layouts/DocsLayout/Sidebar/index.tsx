@@ -6,9 +6,9 @@ import {
   ListItemText,
   styled
 } from '@mui/material';
-import Scrollbar from 'src/components/Scrollbar';
+import Scrollbar from '@/components/common/Scrollbar';
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
-import Link from 'src/components/Link';
+import Link from '@/components/ui/Link';
 
 const SidebarWrapper = styled(Box)(
   ({ theme }) => `
@@ -37,7 +37,7 @@ const ListWrapper = styled(List)(
       background-color: ${theme.colors.primary.lighter};
       color: ${theme.colors.primary.main};
     }
-    
+
     &.Mui-selected {
       color: ${theme.colors.alpha.black[100]};
     }

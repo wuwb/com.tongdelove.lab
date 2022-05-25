@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState, useContext } from 'react';
 import clsx from 'clsx';
-import { SidebarContext } from 'src/contexts/SidebarContext';
+import { SidebarContext } from '@/contexts/SidebarContext';
 import NextLink from 'next/link';
 
 import PropTypes from 'prop-types';

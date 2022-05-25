@@ -1,0 +1,100 @@
+@import "styles";
+
+.Modal {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($black, 0.76);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // padding: 1.5em 1em;
+  z-index: 500;
+  box-sizing: border-box;
+
+  &.fade {
+    animation: fade-in 0.25s 1 linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #5e5e5e;
+    cursor: pointer;
+    font-size: 1.25em;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.749);
+    border: 1px solid #c3c0c0;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.989);
+    }
+  }
+
+  .body {
+    z-index: 2;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 0 0.76rem 0.38rem rgba($black, 0.68);
+    border: 3px solid scale-color($black, $lightness: 3%);
+    max-height: 100%;
+    background-color: $black;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .bar__top {
+    display: flex;
+    justify-content: flex-end;
+    background-color: $black;
+    color: $text_dark;
+
+    span {
+      padding: 0.38rem 0.618rem;
+      color: $text_light;
+
+      &:hover {
+        background-color: $errorColor;
+        // background-color: darken($errorColor, 3.8%);
+        cursor: pointer;
+        box-shadow: inset 0 0 0.5rem rgba($black, 0.76);
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    animation-timing-function: cubic-bezier(0.2242, 0.7499, 0.3142, 0.8148);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

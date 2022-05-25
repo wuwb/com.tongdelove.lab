@@ -1,0 +1,18 @@
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  font-size: 1em;
+  font-family: var(--fontStackSans)
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: var(--padding);
+}
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}

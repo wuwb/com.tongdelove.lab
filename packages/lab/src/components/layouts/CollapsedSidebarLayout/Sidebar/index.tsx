@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import Scrollbar from 'src/components/Scrollbar';
-import { SidebarContext } from 'src/contexts/SidebarContext';
-import Logo from 'src/components/LogoSign';
+import Scrollbar from '@/components/common/Scrollbar';
+import { SidebarContext } from '@/contexts/SidebarContext';
+import Logo from '@/components/LogoSign';
 
 import { Box, Drawer, styled, useTheme } from '@mui/material';
 
@@ -14,7 +14,7 @@ const SidebarWrapper = styled(Box)(
         background: ${theme.sidebar.background};
         box-shadow: ${theme.sidebar.boxShadow};
         height: 100%;
-        
+
         @media (min-width: ${theme.breakpoints.values.md}px) {
           top: 0;
           left: 0;

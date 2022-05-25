@@ -23,11 +23,6 @@ import {
 import { useAppSelector } from '@/context/hooks';
 import BtnDrawLeft from "../assets/btn-draw-left.svg";
 import BtnDrawRight from "../assets/btn-draw-right.svg";
-import {
-  PieChartOutlined,
-  PlayCircleOutlined,
-  HighlightOutlined,
-} from "@ant-design/icons";
 import { throttle } from "@/utils/tool";
 import LeftSide from './LeftSide';
 import styles from './Container.module.css';

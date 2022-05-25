@@ -10,7 +10,7 @@ import {
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Link from 'src/components/Link';
+import Link from '@/components/ui/Link';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 
 const ListWrapper = styled(Box)(
@@ -18,13 +18,13 @@ const ListWrapper = styled(Box)(
         .MuiTouchRipple-root {
             display: none;
         }
-        
+
         .MuiListItem-root {
             transition: ${theme.transitions.create(['color', 'fill'])};
-            
+
             &.MuiListItem-indicators {
                 padding: ${theme.spacing(1, 2)};
-            
+
                 .MuiListItemText-root {
                     .MuiTypography-root {
                         &:before {
@@ -46,9 +46,9 @@ const ListWrapper = styled(Box)(
                 &.active,
                 &:active,
                 &:hover {
-                
+
                     background: transparent;
-                
+
                     .MuiListItemText-root {
                         .MuiTypography-root {
                             &:before {

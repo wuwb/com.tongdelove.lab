@@ -1,0 +1,18 @@
+@import "../../../styles/base";
+
+.socialLinks {
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-right: 1em;
+    display: inline-block;
+
+    a {
+      color: inherit;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { Box, useTheme } from '@mui/material';
-import ThemeSettings from 'src/components/ThemeSettings';
+import ThemeSettings from '@/components/common/ThemeSettings';
 
 import Sidebar from './Sidebar';
 import Header from './Header';

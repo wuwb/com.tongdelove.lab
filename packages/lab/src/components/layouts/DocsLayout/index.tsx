@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
-import Footer from 'src/components/Footer';
+import Footer from '@/components/Footer';
 import Sidebar from './Sidebar';
 import { Box, Card, Container, styled } from '@mui/material';
 

@@ -7,26 +7,28 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import FullLayout from "@/components/common/Layout/FullLayout";
+import { FullLayout } from "@/components/layouts";
 
-export default function About() {
+function AboutPage() {
   return (
     <FullLayout>
-    <Grid container spacing={0}>
-      {/* ------------------------- row 1 ------------------------- */}
-      <Grid item xs={12} lg={12}>
-        <Card>
-          <CardContent>
-            <Typography variant="h4">About Card</Typography>
-            <Typography variant="body1">
-              This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests. Add 1 cup of frozen peas along
-              with the mussels, if you like.
-            </Typography>
-          </CardContent>
-        </Card>
+      <Grid container spacing={0}>
+        {/* ------------------------- row 1 ------------------------- */}
+        <Grid item xs={12} lg={12}>
+          <Card>
+            <CardContent>
+              <Typography variant="h4">About Card</Typography>
+              <Typography variant="body1">
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
-    </Grid>
     </FullLayout>
   );
 }
+
+export default AboutPage;

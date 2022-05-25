@@ -25,13 +25,12 @@ import {
   styled,
   useTheme
 } from '@mui/material';
-import Link from 'src/components/Link';
-
+import Link from '@/components/ui/Link';
 import { TransitionProps } from '@mui/material/transitions';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { useTranslation } from 'react-i18next';
 import ContactSupportTwoToneIcon from '@mui/icons-material/ContactSupportTwoTone';
-import Scrollbar from 'src/components/Scrollbar';
+import Scrollbar from '@/components/common/Scrollbar';
 import RestoreTwoToneIcon from '@mui/icons-material/RestoreTwoTone';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
@@ -54,7 +53,7 @@ const DialogWrapper = styled(Dialog)(
     .MuiDialog-container {
         height: auto;
     }
-    
+
     .MuiDialog-paperScrollPaper {
         max-height: calc(100vh - 64px)
     }

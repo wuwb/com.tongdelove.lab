@@ -1,0 +1,17 @@
+@import "styles";
+
+.task {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: $black;
+  color: $white;
+  padding: $padding;
+
+  header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: $margin;
+    align-items: center;
+  }
+}

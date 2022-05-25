@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
-import ThemeSettings from 'src/components/ThemeSettings';
+import ThemeSettings from '@/components/common/ThemeSettings';
 
 interface BoxedSidebarLayoutProps {
   children?: ReactNode;

@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "yarn --cwd packages/lab dev",
     "build": "yarn --cwd packages/lab build",
-    "start": "yarn --cwd packages/lab start"
+    "start": "yarn --cwd packages/lab start",
+    "dev:design": "yarn --cwd packages/design dev",
+    "postinstall": "husky install"
   },
   "author": "",
   "license": "ISC",

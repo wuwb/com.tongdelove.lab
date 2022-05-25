@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { useCookies, withCookies } from 'react-cookie'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useCookies, withCookies } from 'react-cookie';
 
 // https://headlessui.dev/react/menu#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
@@ -15,7 +15,7 @@ const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
     <Link href={href} as={as} locale={locale}>
       <a {...props}>{children}</a>
     </Link>
-  )
+  );
 }
 
 const localeText = (locale: string): string => {
@@ -60,7 +60,7 @@ const SwitchLang = () => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-        'aria-labelledby': 'basic-button',
+          'aria-labelledby': 'basic-button',
         }}
       >
         {locales!.map(locale => (
@@ -83,4 +83,4 @@ const SwitchLang = () => {
   )
 }
 
-export default withCookies(SwitchLang)
+export default withCookies(SwitchLang);

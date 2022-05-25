@@ -2,9 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --THEME--DARK: ;
+  --font-family: ;
+  --primary-color: ;
+  --primary-color--dark: ;
+  --primary-color-bg: ;
+  --primary-color-bg--dark: ;
+  --text-color: ;
+  --text-color--dark: ;
+  --gray-color: ;
+  --gray-color--dark: ;
+  --border-radius-base: ;
+  --border-radius-sm: ;
+}
+
+
 .borderRadius {
-    border-radius: 6px;
-  }
-  .roundedCircle {
-    border-radius: 100%;
-  }
+  border-radius: 6px;
+}
+.roundedCircle {
+  border-radius: 100%;
+}

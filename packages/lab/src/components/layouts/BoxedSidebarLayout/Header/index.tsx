@@ -2,13 +2,13 @@ import { useContext } from 'react';
 
 import { Box, IconButton, Tooltip, styled } from '@mui/material';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
-import { SidebarContext } from 'src/contexts/SidebarContext';
+import { SidebarContext } from '@/contexts/SidebarContext';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 
 import HeaderMenu from './Menu';
 import HeaderButtons from './Buttons';
 import HeaderUserbox from './Userbox';
-import Logo from 'src/components/Logo';
+import Logo from '@/components/common/Logo';
 
 const HeaderWrapper = styled(Box)(
   ({ theme }) => `

@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
             content="an example of NextJS app with 100% accessible lighthouse score"
           />
 
-          {/* <link rel="manifest" href="static/manifest.json" /> */}
+          {/* <link rel="manifest" href="/static/manifest.json" /> */}
           {/* <link rel="shortcut icon" href="/static/favicon.ico" /> */}
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}

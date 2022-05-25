@@ -1,0 +1,14 @@
+.input-check__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--padding);
+}
+
+.input-check__container label {
+  font-size: 1em;
+}
+
+.placeholder {
+  color: var(--medium);
+}

@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Grid } from "@mui/material";
-import BlogCard from "@/components/dashboard/BlogCard";
-import DailyActivity from "@/components/dashboard/DailyActivity";
-import ProductPerfomance from "@/components/dashboard/ProductPerfomance";
+import BlogCard from "@/content/dashboard/BlogCard";
+import DailyActivity from "@/content/dashboard/DailyActivity";
+import ProductPerfomance from "@/content/dashboard/ProductPerfomance";
 import FullLayout from "@/components/layouts/FullLayout/FullLayout";
 
 function DashboardIndex() {
@@ -28,7 +28,7 @@ function DashboardIndex() {
 
 DashboardIndex.getLayout = (page) => (
   // <Authenticated>
-    <FullLayout>{page}</FullLayout>
+  <FullLayout>{page}</FullLayout>
   // </Authenticated>
 );
 

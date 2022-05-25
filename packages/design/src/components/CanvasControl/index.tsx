@@ -1,6 +1,5 @@
 import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
 import { Popover } from 'antd';
-import { InsertRowBelowOutlined } from '@ant-design/icons';
 import Draggable from 'react-draggable';
 import classnames from 'classnames';
 import styles from './index.module.css';

@@ -1,5 +1,5 @@
 import React from "react";
-import FeatherIcon from "feather-icons-react";
+import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 // Dropdown Component
 import SearchDD from "./SearchDD";
@@ -21,7 +21,7 @@ const Header = ({ sx, customClass, toggleMobileSidebar, position }) => {
             },
           }}
         >
-          <FeatherIcon icon="menu" width="20" height="20" />
+          <MenuIcon width="20" height="20" />
         </IconButton>
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}

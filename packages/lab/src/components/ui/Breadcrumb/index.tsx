@@ -18,7 +18,7 @@ const HomeCrumb = () => {
   )
 }
 
-const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
+export const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
   if (query) {
     const { path } = query
     if (Array.isArray(path)) {
@@ -40,9 +40,8 @@ const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
                   passHref
                 >
                   <a
-                    className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${
-                      i == 0 && 'pointer-events-none opacity-80'
-                    }`}
+                    className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${i == 0 && 'pointer-events-none opacity-80'
+                      }`}
                   >
                     {p}
                   </a>
@@ -63,5 +62,3 @@ const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
     </div>
   )
 }
-
-export default Breadcrumb

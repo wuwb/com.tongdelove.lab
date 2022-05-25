@@ -1,0 +1,50 @@
+@import "styles";
+
+.recurrence {
+  margin-top: $margin;
+  display: grid;
+  grid-template-columns: 38% 62%;
+  background: $primary;
+  padding: $padding;
+  color: $white;
+
+  & p {
+    grid-column: 1 / 3;
+    color: lighten($primary, 38%);
+    font-weight: 600;
+  }
+
+  & .radioGroup {
+    grid-column: 1 / 2;
+
+    & .item {
+      // justify-content: end;
+      // align-items: bottom;
+
+      & input {
+        display: inline-block;
+        width: 2rem;
+      }
+    }
+  }
+
+  & .numberOf {
+    grid-column: 2 / 3;
+
+    & input {
+      margin: 0 $margin;
+      width: 5rem;
+      padding: $padding;
+    }
+
+    & button {
+      margin: $margin 0;
+      width: 62%;
+      @include border();
+      @include paddingBox;
+      @include gradient($primary);
+      font-size: 0.618rem;
+      color: lighten($primary, 62%);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Box, Tooltip, styled } from '@mui/material';
-import Link from 'src/components/Link';
+import Link from '@/components/ui/Link';
 
 const LogoWrapper = styled(Link)(
   ({ theme }) => `
@@ -35,7 +35,7 @@ const LogoSign = styled(Box)(
         top: 3px;
         left: 17px;
 
-        &:after, 
+        &:after,
         &:before {
             content: "";
             display: block;

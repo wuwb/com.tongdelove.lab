@@ -1,6 +1,5 @@
 import Bar from 'bar'
-import * as React from 'react';
-import ReactDOM from 'react-dom';
+import Router from "next/router";
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -9,9 +8,11 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import SwitchLang from '@/components/common/SwitchLang';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import Fork from '@/components/demo/Fork';
+import AccentSidebarLayout from '@/components/layouts/AccentSidebarLayout';
+import { HtmlMeta } from '@/components/common';
+import { Home } from '@/content/home/Home/Home';
+import { pkg } from '@/configs';
 
 function Copyright(props: any) {
     return (
@@ -26,8 +27,7 @@ function Copyright(props: any) {
     );
 }
 
-export default function Home({stars}) {
-
+function HomePage(props) {
     const footers = [
         {
             title: 'Company',
@@ -53,8 +53,14 @@ export default function Home({stars}) {
         },
     ];
 
+    const handleRedirectToDashboards = () => {
+        Router.push("/admin/dashboard");
+    }
+
     return (
         <div>
+            <HtmlMeta title={pkg.name} disableSiteName />
+
             <AppBar
                 position="static"
                 color="default"
@@ -82,107 +88,122 @@ export default function Home({stars}) {
                         >
                             ETF 网格工具
                         </Link>
+                        <Button onClick={handleRedirectToDashboards} variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                            Dashboards
+                        </Button>
                     </nav>
-                    <Fork stars={stars} />
-                    <SwitchLang />
+                    <Fork stars={props.stars} />
                     <Button href="/user/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
                         Login
                     </Button>
                 </Toolbar>
             </AppBar>
 
-        <Container maxWidth="lg">
-            <Breadcrumb />
+            <Container maxWidth="lg">
 
-            {/* Hero unit */}
-            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-                <Typography
-                    component="h1"
-                    variant="h2"
-                    align="center"
-                    color="text.primary"
-                    gutterBottom
+                <Home />
+
+                {/* <Breadcrumb /> */}
+
+                {/* <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+                    <Typography
+                        component="h1"
+                        variant="h2"
+                        align="center"
+                        color="text.primary"
+                        gutterBottom
+                    >
+                        Pricing
+                    </Typography>
+                    <Typography variant="h5" align="center" color="text.secondary" component="p">
+                        Quickly build an effective pricing table for your potential customers with
+                        this layout. It&apos;s built with default MUI components with little
+                        customization.
+                    </Typography>
+                </Container> */}
+
+                <Bar />
+                <Button variant="contained">你好，世界</Button>
+                <Box
+                    sx={{
+                        my: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
                 >
-                    Pricing
-                </Typography>
-                <Typography variant="h5" align="center" color="text.secondary" component="p">
-                    Quickly build an effective pricing table for your potential customers with
-                    this layout. It&apos;s built with default MUI components with little
-                    customization.
-                </Typography>
-            </Container>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        MUI v5 + Next.js with TypeScript example
+                    </Typography>
+                </Box>
+                <div className="text-lg bg-red-500">
+                    tailwind test
+                </div>
+                <Container
+                    maxWidth="md"
+                    component="footer"
+                    sx={{
+                        borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+                        mt: 8,
+                        py: [3, 6],
+                    }}
+                >
+                    <Grid container spacing={4} justifyContent="space-evenly">
+                        {footers.map((footer) => (
+                            <Grid item xs={6} sm={3} key={footer.title}>
+                                <Typography variant="h6" color="text.primary" gutterBottom>
+                                    {footer.title}
+                                </Typography>
+                                <ul>
+                                    {footer.description.map((item) => (
+                                        <li key={item}>
+                                            <Link href="#" variant="subtitle1" color="text.secondary">
+                                                {item}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Copyright sx={{ mt: 5 }} />
+                </Container>
 
-        <Bar />
-        <Button variant="contained">你好，世界</Button>
-        <Box
-            sx={{
-            my: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            }}
-        >
-            <Typography variant="h4" component="h1" gutterBottom>
-            MUI v5 + Next.js with TypeScript example
-            </Typography>
-        </Box>
-        <div className="text-lg bg-red-500">
-            tailwind test
-        </div>
-            <Container
-                maxWidth="md"
-                component="footer"
-                sx={{
-                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-                    mt: 8,
-                    py: [3, 6],
-                }}
-            >
-                <Grid container spacing={4} justifyContent="space-evenly">
-                    {footers.map((footer) => (
-                        <Grid item xs={6} sm={3} key={footer.title}>
-                            <Typography variant="h6" color="text.primary" gutterBottom>
-                                {footer.title}
-                            </Typography>
-                            <ul>
-                                {footer.description.map((item) => (
-                                    <li key={item}>
-                                        <Link href="#" variant="subtitle1" color="text.secondary">
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Grid>
-                    ))}
-                </Grid>
-                <Copyright sx={{ mt: 5 }} />
-            </Container>
+                {/* <CoverFlowImages images={[
+                    "/demo/demo-editor.jpg",
+                    "/demo/demo-filemanager.png",
+                ]} /> */}
 
-        </Container>
+            </Container>
         </div>
     );
 }
 
-export async function getServerSideProps() {
-	try {
-		const res = await fetch(
-			// 'https://api.github.com/repos/wuwb/wuwb.github.io',
-            'https://api.github.com/repos/huydhoang/next-mui-emotion',
-		)
-		const json = await res.json()
+HomePage.getLayout = function getLayout(page) {
+    return <AccentSidebarLayout>{page}</AccentSidebarLayout>;
+}
 
-		return {
-			props: {
-				stars: json.stargazers_count,
-			},
-		}
-	} catch (error) {
-		return {
-			props: {
-				stars: 0,
-			},
-		}
-	}
+export default HomePage;
+
+export async function getServerSideProps() {
+    try {
+        const res = await fetch(
+            // 'https://api.github.com/repos/wuwb/wuwb.github.io',
+            'https://api.github.com/repos/huydhoang/next-mui-emotion',
+        )
+        const json = await res.json()
+
+        return {
+            props: {
+                stars: json.stargazers_count,
+            },
+        }
+    } catch (error) {
+        return {
+            props: {
+                stars: 0,
+            },
+        }
+    }
 }
