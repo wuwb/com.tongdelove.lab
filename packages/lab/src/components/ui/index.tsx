@@ -10,3 +10,6 @@ export * from './CoverFlowImages';
 export * from './PageWrapper';
 export * from './Breadcrumb';
 export * from './Text';
+
+export * from './Badge';
+export * from './Divider';

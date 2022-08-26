@@ -8,7 +8,7 @@ import PercentIcon from '@mui/icons-material/Percent';
 import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import { ICompBaseProps } from '@/interfaces';
 
-import styles from './style.module.css';
+import styles from './styles.module.css';
 
 interface IProps extends ICompBaseProps { }
 

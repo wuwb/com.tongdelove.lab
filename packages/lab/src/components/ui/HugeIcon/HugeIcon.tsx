@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import { ICompBaseProps } from '@/interfaces';
 
-import styles from './style.module.less';
+import styles from './styles.module.less';
 
 interface IProps extends ICompBaseProps {
     icon: any;

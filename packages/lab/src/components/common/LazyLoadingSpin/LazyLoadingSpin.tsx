@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { SpinProps } from 'antd/lib/spin';
-import styles from './style.module.css';
+import styles from './styles.module.css';
 
 interface IProps extends SpinProps {
   fullscreen?: boolean;

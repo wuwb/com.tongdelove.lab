@@ -1,4 +1,6 @@
+import { FC } from 'react'
 import cx from 'classnames';
+import { WithChildren } from '@/helper/WithChildren';
 
 const sizes = {
     sm: 'h-4 w-4',
@@ -12,13 +14,14 @@ const variants = {
     primary: 'text-blue-600',
 };
 
-export type SpinnerProps = {
+export type Props = {
     size?: keyof typeof sizes;
     variant?: keyof typeof variants;
     className?: string;
 };
 
-export const Spinner = () => {
+export const Spinner: FC = (props: Props & WithChildren) => {
+    const { size, variant, className } = props;
     return (
         <>
             <svg
@@ -47,4 +50,10 @@ export const Spinner = () => {
     );
 }
 
-Spinner.displayName = 'Spinner';
+export function Spinner2() {
+    return (
+        <div className="text-center p-3">
+            <span className="spinner-border spinner-border-lg align-center"></span>
+        </div>
+    );
+}

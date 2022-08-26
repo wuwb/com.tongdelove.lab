@@ -2,9 +2,9 @@ import * as React from 'react';
 import cx from "classnames";
 import { Loader } from "../Loader";
 import { Spinner } from '../Spinner';
-import styles from './style.module.css';
+import styles from './styles.module.css';
 
-export const Button = React.forwardRef(
+export const SpinnerButton = React.forwardRef(
     ({ }, ref) => {
         return (
             <button ref={() => ref} >
@@ -14,13 +14,11 @@ export const Button = React.forwardRef(
     }
 );
 
-Button.displayName = 'Button';
-
-
 export const DangerButton = (props) => {
+    const { type, onClick, children } = props;
     return (
-        <button className={styles['danger-button']}>
-            {props.children}
+        <button className={styles['btn-danger']} type={type} onClick={onClick}>
+            {children}
         </button>
     );
 }
@@ -72,4 +70,32 @@ export const AppearanceButton = ({
             </div>
         </button>
     )
+}
+
+type IButtonProps = {
+    xl?: boolean;
+    children: string;
+};
+
+export function Button2(props: IButtonProps) {
+    const btnClass = cx({
+        btn: true,
+        'btn-xl': props.xl,
+        'btn-base': !props.xl,
+        'btn-primary': true,
+    });
+
+    return (
+        <div className={btnClass}>
+            {props.children}
+        </div>
+    );
+}
+
+export const Button = (props) => {
+    return (
+        <div className="btn btn-primary">
+            {props.children}
+        </div>
+    );
 }

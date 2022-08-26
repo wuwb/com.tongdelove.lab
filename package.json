@@ -8,16 +8,22 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "yarn --cwd packages/lab dev",
-    "build": "yarn --cwd packages/lab build",
-    "start": "yarn --cwd packages/lab start",
-    "dev:design": "yarn --cwd packages/design dev",
+    "dev": "yarn workspace lab dev",
+    "build": "yarn workspace lab build",
+    "start": "yarn workspace lab start",
+    "dev:design": "yarn workspace design dev",
     "postinstall": "husky install",
     "test": "echo test"
   },
   "author": "",
   "license": "ISC",
   "engines": {
-      "node": ">=14"
+    "node": ">=14"
+  },
+  "packageManager": "yarn@3.2.1",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1"
   }
 }

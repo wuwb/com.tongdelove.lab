@@ -4,12 +4,8 @@
   display: flex;
   justify-content: center;
   place-items: center;
-  //
-  // just test less file aliase
-  //.just-a-bgc();
 }
 
-// DARK-MODE--COMP
 .comp-wrapper--alwaysDarkMode,
 :global(.@{THEME--DARK}) .comp-wrapper {
 }

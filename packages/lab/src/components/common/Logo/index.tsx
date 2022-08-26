@@ -1,5 +1,5 @@
 import { Box, styled, Tooltip } from '@mui/material';
-import Link from '@/components/ui/Link';
+import { Link } from '@/components/ui/Link';
 import { useTranslation } from 'react-i18next';
 
 const LogoWrapper = styled(Link)(
@@ -36,7 +36,7 @@ const LogoSign = styled(Box)(
         top: 3px;
         left: 17px;
 
-        &:after, 
+        &:after,
         &:before {
             content: "";
             display: block;
@@ -101,7 +101,7 @@ const LogoText = styled(Box)(
 `
 );
 
-function Logo() {
+export function Logo() {
   const { t }: { t: any } = useTranslation();
 
   return (
@@ -127,5 +127,3 @@ function Logo() {
     </LogoWrapper>
   );
 }
-
-export default Logo;

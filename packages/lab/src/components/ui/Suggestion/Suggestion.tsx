@@ -4,13 +4,12 @@ import React, {
   useState,
   useCallback,
 } from 'react';
-
 import { TextInput, OptionalInputProps } from '../Input/Input';
 import { InputContainer } from '../InputContainer/InputContainer';
 import { findDOMNode } from 'react-dom';
-import { FundDataItem } from '@/common/service';
+import { FundDataItem } from '@/services/service';
 import styled from '@emotion/styled';
-import { fetchFundData, Resource } from '@/common/resource';
+import { fetchFundData, Resource } from '@/services/resource';
 
 const SuggestionContainer = styled(InputContainer)`
   display: block;

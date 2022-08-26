@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { mailbox } from 'src/mocks/mailbox';
-import type { AppThunk } from 'src/store';
-import objectArray from 'src/utils/objectArray';
-import type { Mail, Tag } from 'src/models/mailbox';
+import { mailbox } from '@/mocks/mailbox';
+import type { AppThunk } from '@/store';
+import objectArray from '@/utils/objectArray';
+import type { Mail, Tag } from '@/models/mailbox';
 
 interface MailState {
   mails: {

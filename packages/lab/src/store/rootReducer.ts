@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
-// import { reducer as calendarReducer } from 'src/slices/calendar';
-// import { reducer as projectsBoardReducer } from 'src/slices/projects_board';
-// import { reducer as mailboxReducer } from 'src/slices/mailbox';
+// import { reducer as calendarReducer } from '@/slices/calendar';
+// import { reducer as projectsBoardReducer } from '@/slices/projects_board';
+// import { reducer as mailboxReducer } from '@/slices/mailbox';
 
 export const rootReducer = combineReducers({
   // calendar: calendarReducer,

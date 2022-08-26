@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { projects_board } from 'src/mocks/projects_board';
-import type { AppThunk } from 'src/store';
-import objectArray from 'src/utils/objectArray';
-import type { Project, Task, List, Member } from 'src/models/projects_board';
+import { projects_board } from '@/mocks/projects_board';
+import type { AppThunk } from '@/store';
+import objectArray from '@/utils/objectArray';
+import type { Project, Task, List, Member } from '@/models/projects_board';
 
 interface ProjectsBoardState {
   isLoaded: boolean;

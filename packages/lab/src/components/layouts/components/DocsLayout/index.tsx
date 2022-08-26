@@ -1,0 +1,52 @@
+import { FC, ReactNode } from 'react';
+import Header from './Header';
+import { Footer } from '@/components/common/Footer';
+import Sidebar from './Sidebar';
+import { Box, Card, Container, styled } from '@mui/material';
+
+interface DocsLayoutProps {
+  children?: ReactNode;
+}
+
+const MainWrapper = styled(Box)(
+  () => `
+    flex: 1;
+    display: flex;
+    height: 100%;
+`
+);
+
+const MainContent = styled(Box)(
+  ({ theme }) => `
+    flex: 1;
+    margin-top: ${theme.spacing(10)};
+    overflow: auto;
+`
+);
+
+export const DocsLayout: FC<DocsLayoutProps> = ({ children }) => {
+  return (
+    <>
+      <Header />
+      <MainWrapper>
+        <Sidebar />
+        <MainContent>
+          <Container maxWidth="lg">
+            <Card
+              sx={{
+                minHeight: 650,
+                pb: 3,
+                mb: 6,
+                borderTopRightRadius: 0,
+                borderTopLeftRadius: 0
+              }}
+            >
+              {children || { children }}
+            </Card>
+          </Container>
+          <Footer />
+        </MainContent>
+      </MainWrapper>
+    </>
+  );
+};

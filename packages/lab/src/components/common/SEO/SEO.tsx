@@ -1,21 +1,53 @@
 import { NextSeo } from "next-seo";
 
-export const Seo = ({ metadata }) => {
-    // Prevent errors if no metadata was set
-    if (!metadata) return null
+type ISEOProp = {
+    title: string;
+    description: string;
+    canonical: string;
+    ogLocale: string;
+    ogSiteName: string;
+    ogShareImage?: {
+        formats: string;
+    };
+    twitterCardType?: string;
+    twitterUsername?: string;
+}
+
+export const SEO = (props: ISEOProp) => {
+    // Prevent errors if no props was set
+    if (!props) {
+        return null
+    }
+
+    // <meta name="robots" content="follow, index" />
+    // <meta name="description" content={meta.description} />
+    // <meta property="og:site_name" content={meta.title} />
+    // <meta property="og:description" content={meta.description} />
+    // <meta property="og:title" content={meta.title} />
+    // <meta property="og:image" content={meta.image} />
+    // <meta name="twitter:card" content="summary_large_image" />
+    // <meta name="twitter:site" content="@yourname" />
+    // <meta name="twitter:title" content={meta.title} />
+    // <meta name="twitter:description" content={meta.description} />
+    // <meta name="twitter:image" content={meta.image} />
 
     return (
         <NextSeo
-            title={metadata.metaTitle}
-            description={metadata.metaDescription}
+            title={props.title}
+            description={props.description}
+            canonical={props.canonical}
             openGraph={{
                 // Title and description are mandatory
-                title: metadata.metaTitle,
-                description: metadata.metaDescription,
+                title: props.title,
+                description: props.description,
+                url: props.canonical,
+                locale: props.ogLocale,
+                site_name: props.ogSiteName,
+                type: 'website',
                 // Only include OG image if we have it
                 // Careful: if you disable image optimization in Strapi, this will break
-                ...(metadata.shareImage && {
-                    images: Object.values(metadata.shareImage.formats).map((image: any) => {
+                ...(props.ogShareImage && {
+                    images: Object.values(props.ogShareImage.formats).map((image: any) => {
                         return {
                             url: image.urls,
                             width: image.width,
@@ -26,9 +58,10 @@ export const Seo = ({ metadata }) => {
             }}
             // Only included Twitter data if we have it
             twitter={{
-                ...(metadata.twitterCardType && { cardType: metadata.twitterCardType }),
+                ...(props.twitterCardType && { cardType: props.twitterCardType }),
                 // Handle is the twitter username of the content creator
-                ...(metadata.twitterUsername && { handle: metadata.twitterUsername }),
+                ...(props.twitterUsername && { handle: props.twitterUsername }),
+                site: props.ogSiteName
             }}
         />
     )

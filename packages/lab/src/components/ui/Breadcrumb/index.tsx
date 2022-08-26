@@ -1,5 +1,3 @@
-import type { ParsedUrlQuery } from 'querystring'
-
 import Link from 'next/link'
 import HomeIcon from '@mui/icons-material/Home';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -18,7 +16,7 @@ const HomeCrumb = () => {
   )
 }
 
-export const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
+export const Breadcrumb: React.FC<{ query?: any }> = ({ query }) => {
   if (query) {
     const { path } = query
     if (Array.isArray(path)) {

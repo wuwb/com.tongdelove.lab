@@ -1,5 +1,5 @@
 export * from './common';
-export * from './demon';
+export * from './demo';
 export * from './layouts';
 export * from './module';
 export * from './ui';

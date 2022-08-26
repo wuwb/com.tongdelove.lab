@@ -1,0 +1,7 @@
+
+.list {
+    background-color: var(--box-background-color);
+    border-radius: var(--box-border-radius);
+    box-shadow: 0 2px 3pxrgba(0,0,0,.1);
+    border-bottom: 1px solid var(--box-border-color);
+}

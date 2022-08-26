@@ -1,0 +1,63 @@
+
+
+  .btn {
+    margin: 0;
+    border: 1px solid #d1d1d1;
+    padding: 0.5em;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    line-height: 1;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    @apply inline-block rounded-md text-center;
+  }
+
+  .btn {
+    padding: 0.65em 1em;
+    background: #0076ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn:focus {
+    outline: 0;
+    border-color: #0076ff;
+  }
+  .btn:hover {
+    background: rgba(0, 118, 255, 0.8);
+  }
+  .btn:focus {
+    box-shadow: 0 0 0 2px rgba(0, 118, 255, 0.5);
+  }
+
+
+.btn-base {
+  @apply text-lg font-semibold py-2 px-4;
+}
+
+.btn-xl {
+  @apply font-extrabold text-xl py-4 px-6;
+}
+
+.btn-primary {
+  /* @apply text-white bg-primary-500; */
+}
+
+.btn-primary:hover {
+  /* @apply bg-primary-600; */
+}
+
+.btn-danger {
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  color: #fff;
+  border-color: #ff4d4f;
+  background: #ff4d4f;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px #0000000b;
+}

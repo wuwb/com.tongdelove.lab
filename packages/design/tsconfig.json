@@ -9,6 +9,7 @@
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "noFallthroughCasesInSwitch": true,
+      "allowUnusedLabels": true,
       "module": "esnext",
       "moduleResolution": "node",
       "resolveJsonModule": true,

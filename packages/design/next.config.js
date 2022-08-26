@@ -1,7 +1,7 @@
 // Tell webpack to compile the "bar" package, necessary if you're using the export statement for example
 // https://www.npmjs.com/package/next-transpile-modules
 const withPlugins = require('next-compose-plugins');
-const withTM = require('next-transpile-modules')(['bar'])
+const withTM = require('next-transpile-modules')(['../bar'])
 // const withOffline = require('next-offline')
 const { i18n } = require('./next-i18next.config')
 

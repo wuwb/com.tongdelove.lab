@@ -1,61 +1,153 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // Tell webpack to compile the "bar" package, necessary if you're using the export statement for example
 // https://www.npmjs.com/package/next-transpile-modules
 /* eslint-disable */
-const withPlugins = require('next-compose-plugins');
-const withTM = require('next-transpile-modules')([
-    'bar', 'api'
-]);
-const withImages = require('next-images');
-const withOffline = require('next-offline')
-const { i18n } = require('./next-i18next.config')
+const withPlugins = require('next-compose-plugins')
+const withTM = require('next-transpile-modules')(['../bar', '../api'])
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  // enabled: process.env.ANALYZE === 'true',
+// })
+// const withImages = require('next-images')({
+//     disableStaticImages: true,
+// });
+// const withOffline = require('next-offline')
+const {i18n} = require('./next-i18next.config')
+const isDev = process.env.NODE_ENV !== 'production'
 
-/** @type {import('next').NextConfig} */
-module.exports = withPlugins([
-    [withTM],
-    [withImages],
-    [withOffline, {
-        workboxOpts: {
-            swDest: 'static/service-worker.js',
-            runtimeCaching: [
-                {
-                    urlPattern: /[.](png|jpg|ico|css)/,
-                    handler: 'CacheFirst',
-                    options: {
-                        cacheName: 'assets-cache',
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                    },
-                },
-                {
-                    urlPattern: /^http.*/,
-                    handler: 'NetworkFirst',
-                    options: {
-                        cacheName: 'http-cache',
-                    },
-                },
-            ],
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = withPlugins([
+  // [withBundleAnalyzer],
+  [withTM],
+  // [withImages],
+  // [withOffline, {
+  //     workboxOpts: {
+  //         swDest: 'static/service-worker.js',
+  //         runtimeCaching: [
+  //             {
+  //                 urlPattern: /[.](png|jpg|ico|css)/,
+  //                 handler: 'CacheFirst',
+  //                 options: {
+  //                     cacheName: 'assets-cache',
+  //                     cacheableResponse: {
+  //                         statuses: [0, 200],
+  //                     },
+  //                 },
+  //             },
+  //             {
+  //                 urlPattern: /^http.*/,
+  //                 handler: 'NetworkFirst',
+  //                 options: {
+  //                     cacheName: 'http-cache',
+  //                 },
+  //             },
+  //         ],
+  //     },
+  // }],
+  {
+    output: 'standalone',
+    compiler: {
+      // Remove console aside from 'error' in production
+      removeConsole: {
+        exclude: ['error'],
+      },
+      // Remove data-testid used for React Testing Library in production
+      reactRemoveProperties: {
+        properties: ['^data-testid$'],
+      },
+    },
+    experimental: {
+      // Google fonts
+      // optimizeFonts: true,
+      // removeConsole: {
+      //   exclude: ['error'],
+      // },
+    },
+    i18n,
+    poweredByHeader: false,
+    basePath: '',
+    reactStrictMode: true,
+    // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
+    trailingSlash: true,
+    eslint: {
+      dirs: ['pages', 'src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+    },
+    images: {
+      domains: [
+        'iph.href.lu',
+        // 加入 wordpress 相关域名
+        'blog.tongdelove.com',
+        // wp 头像
+        '0.gravatar.com',
+        '1.gravatar.com',
+        '2.gravatar.com',
+        'secure.gravatar.com',
+      ],
+    },
+    async redirects() {
+      return [
+        // Wildcard Path Matching - will match `/blog/a` and `/blog/a/b`
+        {
+          source: '/blog/:slug*',
+          destination: '/news/:slug*',
+          permanent: false,
         },
-    }],
-    {
-        compiler: {
-            // Remove console aside from 'error' in production
-            removeConsole: {
-              exclude: ['error'],
-            },
-            // Remove data-testid used for React Testing Library in production
-            reactRemoveProperties: { properties: ['^data-testid$'] },
+      ]
+    },
+    async rewrites() {
+      return {
+        beforeFiles: [
+          // These rewrites are checked after headers/redirects
+          // and before all files including _next/public files which
+          // allows overriding page files
+          {
+            source: '/some-page',
+            destination: '/somewhere-else',
+            has: [{type: 'query', key: 'overrideMe'}],
           },
-          // Google fonts
-          experimental: {
-            optimizeFonts: true,
+        ],
+        afterFiles: [
+          // These rewrites are checked after pages/public files
+          // are checked but before dynamic routes
+          {
+            source: '/blog',
+            destination: '/postss',
+          },
+        ],
+        fallback: [
+          // These rewrites are checked after both pages/public files
+          // and dynamic routes are checked
+          {
+            source: '/:path*',
+            destination: `https://localhost:3000/:path*`,
+          },
+        ],
+      }
+    },
+    async headers() {
+      return [
+        {
+          source: '/about',
+          headers: [
+            {
+              key: 'X-About-Custom-Header',
+              value: 'about_header_value',
+            },
+          ],
         },
-        i18n,
-        reactStrictMode: true,
-        // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
-        trailingSlash: true,
-        eslint: {
-            dirs: ['pages', 'src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+        {
+          source: '/news/:id',
+          headers: [
+            {
+              key: 'X-News-Custom-Header',
+              value: 'news_header_value',
+            },
+          ],
         },
-    }
-]);
+      ]
+    },
+  },
+])
+
+module.exports = nextConfig

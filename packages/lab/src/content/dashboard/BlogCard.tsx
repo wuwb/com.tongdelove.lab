@@ -1,9 +1,9 @@
-import React from "react";
-import { Card, CardContent, Typography, Button, Grid } from "@mui/material";
+import React, { FC } from "react";
+import { Card, CardContent, Typography, Button } from "@mui/material";
 import Image from "next/image";
-import user1 from "@/assets/images/backgrounds/u2.jpg";
-import user2 from "@/assets/images/backgrounds/u3.jpg";
-import user3 from "@/assets/images/backgrounds/u4.jpg";
+import user1 from "@/public/images/backgrounds/u2.jpg";
+import user2 from "@/public/images/backgrounds/u3.jpg";
+import user3 from "@/public/images/backgrounds/u4.jpg";
 
 const blogs = [
   {
@@ -29,20 +29,11 @@ const blogs = [
   },
 ];
 
-const BlogCard = () => {
+const BlogCard: FC = () => {
   return (
-    <Grid container>
+    <div className="grid grid-cols-3 gap-4">
       {blogs.map((blog, index) => (
-        <Grid
-          key={index}
-          item
-          xs={12}
-          lg={4}
-          sx={{
-            display: "flex",
-            alignItems: "stretch",
-          }}
-        >
+        <div key={index}>
           <Card
             sx={{
               p: 0,
@@ -85,9 +76,9 @@ const BlogCard = () => {
               </Button>
             </CardContent>
           </Card>
-        </Grid>
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 };
 

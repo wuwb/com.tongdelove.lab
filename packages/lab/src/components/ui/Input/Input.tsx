@@ -11,7 +11,7 @@ import debounce from 'lodash/debounce';
 import { usePercentValue } from '@/hooks/usePercentValue';
 import useUpdateEffect from '@/hooks/useUpdateEffect';
 import PropTypes from "prop-types";
-import ErrorMessage from "../ErrorMessage";
+import { ErrorMessage } from "../ErrorMessage";
 import "./Input.module.css";
 
 export const Input = (props) => {
@@ -39,12 +39,6 @@ export const Input = (props) => {
       />
     </div>
   );
-};
-
-Input.propTypes = {
-  name: PropTypes.string,
-  labelText: PropTypes.string,
-  placeholderText: PropTypes.string,
 };
 
 export const TextArea = (props) => (
@@ -409,8 +403,6 @@ export class InputCheck extends Component {
   };
 }
 
-
-
 type InputHTMLAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 type RequiredInputProps = Required<Pick<InputHTMLAttributes, 'value'>>;
 export type OptionalInputProps = Pick<
@@ -530,3 +522,5 @@ export const ForwardedTextInput = forwardRef<HTMLInputElement, TextInputProps>(
     );
   }
 );
+
+ForwardedTextInput.displayName = 'ForwardedTextInput';

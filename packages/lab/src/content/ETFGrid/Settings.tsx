@@ -1,10 +1,10 @@
 /* eslint-disable no-irregular-whitespace */
 import React, { useState, useCallback } from 'react';
-import { useDispatch, useAppState } from '@/common/store';
+import { useDispatch, useAppState } from '@/services/store';
 import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input';
 import { CheckBox } from '@/components/ui/Checkbox/Checkbox';
 import styled from '@emotion/styled';
-import { FundDataItem } from '@/common/service';
+import { FundDataItem } from '@/services/service';
 import noop from 'lodash/noop';
 import {
   UnitInputContainer,

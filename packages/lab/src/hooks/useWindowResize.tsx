@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
+// 兼容服务端渲染
 export const useWindowSize = (): { width?: number; height?: number } => {
     const isClient = typeof window === 'object';
 

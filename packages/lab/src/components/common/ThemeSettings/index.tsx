@@ -17,7 +17,7 @@ import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import Fab from '@mui/material/Fab';
 import { useTranslation } from 'react-i18next';
 import UnfoldMoreTwoToneIcon from '@mui/icons-material/UnfoldMoreTwoTone';
-import Link from '@/components/ui/Link';
+import { Link } from '@/components/ui/Link';
 
 const ThemeSettingsButton = styled(Box)(
   ({ theme }) => `
@@ -25,24 +25,6 @@ const ThemeSettingsButton = styled(Box)(
           z-index: 9999;
           right: ${theme.spacing(4)};
           bottom: ${theme.spacing(4)};
-          
-          &::before {
-              width: 30px;
-              height: 30px;
-              content: ' ';
-              position: absolute;
-              border-radius: 100px;
-              left: 13px;
-              top: 13px;
-              background: ${theme.colors.primary.main};
-              animation: ripple 1s infinite;
-              transition: ${theme.transitions.create(['all'])};
-          }
-
-          .MuiSvgIcon-root {
-            animation: pulse 1s infinite;
-            transition: ${theme.transitions.create(['all'])};
-          }
   `
 );
 
@@ -86,7 +68,7 @@ const ColorSchemeWrapper = styled(Box)(
 
     border-radius: ${theme.general.borderRadiusXl};
     height: 28px;
-    
+
     &.colorSchemeWrapper {
         display: flex;
         align-items: stretch;
@@ -113,7 +95,7 @@ const ColorSchemeWrapper = styled(Box)(
         .primary {
             background: #5569ff;
         }
-    
+
         .secondary {
             background: #f2f5f9;
         }
@@ -123,27 +105,27 @@ const ColorSchemeWrapper = styled(Box)(
         .primary {
             background: #2442AF;
         }
-    
+
         .secondary {
             background: #F8F8F8;
         }
     }
-    
+
     &.purpleFlow {
         .primary {
             background: #9b52e1;
         }
-    
+
         .secondary {
             background: #00b795;
         }
     }
-    
+
     &.nebulaFighter {
         .primary {
             background: #8C7CF0;
         }
-    
+
         .secondary {
             background: #070C27;
         }
@@ -153,7 +135,7 @@ const ColorSchemeWrapper = styled(Box)(
         .primary {
             background: #44a574;
         }
-    
+
         .secondary {
             background: #141c23;
         }
@@ -163,7 +145,7 @@ const ColorSchemeWrapper = styled(Box)(
         .primary {
             background: #CB3C1D;
         }
-    
+
         .secondary {
             background: #1C1C1C;
         }
@@ -239,7 +221,7 @@ const ThemeSettings: FC = () => {
       <ThemeSettingsButton>
         <Tooltip arrow title={t('Theme Settings')}>
           <Fab ref={ref} onClick={handleOpen} color="primary" aria-label="add">
-            <SettingsTwoToneIcon />
+            {t('Customize')}
           </Fab>
         </Tooltip>
         <Popover

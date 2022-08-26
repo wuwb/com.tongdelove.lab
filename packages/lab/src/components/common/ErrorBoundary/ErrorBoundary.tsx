@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export const ErrorBoundary = (props: any) => {
     const { children } = props;
     const [hasError, setError] = React.useState(false);
