@@ -16,7 +16,7 @@ import { Text } from '@/components/ui/Text';
 
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
 import internationalization from '@/i18n/i18n';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import { US, CN } from 'country-flag-icons/react/3x2';
 import styles from './styles.module.css';

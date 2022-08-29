@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-
+import { useRouter } from 'next/router';
 import {
   IconButton,
   Box,
@@ -17,7 +17,7 @@ import { Text } from '@/components/ui';
 
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
 import internationalization from '@/i18n/i18n';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { US, CN } from 'country-flag-icons/react/3x2';
 import styles from './styles.module.css';
 
@@ -52,12 +52,20 @@ const IconButtonPrimary = styled(IconButton)(
 );
 
 function LanguageSwitcher() {
+  const router = useRouter();
+
   const { i18n } = useTranslation();
   const { t }: { t: any } = useTranslation();
   const getLanguage = i18n.language;
 
   const switchLanguage = ({ lng }: { lng: any }) => {
     internationalization.changeLanguage(lng);
+
+    const { pathname, asPath, query } = router;
+
+    document.cookie = `NEXT_LOCALE=${locale}; path=/; expires=2147483647`;
+
+    router.push({ pathname, query }, asPath, { locale });
   };
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);

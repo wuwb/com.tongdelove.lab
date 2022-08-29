@@ -21,17 +21,17 @@ import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsAct
 import Link from '@mui/material/Link';
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { formatDistance, subHours, subSeconds, subDays } from 'date-fns';
 
 const AnimatedBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         box-shadow: 0 0 0 2px ${theme.palette.background.paper};
         background-color: #44b700;
         color: #44b700;
-        
+
         &::after {
             position: absolute;
             top: 0;
@@ -49,11 +49,11 @@ const AnimatedBadge = styled(Badge)(
 
 const NotificationsBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         background-color: ${alpha(theme.palette.error.main, 0.1)};
         color: ${theme.palette.error.main};
-        min-width: 16px; 
+        min-width: 16px;
         height: 16px;
         padding: 0;
 

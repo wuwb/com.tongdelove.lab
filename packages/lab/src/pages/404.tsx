@@ -11,7 +11,7 @@ import Image from 'next/image';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import type { ReactElement } from 'react';
 import { BaseLayout } from '@/components/layouts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Divider } from '@/components/ui';
 
 const OutlinedInputWrapper = styled(OutlinedInput)(

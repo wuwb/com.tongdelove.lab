@@ -11,9 +11,13 @@ module.exports = {
       'ru', // 俄文
     ],
   },
+  fallbackLng: {
+    default: ['en'],
+  },
+  nonExplicitSupportedLngs: true,
   nsSeparator: '.',
+  localePath: path.resolve('./public/locales'),
   ns: ['common', 'modals', 'landing', 'dashboard', 'builder'],
-  localePath: path.resolve('public/locales'),
   reloadOnPrerender: process.env.NODE_ENV === 'development',
   keySeparator: 'false',
   namespaceSeparator: false,

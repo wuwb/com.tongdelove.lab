@@ -82,7 +82,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
     // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
     trailingSlash: true,
     eslint: {
-      dirs: ['pages', 'src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+      dirs: ['src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
     },
     images: {
       domains: [
@@ -90,11 +90,6 @@ const nextConfig = async (phase, { defaultConfig }) => {
         'iph.href.lu',
         // 加入 wordpress 相关域名
         'blog.tongdelove.com',
-        // wp 头像
-        '0.gravatar.com',
-        '1.gravatar.com',
-        '2.gravatar.com',
-        'secure.gravatar.com',
       ],
     },
     async redirects() {

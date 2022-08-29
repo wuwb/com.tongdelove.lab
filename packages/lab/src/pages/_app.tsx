@@ -19,6 +19,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@/store/index';
+import nextI18NextConfig from '../../next-i18next.config';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -34,7 +35,7 @@ interface MyAppProps extends AppProps {
 
 const helmetContext = {};
 
-function MyApp(props: MyAppProps) {
+const MyApp = (props: MyAppProps) => {
   const [queryClient] = React.useState(
     () =>
       new QueryClient({
@@ -94,11 +95,10 @@ function MyApp(props: MyAppProps) {
         </PersistGate>
       </ReduxProvider>
     </>
-
   );
-}
+};
 
-export default appWithTranslation(MyApp); //
+export default appWithTranslation(MyApp, nextI18NextConfig);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

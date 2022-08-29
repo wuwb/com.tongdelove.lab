@@ -28,7 +28,7 @@ import {
 import { Link } from '@/components/ui/Link';
 import { TransitionProps } from '@mui/material/transitions';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import ContactSupportTwoToneIcon from '@mui/icons-material/ContactSupportTwoTone';
 import Scrollbar from '@/components/common/Scrollbar';
 import RestoreTwoToneIcon from '@mui/icons-material/RestoreTwoTone';

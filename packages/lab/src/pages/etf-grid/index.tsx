@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -6,18 +7,18 @@ import { AppContext, reducer, initialState } from '@/services/store';
 import { Breadcrumb } from '@/components/ui';
 import { Settings } from '@/content/ETFGrid/Settings';
 import { Grids } from '@/content/ETFGrid/Grids';
+import { DefaultLayout } from '@/components/layouts';
+import { WithGetLayout } from '@/helper/WithGetLayout';
 
-function App(): any {
+const App: NextPage & WithGetLayout = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const router = useRouter()
-  const { t } = useTranslation()
+  const router = useRouter();
+  const { t } = useTranslation();
 
   return (
-    <div className="box max-w-screen-lg container mx-auto px-4">
+    <div className="box container mx-auto max-w-screen-lg px-4">
       <header>
-        <h1 className="mb-8">
-          {t('etf-grid-title')}
-        </h1>
+        <h1 className="mb-8">{t<string>('etf.grid.title')}</h1>
         <Breadcrumb />
       </header>
       <main>
@@ -28,14 +29,18 @@ function App(): any {
       </main>
     </div>
   );
-}
+};
+
+App.getLayout = function getLayout(page: JSX.Element) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};
 
 export default App;
 
-export async function getServerSideProps({ locale, defaultLocale }) {
+export const getStaticProps: GetStaticProps = async ({ locale = 'zh' }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
     },
-  }
-}
+  };
+};

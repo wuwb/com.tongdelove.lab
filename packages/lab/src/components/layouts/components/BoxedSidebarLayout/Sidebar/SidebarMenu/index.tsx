@@ -12,7 +12,7 @@ import {
 import { useRouter } from 'next/router';
 import SidebarMenuItem from './item';
 import menuItems, { MenuItem } from './items';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `

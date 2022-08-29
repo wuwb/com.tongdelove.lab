@@ -3,7 +3,7 @@ import { ListSubheader, Box, List, styled } from '@mui/material';
 import SidebarMenuItem from './item';
 import { useRouter } from 'next/router';
 import menuItems, { MenuItem } from './items';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const SubMenuWrapper = styled(Box)(
   ({ theme }) => `

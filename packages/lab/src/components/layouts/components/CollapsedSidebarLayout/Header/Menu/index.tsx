@@ -8,7 +8,7 @@ import {
   styled
 } from '@mui/material';
 import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import { Link } from '@/components/ui/Link';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';

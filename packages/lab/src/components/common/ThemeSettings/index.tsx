@@ -15,7 +15,7 @@ import { ThemeContext } from '@/theme/ThemeProvider';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import Fab from '@mui/material/Fab';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import UnfoldMoreTwoToneIcon from '@mui/icons-material/UnfoldMoreTwoTone';
 import { Link } from '@/components/ui/Link';
 

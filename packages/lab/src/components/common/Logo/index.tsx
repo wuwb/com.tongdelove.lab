@@ -1,15 +1,15 @@
 import { Box, styled, Tooltip } from '@mui/material';
 import { Link } from '@/components/ui/Link';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const LogoWrapper = styled(Link)(
   ({ theme }) => `
         color: ${theme.palette.text.primary};
         padding: ${theme.spacing(0, 1, 0, 0)};
         display: flex;
+        align-items: center;
         text-decoration: none;
         font-weight: ${theme.typography.fontWeightBold};
-
         &:hover {
           text-decoration: none;
         }
@@ -111,19 +111,9 @@ export function Logo() {
           <LogoSignInner />
         </LogoSign>
       </LogoSignWrapper>
-      <Box
-        component="span"
-        sx={{
-          display: { xs: 'none', sm: 'inline-block' }
-        }}
-      >
-        <LogoTextWrapper>
-          <Tooltip title={t('Version') + ' 3.0'} arrow placement="right">
-            <VersionBadge>3.0</VersionBadge>
-          </Tooltip>
-          <LogoText>Tokyo</LogoText>
-        </LogoTextWrapper>
-      </Box>
+      <LogoTextWrapper>
+        <LogoText>海维包装实验室</LogoText>
+      </LogoTextWrapper>
     </LogoWrapper>
   );
 }

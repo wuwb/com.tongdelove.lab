@@ -165,7 +165,7 @@ const develop = [
             {
                 "path": "https://75team.com/",
                 "name": "奇舞团",
-                "desc": "360 Web 前端开发团队"
+                "desc": "360 Web 奇舞团前端开发团队"
             },
             {
                 "path": "https://aotu.io/",
@@ -256,11 +256,7 @@ const develop = [
                 name: '团队汇总',
                 path: 'https://www.yuque.com/zaotalk/ued/lkpqh9'
             },
-            {
-                "path": "http://www.75team.com/",
-                "name": "奇舞团",
-                "desc": "奇舞团端开发团队"
-            },
+
         ]
     },
     {

@@ -15,7 +15,7 @@ import {
   TooltipProps,
   tooltipClasses
 } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import KeyboardArrowRightTwoToneIcon from '@mui/icons-material/KeyboardArrowRightTwoTone';
 import KeyboardArrowLeftTwoToneIcon from '@mui/icons-material/KeyboardArrowLeftTwoTone';
 const IndicatorWrapper = styled(Box)(
@@ -68,7 +68,7 @@ const PopoverWrapper = styled(Popover)(
           color: ${theme.colors.alpha.black[100]} !important;
         }
       }
-    }  
+    }
   }
 `
 );

@@ -6,6 +6,7 @@ import { Meta } from '@/components/common';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '@/createEmotionCache';
 import theme from '@/theme/theme';
+import i18nextConfig from '../../next-i18next.config';
 
 // avoid CSS animation transition flashing
 export const DISABLE_SSR_TRANSITION = 'disable-SSR-transition';
@@ -109,6 +110,7 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 
   render() {
     const [lang] = this.props.locale;
+    const currentLocale = this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale;
 
     // todo 参数抽离到配置中
     return (

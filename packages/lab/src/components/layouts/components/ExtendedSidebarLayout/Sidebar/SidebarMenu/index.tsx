@@ -4,7 +4,7 @@ import { ListSubheader, Box, List, styled } from '@mui/material';
 import SidebarMenuItem from './item';
 import { useRouter } from 'next/router';
 import menuItems, { MenuItem } from './items';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -49,7 +49,7 @@ const SubMenuWrapper = styled(Box)(
             color: ${theme.palette.primary.contrastText};
           }
         }
-    
+
         .MuiButton-root {
           display: flex;
           color: ${theme.sidebar.menuItemColor};
@@ -61,7 +61,7 @@ const SubMenuWrapper = styled(Box)(
           border-top-left-radius: 0;
           border-bottom-right-radius: 50px;
           border-top-right-radius: 50px;
-    
+
           .MuiButton-startIcon,
           .MuiButton-endIcon {
             transition: ${theme.transitions.create(['color'])};
@@ -77,7 +77,7 @@ const SubMenuWrapper = styled(Box)(
             margin-right: ${theme.spacing(1)};
             color: ${theme.sidebar.menuItemIconColor};
           }
-          
+
           .MuiButton-endIcon {
             margin-left: auto;
             opacity: .8;

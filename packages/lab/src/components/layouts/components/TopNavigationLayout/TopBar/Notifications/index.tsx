@@ -21,7 +21,7 @@ import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsAct
 import Link from '@mui/material/Link';
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { formatDistance, subHours, subSeconds, subDays } from 'date-fns';
 
 const IconButtonPrimary = styled(IconButton)(
