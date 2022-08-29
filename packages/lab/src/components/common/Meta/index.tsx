@@ -35,7 +35,7 @@ const Meta = (props: IMetaProps) => {
             <meta name="referrer" content="no-referrer" />
             <meta name="msapplication-TileColor" content="#ffffff" />
             <meta name="msapplication-TileImage" content="/static/ms-icon-144x144.png" />
-            <link rel="manifest" href="/static/manifest.json" />
+            <link rel="manifest" href="/manifest.json" />
             <link rel="shortcut icon" href="/static/favicon.ico" />
             <link rel="apple-touch-icon" href="/favicons/logo192.png" />
             <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />

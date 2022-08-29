@@ -1,15 +1,21 @@
+const { join } = require('path');
+const colors = require('tailwindcss/colors');
+const typography = require('@tailwindcss/typography');
+
 module.exports = {
   content: [
-    './pages/**/*.{ts,tsx,css}',
     './src/**/*.{ts,tsx,css}'
   ],
-  // theme: {
-  //   container: {
-  //     center: true,
-  //   },
-  //   extend: {},
-  // },
+  theme: {
+    // container: {
+    //   center: true,
+    // },
+    extend: {
+      colors: {
+        primary: colors.teal,
+      },
+    },
+  },
   // variants: {},
-  // plugins: [
-  // ],
+  plugins: [typography],
 };

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NextPage } from 'next';
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 import { Helmet } from 'react-helmet';
 import { Meta } from '@/components/common';
@@ -11,6 +12,7 @@ export const DISABLE_SSR_TRANSITION = 'disable-SSR-transition';
 
 type MyDocumentProps = {
   locale: 'en' | 'zh';
+  helmet: any;
 };
 
 process.on('unhandledRejection', err => {
@@ -21,7 +23,7 @@ process.on('uncaughtException', err => {
   // Sentry.captureException(err);
 });
 
-export default class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
+class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
   static defaultProps = {
     locale: 'en',
   };
@@ -135,3 +137,6 @@ export default class MyDocument extends Document<MyDocumentProps & DocumentIniti
     );
   }
 }
+
+
+export default MyDocument;

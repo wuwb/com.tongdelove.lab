@@ -11,7 +11,7 @@ export function Header() {
     <div className="max-w-8xl sticky top-0 z-30 mx-auto flex bg-white px-4">
       <div className="flex w-full justify-between py-4">
         <div>
-          <button className="flex appearance-none p-1 text-gray-500 md:hidden">
+          {/* <button className="flex appearance-none p-1 text-gray-500 md:hidden">
             <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 256 256">
               <line
                 x1="40"
@@ -47,7 +47,7 @@ export function Header() {
                 stroke-width="24"
               ></line>
             </svg>
-          </button>
+          </button> */}
           <div className="mr-5 flex flex-1 items-center">
             <Logo />
           </div>
@@ -75,7 +75,6 @@ export function Header() {
                 导航
               </Link>
             </li>
-
             <li className="nav-item">
               <Link
                 className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
@@ -87,21 +86,16 @@ export function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Button onClick={handleRedirectToDashboards} variant="outlined">
+              <Link href="/dashboard" variant="outlined">
                 后台
-              </Button>
-            </li>
-            <li className="nav-item">
-              <Link href="/user/login" variant="outlined">
-                登录
               </Link>
             </li>
           </ul>
         </div>
         <nav className="flex items-center justify-end space-x-1 text-sm font-medium text-gray-800">
-          <a href="#" className="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
-            Login
-          </a>
+          <Link href="/user/login" variant="outlined" className="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
+            登录
+          </Link>
           <a href="#" className="rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
             Sign Up
           </a>

@@ -5,10 +5,5 @@ interface BaseLayoutProps {
 }
 
 export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
-  return (
-    <div className="w-full">
-      {children}
-    </div>
-  );
+  return <div className="w-full">{children}</div>;
 };
-

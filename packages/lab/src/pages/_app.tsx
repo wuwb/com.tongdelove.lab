@@ -13,10 +13,12 @@ import ThemeProvider from '@/theme/ThemeProvider';
 import createEmotionCache from '@/createEmotionCache';
 import reportWebVitals from '@/reportWebVitals';
 import { title } from '@/constants';
-import nextI18NextConfig from '../../next-i18next.config';
-import '@/styles/index.css';
+import '@/styles/globals.scss';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '@/store/index';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -61,37 +63,44 @@ function MyApp(props: MyAppProps) {
   // }, []);
 
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <HelmetProvider context={helmetContext}>
-            <CacheProvider value={emotionCache}>
-              <Head>
-                <title>{title}</title>
-                {/* Use minimum-scale=1 to enable GPU rasterization */}
-                <meta
-                  name="viewport"
-                  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-                />
-              </Head>
-              <ThemeProvider>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
-                {getLayout(<Component {...pageProps} />)}
-              </ThemeProvider>
-            </CacheProvider>
-          </HelmetProvider>
-        </Hydrate>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <>
+      <ReduxProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ErrorBoundary>
+            <QueryClientProvider client={queryClient}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <HelmetProvider context={helmetContext}>
+                  <CacheProvider value={emotionCache}>
+                    <Head>
+                      <title>{title}</title>
+                      {/* Use minimum-scale=1 to enable GPU rasterization */}
+                      <meta
+                        name="viewport"
+                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+                      />
+                    </Head>
+                    <ThemeProvider>
+                      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                      <CssBaseline />
+                      <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
+                      {getLayout(<Component {...pageProps} />)}
+                    </ThemeProvider>
+                  </CacheProvider>
+                </HelmetProvider>
+              </Hydrate>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+          </ErrorBoundary>
+        </PersistGate>
+      </ReduxProvider>
+    </>
+
   );
 }
 
-export default appWithTranslation(MyApp, nextI18NextConfig); //
+export default appWithTranslation(MyApp); //
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();

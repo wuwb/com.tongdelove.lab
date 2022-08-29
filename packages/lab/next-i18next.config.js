@@ -4,8 +4,15 @@ module.exports = {
   debug: true,
   i18n: {
     defaultLocale: 'zh',
-    locales: ['en', 'zh']
+    locales: [
+      'zh', // 中文
+      'en', // 英文
+      'ja', // 日文
+      'ru', // 俄文
+    ],
   },
+  nsSeparator: '.',
+  ns: ['common', 'modals', 'landing', 'dashboard', 'builder'],
   localePath: path.resolve('public/locales'),
   reloadOnPrerender: process.env.NODE_ENV === 'development',
   keySeparator: 'false',
@@ -16,5 +23,5 @@ module.exports = {
   serializeConfig: false,
   react: {
     useSuspense: false,
-  }
+  },
 };

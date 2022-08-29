@@ -1,11 +1,10 @@
 import { FC, useState, createContext, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material';
 import { themeCreator } from './base';
-import { StylesProvider } from '@mui/styles';
 // import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 
 
-export const ThemeContext = createContext((_themeName: string): void => {});
+export const ThemeContext = createContext((_themeName: string): void => { });
 
 const ThemeProviderWrapper: FC = (props) => {
   const [themeName, _setThemeName] = useState('PureLightTheme');
@@ -23,11 +22,9 @@ const ThemeProviderWrapper: FC = (props) => {
   };
 
   return (
-    <StylesProvider injectFirst>
-      <ThemeContext.Provider value={setThemeName}>
-        <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-      </ThemeContext.Provider>
-    </StylesProvider>
+    <ThemeContext.Provider value={setThemeName}>
+      <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+    </ThemeContext.Provider>
   );
 };
 

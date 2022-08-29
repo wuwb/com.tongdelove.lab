@@ -1,28 +1,38 @@
 import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import Bar from 'bar';
-import { BaseLayout } from '@/components/layouts';
+import { Trans, useTranslation } from 'next-i18next';
+// import Bar from 'bar';
+import { DefaultLayout } from '@/components/layouts';
 import { Home } from '@/content/home/Home';
 import { Header, Footer, Container } from '@/components/common';
 import type { WithGetLayout } from '@/helper/WithGetLayout';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 type IndexProps = {};
 
 const HomePage: NextPage<IndexProps> & WithGetLayout = props => {
+  const { t } = useTranslation();
+
+  const user = useAppSelector((state) => state.auth.user);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
+
+  const email = user?.email || '';
+
+
   return (
-    <>
-      <Header />
-      <Container>
-        <Home />
-        <Bar />
-        <Footer />
-      </Container>
-    </>
+    <Container>
+      <div>home</div>
+      {isLoggedIn ? '已经登录了' : '未登录，请登录'}
+      {email}
+      {/* <Bar /> */}
+      <Footer />
+    </Container>
   );
 };
 
 HomePage.getLayout = function getLayout(page: JSX.Element) {
-  return <BaseLayout>{page}</BaseLayout>;
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default HomePage;

@@ -2,6 +2,10 @@ import type { User } from '@/models/user';
 import { randomId } from '@/utils/randomId';
 import { sign, decode, JWT_SECRET, JWT_EXPIRES_IN } from '@/utils/jwt';
 import { wait } from '@/utils/wait';
+import { AxiosResponse } from 'axios';
+import axios from '@/utils/axios';
+import { store } from '@/store';
+import { setAccessToken, setUser } from '@/store/authSlice';
 
 const users = [
   {
@@ -123,3 +127,26 @@ class AuthApi {
 }
 
 export const authApi = new AuthApi();
+
+export type LoginParams = {
+  identifier: string;
+  password: string;
+};
+
+export type AuthDTO = {
+  user: User;
+  accessToken: string;
+};
+
+export async function login(loginParams: LoginParams) {
+  const { data } = await axios.post<AuthDTO, AxiosResponse<AuthDTO>, LoginParams>('/auth/login', {
+    username: loginParams.identifier,
+    ...loginParams,
+  });
+  const { user, token } = data.data;
+  console.log('data: ', data);
+  console.log('user: ', user);
+  console.log('accessToken: ', token);
+  store.dispatch(setUser(user));
+  store.dispatch(setAccessToken(token));
+}

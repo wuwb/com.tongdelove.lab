@@ -1,12 +1,39 @@
 import React, { useEffect, useState } from 'react';
+import { joiResolver } from '@hookform/resolvers/joi';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { UserService } from "@/services";
 import { useAuth } from '@/contexts/auth';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import Joi from 'joi';
+import { Trans, useTranslation } from 'next-i18next';
+import { useIsMutating, useMutation } from '@tanstack/react-query';
+import { login, LoginParams } from '@/services/auth';
+import { ServerError } from '@/utils/axios';
+
+type FormData = {
+  identifier: string;
+  password: string;
+  persist: boolean;
+};
+
+const defaultState: FormData = {
+  identifier: '',
+  password: '',
+  persist: false,
+};
+
+const schema = Joi.object({
+  identifier: Joi.string().required(),
+  password: Joi.string().min(6).required(),
+  persist: Joi.boolean().required(),
+});
 
 const UserLoginPage = (props) => {
+  const { t } = useTranslation();
+
   const [persist, setPersist] = useState(false);
 
   const router = useRouter();
@@ -19,23 +46,37 @@ const UserLoginPage = (props) => {
   }, []);
 
 
-  const togglePersist = () => {
-    setPersist(prev => !prev);
-  }
-
   useEffect(() => {
     localStorage.setItem("persist", `${persist}`);
   }, [])
 
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, reset, control, formState } = useForm<FormData>({
+    defaultValues: defaultState,
+    resolver: joiResolver(schema),
+  });
+
+  const { mutateAsync: loginMutation } = useMutation<void, ServerError, LoginParams>(login);
+
   const { errors } = formState;
 
   async function onSubmit(values) {
     console.log('Success:', values);
-    alert(JSON.stringify(values));
+
+    await loginMutation(
+      {
+        identifier: values.identifier,
+        password: values.password,
+      },
+      {
+        onError: (error: any) => {
+          toast.error(error.message);
+        },
+      }
+    );
+    router.push('/');
 
     // try {
-    //   const data = await auth.login(values.username, values.password);
+    //   const data = await auth.login(values.identifier, values.password);
     //   console.log('res: ', data);
     //   router.push('/');
     // } catch (err) {
@@ -65,13 +106,13 @@ const UserLoginPage = (props) => {
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-6">
-                <label htmlFor="username">
+                <label htmlFor="identifier">
                   用户名
                 </label>
                 <input
-                  id="username"
-                  {...register('username')}
-                  aria-invalid={errors.username ? "true" : "false"}
+                  id="identifier"
+                  {...register('identifier')}
+                  aria-invalid={errors.identifier ? "true" : "false"}
                   placeholder="请输入用户名"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 />
@@ -104,8 +145,11 @@ const UserLoginPage = (props) => {
                 {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                 登录
               </button>
-              <Link href="/account/register" className="btn btn-link">Register</Link>
-
+              <Link href="/account/register" className="btn btn-link">
+                {/* <Trans t={t} i18nKey="pages.user.login.register-text"> */}
+                注册
+                {/* </Trans> */}
+              </Link>
             </form>
             <div className="rounded-t-lg p-8">
               <p className="text-center text-sm text-gray-400 font-light">Sign in with</p>

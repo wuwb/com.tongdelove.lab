@@ -1,5 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { UserService } from "@/services";
+import Router from 'next/router';
+import { store } from '../store';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -12,9 +14,9 @@ const instance = axios.create({
         'Accept': 'application/json',
         'Content-Type': 'application/json',
     }
-})
+});
 
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use((config) => {
     // if (!config.headers.Authorization) {
     //   // const [accessToken, setAccessToken] = useLocalStorage('access_token');
     //   // if (accessToken) {
@@ -26,8 +28,14 @@ instance.interceptors.request.use(function (config) {
     //       config.headers.Authorization = `Bearer ${user.token}`;
     //   }
     // }
+    const { accessToken } = store.getState().auth;
+    config.headers = {
+        ...config.headers,
+        Authorization: `Bearer ${accessToken}`,
+    };
+
     return config;
-}, function (error) {
+}, (error) => {
     if (error.response) {
         // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
         console.log(error.response.data);
@@ -46,17 +54,33 @@ instance.interceptors.request.use(function (config) {
     // return Promise.reject(error);
 });
 
-instance.interceptors.response.use(function (response: AxiosResponse) {
+instance.interceptors.response.use((response: AxiosResponse) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response.data;
-}, function (error: AxiosError) {
+    return response;
+}, (error: AxiosError) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if (!axios.isCancel(error)) {
         console.log(error.message);
         // return Promise.reject(error);
     }
+
+    const { response } = error;
+
+    if (response) {
+        const errorObject: ServerError = response.data;
+        const code = errorObject.statusCode;
+
+        if (code === 401 || code === 404) {
+            store.dispatch(logout());
+            Router.push('/');
+        }
+
+        throw errorObject;
+    }
+
+    throw error;
 });
 
 const request = ({ ...options }) => {
@@ -76,3 +100,10 @@ const request = ({ ...options }) => {
 }
 
 export default instance;
+
+export type ServerError = {
+    status: number;
+    message: string;
+    timestamp: string;
+    path: string;
+};

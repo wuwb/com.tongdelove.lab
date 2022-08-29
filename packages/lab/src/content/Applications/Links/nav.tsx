@@ -375,6 +375,27 @@ let navs = [
       },
     ],
   },
+  {
+    name: '自动抠图',
+    children: [
+      {
+        name: 'unscreen',
+        path: 'https://www.unscreen.com',
+      },
+      {
+        name: 'RemoveBg',
+        path: 'https://www.remove.bg/zh',
+      },
+      {
+        name: 'Slazzer',
+        path: 'https://slazzer.com',
+      },
+      {
+        name: '改图神器',
+        path: 'https://img.logosc.cn/',
+      },
+    ],
+  },
 ];
 
 navs = navs.concat(develop);

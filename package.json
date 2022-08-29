@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "dev": "yarn workspace lab dev",
     "build": "yarn workspace lab build",
@@ -15,15 +14,14 @@
     "postinstall": "husky install",
     "test": "echo test"
   },
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": ">=14"
-  },
-  "packageManager": "yarn@3.2.1",
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "husky": "^8.0.1"
+  },
+  "packageManager": "pnpm@7.9.5",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
   }
 }

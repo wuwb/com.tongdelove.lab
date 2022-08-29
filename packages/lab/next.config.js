@@ -1,57 +1,65 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable */
+
 // Tell webpack to compile the "bar" package, necessary if you're using the export statement for example
 // https://www.npmjs.com/package/next-transpile-modules
-/* eslint-disable */
-const withPlugins = require('next-compose-plugins')
-const withTM = require('next-transpile-modules')(['../bar', '../api'])
+const withTM = require('next-transpile-modules')(['../bar', '../api']);
+const { i18n } = require('./next-i18next.config');
+const { version } = require('./package.json');
+
+const isDev = process.env.NODE_ENV === 'development';
+
+// const withPlugins = require('next-compose-plugins');
+
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  // enabled: process.env.ANALYZE === 'true',
+// enabled: process.env.ANALYZE === 'true',
 // })
 // const withImages = require('next-images')({
 //     disableStaticImages: true,
 // });
 // const withOffline = require('next-offline')
-const {i18n} = require('./next-i18next.config')
-const isDev = process.env.NODE_ENV !== 'production'
 
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = withPlugins([
-  // [withBundleAnalyzer],
-  [withTM],
-  // [withImages],
-  // [withOffline, {
-  //     workboxOpts: {
-  //         swDest: 'static/service-worker.js',
-  //         runtimeCaching: [
-  //             {
-  //                 urlPattern: /[.](png|jpg|ico|css)/,
-  //                 handler: 'CacheFirst',
-  //                 options: {
-  //                     cacheName: 'assets-cache',
-  //                     cacheableResponse: {
-  //                         statuses: [0, 200],
-  //                     },
-  //                 },
-  //             },
-  //             {
-  //                 urlPattern: /^http.*/,
-  //                 handler: 'NetworkFirst',
-  //                 options: {
-  //                     cacheName: 'http-cache',
-  //                 },
-  //             },
-  //         ],
-  //     },
-  // }],
-  {
+// [withBundleAnalyzer],
+// [withImages],
+// [withOffline, {
+//     workboxOpts: {
+//         swDest: 'static/service-worker.js',
+//         runtimeCaching: [
+//             {
+//                 urlPattern: /[.](png|jpg|ico|css)/,
+//                 handler: 'CacheFirst',
+//                 options: {
+//                     cacheName: 'assets-cache',
+//                     cacheableResponse: {
+//                         statuses: [0, 200],
+//                     },
+//                 },
+//             },
+//             {
+//                 urlPattern: /^http.*/,
+//                 handler: 'NetworkFirst',
+//                 options: {
+//                     cacheName: 'http-cache',
+//                 },
+//             },
+//         ],
+//     },
+// }],
+
+const nextConfig = async (phase, { defaultConfig }) => {
+  const plugins = [
+    // withTM
+  ];
+
+  /**
+   * @type {import('next').NextConfig}
+   */
+  const config = {
     output: 'standalone',
     compiler: {
       // Remove console aside from 'error' in production
-      removeConsole: {
-        exclude: ['error'],
-      },
+      // removeConsole: {
+      //   exclude: ['error'],
+      // },
       // Remove data-testid used for React Testing Library in production
       reactRemoveProperties: {
         properties: ['^data-testid$'],
@@ -65,6 +73,9 @@ const nextConfig = withPlugins([
       // },
     },
     i18n,
+    env: {
+      appVersion: version,
+    },
     poweredByHeader: false,
     basePath: '',
     reactStrictMode: true,
@@ -75,6 +86,7 @@ const nextConfig = withPlugins([
     },
     images: {
       domains: [
+        'www.gravatar.com',
         'iph.href.lu',
         // 加入 wordpress 相关域名
         'blog.tongdelove.com',
@@ -93,9 +105,18 @@ const nextConfig = withPlugins([
           destination: '/news/:slug*',
           permanent: false,
         },
-      ]
+      ];
     },
     async rewrites() {
+      if (isDev) {
+        return [
+          {
+            source: '/api/:path*',
+            destination: 'http://localhost:3100/:path*',
+          },
+        ];
+      }
+
       return {
         beforeFiles: [
           // These rewrites are checked after headers/redirects
@@ -104,7 +125,7 @@ const nextConfig = withPlugins([
           {
             source: '/some-page',
             destination: '/somewhere-else',
-            has: [{type: 'query', key: 'overrideMe'}],
+            has: [{ type: 'query', key: 'overrideMe' }],
           },
         ],
         afterFiles: [
@@ -123,7 +144,7 @@ const nextConfig = withPlugins([
             destination: `https://localhost:3000/:path*`,
           },
         ],
-      }
+      };
     },
     async headers() {
       return [
@@ -145,9 +166,13 @@ const nextConfig = withPlugins([
             },
           ],
         },
-      ]
+      ];
     },
-  },
-])
+  };
+  return plugins.reduce((acc, plugin) => plugin(acc), {
+    ...defaultConfig,
+    ...config,
+  });
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

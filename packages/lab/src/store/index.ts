@@ -1,24 +1,44 @@
-import {
-    useDispatch as useReduxDispatch,
-    useSelector as useReduxSelector
-} from 'react-redux';
-import type { TypedUseSelectorHook } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import type { ThunkAction } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
 import type { Action } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+
 import { rootReducer } from './rootReducer';
+import storage from './storage';
+import syncSaga from './sagas/sync';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const persistedReducers = persistReducer(
+  {
+    key: 'root',
+    storage,
+    whitelist: ['auth'],
+  },
+  rootReducer
+);
 
 export const store = configureStore({
-    reducer: rootReducer,
-    devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === 'true'
+  reducer: persistedReducers,
+  devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === 'true',
+  middleware: (getDefaultMiddleware: any) => {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'],
+      },
+    }).concat(sagaMiddleware);
+  },
 });
+
+sagaMiddleware.run(syncSaga);
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
+//
+
 export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
-
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
-
-export const useDispatch = () => useReduxDispatch<AppDispatch>();

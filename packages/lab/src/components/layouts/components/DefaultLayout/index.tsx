@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Box, alpha, lighten, useTheme } from '@mui/material';
-import Header from './Header';
+import { Header } from '@/components/common/Header';
+import { Container } from '@/components/common/Container';
 
 interface DefaultProps {
   children?: ReactNode;
@@ -21,7 +22,7 @@ export const DefaultLayout: FC<DefaultProps> = ({ children }) => {
         }}
       >
         <Header />
-        <Box display="block">{children}</Box>
+        <div>{children}</div>
       </Box>
     </>
   );
