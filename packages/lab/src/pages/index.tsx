@@ -1,16 +1,15 @@
 import React from 'react';
-import { NextPage, GetStaticProps } from 'next';
 import { Trans, useTranslation } from 'next-i18next';
 // import Bar from 'bar';
 import { DefaultLayout } from '@/components/layouts';
 import { Home } from '@/content/home/Home';
 import { Header, Footer, Container } from '@/components/common';
-import type { WithGetLayout } from '@/helper/WithGetLayout';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import type { MyNextPage } from '@/types/app';
 
 type IndexProps = {};
 
-const HomePage: NextPage<IndexProps> & WithGetLayout = props => {
+const HomePage: MyNextPage<IndexProps> = props => {
   const { t } = useTranslation();
 
   const user = useAppSelector((state) => state.auth.user);

@@ -8,9 +8,10 @@ import { Breadcrumb } from '@/components/ui';
 import { Settings } from '@/content/ETFGrid/Settings';
 import { Grids } from '@/content/ETFGrid/Grids';
 import { DefaultLayout } from '@/components/layouts';
-import { WithGetLayout } from '@/helper/WithGetLayout';
+import type { MyNextPage } from '@/types/app';
 
-const App: NextPage & WithGetLayout = () => {
+
+const App: MyNextPage = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const router = useRouter();
   const { t } = useTranslation();

@@ -47,7 +47,7 @@ const UserLoginPage = (props) => {
 
 
   useEffect(() => {
-    localStorage.setItem("persist", `${persist}`);
+    localStorage.setItem('persist', `${persist}`);
   }, [])
 
   const { register, handleSubmit, reset, control, formState } = useForm<FormData>({
@@ -102,7 +102,7 @@ const UserLoginPage = (props) => {
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
             <div>
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">登录账号</h2>
+              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">账号登录</h2>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-6">
@@ -145,7 +145,7 @@ const UserLoginPage = (props) => {
                 {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                 登录
               </button>
-              <Link href="/account/register" className="btn btn-link">
+              <Link href="/account/register" className="btn btn-link block mt-3">
                 {/* <Trans t={t} i18nKey="pages.user.login.register-text"> */}
                 注册
                 {/* </Trans> */}

@@ -96,8 +96,8 @@ export function Header() {
           <Link href="/user/login" variant="outlined" className="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
             登录
           </Link>
-          <a href="#" className="rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
-            Sign Up
+          <a href="/user/register" className="rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
+            注册
           </a>
         </nav>
       </div>

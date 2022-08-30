@@ -144,9 +144,19 @@ export async function login(loginParams: LoginParams) {
     ...loginParams,
   });
   const { user, token } = data.data;
-  console.log('data: ', data);
-  console.log('user: ', user);
-  console.log('accessToken: ', token);
+  store.dispatch(setUser(user));
+  store.dispatch(setAccessToken(token));
+}
+
+export type RegisterParams = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+export async function register(registerParams: RegisterParams) {
+  const { data } = await axios.post<AuthDTO, AxiosResponse<AuthDTO>, RegisterParams>('/auth/register', registerParams);
+  const { user, token } = data.data;
   store.dispatch(setUser(user));
   store.dispatch(setAccessToken(token));
 }

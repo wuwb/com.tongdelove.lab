@@ -1,19 +1,27 @@
-import { FC } from 'react'
+import { FC } from 'react';
+import { NextPage, GetStaticProps } from 'next';
+import { MyNextPage } from '@/types/app';
+
+import { DefaultLayout } from '@/components/layouts';
 
 const DashboardPage: FC = () => {
     return (
         <>
-            <div></div>
+            <div>123</div>
         </>
     )
 }
 
-const DashboardWrapper: FC = () => {
+const DashboardWrapper: MyNextPage = () => {
     return (
         <>
             <DashboardPage />
         </>
     );
 }
+
+DashboardWrapper.getLayout = function getLayout(page: JSX.Element) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};
 
 export default DashboardWrapper;

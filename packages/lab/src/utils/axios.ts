@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { UserService } from "@/services";
 import Router from 'next/router';
 import { store } from '../store';
+import { logout } from '@/store/authSlice';
 
 const isDev = process.env.NODE_ENV === 'development';
 
