@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import cx from 'clsx';
 import SectionHeader from '../SectionHeader';
 
 const Testimonial = ({
@@ -14,7 +14,7 @@ const Testimonial = ({
     ...props
 }) => {
 
-    const outerClasses = classNames(
+    const outerClasses = cx(
         'testimonial section',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
@@ -23,13 +23,13 @@ const Testimonial = ({
         className
     );
 
-    const innerClasses = classNames(
+    const innerClasses = cx(
         'testimonial-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
 
-    const tilesClasses = classNames(
+    const tilesClasses = cx(
         'tiles-wrap',
         pushLeft && 'push-left'
     );

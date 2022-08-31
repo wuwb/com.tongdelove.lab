@@ -24,4 +24,5 @@ module.exports = {
     'unused-imports/no-unused-imports': 'off',
   },
   overrides: [],
+  ignorePatterns: [".next", "__ENV.js"],
 }

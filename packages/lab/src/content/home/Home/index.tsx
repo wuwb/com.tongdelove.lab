@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { PageWrapper } from "@/components/ui/PageWrapper/PageWrapper";
 import { HtmlMeta } from "@/components/common/HtmlMeta/HtmlMeta";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';

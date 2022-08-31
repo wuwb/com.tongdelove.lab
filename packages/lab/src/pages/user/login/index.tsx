@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
-import Link from 'next/link';
+import { Link } from '@/components/ui/Link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { UserService } from "@/services";

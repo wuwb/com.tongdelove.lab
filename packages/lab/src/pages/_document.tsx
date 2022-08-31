@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { NextPage } from 'next';
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
-import { Helmet } from 'react-helmet';
 import { Meta } from '@/components/common';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '@/createEmotionCache';
@@ -84,28 +83,10 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 
     return {
       ...initialProps,
-      helmet: Helmet.renderStatic(),
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
       // emotionStyleTags,
     };
-  }
-
-  // should render on <html>
-  get helmetHtmlAttrComponents() {
-    return this.props.helmet.htmlAttributes.toComponent();
-  }
-
-  // should render on <body>
-  get helmetBodyAttrComponents() {
-    return this.props.helmet.bodyAttributes.toComponent();
-  }
-
-  // should render on <head>
-  get helmetHeadComponents() {
-    return Object.keys(this.props.helmet)
-      .filter(el => el !== 'htmlAttributes' && el !== 'bodyAttributes')
-      .map(el => this.props.helmet[el].toComponent());
   }
 
   render() {
@@ -114,17 +95,16 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 
     // todo 参数抽离到配置中
     return (
-      <Html lang={lang} dir="ltr" {...this.helmetHtmlAttrComponents}>
+      <Html lang={lang} dir="ltr">
         <Head>
           <Meta title="NextJS App" description="an example of NextJS app with 100% accessible lighthouse score"></Meta>
-          {this.helmetHeadComponents}
           {/* PWA primary color */}
           {/*
 
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
-        <body {...this.helmetBodyAttrComponents} s>
+        <body>
           <Main />
           <NextScript />
           <style

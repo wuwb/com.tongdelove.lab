@@ -6,6 +6,7 @@ import { AxiosResponse } from 'axios';
 import axios from '@/utils/axios';
 import { store } from '@/store';
 import { setAccessToken, setUser } from '@/store/authSlice';
+import toast from 'react-hot-toast';
 
 const users = [
   {
@@ -128,16 +129,16 @@ class AuthApi {
 
 export const authApi = new AuthApi();
 
-export type LoginParams = {
-  identifier: string;
-  password: string;
-};
-
 export type AuthDTO = {
   user: User;
   accessToken: string;
 };
 
+// login
+export type LoginParams = {
+  identifier: string;
+  password: string;
+};
 export async function login(loginParams: LoginParams) {
   const { data } = await axios.post<AuthDTO, AxiosResponse<AuthDTO>, LoginParams>('/auth/login', {
     username: loginParams.identifier,
@@ -148,6 +149,7 @@ export async function login(loginParams: LoginParams) {
   store.dispatch(setAccessToken(token));
 }
 
+// register
 export type RegisterParams = {
   username: string;
   email: string;
@@ -159,4 +161,26 @@ export async function register(registerParams: RegisterParams) {
   const { user, token } = data.data;
   store.dispatch(setUser(user));
   store.dispatch(setAccessToken(token));
+}
+
+// forgot password
+export type ForgotPasswordParams = {
+  email: string;
+};
+export const forgotPassword = async (forgotPasswordParams: ForgotPasswordParams) => {
+  console.log('----1');
+  await axios.post<void, AxiosResponse<void>, ForgotPasswordParams>('/auth/forgot-password', forgotPasswordParams);
+  console.log('----2');
+  toast.success('Please check your email for the password reset link.');
+};
+
+// reset password
+export type ResetPasswordParams = {
+  resetToken: string;
+  password: string;
+};
+export async function resetPassword(resetPasswordParams: ResetPasswordParams) {
+  await axios.post<void, AxiosResponse<void>, ResetPasswordParams>('/auth/reset-password', resetPasswordParams);
+
+  toast.success('Your password has been changed successfully, please login again.');
 }

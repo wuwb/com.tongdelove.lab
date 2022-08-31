@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import cx from 'clsx';
 import SectionHeader from '../SectionHeader';
 import Image from 'next/image';
 
@@ -18,7 +18,7 @@ const FeaturesSplit = ({
     ...props
 }) => {
 
-    const outerClasses = classNames(
+    const outerClasses = cx(
         'features-split section',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
@@ -27,13 +27,13 @@ const FeaturesSplit = ({
         className
     );
 
-    const innerClasses = classNames(
+    const innerClasses = cx(
         'features-split-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
 
-    const splitClasses = classNames(
+    const splitClasses = cx(
         'split-wrap',
         invertMobile && 'invert-mobile',
         invertDesktop && 'invert-desktop',
@@ -68,7 +68,7 @@ const FeaturesSplit = ({
                                 </p>
                             </div>
                             <div className={
-                                classNames(
+                                cx(
                                     'split-item-image center-content-mobile reveal-from-bottom',
                                     imageFill && 'split-item-image-fill'
                                 )}
@@ -94,7 +94,7 @@ const FeaturesSplit = ({
                                 </p>
                             </div>
                             <div className={
-                                classNames(
+                                cx(
                                     'split-item-image center-content-mobile reveal-from-bottom',
                                     imageFill && 'split-item-image-fill'
                                 )}
@@ -120,7 +120,7 @@ const FeaturesSplit = ({
                                 </p>
                             </div>
                             <div className={
-                                classNames(
+                                cx(
                                     'split-item-image center-content-mobile reveal-from-bottom',
                                     imageFill && 'split-item-image-fill'
                                 )}

@@ -1,17 +1,11 @@
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useState,
-  forwardRef,
-  useCallback,
-} from "react";
-import { createPortal } from "react-dom";
-import classnames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import cx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from "./Modal.module.css";
+import styles from './Modal.module.css';
 
-const modalElement = document.getElementById("modal-root");
+const modalElement = document.getElementById('modal-root');
 
 export function Modal({ children, fade = false, defaultOpened = false }, ref) {
   const [isOpen, setIsOpen] = useState(defaultOpened);
@@ -28,32 +22,27 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
   );
 
   const handleEscape = useCallback(
-    (event) => {
+    event => {
       if (event.keyCode === 27) close();
     },
     [close]
   );
 
   useEffect(() => {
-    if (isOpen) document.addEventListener("keydown", handleEscape, false);
+    if (isOpen) document.addEventListener('keydown', handleEscape, false);
     return () => {
-      document.removeEventListener("keydown", handleEscape, false);
+      document.removeEventListener('keydown', handleEscape, false);
     };
   }, [handleEscape, isOpen]);
 
   return createPortal(
     isOpen ? (
-      <div className={classnames(styles.Modal, fade ? styles.fade : "")}>
+      <div className={cx(styles.Modal, fade ? styles.fade : '')}>
         <div className={styles.overlay} onClick={close} />
         <div className={styles.body}>
           <div className={styles.bar__top}>
-            <span
-              role="button"
-              className={styles.bar__top}
-              aria-label="close"
-              onClick={close}
-            >
-              <FontAwesomeIcon icon={["fas", "times"]} />
+            <span role="button" className={styles.bar__top} aria-label="close" onClick={close}>
+              <FontAwesomeIcon icon={['fas', 'times']} />
             </span>
           </div>
           {children}

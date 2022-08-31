@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import { Link } from '@/components/ui/Link';
 import { FooterCopyright } from './FooterCopyright';
 import { FooterIconList } from './FooterIconList';
+import SwitchLang from '../SwitchLang';
 
 export function Copyright(props: any) {
   return (
@@ -95,14 +96,7 @@ export const CenteredFooter = (props: ICenteredFooterProps) => (
 
     <div className="mt-8 text-sm">
       <FooterCopyright />
+      <SwitchLang></SwitchLang>
     </div>
-
-    <style jsx>
-      {`
-        .navbar :global(li) {
-          @apply mx-4;
-        }
-      `}
-    </style>
   </div>
 );

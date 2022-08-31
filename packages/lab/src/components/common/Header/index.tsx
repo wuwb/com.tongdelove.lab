@@ -54,12 +54,33 @@ export function Header() {
         </div>
         <div className="flex flex-1 items-center space-x-2 text-sm font-medium text-gray-800 md:flex">
           <ul className="flex flex-col font-medium lg:mt-0 lg:flex-row lg:space-x-8">
-            <li className="nav-item"></li>
             <li className="nav-item">
               <Link
                 className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
-                variant="button"
-                color="text.primary"
+                href="/pricing"
+              >
+                价格
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
+                href="/about"
+              >
+                关于
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
+                href="/case-studies"
+              >
+                客户
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
                 href="/forum"
               >
                 论坛
@@ -68,8 +89,6 @@ export function Header() {
             <li className="nav-item">
               <Link
                 className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
-                variant="button"
-                color="text.primary"
                 href="/links"
               >
                 导航
@@ -78,27 +97,26 @@ export function Header() {
             <li className="nav-item">
               <Link
                 className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 lg:bg-transparent lg:p-0"
-                variant="button"
-                color="text.primary"
+
                 href="/etf-grid"
               >
                 ETF 网格工具
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/dashboard" variant="outlined">
+              <Link href="/dashboard">
                 后台
               </Link>
             </li>
           </ul>
         </div>
         <nav className="flex items-center justify-end space-x-1 text-sm font-medium text-gray-800">
-          <Link href="/user/login" variant="outlined" className="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
+          <Link href="/user/login" className="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
             登录
           </Link>
-          <a href="/user/register" className="rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
+          <Link href="/user/register" className="rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
             注册
-          </a>
+          </Link>
         </nav>
       </div>
 

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import type { WithChildren } from '@/helper/WithChildren';
 import styles from './Badge.module.css';
 

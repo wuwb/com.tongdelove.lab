@@ -6,7 +6,6 @@ import { AppProps } from 'next/app';
 import { HelmetProvider } from 'react-helmet-async';
 import { appWithTranslation } from 'next-i18next';
 import NextNProgress from 'nextjs-progressbar';
-import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ErrorBoundary } from '@/components/common';
 import ThemeProvider from '@/theme/ThemeProvider';
@@ -81,8 +80,6 @@ const MyApp = (props: MyAppProps) => {
                       />
                     </Head>
                     <ThemeProvider>
-                      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                      <CssBaseline />
                       <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
                       {getLayout(<Component {...pageProps} />)}
                     </ThemeProvider>

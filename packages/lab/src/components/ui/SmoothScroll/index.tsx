@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import cx from 'clsx';
 
 type Props = {
     children: Element,
@@ -61,7 +61,7 @@ const SmoothScroll = ({
         })
     };
 
-    const classes = classNames(
+    const classes = cx(
         className
     );
 

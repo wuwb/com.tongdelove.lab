@@ -84,7 +84,7 @@ class App extends Component {
           <Layer>
             <Portal>
               <input
-                className="input"
+                className="input absolute"
                 value={this.state.paHeight}
                 onChange={this.handleChangeHeight}
               />
@@ -92,15 +92,6 @@ class App extends Component {
             <NormalBox></NormalBox>
           </Layer>
         </Stage>
-        <style jsx>
-          {`
-            .input {
-              position: absolute;
-              top: 10px;
-              left: 10px;
-            }
-          `}
-        </style>
         <div>
           <input value={this.state.paWidth} onChange={this.handleChangeWidth} />
         </div>

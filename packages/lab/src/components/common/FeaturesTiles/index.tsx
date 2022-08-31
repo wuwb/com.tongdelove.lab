@@ -1,8 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
+import cx from 'clsx';
 import SectionHeader from '../SectionHeader';
 import Image from 'next/image';
-
 
 const FeaturesTiles = ({
     className,
@@ -16,7 +15,7 @@ const FeaturesTiles = ({
     ...props
 }) => {
 
-    const outerClasses = classNames(
+    const outerClasses = cx(
         'features-tiles section',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
@@ -25,13 +24,13 @@ const FeaturesTiles = ({
         className
     );
 
-    const innerClasses = classNames(
+    const innerClasses = cx(
         'features-tiles-inner section-inner pt-0',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
 
-    const tilesClasses = classNames(
+    const tilesClasses = cx(
         'tiles-wrap center-content',
         pushLeft && 'push-left'
     );

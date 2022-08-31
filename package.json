@@ -7,10 +7,10 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "yarn workspace lab dev",
-    "build": "yarn workspace lab build",
-    "start": "yarn workspace lab start",
-    "dev:design": "yarn workspace design dev",
+    "dev": "pnpm workspace lab dev",
+    "build": "pnpm workspace lab build",
+    "start": "pnpm workspace lab start",
+    "dev:design": "pnpm workspace design dev",
     "postinstall": "husky install",
     "test": "echo test"
   },

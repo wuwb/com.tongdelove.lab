@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import HeaderNotifications from './Notifications';
 import LanguageSwitcher from './LanguageSwitcher';
 

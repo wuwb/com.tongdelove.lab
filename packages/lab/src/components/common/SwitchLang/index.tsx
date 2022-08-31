@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import LanguageIcon from '@mui/icons-material/Language';
+import { Language } from '@mui/icons-material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -16,31 +16,37 @@ const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
       <a {...props}>{children}</a>
     </Link>
   );
-}
+};
 
 const localeText = (locale: string): string => {
   switch (locale) {
     case 'en':
-      return '🇬🇧 English'
+      return '🇬🇧 English';
     case 'zh-CN':
-      return '🇨🇳 简体中文'
+      return '🇨🇳 简体中文';
     default:
-      return '🇬🇧 English'
+      return '🇬🇧 English';
   }
-}
+};
 
 const SwitchLang = () => {
-  const { locales, pathname, query, asPath } = useRouter()
+  const { locales, pathname, query, asPath } = useRouter();
   console.log('locales: ', locales);
-  const [_, setCookie] = useCookies(['NEXT_LOCALE'])
+
+  const [_, setCookie] = useCookies(['NEXT_LOCALE']);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleAddLanguage = () => window.open('/', '_blank');
+
   return (
     <div className="relative">
       <Button
@@ -51,9 +57,10 @@ const SwitchLang = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <LanguageIcon className="h-4 w-4" />
+        <Language className="h-4 w-4" />
         <KeyboardArrowDownIcon className="h-3 w-3" />
       </Button>
+
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -78,9 +85,14 @@ const SwitchLang = () => {
             </CustomLink>
           </MenuItem>
         ))}
+        <MenuItem>
+          <span className="font-bold" onClick={handleAddLanguage}>
+            Add your language
+          </span>
+        </MenuItem>
       </Menu>
     </div>
-  )
+  );
 }
 
 export default withCookies(SwitchLang);
