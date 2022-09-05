@@ -2,18 +2,18 @@ import React from 'react';
 import cx from 'clsx';
 
 import { ICompBaseProps } from '@/interfaces';
-import { pkg, app } from '@/configs';
+import { app } from '@/configs';
 
 import styles from './styles.module.css';
 
 interface IProps extends ICompBaseProps { }
 
 const fmtVer = (v: string) => v.replace('^', '').replace('~', '');
-const deps = [
-  { k: 'react', v: fmtVer(pkg?.dependencies.react) },
-  // { k: 'antd', v: fmtVer(pkg?.dependencies.antd) },
-  { k: 'next', v: fmtVer(pkg?.dependencies.next) },
-];
+// const deps = [
+//   { k: 'react', v: fmtVer(pkg?.dependencies.react) },
+//   // { k: 'antd', v: fmtVer(pkg?.dependencies.antd) },
+//   { k: 'next', v: fmtVer(pkg?.dependencies.next) },
+// ];
 
 export const FooterNav: React.FC<IProps> = (props) => {
   return (
@@ -29,23 +29,22 @@ export const FooterNav: React.FC<IProps> = (props) => {
       <div className={styles['copyright']}>
         © {new Date().getFullYear()}
         <a
-          href={`https://github.com/SolidZORO/${pkg.name}`}
+          href={`/`}
           target="_blank"
           rel="noreferrer"
         >
           {app.NAME}
         </a>{' '}
-        by {pkg.author.split(' ')[0]}
       </div>
 
-      <div className={styles['deps']}>
+      {/* <div className={styles['deps']}>
         {deps.map((d) => (
           <div className={styles['dep']} key={d.k}>
             <strong>{d.k}</strong>
             <sup>{d.v}</sup>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

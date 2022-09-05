@@ -1,19 +1,11 @@
 import React from 'react';
 import cx from 'clsx';
-import { Spin } from 'antd';
-import { SpinProps, SpinSize } from 'antd/lib/spin';
-
 import { ICompBaseProps } from '@/interfaces';
-
-// import { CgSpinner as Spinner } from 'react-icons/cg';
-import { ReactComponent as Spinner } from './_spinner.svg';
-
 import styles from './styles.module.css';
 
-interface IProps extends ICompBaseProps, SpinProps {
+interface IProps extends ICompBaseProps {
   fullscreen?: boolean;
   spinning?: boolean;
-  size?: SpinSize;
   tip?: string;
   delay?: number;
   lazy?: boolean;
@@ -21,7 +13,7 @@ interface IProps extends ICompBaseProps, SpinProps {
   iconClassName?: string;
 }
 
-export const LoadingSpinner: React.FC<IProps> = (props) => {
+export const LoadingSpinner: React.FC<IProps> = (props: any) => {
   LoadingSpinner.displayName = 'LoadingSpinner';
 
   const iconSize = props.size || 'default';
@@ -40,16 +32,15 @@ export const LoadingSpinner: React.FC<IProps> = (props) => {
       )}
       style={props.style}
     >
-      <Spin
-        size={iconSize}
-        delay={props.delay}
+      <div
         className={cx(
           styles['spin'],
           styles[`spin-size--${iconSize}`],
           props.iconClassName,
         )}
-        indicator={<Spinner className={cx('g-icon-spin')} />}
-      />
+      >
+        <div className={cx('g-icon-spin')} />
+      </div>
     </div>
   );
 };

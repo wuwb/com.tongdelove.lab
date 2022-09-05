@@ -1,26 +1,26 @@
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import Joi from 'joi';
 import { Link } from '@/components/ui/Link';
-// import { userService, alertService } from '@/services';
 import Image from 'next/image';
 import { useMutation } from '@tanstack/react-query';
 import { ServerError } from '@/utils/axios';
 import { RegisterParams, register as registerUser } from '@/services/auth';
+import { joiResolver } from '@hookform/resolvers/joi';
 
 function Register() {
   const router = useRouter();
 
-  // form validation rules
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
-    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
-    email: Yup.string().required('Email is required'),
+  const schema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().min(6).required(),
+    email: Joi.boolean().required(),
   });
-  const formOptions = { resolver: yupResolver(validationSchema) };
+
+  const formOptions = {
+    resolver: joiResolver(schema),
+  };
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit, formState } = useForm(formOptions);

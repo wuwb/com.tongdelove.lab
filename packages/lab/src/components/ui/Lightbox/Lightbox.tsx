@@ -9,7 +9,7 @@ type Props = {
     images: string[];
 }
 
-export default class Lightbox extends Component<Props, {
+export class Lightbox extends Component<Props, {
     isOpen: boolean;
     photoIndex: number;
 }> {

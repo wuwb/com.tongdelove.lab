@@ -6,14 +6,11 @@ import {
   useMediaQuery,
   List,
   Link,
-  Button,
-  Typography,
   ListItem,
-  Collapse,
   ListItemIcon,
   ListItemText,
+  Theme,
 } from "@mui/material";
-import LogoIcon from "../logo/LogoIcon";
 import Menuitems from "./MenuItems";
 import { useRouter } from "next/router";
 
@@ -26,7 +23,7 @@ interface propTypes {
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: propTypes) => {
   const [open, setOpen] = React.useState(true);
 
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
 
   const handleClick = (index) => {
     if (open === index) {
@@ -40,7 +37,9 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: propTyp
 
   const SidebarContent = (
     <Box p={2} height="100%">
-      <LogoIcon />
+      <Link href="/">
+        海维包装
+      </Link>
       <Box mt={2}>
         <List>
           {Menuitems.map((item, index) => (

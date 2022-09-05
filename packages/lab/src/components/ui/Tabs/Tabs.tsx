@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
+import React, { Component, ReactNode } from 'react';
 import Tab from './Tab';
+import './Tabs.module.scss';
 
-import './Tabs.module.css';
+type ITabsProps = {
+  activeChild: any;
+  children: any[];
+}
 
-class Tabs extends Component {
-  static propTypes = {
-    children: PropTypes.instanceOf(Array).isRequired,
-  };
-
-  constructor(props) {
+class Tabs extends Component<ITabsProps, any> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
-      activeTab: this.props.children[0].props.label,
+      activeTab: this.props.children[0]?.props.label,
     };
   }
 
-  onClickTabItem = (tab) => {
+  onClickTabItem = (tab: any) => {
     this.setState({ activeTab: tab });
   }
 
@@ -43,7 +41,7 @@ class Tabs extends Component {
     return (
       <div className="tabs">
         <ol className="tab-list">
-          {children.map((child) => {
+          {Array(children).map((child: any) => {
             const { label } = child.props;
 
             return (
@@ -57,7 +55,7 @@ class Tabs extends Component {
           })}
         </ol>
         <div className="tab-content">
-          {children.map((child) => {
+          {Array(children).map((child: any) => {
             if (child.props.label !== activeTab) return undefined;
             return child.props.children;
           })}

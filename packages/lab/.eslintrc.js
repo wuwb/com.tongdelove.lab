@@ -18,11 +18,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': 0,
     'react/no-unescaped-entities': 'off',
     '@next/next/no-page-custom-font': 'off',
     'unused-imports/no-unused-imports': 'off',
   },
   overrides: [],
-  ignorePatterns: [".next", "__ENV.js"],
-}
+  ignorePatterns: ['.next'],
+};

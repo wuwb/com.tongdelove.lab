@@ -1,7 +1,0 @@
-.comp-wrapper {
-  position: relative;
-}
-
-.comp-wrapper--alwaysDarkMode,
-:global(.@{THEME--DARK}) .comp-wrapper {
-}

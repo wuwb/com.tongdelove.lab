@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { NextPage, GetStaticProps } from 'next';
-import { MyNextPage } from '@/types/app';
+import { NextPageWithLayout } from '@/types/app';
 
 import { AccentSidebarLayout } from '@/components/layouts';
 
@@ -12,7 +12,7 @@ const DashboardPage: FC = () => {
   );
 }
 
-const DashboardWrapper: MyNextPage = () => {
+const DashboardWrapper: NextPageWithLayout = () => {
   return (
     <>
       <DashboardPage />

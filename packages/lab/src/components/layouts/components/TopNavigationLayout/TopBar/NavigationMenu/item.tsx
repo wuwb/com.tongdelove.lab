@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { SidebarContext } from '@/contexts/SidebarContext';
 import NextLink from 'next/link';
 
-import PropTypes from 'prop-types';
 import {
   IconButton,
   Box,
@@ -75,7 +74,7 @@ const PopoverWrapper = styled(Popover)(
           }
         }
       }
-    }  
+    }
   }
 `
 );
@@ -187,15 +186,15 @@ const NavigationMenuItem: FC<NavigationMenuItemProps> = ({
   );
 };
 
-NavigationMenuItem.propTypes = {
-  children: PropTypes.node,
-  active: PropTypes.bool,
-  link: PropTypes.string,
-  icon: PropTypes.elementType,
-  badge: PropTypes.string,
-  open: PropTypes.bool,
-  name: PropTypes.string.isRequired
-};
+// NavigationMenuItem.propTypes = {
+//   children: PropTypes.node,
+//   active: PropTypes.bool,
+//   link: PropTypes.string,
+//   icon: PropTypes.elementType,
+//   badge: PropTypes.string,
+//   open: PropTypes.bool,
+//   name: PropTypes.string.isRequired
+// };
 
 NavigationMenuItem.defaultProps = {
   open: false,

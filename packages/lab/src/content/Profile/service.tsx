@@ -1,4 +1,4 @@
-import { axios } from "@/utils/axios";
+import axios from "@/utils/axios";
 import { UserResponse } from './types';
 
 export type LoginCredentialsDTO = {

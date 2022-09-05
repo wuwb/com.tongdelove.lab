@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Modal.v.1.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../Button";
+import { Button } from "../Button";
 export default function Modal({ isModalOpen, setIsModalOpen, children }) {
   const modalStyle = isModalOpen ? styles.modal : styles.closedModal;
 

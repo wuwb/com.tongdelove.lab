@@ -1,5 +1,5 @@
-import { Helmet as Head, Link } from 'umi';
-import { Table } from 'antd';
+import { Link } from '@/components/ui';
+import { Table } from '@mui/material';
 
 const Home = () => {
   // {
@@ -57,7 +57,7 @@ const Home = () => {
     },
   ];
 
-  return <Table dataSource={data} columns={columns} />;
+  return <Table />;
 };
 
 export default Home;

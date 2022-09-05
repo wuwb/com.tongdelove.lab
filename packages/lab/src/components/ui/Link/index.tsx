@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 
-const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
+const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
   const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
   return (
@@ -26,7 +26,7 @@ const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) 
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link
-const Links = React.forwardRef(function Link(props, ref) {
+const Links = React.forwardRef(function Link(props: any, ref) {
   const {
     activeClassName = 'active',
     as: linkAs,
@@ -70,7 +70,7 @@ const Links = React.forwardRef(function Link(props, ref) {
   );
 });
 
-function Link({ href, children, ...props }) {
+function Link({ href, children, ...props }: any) {
   return (
     <NextLink href={href}>
       <a {...props}>

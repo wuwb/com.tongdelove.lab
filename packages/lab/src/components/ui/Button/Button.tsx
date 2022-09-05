@@ -25,7 +25,7 @@ export const AppearanceButton = props => {
   const { button, className, appearance, compact = false, handleClick, loading = false, type } = props;
 
   return (
-    <button link={button} onClick={handleClick} type={type}>
+    <button onClick={handleClick} type={type}>
       <div
         className={cx(
           className,

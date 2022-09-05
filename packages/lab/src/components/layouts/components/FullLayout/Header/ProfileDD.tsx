@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // import userimg from "@/public/images/users/user2.jpg";
+import { Link } from '@/components/ui/Link';
 import {
   Box,
   Menu,
   Typography,
-  Link,
   ListItemButton,
   List,
   ListItemText,
@@ -105,7 +105,7 @@ const ProfileDD = () => {
           </Box>
           <Divider />
           <Box p={2}>
-            <Link to="/">
+            <Link href="/">
               <Button fullWidth variant="contained" color="primary">
                 Logout
               </Button>

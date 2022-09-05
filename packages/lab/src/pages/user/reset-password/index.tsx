@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, notification } from '@mui/material';
 
 const FormItem = Form.Item;
 
@@ -48,7 +48,7 @@ class ChangePassword extends React.Component<any, any> {
           password,
           newPassword,
         };
-        
+
         // let response = await API.updatePersonalInfo(params);
 
         // notification['success']({

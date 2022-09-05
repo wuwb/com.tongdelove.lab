@@ -5,7 +5,7 @@ import { Meta } from '@/components/common';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '@/createEmotionCache';
 import theme from '@/theme/theme';
-import i18nextConfig from '../../next-i18next.config';
+// import i18nextConfig from '../../next-i18next.config';
 
 // avoid CSS animation transition flashing
 export const DISABLE_SSR_TRANSITION = 'disable-SSR-transition';
@@ -76,7 +76,7 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
       <style
         data-emotion={`${style.key} ${style.ids.join(' ')}`}
         key={style.key}
-        // eslint-disable-next-line react/no-danger
+        // eslint-disable-next-line
         dangerouslySetInnerHTML={{ __html: style.css }}
       />
     ));
@@ -91,7 +91,7 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 
   render() {
     const [lang] = this.props.locale;
-    const currentLocale = this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale;
+    // const currentLocale = this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale;
 
     // todo 参数抽离到配置中
     return (
@@ -109,7 +109,7 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
           <NextScript />
           <style
             id={DISABLE_SSR_TRANSITION}
-            // eslint-disable-next-line react/no-danger
+            // eslint-disable-next-line
             dangerouslySetInnerHTML={{
               __html: '*, *::before, *::after { transition: none !important; }',
             }}

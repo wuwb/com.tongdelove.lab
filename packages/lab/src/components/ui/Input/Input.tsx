@@ -6,15 +6,13 @@ import React, {
   ChangeEvent,
   Component,
 } from 'react';
-
 import debounce from 'lodash/debounce';
 import { usePercentValue } from '@/hooks/usePercentValue';
 import useUpdateEffect from '@/hooks/useUpdateEffect';
-import PropTypes from "prop-types";
 import { ErrorMessage } from "../ErrorMessage";
-import "./Input.module.css";
+import "./Input.module.scss";
 
-export const Input = (props) => {
+export const Input = (props: any) => {
   const {
     focus,
     handleOnChange,
@@ -27,7 +25,7 @@ export const Input = (props) => {
   } = props;
 
   return (
-    <div name="input" className={classNames}>
+    <div className={classNames}>
       <label htmlFor={name}>{label}</label>
       <input
         name={name}
@@ -41,7 +39,7 @@ export const Input = (props) => {
   );
 };
 
-export const TextArea = (props) => (
+export const TextArea = (props: any) => (
   <div className="form-group">
     <label className="form-label">{props.label}</label>
     <textarea
@@ -56,9 +54,9 @@ export const TextArea = (props) => (
   </div>
 );
 
-export const Select = (props) => {
+export const Select = (props: any) => {
   return (
-    <div name="select">
+    <div>
       <label htmlFor={props.name}> {props.label} </label>
       <select
         name={props.name}
@@ -68,7 +66,7 @@ export const Select = (props) => {
         <option value="" disabled>
           {props.placeholder}
         </option>
-        {props.options.map((option) => {
+        {props.options.map((option: any) => {
           return (
             <option key={option.id} value={option.id} label={option.name}>
               {option.name}
@@ -80,14 +78,14 @@ export const Select = (props) => {
   );
 };
 
-export const CheckBox = (props) => {
+export const CheckBox = (props: any) => {
   return (
     <div>
       <label htmlFor={props.name} className="form-label">
         {props.label}
       </label>
       <div className="checkbox-group">
-        {props.options.map((option) => {
+        {props.options.map((option: any) => {
           return (
             <label key={option}>
               <input
@@ -108,8 +106,25 @@ export const CheckBox = (props) => {
   );
 };
 
-export class InputText extends Component {
-  constructor(props) {
+type InputTextProps = {
+  focus: boolean;
+  name: string;
+  labelText: string;
+  placeholderText: string;
+  inputElement: any;
+  getInputValue: any;
+  type: any;
+  errorMessage: any;
+  presetValue: any;
+};
+type InputTextPropsState = {
+  value: string;
+  isValid: boolean;
+}
+export class InputText extends Component<InputTextProps, InputTextPropsState> {
+  inputElement;
+
+  constructor(props: any) {
     super(props);
     this.state = {
       value: "",
@@ -145,7 +160,7 @@ export class InputText extends Component {
     } = this.props;
 
     return (
-      <div name="TextInput">
+      <div>
         <label htmlFor={name}>{labelText}</label>
         <input
           ref={this.inputElement}
@@ -161,15 +176,11 @@ export class InputText extends Component {
     );
   }
 
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
+
 }
 
-export class InputEmail extends Component {
-  constructor(props) {
+export class InputEmail extends Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       value: "",
@@ -189,7 +200,7 @@ export class InputEmail extends Component {
     const { name, labelText, placeholderText, errorMessage } = this.props;
 
     return (
-      <div name="TextInput">
+      <div>
         <label htmlFor={name}>{labelText}</label>
         <input
           name={name}
@@ -203,15 +214,15 @@ export class InputEmail extends Component {
     );
   }
 
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
+  // type propTypes = {
+  //   name: string;
+  //   labelText: string;
+  //   placeholderText: string;
+  // };
 }
 
-export class InputPassword extends Component {
-  constructor(props) {
+export class InputPassword extends Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       value: "",
@@ -227,7 +238,7 @@ export class InputPassword extends Component {
     const { name, labelText, placeholderText, errorMessage } = this.props;
 
     return (
-      <div name="PasswordInput">
+      <div>
         <label htmlFor={name}>{labelText}</label>
         <input
           name={name}
@@ -241,15 +252,16 @@ export class InputPassword extends Component {
     );
   }
 
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
+  // type propTypes = {
+  //   name: string;
+  //   labelText: string;
+  //   placeholderText: string;
+  // };
 }
 
-export class InputTextArea extends Component {
-  constructor(props) {
+export class InputTextArea extends Component<any, any> {
+  inputElement;
+  constructor(props: any) {
     super(props);
     this.state = {
       value: "",
@@ -269,7 +281,7 @@ export class InputTextArea extends Component {
 
   componentDidMount() {
     if (this.props.focus) {
-      this.inputElement.current.focus();
+      this.inputElement.current?.focus();
     }
   }
 
@@ -285,12 +297,11 @@ export class InputTextArea extends Component {
     } = this.props;
 
     return (
-      <div name="TextInput">
+      <div>
         <label htmlFor={name}>{labelText}</label>
         <textarea
           ref={this.inputElement}
           name={name}
-          type={type}
           placeholder={placeholderText}
           value={presetValue ? presetValue : this.state.value}
           onChange={this.handleOnChange}
@@ -301,15 +312,15 @@ export class InputTextArea extends Component {
     );
   }
 
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
+  // type propTypes = {
+  //   name: string;
+  //   labelText: string;
+  //   placeholderText: string;
+  // };
 }
 
-export class InputSelect extends Component {
-  constructor(props) {
+export class InputSelect extends Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       value: "",
@@ -317,7 +328,7 @@ export class InputSelect extends Component {
     };
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = (event: any) => {
     const value = event.target.value;
     this.setState({ value: value });
     if (this.state.isValid) {
@@ -330,7 +341,7 @@ export class InputSelect extends Component {
       this.props;
 
     return (
-      <div name="InputSelect">
+      <div>
         <label htmlFor={name}>{labelText}</label>
         <select
           name={name}
@@ -345,7 +356,7 @@ export class InputSelect extends Component {
           )}
 
           {options &&
-            options.map((option) => (
+            options.map((option: any) => (
               <option key={option.id} value={option.id}>
                 {`${option.name}
 										${option.description ? "(" + option.description + ")" : ""}`}
@@ -357,14 +368,22 @@ export class InputSelect extends Component {
     );
   }
 
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
+  // type propTypes = {
+  //   name: string;
+  //   labelText: string;
+  //   placeholderText: string;
+  // };
 }
 
-export class InputCheck extends Component {
+type InputCheckProps = {
+  name: string;
+  labelText: string;
+  placeholderText: string;
+  getInputValue: any;
+  presetValue: any;
+};
+
+export class InputCheck extends Component<InputCheckProps, any> {
   constructor(props) {
     super(props);
     this.state = {
@@ -382,7 +401,7 @@ export class InputCheck extends Component {
     const { name, labelText, presetValue } = this.props;
 
     return (
-      <div name="InputCheck" className="input-check__container">
+      <div className="input-check__container">
         <input
           name={name}
           type="checkbox"
@@ -395,12 +414,6 @@ export class InputCheck extends Component {
       </div>
     );
   }
-
-  static propTypes = {
-    name: PropTypes.string,
-    labelText: PropTypes.string,
-    placeholderText: PropTypes.string,
-  };
 }
 
 type InputHTMLAttributes = React.InputHTMLAttributes<HTMLInputElement>;
@@ -426,7 +439,6 @@ function BaseInput({
   ...rest
 }: BaseInputProps & { onChange: IOnStringChange; pattern: RegExp }) {
   const [state, setState] = useState(value);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChange = useCallback(
     debounce<IOnStringChange>(onChange, 300),
     []

@@ -5,11 +5,11 @@ import { DefaultLayout } from '@/components/layouts';
 import { Home } from '@/content/home/Home';
 import { Header, Footer, Container } from '@/components/common';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import type { MyNextPage } from '@/types/app';
+import type { NextPageWithLayout } from '@/types/app';
 
 type IndexProps = {};
 
-const HomePage: MyNextPage<IndexProps> = props => {
+const HomePage: NextPageWithLayout<IndexProps> = props => {
   const { t } = useTranslation();
 
   const user = useAppSelector((state) => state.auth.user);

@@ -1,3 +1,8 @@
+# README
+
+todo
+
+@fortawesome/react-fontawesome 换成 @mui/icons-material
 
 ## 描述
 
@@ -19,22 +24,21 @@
 - ESLint & Prettier
 - 2 Dashboards
 - 5 Ready to use Apps
-Charts
-Quill Editor
-Dark/Light Mode
-Color Variation
-Right-to-Left layout support
-Easy to customize
-React router v6
-React redux & Mock API
-Authentication
-Fully responsive, and works across all modern/supported browsers
-Fully documented​
+  Charts
+  Quill Editor
+  Dark/Light Mode
+  Color Variation
+  Right-to-Left layout support
+  Easy to customize
+  React router v6
+  React redux & Mock API
+  Authentication
+  Fully responsive, and works across all modern/supported browsers
+  Fully documented​
 
 ### 页面
 
 **文档**
-
 
 **Dashboards**
 Analytical
@@ -93,7 +97,6 @@ Error
 
 ###
 
-
 ## 评论
 
 ## 更新
@@ -122,6 +125,5 @@ Error
 ### 测试
 
 - https://github.com/dequelabs/axe-core-npm
-
 
 https://lhammer.cn/You-need-to-know-css/#/zh-cn/interesting-usage?id=nescss

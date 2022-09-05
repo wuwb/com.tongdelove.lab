@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'clsx';
-import { Button } from 'antd';
+import { Button } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -38,14 +38,13 @@ export const HeaderNavbar: React.FC<IProps> = (props) => {
     >
       {navs.map((nav) => (
         <Link href={nav.to} key={nav.to}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
             className={cx(styles['nav-link'], {
               [styles['nav-link--active']]:
                 pathname === nav.active || pathname === nav.to,
             })}
           >
-            <Button type="ghost" className={styles['nav-button']}>
+            <Button className={styles['nav-button']}>
               {nav.icon}
             </Button>
           </a>

@@ -1,6 +1,6 @@
 import { useLocalStorage } from "react-use";
 import Router from 'next/router'
-import axios from "../utils/axios";
+import axios from "@/utils/axios";
 
 // const [accessToken, setAccessToken] = useLocalStorage('access_token');
 // if (accessToken) {

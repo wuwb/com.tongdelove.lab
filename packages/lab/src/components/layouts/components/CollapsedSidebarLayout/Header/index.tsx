@@ -8,7 +8,7 @@ import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import HeaderMenu from './Menu';
 import HeaderButtons from './Buttons';
 import HeaderUserbox from './Userbox';
-import Logo from '@/components/common/Logo';
+import { Logo } from '@/components/common/Logo';
 
 const HeaderWrapper = styled(Box)(
   ({ theme }) => `

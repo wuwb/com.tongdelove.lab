@@ -1,5 +1,6 @@
 import React from "react";
 // @material-ui/core components
+import Image from 'next/image';
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // core components
@@ -155,7 +156,7 @@ function UserProfile() {
           <Card profile>
             <CardAvatar profile>
               <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img src={avatar} alt="..." />
+                <Image src={avatar} alt="..." />
               </a>
             </CardAvatar>
             <CardBody profile>

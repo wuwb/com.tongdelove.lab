@@ -1,12 +1,12 @@
 import 'swiper/css/bundle';
-
+import Image from 'next/image';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import React from 'react';
 import Swiper, { EffectCoverflow, Lazy } from 'swiper';
 import styles from './CoverFlowImages.module.css';
-import Lightbox from '../Lightbox';
+import { Lightbox } from '../Lightbox';
 
 Swiper.use([Lazy, EffectCoverflow]);
 
@@ -83,15 +83,17 @@ export const CoverFlowImages = (props: {
                             <video
                                 muted
                                 id={image}
+                                src={image}
                                 data-src={image}
                                 className={clsx("swiper-lazy", styles.video)}
                             />
                         );
                     } else {
                         content = (
-                            <img
+                            <Image
                                 onClick={() => openLightBox(index)}
                                 id={image}
+                                src={image}
                                 data-src={image}
                                 className={clsx("swiper-lazy", styles.image)}
                             />

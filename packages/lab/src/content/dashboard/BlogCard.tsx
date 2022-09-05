@@ -29,6 +29,8 @@ const blogs = [
   },
 ];
 
+type ButtonColor = "error" | "warning" | "primary" | "inherit" | "secondary" | "success" | "info";
+
 const BlogCard: FC = () => {
   return (
     <div className="grid grid-cols-3 gap-4">
@@ -70,7 +72,7 @@ const BlogCard: FC = () => {
                 sx={{
                   mt: "15px",
                 }}
-                color={blog.btncolor}
+                color={blog.btncolor as ButtonColor}
               >
                 Learn More
               </Button>

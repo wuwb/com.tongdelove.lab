@@ -3,7 +3,6 @@ import cx from 'clsx';
 import { PageWrapper } from "@/components/ui/PageWrapper/PageWrapper";
 import { HtmlMeta } from "@/components/common/HtmlMeta/HtmlMeta";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { pkg } from '@/configs';
 import { IPageBaseProps } from "@/interfaces";
 import TopicList from './TopicList';
 import Sidebar from './Sidebar';
@@ -23,7 +22,7 @@ export const Home: React.FC<any> = (props) => {
             )}
             style={props.style}
         >
-            <HtmlMeta title={pkg.name} disableSiteName />
+            <HtmlMeta title="海维包装" disableSiteName />
             <div className="mt-5 clearfix">
                 <div className="float-left" style={{
                     width: "calc(100% - 340px)"

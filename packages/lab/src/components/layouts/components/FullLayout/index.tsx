@@ -4,6 +4,7 @@ import {
   useMediaQuery,
   Container,
   Box,
+  Theme,
 } from "@mui/material";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
@@ -33,7 +34,8 @@ const PageWrapper = experimentalStyled("div")(({ theme }) => ({
 export const FullLayout = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
+
   return (
     <MainWrapper>
       <Header
@@ -42,6 +44,8 @@ export const FullLayout = ({ children }) => {
           backgroundColor: "#fbfbfb",
         }}
         toggleMobileSidebar={() => setMobileSidebarOpen(true)}
+        customClass={""}
+        position="top"
       />
       <Sidebar
         isSidebarOpen={isSidebarOpen}

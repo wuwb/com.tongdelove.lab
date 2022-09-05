@@ -1,4 +1,4 @@
-import Markdown from 'react-markdown';
+// import Markdown from 'react-markdown';
 import cx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -13,10 +13,10 @@ export const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
     >
       <div className="container flex flex-row items-center justify-between ">
         <div className="rich-text-banner flex-1">
-          <Markdown>{text}</Markdown>
+          {/* <Markdown>{text}</Markdown> */}
         </div>
         <button onClick={closeSelf} className="flex-shrink-0 px-1 py-1">
-          <CloseIcon className="h-6 w-auto" color="#fff" />
+          <CloseIcon className="h-6 w-auto" />
         </button>
       </div>
     </div>

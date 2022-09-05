@@ -1,2 +1,5 @@
 packages:
-  - 'packages/*'
+  - 'packages/api'
+  - 'packages/demo'
+  - 'packages/design'
+  - 'packages/lab'

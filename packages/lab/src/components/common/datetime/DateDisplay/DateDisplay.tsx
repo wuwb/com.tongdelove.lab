@@ -25,14 +25,14 @@ const dayNames = [
 
 const dayNames_short = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-function formatNumber(number) {
+function formatNumber(number: any) {
   return number.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
 }
 
-function getDateString(dateObj, options = { includeLongDay: true }) {
+function getDateString(dateObj: any, options: any = { includeLongDay: true }) {
   const year = dateObj.getFullYear();
   const monthIndex = dateObj.getMonth();
   const monthName = months[monthIndex];
@@ -48,15 +48,14 @@ function getDateString(dateObj, options = { includeLongDay: true }) {
   return `${dayName}, ${monthName} ${day}, ${year}`;
 }
 
-function getTimeString(dateObj, options) {
+function getTimeString(dateObj: any, options: any) {
   const hours = dateObj.getHours();
   const adjustedHours = hours === 0 ? 12 : hours < 13 ? hours : hours - 12;
   const minutes = formatNumber(dateObj.getMinutes());
   const seconds = formatNumber(dateObj.getSeconds());
   const meridiem = hours < 12 ? "AM" : "PM";
-  return `${adjustedHours}:${minutes}${
-    options.includeFullTime ? ":" + seconds : ``
-  } ${meridiem}`;
+  return `${adjustedHours}:${minutes}${options.includeFullTime ? ":" + seconds : ``
+    } ${meridiem}`;
 }
 
 export default function DateDisplay({
@@ -70,7 +69,7 @@ export default function DateDisplay({
   let dateString = getDateString(dateObj, options);
   let timeString = "";
 
-  if (options.includeFullTime || options.includeShortTime) {
+  if (options.includeFullTime || options.includeLongDay) {
     timeString = getTimeString(dateObj, options);
   }
 

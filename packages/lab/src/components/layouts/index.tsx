@@ -1,5 +1,3 @@
-/* eslint-disable max-len, import/prefer-default-export */
-
 // 空白
 export * from './components/BaseLayout';
 

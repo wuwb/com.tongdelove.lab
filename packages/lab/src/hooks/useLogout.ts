@@ -1,5 +1,5 @@
-import axios from '../utils/axios';
-import useAuth from './useAuth';
+import axios from '@/utils/axios';
+import { useAuth } from '@/contexts/auth';
 
 const useLogout = () => {
     const { setAuth } = useAuth();

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Link } from '@/components/ui';
 
 function Profile() {
     return (
@@ -13,7 +14,7 @@ function Profile() {
                         height="48" />
                 </div>
                 <div>
-                    <a href="/">ezreal</a>
+                    <Link href="/">ezreal</Link>
                     <div>Hi，https://wuwb.me/</div>
                 </div>
             </div>
@@ -21,12 +22,12 @@ function Profile() {
                 <div>
 
                 </div>
-                <a href="">创作新主题</a>
+                <Link href="">创作新主题</Link>
             </div>
             <div>
-                <a href="/notifications">0条未读提醒</a>
+                <Link href="/notifications">0条未读提醒</Link>
                 <div>
-                    <a href="/balance">100金币</a>
+                    <Link href="/balance">100金币</Link>
                 </div>
             </div>
         </div>

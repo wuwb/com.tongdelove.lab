@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Scrollbar from '@/components/common/Scrollbar';
 import { SidebarContext } from '@/contexts/SidebarContext';
-import Logo from '@/components/common/Logo';
+import { Logo } from '@/components/common/Logo';
 import { Box, Card, Drawer, styled, useTheme } from '@mui/material';
 import SidebarMenu from './SidebarMenu';
 
@@ -10,7 +10,7 @@ const SidebarWrapper = styled(Card)(
     width: ${theme.sidebar.width};
     background: ${theme.sidebar.background};
     height: 100%;
-    
+
     @media (min-width: ${theme.breakpoints.values.lg}px) {
         position: fixed;
         height: calc(100% - ${theme.spacing(8)});

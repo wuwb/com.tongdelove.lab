@@ -2,7 +2,10 @@
 
 // Tell webpack to compile the "bar" package, necessary if you're using the export statement for example
 // https://www.npmjs.com/package/next-transpile-modules
-const withTM = require('next-transpile-modules')(['../bar', '../api']);
+const withTM = require('next-transpile-modules')([
+  '../bar', 
+  '../api'
+]);
 const { i18n } = require('./next-i18next.config');
 const { version } = require('./package.json');
 
@@ -44,9 +47,7 @@ const isDev = process.env.NODE_ENV === 'development';
 // }],
 
 const nextConfig = async (phase, { defaultConfig }) => {
-  const plugins = [
-    // withTM
-  ];
+  const plugins = [withTM];
 
   /**
    * @type {import('next').NextConfig}
@@ -163,12 +164,12 @@ const nextConfig = async (phase, { defaultConfig }) => {
     },
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
-    webpack: (config) => {
-      const rules = config.module.rules.find((r) => !!r.oneOf);
+    webpack: config => {
+      const rules = config.module.rules.find(r => !!r.oneOf);
 
-      rules.oneOf.forEach((loaders) => {
+      rules.oneOf.forEach(loaders => {
         if (Array.isArray(loaders.use)) {
-          loaders.use.forEach((l) => {
+          loaders.use.forEach(l => {
             if (typeof l !== 'string' && typeof l.loader === 'string' && /(?<!post)css-loader/.test(l.loader)) {
               if (!l.options.modules) return;
               const { getLocalIdent, ...others } = l.options.modules;

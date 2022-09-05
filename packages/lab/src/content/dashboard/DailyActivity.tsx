@@ -39,11 +39,7 @@ const activities = [
 const DailyActivity = () => {
   return (
     <BaseCard title="Daily Activity">
-      <Timeline
-        sx={{
-          p: 0,
-        }}
-      >
+      <Timeline>
         {activities.map((activity) => (
           <TimelineItem key={activity.time}>
             <TimelineOppositeContent

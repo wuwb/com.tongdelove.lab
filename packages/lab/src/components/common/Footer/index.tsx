@@ -1,5 +1,5 @@
-import React from 'react';
-import Bar from 'bar';
+import React, { ReactNode } from 'react';
+// import Bar from '@tongdelove/lab-bar';
 import Router from 'next/router';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';

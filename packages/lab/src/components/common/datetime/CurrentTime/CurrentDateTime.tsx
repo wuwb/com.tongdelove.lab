@@ -5,7 +5,11 @@ export default function CurrentDateTime({ updateBy = "second" }) {
   const [time, setTime] = useState(() => new Date());
   const [updateInterval, setUpdateInterval] = useState(1000);
 
-  let options = { includeShortTime: true };
+  let options = {
+    // includeShortTime: true,
+    includeFullTime: false,
+    includeLongDay: false,
+  };
   useEffect(() => {
     if (updateBy === "minute") {
       setUpdateInterval(updateInterval * 60);

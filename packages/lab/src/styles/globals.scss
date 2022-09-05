@@ -16,7 +16,8 @@
   --border-radius-base: ;
   --border-radius-sm: ;
 
-  --code-font: "Consolas","Panic Sans","Bitstream Vera Sans Mono","Menlo","Microsoft Yahei",monospace;
+  --code-font: 'Consolas', 'Panic Sans', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei',
+    monospace;
   --box-background-color: #fff;
   --box-background-alt-color: #f9f9f9;
   --box-background-hover-color: #fafafa;
@@ -51,7 +52,6 @@
   min-height: 100vh;
 }
 
-
 .borderRadius {
   border-radius: 6px;
 }
@@ -61,7 +61,7 @@
 
 .clearfix:before,
 .clearfix:after {
-  content: " ";
+  content: ' ';
   display: table;
 }
 

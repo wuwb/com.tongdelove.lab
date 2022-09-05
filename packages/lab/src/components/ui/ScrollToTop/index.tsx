@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollUpContainer } from "./styles";
+import cx from 'clsx';
 import { getScroll } from "@/utils/getWindow";
 import styles from './ScrollToTop.module.css';
 
@@ -21,7 +21,6 @@ const ScrollToTop = () => {
         return () => {
             window.removeEventListener("scroll", checkScrollTop);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const scrollUp = () => {
@@ -34,7 +33,9 @@ const ScrollToTop = () => {
     };
 
     return (
-        <div className={styles.container} onClick={scrollUp} show={showScroll}>
+        <div className={cx(styles.container, {
+            hidden: !showScroll,
+        })} onClick={scrollUp}>
             Top
         </div>
     );

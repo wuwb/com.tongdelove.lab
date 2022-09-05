@@ -5,9 +5,9 @@ import {
   InputAdornment,
   styled
 } from '@mui/material';
+import Image from 'next/image';
 import React from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import type { ReactElement } from 'react';
 import { BaseLayout } from '@/components/layouts';
@@ -38,7 +38,7 @@ function Status404(): any {
         <div className="flex flex-1 w-full align-center justify-center p-6">
           <div>
             <div className="text-center">
-              <img alt="404" height={180} src="/static/images/status/404.svg" />
+              <Image alt="404" height={180} width={180} src="/static/images/status/404.svg" />
               <h2>
                 {t("The page you were looking for doesn't exist.")}
               </h2>

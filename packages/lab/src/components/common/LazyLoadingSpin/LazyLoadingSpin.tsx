@@ -1,9 +1,8 @@
 import React from 'react';
 import cx from 'clsx';
-import { SpinProps } from 'antd/lib/spin';
 import styles from './styles.module.css';
 
-interface IProps extends SpinProps {
+interface IProps {
   fullscreen?: boolean;
   delay?: number;
   //

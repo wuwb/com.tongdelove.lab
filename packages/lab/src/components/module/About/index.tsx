@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const About = () => {
     const { company, about } = {
@@ -46,7 +47,7 @@ const About = () => {
         >
             <div className="flex flex-col items-center justify-center">
                 <div>
-                    <img src={logo} alt={companyName} className="w-16 h-16" />
+                    <Image src={logo} alt={companyName} className="w-16 h-16" />
                 </div>
                 <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-4 h-12">
                     {sections.map((section, index) => (

@@ -5,16 +5,16 @@ import NextLink from 'next/link';
 import {
   Button,
   Tooltip,
-  // Badge,
   Collapse,
   styled,
   TooltipProps,
-  tooltipClasses
+  tooltipClasses,
+  Badge,
 } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import ExpandLessTwoToneIcon from '@mui/icons-material/ExpandLessTwoTone';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
-import { Badge } from '@/components/ui'
+// import { Badge } from '@/components/ui'
 
 interface SidebarMenuItemProps {
   children?: ReactNode;

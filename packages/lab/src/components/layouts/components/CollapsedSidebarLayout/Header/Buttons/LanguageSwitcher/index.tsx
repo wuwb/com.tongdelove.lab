@@ -15,7 +15,7 @@ import {
 import { Text } from '@/components/ui/Text';
 
 import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
-import internationalization from '@/i18n/i18n';
+// import internationalization from '@/i18n/i18n';
 import { useTranslation } from 'next-i18next';
 import { US, CN } from 'country-flag-icons/react/3x2';
 import styles from './styles.module.css';
@@ -48,7 +48,7 @@ function LanguageSwitcher() {
   const getLanguage = i18n.language;
 
   const switchLanguage = ({ lng }: { lng: any }) => {
-    internationalization.changeLanguage(lng);
+    // internationalization.changeLanguage(lng);
   };
   const ref = useRef<any>(null);
   const [isOpen, setOpen] = useState<boolean>(false);

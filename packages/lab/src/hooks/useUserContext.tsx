@@ -1,32 +1,28 @@
-// export const UserProvider: React.FC = (props) => {
-
-// }
-
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchJson } from '../services/api';
 
 const USER_QUERY_KEY = 'user';
 
 export function useSignIn() {
-    const queryClient = useQueryClient();
-    const mutation = useMutation(({ email, password }) => fetchJson('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    }));
-    return {
-        signIn: async (email, password) => {
-            try {
-                const user = await mutation.mutateAsync({ email, password });
-                queryClient.setQueryData(USER_QUERY_KEY, user);
-                return true;
-            } catch (err) {
-                return false;
-            }
-        },
-        signInError: mutation.isError,
-        signInLoading: mutation.isLoading,
-    };
+    // const queryClient = useQueryClient();
+    // const mutation = useMutation(({ email, password }) => fetchJson('/api/login', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ email, password }),
+    // }));
+    // return {
+    //     signIn: async (email, password) => {
+    //         try {
+    //             // const user = await mutation.mutateAsync({ email, password });
+    //             // queryClient.setQueryData(USER_QUERY_KEY, user);
+    //             return true;
+    //         } catch (err) {
+    //             return false;
+    //         }
+    //     },
+    //     signInError: mutation.isError,
+    //     signInLoading: mutation.isLoading,
+    // };
 }
 
 export function useSignOut() {
@@ -34,12 +30,12 @@ export function useSignOut() {
     const mutation = useMutation(() => fetchJson('/api/logout'));
     return async () => {
         await mutation.mutateAsync();
-        queryClient.setQueryData(USER_QUERY_KEY, undefined);
+        // queryClient.setQueryData(USER_QUERY_KEY, undefined);
     };
 }
 
 export function useUser() {
-    const query = useQuery(USER_QUERY_KEY, async () => {
+    const query = useQuery([USER_QUERY_KEY] as QueryKey, async () => {
         try {
             return await fetchJson('/api/user');
         } catch (err) {

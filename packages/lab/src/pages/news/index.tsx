@@ -10,7 +10,7 @@ const PostsPage = (): any => {
 export default PostsPage;
 
 
-export async function getInitialProps() => {
+export const getInitialProps = async () => {
     // const { data } = await axios.get('https://api.tongdelove.com/api/posts');
     // return { posts: data };
 }

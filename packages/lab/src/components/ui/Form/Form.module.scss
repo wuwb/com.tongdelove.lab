@@ -1,24 +1,22 @@
-@import "styles";
-
 .Form {
   width: 100%;
-  color: $text_light;
+  color: 18px;
   min-width: 62vw;
   max-height: 90vh;
   overflow-y: auto;
 }
 
-@media screen and (min-width: $desktop) {
-  .Form {
-    min-width: 38vw;
-  }
-}
+// @media screen and (min-width: $desktop) {
+//   .Form {
+//     min-width: 38vw;
+//   }
+// }
 
 .FormHeader {
-  background-color: $primary;
-  padding: $padding;
-  padding-top: $padding * 2.62;
-  font-size: $goldenPercent;
+  // background-color: $primary;
+  // padding: $padding;
+  // padding-top: $padding * 2.62;
+  // font-size: $goldenPercent;
 
   .title {
     margin: 0;
@@ -27,7 +25,7 @@
 }
 
 .FormBody {
-  padding: $padding;
+  // padding: $padding;
 
   label {
     text-transform: capitalize;
@@ -35,15 +33,15 @@
 
     input,
     textarea {
-      margin-bottom: $margin;
+      // margin-bottom: $margin;
       width: 100%;
       display: block;
-      color: $black;
-      @include paddingBox;
+      color: #fff;
+      // @include paddingBox;
 
-      &[type="checkbox"] {
+      &[type='checkbox'] {
         display: inline-block;
-        margin-left: $margin * $goldenRatioDecrease;
+        // margin-left: $margin * $goldenRatioDecrease;
         width: initial;
       }
 
@@ -61,6 +59,6 @@
 .FormFooter {
   display: flex;
   justify-content: flex-end;
-  border-top: $border;
+  // border-top: $border;
   flex-wrap: wrap;
 }

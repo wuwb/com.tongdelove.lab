@@ -4,6 +4,7 @@ import { SidebarContext } from '@/contexts/SidebarContext';
 import { LogoSign } from '@/components/common/LogoSign';
 
 
+
 import { Box, Drawer, styled, useTheme } from '@mui/material';
 
 import SidebarMenu from './SidebarMenu';
@@ -75,7 +76,7 @@ function Sidebar() {
         <SidebarWrapper>
           <Scrollbar>
             <TopSection>
-              <Logo />
+              <LogoSign />
             </TopSection>
             <SidebarMenu />
           </Scrollbar>

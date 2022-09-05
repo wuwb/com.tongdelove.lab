@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from '@/utils/axios';
 
 class AuthService {
     login(email: string, password: string) {

@@ -8,6 +8,8 @@ type Props = {
     variant?: "solid" | "light" | "dot";
     size?: "sm" | "md";
     className?: string;
+    badgeContent?: any;
+    children: any;
 }
 
 const sizesClasses = {
@@ -22,8 +24,7 @@ const variantClasses = {
     dot: "badge-dot",
 };
 
-export const Badge: FC = (props: Props & WithChildren) => {
-
+export const Badge = (props: Props) => {
     const {
         color,
         variant,

@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 
 const markdown = `
 # 转运
@@ -108,7 +108,7 @@ const markdown = `
 const Page = (props) => {
   return (
     <div>
-      <ReactMarkdown children={markdown} />
+      {/* <ReactMarkdown children={markdown} /> */}
     </div>
   );
 }

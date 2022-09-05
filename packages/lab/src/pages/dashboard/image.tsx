@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Grid, ImageList, ImageListItem } from "@mui/material";
 import BaseCard from "@/components/module/baseCard/BaseCard";
 import { FullLayout, AccentSidebarLayout } from "@/components/layouts";
@@ -88,7 +89,7 @@ const Images = () => {
                   cols={item.cols || 1}
                   rows={item.rows || 1}
                 >
-                  <img
+                  <Image
                     {...srcset(item.img, 121, item.rows, item.cols)}
                     alt={item.title}
                     loading="lazy"

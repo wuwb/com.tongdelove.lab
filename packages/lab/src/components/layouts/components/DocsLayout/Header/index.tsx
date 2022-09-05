@@ -2,7 +2,7 @@ import { Card, Box, Button, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { Link } from '@/components/ui/Link';
 
-import Logo from '@/components/common/Logo';
+import { Logo } from '@/components/common/Logo';
 
 const HeaderWrapper = styled(Card)(
   ({ theme }) => `
