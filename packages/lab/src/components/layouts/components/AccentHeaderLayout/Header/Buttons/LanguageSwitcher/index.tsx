@@ -13,14 +13,8 @@ import {
   Tooltip,
   styled
 } from '@mui/material';
-import { Text } from '@/components/ui';
-
-import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
-// import internationalization from '@/i18n/i18n';
 import { useTranslation } from 'next-i18next';
-import { US, CN } from 'country-flag-icons/react/3x2';
 import styles from './styles.module.css';
-
 
 const SectionHeading = styled(Typography)(
   ({ theme }) => `
@@ -82,14 +76,8 @@ function LanguageSwitcher() {
     <>
       <Tooltip arrow title={t('Language Switcher')}>
         <IconButtonPrimary color="primary" ref={ref} onClick={handleOpen}>
-          {getLanguage === 'en' && <US className={styles.country} />}
-          {getLanguage === 'en-US' && (
-            <US className={styles.country} />
-          )}
-          {getLanguage === 'en-GB' && (
-            <US className={styles.country} />
-          )}
-          {getLanguage === 'cn' && <CN className={styles.country} />}
+          {getLanguage === 'en' && '英文'}
+          {getLanguage === 'cn' && '中文'}
         </IconButtonPrimary>
       </Tooltip>
       <Popover
@@ -130,7 +118,6 @@ function LanguageSwitcher() {
                 handleClose();
               }}
             >
-              <US className={styles.country} />
               <ListItemText
                 sx={{
                   pl: 1
@@ -146,7 +133,6 @@ function LanguageSwitcher() {
                 handleClose();
               }}
             >
-              <CN className={styles.country} />
               <ListItemText
                 sx={{
                   pl: 1
@@ -155,23 +141,6 @@ function LanguageSwitcher() {
               />
             </ListItem>
           </List>
-          <Divider />
-          <Text color="warning">
-            <Box
-              p={2}
-              sx={{
-                maxWidth: 340
-              }}
-            >
-              <WarningTwoToneIcon fontSize="small" />
-              <Typography variant="body1">
-                {t(
-                  'We only translated a small part of the template, for demonstration purposes'
-                )}
-                !
-              </Typography>
-            </Box>
-          </Text>
         </Box>
       </Popover>
     </>

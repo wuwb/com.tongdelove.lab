@@ -1,16 +1,15 @@
-import fetchJsonp from 'fetch-jsonp';
-import { fetchJson } from './api';
+import axios from '@/utils/axios'
 
 const { CMS_URL } = process.env;
 
 export async function getProduct(id) {
-    const product = await fetchJson(`${CMS_URL}/products/${id}`);
-    return stripProduct(product);
+    const { data } = await axios(`${CMS_URL}/products/${id}`);
+    return stripProduct(data.product);
 }
 
 export async function getProducts() {
-    const products = await fetchJson(`${CMS_URL}/products`);
-    return products.map(stripProduct);
+    const { data } = await axios(`${CMS_URL}/products`);
+    return data.products.map(stripProduct);
 }
 
 function stripProduct(product) {

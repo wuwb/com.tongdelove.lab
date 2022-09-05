@@ -6,11 +6,9 @@ import { AppProps } from 'next/app';
 import { HelmetProvider } from 'react-helmet-async';
 import { appWithTranslation } from 'next-i18next';
 import NextNProgress from 'nextjs-progressbar';
-import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ErrorBoundary } from '@/components/common';
 import ThemeProvider from '@/theme/ThemeProvider';
-import createEmotionCache from '@/createEmotionCache';
-import reportWebVitals from '@/reportWebVitals';
+// import createEmotionCache from '@/createEmotionCache';
 import { title } from '@/constants';
 import '@/styles/globals.scss';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -23,11 +21,10 @@ import { NextPageWithLayout } from '@/types/app';
 import { createTheme, StyledEngineProvider } from '@mui/material/styles';
 
 // Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
+// const clientSideEmotionCache = createEmotionCache();
 
 
 interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
 }
 
 export type AppPropsWithLayout = MyAppProps & {
@@ -48,21 +45,8 @@ function MyApp(props: AppPropsWithLayout) {
       })
   );
 
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, pageProps } = props;
   let getLayout = Component.getLayout || (page => page);
-
-  // if (Component.layout) {
-  //   // eslint-disable-next-line no-console
-  //   getLayout = (page) => (<Component.layout>{page}</Component.layout>);
-  // }
-
-  // useEffect(() => {
-  //   // Remove the server-side injected CSS.
-  //   const jssStyles = document.querySelector('#jss-server-side')
-  //   if (jssStyles) {
-  //     jssStyles?.parentElement?.removeChild(jssStyles)
-  //   }
-  // }, []);
 
   return (
     <>
@@ -73,20 +57,18 @@ function MyApp(props: AppPropsWithLayout) {
               <Hydrate state={pageProps.dehydratedState}>
                 <HelmetProvider context={helmetContext}>
                   <StyledEngineProvider injectFirst>
-                    <CacheProvider value={emotionCache}>
-                      <Head>
-                        <title>{title}</title>
-                        {/* Use minimum-scale=1 to enable GPU rasterization */}
-                        <meta
-                          name="viewport"
-                          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-                        />
-                      </Head>
-                      <ThemeProvider>
-                        <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
-                        {getLayout(<Component {...pageProps} />)}
-                      </ThemeProvider>
-                    </CacheProvider>
+                    <Head>
+                      <title>{title}</title>
+                      {/* Use minimum-scale=1 to enable GPU rasterization */}
+                      <meta
+                        name="viewport"
+                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+                      />
+                    </Head>
+                    <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
+                    <ThemeProvider>
+                      {getLayout(<Component {...pageProps} />)}
+                    </ThemeProvider>
                   </StyledEngineProvider>
                 </HelmetProvider>
               </Hydrate>

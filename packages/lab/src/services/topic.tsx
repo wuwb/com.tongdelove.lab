@@ -1,16 +1,15 @@
-import fetchJsonp from 'fetch-jsonp';
-import { fetchJson } from './api';
+import axios from '@/utils/axios';
 
 const SERVER_URL = 'http://127.0.0.1:3001'
 
 export async function getProduct(id) {
-    const product = await fetchJson(`${SERVER_URL}/topics/${id}`);
-    return stripProduct(product);
+    const { data } = await axios(`${SERVER_URL}/topics/${id}`);
+    return stripProduct(data.product);
 }
 
 export async function gettopics() {
-    const topics = await fetchJson(`${SERVER_URL}/topics`);
-    return topics.map(stripProduct);
+    const { data } = await axios(`${SERVER_URL}/topics`);
+    return data.topics.map(stripProduct);
 }
 
 function stripProduct(product) {

@@ -1,5 +1,5 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids';
-import styled from '@emotion/styled';
+import { styled } from '@mui/core/styles';
 import dynamic from 'next/dynamic';
 
 const LazyDownload = dynamic(import('./Download'), {

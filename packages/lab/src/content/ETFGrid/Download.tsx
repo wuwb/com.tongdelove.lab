@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
-import styled from '@emotion/styled';
+import { styled } from '@mui/core/styles';
 import usePortal from '@/hooks/usePortal';
 
 const Button = styled.button`

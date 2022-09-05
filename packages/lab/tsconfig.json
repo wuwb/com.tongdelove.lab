@@ -39,7 +39,6 @@
     "isolatedModules": true,
     "incremental": true,
 
-    "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     "rootDir": "src",
     "paths": {

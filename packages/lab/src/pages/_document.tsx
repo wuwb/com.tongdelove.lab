@@ -1,11 +1,6 @@
 import * as React from 'react';
-import { NextPage } from 'next';
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 import { Meta } from '@/components/common';
-import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from '@/createEmotionCache';
-import theme from '@/theme/theme';
-// import i18nextConfig from '../../next-i18next.config';
 
 // avoid CSS animation transition flashing
 export const DISABLE_SSR_TRANSITION = 'disable-SSR-transition';
@@ -57,34 +52,23 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 
     // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
     // However, be aware that it can have global side effects.
-    const cache = createEmotionCache();
-    const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App: any) =>
           function EnhanceApp(props) {
-            return <App emotionCache={cache} {...props} />;
+            return <App  {...props} />;
           },
       });
 
     const initialProps = await super.getInitialProps(ctx);
     // This is important. It prevents emotion to render invalid HTML.
     // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
-    const emotionStyles = extractCriticalToChunks(initialProps.html);
-    const emotionStyleTags = emotionStyles.styles.map(style => (
-      <style
-        data-emotion={`${style.key} ${style.ids.join(' ')}`}
-        key={style.key}
-        // eslint-disable-next-line
-        dangerouslySetInnerHTML={{ __html: style.css }}
-      />
-    ));
 
     return {
       ...initialProps,
       // Styles fragment is rendered after the app and page rendering finish.
-      styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
+      styles: [...React.Children.toArray(initialProps.styles)],
       // emotionStyleTags,
     };
   }
@@ -102,7 +86,7 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
           {/*
 
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
-          {(this.props as any).emotionStyleTags}
+          {/* {(this.props as any).emotionStyleTags} */}
         </Head>
         <body>
           <Main />
@@ -120,5 +104,17 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
   }
 }
 
-
 export default MyDocument;
+
+if (process.env.NEXT_MANUAL_SIG_HANDLE) {
+  // this should be added in your custom _document
+  process.on('SIGTERM', () => {
+    console.log('Received SIGTERM: ', 'cleaning up')
+    process.exit(0)
+  })
+
+  process.on('SIGINT', () => {
+    console.log('Received SIGINT: ', 'cleaning up')
+    process.exit(0)
+  })
+}

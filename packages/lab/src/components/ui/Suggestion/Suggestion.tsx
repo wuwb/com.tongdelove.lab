@@ -8,7 +8,7 @@ import { TextInput, OptionalInputProps } from '../Input/Input';
 import { InputContainer } from '../InputContainer/InputContainer';
 import { findDOMNode } from 'react-dom';
 import { FundDataItem } from '@/services/service';
-import styled from '@emotion/styled';
+import { styled } from '@mui/core/styles';
 import { fetchFundData, Resource } from '@/services/resource';
 
 const SuggestionContainer = styled(InputContainer)`

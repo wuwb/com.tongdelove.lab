@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/core/styles';
 
 export const InputContainer = styled.div`
   display: inline-flex;
