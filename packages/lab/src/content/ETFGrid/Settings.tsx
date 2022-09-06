@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useAppState } from '@/services/store';
 import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input';
 import { CheckBox } from '@/components/ui/Checkbox/Checkbox';
-import { styled } from '@mui/core/styles';
+import { styled } from '@mui/system';
 import { FundDataItem } from '@/services/service';
 import noop from 'lodash/noop';
 import {
@@ -13,12 +13,12 @@ import {
 } from '@/components/ui/InputContainer/InputContainer';
 import { Suggestion } from '@/components/ui/Suggestion/Suggestion';
 
-const Fieldset = styled.fieldset<{ last?: boolean }>`
+const Fieldset = styled('fieldset') <{ last?: boolean }>`
   border: 0;
   padding: 0;
   margin-bottom: ${(props) => (props.last ? '3em' : '1.5em')};
 `;
-const Legend = styled.legend`
+const Legend = styled('legend')`
   display: block;
   width: 100%;
   padding: 0.3em 0;
@@ -26,13 +26,13 @@ const Legend = styled.legend`
   border-bottom: 1px solid #333;
   font-size: 1.5em;
 `;
-const Row = styled.div<{ last?: boolean }>`
+const Row = styled('div') <{ last?: boolean }>`
   display: flex;
   align-items: center;
   margin-bottom: ${(props) => (props.last ? 0 : '10px')};
   font-size: 1em;
 `;
-const Label = styled.label`
+const Label = styled('label')`
   width: 4em;
   margin-right: 1em;
   display: inline-flex;

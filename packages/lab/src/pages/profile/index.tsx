@@ -1,5 +1,4 @@
-
-import { useAuth } from '@/common/auth';
+import { useAuth } from '@/contexts/auth';
 
 function ProfilePage(): any {
     const { user } = useAuth();

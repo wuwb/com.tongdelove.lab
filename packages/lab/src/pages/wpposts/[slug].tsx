@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import Head from 'next/head'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Container from '../wpnews/components/container'
-import PostBody from '../wpnews/components/post-body'
-import MoreStories from '../wpnews/components/more-stories'
-import Header from '../wpnews/components/header'
-import PostHeader from '../wpnews/components/post-header'
-import SectionSeparator from '../wpnews/components/section-separator'
-import Layout from '../wpnews/components/layout'
-import PostTitle from '../wpnews/components/post-title'
-import Tags from '../wpnews/components/tags'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/wordpress/api'
+import { useRouter } from 'next/router';
+import ErrorPage from 'next/error';
+import Head from 'next/head';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Container from '../wpnews/components/container';
+import PostBody from '../wpnews/components/post-body';
+import MoreStories from '../wpnews/components/more-stories';
+import Header from '../wpnews/components/header';
+import PostHeader from '../wpnews/components/post-header';
+import SectionSeparator from '../wpnews/components/section-separator';
+import Layout from '../wpnews/components/layout';
+import PostTitle from '../wpnews/components/post-title';
+import Tags from '../wpnews/components/tags';
+import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/wordpress/api';
 
 export default function Post({ post, posts, preview }) {
-    const router = useRouter()
-    const morePosts = posts?.edges
+    const router = useRouter();
+    const morePosts = posts?.edges;
 
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />
@@ -76,10 +76,10 @@ export const getStaticProps: GetStaticProps = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const allPosts = await getAllPostsWithSlug()
+    // const allPosts = await getAllPostsWithSlug()
 
     return {
-        paths: allPosts.edges.map(({ node }) => `/posts/${node.slug}`) || [],
+        paths: [], //allPosts.edges.map(({ node }) => `/posts/${node.slug}`) || [],
         fallback: true,
     }
 }

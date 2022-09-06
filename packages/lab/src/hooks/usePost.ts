@@ -33,11 +33,9 @@ export default function usePost(postId) {
 }
 
 function useGQLPost(postId) {
-    return useQuery(
-        ["post", postId],
-        async () => getGQLPostById(postId),
-        {
-            enabled: !!postId,
-        }
-    );
+    return useQuery(["post", postId], async () => {
+        return getGQLPostById(postId)
+    }, {
+        // enabled: !!postId,
+    });
 }

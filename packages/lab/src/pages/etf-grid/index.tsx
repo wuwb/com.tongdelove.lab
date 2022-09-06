@@ -10,7 +10,6 @@ import { Grids } from '@/content/ETFGrid/Grids';
 import { DefaultLayout } from '@/components/layouts';
 import type { NextPageWithLayout } from '@/types/app';
 
-
 const App: NextPageWithLayout = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const router = useRouter();
@@ -38,10 +37,10 @@ App.getLayout = function getLayout(page: JSX.Element) {
 
 export default App;
 
-export const getStaticProps: GetStaticProps = async ({ locale = 'zh' }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-    },
-  };
-};
+// export const getServerProps = async ({ locale = 'zh' }) => {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ['common'])),
+//     },
+//   };
+// };

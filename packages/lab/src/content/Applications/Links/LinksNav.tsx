@@ -1,5 +1,5 @@
 import { Link } from '@/components/ui';
-import styles from './Links.module.css';
+import styles from './Links.module.scss';
 
 export function LinksNav() {
   return (

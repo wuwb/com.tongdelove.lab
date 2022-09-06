@@ -158,7 +158,7 @@ function HeaderNotifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="James Dias" src="/static/images/avatars/1.jpg" />
+              <Avatar alt="James Dias" src="/images/avatars/1.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box
@@ -230,7 +230,7 @@ function HeaderNotifications() {
               >
                 <Avatar
                   alt="Randy Shepard"
-                  src="/static/images/avatars/3.jpg"
+                  src="/images/avatars/3.jpg"
                 />
               </AnimatedBadge>
             </ListItemAvatar>
@@ -284,7 +284,7 @@ function HeaderNotifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="Sarah James" src="/static/images/avatars/2.jpg" />
+              <Avatar alt="Sarah James" src="/images/avatars/2.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box

@@ -26,12 +26,12 @@ import { formatDistance, subHours, subSeconds, subDays } from 'date-fns';
 
 const AnimatedBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         box-shadow: 0 0 0 2px ${theme.palette.background.paper};
         background-color: #44b700;
         color: #44b700;
-        
+
         &::after {
             position: absolute;
             top: 0;
@@ -49,11 +49,11 @@ const AnimatedBadge = styled(Badge)(
 
 const NotificationsBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         background-color: ${alpha(theme.palette.error.main, 0.1)};
         color: ${theme.palette.error.main};
-        min-width: 16px; 
+        min-width: 16px;
         height: 16px;
         padding: 0;
 
@@ -158,7 +158,7 @@ function HeaderNotifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="James Dias" src="/static/images/avatars/1.jpg" />
+              <Avatar alt="James Dias" src="/images/avatars/1.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box
@@ -230,7 +230,7 @@ function HeaderNotifications() {
               >
                 <Avatar
                   alt="Randy Shepard"
-                  src="/static/images/avatars/3.jpg"
+                  src="/images/avatars/3.jpg"
                 />
               </AnimatedBadge>
             </ListItemAvatar>
@@ -284,7 +284,7 @@ function HeaderNotifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="Sarah James" src="/static/images/avatars/2.jpg" />
+              <Avatar alt="Sarah James" src="/images/avatars/2.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box

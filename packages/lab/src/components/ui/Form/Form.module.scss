@@ -25,23 +25,18 @@
 }
 
 .FormBody {
-  // padding: $padding;
-
   label {
     text-transform: capitalize;
     display: block;
 
     input,
     textarea {
-      // margin-bottom: $margin;
       width: 100%;
       display: block;
       color: #fff;
-      // @include paddingBox;
 
       &[type='checkbox'] {
         display: inline-block;
-        // margin-left: $margin * $goldenRatioDecrease;
         width: initial;
       }
 
@@ -59,6 +54,5 @@
 .FormFooter {
   display: flex;
   justify-content: flex-end;
-  // border-top: $border;
   flex-wrap: wrap;
 }

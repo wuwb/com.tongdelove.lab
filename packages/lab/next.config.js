@@ -1,9 +1,5 @@
-/* eslint-disable */
-
-// Tell webpack to compile the "bar" package, necessary if you're using the export statement for example
-// https://www.npmjs.com/package/next-transpile-modules
 const withTM = require('next-transpile-modules')([
-  '../bar', 
+  '../bar',
   '../api'
 ]);
 const { i18n } = require('./next-i18next.config');
@@ -164,34 +160,36 @@ const nextConfig = async (phase, { defaultConfig }) => {
     },
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
-    webpack: config => {
-      const rules = config.module.rules.find(r => !!r.oneOf);
+    // webpack: config => {
+    //   const rules = config.module.rules.find(r => !!r.oneOf);
 
-      rules.oneOf.forEach(loaders => {
-        if (Array.isArray(loaders.use)) {
-          loaders.use.forEach(l => {
-            if (typeof l !== 'string' && typeof l.loader === 'string' && /(?<!post)css-loader/.test(l.loader)) {
-              if (!l.options.modules) return;
-              const { getLocalIdent, ...others } = l.options.modules;
+    //   rules.oneOf.forEach(loaders => {
+    //     if (Array.isArray(loaders.use)) {
+    //       loaders.use.forEach(l => {
+    //         if (typeof l !== 'string' && typeof l.loader === 'string' && /(?<!post)css-loader/.test(l.loader)) {
+    //           if (!l.options.modules) return;
+    //           const { getLocalIdent, ...others } = l.options.modules;
 
-              l.options = {
-                ...l.options,
-                modules: {
-                  ...others,
-                  getLocalIdent: (ctx, localIdentName, localName, options) => {
-                    if (localName === 'dark') return localName;
+    //           l.options = {
+    //             ...l.options,
+    //             modules: {
+    //               ...others,
+    //               getLocalIdent: (ctx, localIdentName, localName, options) => {
+    //                 if (localName === 'dark') return localName;
+    //                 return getLocalIdent(ctx, localIdentName, localName, options);
+    //               },
+    //             },
+    //           };
+    //         }
+    //       });
+    //     }
+    //   });
 
-                    return getLocalIdent(ctx, localIdentName, localName, options);
-                  },
-                },
-              };
-            }
-          });
-        }
-      });
-
-      return config;
-    },
+    //   return config;
+    // },
+    typescript: {
+      ignoreBuildErrors: true
+    }
   };
   return plugins.reduce((acc, plugin) => plugin(acc), {
     ...defaultConfig,

@@ -1,1 +1,1 @@
-export { default } from './OffscreenContainer';
+export * from './OffscreenContainer';

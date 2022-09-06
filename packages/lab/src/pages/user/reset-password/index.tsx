@@ -1,111 +1,36 @@
 import React from 'react';
-import { Form, Input, Button, notification } from '@mui/material';
+import { Input, Button } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-const FormItem = Form.Item;
-
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
-class ChangePassword extends React.Component<any, any> {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll(async (err, values) => {
-      if (!err) {
-        let { newPassword, confirmPassword, password } = values;
-        if (newPassword !== confirmPassword) {
-          notification['error']({
-            message: '新密码与确认密码不一致',
-          });
-          return;
-        }
-
-        let params = {
-          password,
-          newPassword,
-        };
-
-        // let response = await API.updatePersonalInfo(params);
-
-        // notification['success']({
-        //   message: response.message,
-        // });
-        console.log('Received values of form: ', values);
-      }
-    });
-  };
-
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  };
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  };
-
-  handleWebsiteChange = (value) => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map((domain) => `${value}${domain}`);
-    }
-    this.setState({ autoCompleteResult });
-  };
-
-  render() {
-    return (
-      <section className="m-10">
-        <Form onFinish={this.handleSubmit}>
-          <FormItem {...formItemLayout} label={<span className="form-item-label">旧密码</span>}>
-            <Input />
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span className="form-item-label">新密码</span>}>
-
-            <Input />
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span className="form-item-label">确定新密码</span>}>
-            <Input />
-          </FormItem>
-          <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              确定
-            </Button>
-          </FormItem>
-        </Form>
-      </section>
-    );
+const ChangePassword = () => {
+  const onSubmit = (data) => {
+    console.log('data: ', data);
   }
+
+  const { register, handleSubmit, reset, control, formState } = useForm();
+
+  return (
+    <section className="m-10">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-6">
+          <label className="form-item-label">旧密码</label>
+          <input {...register('password')} />
+        </div>
+        <div className="mb-6">
+          <label className="form-item-label">新密码</label>
+          <input {...register('password')} />
+        </div>
+        <div className="mb-6">
+          <label className="form-item-label">确定新密码</label>
+          <input {...register('password')} />
+        </div>
+        <Button type="primary" htmlType="submit">
+          确定
+        </Button>
+      </form>
+    </section>
+  );
 }
 
 export default ChangePassword;

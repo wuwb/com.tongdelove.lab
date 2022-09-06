@@ -1,7 +1,5 @@
-import { FC } from 'react';
 import cx from 'clsx';
-import type { WithChildren } from '@/helper/WithChildren';
-import styles from './Badge.module.css';
+import styles from './Badge.module.scss';
 
 type Props = {
     color?: string | "primary";

@@ -43,12 +43,12 @@ const UserLoginPage = (props) => {
     if ((UserService as any).userValue) {
       router.push('/');
     }
-  }, []);
+  }, [router]);
 
 
   useEffect(() => {
     localStorage.setItem('persist', `${persist}`);
-  }, [])
+  }, [persist])
 
   const { register, handleSubmit, reset, control, formState } = useForm<FormData>({
     defaultValues: defaultState,

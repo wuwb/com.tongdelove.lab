@@ -7,8 +7,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import PercentIcon from '@mui/icons-material/Percent';
 import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import { ICompBaseProps } from '@/interfaces';
-
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IProps extends ICompBaseProps { }
 

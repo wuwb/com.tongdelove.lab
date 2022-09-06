@@ -2,8 +2,9 @@ import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
 import { Spinner } from '../Spinner';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
+// eslint-disable-next-line react/display-name
 export const SpinnerButton = React.forwardRef(({ }, ref) => {
   return (
     <button ref={() => ref}>
@@ -11,6 +12,8 @@ export const SpinnerButton = React.forwardRef(({ }, ref) => {
     </button>
   );
 });
+
+SpinnerButton.displayName = 'SpinnerButton';
 
 export const DangerButton = props => {
   const { type, onClick, children } = props;

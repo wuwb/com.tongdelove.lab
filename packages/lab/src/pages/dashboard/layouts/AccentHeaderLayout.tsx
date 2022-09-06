@@ -9,7 +9,9 @@ function DashboardIndex() {
         <div className="p-4">
             <div className="grid grid-cols-3 gap-4 mb-4">
                 <div><DailyActivity /></div>
-                <div className="col-span-2"><ProductPerfomance /></div>
+                <div className="col-span-2">
+                    <ProductPerfomance />
+                </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-3">

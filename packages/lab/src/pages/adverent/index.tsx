@@ -16,3 +16,10 @@
 // 3649
 // 9.9
 // 文章顶部区域
+
+const page = () => {
+    return (
+        <div></div>
+    )
+}
+export default page;

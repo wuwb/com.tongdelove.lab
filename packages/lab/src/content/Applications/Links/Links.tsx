@@ -2,9 +2,7 @@ import cx from 'clsx';
 import DaohangCard from './DaohangCard';
 import navs from './nav';
 import { LinksNav } from './LinksNav';
-import styles from './Daohang.module.css';
-import { useEffect, useState } from 'react';
-import { Sticky } from '@/components/ui/Sticky';
+import styles from './Daohang.module.scss';
 
 function renderSidebar() {
   const scrollToLinkSection = (item: string) => {

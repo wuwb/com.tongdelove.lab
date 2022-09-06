@@ -1,9 +1,5 @@
 import { alpha, createTheme, lighten, darken } from '@mui/material';
-import { ThemeProvider } from '@mui/core/styles';
-// import { zhCN } from '@mui/core/locale';
 import '@mui/lab/themeAugmentation';
-
-// import i18n from '@/i18n/i18n';
 
 const themeColors = {
   primary: '#5569ff',

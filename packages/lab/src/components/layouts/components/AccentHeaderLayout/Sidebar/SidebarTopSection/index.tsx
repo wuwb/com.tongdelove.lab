@@ -101,7 +101,7 @@ function SidebarTopSection() {
   };
 
   const user = {
-    avatar: '/static/images/avatars/1.jpg',
+    avatar: '/images/avatars/1.jpg',
     name: 'Rachael Simons',
     jobtitle: 'Lead Developer'
   };

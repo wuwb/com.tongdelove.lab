@@ -1,6 +1,5 @@
 import React from 'react';
-
-import styles from './main-page-wrapper.module.css';
+import styles from './main-page-wrapper.module.scss';
 
 export const MainPageWrapper = ({ children }) => {
     return (
@@ -10,4 +9,3 @@ export const MainPageWrapper = ({ children }) => {
     );
 }
 
-export default MainPageWrapper;

@@ -71,7 +71,7 @@ const SmoothScroll = ({
             className={classes}
             href={'#' + to}
             onClick={smoothScroll}>
-            {children}
+            <>{children}</>
         </a>
     )
 }

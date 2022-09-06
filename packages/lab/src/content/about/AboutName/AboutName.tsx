@@ -1,13 +1,12 @@
 import cx from 'clsx';
 import React from 'react';
-// import { useParams } from 'react-router-dom';
 import { useRouter } from 'next/router';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { IPageBaseProps } from '@/interfaces';
 import { useDarkMode } from '@/hooks';
 import { HtmlMeta, HugeIcon, PageWrapper } from '@/components';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IProps extends IPageBaseProps { }
 

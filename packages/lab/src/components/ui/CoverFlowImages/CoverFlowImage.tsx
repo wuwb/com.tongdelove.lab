@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import React from 'react';
 import Swiper, { EffectCoverflow, Lazy } from 'swiper';
-import styles from './CoverFlowImages.module.css';
+import styles from './CoverFlowImages.module.scss';
 import { Lightbox } from '../Lightbox';
 
 Swiper.use([Lazy, EffectCoverflow]);
@@ -65,7 +65,7 @@ export const CoverFlowImages = (props: {
         return () => {
             window.removeEventListener('scroll', onScroll);
         }
-    }, []);
+    }, [props.images]);
 
     return (
         <div className={clsx("swiper", styles.swiper,
@@ -93,6 +93,7 @@ export const CoverFlowImages = (props: {
                             <Image
                                 onClick={() => openLightBox(index)}
                                 id={image}
+                                alt={image}
                                 src={image}
                                 data-src={image}
                                 className={clsx("swiper-lazy", styles.image)}

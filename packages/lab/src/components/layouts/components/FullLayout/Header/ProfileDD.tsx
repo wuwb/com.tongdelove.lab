@@ -38,7 +38,6 @@ const ProfileDD = () => {
             alt="user"
             width="30"
             height="30"
-            className="roundedCircle"
           /> */}
           <Box
             sx={{

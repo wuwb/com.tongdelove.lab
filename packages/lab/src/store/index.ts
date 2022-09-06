@@ -1,7 +1,5 @@
 import { persistReducer, persistStore } from 'redux-persist';
-import type { ThunkAction } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
-import type { Action } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from './rootReducer';
@@ -22,13 +20,14 @@ const persistedReducers = persistReducer(
 export const store = configureStore({
   reducer: persistedReducers,
   devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === 'true',
-  middleware: (getDefaultMiddleware: any) => {
+  middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST'],
       },
     }).concat(sagaMiddleware);
   },
+  enhancers: [],
 });
 
 sagaMiddleware.run(syncSaga);
@@ -38,7 +37,3 @@ export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
-
-//
-
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;

@@ -39,7 +39,7 @@
     "isolatedModules": true,
     "incremental": true,
 
-    "baseUrl": "./",
+    "baseUrl": ".",
     "rootDir": "src",
     "paths": {
       "@/*": ["src/*"],

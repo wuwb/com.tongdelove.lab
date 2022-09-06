@@ -439,6 +439,7 @@ function BaseInput({
   ...rest
 }: BaseInputProps & { onChange: IOnStringChange; pattern: RegExp }) {
   const [state, setState] = useState(value);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChange = useCallback(
     debounce<IOnStringChange>(onChange, 300),
     []

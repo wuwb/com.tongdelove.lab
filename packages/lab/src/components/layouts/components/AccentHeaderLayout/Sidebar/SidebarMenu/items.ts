@@ -1,12 +1,5 @@
 import type { ReactNode } from 'react';
 
-import VpnKeyTwoToneIcon from '@mui/icons-material/VpnKeyTwoTone';
-import ErrorTwoToneIcon from '@mui/icons-material/ErrorTwoTone';
-import DesignServicesTwoToneIcon from '@mui/icons-material/DesignServicesTwoTone';
-import SupportTwoToneIcon from '@mui/icons-material/SupportTwoTone';
-import BackupTableTwoToneIcon from '@mui/icons-material/BackupTableTwoTone';
-import SmartToyTwoToneIcon from '@mui/icons-material/SmartToyTwoTone';
-
 export interface MenuItem {
   link?: string;
   icon?: ReactNode;
@@ -28,7 +21,7 @@ const menuItems: MenuItems[] = [
     items: [
       {
         name: 'Blueprints',
-        icon: BackupTableTwoToneIcon,
+        // icon: BackupTableTwoToneIcon,
         items: [
           {
             name: 'Extended Sidebar',
@@ -66,7 +59,7 @@ const menuItems: MenuItems[] = [
       },
       {
         name: 'Dashboards',
-        icon: SmartToyTwoToneIcon,
+        // icon: SmartToyTwoToneIcon,
         link: '/blueprints/accent-header/dashboards',
         items: [
           {
@@ -160,7 +153,7 @@ const menuItems: MenuItems[] = [
     items: [
       {
         name: 'Auth Pages',
-        icon: VpnKeyTwoToneIcon,
+        // icon: VpnKeyTwoToneIcon,
         items: [
           {
             name: 'Login',
@@ -200,7 +193,7 @@ const menuItems: MenuItems[] = [
       },
       {
         name: 'Status',
-        icon: ErrorTwoToneIcon,
+        // icon: ErrorTwoToneIcon,
         items: [
           {
             name: 'Error 404',
@@ -228,11 +221,11 @@ const menuItems: MenuItems[] = [
       {
         name: 'Overview',
         link: '/',
-        icon: DesignServicesTwoToneIcon
+        // icon: DesignServicesTwoToneIcon
       },
       {
         name: 'Documentation',
-        icon: SupportTwoToneIcon,
+        // icon: SupportTwoToneIcon,
         link: '/docs'
       }
     ]

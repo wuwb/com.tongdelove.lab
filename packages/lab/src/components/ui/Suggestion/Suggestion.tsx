@@ -8,7 +8,7 @@ import { TextInput, OptionalInputProps } from '../Input/Input';
 import { InputContainer } from '../InputContainer/InputContainer';
 import { findDOMNode } from 'react-dom';
 import { FundDataItem } from '@/services/service';
-import { styled } from '@mui/core/styles';
+import { styled } from '@mui/system';
 import { fetchFundData, Resource } from '@/services/resource';
 
 const SuggestionContainer = styled(InputContainer)`
@@ -21,7 +21,7 @@ const SuggestionContainer = styled(InputContainer)`
   }
 `;
 
-const List = styled.div`
+const List = styled('div')`
   position: absolute;
   left: 0;
   right: 0;
@@ -89,7 +89,7 @@ export function Suggestion({
   }, []);
 
   const onDocumentClick = useCallback((e) => {
-    const containerNode = findDOMNode(containerRef.current);
+    const containerNode = this.node;
     let node = e.target;
     let justClickedInContainer = false;
 
@@ -118,7 +118,7 @@ export function Suggestion({
   }, [onDocumentClick]);
 
   return (
-    <SuggestionContainer ref={containerRef}>
+    <SuggestionContainer ref={node => this.node = node}>
       <TextInput
         {...inputProps}
         value={inputValue}

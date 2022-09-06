@@ -1,6 +1,0 @@
-@import '../../../base.scss';
-
-.error {
-  background-color: $danger;
-  @include paddingBox;
-}

@@ -1,8 +1,13 @@
 import { WithChildren } from '@/helper/WithChildren';
 import { FC } from 'react';
+import cx from 'clsx';
 
-export const Container: FC<WithChildren> = (props) => {
+type Props = {
+
+}
+
+export const Container: FC<Props & React.HTMLAttributes<HTMLDivElement>> = (props) => {
     return (
-        <div className="container mx-auto px-5">{props.children}</div>
+        <div className={cx('container mx-auto px-5', props.className)}>{props.children}</div>
     );
 }

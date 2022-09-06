@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'clsx';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IProps {
   fullscreen?: boolean;

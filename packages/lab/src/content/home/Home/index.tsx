@@ -6,7 +6,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IPageBaseProps } from "@/interfaces";
 import TopicList from './TopicList';
 import Sidebar from './Sidebar';
-import styles from './styles.module.css';
 
 interface IProps extends IPageBaseProps { }
 

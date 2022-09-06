@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from '@/components/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './Logo.module.css';
+import styles from './Logo.module.scss';
 
-export default function Logo({ siteTitle }) {
+export function Logo({ siteTitle }) {
     return (
         <div className={styles.logo}>
             <Link to="/">

@@ -1,6 +1,6 @@
-import { styled } from '@mui/core/styles';
+import { styled } from '@mui/system';
 
-export const InputContainer = styled.div`
+export const InputContainer = styled('div')`
   display: inline-flex;
   color: rgba(0, 0, 0, 0.87);
   flex: 1;

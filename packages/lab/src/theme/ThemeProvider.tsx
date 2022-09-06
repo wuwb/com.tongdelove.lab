@@ -6,7 +6,11 @@ import { themeCreator } from './base';
 
 export const ThemeContext = createContext((_themeName: string): void => { });
 
-const ThemeProviderWrapper: FC = (props) => {
+type Porps = {
+  children: React.ReactNode;
+}
+
+const ThemeProviderWrapper: FC<Porps> = (props) => {
   const [themeName, _setThemeName] = useState('PureLightTheme');
 
   useEffect(() => {

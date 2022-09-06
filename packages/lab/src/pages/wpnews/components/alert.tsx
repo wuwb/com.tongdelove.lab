@@ -1,6 +1,5 @@
 import Container from './container';
 import cx from 'clsx';
-import { EXAMPLE_PATH } from '../lib/constants';
 
 export default function Alert({ preview }) {
   return (
@@ -23,12 +22,6 @@ export default function Alert({ preview }) {
           ) : (
             <>
               The source code for this blog is{' '}
-              <a
-                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-                className="hover:text-success underline transition-colors duration-200"
-              >
-                available on GitHub
-              </a>
               .
             </>
           )}

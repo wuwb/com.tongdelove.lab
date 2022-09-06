@@ -3,8 +3,7 @@ import React from 'react';
 import PercentIcon from '@mui/icons-material/Percent';
 import { IPageBaseProps } from '@/interfaces';
 import { HtmlMeta, HugeIcon, PageWrapper } from '@/components';
-
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IProps extends IPageBaseProps { }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './offscreen-container.module.css';
 
-const OffscreenContainer = ({ isVisible, children, handleOffscreenContainer }) => {
+export const OffscreenContainer = ({ isVisible, children, handleOffscreenContainer }) => {
     let classNames = styles.offscreenContainer;
     const show = styles.offscreenContainerShow;
 
@@ -18,5 +18,3 @@ const OffscreenContainer = ({ isVisible, children, handleOffscreenContainer }) =
         </div>
     );
 };
-
-export default OffscreenContainer;

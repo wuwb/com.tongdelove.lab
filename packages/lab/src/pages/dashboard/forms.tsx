@@ -113,7 +113,7 @@ const Forms = () => {
   );
 };
 
-Form.getLayout = (page) => (
+Forms.getLayout = (page) => (
   // <Authenticated>
   <AccentSidebarLayout>{page}</AccentSidebarLayout>
   // </Authenticated>

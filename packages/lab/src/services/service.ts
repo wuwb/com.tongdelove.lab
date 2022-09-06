@@ -16,7 +16,9 @@ export const suggestFunds = (key: string): Promise<FundDataItem[]> => {
   return fetchJsonp(
     `https://fundsuggest.eastmoney.com/FundSearch/api/FundSearchAPI.ashx?m=1&Key=${key}&_=${Date.now()}`,
     {
-      jsonpCallbackFunction: `jQuery_${Date.now()}`
+      jsonpCallbackFunction: `jQuery_${Date.now()}`,
+      nonce: '',
+      referrerPolicy: ''
     }
   )
     .then((res) => res.json())

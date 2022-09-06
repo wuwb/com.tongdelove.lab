@@ -1,3 +1,16 @@
 {
-    "etf-grid-title": "ETF Grid Trade Strategy"
+    "etf": {
+        "grid": {
+            "title": "ETF 网格交易策略"
+        }
+    },
+    "The page you were looking for doesn't exist.": "The page you were looking for doesn't exist.",
+    "title": "",
+    "subtitle": "",
+    "avatar": {},
+    "footer": {},
+    "toast": {
+        "error": {},
+        "success": {}
+    }
 }

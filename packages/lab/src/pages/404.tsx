@@ -14,12 +14,6 @@ import { BaseLayout } from '@/components/layouts';
 import { useTranslation } from 'next-i18next';
 import { Divider } from '@/components/ui';
 
-const OutlinedInputWrapper = styled(OutlinedInput)(
-  ({ theme }) => `
-      background-color: ${theme.colors.alpha.white[100]};
-  `
-);
-
 const ButtonSearch = styled(Button)(
   ({ theme }) => `
       margin-right: -${theme.spacing(1)};
@@ -38,7 +32,7 @@ function Status404(): any {
         <div className="flex flex-1 w-full align-center justify-center p-6">
           <div>
             <div className="text-center">
-              <Image alt="404" height={180} width={180} src="/static/images/status/404.svg" />
+              <Image alt="404" height={180} width={180} src="/images/status/404.svg" />
               <h2>
                 {t("The page you were looking for doesn't exist.")}
               </h2>
@@ -69,7 +63,6 @@ function Status404(): any {
                     }
                   />
                 </FormControl>
-                <Divider>OR</Divider>
                 <Button href="/" variant="outlined">
                   {t('Go to homepage')}
                 </Button>

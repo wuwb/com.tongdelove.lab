@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Modal.v.1.module.css";
+import styles from "./Modal.v.1.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "../Button";
-export default function Modal({ isModalOpen, setIsModalOpen, children }) {
+
+export function Modal({ isModalOpen, setIsModalOpen, children }) {
   const modalStyle = isModalOpen ? styles.modal : styles.closedModal;
 
   function handleOnKeyUp(e) {

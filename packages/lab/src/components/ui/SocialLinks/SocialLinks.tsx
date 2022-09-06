@@ -1,9 +1,7 @@
 import React from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../../utils/fontawesome';
 
-import styles from './SocialLinks.module.css';
+import styles from './SocialLinks.module.scss';
 
 const SocialLinks = () => {
     return (

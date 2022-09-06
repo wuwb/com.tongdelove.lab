@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
@@ -11,7 +12,14 @@ import ThemeProvider from '@/theme/ThemeProvider';
 // import createEmotionCache from '@/createEmotionCache';
 import { title } from '@/constants';
 import '@/styles/globals.scss';
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  Hydrate,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { QueryClient } from '@tanstack/query-core';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -34,16 +42,13 @@ export type AppPropsWithLayout = MyAppProps & {
 const helmetContext = {};
 
 function MyApp(props: AppPropsWithLayout) {
-  const [queryClient] = React.useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 5 * 1000,
-          },
-        },
-      })
-  );
+  const [queryClient] = React.useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        cacheTime: 1000 * 60 * 60 * 24, // 24 hours
+      },
+    },
+  }));
 
   const { Component, pageProps } = props;
   let getLayout = Component.getLayout || (page => page);

@@ -1,7 +1,5 @@
 import { FC, ReactNode } from 'react';
-// import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
-
+import { styled } from '@mui/system';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 
 interface GaugeProps {

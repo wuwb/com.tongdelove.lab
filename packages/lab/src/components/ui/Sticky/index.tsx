@@ -12,7 +12,7 @@ export function Sticky(props: PropsWithChildren<{}>) {
         setOffset(boundingRect.y);
       }
     }
-  });
+  }, [offset]);
 
   useEffect(() => {
     if (offset) {

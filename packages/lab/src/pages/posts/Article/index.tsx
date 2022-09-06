@@ -1,14 +1,13 @@
-import { Breadcrumbs, Container, Grid, Link, Typography } from "@mui/material";
-
 import MyBreadcrumbs from './MyBreadcrumbs';
 import MyRelate from "./MyRelate";
 import MyTips from './MyTips';
 import ArticleContent from './ArticleContent';
+import PostHeader from "@/pages/wpnews/components/post-header";
 
 function Article(props) {
     return (
         <div>
-            <PostHeader />
+            {/* <PostHeader /> */}
             <MyBreadcrumbs />
             <ArticleContent content={props.content} />
             <MyRelate />

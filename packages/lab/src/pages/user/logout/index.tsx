@@ -7,7 +7,7 @@ const Logout = () => {
   useEffect(() => {
     window.localStorage.setItem('logout', Date.now().toString());
     router.push('/login');
-  }, []);
+  }, [router]);
 
   return (<></>);
 };

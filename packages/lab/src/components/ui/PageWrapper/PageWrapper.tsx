@@ -1,9 +1,7 @@
 import cx from 'clsx';
 import React from 'react';
-
 import { ICompBaseProps } from '@/interfaces';
-
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IProps extends ICompBaseProps {
     children: React.ReactNode;

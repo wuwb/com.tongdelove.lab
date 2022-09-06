@@ -2,10 +2,10 @@
 import React, { useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
-import { styled } from '@mui/core/styles';
+import { styled } from '@mui/system';
 import usePortal from '@/hooks/usePortal';
 
-const Button = styled.button`
+const Button = styled('button')`
   -webkit-appearance: none;
   border: 0;
   color: #06c;
@@ -15,7 +15,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Spinner = styled.div`
+const Spinner = styled('div')`
   &,
   &:before,
   &:after {
@@ -62,7 +62,7 @@ const Spinner = styled.div`
     }
   }
 `;
-const Background = styled.div`
+const Background = styled('div')`
   position: absolute;
   top: 0;
   left: 0;

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 const users = [
   {
     id: '1',
-    avatar: '/static/images/avatars/3.jpg',
+    avatar: '/images/avatars/3.jpg',
     location: 'San Francisco, USA',
     username: 'admin',
     email: 'demo@example.com',
@@ -20,7 +20,7 @@ const users = [
     password: 'TokyoPass1@',
     role: 'admin',
     posts: '27',
-    coverImg: '/static/images/placeholders/covers/5.jpg',
+    coverImg: '/images/placeholders/covers/5.jpg',
     followers: '6513',
     description: 'Curabitur at ipsum ac tellus semper interdum.',
   },
@@ -140,7 +140,7 @@ export type LoginParams = {
   password: string;
 };
 export async function login(loginParams: LoginParams) {
-  const { data } = await axios.post<AuthDTO, AxiosResponse<AuthDTO>, LoginParams>('/auth/login', {
+  const { data } = await axios.post<AuthDTO, AxiosResponse, any>('/auth/login', {
     username: loginParams.identifier,
     ...loginParams,
   });
@@ -157,7 +157,7 @@ export type RegisterParams = {
 };
 
 export async function register(registerParams: RegisterParams) {
-  const { data } = await axios.post<AuthDTO, AxiosResponse<AuthDTO>, RegisterParams>('/auth/register', registerParams);
+  const { data } = await axios.post<AuthDTO, AxiosResponse, RegisterParams>('/auth/register', registerParams);
   const { user, token } = data.data;
   store.dispatch(setUser(user));
   store.dispatch(setAccessToken(token));

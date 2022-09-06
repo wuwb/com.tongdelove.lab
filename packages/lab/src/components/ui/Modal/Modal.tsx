@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import cx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './Modal.module.css';
+import styles from './Modal.module.scss';
 
 const modalElement = document.getElementById('modal-root');
 

@@ -1,4 +1,4 @@
-import { QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchJson } from '../services/api';
 
 const USER_QUERY_KEY = 'user';
@@ -35,15 +35,15 @@ export function useSignOut() {
 }
 
 export function useUser() {
-    const query = useQuery([USER_QUERY_KEY] as QueryKey, async () => {
+    const query = useQuery([USER_QUERY_KEY], async () => {
         try {
             return await fetchJson('/api/user');
         } catch (err) {
             return undefined;
         }
     }, {
-        cacheTime: Infinity,
-        staleTime: 30_000, // ms
+        // cacheTime: Infinity,
+        // staleTime: 30_000, // ms
     });
     return query.data;
 }

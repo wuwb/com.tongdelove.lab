@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 import Image from "next/image";
-import user1 from "@/public/images/backgrounds/u2.jpg";
-import user2 from "@/public/images/backgrounds/u3.jpg";
-import user3 from "@/public/images/backgrounds/u4.jpg";
+import user1 from "@/public/images/backgrounds/u1.jpg";
 
 const blogs = [
   {
@@ -12,20 +10,6 @@ const blogs = [
     subtitle:
       "Some quick example text to build on the card title and make up the bulk of the card's content.",
     btncolor: "error",
-  },
-  {
-    img: user2,
-    title: "Super awesome, Angular 12 is coming soon!",
-    subtitle:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btncolor: "warning",
-  },
-  {
-    img: user3,
-    title: "Super awesome, Angular 12 is coming soon!",
-    subtitle:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    btncolor: "primary",
   },
 ];
 

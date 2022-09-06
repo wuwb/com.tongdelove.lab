@@ -2,7 +2,6 @@ import 'react-image-lightbox/style.css';
 import React, { Component } from 'react';
 import ImageLightbox from 'react-image-lightbox';
 
-// import styles from './Lightbox.module.css';
 
 type Props = {
     getState: (setOpen: (open: boolean, index: number) => void) => void;

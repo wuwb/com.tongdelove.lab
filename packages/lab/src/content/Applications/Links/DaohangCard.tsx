@@ -1,4 +1,4 @@
-import styles from './DaohangCard.module.css';
+import styles from './DaohangCard.module.scss';
 
 export default function DaohangCard(props) {
     const { item } = props;

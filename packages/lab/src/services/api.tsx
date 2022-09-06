@@ -5,7 +5,7 @@ export class ApiError extends Error {
             Error.captureStackTrace(this, ApiError);
         }
         this.name = 'ApiError';
-        this.status = status;
+        this.message = status;
     }
 }
 

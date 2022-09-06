@@ -6,13 +6,13 @@ const useUpdateEffect: typeof useEffect = (
 ) => {
   const isMounted = useRef(false);
 
-  useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
-    } else {
-      return effect();
-    }
-  }, deps);
+  // useEffect(() => {
+  //   if (!isMounted.current) {
+  //     isMounted.current = true;
+  //   } else {
+  //     return effect();
+  //   }
+  // }, [effect, isMounted]);
 };
 
 export default useUpdateEffect;

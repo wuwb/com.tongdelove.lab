@@ -1,24 +1,24 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids';
-import { styled } from '@mui/core/styles';
+import { styled } from '@mui/system';
 import dynamic from 'next/dynamic';
 
 const LazyDownload = dynamic(import('./Download'), {
   ssr: false
 });
 
-const Container = styled.div`
+const Container = styled('div')`
   width: 100%;
   /* overflow-x: scroll; */
 `;
 
-const Title = styled.p`
+const Title = styled('p')`
   margin-bottom: 1em;
   display: flex;
   justify-content: space-between;
   font-size: 1.2em;
 `;
 
-const Table = styled.table`
+const Table = styled('table')`
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
@@ -26,7 +26,7 @@ const Table = styled.table`
   border-width: 1px 0 1px 0;
 `;
 
-const Tr = styled.tr<{ last?: boolean }>`
+const Tr = styled('tr') <{ last?: boolean }>`
   border-bottom: 1px ${(props) => (props.last ? 'solid' : 'dashed')} #333;
 `;
 const SmallGrid = styled(Tr)`
@@ -41,7 +41,7 @@ const BigGrid = styled(Tr)`
   background-color: #fe8a71;
 `;
 
-const THeadCell = styled.th`
+const THeadCell = styled('th')`
   border-bottom: 1px solid #333;
   padding: 0.5em 0;
   background: #fff;
@@ -50,18 +50,18 @@ const THeadCell = styled.th`
   top: 0;
 `;
 
-const TBodyCell = styled.td`
+const TBodyCell = styled('td')`
   border-bottom: 1px dashed #333;
   padding: 0.5em 1em;
   text-align: center;
 `;
 
-const TFootCell = styled.td`
+const TFootCell = styled('td')`
   padding: 1em 0;
   text-align: center;
 `;
 
-const Tip = styled.div`
+const Tip = styled('div')`
   /* line-height: 20px; */
   padding: 1em 0;
   font-size: 12px;

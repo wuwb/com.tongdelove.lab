@@ -5,7 +5,6 @@ import {
   Box,
   List,
   ListItem,
-  Divider,
   Typography,
   ListItemText,
   Popover,
@@ -13,6 +12,7 @@ import {
   styled
 } from '@mui/material';
 import styles from './styles.module.css';
+import { useTranslation } from 'next-i18next';
 
 const SectionHeading = styled(Typography)(
   ({ theme }) => `

@@ -56,12 +56,12 @@ const IconButtonPrimary = styled(IconButton)(
 
 const AnimatedBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         box-shadow: 0 0 0 2px ${theme.palette.background.paper};
         background-color: #44b700;
         color: #44b700;
-        
+
         &::after {
             position: absolute;
             top: 0;
@@ -79,11 +79,11 @@ const AnimatedBadge = styled(Badge)(
 
 const NotificationsBadge = styled(Badge)(
   ({ theme }) => `
-    
+
     .MuiBadge-badge {
         background-color: ${alpha(theme.palette.success.main, 0.9)};
         color: ${theme.palette.success.contrastText};
-        min-width: 18px; 
+        min-width: 18px;
         height: 18px;
         padding: 0;
 
@@ -181,7 +181,7 @@ function Notifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="James Dias" src="/static/images/avatars/1.jpg" />
+              <Avatar alt="James Dias" src="/images/avatars/1.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box
@@ -253,7 +253,7 @@ function Notifications() {
               >
                 <Avatar
                   alt="Randy Shepard"
-                  src="/static/images/avatars/3.jpg"
+                  src="/images/avatars/3.jpg"
                 />
               </AnimatedBadge>
             </ListItemAvatar>
@@ -307,7 +307,7 @@ function Notifications() {
                 mb: { xs: 1, sm: 0 }
               }}
             >
-              <Avatar alt="Sarah James" src="/static/images/avatars/2.jpg" />
+              <Avatar alt="Sarah James" src="/images/avatars/2.jpg" />
             </ListItemAvatar>
             <Box flex={1}>
               <Box
