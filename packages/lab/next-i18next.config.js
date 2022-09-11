@@ -1,7 +1,8 @@
 const path = require('path');
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 module.exports = {
-  debug: true,
   i18n: {
     defaultLocale: 'zh',
     locales: [
@@ -11,24 +12,38 @@ module.exports = {
       // 'ru', // 俄文
     ],
   },
-  // fallbackLng: {
-  //   default: ['en'],
-  // },
+  fallbackLng: {
+    default: ['zh'],
+    en: ['zh']
+  },
+  // de, fr and en will be loaded as fallback languages for de-CH
   nonExplicitSupportedLngs: true,
-  nsSeparator: '.',
+  defaultNS: 'common',
   localePath: path.resolve('./public/locales'),
-  ns: [
-    'common',
-    // 'modals', 'landing', 'dashboard', 'builder'
-  ],
-  reloadOnPrerender: process.env.NODE_ENV === 'development',
-  keySeparator: 'false',
-  namespaceSeparator: false,
-  pluralSeparator: '——',
-  contextSeparator: '——',
+  localeExtension: 'json',
+  interpolation: {
+    prefix: '{{',
+    suffix: '}}',
+  },
+  localeStructure: '{{lng}}/{{ns}}',
+  reloadOnPrerender: isDev,
   // https://github.com/i18next/next-i18next#unserialisable-configs
   serializeConfig: false,
-  react: {
-    useSuspense: false,
-  },
+  // use: [],
+
+  // https://www.i18next.com/overview/configuration-options
+  // https://react.i18next.com/latest/i18next-instance
+  // debug: isDev,
+  // ns: [
+  //   'common',
+  //   // 'modals', 'landing', 'dashboard', 'builder'
+  // ],
+  // keySeparator: 'false',
+  // namespaceSeparator: false,
+  // // pluralSeparator: '——',
+  // // contextSeparator: '——',
+  // react: {
+  //   useSuspense: false,
+  // },
+  // nsSeparator: '.',
 };

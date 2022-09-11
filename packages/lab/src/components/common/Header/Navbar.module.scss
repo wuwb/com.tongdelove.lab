@@ -1,0 +1,8 @@
+.navbar-nav {
+  @apply m-0 flex list-none flex-col p-0 font-medium lg:mt-0 lg:flex-row lg:space-x-8;
+}
+.nav-item {
+}
+.nav-link {
+  @apply block rounded bg-primary-700 py-2 pr-4 pl-3 lg:bg-transparent lg:p-0 lg:text-primary-700;
+}

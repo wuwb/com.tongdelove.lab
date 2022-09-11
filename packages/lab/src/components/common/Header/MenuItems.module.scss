@@ -1,0 +1,38 @@
+.menu-items {
+  @apply relative;
+  font-size: 14px;
+  a {
+    display: block;
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+  }
+  .menu-items-link {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: inherit;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    @apply px-4 py-2;
+  }
+  & > a,
+  & > .menu-items-link {
+    text-align: left;
+  }
+  a:hover,
+  .menu-items-link:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+.arrow::after {
+  content: '';
+  display: inline-block;
+  margin-left: 0.28em;
+  vertical-align: 0.09em;
+  border-top: 0.42em solid;
+  border-right: 0.32em solid transparent;
+  border-left: 0.32em solid transparent;
+}

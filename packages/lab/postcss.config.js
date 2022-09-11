@@ -8,25 +8,19 @@ module.exports = {
   plugins:
     process.env.NODE_ENV === 'production'
       ? {
-          // 'postcss-import': {},
-          // 'tailwindcss/nesting': {},
           tailwindcss: {},
-          autoprefixer: {},
-          // cssnano: {},
-          // 'postcss-flexbugs-fixes': {},
-          // 'postcss-preset-env': {
-          //   autoprefixer: {
-          //     flexbox: 'no-2009',
-          //     grid: 'autoplace',
-          //   },
-          //   stage: 3,
-          //   features: {
-          //     'custom-properties': false,
-          //     'nesting-rules': false,
-          //   },
-          // },
-        }
-      : {
+          'postcss-preset-env': {
+            autoprefixer: {
+              flexbox: 'no-2009',
+              grid: 'autoplace',
+            },
+            stage: 3,
+            features: {
+              'custom-properties': false,
+              'nesting-rules': false,
+            },
+          },
+      } : {
           // 'postcss-import': {},
           // 'tailwindcss/nesting': {},
           tailwindcss: {},

@@ -40,7 +40,6 @@
     "incremental": true,
 
     "baseUrl": ".",
-    "rootDir": "src",
     "paths": {
       "@/*": ["src/*"],
       "@/public/*": ["./public/*"]

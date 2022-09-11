@@ -19,10 +19,6 @@ const Fieldset = styled('fieldset') <{ last?: boolean }>`
   margin-bottom: ${(props) => (props.last ? '3em' : '1.5em')};
 `;
 const Legend = styled('legend')`
-  display: block;
-  width: 100%;
-  padding: 0.3em 0;
-  margin-bottom: 0.3em;
   border-bottom: 1px solid #333;
   font-size: 1.5em;
 `;
@@ -53,7 +49,7 @@ export function Settings() {
   return (
     <form>
       <Fieldset>
-        <Legend>基本设置</Legend>
+        <Legend className="block w-full mb-1 py-1">基本设置</Legend>
         <Fund />
         <Row>
           <Label>价　　格</Label>

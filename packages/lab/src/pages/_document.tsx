@@ -1,22 +1,11 @@
-import * as React from 'react';
-import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 import { Meta } from '@/components/common';
-
-// avoid CSS animation transition flashing
-export const DISABLE_SSR_TRANSITION = 'disable-SSR-transition';
+import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
+import * as React from 'react';
 
 type MyDocumentProps = {
   locale: 'en' | 'zh';
   helmet: any;
 };
-
-process.on('unhandledRejection', err => {
-  // Sentry.captureException(err);
-});
-
-process.on('uncaughtException', err => {
-  // Sentry.captureException(err);
-});
 
 class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
   static defaultProps = {
@@ -81,23 +70,11 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
     return (
       <Html lang={lang} dir="ltr">
         <Head>
-          <Meta title="NextJS App" description="an example of NextJS app with 100% accessible lighthouse score"></Meta>
-          {/* PWA primary color */}
-          {/*
-
-          {/* Inject MUI styles first to match with the prepend: true configuration. */}
-          {/* {(this.props as any).emotionStyleTags} */}
+          <Meta title="NextJS App" description="an example"></Meta>
         </Head>
         <body>
           <Main />
           <NextScript />
-          <style
-            id={DISABLE_SSR_TRANSITION}
-            // eslint-disable-next-line
-            dangerouslySetInnerHTML={{
-              __html: '*, *::before, *::after { transition: none !important; }',
-            }}
-          />
         </body>
       </Html>
     );
@@ -107,14 +84,21 @@ class MyDocument extends Document<MyDocumentProps & DocumentInitialProps> {
 export default MyDocument;
 
 if (process.env.NEXT_MANUAL_SIG_HANDLE) {
-  // this should be added in your custom _document
   process.on('SIGTERM', () => {
-    console.log('Received SIGTERM: ', 'cleaning up')
-    process.exit(0)
-  })
+    console.log('Received SIGTERM: ', 'cleaning up');
+    process.exit(0);
+  });
 
   process.on('SIGINT', () => {
-    console.log('Received SIGINT: ', 'cleaning up')
-    process.exit(0)
-  })
+    console.log('Received SIGINT: ', 'cleaning up');
+    process.exit(0);
+  });
 }
+
+process.on('unhandledRejection', err => {
+  // Sentry.captureException(err);
+});
+
+process.on('uncaughtException', err => {
+  // Sentry.captureException(err);
+});

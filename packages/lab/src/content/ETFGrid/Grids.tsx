@@ -132,7 +132,7 @@ export function Grids() {
           {grids.map((grid, index) => {
             const GridComponent = GridComponents[grid.type];
             return (
-              <GridComponent key={index} last={index === grids.length - 1}>
+              <GridComponent key={index} last={index === grids.length - 1 ? true : false}>
                 <TBodyCell>{index + 1}</TBodyCell>
                 <TBodyCell>{grid.type}</TBodyCell>
                 <TBodyCell>{toFixedString(grid.gear)}</TBodyCell>

@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --THEME--DARK: ;
-  --font-family: ;
+  /* 通用 */
+  --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
+    'MicrosoftYaHei', 'WenQuanYi Micro Hei', sans-serif;
+  /* 简书 */
+  // --font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "MicrosoftYaHei", "WenQuanYi Micro Hei", sans-serif;
+
   --primary-color: ;
   --primary-color--dark: ;
   --primary-color-bg: ;
@@ -46,6 +50,18 @@
   --color-fade: #ccc;
 }
 
+html,
+body {
+  font-family: var(--font-family);
+}
+body {
+  margin: 0;
+}
+
+a {
+  @apply text-gray-800;
+}
+
 #__next {
   display: flex;
   flex-direction: column;
@@ -60,4 +76,10 @@
 
 .clearfix:after {
   clear: both;
+}
+
+//-------------
+
+.divider-top {
+  border-top: 1px solid #ddd;
 }

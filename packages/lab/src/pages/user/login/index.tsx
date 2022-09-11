@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { joiResolver } from '@hookform/resolvers/joi';
 import { Link } from '@/components/ui/Link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { UserService } from "@/services";
 import { useAuth } from '@/contexts/auth';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import Joi from 'joi';
-import { Trans, useTranslation } from 'next-i18next';
-import { useIsMutating, useMutation } from '@tanstack/react-query';
+import { UserService } from "@/services";
 import { login, LoginParams } from '@/services/auth';
 import { ServerError } from '@/utils/axios';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { useMutation } from '@tanstack/react-query';
+import Joi from 'joi';
+import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 type FormData = {
   identifier: string;
@@ -145,7 +145,7 @@ const UserLoginPage = (props) => {
                 {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                 登录
               </button>
-              <Link href="/account/register" className="btn btn-link block mt-3">
+              <Link href="/user/register" className="btn btn-link block mt-3">
                 {/* <Trans t={t} i18nKey="pages.user.login.register-text"> */}
                 注册
                 {/* </Trans> */}

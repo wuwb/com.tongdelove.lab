@@ -1,36 +1,26 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from 'react';
-import type { ReactElement, ReactNode } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { AppProps } from 'next/app';
-import { HelmetProvider } from 'react-helmet-async';
-import { appWithTranslation } from 'next-i18next';
-import NextNProgress from 'nextjs-progressbar';
 import { ErrorBoundary } from '@/components/common';
-import ThemeProvider from '@/theme/ThemeProvider';
-// import createEmotionCache from '@/createEmotionCache';
 import { title } from '@/constants';
+import { persistor, store } from '@/store/index';
 import '@/styles/globals.scss';
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  Hydrate,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import '@/styles/nprogress.scss';
+import ThemeProvider from '@/theme/ThemeProvider';
+import { NextPageWithLayout } from '@/types/app';
+import { StyledEngineProvider } from '@mui/material/styles';
 import { QueryClient } from '@tanstack/query-core';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import {
+  Hydrate,
+  QueryClientProvider
+} from '@tanstack/react-query';
+import { appWithTranslation } from 'next-i18next';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import NProgress from 'nprogress';
+import React, { useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from '@/store/index';
-// import nextI18NextConfig from '../../next-i18next.config';
-import { NextPageWithLayout } from '@/types/app';
-import { createTheme, StyledEngineProvider } from '@mui/material/styles';
-
-// Client-side cache, shared for the whole session of the user in the browser.
-// const clientSideEmotionCache = createEmotionCache();
-
+import nextI18NextConfig from '../../next-i18next.config.js';
 
 interface MyAppProps extends AppProps {
 }
@@ -40,6 +30,8 @@ export type AppPropsWithLayout = MyAppProps & {
 }
 
 const helmetContext = {};
+
+NProgress.configure({ showSpinner: false });
 
 function MyApp(props: AppPropsWithLayout) {
   const [queryClient] = React.useState(() => new QueryClient({
@@ -52,6 +44,14 @@ function MyApp(props: AppPropsWithLayout) {
 
   const { Component, pageProps } = props;
   let getLayout = Component.getLayout || (page => page);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => NProgress.start());
+    router.events.on('routeChangeComplete', () => NProgress.done());
+    router.events.on('routeChangeError', () => NProgress.done());
+  }, [router]);
 
   return (
     <>
@@ -70,14 +70,13 @@ function MyApp(props: AppPropsWithLayout) {
                         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                       />
                     </Head>
-                    <NextNProgress height={1} color="rgb(156, 163, 175, 0.9)" options={{ showSpinner: false }} />
                     <ThemeProvider>
                       {getLayout(<Component {...pageProps} />)}
                     </ThemeProvider>
                   </StyledEngineProvider>
                 </HelmetProvider>
               </Hydrate>
-              <ReactQueryDevtools initialIsOpen={false} />
+              {/* <ReactQueryDevtools initialIsOpen={false} /> */}
             </QueryClientProvider>
           </ErrorBoundary>
         </PersistGate>
@@ -86,7 +85,7 @@ function MyApp(props: AppPropsWithLayout) {
   );
 };
 
-export default appWithTranslation(MyApp); // nextI18NextConfig
+export default appWithTranslation(MyApp, nextI18NextConfig);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

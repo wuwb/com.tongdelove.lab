@@ -1,0 +1,28 @@
+.menu-icon {
+  height: 14px;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .menu-icon-line {
+    width: 100%;
+    border-radius: 2px;
+    height: 2px;
+    background: #4b587c;
+    transition: all 0.5s ease;
+  }
+  .menu-icon-line-1 {
+  }
+  .menu-icon-line-2 {
+    margin: 5px 0;
+  }
+  .menu-icon-line-3 {
+  }
+}
+
+// mobile menu
+.mobile-menu {
+  @apply flex
+    bg-white
+    pr-8;
+}

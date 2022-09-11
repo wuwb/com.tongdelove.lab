@@ -1,26 +1,18 @@
-import React, { ReactNode } from 'react';
-// import Bar from '@tongdelove/lab-bar';
-import Router from 'next/router';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import { Link } from '@/components/ui/Link';
+import { ReactNode } from 'react';
 import { FooterCopyright } from './FooterCopyright';
 import { FooterIconList } from './FooterIconList';
-import SwitchLang from '../SwitchLang';
 
 export function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <div className="text-center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://lab.tongdelove.com/">
+      {new Date().getFullYear()}
+      <Link href="https://lab.tongdelove.com/">
         海维包装实验室
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+      All Rights Reserved.
+    </div>
   );
 }
 
@@ -44,35 +36,28 @@ export function Footer(props): any {
     },
   ];
   return (
-    <Container
-      maxWidth="md"
-      component="footer"
-      sx={{
-        borderTop: theme => `1px solid ${theme.palette.divider}`,
-        mt: 8,
-        py: [3, 6],
-      }}
-    >
-      <Grid container spacing={4} justifyContent="space-evenly">
+    <div className="divider-top mt-8 py-3 md:py-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
         {footers.map(footer => (
-          <Grid item xs={6} sm={3} key={footer.title}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
+          <div className="" key={footer.title}>
+            <div>
               {footer.title}
-            </Typography>
-            <ul>
+            </div>
+            <ul className="list-none m-0 p-0">
               {footer.description.map(item => (
                 <li key={item}>
-                  <Link href="#" variant="subtitle1" color="text.secondary">
+                  <Link href="#">
                     {item}
                   </Link>
                 </li>
               ))}
             </ul>
-          </Grid>
+          </div>
         ))}
-      </Grid>
-      <Copyright sx={{ mt: 5 }} />
-    </Container>
+      </div>
+      <Copyright />
+      {/* <SwitchLang></SwitchLang> */}
+    </div>
   );
 }
 
@@ -82,21 +67,25 @@ type ICenteredFooterProps = {
   children: ReactNode;
 };
 
-export const CenteredFooter = (props: ICenteredFooterProps) => (
-  <div className="text-center">
-    {props.logo}
+export function CenteredFooter(props: ICenteredFooterProps) {
+  return (
+    <div className="text-center">
+      {props.logo}
 
-    <nav>
-      <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">{props.children}</ul>
-    </nav>
+      <nav>
+        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">
+          {props.children}
+        </ul>
+      </nav>
 
-    <div className="mt-8 flex justify-center">
-      <FooterIconList>{props.iconList}</FooterIconList>
+      <div className="mt-8 flex justify-center">
+        <FooterIconList>{props.iconList}</FooterIconList>
+      </div>
+
+      <div className="mt-8 text-sm">
+        <FooterCopyright />
+      </div>
     </div>
+  );
+}
 
-    <div className="mt-8 text-sm">
-      <FooterCopyright />
-      <SwitchLang></SwitchLang>
-    </div>
-  </div>
-);

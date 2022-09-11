@@ -1,7 +1,11 @@
+const path = require('path');
 const withTM = require('next-transpile-modules')([
   '../bar',
   '../api'
-]);
+], {
+  resolveSymlinks: true,
+  debug: false,
+});
 const { i18n } = require('./next-i18next.config');
 const { version } = require('./package.json');
 
@@ -160,7 +164,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
     },
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
-    // webpack: config => {
+    webpack: config => {
     //   const rules = config.module.rules.find(r => !!r.oneOf);
 
     //   rules.oneOf.forEach(loaders => {
@@ -184,9 +188,8 @@ const nextConfig = async (phase, { defaultConfig }) => {
     //       });
     //     }
     //   });
-
-    //   return config;
-    // },
+      return config;
+    },
     typescript: {
       ignoreBuildErrors: true
     }

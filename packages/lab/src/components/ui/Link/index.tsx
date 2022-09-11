@@ -1,9 +1,8 @@
-import * as React from 'react';
-import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
-import { styled } from '@mui/system';
+import clsx from 'clsx';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import * as React from 'react';
 
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
   const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
@@ -73,7 +72,7 @@ const Links = React.forwardRef(function Link(props: any, ref) {
 function Link({ href, children, ...props }: any) {
   return (
     <NextLink href={href}>
-      <a {...props}>
+      <a className="no-underline" {...props}>
         {children}
       </a>
     </NextLink>

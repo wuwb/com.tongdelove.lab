@@ -8,5 +8,6 @@
   "peerDependencies": {
     "react": "^17.0.2"
   },
+  "packageManager": "pnpm@7.11.0",
   "license": "ISC"
 }

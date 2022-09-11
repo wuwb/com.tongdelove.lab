@@ -1,8 +1,6 @@
 import axios from '@/utils/axios';
-import { store } from '@/store';
-import { setAccessToken, setUser } from '@/store/authSlice';
-import toast from 'react-hot-toast';
 import { AxiosResponse } from 'axios';
+import toast from 'react-hot-toast';
 
 export type SubscribeParama = {
   source: any;
@@ -21,7 +19,7 @@ export async function subscribe(params: SubscribeParama) {
 }
 
 
-export async function subscribeTest(params) {
+export async function testSubscribe(params: SubscribeParama) {
   await axios.post<void, AxiosResponse<void>, SubscribeParama>('/freelancer/subscribe-test', params);
 
   toast.success('订阅测试已发送');

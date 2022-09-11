@@ -1,7 +1,6 @@
-import { FC, ReactNode, createContext, useEffect, useReducer } from 'react';
 import type { User } from '@/models/user';
-import { authApi } from '@/services/auth';
-// import PropTypes from 'prop-types';
+import AuthService from '@/service/AuthService';
+import { createContext, FC, ReactNode, useEffect, useReducer } from 'react';
 
 interface AuthState {
   isInitialized: boolean;
@@ -111,7 +110,7 @@ export const AuthProvider: FC<AuthProviderProps> = props => {
         const accessToken = window.localStorage.getItem('accessToken');
 
         if (accessToken) {
-          const user = await authApi.me(accessToken);
+          const user = await AuthService.getCurrentUser(accessToken);
 
           dispatch({
             type: 'INITIALIZE',
@@ -145,8 +144,8 @@ export const AuthProvider: FC<AuthProviderProps> = props => {
   }, []);
 
   const login = async (email: string, password: string): Promise<void> => {
-    const accessToken = await authApi.login({ email, password });
-    const user = await authApi.me(accessToken);
+    const accessToken = await AuthService.login({ email, password });
+    const user = await AuthService.getCurrentUser(accessToken);
 
     localStorage.setItem('accessToken', accessToken);
 
@@ -164,8 +163,8 @@ export const AuthProvider: FC<AuthProviderProps> = props => {
   };
 
   const register = async (email: string, name: string, password: string): Promise<void> => {
-    const accessToken = await authApi.register({ email, name, password });
-    const user = await authApi.me(accessToken);
+    const accessToken = await AuthService.register({ email, name, password });
+    const user = await AuthService.getCurrentUser(accessToken);
 
     localStorage.setItem('accessToken', accessToken);
 
@@ -191,9 +190,5 @@ export const AuthProvider: FC<AuthProviderProps> = props => {
     </AuthContext.Provider>
   );
 };
-
-// AuthProvider.propTypes = {
-//     children: PropTypes.node.isRequired
-// };
 
 export const AuthConsumer = AuthContext.Consumer;

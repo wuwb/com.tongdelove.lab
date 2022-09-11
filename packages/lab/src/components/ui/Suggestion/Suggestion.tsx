@@ -6,14 +6,11 @@ import React, {
 } from 'react';
 import { TextInput, OptionalInputProps } from '../Input/Input';
 import { InputContainer } from '../InputContainer/InputContainer';
-import { findDOMNode } from 'react-dom';
 import { FundDataItem } from '@/services/service';
 import { styled } from '@mui/system';
 import { fetchFundData, Resource } from '@/services/resource';
 
 const SuggestionContainer = styled(InputContainer)`
-  display: block;
-  position: relative;
   input {
     flex: none;
     width: 100%;
@@ -22,10 +19,8 @@ const SuggestionContainer = styled(InputContainer)`
 `;
 
 const List = styled('div')`
-  position: absolute;
   left: 0;
   right: 0;
-  background: #fff;
   border: 1px solid #eee;
   margin-top: -2px;
   box-shadow: 0 5px 8px #ddd;
@@ -69,6 +64,8 @@ export function Suggestion({
   const [resource, setResource] = useState<Resource<FundDataItem[]>>(
     initialResource
   );
+  let containerNode;
+
   const onChangeCallback = useCallback((value: string) => {
     setInputValue(value);
     const nextResource = fetchFundData(value);
@@ -89,7 +86,6 @@ export function Suggestion({
   }, []);
 
   const onDocumentClick = useCallback((e) => {
-    const containerNode = this.node;
     let node = e.target;
     let justClickedInContainer = false;
 
@@ -118,7 +114,7 @@ export function Suggestion({
   }, [onDocumentClick]);
 
   return (
-    <SuggestionContainer ref={node => this.node = node}>
+    <SuggestionContainer className="block relative" ref={node => containerNode = node}>
       <TextInput
         {...inputProps}
         value={inputValue}
@@ -157,7 +153,7 @@ function SuggestionList({
   );
 
   return visible && data.length ? (
-    <List>
+    <List className="absolute bg-white">
       <ul>
         {data.map((item, index) => {
           return (
