@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next';
-// import Bar from 'bar';
 import { Container } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
@@ -9,6 +8,10 @@ import type { NextPageWithLayout } from '@/types/app';
 import axios from '@/utils/axios';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
+import { parseSourceType } from '@/content/freelancer/interface';
+import { useEffect, useState } from 'react';
+import styles from './index.module.scss';
+import cx from 'clsx';
 
 interface Props {
     data: any[];
@@ -18,13 +21,24 @@ interface Props {
 const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
     const router = useRouter();
     const { t } = useTranslation();
-
-    const { data } = props;
+    const [data, setData] = useState([]);
+    const [count, setCount] = useState(0);
+    const user = useAppSelector((state) => state.auth.user);
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    console.log('router: ', router);
     let pageId = parseInt(router.query?.pageId as string || '1', 10);
     let pageSize = parseInt(router.query?.pageSize as string || '10', 10);
 
-    const user = useAppSelector((state) => state.auth.user);
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    async function fetchData(pageSize, pageId) {
+        const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${pageId}`)
+        console.log('data.data: ', data.data);
+        setData(data.data.data);
+        setCount(data.data.count);
+    }
+    useEffect(() => {
+
+        fetchData(pageSize, pageId);
+    }, []);
 
     // 页码错误返回第一页
     if (pageId < props.count) {
@@ -36,6 +50,8 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
             return;
         }
         let num = pageId - 1;
+        fetchData(pageSize, num);
+
         router.push(`/freelancer/tasks/${num}`)
 
     }
@@ -44,63 +60,80 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
             return;
         }
         let num = pageId + 1;
+        fetchData(pageSize, num);
         router.push(`/freelancer/tasks/${num}`)
     }
     const handleTo = (num) => {
         if (num === pageId) {
             return;
         }
+        fetchData(pageSize, num);
         router.push(`/freelancer/tasks/${num}`)
     }
 
     return (
-        <Container className="text-gray-800">
-            <div className="grid grid-cols-5 gap-3">
-                <div className="bg-blue-100 col-span-4">
-                    <div className="p-10">
-                        {data.map((item) => (
-                            <div key={item.id} className="mb-10">
-                                <Link href={item.url}>
-                                    <div>
-                                        <span className="font-bold">{item.title}</span>
-                                        <span className="text-pink-700 text-xl">￥{item.price}</span>
+        <div className="bg-gray-100 pt-10 pb-20">
+            <Container className="">
+                <div className="grid grid-cols-5 gap-3">
+                    <div className="col-span-4">
+                        <div className="px-3 lg:px-0 my-3 flex flex-row items-center justify-between">
+                            <div className="text-base lg:text-xl font-medium">今天</div>
+                        </div>
+                        <div className="bg-white lg:rounded-lg">
+
+                            {data.map((item) => (
+                                <div key={item.id} className={cx(styles['task-item'], "cursor-pointer lg:h-120px border-gray-200 hover:bg-gray-50 relative")}>
+                                    <Link className="flex flex-col p-3 lg:p-20px pr-18 lg:pr-104px group" href={item.url}>
+                                        <div className="m-0 lg:font-light text-base lg:text-xl text-gray-700 flex flex-row items-center">
+                                            <span className="m-0 lg:font-light text-base lg:text-xl text-gray-700 flex flex-row items-center">{item.title}</span>
+                                            <div className="hidden lg:flex flex-row items-center"><svg className="ml-2 mr-1 fill-current text-white group-hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"></path><path d="M10 3v2H5v14h14v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6zm7.586 2H13V3h8v8h-2V6.414l-7 7L10.586 12l7-7z"></path></svg><span className="text-white group-hover:text-gray-600 text-sm">访问源站</span></div>
+                                        </div>
+                                        <div className="text-pink-700 text-xl">￥{item.fixedPrice}</div>
+                                        <div className="text-gray-500 font-normal">{item.desc}</div>
+                                        <div className="flex gap-2 text-gray-600 text-sm">
+                                            <span>项目类型： {item.type}</span> |
+                                            {/* <span>发布时间：{format(new Date(item.time), 'yyyy-MM-dd HH:mm')}</span> */}
+                                        </div>
+                                        <div className="flex gap-2 text-gray-600 text-sm">
+                                            <div>开发周期：{item.cycle} {item.cycleName}</div> |
+                                            <div>{item.bargain ? '可议价' : '固定价格'}</div> |
+
+                                            <div>来源：{parseSourceType(item.source)}</div> |
+
+                                            <div>状态：{item.status}</div> |
+                                            <div>申请人数：{item.applyCount}</div> |
+                                            <div>查看次数：{item.visitCount}</div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ))}
+
+                            <Pagination postsPerPage={10}
+                                totalPosts={count}
+                                paginatePrev={handlePrev}
+                                paginateNext={handleNext}
+                                handleTo={handleTo}
+                                currentPage={+pageId} />
+                        </div>
+                    </div>
+                    <div className="">
+                        <div>
+                            <div className="text-base font-medium py-2">热门标签</div>
+                            <div className="bg-white rounded-lg">
+                                <div className="border-b border-gray-200 p-3 flex flex-row items-center">
+                                    <div className="w-10 h-10 rounded mr-3"></div>
+                                    <div className="flex flex-col">
+                                        <div className="text-base mb-1">技术</div>
+                                        <div className="text-xs text-gray-400">收录 32053 个产品</div>
                                     </div>
-
-                                    <div>{item.content}</div>
-                                    <div className="flex gap-2 text-gray-600 text-sm">
-                                        <span>项目类型： {item.type}</span> |
-                                        <span>发布时间：{format(new Date(item.time), 'yyyy-MM-dd HH:mm')}</span>
-                                    </div>
-                                    <div className="flex gap-2 text-gray-600 text-sm">
-                                        <div>开发周期：{item.duration}</div> |
-                                        <div>{item.bargain ? '可议价' : '固定价格'}</div> |
-
-                                        <div>来源：{item.origin}</div> |
-
-                                        <div>状态：{item.status}</div> |
-                                        <div>申请人数：{item.applyCount}</div> |
-                                        <div>查看次数：{item.visitCount}</div> |
-
-                                        <div>开发类型：{item.developerType}</div> |
-                                        <div>需求角色：{item.specificRole}</div>
-                                    </div>
-                                </Link>
+                                </div>
+                                <div className="text-center text-sm p-2">查看更多</div>
                             </div>
-                        ))}
-
-                        <Pagination postsPerPage={10}
-                            totalPosts={props.count}
-                            paginatePrev={handlePrev}
-                            paginateNext={handleNext}
-                            handleTo={handleTo}
-                            currentPage={+pageId} />
+                        </div>
                     </div>
                 </div>
-                <div className="bg-red-100 ">
-                    sidebar
-                </div>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 };
 
@@ -110,41 +143,35 @@ TasksPageIdPage.getLayout = (page: JSX.Element) => {
 
 export default TasksPageIdPage;
 
-export const getStaticPaths = async () => {
-    // 请求接口获取页数
-    return {
-        paths: [
-            { params: { pageId: '1' } },
-            { params: { pageId: '2' } },
-            { params: { pageId: '3' } },
-        ],
-        fallback: true, // false or "blocking" // See the "fallback" section below
+// export const getStaticPaths = async () => {
+//     // 请求接口获取页数
+//     return {
+//         paths: [
+//             { params: { pageId: '1' } },
+//         ],
+//         fallback: true, // false or "blocking" // See the "fallback" section below
+//     };
+// }
 
-    };
-}
-
-export const getStaticProps = async (context) => {
-    try {
-        console.log('context: ', context);
-        const page = context.params.pageId || 1;
-        const pageSize = context.query?.pageSize || 10;
-        const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${page}`)
-        console.log('data: ', data.data);
-        return {
-            props: {
-                ...data.data
-            },
-            // Re-generate the post at most once per second
-            // if a request comes in
-            // revalidate: 1,
-        };
-    } catch (error) {
-        console.error(error);
-        return {
-            props: {
-                data: [],
-                count: 0,
-            },
-        };
-    }
-}
+// export const getStaticProps = async (context) => {
+//     try {
+//         const page = context.params.pageId || 1;
+//         const pageSize = context.query?.pageSize || 10;
+//         const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${page}`)
+//         return {
+//             props: {
+//                 ...data.data
+//             },
+//             // Re-generate the post at most once per second
+//             // if a request comes in
+//             revalidate: 1,
+//         };
+//     } catch (error) {
+//         return {
+//             props: {
+//                 data: [],
+//                 count: 0,
+//             },
+//         };
+//     }
+// }

@@ -1,3 +1,6 @@
+/**
+ * @crated 2014-08-11 19:41:54
+ */
 import develop from './develop';
 
 let navs = [
@@ -13,6 +16,11 @@ let navs = [
         name: 'node weekly',
         path: 'https://nodeweekly.com/',
         desc: '',
+      },
+      {
+        name: 'syntax.fm',
+        desc: '前端播客',
+        link: 'https://syntax.fm/',
       },
     ],
   },
@@ -253,6 +261,96 @@ let navs = [
         name: 'nomadlist',
         desc: '远程办公社区',
         path: 'https://nomadlist.com/',
+      },
+      {
+        name: '前端乱炖',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'node.js学习社区',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'Div.IO',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '伯乐在线',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'CSDN前端',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'SegmentFault 思否',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'CNode',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'FED社区',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'w3ctech',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '掘金',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'Fly 社区',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '前端技术人',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '前端网',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'CH 前端社区',
+        desc: '',
+        path: '',
+      },
+      {
+        name: 'LearnKu 终身编程者的知识社区',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '小专栏',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '众成翻译',
+        desc: '',
+        path: '',
+      },
+      {
+        name: '慕课网猿问',
+        desc: '',
+        path: '',
       },
     ],
   },

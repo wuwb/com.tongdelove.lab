@@ -25,7 +25,7 @@ export const DangerButton = props => {
 };
 
 export const AppearanceButton = props => {
-  const { button, className, appearance, compact = false, handleClick, loading = false, type } = props;
+  const { button, className, appearance, compact = false, handleClick, loading = false, type, children } = props;
 
   return (
     <button onClick={handleClick} type={type}>
@@ -61,7 +61,7 @@ export const AppearanceButton = props => {
         )}
       >
         {loading && <Loader />}
-        {button.text}
+        {button.text || children}
       </div>
     </button>
   );

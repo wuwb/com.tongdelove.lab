@@ -5,8 +5,7 @@ import { subscribe, testSubscribe } from '@/services/freelancer';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Button, AppearanceButton } from '@/components/ui/Button';
 import { useMutation } from '@tanstack/react-query';
 import { InferGetServerSidePropsType } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -19,10 +18,13 @@ interface Props {
 };
 
 const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    console.log('props: ', props);
     const { t } = useTranslation();
     const user = useAppSelector((state) => state.auth.user);
+
+    console.log('user: ', user);
+
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
     const email = user?.email || '';
 
     const [data, setData] = useState("");
@@ -35,8 +37,8 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
     const { mutateAsync } = useMutation(subscribe);
 
     const onSubmit = async (data) => {
-        console.log(JSON.stringify(data, null, 4));
 
+        console.log(JSON.stringify(data, null, 4));
         if (!isLoggedIn) {
             /**
             // 弹出扫码登录，登录成功，
@@ -59,11 +61,12 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
             }
         );
 
-
-        return false
+        // return false
     }
 
     const handleTest = async (data) => {
+        console.log('result: ', data);
+
         let result = await testSubscribe(data);
         console.log('result: ', result);
     }
@@ -109,99 +112,116 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
 
     return (
         <Container className="text-gray-800">
-
             <div className="grid grid-cols-5 gap-3">
-                <div className="bg-blue-100 col-span-4 p-10">
-                    <form>
-                        <div className="mb-8 space-y-4">
-                            {
-                                sourceList.map(item => (
-                                    <div key={item.id} className="">
-                                        <label key={item.id} className="form-check-label">
-                                            <input
-                                                type="checkbox"
-                                                name="source"
-                                                {...register('source')}
-                                                id="source"
-                                                value={item.id}
-                                                className={`form-check-input`}
-                                            />
-                                            {item.name}
-                                        </label>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <div>
+                <div className="col-span-4 p-10">
+                    <h3>订阅通知</h3>
+                    <div className="bg-white p-5">
+                        <form>
+                            <div className="mb-8 space-y-4">
+                                {
+                                    sourceList.map(item => (
+                                        <div key={item.id} className="">
+                                            <label key={item.id} className="form-check-label">
+                                                <input
+                                                    type="checkbox"
+                                                    name="source"
+                                                    {...register('source')}
+                                                    id="source"
+                                                    value={item.id}
+                                                    className={`form-check-input`}
+                                                />
+                                                {item.name}
+                                            </label>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                             <div>
-                                <div className="space-x-4 mb-2">
+                                <div className="space-x-4 mb-2 flex">
                                     <span className="inline-block w-40">钉钉群机器人</span>
+                                    <div>
+                                        <label htmlFor="outlined-basic2">webhook</label>
+                                        <input
+                                            id="outlined-basic2"
+                                            type="text"
+                                            placeholder="群机器人的 webhook 地址"
+                                            className="w-72 p-2"
+                                            {...register("dingdingWebhook.webhook")}
 
-
-
-                                    <TextField id="outlined-basic" label="通知地址" variant="outlined"
-                                        placeholder="群机器人的webhook地址"
-                                        {...register("dingdingWebhook")} />
-                                    <TextField id="outlined-basic" label="签名密钥" variant="outlined"
-                                        placeholder="请填写签名校验的密钥串"
-                                        {...register("dingdingSecret")} />
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="outlined-basic2">key</label>
+                                        <input
+                                            id="outlined-basic2"
+                                            type="text"
+                                            className="w-40 p-2"
+                                            placeholder="请填写签名校验的密钥串"
+                                            {...register("dingdingWebhook.secret")}
+                                        />
+                                    </div>
                                     <Link href="https://open.dingtalk.com/document/group/custom-robot-access">
                                         <QuestionMarkIcon />
                                     </Link>
                                 </div>
-                                <div className="space-x-4 mb-2">
+                                <div className="space-x-4 mb-2 flex">
                                     <span className="inline-block w-40">飞书群机器人</span>
-
-                                    <TextField id="outlined-basic" label="通知地址" variant="outlined"
-                                        placeholder="群机器人的webhook地址"
-                                        {...register("feishuWebhook")} />
-                                    <TextField id="outlined-basic" label="签名密钥" variant="outlined"
-                                        placeholder="请填写签名校验的密钥串"
-                                        {...register("feishuSecret")} />
+                                    <div>
+                                        <label htmlFor="outlined-basic2">通知地址</label>
+                                        <input
+                                            id="outlined-basic2"
+                                            type="text"
+                                            placeholder="群机器人的 webhook 地址"
+                                            className="w-72 p-2"
+                                            {...register("feishuWebhook.webhook")}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="outlined-basic2">签名密钥</label>
+                                        <input
+                                            id="outlined-basic2"
+                                            type="text"
+                                            placeholder="请填写签名校验的密钥串"
+                                            className="w-72 p-2"
+                                            {...register("feishuWebhook.secret")}
+                                        />
+                                    </div>
                                     <Link href="https://www.feishu.cn/hc/zh-CN/articles/360024984973">
                                         <QuestionMarkIcon />
                                     </Link>
                                 </div>
-                                <div className="space-x-4 mb-2">
+                                <div className="space-x-4 mb-2 flex">
                                     <span className="inline-block w-40">企业微信群机器人</span>
-                                    <TextField id="outlined-basic"
-                                        label="通知地址" variant="outlined"
-                                        placeholder="群机器人的webhook地址"
-                                        {...register("wechatWebhook")} />
-                                </div>
-                                <div className="space-x-4 mb-2">
-                                    <span className="inline-block w-40">PushDeer</span>
-                                    <TextField id="outlined-basic" label="通知地址" variant="outlined"
-                                        {...register("pushdeerWebhook")} />
-                                </div>
-                                <div className="space-x-4 mb-2">
-                                    <span className="inline-block w-40">邮件</span>
-                                    <TextField id="outlined-basic" label="邮箱地址" variant="outlined"
-                                        {...register("email")} />
+                                    <div>
+                                        <label htmlFor="outlined-basic2">通知地址</label>
+                                        <input
+                                            id="outlined-basic2"
+                                            type="text"
+                                            placeholder="群机器人的 webhook 地址"
+                                            className="w-72 p-2"
+                                            {...register("wechatWebhook.webhook")}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <Button variant="contained" onClick={handleSubmit(onSubmit)}>
+                                <button className="cursor-pointer inline-block border" onClick={handleSubmit(onSubmit)}>
                                     订阅通知
-                                </Button>
-                                <Button className="ml-2" variant="outlined" onClick={handleSubmit(handleTest)}>
+                                </button>
+                                <button className="ml-2 cursor-pointer inline-block border" onClick={handleSubmit(handleTest)}>
                                     测试一下
-                                </Button>
+                                </button>
                             </div>
+                        </form>
+                        <div className="mt-10">
+                            如果嫌配置机器人麻烦，可以加我的微信 wuxx2024，我拉你们到订阅群里，加我的时候备注"订阅任务"。
                         </div>
-                    </form>
-
-                    <div>
-                        如果嫌配置机器人麻烦，可以加我的微信 wuxx2024，我拉你们到订阅群里，加我的时候备注"订阅任务"。
                     </div>
-
                 </div>
                 <div className="">
                     sidebar
                 </div>
             </div>
-
-
         </Container>
     );
 };

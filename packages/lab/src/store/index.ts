@@ -1,10 +1,10 @@
-import { persistReducer, persistStore } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from './rootReducer';
-import storage from './storage';
 import syncSaga from './sagas/sync';
+import storage from './storage';
 
 const sagaMiddleware = createSagaMiddleware();
 

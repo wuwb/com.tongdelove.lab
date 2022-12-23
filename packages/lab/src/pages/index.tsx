@@ -15,14 +15,18 @@ type IndexProps = {
 
 const TaskBlock = (props) => {
   return (
-    <div>
+    <div className="">
       <h3 className="">最近任务</h3>
-      <div className="text-gray-700 ">
+      <div className="text-gray-700 bg-white p-5">
         {
           props.tasks.map(item => (
             <div key={item.id} className="leading-6 no-underline">
               <Link href={`/freelancer/task/${item.id}`}>
-                [{format(new Date(item.time), 'MM-dd HH:mm')}] {item.title}
+                {/* {new Date(item.time)} {item.title} */}
+                {
+                  // format(new Date(item.time), 'MM-dd HH:mm')
+                }
+                {item.title}
               </Link>
             </div>
           ))
@@ -47,11 +51,22 @@ const HomePage: NextPageWithLayout<IndexProps> = props => {
 
   return (
     <Container>
+      <div className='banner-wrapper flex'>
+        <div className="banner bg-white mr-5 w-40 h-10">
+          banner 图片
+        </div>
+        <div className="w-20">公告</div>
+      </div>
       {/* 显示最近 10 个任务 */}
       {
         tasks ? <TaskBlock tasks={tasks} /> : null
       }
 
+      最新产品
+
+      精选文章 - 最新文章
+
+      合作伙伴
 
       <div className="">
         {/* <div>

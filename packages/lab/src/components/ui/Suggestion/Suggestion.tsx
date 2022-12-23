@@ -1,14 +1,13 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from 'react';
-import { TextInput, OptionalInputProps } from '../Input/Input';
-import { InputContainer } from '../InputContainer/InputContainer';
+import { fetchFundData, Resource } from '@/services/resource';
 import { FundDataItem } from '@/services/service';
 import { styled } from '@mui/system';
-import { fetchFundData, Resource } from '@/services/resource';
+import {
+  useCallback, useEffect,
+  useRef,
+  useState
+} from 'react';
+import { OptionalInputProps, TextInput } from '../Input/Input';
+import { InputContainer } from '../InputContainer/InputContainer';
 
 const SuggestionContainer = styled(InputContainer)`
   input {
@@ -104,7 +103,7 @@ export function Suggestion({
 
     // click outside container
     setVisible(false);
-  }, []);
+  }, [containerNode]);
 
   useEffect(() => {
     document.addEventListener('click', onDocumentClick, false);

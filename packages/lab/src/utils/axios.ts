@@ -1,12 +1,11 @@
+import { logout } from '@/store/authSlice';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { UserService } from "@/services";
 import Router from 'next/router';
 import { store } from '../store';
-import { logout } from '@/store/authSlice';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const serverUrl = isDev ? 'http://localhost:7001/api/' : 'https://api.tongdelove.com/api';
+const serverUrl = isDev ? 'http://localhost:3001/api/' : 'https://api.tongdelove.com/api';
 
 const instance = axios.create({
     baseURL: serverUrl,
@@ -71,7 +70,7 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 
     if (response) {
         const errorObject: ServerError = response.data;
-        const code = errorObject.statusCode;
+        const code = errorObject.status;
 
         if (code === 401 || code === 404) {
             store.dispatch(logout());

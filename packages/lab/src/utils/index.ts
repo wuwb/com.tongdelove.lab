@@ -1,5 +1,7 @@
 export * from './env';
 
+export const noop = () => { };
+
 export const getDNSPrefetchValue = (domain: string): string | null => {
     if (!domain) return null;
     if (domain.startsWith('http')) return domain.replace(/https?:/, '');
@@ -76,4 +78,4 @@ export const chunkArr = <T>(arr: Array<T>, chunkSize: number) => {
         chunked.push(arr.slice(i, i + chunkSize));
     }
     return chunked;
-  };
+};

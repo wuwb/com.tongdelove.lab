@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import cx from 'clsx';
 
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
   const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
@@ -70,9 +71,11 @@ const Links = React.forwardRef(function Link(props: any, ref) {
 });
 
 function Link({ href, children, ...props }: any) {
+  const { className, ...rest } = props;
+
   return (
     <NextLink href={href}>
-      <a className="no-underline" {...props}>
+      <a className={cx('no-underline', className)} {...rest}>
         {children}
       </a>
     </NextLink>

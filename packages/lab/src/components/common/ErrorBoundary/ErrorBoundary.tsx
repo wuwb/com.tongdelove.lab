@@ -4,17 +4,23 @@ export const ErrorBoundary = (props: any) => {
     const { children } = props;
     const [hasError, setError] = React.useState(false);
 
-    const handleError = (error: any) => {
-        setError(true);
-    };
-
-    if (hasError) {
-        return <h1>Something went wrong.</h1>;
+    const handleTryAgain = (error: any) => {
+        setError(false);
     }
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    if (hasError) {
+        return (
+            <div>
+                <h2>Oops, there is an error!</h2>
+                <button
+                    type="button"
+                    onClick={handleTryAgain}
+                >
+                    Try again?
+                </button>
+            </div>
+        );
+    }
+
+    return props.children;
 }

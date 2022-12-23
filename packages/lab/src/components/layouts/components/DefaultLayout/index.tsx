@@ -12,7 +12,7 @@ export const DefaultLayout: FC<DefaultProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      {children}
     </>
   );
 };

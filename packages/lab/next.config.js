@@ -89,6 +89,8 @@ const nextConfig = async (phase, { defaultConfig }) => {
         'iph.href.lu',
         // 加入 wordpress 相关域名
         'blog.tongdelove.com',
+        '127.0.0.1',
+        'localhost'
       ],
     },
     async redirects() {
@@ -106,7 +108,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
         return [
           {
             source: '/api/:path*',
-            destination: 'http://localhost:3100/:path*',
+            destination: 'http://localhost:701/api/:path*',
           },
         ];
       }

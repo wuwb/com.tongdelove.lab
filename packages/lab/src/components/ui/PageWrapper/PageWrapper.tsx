@@ -11,9 +11,7 @@ export const PageWrapper: React.FC<IProps> = (props) => {
     return (
         <div
             className={cx(
-                styles['comp-wrapper'],
-                { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode },
-                `g-comp--${PageWrapper.displayName}`,
+                styles['page-wrapper'],
                 props.className,
             )}
             style={props.style}

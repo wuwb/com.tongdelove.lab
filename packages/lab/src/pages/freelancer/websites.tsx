@@ -23,10 +23,15 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
             </div>
             <div>
                 <h3>国内</h3>
+                <div>开放接单平台</div>
                 <ul>
                     <li></li>
                 </ul>
-
+                <div>项目分配接单平台</div>
+                <ul>
+                    <li>飞猿 www.freetalen.com</li>
+                    <li>程序员客栈</li>
+                </ul>
             </div>
         </Container>
     );

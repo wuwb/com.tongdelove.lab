@@ -1,0 +1,14 @@
+.highlight {
+  position: relative;
+}
+.highlight::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  background-color: rgba(183, 28, 28, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.25;
+  height: 0.5rem;
+  width: 100%;
+}
