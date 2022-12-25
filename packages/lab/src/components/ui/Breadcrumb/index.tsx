@@ -7,12 +7,10 @@ const HomeCrumb = () => {
   const { t } = useTranslation()
 
   return (
-    <Link href="/">
-      <a className="flex items-center">
-        <HomeIcon className="h-3 w-3" />
-        <span className="ml-2 font-medium">{t('Home')}</span>
-      </a>
-    </Link>
+    <Link href="/" className="flex items-center">
+      <HomeIcon className="h-3 w-3" />
+      <span className="ml-2 font-medium">{t('Home')}</span>
+    </Link >
   )
 }
 
@@ -36,13 +34,9 @@ export const Breadcrumb: React.FC<{ query?: any }> = ({ query }) => {
                     .map(p => encodeURIComponent(p))
                     .join('/')}`}
                   passHref
+                  className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${i == 0 && 'pointer-events-none opacity-80'}`}
                 >
-                  <a
-                    className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${i == 0 && 'pointer-events-none opacity-80'
-                      }`}
-                  >
-                    {p}
-                  </a>
+                  {p}
                 </Link>
               </li>
             ))}

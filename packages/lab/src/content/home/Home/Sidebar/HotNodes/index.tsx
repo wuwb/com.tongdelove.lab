@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import cx from 'clsx';
 import SidebarBlock from '@/components/common/SidebarBlock';
 
@@ -24,15 +24,13 @@ function HotNodes() {
                     return (
                         <div key={index} className="divide-y divide-slate-800">
                             <Link href={item.link}>
-                                <a>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        width={24}
-                                        height={24}
-                                    />
-                                    <div>{item.title}</div>
-                                </a>
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    width={24}
+                                    height={24}
+                                />
+                                <div>{item.title}</div>
                             </Link>
                         </div>
                     )

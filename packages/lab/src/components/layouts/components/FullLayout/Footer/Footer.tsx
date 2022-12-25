@@ -16,7 +16,7 @@ const Footer = (props: Props = { siteTitle: '海维包装' }) => {
         </div>
         <cite>
           <Link href="https://www.tongdelove.com">
-            <a>tongdelove.com</a>
+            tongdelove.com
           </Link>{" "}
         </cite>
       </Typography>

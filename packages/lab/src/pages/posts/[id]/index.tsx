@@ -11,12 +11,12 @@ const Post = () => {
             <ul>
                 <li>
                     <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
-                        <a>First comment</a>
+                        First comment
                     </Link>
                 </li>
                 <li>
                     <Link href="/post/[id]/[comment]" as={`/post/${id}/second-comment`}>
-                        <a>Second comment</a>
+                        Second comment
                     </Link>
                 </li>
             </ul>

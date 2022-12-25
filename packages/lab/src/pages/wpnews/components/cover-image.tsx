@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 
 interface Props {
@@ -27,8 +27,8 @@ export default function CoverImage({ title, coverImage, slug }: Props) {
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/posts/${slug}`}>
-          <a aria-label={title}>{image}</a>
+        <Link href={`/posts/${slug}`} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { Container, Footer } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
 import { NextPageWithLayout } from '@/types/app';

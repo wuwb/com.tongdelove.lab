@@ -7,7 +7,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { useMutation } from '@tanstack/react-query';
 import Joi from 'joi';
 import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

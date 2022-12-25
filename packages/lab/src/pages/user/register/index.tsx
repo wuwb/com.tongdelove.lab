@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import Joi from 'joi';
 import { Link } from '@/components/ui/Link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useMutation } from '@tanstack/react-query';
 import { ServerError } from '@/utils/axios';
 import { RegisterParams, register as registerUser } from '@/services/auth';

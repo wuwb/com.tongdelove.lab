@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'clsx';
 import SectionHeader from '../SectionHeader';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 const FeaturesSplit = ({
     className,

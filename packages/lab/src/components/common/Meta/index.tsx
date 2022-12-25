@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { SEO } from '../SEO';
 
 type IMetaProps = {
@@ -14,7 +13,6 @@ type IMetaProps = {
 };
 
 const Meta = (props: IMetaProps) => {
-    const router = useRouter();
 
     return (
         <>

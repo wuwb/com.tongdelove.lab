@@ -1,13 +1,14 @@
 const path = require('path');
-const withTM = require('next-transpile-modules')([
-  '../bar',
-  '../api'
-], {
-  resolveSymlinks: true,
-  debug: false,
-});
+// const withTM = require('next-transpile-modules')([
+//   '../bar',
+//   '../api'
+// ], {
+//   resolveSymlinks: true,
+//   debug: false,
+// });
 const { i18n } = require('./next-i18next.config');
 const { version } = require('./package.json');
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -47,12 +48,15 @@ const isDev = process.env.NODE_ENV === 'development';
 // }],
 
 const nextConfig = async (phase, { defaultConfig }) => {
-  const plugins = [withTM];
+  const plugins = [
+    // withTM
+  ];
 
   /**
    * @type {import('next').NextConfig}
    */
   const config = {
+    // appDir: true,
     output: 'standalone',
     compiler: {
       // Remove console aside from 'error' in production
@@ -61,9 +65,13 @@ const nextConfig = async (phase, { defaultConfig }) => {
       // },
       // Remove data-testid used for React Testing Library in production
       reactRemoveProperties: {
-        properties: ['^data-testid$'],
+        properties: [
+          '^data-custom$',
+          '^data-testid$'
+        ],
       },
     },
+    swcMinify: true,
     experimental: {
       // Google fonts
       // optimizeFonts: true,
@@ -164,18 +172,23 @@ const nextConfig = async (phase, { defaultConfig }) => {
         },
       ];
     },
+    webpack: (
+      config,
+      { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+    ) => {
+      // Important: return the modified config
+      return config
+    },
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
-    webpack: config => {
+    // webpack: config => {
     //   const rules = config.module.rules.find(r => !!r.oneOf);
-
     //   rules.oneOf.forEach(loaders => {
     //     if (Array.isArray(loaders.use)) {
     //       loaders.use.forEach(l => {
     //         if (typeof l !== 'string' && typeof l.loader === 'string' && /(?<!post)css-loader/.test(l.loader)) {
     //           if (!l.options.modules) return;
     //           const { getLocalIdent, ...others } = l.options.modules;
-
     //           l.options = {
     //             ...l.options,
     //             modules: {
@@ -190,8 +203,8 @@ const nextConfig = async (phase, { defaultConfig }) => {
     //       });
     //     }
     //   });
-      return config;
-    },
+      // return config;
+    // },
     typescript: {
       ignoreBuildErrors: true
     }

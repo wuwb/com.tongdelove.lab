@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from '@/components/ui/Link';
 import { Button } from '@/components/ui/Button';
 import { joiResolver } from '@hookform/resolvers/joi';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import { UserService } from '@/services';
 import { useAuth } from '@/contexts/auth';

@@ -5,7 +5,7 @@ import {
   InputAdornment,
   styled
 } from '@mui/material';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import React from 'react';
 import Head from 'next/head';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';

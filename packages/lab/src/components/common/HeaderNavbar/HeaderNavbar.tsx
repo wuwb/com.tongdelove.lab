@@ -36,17 +36,15 @@ export const HeaderNavbar: React.FC<IProps> = (props) => {
       style={props.style}
     >
       {navs.map((nav) => (
-        <Link href={nav.to} key={nav.to}>
-          <a
-            className={cx(styles['nav-link'], {
-              [styles['nav-link--active']]:
-                pathname === nav.active || pathname === nav.to,
-            })}
-          >
-            <Button className={styles['nav-button']}>
-              {nav.icon}
-            </Button>
-          </a>
+        <Link href={nav.to} key={nav.to}
+          className={cx(styles['nav-link'], {
+            [styles['nav-link--active']]:
+              pathname === nav.active || pathname === nav.to,
+          })}
+        >
+          <Button className={styles['nav-button']}>
+            {nav.icon}
+          </Button>
         </Link>
       ))}
     </div>

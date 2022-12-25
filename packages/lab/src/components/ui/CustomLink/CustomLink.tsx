@@ -7,7 +7,7 @@ export const CustomLink = ({ link, children }) => {
     if (isInternalLink) {
         return (
             <Link href="/[[...slug]]" as={link.url}>
-                <a>{children}</a>
+                {children}
             </Link>
         )
     }

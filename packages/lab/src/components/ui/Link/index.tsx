@@ -18,8 +18,9 @@ const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, 
       shallow={shallow}
       passHref
       locale={locale}
+      ref={ref}
+      {...other}
     >
-      <a ref={ref} {...other} />
     </NextLink>
   );
 });
@@ -74,10 +75,8 @@ function Link({ href, children, ...props }: any) {
   const { className, ...rest } = props;
 
   return (
-    <NextLink href={href}>
-      <a className={cx('no-underline', className)} {...rest}>
-        {children}
-      </a>
+    <NextLink href={href} className={cx('no-underline', className)} {...rest}>
+      {children}
     </NextLink>
   );
 }

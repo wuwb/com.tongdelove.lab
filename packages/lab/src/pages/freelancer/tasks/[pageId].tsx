@@ -6,7 +6,6 @@ import { Pagination } from '@/components/ui/Pagination';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import axios from '@/utils/axios';
-import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { parseSourceType } from '@/content/freelancer/interface';
 import { useEffect, useState } from 'react';
@@ -23,22 +22,12 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
     const { t } = useTranslation();
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
+
     const user = useAppSelector((state) => state.auth.user);
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-    console.log('router: ', router);
+
     let pageId = parseInt(router.query?.pageId as string || '1', 10);
     let pageSize = parseInt(router.query?.pageSize as string || '10', 10);
-
-    async function fetchData(pageSize, pageId) {
-        const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${pageId}`)
-        console.log('data.data: ', data.data);
-        setData(data.data.data);
-        setCount(data.data.count);
-    }
-    useEffect(() => {
-
-        fetchData(pageSize, pageId);
-    }, []);
 
     // 页码错误返回第一页
     if (pageId < props.count) {
@@ -70,6 +59,19 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
         fetchData(pageSize, num);
         router.push(`/freelancer/tasks/${num}`)
     }
+    const fetchData = async (pageSize, pageId) => {
+        try {
+            const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${pageId}`)
+            setData(data.data.data);
+            setCount(data.data.count);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchData(pageSize, pageId);
+    }, []);
 
     return (
         <div className="bg-gray-100 pt-10 pb-20">

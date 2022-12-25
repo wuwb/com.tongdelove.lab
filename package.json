@@ -19,7 +19,7 @@
     "@commitlint/config-conventional": "^17.0.3",
     "husky": "^8.0.1"
   },
-  "packageManager": "pnpm@7.11.0",
+  "packageManager": "pnpm@7.19.0",
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"
