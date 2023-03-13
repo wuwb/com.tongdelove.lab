@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import clsx from 'clsx';
 
 type FormData = {
   identifier: string;
@@ -27,12 +28,13 @@ const defaultState: FormData = {
 
 const schema = Joi.object({
   identifier: Joi.string().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(6).max(30).required(),
   persist: Joi.boolean().required(),
 });
 
 const UserLoginPage = (props) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false)
 
   const [persist, setPersist] = useState(false);
 
@@ -44,7 +46,6 @@ const UserLoginPage = (props) => {
       router.push('/');
     }
   }, [router]);
-
 
   useEffect(() => {
     localStorage.setItem('persist', `${persist}`);
@@ -104,7 +105,10 @@ const UserLoginPage = (props) => {
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">账号登录</h2>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form
+              id="td_login_signin_form"
+              onSubmit={handleSubmit(onSubmit)}>
+
               <div className="mb-6">
                 <label htmlFor="identifier">
                   用户名
@@ -114,8 +118,24 @@ const UserLoginPage = (props) => {
                   {...register('identifier')}
                   aria-invalid={errors.identifier ? "true" : "false"}
                   placeholder="请输入用户名"
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  autoComplete='off'
+                  className={clsx(
+                    "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
+                    {
+                      'is-invalid': errors.identifier
+                    },
+                    {
+                      'is-invalid': !errors.identifier
+                    }
+                  )}
                 />
+                {
+                  errors.identifier && (
+                    <div className='fv-plugins-message-container'>
+                      <span role='alert'>{errors.identifier.message}</span>
+                    </div>
+                  )
+                }
               </div>
               <div className="mb-6">
                 <label>
@@ -123,8 +143,16 @@ const UserLoginPage = (props) => {
                 </label>
                 <input {...register('password')}
                   type="password"
+                  autoComplete='off'
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="请输密码" />
+                {
+                  errors.password && (
+                    <div className='fv-plugins-message-container'>
+                      <span role='alert'>{errors.password.message}</span>
+                    </div>
+                  )
+                }
               </div>
 
               <div className="flex items-center justify-between mb-6">
@@ -135,7 +163,7 @@ const UserLoginPage = (props) => {
                   </label>
                 </div>
                 <Link href="/user/forget">
-                  <a>忘记密码了</a>
+                  忘记密码了
                 </Link>
               </div>
 

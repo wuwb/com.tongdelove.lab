@@ -9,7 +9,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ['plugin:@next/next/recommended', 'prettier'],
+  extends: ['next', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
@@ -18,8 +18,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    'prettier/prettier': 0,
     'react/no-unescaped-entities': 'off',
+    'unused-imports/no-unused-imports': 'off',
     '@next/next/no-page-custom-font': 'off',
-    'unused-imports/no-unused-imports': 'off'
-  }
+  },
+  overrides: [],
+  ignorePatterns: ['.next'],
 }

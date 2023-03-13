@@ -1,0 +1,45 @@
+{% extends "../layout.html" %}
+
+{% block title %}wwb{% endblock %}
+
+{% block header %}
+  <link rel="stylesheet" href="/base/less/pace.css">
+  <script src="/base/js/pace.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container" class="wrapper">
+  <h1>中国汽车标牌网</h1>
+  <ul>
+    <li>
+      <div>
+        <img src="http://placehold.it/200x200" alt="">
+        <h3>宝马</h3>
+      </div>
+    </li>
+    <li>
+      <div>
+        <img src="http://placehold.it/200x200" alt="">
+        <h3>宝马</h3>
+      </div>
+    </li>
+    <li>
+      <div>
+        <img src="http://placehold.it/200x200" alt="">
+        <h3>宝马</h3>
+      </div>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block footer %}
+  <script>
+    window.__INITIAL_STATE__ = {{ initialState | json }};
+  </script>
+  {% if assets %}
+    {% for key, value in assets %}
+      <script src="{{ assets[key].js }}"></script>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

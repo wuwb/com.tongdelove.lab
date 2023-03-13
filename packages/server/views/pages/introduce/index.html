@@ -1,0 +1,1192 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .row-banner {
+        padding-top: 16px;
+    }
+    .top-news {
+        float: left;
+        height: 390px;
+        width: 552px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .row-main {
+        padding-top: 16px;
+    }
+    /* sub-nav */
+    .sub-nav {
+    }
+    .sub-nav ul {
+        float: left;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .sub-nav ul li {
+        float: left;
+        font-size: 16px;
+        margin-right: 24px;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+        padding-top: 3px;
+        position: relative;
+    }
+
+    .article-list {
+
+    }
+    .article-item--list {
+        padding: 15px;
+        margin-bottom: 8px;
+        background-color: #fff;
+        position: relative;
+        border: 1px solid rgba(0,0,0,.05);
+        height: 164px;
+        overflow: hidden;
+    }
+    .article-item--list .article-image {
+        float: left;
+        width: 175px;
+        height: 124px;
+        position: relative;
+    }
+    .article-item--list .article-info {
+        margin-left: 195px;
+    }
+    .article-item--list h3 {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 18px;
+        min-height: 25px
+    }
+
+    .article-item--list h3 a {
+        color: #333
+    }
+
+    .article-item--list h3 a:hover {
+        color: #ef2f11
+    }
+
+    .article-item--list .article-summary {
+        font-size: 16px;
+        color: #666;
+        margin-top: 8px;
+        line-height: 18px;
+        height: 37px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical
+    }
+
+    .article-item--list .article-meta {
+        height: 26px;
+        line-height: 26px;
+        margin-top: 28px
+    }
+
+    .article-item--list .article-meta time {
+        font-size: 1.2rem
+    }
+
+    .article-item--list .article-meta .author-info {
+        float: left;
+        position: relative;
+        padding-left: 36px;
+        margin-right: 30px
+    }
+
+    .article-item--list .article-meta .author-info span {
+        font-size: 1.4rem;
+        margin-left: 0
+    }
+
+    .article-item--list .article-meta .author-info img {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0
+    }
+    .collection-sidebar {}
+    .main-banner {
+        padding: 120px 0;
+        text-align: center;
+    }
+
+    .conveyor-belt-container {
+        height: 600px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+    .belt-section .belt-img {
+        width: 400px;
+        height: 600px;
+        float: left;
+    }
+    .belt-section .belt-img img {
+        width: 100%;
+    }
+    .belt-section .belt-img .caption {
+
+    }
+    .belt-section .belt-img .caption h3 {
+        font-size: 16px;
+        color: #333;
+    }
+    .belt-section .belt-img .caption .industry {
+        font-size: 14px;
+    }
+    .belt-section .belt-img .caption .description {
+        font-size: 14px;
+        color: #999;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="main-banner">
+                <h1 class="main-banner__title">包装简化</h1>
+                <h3 class="main-banner__desc">成千上万的电子商务公在尖端放电实验室网以无与伦比的价格获得世界级的包装。</h3>
+                <div class="main-banner__actions">
+                    <a class="btn btn-primary" href="/get-started">开始</a>
+                </div>
+            </div>
+            <div class="main-wrap ps4">
+                <div class="pt1 customers commodity">
+                    {# <div data-op="-" class="mh conveyor-button left noselect">←</div> #}
+                    {# <div data-op="+" class="mh conveyor-button right noselect">→</div> #}
+                    <div class="conveyor-belt-container" data-speed="0">
+                    <div class="conveyor-belt-wrapper" style="visibility: visible; width: 14685px;">
+                        <conveyorbelt class="conveyor-belt belt-section" style="width: 2937px;">
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-18-fieldco.jpg">
+                            <div class="caption">
+                                <h3>Field Co.</h3>
+                                <div class="industry">炊具</div>
+                                <div class="description">Specialized box for this Kickstarter-funded skillet</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-19-wsj.jpg">
+                            <div class="caption">
+                                <h3>Wall Street Journal</h3>
+                                <div class="industry">生活方式</div>
+                                <div class="description">Defining WSJ's new e‑commerce brand</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-01-blackbox.jpg">
+                            <div class="caption">
+                                <h3>Blackbox</h3>
+                                <div class="industry">Fulfillment</div>
+                                <div class="description">High‑volume boxes delivered to warehouses across the&nbsp;country</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-02-shaveface.jpg">
+                            <div class="caption">
+                                <h3>ShaveFace</h3>
+                                <div class="industry">美容</div>
+                                <div class="description">Sharply printed on a flexographic&nbsp;press</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-03-unif.jpg">
+                            <div class="caption">
+                                <h3>UNIF</h3>
+                                <div class="industry">时尚</div>
+                                <div class="description">Poly mailers in a wide variety of&nbsp;sizes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-04-cratejoy.jpg">
+                            <div class="caption">
+                                <h3>Cratejoy</h3>
+                                <div class="industry">Subscription platform</div>
+                                <div class="description">The standard-issue box for Cratejoy&nbsp;merchants</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-05-primary.jpg">
+                            <div class="caption">
+                                <h3>Primary</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Rotogravure print with seven spot&nbsp;colors</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-06-howtoons.jpg">
+                            <div class="caption">
+                                <h3>Howtoons</h3>
+                                <div class="industry">Kid's subscription</div>
+                                <div class="description">Bold graphics directly on&nbsp;corrugate</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-07-intercom.jpg">
+                            <div class="caption">
+                                <h3>Intercom</h3>
+                                <div class="industry">Messaging platform</div>
+                                <div class="description">Promotional boxes made&nbsp;affordable</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-08-unbound.jpg">
+                            <div class="caption">
+                                <h3>Unbound</h3>
+                                <div class="industry">Erotic subscription</div>
+                                <div class="description">New drawstring bag designs every&nbsp;month</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-09-mailchimp.jpg">
+                            <div class="caption">
+                                <h3>MailChimp</h3>
+                                <div class="industry">Merchandise</div>
+                                <div class="description">Powering packaging for an experimental&nbsp;store</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-10-rockets.jpg">
+                            <div class="caption">
+                                <h3>Rockets of&nbsp;Awesome</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Custom mylar bags with a Space Age&nbsp;look</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-11-threadless.jpg">
+                            <div class="caption">
+                                <h3>Threadless</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Eco-friendly bag at lower&nbsp;costs</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-12-parachute.jpg">
+                            <div class="caption">
+                                <h3>Parachute Home</h3>
+                                <div class="industry">Bedding</div>
+                                <div class="description">A full packaging suite, from boxes to&nbsp;stickers</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-20-supergoop.jpg">
+                            <div class="caption">
+                                <h3>Supergoop!</h3>
+                                <div class="industry">Skincare</div>
+                                <div class="description">Making cardboard feel as bright as&nbsp;sunlight</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-21-loveyourz.jpg">
+                            <div class="caption">
+                                <h3>Love Yourz</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Simple pink boxes bring delight to every&nbsp;order</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-13-ritual.jpg">
+                            <div class="caption">
+                                <h3>Ritual Roasters</h3>
+                                <div class="industry">Coffee subscription</div>
+                                <div class="description">A reliable combination of blank and custom&nbsp;items</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-14-cottonbureau.jpg">
+                            <div class="caption">
+                                <h3>Cotton Bureau</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Colorful mailers that brighten&nbsp;mailboxes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-15-sockfancy.jpg">
+                            <div class="caption">
+                                <h3>Sock Fancy</h3>
+                                <div class="industry">Sock subscription</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-16-bennygold.jpg">
+                            <div class="caption">
+                                <h3>Benny Gold</h3>
+                                <div class="industry">Streetwear</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-17-meundies.jpg">
+                            <div class="caption">
+                                <h3>MeUndies</h3>
+                                <div class="industry">Underwear</div>
+                                <div class="description">Big savings on high-volume mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                        </conveyorbelt>
+                    <conveyorbelt class="conveyor-belt belt-section" style="width: 2937px;">
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-18-fieldco.jpg">
+                            <div class="caption">
+                                <h3>Field Co.</h3>
+                                <div class="industry">Cookware</div>
+                                <div class="description">Specialized box for this Kickstarter-funded skillet</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-19-wsj.jpg">
+                            <div class="caption">
+                                <h3>Wall Street Journal</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Defining WSJ's new e‑commerce brand</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-01-blackbox.jpg">
+                            <div class="caption">
+                                <h3>Blackbox</h3>
+                                <div class="industry">Fulfillment</div>
+                                <div class="description">High‑volume boxes delivered to warehouses across the&nbsp;country</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-02-shaveface.jpg">
+                            <div class="caption">
+                                <h3>ShaveFace</h3>
+                                <div class="industry">Grooming</div>
+                                <div class="description">Sharply printed on a flexographic&nbsp;press</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-03-unif.jpg">
+                            <div class="caption">
+                                <h3>UNIF</h3>
+                                <div class="industry">Fashion</div>
+                                <div class="description">Poly mailers in a wide variety of&nbsp;sizes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-04-cratejoy.jpg">
+                            <div class="caption">
+                                <h3>Cratejoy</h3>
+                                <div class="industry">Subscription platform</div>
+                                <div class="description">The standard-issue box for Cratejoy&nbsp;merchants</div>
+                            </div>
+                        </div>
+
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-06-howtoons.jpg">
+                            <div class="caption">
+                                <h3>Howtoons</h3>
+                                <div class="industry">Kid's subscription</div>
+                                <div class="description">Bold graphics directly on&nbsp;corrugate</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-07-intercom.jpg">
+                            <div class="caption">
+                                <h3>Intercom</h3>
+                                <div class="industry">Messaging platform</div>
+                                <div class="description">Promotional boxes made&nbsp;affordable</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-08-unbound.jpg">
+                            <div class="caption">
+                                <h3>Unbound</h3>
+                                <div class="industry">Erotic subscription</div>
+                                <div class="description">New drawstring bag designs every&nbsp;month</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-09-mailchimp.jpg">
+                            <div class="caption">
+                                <h3>MailChimp</h3>
+                                <div class="industry">Merchandise</div>
+                                <div class="description">Powering packaging for an experimental&nbsp;store</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-10-rockets.jpg">
+                            <div class="caption">
+                                <h3>Rockets of&nbsp;Awesome</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Custom mylar bags with a Space Age&nbsp;look</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-11-threadless.jpg">
+                            <div class="caption">
+                                <h3>Threadless</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Eco-friendly bag at lower&nbsp;costs</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-12-parachute.jpg">
+                            <div class="caption">
+                                <h3>Parachute Home</h3>
+                                <div class="industry">Bedding</div>
+                                <div class="description">A full packaging suite, from boxes to&nbsp;stickers</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-20-supergoop.jpg">
+                            <div class="caption">
+                                <h3>Supergoop!</h3>
+                                <div class="industry">Skincare</div>
+                                <div class="description">Making cardboard feel as bright as&nbsp;sunlight</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-21-loveyourz.jpg">
+                            <div class="caption">
+                                <h3>Love Yourz</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Simple pink boxes bring delight to every&nbsp;order</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-13-ritual.jpg">
+                            <div class="caption">
+                                <h3>Ritual Roasters</h3>
+                                <div class="industry">Coffee subscription</div>
+                                <div class="description">A reliable combination of blank and custom&nbsp;items</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-14-cottonbureau.jpg">
+                            <div class="caption">
+                                <h3>Cotton Bureau</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Colorful mailers that brighten&nbsp;mailboxes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-15-sockfancy.jpg">
+                            <div class="caption">
+                                <h3>Sock Fancy</h3>
+                                <div class="industry">Sock subscription</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-16-bennygold.jpg">
+                            <div class="caption">
+                                <h3>Benny Gold</h3>
+                                <div class="industry">Streetwear</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-17-meundies.jpg">
+                            <div class="caption">
+                                <h3>MeUndies</h3>
+                                <div class="industry">Underwear</div>
+                                <div class="description">Big savings on high-volume mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                    </conveyorbelt>
+                    <conveyorbelt class="conveyor-belt belt-section" style="width: 2937px;">
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-18-fieldco.jpg">
+                            <div class="caption">
+                                <h3>Field Co.</h3>
+                                <div class="industry">Cookware</div>
+                                <div class="description">Specialized box for this Kickstarter-funded skillet</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-19-wsj.jpg">
+                            <div class="caption">
+                                <h3>Wall Street Journal</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Defining WSJ's new e‑commerce brand</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-01-blackbox.jpg">
+                            <div class="caption">
+                                <h3>Blackbox</h3>
+                                <div class="industry">Fulfillment</div>
+                                <div class="description">High‑volume boxes delivered to warehouses across the&nbsp;country</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-02-shaveface.jpg">
+                            <div class="caption">
+                                <h3>ShaveFace</h3>
+                                <div class="industry">Grooming</div>
+                                <div class="description">Sharply printed on a flexographic&nbsp;press</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-03-unif.jpg">
+                            <div class="caption">
+                                <h3>UNIF</h3>
+                                <div class="industry">Fashion</div>
+                                <div class="description">Poly mailers in a wide variety of&nbsp;sizes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-04-cratejoy.jpg">
+                            <div class="caption">
+                                <h3>Cratejoy</h3>
+                                <div class="industry">Subscription platform</div>
+                                <div class="description">The standard-issue box for Cratejoy&nbsp;merchants</div>
+                            </div>
+                        </div>
+
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-06-howtoons.jpg">
+                            <div class="caption">
+                                <h3>Howtoons</h3>
+                                <div class="industry">Kid's subscription</div>
+                                <div class="description">Bold graphics directly on&nbsp;corrugate</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-07-intercom.jpg">
+                            <div class="caption">
+                                <h3>Intercom</h3>
+                                <div class="industry">Messaging platform</div>
+                                <div class="description">Promotional boxes made&nbsp;affordable</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-08-unbound.jpg">
+                            <div class="caption">
+                                <h3>Unbound</h3>
+                                <div class="industry">Erotic subscription</div>
+                                <div class="description">New drawstring bag designs every&nbsp;month</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-09-mailchimp.jpg">
+                            <div class="caption">
+                                <h3>MailChimp</h3>
+                                <div class="industry">Merchandise</div>
+                                <div class="description">Powering packaging for an experimental&nbsp;store</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-10-rockets.jpg">
+                            <div class="caption">
+                                <h3>Rockets of&nbsp;Awesome</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Custom mylar bags with a Space Age&nbsp;look</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-11-threadless.jpg">
+                            <div class="caption">
+                                <h3>Threadless</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Eco-friendly bag at lower&nbsp;costs</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-12-parachute.jpg">
+                            <div class="caption">
+                                <h3>Parachute Home</h3>
+                                <div class="industry">Bedding</div>
+                                <div class="description">A full packaging suite, from boxes to&nbsp;stickers</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-20-supergoop.jpg">
+                            <div class="caption">
+                                <h3>Supergoop!</h3>
+                                <div class="industry">Skincare</div>
+                                <div class="description">Making cardboard feel as bright as&nbsp;sunlight</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-21-loveyourz.jpg">
+                            <div class="caption">
+                                <h3>Love Yourz</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Simple pink boxes bring delight to every&nbsp;order</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-13-ritual.jpg">
+                            <div class="caption">
+                                <h3>Ritual Roasters</h3>
+                                <div class="industry">Coffee subscription</div>
+                                <div class="description">A reliable combination of blank and custom&nbsp;items</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-14-cottonbureau.jpg">
+                            <div class="caption">
+                                <h3>Cotton Bureau</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Colorful mailers that brighten&nbsp;mailboxes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-15-sockfancy.jpg">
+                            <div class="caption">
+                                <h3>Sock Fancy</h3>
+                                <div class="industry">Sock subscription</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-16-bennygold.jpg">
+                            <div class="caption">
+                                <h3>Benny Gold</h3>
+                                <div class="industry">Streetwear</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-17-meundies.jpg">
+                            <div class="caption">
+                                <h3>MeUndies</h3>
+                                <div class="industry">Underwear</div>
+                                <div class="description">Big savings on high-volume mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                    </conveyorbelt>
+                    <conveyorbelt class="conveyor-belt belt-section" style="width: 2937px;">
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-18-fieldco.jpg">
+                            <div class="caption">
+                                <h3>Field Co.</h3>
+                                <div class="industry">Cookware</div>
+                                <div class="description">Specialized box for this Kickstarter-funded skillet</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-19-wsj.jpg">
+                            <div class="caption">
+                                <h3>Wall Street Journal</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Defining WSJ's new e‑commerce brand</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-01-blackbox.jpg">
+                            <div class="caption">
+                                <h3>Blackbox</h3>
+                                <div class="industry">Fulfillment</div>
+                                <div class="description">High‑volume boxes delivered to warehouses across the&nbsp;country</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-02-shaveface.jpg">
+                            <div class="caption">
+                                <h3>ShaveFace</h3>
+                                <div class="industry">Grooming</div>
+                                <div class="description">Sharply printed on a flexographic&nbsp;press</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-03-unif.jpg">
+                            <div class="caption">
+                                <h3>UNIF</h3>
+                                <div class="industry">Fashion</div>
+                                <div class="description">Poly mailers in a wide variety of&nbsp;sizes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-04-cratejoy.jpg">
+                            <div class="caption">
+                                <h3>Cratejoy</h3>
+                                <div class="industry">Subscription platform</div>
+                                <div class="description">The standard-issue box for Cratejoy&nbsp;merchants</div>
+                            </div>
+                        </div>
+
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-06-howtoons.jpg">
+                            <div class="caption">
+                                <h3>Howtoons</h3>
+                                <div class="industry">Kid's subscription</div>
+                                <div class="description">Bold graphics directly on&nbsp;corrugate</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-07-intercom.jpg">
+                            <div class="caption">
+                                <h3>Intercom</h3>
+                                <div class="industry">Messaging platform</div>
+                                <div class="description">Promotional boxes made&nbsp;affordable</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-08-unbound.jpg">
+                            <div class="caption">
+                                <h3>Unbound</h3>
+                                <div class="industry">Erotic subscription</div>
+                                <div class="description">New drawstring bag designs every&nbsp;month</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-09-mailchimp.jpg">
+                            <div class="caption">
+                                <h3>MailChimp</h3>
+                                <div class="industry">Merchandise</div>
+                                <div class="description">Powering packaging for an experimental&nbsp;store</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-10-rockets.jpg">
+                            <div class="caption">
+                                <h3>Rockets of&nbsp;Awesome</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Custom mylar bags with a Space Age&nbsp;look</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-11-threadless.jpg">
+                            <div class="caption">
+                                <h3>Threadless</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Eco-friendly bag at lower&nbsp;costs</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-12-parachute.jpg">
+                            <div class="caption">
+                                <h3>Parachute Home</h3>
+                                <div class="industry">Bedding</div>
+                                <div class="description">A full packaging suite, from boxes to&nbsp;stickers</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-20-supergoop.jpg">
+                            <div class="caption">
+                                <h3>Supergoop!</h3>
+                                <div class="industry">Skincare</div>
+                                <div class="description">Making cardboard feel as bright as&nbsp;sunlight</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-21-loveyourz.jpg">
+                            <div class="caption">
+                                <h3>Love Yourz</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Simple pink boxes bring delight to every&nbsp;order</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-13-ritual.jpg">
+                            <div class="caption">
+                                <h3>Ritual Roasters</h3>
+                                <div class="industry">Coffee subscription</div>
+                                <div class="description">A reliable combination of blank and custom&nbsp;items</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-14-cottonbureau.jpg">
+                            <div class="caption">
+                                <h3>Cotton Bureau</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Colorful mailers that brighten&nbsp;mailboxes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-15-sockfancy.jpg">
+                            <div class="caption">
+                                <h3>Sock Fancy</h3>
+                                <div class="industry">Sock subscription</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-16-bennygold.jpg">
+                            <div class="caption">
+                                <h3>Benny Gold</h3>
+                                <div class="industry">Streetwear</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-17-meundies.jpg">
+                            <div class="caption">
+                                <h3>MeUndies</h3>
+                                <div class="industry">Underwear</div>
+                                <div class="description">Big savings on high-volume mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                        </conveyorbelt><conveyorbelt class="conveyor-belt belt-section" style="width: 2937px;">
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-18-fieldco.jpg">
+                            <div class="caption">
+                                <h3>Field Co.</h3>
+                                <div class="industry">Cookware</div>
+                                <div class="description">Specialized box for this Kickstarter-funded skillet</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-19-wsj.jpg">
+                            <div class="caption">
+                                <h3>Wall Street Journal</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Defining WSJ's new e‑commerce brand</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-01-blackbox.jpg">
+                            <div class="caption">
+                                <h3>Blackbox</h3>
+                                <div class="industry">Fulfillment</div>
+                                <div class="description">High‑volume boxes delivered to warehouses across the&nbsp;country</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-02-shaveface.jpg">
+                            <div class="caption">
+                                <h3>ShaveFace</h3>
+                                <div class="industry">Grooming</div>
+                                <div class="description">Sharply printed on a flexographic&nbsp;press</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-03-unif.jpg">
+                            <div class="caption">
+                                <h3>UNIF</h3>
+                                <div class="industry">Fashion</div>
+                                <div class="description">Poly mailers in a wide variety of&nbsp;sizes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-04-cratejoy.jpg">
+                            <div class="caption">
+                                <h3>Cratejoy</h3>
+                                <div class="industry">Subscription platform</div>
+                                <div class="description">The standard-issue box for Cratejoy&nbsp;merchants</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-05-primary.jpg">
+                            <div class="caption">
+                                <h3>Primary</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Rotogravure print with seven spot&nbsp;colors</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-06-howtoons.jpg">
+                            <div class="caption">
+                                <h3>Howtoons</h3>
+                                <div class="industry">Kid's subscription</div>
+                                <div class="description">Bold graphics directly on&nbsp;corrugate</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-07-intercom.jpg">
+                            <div class="caption">
+                                <h3>Intercom</h3>
+                                <div class="industry">Messaging platform</div>
+                                <div class="description">Promotional boxes made&nbsp;affordable</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-08-unbound.jpg">
+                            <div class="caption">
+                                <h3>Unbound</h3>
+                                <div class="industry">Erotic subscription</div>
+                                <div class="description">New drawstring bag designs every&nbsp;month</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-09-mailchimp.jpg">
+                            <div class="caption">
+                                <h3>MailChimp</h3>
+                                <div class="industry">Merchandise</div>
+                                <div class="description">Powering packaging for an experimental&nbsp;store</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-10-rockets.jpg">
+                            <div class="caption">
+                                <h3>Rockets of&nbsp;Awesome</h3>
+                                <div class="industry">Kid's clothing</div>
+                                <div class="description">Custom mylar bags with a Space Age&nbsp;look</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-11-threadless.jpg">
+                            <div class="caption">
+                                <h3>Threadless</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Eco-friendly bag at lower&nbsp;costs</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-12-parachute.jpg">
+                            <div class="caption">
+                                <h3>Parachute Home</h3>
+                                <div class="industry">Bedding</div>
+                                <div class="description">A full packaging suite, from boxes to&nbsp;stickers</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-20-supergoop.jpg">
+                            <div class="caption">
+                                <h3>Supergoop!</h3>
+                                <div class="industry">Skincare</div>
+                                <div class="description">Making cardboard feel as bright as&nbsp;sunlight</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-21-loveyourz.jpg">
+                            <div class="caption">
+                                <h3>Love Yourz</h3>
+                                <div class="industry">Lifestyle</div>
+                                <div class="description">Simple pink boxes bring delight to every&nbsp;order</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-13-ritual.jpg">
+                            <div class="caption">
+                                <h3>Ritual Roasters</h3>
+                                <div class="industry">Coffee subscription</div>
+                                <div class="description">A reliable combination of blank and custom&nbsp;items</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-14-cottonbureau.jpg">
+                            <div class="caption">
+                                <h3>Cotton Bureau</h3>
+                                <div class="industry">T-shirts</div>
+                                <div class="description">Colorful mailers that brighten&nbsp;mailboxes</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-15-sockfancy.jpg">
+                            <div class="caption">
+                                <h3>Sock Fancy</h3>
+                                <div class="industry">Sock subscription</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-16-bennygold.jpg">
+                            <div class="caption">
+                                <h3>Benny Gold</h3>
+                                <div class="industry">Streetwear</div>
+                                <div class="description">Saving big on mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                        <div class="belt-img fade-in">
+                            <img src="https://www.lumi.com/images/home/show-17-meundies.jpg">
+                            <div class="caption">
+                                <h3>MeUndies</h3>
+                                <div class="industry">Underwear</div>
+                                <div class="description">Big savings on high-volume mailer&nbsp;pouches</div>
+                            </div>
+                        </div>
+                        </conveyorbelt>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <style>
+                    .dashboard {
+                        text-align: center;
+                        padding: 120px 0 120px 0;
+                    }
+                    .dashboard .dashboard__features .title {
+                        font-size: 32px;
+                    }
+                    .dashboard .dashboard__features .features__items .column {
+                        display: inline-block;
+                        padding: 30px 30px;
+                    }
+                    .ui-frame {
+                        width: 60%;
+                        margin: 0 auto;
+                        margin-top: 3em;
+                        margin-bottom: 3em;
+                        border-radius: 6px;
+                        box-shadow: 0 10px 30px 0 rgba(0,0,0,.1);
+                    }
+                    .ui-frame .ui-frame-screen {
+                        border: 1px solid #e9e9e6;
+                        border-top-left-radius: 6px;
+                        border-top-right-radius: 6px;
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                        border-bottom: none;
+                        overflow: hidden;
+                        line-height: 0;
+                    }
+                    .ui-frame .ui-frame-screen img {
+                        width: 100%;
+                    }
+                </style>
+                <div class="dashboard">
+                    <div class="dashboard__features">
+                        <h3 class="title">从源头到交付, 尖端放电实验室优化了您的包装供应链 <a href="/features" class="action">了解更多</a></h3>
+                        <div class="features__items clearfix">
+                            <div class="column">
+                                <h4 class="strong">Source</h4>
+                                <p>Request quotes for new&nbsp;items you&nbsp;need</p>
+                            </div>
+                            <div class="column">
+                                <h4 class="strong">Design</h4>
+                                <p>Manage your dielines and&nbsp;artwork files</p>
+                            </div>
+                            <div class="column">
+                                <h4 class="strong">Purchase</h4>
+                                <p>Pay online and re‑order&nbsp;easily</p>
+                            </div>
+                            <div class="column">
+                                <h4 class="strong">Track</h4>
+                                <p>Check in on the progress of your&nbsp;deliveries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-l pn2">
+                        <div class="ui-frame">
+                        <div class="ui-frame-screen">
+                            <img src="https://s3.amazonaws.com/lumi-blog/Items.png">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .others {
+                        text-align: center;
+                    }
+                </style>
+                <div class="others pn4 ps4 mn2 dh">
+                    <div class="wrap-m" id="design">
+                    <h2 class="c cc ps4" style="padding-bottom: 4rem;">为了降低您的包装的生产成本，我们做了非常多的努力。</h2>
+                        <div class="row row-extra-padding row-top">
+                            <div class="col">
+                                <div class="">
+                                    <h4 class="strong">无论您是每月运送数千或数百万个订单，您的购买力都会因加入尖端放电实验室而放大。</h4>
+                                    <p>尖端放电实验室汇集了像您这样的数千家企业的需求，为世界上最好的工厂提供无与伦比的价格。</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="">
+                                <h4 class="strong">您的业务正在发展，您的供应链也应如此。</h4>
+                                <p>现在可能工作的东西可能在六个月内不起作用。 随着您的业务增长，尖端放电实验室有助于预测隐藏的成本并定期重新评估您的包装，以确保您无缝扩展。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <style>
+                    .wrap-m {
+                        padding-top: 4rem;
+                        padding-bottom: 4rem;
+                        text-align: center;
+                    }
+                    .wrap-m img {
+                        width: 100%;
+                    }
+                </style>
+
+                <div class="pn4 ps2">
+                    <div class="wrap-m">
+                        <h3 class="c">Case studies</h3>
+                        <a href="/case-studies/parachute">
+                            <div class="mn4 bg" style="margin-bottom: 4rem;">
+                                <div class="row row-no-padding justify-content-center">
+                                    <div class="col-6 zerolh">
+                                    <img src="https://s3.amazonaws.com/lumi-blog/_x1024/parchute-unboxing.jpg?mtime=20170307155347">
+                                    </div>
+                                    <div class="col-4">
+                                    <div class="ppa ssl ssr">
+                                    <h4 class="strong">Parachute Home</h4>
+                                    <h4>We made Parachute's packaging more reliable and affordable so that everyone can sleep&nbsp;better.</h4>
+                                    <span class="st action">Read more →</span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/case-studies/meundies">
+                            <div class="mn2 bg">
+                                <div class="row row-no-padding justify-content-center">
+                                    <div class="col-6 zerolh">
+                                        <img src="https://s3.amazonaws.com/lumi-blog/meundie-pink-spring.jpg?mtime=20170320171706">
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="ppa ssl ssr">
+                                        <h4 class="strong">MeUndies</h4>
+                                        <h4>We reduced costs and streamlined the design of fun, seasonal variations for the signature MeUndies&nbsp;pouch.</h4>
+                                        <span class="st action">Read more →</span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <style>
+                    #knolling {
+                        text-align: center;
+                        padding: 180px;
+                    }
+                    #knolling h3 {
+                        font-size: 24px;
+                        margin-bottom: 1rem;
+                    }
+                    #knolling h4{
+                        font-size: 18px;
+                        font-weight: 400;
+                        margin-bottom: 1rem;
+                    }
+                </style>
+                <div class="mn4 ms4 dh" id="knolling">
+                    <div class="cc pn3 ps4 c" style="width:35em;max-width:90%;margin: 0 auto;">
+                        <h3>我们的功能可以从数千个单元无缝扩展到数百万个单元。</h3>
+                        <h4>包装盒，邮寄包，袋子，胶带，信封，填充物，贴纸，所有尺寸均可提供，包括印刷和空白。</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

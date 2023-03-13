@@ -1,0 +1,563 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('public/images/about-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+<style>
+.container-product {
+    padding-top: 15px;
+    padding-bottom: 40px;
+}
+.cate-section {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+.cate-section .cate-section-num {
+    display: none;
+}
+.cate-section .cate-name {
+}
+.product-wrap {
+    float: left;
+    width: 19%;
+    margin: 0.5%;
+}
+.product-wrap .product {
+    background: #f7f6f5;
+    text-align: left;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+.product-wrap img {
+    width: 100%;
+}
+.product-detail {
+    text-align: center;
+}
+.product-detail h4 a {
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+}
+</style>
+<div class="container-product container-fluid">
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">1</span>
+            <h3 class="cate-name">卡片类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div class="product">
+                    <a href="" class="action-hover">
+                        <img src="https://via.placeholder.com/500x500/eee" alt="" />
+                    </a>
+                </div>
+                <div class="product-detail">
+                    <h4 class="box-title">
+                        <a href="/products/corrugated-mailer-boxes" class="action-hover">名片<br></a>
+                    </h4>
+                </div>
+            </div>
+            <div class="product-wrap">
+                <div class="product">
+                    <a href="" class="action-hover">
+                        <img src="https://ws1.sinaimg.cn/large/674ad70fly1g1t8rfml4aj20e20bm0tc.jpg" alt="" />
+                    </a>
+                </div>
+                <div class="product-detail">
+                    <h4 class="box-title">
+                        <a href="/products/corrugated-mailer-boxes" class="action-hover">PVC卡片<br></a>
+                    </h4>
+                </div>
+            </div>
+            <div class="product-wrap">
+                <div>贺卡</div>
+            </div>
+            <div class="product-wrap">
+                <div>刮刮卡</div>
+            </div>
+            <div class="product-wrap">
+                <div>挪车卡</div>
+            </div>
+            <div class="product-wrap">
+                <div>门票</div>
+            </div>
+            <div class="product-wrap">
+                <div>立牌</div>
+            </div>
+            <div class="product-wrap">
+                <div>明信片</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">2</span>
+            <h3>彩页类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>折页</div>
+            </div>
+            <div class="product-wrap">
+                <div>证书</div>
+            </div>
+            <div class="product-wrap">
+                <div>海报</div>
+            </div>
+            <div class="product-wrap">
+                <div>单页</div>
+            </div>
+            <div class="product-wrap">
+                <div>优惠券</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">4</span>
+            <h3>画册类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>骑马钉画册</div>
+            </div>
+            <div class="product-wrap">
+                <div>胶装画册</div>
+            </div>
+            <div class="product-wrap">
+                <div>精装画册</div>
+            </div>
+            <div class="product-wrap">
+                <div>菜谱</div>
+            </div>
+            <div class="product-wrap">
+                <div>挂历</div>
+            </div>
+            <div class="product-wrap">
+                <div>台历</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">3</span>
+            <h3>喷绘类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>灯箱</div>
+            </div>
+            <div class="product-wrap">
+                <div>KT板</div>
+            </div>
+            <div class="product-wrap">
+                <div>易拉宝</div>
+            </div>
+            <div class="product-wrap">
+                <div>展架</div>
+            </div>
+            <div class="product-wrap">
+                <div>桁架</div>
+            </div>
+            <div class="product-wrap">
+                <div>条幅</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">5</span>
+            <h3>手提袋类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>纸袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>纸袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>无纺布袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>塑料袋</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">6</span>
+            <h3>不干胶类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>不干胶</div>
+            </div>
+            <div class="product-wrap">
+                <div>背胶贴纸</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">7</span>
+            <h3>复写类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>票据联单</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">8</span>
+            <h3>包装类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>礼品盒</div>
+            </div>
+            <div class="product-wrap">
+                <div>饮料包装</div>
+            </div>
+            <div class="product-wrap">
+                <div>木质包装</div>
+            </div>
+            <div class="product-wrap">
+                <div>糕点包装</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">9</span>
+            <h3>运输包装类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>瓦楞纸箱</div>
+            </div>
+            <div class="product-wrap">
+                <div>飞机盒</div>
+            </div>
+            <div class="product-wrap">
+                <div>快递袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>胶带</div>
+            </div>
+            <div class="product-wrap">
+                <div>气泡膜</div>
+            </div>
+            <div class="product-wrap">
+                <div>气泡袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>珍珠棉</div>
+            </div>
+            <div class="product-wrap">
+                <div>气泡信封</div>
+            </div>
+            <div class="product-wrap">
+                <div>物流编织袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>充气柱</div>
+            </div>
+            <div class="product-wrap">
+                <div>PP 盒子</div>
+            </div>
+            <div class="product-wrap">
+                <div>泡沫箱</div>
+            </div>
+            <div class="product-wrap">
+                <div>货架</div>
+            </div>
+            <div class="product-wrap">
+                <div>托盘</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">10</span>
+            <h3>餐饮类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>纸杯</div>
+            </div>
+            <div class="product-wrap">
+                <div>餐盒</div>
+            </div>
+            <div class="product-wrap">
+                <div>筷子</div>
+            </div>
+            <div class="product-wrap">
+                <div>勺子</div>
+            </div>
+            <div class="product-wrap">
+                <div>食品包装纸</div>
+            </div>
+            <div class="product-wrap">
+                <div>食品包装袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>点餐纸</div>
+            </div>
+            <div class="product-wrap">
+                <div>外卖箱</div>
+            </div>
+            <div class="product-wrap">
+                <div>纸巾</div>
+            </div>
+            <div class="product-wrap">
+                <div>牙签</div>
+            </div>
+            <div class="product-wrap">
+                <div>桌贴</div>
+            </div>
+            <div class="product-wrap">
+                <div>门贴</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">11</span>
+            <h3>文具办公类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>笔</div>
+            </div>
+            <div class="product-wrap">
+                <div>笔记本</div>
+            </div>
+            <div class="product-wrap">
+                <div>笔筒</div>
+            </div>
+            <div class="product-wrap">
+                <div>精装文件夹</div>
+            </div>
+            <div class="product-wrap">
+                <div>便签纸</div>
+            </div>
+            <div class="product-wrap">
+                <div>档案袋</div>
+            </div>
+            <div class="product-wrap">
+                <div>光盘包装盒</div>
+            </div>
+            <div class="product-wrap">
+                <div>鼠标垫</div>
+            </div>
+            <div class="product-wrap">
+                <div>信封信纸</div>
+            </div>
+            <div class="product-wrap">
+                <div>U盘</div>
+            </div>
+            <div class="product-wrap">
+                <div>工具</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">12</span>
+            <h3>布制品类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>T恤</div>
+            </div>
+            <div class="product-wrap">
+                <div>工服</div>
+            </div>
+            <div class="product-wrap">
+                <div>抱枕</div>
+            </div>
+            <div class="product-wrap">
+                <div>帽子</div>
+            </div>
+            <div class="product-wrap">
+                <div>围裙</div>
+            </div>
+            <div class="product-wrap">
+                <div>座套</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">13</span>
+            <h3>户外广告类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>遮阳伞</div>
+            </div>
+            <div class="product-wrap">
+                <div>广告伞</div>
+            </div>
+            <div class="product-wrap">
+                <div>广告帐篷</div>
+            </div>
+            <div class="product-wrap">
+                <div>亚克力</div>
+            </div>
+            <div class="product-wrap">
+                <div>户外活动折叠桌</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">14</span>
+            <h3>打印复印类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>合同</div>
+            </div>
+            <div class="product-wrap">
+                <div>标书</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">15</span>
+            <h3>冲印类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>证件照</div>
+            </div>
+            <div class="product-wrap">
+                <div>立得拍照</div>
+            </div>
+            <div class="product-wrap">
+                <div>普通照</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">16</span>
+            <h3>礼品类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>冰箱贴</div>
+            </div>
+            <div class="product-wrap">
+                <div>保温杯</div>
+            </div>
+            <div class="product-wrap">
+                <div>充电宝</div>
+            </div>
+            <div class="product-wrap">
+                <div>扇子</div>
+            </div>
+            <div class="product-wrap">
+                <div>硅胶套</div>
+            </div>
+            <div class="product-wrap">
+                <div>打火机</div>
+            </div>
+            <div class="product-wrap">
+                <div>指甲剪</div>
+            </div>
+            <div class="product-wrap">
+                <div>咖啡杯</div>
+            </div>
+            <div class="product-wrap">
+                <div>红包</div>
+            </div>
+            <div class="product-wrap">
+                <div>扑克</div>
+            </div>
+            <div class="product-wrap">
+                <div>马克杯</div>
+            </div>
+            <div class="product-wrap">
+                <div>奖杯</div>
+            </div>
+            <div class="product-wrap">
+                <div>行李箱</div>
+            </div>
+            <div class="product-wrap">
+                <div>旗帜</div>
+            </div>
+            <div class="product-wrap">
+                <div>起子</div>
+            </div>
+            <div class="product-wrap">
+                <div>手机壳</div>
+            </div>
+            <div class="product-wrap">
+                <div>定制金箔、金饰品</div>
+            </div>
+            <div class="product-wrap">
+                <div>项链</div>
+            </div>
+            <div class="product-wrap">
+                <div>钥匙扣</div>
+            </div>
+            <div class="product-wrap">
+                <div>书包</div>
+            </div>
+            <div class="product-wrap">
+                <div>肥皂盒</div>
+            </div>
+            <div class="product-wrap">
+                <div>手机擦</div>
+            </div>
+            <div class="product-wrap">
+                <div>烟灰缸</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cate-section">
+        <div class="col-2">
+            <span class="cate-section-num">17</span>
+            <h3>其他类</h3>
+        </div>
+        <div class="col-10 clearfix">
+            <div class="product-wrap">
+                <div>洗衣 O2O</div>
+            </div>
+            <div class="product-wrap">
+                <div>车贴</div>
+            </div>
+            <div class="product-wrap">
+                <div>电动两轮三轮车定制</div>
+            </div>
+            <div class="product-wrap">
+                <div>门店装修</div>
+            </div>
+            <div class="product-wrap">
+                <div>VR/AR 印刷品定制</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

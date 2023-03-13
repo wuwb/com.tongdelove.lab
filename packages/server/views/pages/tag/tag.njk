@@ -1,0 +1,22 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div id="container" class="container">
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block pageData %}
+<script>
+    // 当前登录用户
+    var userID = {{user.id}};
+    var username = '{{user.username}}';
+    var avatarURL = '{{user.avatarURL}}';
+</script>
+{% endblock %}
+
+{% block devjs %}
+    {{ loadjs('entry/tag/tag.js') }}
+{% endblock %}

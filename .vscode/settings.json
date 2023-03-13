@@ -1,6 +1,7 @@
 {
-    "editor.formatOnSave": true,
-    "search.exclude": {
-        "package-lock.json": true
-      }
+  "editor.formatOnSave": true,
+  "prisma.fileWatcher": true,
+  "search.exclude": {
+    "package-lock.json": true
+  }
 }

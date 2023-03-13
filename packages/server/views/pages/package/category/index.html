@@ -1,0 +1,156 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<style>
+.container-1370 {
+    margin: 0 auto;
+    width: 1370px;
+}
+.filter {
+    padding: 20px;
+    width: 1370px;
+}
+.filter-item {
+    margin-bottom: 10px;
+}
+.filter-item .fi-title {
+    float: left;
+    width: 100px;
+}
+.filter-item .fi-detail {
+    overflow: hidden;
+}
+.filter-item .fi-detail .fid-item {
+    float: left;
+    margin-right: 10px;
+}
+.filter-item .fi-detail .fid-item:hover {
+    color: green;
+    cursor: pointer;
+}
+.filter-item .fi-detail .fid-item.active {
+    color: red;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="intro-header">
+    <div class="container-1370">
+        <div class="row">
+            <div class="filter">
+                <div class="filter-item">
+                    <div class="fi-title">材料类型</div>
+                    <div class="fi-detail">
+                        <div class="fid-item">全部</div>
+                        <div class="fid-item">卡纸</div>
+                        <div class="fid-item">瓦楞</div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <div class="fi-title">结构类型</div>
+                    <div class="fi-detail">
+                        <div class="fid-item">全部</div>
+                        <div class="fid-item">管式盒</div>
+                        <div class="fid-item">一体成型盒</div>
+                        <div class="fid-item">天地盖盒</div>
+                        <div class="fid-item">抽屉盒</div>
+                        <div class="fid-item">手提盒</div>
+                        <div class="fid-item">特殊盒型</div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <div class="fi-title">盒盖类型</div>
+                    <div class="fi-detail">
+                        <div class="fid-item">全部</div>
+                        <div class="fid-item">前开直插</div>
+                        <div class="fid-item">吊口</div>
+                        <div class="fid-item">后开直插</div>
+                        <div class="fid-item">平粘</div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <div class="fi-title">盒盖细节</div>
+                    <div class="fi-detail">
+                        <div class="fid-item">全部</div>
+                        <div class="fid-item">三角孔</div>
+                        <div class="fid-item">圆孔</div>
+                        <div class="fid-item">安全扣</div>
+                        <div class="fid-item">安全扣+指甲扣</div>
+                        <div class="fid-item">指甲扣</div>
+                        <div class="fid-item">撕拉线</div>
+                        <div class="fid-item">普通</div>
+                        <div class="fid-item">飞机空</div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <div class="fi-title">盒底类型</div>
+                    <div class="fi-detail">
+                        <div class="fid-item">全部</div>
+                        <div class="fid-item">前开直插</div>
+                        <div class="fid-item">后开直插</div>
+                        <div class="fid-item">平粘</div>
+                        <div class="fid-item">自动锁底</div>
+                        <div class="fid-item">锁底</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-1370">
+    <div class="row">
+        <style>
+            .package {
+
+            }
+            .package .item {
+                float: left;
+                width: 250px;
+                height: 398px;
+                margin-right: 25px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 0 0 1px rgba(0,0,0,.2);
+                cursor: pointer;
+            }
+            .package .item .pic-wrap {
+                margin-bottom: 5px;
+            }
+            .package .item .info-pic-wrap {
+                font-size: 0;
+                margin-bottom: 5px;
+            }
+            .package .item .info-pic-wrap .info-pic {
+                margin-right: 5px;
+            }
+            .package .item .info-pic-wrap .info-pic:last-child {
+                margin-right: 0;
+            }
+            .package .item .title {
+                padding: 5px 8px;
+            }
+        </style>
+        <div class="package">
+            {% for i in [1,2,3,4,5,6,7,8,9,10,11,12] %}
+                <div class="item">
+                    <div class="pic-wrap">
+                        <img class="pic" src="http://placehold.it/250x250" alt="" />
+                    </div>
+                    <div class="info-pic-wrap">
+                        <img class="info-pic" src="http://placehold.it/80x80" />
+                        <img class="info-pic" src="http://placehold.it/80x80" />
+                        <img class="info-pic" src="http://placehold.it/80x80" />
+                    </div>
+                    <div class="title">管式盒_盖前开直插_细节指甲扣_底自动锁底</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {# 分页 #}
+        <div></div>
+
+    </div>
+</div>
+{% endblock %}

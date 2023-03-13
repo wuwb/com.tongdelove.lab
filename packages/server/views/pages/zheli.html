@@ -1,0 +1,83 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('public/images/about-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>哲理</h1>
+                    <hr class="small">
+                    <span class="subheading">
+                        哲理列表
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <ul class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for item in zheli.rows %}
+            <li>
+                {{ item.id }} -
+                {{ item.subject }} -
+                {{ item.content }}
+            </li>
+            {% else %}
+            <li>This would display if the 'item' collection were empty</li>
+            {% endfor %}
+        </ul>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="/zheli?p=1">1</a>
+                </li>
+
+                {% if page >= 6 %}
+                <li class="page-item">
+                    <a class="page-link" href="#">...</a>
+                </li>
+                {% endif %}
+
+                {% for i in range(page - 4, page) %}
+                <li class="page-item">
+                    <a class="page-link" href="/zheli?p={{i}}">{{ i }}</a>
+                </li>
+                {% endfor %}
+
+                <li class="page-item active">
+                    <a class="page-link" href="/zheli?p={{page}}">{{ page }}</a>
+                </li>
+
+                {% if page < (pageCount - 5) %}
+                {% for i in range(page + 1, page + 6) %}
+                <li class="page-item">
+                    <a class="page-link" href="/zheli?p={{i}}">{{ i }}</a>
+                </li>
+                {% endfor %}
+                <li class="page-item">
+                    <a class="page-link" href="#">...</a>
+                </li>
+                {% else %}
+                {% for i in range(page + 1, pageCount) %}
+                <li class="page-item">
+                    <a class="page-link" href="/zheli?p={{i}}">{{ i }}</a>
+                </li>
+                {% endfor %}
+                {% endif %}
+
+                <li class="page-item">
+                    <a class="page-link" href="/zheli?p={{pageCount}}">{{ pageCount }}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

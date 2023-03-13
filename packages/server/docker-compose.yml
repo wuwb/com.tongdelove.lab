@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+      args:
+        NPM_LOG_LEVEL: notice
+      dockerfile: Dockerfile
+    ports:
+      - "${SERVER_PORT}:7001"
+    environment:
+      - BCRYPT_SALT=${BCRYPT_SALT}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+      - TZ=Asia/Shanghai
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+      - redis
+    links:
+      - mongo
+      - redis
+    networks:
+      - app-network
+    restart: always
+    volumes:
+      - ./data/mx-space:/root/.mx-space
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    networks:
+      - app-network
+    restart: always
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - '3344:27017'
+    networks:
+      - app-network
+    restart: always
+
+  redis:
+    image: redis
+    container_name: redis
+
+    ports:
+      - '3333:6379'
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge

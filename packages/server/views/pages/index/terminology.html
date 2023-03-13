@@ -1,0 +1,448 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .sub-nav {
+        text-align: center;
+        border-bottom: 1px solid #e6e5e3;
+    }
+    .sub-nav a {
+        display: inline-block;
+        border-bottom: 1px solid transparent;
+        padding: 14px 2px 15px 2px;
+        margin: 0 20px -1px 0;
+        color: #898884;
+        text-decoration: none;
+    }
+    .sub-nav a.active {
+        color: #000;
+        border-bottom: 1px solid #000;
+    }
+    .sub-nav a:hover {
+        color: #000;
+    }
+</style>
+<div class="sub-nav">
+    <a class="active" href="/terminology">术语表</a>
+</div>
+<style>
+    .page-heading {
+        padding: 120px;
+        text-align: center;
+    }
+    .page-title {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .page-heading p {
+        font-size: 18px;
+    }
+
+    .action {
+        font-size: 18px;
+        color: #0044e4;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt30">
+            <div class="page-heading">
+                <h1 class="page-title">术语表</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="terminology">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">中文</th>
+                            <th scope="col">英文</th>
+                            <th scope="col">示意</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" colspan="4">纸料</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>灰卡</td>
+                            <td>grey back MC board</td>
+                            <td>灰色卡纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>单粉卡</td>
+                            <td>signle side coated board</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>双粉卡</td>
+                            <td>both sides coated board</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>白芯</td>
+                            <td>white liner</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>灰芯</td>
+                            <td>grey liner</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">6</th>
+                            <td>双胶纸</td>
+                            <td>W/F paper</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">7</th>
+                            <td>有色书纸</td>
+                            <td>color W/paper</td>
+                            <td></td>
+                        </dtriv>
+                        <tr>
+                        <th scope="row">8</th>
+                            <td>铜版纸</td>
+                            <td>art paper</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">9</th>
+                            <td>哑粉纸</td>
+                            <td>matt coated paper</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="4">坑纸（瓦楞纸）</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>BE坑</td>
+                            <td>E-flute</td>
+                            <td>125g 牛皮皮卡+110g 芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>WE坑</td>
+                            <td>WE-flute</td>
+                            <td>140g 白牛皮卡+110g 芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>B3坑</td>
+                            <td>B3-flute</td>
+                            <td>125g 牛皮卡+115g 芯纸</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>A3坑</td>
+                            <td>A3-flute</td>
+                            <td>175g 牛皮卡+115g芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>K3坑</td>
+                            <td>K3-flute</td>
+                            <td>250g牛皮卡+115g芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>W3坑</td>
+                            <td>W3-flute</td>
+                            <td>140g白牛皮卡+115g 芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>A3B9坑</td>
+                            <td>A3B9-flute</td>
+                            <td>175g牛皮卡+115g芯纸+125g 牛皮卡+110g 芯纸</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>K3B9坑</td>
+                            <td>K3B9-flute</td>
+                            <td>250g牛皮卡+115g芯纸+125g 牛皮卡+110g 芯纸</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" colspan="4">印刷</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>印油</td>
+                            <td>Transparent ink</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>印光油</td>
+                            <td>Gloss Varnishing</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>印哑油</td>
+                            <td>Matt Varnishing</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>印专色</td>
+                            <td>Printed in spot color</td>
+                            <td><td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" colspan="4">表面处理</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>磨光</td>
+                            <td>Calendering</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>磨光吸塑油</td>
+                            <td>Blister-calendering varnish</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>过光油</td>
+                            <td>Varnishing</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>过水油</td>
+                            <td>Aqueous coating</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>水性磨光油</td>
+                            <td>Water Based calendering</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>水溶性光油</td>
+                            <td>Water based varnishing</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>双面过光油</td>
+                            <td>Double sides varnishing</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>过UV</td>
+                            <td>UV-coating</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>局部UV</td>
+                            <td>Spot UV-coating</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>过胶</td>
+                            <td>PP lamination</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>过光胶</td>
+                            <td>Gloss lamination</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>过哑胶</td>
+                            <td>Matt PP lamination</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>双面过胶</td>
+                            <td>PP lamination on both sides</td>
+                            <td><td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" colspan="4">裱纸</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>裱</td>
+                            <td>Laminated</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>对裱</td>
+                            <td>Laminated 2 in 1</td>
+                            <td><td>
+                        </tr>
+
+<tr>
+    <th scope="row" colspan="4">啤工</th>
+</tr>
+<tr>
+                            <th scope="row">3</th>
+                            <td>啤</td>
+                            <td>Die cutting</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>啤针孔线</td>
+                            <td>Perforation</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>对击凸裱</td>
+                            <td>Emblossing/High Frequency Gold Blocking</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>烫金</td>
+                            <td>Hot stamping (Gold in color)</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>烫银</td>
+                            <td>Hot stamping (silver in color)</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>烫哑银</td>
+                            <td>Matt silver hot stamping</td>
+                            <td><td>
+                        </tr>
+
+<tr>
+    <th scope="row" colspan="4">埋口</th>
+</tr>
+<tr>
+                            <th scope="row">3</th>
+                            <td>粘</td>
+                            <td>Gluing</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>钉</td>
+                            <td>Stapling</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>粘驳</td>
+                            <td>Jointed 2 in 1 by gluing</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>钉驳</td>
+                            <td>Jointed 2 in 1 by stapling</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>粘窗</td>
+                            <td>Window size ? x ? mounted with PVC#</td>
+                            <td><td>
+                        </tr>
+<tr>
+    <th scope="row" colspan="4">制本</th>
+</tr>
+ <tr>
+                            <th scope="row">3</th>
+                            <td>穿线</td>
+                            <td>Looped with string</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>胶装</td>
+                            <td>Thermoplastic binding= Perpect bound</td>
+                            <td><td>
+                        </tr>
+                         <tr>
+                            <th scope="row">3</th>
+                            <td>骑钉</td>
+                            <td>Saddle- wire stiching</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>折</td>
+                            <td>Folding</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>风琴折</td>
+                            <td>Zigzag folding</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>涂信封胶水</td>
+                            <td>Envelope keeping</td>
+                            <td><td>
+                        </tr>
+<tr>
+    <th scope="row" colspan="4">其它</th>
+</tr>
+<tr>
+                            <th scope="row">3</th>
+                            <td>挂钩</td>
+                            <td>Pothook</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>丝印</td>
+                            <td>Silk-screen</td>
+                            <td><td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>打孔</td>
+                            <td>Drilling</td>
+                            <td><td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

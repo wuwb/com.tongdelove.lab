@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}wwb{% endblock %}
+
+{% block header %}
+  <link rel="stylesheet" href="/base/less/pace.css">
+  <link rel="stylesheet" href="/pages/nomadlist/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <script src="/base/js/pace.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+{% include "nomadlist/header.html" %}
+<div id="container" class="container">
+  <div class="collections-cta">
+  </div>
+  <div class="row">
+
+  </div>
+  <div class="grid">
+    {% for city in cities %}
+    <div class="item">
+      {{ city.id }}
+      {{ city.title }}
+      {{ city.description }}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+  <script>
+    window.__INITIAL_STATE__ = {{ initialState | json }};
+  </script>
+  {% if assets %}
+    {% for key, value in assets %}
+      <script src="{{ assets[key].js }}"></script>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

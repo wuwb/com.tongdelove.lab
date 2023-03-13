@@ -1,0 +1,452 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<style>
+.container-1370 {
+    margin: 0 auto;
+    width: 1370px;
+}
+body {
+    font-size: 14px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-1370">
+    <div class="row">
+
+        <style>
+            .primary-section {
+                padding-top: 20px;
+                overflow: hidden;
+            }
+            .primary-section .gallery {
+                float: left;
+                width: 460px;
+                position: relative;
+            }
+            .primary-section .property {
+                float: left;
+                width: 530px;
+            }
+            .primary-section .sidebar {
+                float: left;
+                width: 380px;
+            }
+            .primary-section .property .wrap {
+                padding: 0 0 10px;
+                width: 530px;
+            }
+            .primary-section .property .sidebar {
+                width: 200px;
+                float: right;
+            }
+            .gallery .booth {
+                margin: 20px 20px 0;
+            }
+            .gallery .booth img {
+                width: 100%;
+            }
+            .gallery .thumb-wrap {
+                position: relative;
+            }
+            .gallery .thumb {
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                margin-left: -16px;
+                white-space: nowrap;
+                position: relative;
+                transition: left .2s cubic-bezier(0,0,.25,1);
+                font-size: 0;
+            }
+            .gallery .thumb li {
+                display: inline-block;
+                margin: 0 0 0 16px;
+                padding-top: 22px;
+            }
+            .property .title {
+                font-size: 16px;
+            }
+            .property .desc {
+                font-size: 14px;
+                color: #FF0036;
+            }
+            .detail-hd {
+                padding: 20px 0 12px;
+                margin: 0 20px 10px 10px;
+                border-bottom: 1px dashed #ddd;
+                color: #000;
+            }
+            .sku {
+                padding: 0 20px 0 10px;
+            }
+            .prop {
+                margin-bottom: 6px;
+            }
+            .prop .meta {
+                float: left;
+                text-align: left;
+                width: 66px;
+                font-size: 12px;
+                color: #838383;
+            }
+            .prop dt {
+                margin-top: 4px;
+            }
+            .prop dd {
+                float: left;
+                width: 420px;
+            }
+            .prop dd ul {
+                margin: 0;
+                padding: 0;
+            }
+            .prop li {
+                float: left;
+                position: relative;
+                margin: 0 4px 4px 0;
+                line-height: 20px;
+                vertical-align: middle;
+                padding: 1px;
+                list-style: none;
+            }
+            .prop li a {
+                float: left;
+                background-color: #fff;
+                white-space: nowrap;
+                width: auto!important;
+                min-width: 10px;
+                padding: 0 9px;
+                text-align: center;
+                border: 1px solid #b8b7bd;
+                color: #000;
+                text-decoration: none;
+            }
+            .prop li.selected a {
+                border: 2px solid #FF0036;
+                margin: -1px;
+            }
+            .action {
+                clear: both;
+                padding: 10px 0 0 66px;
+                margin: 10px 0 0;
+            }
+            .action .ensureText {
+                display: none;
+            }
+            .btn-sku {
+                margin-right: 10px;
+                float: left;
+            }
+            .btn-sku a {
+                height: 38px;
+                line-height: 38px;
+                text-align: center;
+                font-size: 16px;
+                margin-right: 0;
+                float: left;
+                overflow: hidden;
+                position: relative;
+                width: 178px;
+                background-color: #ffeded;
+                border: 1px solid #FF0036;
+                color: #FF0036;
+                font-family: 'Microsoft Yahei';
+            }
+            .btn-basket {
+                margin-right: 1px;
+            }
+            .btn-basket a {
+                background-color: #ff0036;
+                border: 1px solid #ff0036;
+                color: #fff;
+            }
+        </style>
+        <div id="detail" class="primary-section">
+            <div>
+                <div class="clearfix">
+                    <div class="gallery">
+                        <div class="booth">
+                            <a class="" href="javascript:;">
+                                <span>
+                                    <img src="https://placehold.it/800x800">
+                                    <span></span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="thumb-wrap">
+                            <div class="thumb-content">
+                                <ul class="thumb clearfix">
+                                    <li>
+                                        <a>
+                                            <img src="https://placehold.it/80x80">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <img src="https://placehold.it/80x80">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <img src="https://placehold.it/80x80">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <img src="https://placehold.it/80x80">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <a href="javascript:;">收藏产品</a>
+                        </div>
+                    </div>
+                    <div class="property">
+                        <div class="wrap">
+                            <div class="detail-hd">
+                                <div class="title">自热餐盒一号盒</div>
+                                <div class="desc">商品描述信息</div>
+                            </div>
+                            <div class="sku">
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        纸张材质
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>单铜纸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>食品级单铜纸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>金卡纸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>银卡纸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>双面红牛皮纸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>雪白牛皮纸</span></a>
+                                            </li>
+                                        </ul>
+                                        <span></span>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        克重 / 厚度
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>250g/0.34mm</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>350g/0.49mm</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>400g/0.47mm</span></a>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        印刷颜色
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>多色</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>单色</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>不印刷</span></a>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        表面处理
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>光油</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>哑油</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>光胶</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>哑胶</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>任意</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>UV光油</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>逆向UV</span></a>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        是否粘盒
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>是</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>否</span></a>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        成品外尺寸
+                                    </dt>
+                                    <dd>
+                                        <ul class="clearfix">
+                                            <li>
+                                                <span>长</span>
+                                                <input class="" style="width: 60px;"> mm
+                                            </li>
+                                            <li>
+                                                <span>宽</span>
+                                                <input class="" style="width: 60px;"> mm
+                                            </li>
+                                            <li>
+                                                <span>高</span>
+                                                <input class="" style="width: 60px;"> mm
+                                            </li>
+                                        </ul>
+                                        <div>展开尺寸：</div>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        其他工艺
+                                    </dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected">
+                                                <a href="#"><span>烫金</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>击凸</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>贴窗</span></a>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        定制数量
+                                    </dt>
+                                    <dd>
+                                        <input />
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        生产货期
+                                    </dt>
+                                    <dd>
+                                        <ul class="clearfix">
+                                            <li class="selected">
+                                                <a href="#"><span>24-48 小时（1-2 天）</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>72 小时（3 天）</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>120 小时（5 天）</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>168 小时（7 天）</span></a>
+                                            </li>
+                                        </ul>
+                                        <div>
+                                        (17点前确认，当天17点开始计算；17点后确认，次日17点开始计算；不含周末和法定节假日；在周末或节假日确认，从假期结束后的第一个工作日17点开始计算)
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="prop clearfix">
+                                    <dt class="meta">
+                                        价格
+                                    </dt>
+                                    <dd>
+                                        <div>
+                                            <span>￥</span>445.7
+                                            <div>
+                                                （单价：<span>4.457</span>）
+                                            </div>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div class="action clearfix">
+                                    <div class="btn-buy btn-sku">
+                                        <a id="J_LinkBuy" href="#" rel="nofollow" data-addfastbuy="true" title="点击此按钮，到下一步确认购买信息。" role="button">立即购买<span class="ensureText">确认</span></a>
+                                    </div>
+                                    <div class="btn-basket btn-sku">
+                                        <a id="J_LinkBasket" href="#" rel="nofollow" role="button">加入购物车<span class="ensureText">确认</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="sidebar">
+                        <ul>
+                            <li>
+                                <a class="" href="javascript:;">
+                                    其他包装
+                                </a>
+                            </li>
+                            <li>sidebar</li>
+                        </ul>
+                    <div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div class="second-section">
+            <div class="sidebar"></div>
+            <div class="main">
+                <div>详细信息</div>
+                <div>
+                    盒型平面展开图
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

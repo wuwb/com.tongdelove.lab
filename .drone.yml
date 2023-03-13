@@ -1,0 +1,80 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+# clone:
+#   depth: 1
+
+steps:
+  - name: greeting
+    image: alpine
+    commands:
+      - echo hello
+
+  # - name: restore-cache
+  #   image: meltwater/drone-cache:dev
+  #   settings:
+  #     backend: "filesystem"
+  #     filesystem-cache-route: /tmp
+  #     restore: true
+  #     mount:
+  #       - "node_modules"
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+
+  - name: build
+    image: node:16-alpine
+    commands:
+      - npm install -g pnpm
+      - pnpm install --frozen-lockfile
+      - make drone-cache
+      - cd packages/server
+      - NODE_ENV=production pnpm run build
+
+  # - name: rebuild-cache
+  #   image: meltwater/drone-cache:dev
+  #   settings:
+  #     backend: "filesystem"
+  #     filesystem-cache-route: /tmp
+  #     rebuild: true
+  #     mount:
+  #       - "node_modules"
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+
+  - name: deploy
+    image: drillster/drone-rsync
+    settings:
+      hosts: ["118.24.105.97"]
+      port: 443
+      user: ubuntu
+      key:
+        from_secret: ssh_key
+      recursive: true
+      args: "-av --delete"
+      source: ./packages/server/dist
+      target: ~/api.tongdelove.com/packages/server/dist
+      script:
+        - cd ~/api.tongdelove.com
+        - git pull
+        - pnpm install -P --frozen-lockfile
+        - ls
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache

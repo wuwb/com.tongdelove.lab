@@ -1,0 +1,80 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<header class="intro-header" style="background-image: url('public/images/about-bg.jpg')">
+    <div class="container">
+        <style>
+            .brand {
+                text-align: center;
+                font-size: 32px;
+                padding: 120px;
+            }
+            .article-entry {
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+            }
+            .article-entry:last-child {
+                border-bottom: none;
+                padding-bottom: 120px;
+            }
+            .article-entry .image {
+                float: left;
+                width: 160px;
+            }
+            .article-entry .image img {
+                width: 100%;
+            }
+            .article-entry .details {
+                margin-left: 180px;
+            }
+            .article-entry .cate {
+                font-size: 12px;
+            }
+            .article-entry .title {
+                font-size: 18px;
+                font-weight: 700;
+            }
+            .article-entry .desc {
+                font-size: 14px;
+            }
+        </style>
+        <div class="brand">
+            工作室
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div>
+                    {% for item in articles%}
+                    <div class="article-entry clearfix">
+                        <div class="image">
+                            <img src="{{ item.img_url }}">
+                        </div>
+                        <div class="details">
+                            <span class="cate">{{ item.cate }}</span>
+                            <p class="title">{{ item.title }}</p>
+                            <p class="desc">{{ item.desc }}</p>
+                        </div>
+                        <div class="meta">
+                            <span></span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{about}}
+        </div>
+    </div>
+</div>
+{% endblock %}

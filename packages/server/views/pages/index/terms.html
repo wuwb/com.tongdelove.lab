@@ -1,0 +1,58 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .sub-nav {
+        text-align: center;
+        border-bottom: 1px solid #e6e5e3;
+    }
+    .sub-nav a {
+        display: inline-block;
+        border-bottom: 1px solid transparent;
+        padding: 14px 2px 15px 2px;
+        margin: 0 20px -1px 0;
+        color: #898884;
+        text-decoration: none;
+    }
+    .sub-nav a.active {
+        color: #000;
+        border-bottom: 1px solid #000;
+    }
+    .sub-nav a:hover {
+        color: #000;
+    }
+</style>
+<div class="sub-nav">
+    <a class="active" href="/terms">条款</a>
+    <a href="/policies">政策</a>
+    <a href="/privacy">隐私政策</a>
+</div>
+<style>
+    .page-heading {
+        padding: 120px;
+        text-align: center;
+    }
+    .page-title {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .page-heading p {
+        font-size: 18px;
+    }
+
+    .action {
+        font-size: 18px;
+        color: #0044e4;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt30">
+            <div class="page-heading">
+                <h1 class="page-title">服务条款</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

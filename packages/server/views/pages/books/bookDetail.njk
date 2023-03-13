@@ -1,0 +1,126 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div class="container">
+    <div class="book-info-view">
+        <div class="book-card">
+            <div class="book-info">
+                <div class="poster">
+                    <img src="{{book.coverURL}}">
+                </div>
+                <div class="info">
+                    <div class="title-line">
+                        <a href="/books/{{book.id}}" class="title">
+                            <span>{{book.name}}</span>
+                        </a>
+                    </div>
+                    <div class="media">
+                        <div class="desc">{{book.summary}}</div>
+                        <div class="author">
+                            <div class="author-info">
+                                <a href="/uc/{{book.user.id}}" target="_blank" class="user">
+                                    <div class="lazy avatar hero loaded" style="background-image: url({{book.user.avatarURL}});"></div>
+                                    <span>{{book.user.username}}</span>
+                                </a>
+                            </div>
+                            <div class="author-desc">
+                                <span class="desc"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="other">
+                        <div class="is-buy">
+                            <button id="gotoChapterBtn" class="button--buy">阅读</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="book-bought">
+                <div id="userStudyOrBuyBtn" class="label">
+                    <img src="{{imgPath}}/handbook/buy-icon.svg">
+                    <span>{{book.studyUserCount}} 人已学习</span>
+                </div>
+                <div class="users">
+                    {% for studyUser in studyUsers %}
+                    <a href="/uc/{{studyUser.id}}" target="_blank" class="lazy avatar user loaded" style="background-image: url({{studyUser.avatarURL}});"></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="book-card">
+            <div class="book-menu-wrap">
+                <div class="book-menu">
+                    <div id="bookMenuNavItem" class="item active">
+                        <span class="text">目录</span>
+                    </div>
+                    {% if book.starUserCount %}
+                    <div id="starNavItem" class="item">
+                        <span class="text">评价</span>
+                        <span class="badge">{{book.starUserCount}}</span>
+                    </div>
+                    {% endif %}
+                    {% if not book.starUserCount and book.commentCount %}
+                    <div id="commentNavItem" class="item">
+                        <span class="text">章节留言</span>
+                        <span class="badge">{{book.commentCount}}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="book-content">
+                <div class="book-content-head">图书目录</div>
+                <div class="book-directory section-of-info">
+                    {% for chapter in chapters %}
+                    <a href="/books/{{chapter.bookID}}/chapters/{{chapter.id}}" class="section section-link">
+                        <div class="step">
+                            <div class="step-btn">{{loop.index}}</div>
+                        </div>
+                        <div class="center">
+                            <div class="title">{{chapter.name}}</div>
+                            <div class="sub-line">
+                                <div class="statistics">
+                                    <span class="duration">阅读时长: {{chapter.wordCount | readDuration}}</span>
+                                    <span class="readed">{{chapter.browseCount}}次学习</span>
+                                    <span class="comment">{{chapter.commentCount}}条评论</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% if book.starUserCount or book.commentCount %}
+        <div id="bookDetailStarComment"></div>
+        {% endif %}
+
+        <div class="book-card">
+            <div class="header">推荐开源图书</div>
+            {% block bookList %}
+                {% include '../../component/book/bookList.njk' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="copy-right-box">
+    <div class="copy-right">
+        <span>©{{ '' | currentTime('YYYY')}} {{siteName}}</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block pageData %}
+<script>
+    var chapters = {{ chapters | dump | safe }};
+    var book = {{ book | dump | safe }};
+    var userLevelChapterURL = '{{ userLevelChapterURL }}';
+</script>
+{% endblock %}
+
+{% block devjs %}
+    {{ loadjs('entry/book/bookDetail.js') }}
+{% endblock %}

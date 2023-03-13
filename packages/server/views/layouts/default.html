@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title></title>
+
+    {% block keyword %}
+    <meta name="keyword" content="">
+    {% endblock %}
+
+    <meta name="description" content="">
+
+    {# 直接加载第三方库的 css 时，放在 libcss 块中 #}
+    {% block libcss %}
+    {% endblock %}
+
+    {# webpack打包样式后，放在css块中 #}
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+    {% from '../macros/js.html' import loadjs  %}
+
+    {% block header %}
+        {% include '../component/header.html' %}
+    {% endblock %}
+
+    {% block main %}
+    {% endblock %}
+
+    {% block sidetool %}
+        {% include '../component/sidetool.html' %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    <script>
+        {# dump 在一个对象上调用JSON.stringify，并将结果输出到模板上 #}
+        var globalConfig = {{ globalConfig | dump | safe }};
+        var user = {{ user | dump | safe }};
+    </script>
+
+    {% block pageData %}
+    {% endblock %}
+
+    {# 直接加载第三方库的js时，放在libjs块中 #}
+    {% block libjs %}
+        {% if env === 'production' %}
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?253a8e53710b29ed40e6e57965279933";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+        {% endif %}
+    {% endblock %}
+
+    {# 本地开发时，具体页面中的js #}
+    {% block devjs %}
+    {% endblock %}
+
+    {# webpack打包js后，放在js块中 #}
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>

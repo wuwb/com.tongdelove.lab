@@ -21,6 +21,8 @@ module.exports = {
     'prettier/prettier': 0,
     'react/no-unescaped-entities': 'off',
     'unused-imports/no-unused-imports': 'off',
+    'max-len': 120,
+    'no-unused-vars': 'off',
   },
   overrides: [],
   ignorePatterns: ['.next'],

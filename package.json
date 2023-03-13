@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "author": "",
+  "author": "WuWenbin <541330190@qq.com>",
   "license": "ISC",
   "scripts": {
-    "dev": "pnpm workspace lab dev",
-    "build": "pnpm workspace lab build",
-    "start": "pnpm workspace lab start",
-    "dev:design": "pnpm workspace design dev",
+    "dev": "pnpm -w lab dev",
+    "build": "pnpm -w lab build",
+    "start": "pnpm -w lab start",
+    "dev:design": "pnpm -w design dev",
+    "dev2": "pnpm workspace lab dev",
+    "build2": "pnpm workspace lab build",
+    "start2": "pnpm workspace lab start",
+    "dev:design2": "pnpm workspace design dev",
     "postinstall": "husky install",
     "test": "echo test"
   },
@@ -19,7 +23,10 @@
     "@commitlint/config-conventional": "^17.0.3",
     "husky": "^8.0.1"
   },
-  "packageManager": "pnpm@7.19.0",
+  "packageManager": "pnpm@7.29.1",
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"

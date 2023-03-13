@@ -1,0 +1,167 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""An arbitrary-precision Decimal type"""
+scalar Decimal
+
+type FreelancerTaskAvgAggregate {
+  application: Float
+  applyCount: Float
+  auditStatus: Float
+  cycle: Float
+  handleStatus: Float
+  maxPrice: Decimal
+  minPrice: Decimal
+  type: Float
+  visitCount: Float
+}
+
+type FreelancerTaskCountAggregate {
+  _all: Int!
+  application: Int!
+  applyCount: Int!
+  auditAt: Int!
+  auditReason: Int!
+  auditStatus: Int!
+  bargain: Int!
+  createdAt: Int!
+  cycle: Int!
+  cycleName: Int!
+  date: Int!
+  desc: Int!
+  fixedPrice: Int!
+  handleAt: Int!
+  handleStatus: Int!
+  id: Int!
+  maxPrice: Int!
+  minPrice: Int!
+  source: Int!
+  sourceId: Int!
+  status: Int!
+  tags: Int!
+  title: Int!
+  type: Int!
+  updatedAt: Int!
+  url: Int!
+  userId: Int!
+  userName: Int!
+  userUrl: Int!
+  visitCount: Int!
+}
+
+type FreelancerTaskMaxAggregate {
+  application: Int
+  applyCount: Int
+  auditAt: DateTime
+  auditReason: String
+  auditStatus: Int
+  bargain: Boolean
+  createdAt: DateTime
+  cycle: Int
+  cycleName: String
+  date: DateTime
+  desc: String
+  fixedPrice: String
+  handleAt: DateTime
+  handleStatus: Int
+  id: String
+  maxPrice: Decimal
+  minPrice: Decimal
+  source: SourceEnum
+  sourceId: String
+  status: String
+  tags: String
+  title: String
+  type: Int
+  updatedAt: DateTime
+  url: String
+  userId: String
+  userName: String
+  userUrl: String
+  visitCount: Int
+}
+
+type FreelancerTaskMinAggregate {
+  application: Int
+  applyCount: Int
+  auditAt: DateTime
+  auditReason: String
+  auditStatus: Int
+  bargain: Boolean
+  createdAt: DateTime
+  cycle: Int
+  cycleName: String
+  date: DateTime
+  desc: String
+  fixedPrice: String
+  handleAt: DateTime
+  handleStatus: Int
+  id: String
+  maxPrice: Decimal
+  minPrice: Decimal
+  source: SourceEnum
+  sourceId: String
+  status: String
+  tags: String
+  title: String
+  type: Int
+  updatedAt: DateTime
+  url: String
+  userId: String
+  userName: String
+  userUrl: String
+  visitCount: Int
+}
+
+type FreelancerTaskSumAggregate {
+  application: Int
+  applyCount: Int
+  auditStatus: Int
+  cycle: Int
+  handleStatus: Int
+  maxPrice: Decimal
+  minPrice: Decimal
+  type: Int
+  visitCount: Int
+}
+
+input LoginInput {
+  login: String!
+  password: String!
+}
+
+type Mutation {
+  login(data: LoginInput!): UserInfo!
+}
+
+type Query {
+  hello(name: String!): String!
+  helloWorld: String!
+  userInfo: UserInfo!
+}
+
+enum SourceEnum {
+  a5
+  codemart
+  mayigeek
+  oschina
+  rrkf
+  shixian
+  taskcity
+  yuanjisong
+}
+
+type UserInfo {
+  accessToken: String
+  displayName: String!
+  id: String!
+  login: String!
+  nicename: String!
+  roles: [String!]!
+}

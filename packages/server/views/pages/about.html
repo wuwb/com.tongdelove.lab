@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="喵喵喵～">
+    <meta name="keywords" content="">
+    <title> 吴文斌 </title>
+    <!--
+        width=device-width：让文档的宽度与设备的宽度保持一致，且文档最大的宽度比例是1.0
+        initial-scale=1：初始的缩放比例
+        maximum-scale=1：允许用户缩放到的最大比例（对应还有个minimum-scale）
+        user-scalable=no：不允许用户手动缩放
+    -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!--
+        telephone=no：禁止自动将页面中的数字识别为电话号码
+        address=no：禁止自动地址转为链接
+        email=no：禁止自动将email转为链接
+    -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <!-- iPhone设置主屏幕标题 -->
+    <meta name="apple-mobile-web-app-title" content="蘑菇街H5">
+    <!-- 允许用户使用全屏模式浏览 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 当用户使用全屏浏览时，将状态条设置为黑色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+    .banner {
+        margin: 0 auto;
+        width: 60px;
+        height: 60px;
+        padding-top: 50px;
+    }
+    #cube {
+        float: left;
+        width: 60px;
+        height: 60px;
+    }
+    body {
+        font: 400 16px/1.62 Georgia, "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
+        color: #535353;
+        background: #fff;
+        overflow: hidden;
+        margin: 0;
+        padding: 0 100px;
+    }
+    .wuwenbin {
+        text-align: center;
+        height: 100%;
+        margin: 120px auto 0;
+        padding: 0;
+    }
+
+    .wuwenbin a {
+        color: #535353;
+        text-decoration: underline;
+    }
+    .wuwenbin a:link,
+    .wuwenbin a:visited {
+        color: #535353;
+        text-decoration: underline;
+    }
+    .title {
+        font-size: 26px;
+        color: #424242;
+        margin-bottom: 20px;
+    }
+    .title:after, .title:before {
+        position: absolute;
+        background: white;
+        content: attr(data-text);
+        clip: rect(0, 900px, 0, 0);
+    }
+    .title:before {
+        animation: glitch-anim-2 3.3s infinite linear alternate-reverse;
+        left: -1px;
+        text-shadow: -1px 0 violet;
+    }
+    .title:after {
+        animation: glitch-anim 2.3s infinite linear alternate-reverse;
+        left: 1px;
+        text-shadow: 1px 0 lightpink;
+    }
+    .avatar {
+        margin-bottom: 35px;
+        border-radius: 64px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    </style>
+</head>
+<body>
+    <div class="wuwenbin">
+        <div class="banner">
+            <canvas id="cube" width="60" height="60" style="width: 60px; height: 60px;"></canvas>
+        </div>
+        <div style="position: relative;">
+            <h1 class="title" data-text="吴文斌的个人网站">吴文斌</h1>
+        </div>
+        <p>Work @<a href="http://www.mogujie.com/">Mogujie</a>, Front-End Engineer. <a href="http://blog.wuwb.me/about">About Me</a>.</p>
+        <p>HangZhou · China</p>
+        <p>
+            <a href="http://blog.tongdelove.com/">Blog</a>
+            &nbsp;·&nbsp;
+            <a href="/links">Links</a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/aiwb" target="_blank">Github</a>
+            &nbsp;·&nbsp;
+            <a href="https://twitter.com/eqielb" target="_blank">Twitter</a>
+            &nbsp;·&nbsp;
+            <a href="http://weibo.com/eqielb" target="_blank">Weibo</a>
+            &nbsp;·&nbsp;
+            <a href="javascript:;" target="_blank">Linkedin</a>
+            <a href="mailto:bin2302@gmail.com">Email</a>
+            &nbsp;·&nbsp;
+            <a href="http://tongdelove.com/nomadlist">Nomadlist</a>
+        </p>
+    </div>
+
+    <!-- <script src="three.min.js"></script>
+    <script>
+        (function(){
+            vpm ar scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(25, 1, 1, 100);
+            var renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            canvas: document.getElementById('cube'),
+            antialias: true
+            });
+            renderer.setSize(60, 60);
+            var light = new THREE.AmbientLight(0x333333);
+            scene.add(light);
+            light = new THREE.PointLight(0xffffff, 2, 100);
+            light.position.set(0, 1.5, 5);
+            scene.add(light);
+            // cube
+            var texture = THREE.ImageUtils.loadTexture('./cube.png');
+            var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshLambertMaterial({
+            map: texture
+            }));
+            cube.position.z = 0.5;
+            scene.add(cube);
+            camera.position.z = 5;
+            function render() {
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+            }
+            render();
+        }());
+    </script> -->
+</body>
+</html>

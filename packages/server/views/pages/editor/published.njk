@@ -1,0 +1,24 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div id="app">
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block pageData %}
+<script>
+  var userID = {{ user.id }};
+  var article = {{ article | dump | safe }};
+  var collections = {{ collections | dump | safe }};
+  var contributeCollections = {{ contributeCollections | dump | safe }};
+  var recommendCollections = {{ recommendCollections | dump | safe }};
+  var weixinShareURL = '{{ weixinShareURL }}';
+</script>
+{% endblock %}
+
+{% block devjs %}
+  {{ loadjs('entry/editor/published.js') }}
+{% endblock %}

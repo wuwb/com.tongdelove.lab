@@ -1,0 +1,25 @@
+# curl -X POST http://localhost:7001/api/auth/login -d '{"username": "admin", "password": "123456"}' -H "Content-Type: application/json"
+
+### login
+POST http://localhost:7001/api/auth/login 
+Content-Type: application/json
+
+{
+    "username": "admin", 
+    "password": "123456"
+}
+
+# curl http://localhost:7001/api/auth/profile  -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2NTYwNjQ4MjEsImV4cCI6MTY1NjA2ODQyMX0.aIKhTRjQcXkTq_xgzEo5pfC-o6asprryo-GWse2vWQs"
+### get profile
+GET http://localhost:7001/api/auth/profile  
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2NTYwNjQ4MjEsImV4cCI6MTY1NjA2ODQyMX0.aIKhTRjQcXkTq_xgzEo5pfC-o6asprryo-GWse2vWQs
+
+### Create a new user
+POST http://localhost:7001/api/auth/signup
+Content-Type: application/json
+
+{
+    "email": "541330190@qq.com",
+    "password": "123"
+}

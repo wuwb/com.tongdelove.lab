@@ -1,0 +1,199 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div class="container">
+    <div class="article-box">
+        <div class="article">
+            <div class="author-info-block">
+                <a href="/uc/{{article.user.id}}" target="_blank" class="avatar-link">
+                    <div class="author-avatar" style="background-image: url({{article.user.avatarURL}});"></div>
+                </a>
+                <div class="author-info-box">
+                    <a href="/uc/{{article.user.id}}" target="_blank" class="username-ellipsis">{{article.user.username}}</a>
+                    <a href="{{userLevelChapterURL}}" target="_blank" class="rank levelimg">
+                        <img src="{{imgPath | levelImgURL(article.user.level)}}" style="margin-top: 2px;">
+                    </a>
+                    <div class="meta-box">
+                        <time class="time">{{article.createdAt | recentTime('YYYY年MM月DD')}}</time>
+                        <span class="views-count">阅读 {{article.browseCount}}</span>
+                        {% if user and user.id === article.user.id %}
+                        <span class="dot">·</span>
+                        <a href="/editor/posts/{{article.id}}" class="edit-btn">编辑</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="followUserSmallBtn" class="follow-button follow"></div>
+            </div>
+
+            {% if article.coverURL %}
+            <div class="article-cover" style="background-image: url({{article.coverURL}})"></div>
+            {% endif %}
+            <div class="article-title" style="margin-bottom: 20px; font-size: 30px;">{{article.name}}</div>
+
+            <div class="article-content">
+                <div class="mili-editor">
+                    {{article.htmlContent | safe}}
+                </div>
+            </div>
+
+            {% if article.tags and article.tags.length %}
+            <div class="tag-list-box">
+                <div class="tag-list-title">关注下面的标签，发现更多相似文章</div>
+                <div class="tag-list">
+                    {% for tag in article.tags %}
+                    <a href="/tags/{{tag.id}}" target="_blank" class="item">
+                        <div class="tag-icon" style="background-image: url({{tag.iconURL}});"></div>
+                        <div class="tag-title">{{tag.name}}</div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="follow-detail">
+                <div class="info">
+                    <a class="avatar" href="/uc/{{article.user.id}}" target="_blank">
+                        <img src="{{article.user.avatarURL}}" />
+                    </a>
+                    {# 不是作者本人 #}
+                    {% if not isAuthorSelf %}
+                        <a id="followUserBigBtn" href="javascript:void(0)"></a>
+                    {% endif %}
+                    <a class="title" href="/uc/{{article.user.id}}" target="_blank">{{article.user.username}}</a>
+                    <p>发布了 {{article.user.articleCount | prettyCount}} 篇文章 · 获得点赞 
+                        {{article.user.likedCount | prettyCount}} · 获得阅读 
+                        {{article.user.articleViewCount | prettyCount}}</p>
+                </div>
+            </div>
+
+            <div class="article-banner comment-scroll-to">
+                <a class="banner-title" href="https://github.com/shen100/mili" target="_blank">下载{{siteName}}网源码</a>
+                <div class="banner-content">米粒网是一个帮助开发者成长的开源社区，一起分享知识、寻找答案。</div>
+            </div>
+
+            <div>
+                <div class="comment-title-sep">评论</div>
+                <div id="comment-list" class="comment-list">
+                    {# 评论组件的容器 #}
+                    <div id="normal-comment-list" class="normal-comment-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-sidebar">
+            <div class="sidebar-block">
+                <div class="block-title">关于作者</div>
+                <div class="block-body">
+                    <div class="user-item item">
+                        <a href="/uc/{{article.user.id}}" target="_blank" class="user-item-avatar" style="background-image: url({{article.user.avatarURL}});"></a>
+                        <div class="info-box">
+                            <a href="/uc/{{article.user.id}}" target="_blank" class="username">{{article.user.username}}</a>
+                            <a href="{{userLevelChapterURL}}" target="_blank" class="rank levelimg">
+                                <img src="{{imgPath | levelImgURL(article.user.level)}}" style="margin-top: 2px;">
+                            </a>
+                            <div class="position">{{article.user | jobCompany}}</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <svg width="25" height="26" viewBox="0 0 25 26" class="zan-icon">
+                            <g fill="none" fill-rule="evenodd" transform="translate(0 .57)">
+                                <ellipse cx="12.5" cy="12.57" fill="#fadcd6" rx="12.5" ry="12.57"></ellipse>
+                                <path fill="#e77c6a" d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z"></path>
+                            </g>
+                        </svg>
+                        <span class="content">获得点赞<span class="count">{{article.user.likedCount | prettyCount}}</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <svg width="25" height="25" viewBox="0 0 25 25" class="article-view-icon">
+                            <g fill="none" fill-rule="evenodd">
+                                <circle cx="12.5" cy="12.5" r="12.5" fill="#fadcd6"></circle>
+                                <path fill="#e77c6a" d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z"></path>
+                            </g>
+                        </svg>
+                        <span class="content">文章被阅读<span class="count">{{article.user.articleViewCount | prettyCount}}</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommended-books">
+                <div class="title">
+                    <span>开源图书</span>
+                </div>
+                <ul>
+                    {% for book in recommendedBooks %}
+                    <li class="book-item">
+                        <a href="/books/{{book.id}}" target="_blank">
+                            <img class="book-item-img" src="{{book.coverURL}}">
+                            <div class="book-item-info">
+                                <div class="book-item-title">{{book.name}}</div>
+                                <div>
+                                    <span class="book-item-buycount">{{book.studyUserCount}}人已学习</span>
+                                    <span class="try-read">阅读</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="articleSuspendedPanel"></div>
+    </div>
+
+    <div class="note-bottom">
+        <div>
+            <div class="recommend-note">
+                <div class="meta">
+                    <div class="title">相关推荐</div>
+                </div>
+                <div class="recommend-list-box">
+                {% include '../../component/article/articles.njk' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block pageData %}
+<script>
+  var articleID = {{ article.id }};
+  var isAuthorSelf = {{ isAuthorSelf }}; {# 是否是作者本人 #}
+  var userLiked = {{ userLiked }}; {# 当前用户是否已对此文章点过赞 #}
+  var userFollowed = {{ userFollowed }}; {# 当前用户是否已关注作者 #}
+  var articleLikedCount = {{ article.likedCount }}; {# 文章点赞数 #}
+  var articleCommentCount = {{ article.commentCount }}; {# 总评论数 #}
+  var rootCommentCount = {{ article.rootCommentCount }}; {# 一级评论数 #}
+  {# 当前登录用户 #}
+  var user = {% if user %} {{user | dump | safe}} {% else %}null{% endif %};
+  {# 文章作者 #}
+  var authorID = {{ article.user.id }};
+
+  var weiboShareURL = '{{ weiboShareURL }}';
+  var qqShareURL = '{{ qqShareURL }}';
+  var weixinShareURL = '{{ weixinShareURL }}';
+  var userLevelChapterURL = '{{ userLevelChapterURL }}';
+</script>
+{% endblock %}
+
+{% block libcss %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{cssPath}}/libs/highlight.codestyle.css" type="text/css">
+{% endblock %}
+
+{% block libjs %}
+    {{ super() }}
+    <script src="{{jsPath}}/libs/qrcode.min.js" type="text/javascript"></script>
+    <script src="{{jsPath}}/libs/highlight.min.js" type="text/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block devjs %}
+    {{ loadjs('entry/article/articleDetail.js') }}
+{% endblock %}

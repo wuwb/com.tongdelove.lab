@@ -1,0 +1,49 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<header class="intro-header" style="background-image: url('public/images/about-bg.jpg')">
+
+</header>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>登录</h1>
+                    <hr class="small">
+                    <div>
+                        <form action="/user/forgot" method="POST">
+                            <input type="hidden" name="_csrf" value="{{csrf}}">
+                            <div>
+                                <div>
+                                    <label for="email">邮箱</label>
+                                </div>
+                                <div>
+                                    <input type="text" name="email">
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                </div>
+                                <div>
+                                    <button type="submit">发送</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div>
+                            <div>其他账号联合登录</div>
+                            <div>
+                                <a href="/user/auth/facebook">Sign in with Facebook</a>
+                                <a href="/user/auth/twitter">Sign in with Twitter</a>
+                                <a href="/user/auth/google">Sign in with Google</a>
+                                <a href="/user/auth/provider">Log In with OAuth Provider</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

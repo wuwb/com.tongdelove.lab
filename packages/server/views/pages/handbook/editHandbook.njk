@@ -1,0 +1,21 @@
+{% extends '../../layout/empty.njk' %}
+
+{% block main %}
+<div id="app">
+</div>
+{% endblock %}
+
+{% block pageData %}
+<script>
+    var env = '{{ env }}';
+    var userID = {{ user.id }};
+    var avatarURL = '{{ user.avatarURL }}';
+    var uploadPolicy = {{ uploadPolicy | dump | safe }};
+    var companyName = '{{ companyName }}';
+    var siteName = '{{ siteName }}';
+</script>
+{% endblock %}
+
+{% block devjs %}
+    {{ loadjs('entry/handbook/editHandbook.js') }}
+{% endblock %}

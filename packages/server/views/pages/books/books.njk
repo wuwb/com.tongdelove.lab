@@ -1,0 +1,64 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div class="container">
+    <div class="category-nav-box">
+        <div class="category-nav">
+            <ul class="category-list">
+                <li><a href="/books" class="category-item {% if categoryPathName === 'all' %}category-item-select {% endif %}">全部</a></li>
+                {% for category in categories %}
+                <li><a href="/books/{{category.pathname}}" class="category-item {% if categoryPathName == category.pathname %}category-item-select {% endif %}">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="book-view-box">
+        <div class="book-view">
+            {% include '../../component/book/bookList.njk' %}
+
+            <div class="handbooks">
+                <div id="books"></div>
+            </div>
+        </div>
+        <div class="side-box">
+            <div class="recommended-books">
+                <div class="title">
+                    <span>开源图书</span>
+                </div>
+                <ul>
+                    {% for book in recommendBooks %}
+                    <li class="book-item">
+                        <a href="/books/{{book.id}}" target="_blank">
+                            <img class="book-item-img" src="{{book.coverURL}}">
+                            <div class="book-item-info">
+                                <div class="book-item-title">{{book.name}}</div>
+                                <div style="margin-top: 2px;">
+                                    <span class="book-item-buycount">{{book.studyUserCount}}人已学习</span>
+                                    <span class="try-read">阅读</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block pageData %}
+<script>
+    var categoryPathName = '{{categoryPathName}}';
+    var bookCount = {{count}};
+    var pageSize = {{pageSize}};
+</script>
+{% endblock %}
+
+{% block devjs %}
+    {{ loadjs('entry/book/books.js') }}
+{% endblock %}

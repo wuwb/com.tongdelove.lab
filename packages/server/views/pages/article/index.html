@@ -1,0 +1,43 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('public/images/about-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>文章</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for item in articles %}
+            <div>{{ item.id }}</div>
+            <div>{{ item.cate }}</div>
+            <div>{{ item.title }}</div>
+            <div>{{ item.desc }}</div>
+            <div>{{ item.keywords }}</div>
+            <div>{{ item.content }}</div>
+            <div>{{ item.user_id }}</div>
+            <div>{{ item.type }}</div>
+            <div>{{ item.img_url }}</div>
+            <div>{{ item.open_type }}</div>
+            <div>{{ item.link }}</div>
+            <div>{{ item.created_at }}</div>
+            <div>{{ item.updated_at }}</div>
+            {% else %}
+            <li>This would display if the 'item' collection were empty</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

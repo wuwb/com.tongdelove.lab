@@ -1,0 +1,84 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .company-list .cell {
+        display: table-cell;
+        font-style: normal;
+        vertical-align: middle;
+    }
+</style>
+<div class="container-fluid container-company">
+    <div class="row ">
+        <div class="col-12 filter mt20">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">上市公司</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ERP 研发公司</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">报价软件 研发公司</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">APP 研发公司</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 company-list mt20">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">股票代码</th>
+                        <th scope="col">股票简称</th>
+                        <th scope="col">公司名称</th>
+                        <th scope="col">成立时间</th>
+                        <th scope="col">地点</th>
+                        <th scope="col">价格</th>
+                        <th scope="col">涨跌幅</th>
+                        <th scope="col">分类</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">关注</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">关注</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <th><img src="http://placehold.it/24x24" /></th>
+                        <td>尖端放电实验室</td>
+                        <td>2018</td>
+                        <td>浙江温州苍南</td>
+                        <td>包装印刷</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">关注</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

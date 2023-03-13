@@ -1,0 +1,127 @@
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .sub-nav {
+        text-align: center;
+        border-bottom: 1px solid #e6e5e3;
+    }
+    .sub-nav a {
+        display: inline-block;
+        border-bottom: 1px solid transparent;
+        padding: 14px 2px 15px 2px;
+        margin: 0 20px -1px 0;
+        color: #898884;
+        text-decoration: none;
+    }
+    .sub-nav a.active {
+        color: #000;
+        border-bottom: 1px solid #000;
+    }
+    .sub-nav a:hover {
+        color: #000;
+    }
+    .page-heading {
+        padding: 120px;
+    }
+    .page-title {
+        text-align: center;
+    }
+    .job-wrap {
+            margin-bottom: 50px;
+        }
+        .job-category {
+            margin-top: 30px;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        .job-item {
+            overflow: hidden;
+        }
+        .job-item p {
+            font-size: 18px;
+            float: left;
+        }
+        .job-item span {
+            font-size: 14px;
+            color: #999;
+            float: right;
+        }
+</style>
+<div class="sub-nav">
+    <a href="/about">关于</a>
+    <a class="active" href="/jobs">招聘</a>
+    <a href="/team">团队</a>
+    <a href="/press">Press</a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt30">
+            <div class="page-heading">
+                <h1 class="page-title">帮助重塑制造业。</h1>
+                <div>
+                    在尖端放电实验室，我们建立了包装软件和供应链，帮助您喜爱的在线品牌更精美，可持续和经济地生产产品。 听起来是不是很有趣？你会喜欢这里的。
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="job-wrap">
+                <h3 class="job-category">技术</h3>
+                <div>
+                    <a href="">
+                        <div class="job-item">
+                            <p>高级UX设计师</p>
+                            <span class="base">浙江杭州</span>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="job-item">
+                            <p>全栈开发工程师</p>
+                            <span>浙江杭州</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="job-wrap">
+                <h3 class="job-category">印前</h3>
+                <div>
+                    <a href="">
+                        <div class="job-item">
+                            <p>包装设计师</p>
+                            <span>浙江杭州</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="job-wrap">
+                <h3 class="job-category">销售</h3>
+                <div>
+                    <a href="">
+                        <div class="job-item">
+                            <p>业务经理</p>
+                            <span>浙江杭州</span>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="job-item">
+                            <p>企业销售总监</p>
+                            <span>浙江杭州</span>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="job-item">
+                            <p>销售负责人</p>
+                            <span>浙江杭州</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

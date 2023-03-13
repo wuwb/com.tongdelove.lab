@@ -1,0 +1,77 @@
+{% extends '../../layout/default.njk' %}
+
+{% block main %}
+<div class="container">
+    <div class="category-nav-box">
+        <div class="category-nav">
+            <ul class="category-list">
+                <li><a class="category-item category-item-select" href="">全部</a></li>
+                {% for category in categories %}
+                <li><a class="category-item" href="">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="content-box">
+        {% block handbookList %}
+            {% include '../../component/handbook/handbookList.njk' %}
+        {% endblock %}
+        <div class="aside top">
+            <div class="sticky-section">
+                <div class="section">
+                    <div class="slogan">
+                        <div class="title">米粒小册是什么？</div>
+                        <div class="desc">一个小篇幅、高浓度、成体系、有收益的技术学习平台</div>
+                    </div>
+                    <div class="wechat-qr">
+                        <div class="title">关注公众号 领取优惠码</div>
+                        <div class="qr-img"></div>
+                    </div>
+                </div>
+                <div class="section help">
+                    <a href="/book" target="_blank" rel="" class="items author">
+                        <img src="https://b-gold-cdn.xitu.io/v3/static/img/author.c5d975e.png">
+                        <div class="title">成为作者</div>
+                    </a>
+                    <a href="/feedback" target="_blank" rel="" class="items feedback">
+                        <img src="https://b-gold-cdn.xitu.io/v3/static/img/feedback.1230fb5.png">
+                        <div class="title">建议反馈</div>
+                    </a>
+                </div>
+                <div class="book-new-user-award-aside book-new-user-ticket-for-book-index">
+                    <div class="pic"><img src="https://b-gold-cdn.xitu.io/v3/static/img/icon.b99ea03.svg"></div>
+                    <div class="content">
+                        <div class="title">
+                            <span>送你 45 元买小册</span>
+                        </div>
+                        <div class="desc">
+                            <div class="get">立即领取</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div  class="copy-right-box">
+    <div class="copy-right">
+        <span>©{{ '' | currentTime('YYYY')}} {{siteName}}</span>
+        <span> | </span>
+        <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备12045181号-2</a>
+        <span> | </span>
+        <a href="" target="_blank">京公网安备xxxxx号</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block pageData %}
+<script>
+</script>
+{% endblock %}
+
+{% block devjs %}
+{{ loadjs('entry/handbook/handbooks.js') }}
+{% endblock %}

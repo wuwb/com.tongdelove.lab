@@ -1,0 +1,50 @@
+
+{% extends "layouts/pc-default/index.html" %}
+
+{% block body %}
+<style>
+    .company-list .cell {
+        display: table-cell;
+        font-style: normal;
+        vertical-align: middle;
+    }
+</style>
+<!-- https://www.itjuzi.com/location -->
+<div class="container container-company">
+    <div class="row ">
+        <div class="col-9">
+            <div class="filter mt20">
+                分类筛选
+            </div>
+            <div class="company-list table mt20">
+                <div class="thead">
+                    <div class="cell"></div>
+                    <div class="cell">公司</div>
+                    <div class="cell">成立时间</div>
+                    <div class="cell">地点</div>
+                    <div class="cell">分类</div>
+                    <div class="cell">关注</div>
+                </div>
+                <div class="tbody">
+                    <ul>
+                        <li>
+                            <div class="cell">
+                                <img src="http://placehold.it/80x80"></img>
+                            </div>
+                            <div class="cell">尖端放电实验室</div>
+                            <div class="cell">2018</div>
+                            <div class="cell">浙江温州苍南</div>
+                            <div class="cell">包装印刷</div>
+                            <div class="cell">关注</div>
+                        </li>
+                        <ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div>侧边广告</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
