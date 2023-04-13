@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>【移动开发04】固定宽高自适应屏幕的实现</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-划船文档 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>【移动开发04】固定宽高自适应屏幕的实现</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <h4 id="-wap-body-">大家都知道wap开发中body宽度是按手机浏览器的虚拟像素宽度来适配的。而高度属性不像宽度一样可以直接取百分比来实现的。</h4>
+<h4 id="-10-4-5-banner-">这里我就举一个等比宽高（10:4.5）会场banner的例子,下面是文件列表</h4>
+<pre><code class=" hljs php">Js css：
+<span class="hljs-keyword">public</span>/jsmobile/src/page-tuan-brandsale.js
+<span class="hljs-keyword">public</span>/cssmobile/src/page-tuan-brandsale.css
+Demo忽视吧：
+appbeta/views/tuan/mact/mobile/demo_brandsale.php
+</code></pre><p>（这里不推荐直接用内容图去撑，站内的图片用的尺寸都比较大，加载起来较慢，用内容图去撑dom，会照成页面元素高度变化频繁，影响体验。）
+先展示下banner图的基本样式</p>
+<pre><code class=" hljs css"><span class="hljs-comment">/*设置屏幕宽度94%，最大宽度为480px，防止banner图过大失真*/</span>
+<span class="hljs-class">.active_pre_box</span> <span class="hljs-rules">{ 
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">94%</span></span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">480px</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">8px</span> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#d9d9d9</span></span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">5px</span></span></span>; 
+
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.link_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>; <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>; <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre><p>psd上的标准效果</p>
+<p><img src="../../../s6.mogujie.cn/pic/140708/o61vu_kq2eo4s7krbegrkugfjeg5sckzsew_463x253.png" alt="alt text" title="Title"></p>
+<h4 id="1-min-height">1 设置一个多层min-height</h4>
+<p>因为宽度是按百分比随手机浏览器宽度变化的，所以我们要按市面上主流的宽度来分层做min-height高度适配：</p>
+<pre><code class=" hljs css"><span class="hljs-comment">/*针对360px以下的屏幕做适配*/</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (max-width: <span class="hljs-number">360px</span>)  </span>{
+    <span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.link_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">min-height</span>:<span class="hljs-value"> <span class="hljs-number">135px</span></span></span>; <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-comment">/*针对[360px,420px)的屏幕做适配*/</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width: <span class="hljs-number">360px</span>) and (max-width: <span class="hljs-number">420px</span>) </span>{
+    <span class="hljs-comment">/*不同屏幕设置不同min-height*/</span>
+    <span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.link_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">min-height</span>:<span class="hljs-value"> <span class="hljs-number">152px</span></span></span>; <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-comment">/*针对[420px,480px)的屏幕做适配*/</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width: <span class="hljs-number">420px</span>) and (max-width: <span class="hljs-number">480px</span>) </span>{
+    <span class="hljs-comment">/*不同屏幕设置不同min-height*/</span>
+    <span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.link_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">min-height</span>:<span class="hljs-value"> <span class="hljs-number">178px</span></span></span>; <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-comment">/*适配480px以上屏幕*/</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width: <span class="hljs-number">480px</span>) </span>{ 
+    <span class="hljs-comment">/*不同屏幕设置不同min-height*/</span>
+    <span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.link_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">min-height</span>:<span class="hljs-value"> <span class="hljs-number">216px</span></span></span>; <span class="hljs-rule">}</span></span>
+}
+</code></pre><p>这样做好后在320px，360px，420px，480px这几个标准尺寸的浏览器宽度下宽高比都为标准的10:4.5。</p>
+<p>但是在这几个标准尺寸之间的值就会比例就会稍有失调，例如479px下的显示效果</p>
+<p><img src="../../../s6.mogujie.cn/pic/140708/o61vu_kq2gkmkdkrbfiq2ugfjeg5sckzsew_461x230.png" alt="alt text" title="Title"></p>
+<p>因为比列失调图片被截取了明显不能忍啊</p>
+<h4 id="2-">2设置撑高占位图撑高</h4>
+<p>原理就是截取宽高比一张小的单色图来设置width:100%来实现等高占位。</p>
+<p><strong>html代码：</strong></p>
+<pre><code class=" hljs xml"><span class="hljs-comment">&lt;!-- 活动预览 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active_pre_box"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"link_img"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:;"</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">"_blank"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 撑高占位图 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"fill_img"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s8.mogujie.cn/pic/140630/o61vu_kq2c42kkkrbdissugfjeg5sckzsew_20x9.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- banner图片 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"banner_img lazy"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://dummyimage.com/480x216/2ea79d/fff"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 信息栏 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active_info_bar"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"fr active_discount"</span>&gt;</span>0.3折起<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"fl active_name"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:;"</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">"_blank"</span>&gt;</span>SIX GOD--蓝胖最爱！<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre><p><strong>css代码</strong></p>
+<pre><code class=" hljs css"><span class="hljs-class">.fill_img</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-comment">/*内容图设置position:absolute,来定位*/</span>
+<span class="hljs-class">.active_pre_box</span> <span class="hljs-class">.banner_img</span> <span class="hljs-rules">{ 
+    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>; 
+    <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">5px</span> <span class="hljs-number">5px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></span></span>; 
+<span class="hljs-rule">}</span></span>
+</code></pre><p>这样就算banner内容图加载比较慢，dom也可以撑起来，还可以有一个稍微好看的背景，体验提升啊。
+<img src="../../../s9.mogujie.cn/pic/140708/o61vu_kq2e2mkdkrbfcvsugfjeg5sckzsew_462x251.png" alt="alt text" title="Title"></p>
+<p>但是！这样就有连带出2个问题了：</p>
+<p>1）怎么保证占位图预先出现</p>
+<p>2）怎么保证占位图加载成功</p>
+<p>解决1很简单在代码最上部设置一个预加载的dom，先把占位img放进去就好了</p>
+<pre><code class=" hljs xml">.img_pre_hid { height: 0; overflow: hidden; }
+<span class="hljs-comment">&lt;!-- 占位图片预加载 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"img_pre_hid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s6.mogujie.cn/pic/140624/2_kq2g4tkdkrbegqkugfjeg5sckzsew_2x1.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s6.mogujie.cn/pic/140624/5_kq2ee3sdkrbgevsugfjeg5sckzsew_5x2.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s6.mogujie.cn/pic/140625/2_kq2hutk7krbhgssugfjeg5sckzsew_2x2.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s13.mogujie.cn/pic/140630/o61vu_kq2eiukkkrbdissugfjeg5sckzsew_20x11.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://s6.mogujie.cn/pic/140630/o61vu_kq2c42kkkrbdissugfjeg5sckzsew_20x9.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">""</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre><p>解决2 则利用img的onerror事件来做一个失败重加载</p>
+<pre><code class=" hljs javascript"><span class="hljs-comment">/**
+ * 图片出错处理，可以重加载指定的图片。超过重试次数仍不能正常显示的，显示缺省图片。  
+ * imgObj:img节点对象  
+ * maxErrorNum:最大出错次数，防止出现死循环  
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">imgErrorReload</span><span class="hljs-params">(imgObj,maxErrorNum)</span></span>{
+    <span class="hljs-keyword">var</span> imgSrc = imgObj.src;
+    <span class="hljs-comment">// 每次加载失败次数减一</span>
+    <span class="hljs-keyword">if</span>(maxErrorNum&gt;<span class="hljs-number">0</span>){
+        imgObj.onerror=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+            imgErrorReload(imgObj,maxErrorNum-<span class="hljs-number">1</span>);
+        };
+        <span class="hljs-comment">// 延迟0.5秒重新加载</span>
+        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+            imgObj.src=imgSrc;
+        },<span class="hljs-number">500</span>);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-comment">// 加载次数用完处理</span>
+        <span class="hljs-comment">// imgObj.onerror=null;</span>
+        <span class="hljs-comment">// imgObj.src="images/default.jpg";</span>
+    }
+}
+<span class="hljs-comment">// 遍历占位图片，初始化onerror方法</span>
+$(<span class="hljs-string">'.img_pre_hid img'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span>( <span class="hljs-keyword">this</span>.complete ) {
+        imgErrorReload(<span class="hljs-keyword">this</span>,<span class="hljs-number">10</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            imgErrorReload(<span class="hljs-keyword">this</span>,<span class="hljs-number">10</span>);
+        };
+    }
+});
+</code></pre>
+                    <a href="../edit/53c3a1f3a1523573a7e67ec3.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        18天前，
+                        2014年7月18日星期五中午11点43，
+                    </span>
+                    <a href="../delete/53c3a1f3a1523573a7e67ec3-redirect-category=划船文档.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

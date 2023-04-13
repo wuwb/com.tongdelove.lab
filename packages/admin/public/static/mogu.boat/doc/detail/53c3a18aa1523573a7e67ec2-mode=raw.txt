@@ -1,0 +1,143 @@
+### 1 配置一个WAP模板
+#### 1 制作一个适用于wap简单的template模板（views\tuan\mact\template_tuan_mobile.php）
+先配置头部title输出位子，方便controller端来设置
+
+![alt text](http://s6.mogujie.cn/pic/140630/o61vu_kq2emrcxkrbf6q2ugfjeg5sckzsew_760x137.png "Title")
+
+ 
+配置视图显示位置，方便controller里用Zwidget::zadd方法来加
+
+![alt text](http://s6.mogujie.cn/pic/140630/o61vu_kq2ha2cxkrbf6rcugfjeg5sckzsew_583x77.png "Title")
+
+ 
+根据需求重置头部的base级css，并输出，然后之后再跟上page级css
+
+![alt text](http://s13.mogujie.cn/pic/140630/o61vu_kq2hatcxkrbf6wkugfjeg5sckzsew_757x220.png "Title")
+
+ 
+相同方法配置foot的base、page级js
+
+![alt text](http://s12.mogujie.cn/pic/140630/o61vu_kq2hmx2mkrbf6x2ugfjeg5sckzsew_906x210.png "Title")
+
+ 
+#### 2 配置路由（classes\controller\tuan\config\route.php）
+
+![alt text](http://s13.mogujie.cn/pic/140630/o61vu_kq2furcxkrbf6q2ugfjeg5sckzsew_901x190.png "Title")
+
+    注意点：
+    1 配置contriller路劲时注意全用小写字母，并设置好默认进入的action，一般name用index。
+    2 配置路由连接时千万要注意不要和以前的相同，后配置的相同路劲的路由会把之前的路由覆盖掉。如果之前的路由是线上在用的话就是一个事故报告了。
+ 
+#### 3 配置控制器controller（classes\controller\tuan\mact\mobile.php）
+ 
+类名要按路径加文件名命名，中间用下划线分割，并按需要设置before，index方法
+
+![alt text](http://s6.mogujie.cn/pic/140630/o61vu_kq2gircxkrbf6zcugfjeg5sckzsew_742x528.jpg "Title")
+
+ 
+设置clear_page_jscss方法，来清空template.php中默认加载page级jscss
+
+![alt text](http://s6.mogujie.cn/pic/140630/o61vu_kq2eitcmkrbfcv2ugfjeg5sckzsew_454x324.png "Title")
+
+ 
+配置引用页面方法，方法名就是路由最后的连接名
+![alt text](http://s12.mogujie.cn/pic/140630/o61vu_kq2gix2mkrbfcv2ugfjeg5sckzsew_810x449.png "Title")
+
+### 2 幻灯片播放插件swipe介绍（/jsmobile4/lib/swipe/swipe.js）
+#### wap开发中有几个常用js，这次开发我用到是zepto,swipe。zepto简单点可以理解成精简版的jquery，所以这次介绍的重点为swipe。
+#### 1 引用swipe
+因为左右滑动这个交互在团购的模板中非常常见所以在配置模板的时候，把起和zepto一起当做base级js一起加入模板。
+
+    $jsbase = array('/jsmobile4/lib/zepto/zepto.js','/jsmobile4/lib/swipe/swipe.js');
+    _script2 ( $jsbase, 'base', true );
+
+#### 2 swipe的使用
+下面举一个简单的例子
+    
+    html代码
+    <div id='slider' class='swipe'>
+      <div class='swipe-wrap'>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </div>
+    </div>
+
+
+    js代码
+    var mySwipe = new Swipe($('#slider')[0], {
+        startSlide: 2,
+        speed: 400,
+        auto: 3000,
+        continuous: true,
+        stopPropagation: false,
+        callback: function(index, elem) {},
+    }); 
+
+    添加了事件后我们还需要添加一些基础的css，以保证滑块能正常工作：
+    .swipe {
+      overflow: hidden;
+      visibility: hidden;
+      position: relative;
+    }
+    .swipe-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .swipe-wrap  div {
+      float:left;
+      width:100%;
+      position: relative;
+    }
+
+下面列举swipe配置一些参数：
+
+**startSlide** (Integer) 滑动的索引值,即从*值开始滑动，默认值为0
+
+**speed**      (Integer) 滑动的速度，默认值300毫秒
+
+**auto**       (Integer) 自动滑动，单位为毫秒,默认值为0，等同于false。
+
+**continuous** (Boolean) 是否循环滑动，默认值为true
+
+**stopPropagation** (Boolean) 停止事件传播,默认值flase
+
+**callback**        (Function) 回调函数
+
+
+ 
+#### 3 使用swipe时的注意点
+
+a) 初始化获取的swipe获取是原生dom不是jquery对象，所以要jquery对象后加[0]这样简单转一下
+
+b) 需求通常会要求只有一张图的时候不能滑动。
+
+c) 因为其实现原理，在幻灯片子元素只有两个时候并且设置continuous为ture时，swipe会多复制2个dom来时间左右无缝滑动，这样会照成页面性能的浪费。
+解决上诉b+c遇到问题就是，一张幻灯片的时候不初始化swipe，两张的时候不设置continuous和auto。举例
+
+    // 幻灯片存在，则初始化
+    if( $("#head_slider").length > 0 ) initHeadSlider($("#head_slider"));
+    function initHeadSlider(obj) {
+        // 获取slideBox
+        var slideBox = obj;
+
+        // 如果ul个数大于1，初始化滑动组件,且只有两屏的时候无法回滚
+        if(slideBox.find('.head_banner').length > 1) {
+            var continuous = true;
+            var auto = 2500;
+            // 如果幻灯片为2时不自动滚动和循环滚动
+            if (slideBox.find('.head_banner').length <= 2) {
+                continuous = false;
+                auto = false;
+            }
+            // 初始化swipe
+            var mySwipe=new Swipe(slideBox[0],{
+                auto:auto,
+                continuous:continuous,
+                callback: function(index, element) {
+                    // 回调，使对应的小红点亮起
+                    slideBox.find(".swipe_indicator li").removeClass("active").eq(index).addClass('active');
+                }
+            });
+        }
+    }

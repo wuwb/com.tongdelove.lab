@@ -1,0 +1,39 @@
+# 蘑菇街客户端链接
+
+> 支持版本：iPhone 5.4.0 / Android 5.5.0 以上
+> 创建时间：2014-7-14
+> 
+
+	
+链接 | 参数 | 说明 | 示例
+------------ | ------------- | ------------ |-------
+http://.… || 普通 http 链接 | http://m.mogujie.com
+mgj://index?tab={tab} | tab(首页顶部 tab 索引)| 去首页 | mgj://index?tab=2
+mgj://cate | | 分类页面 | mgj://cate
+mgj://tuan/{controller}/{action} |不传 controller action 时默认访问 tuan/list 接口 |团购图墙 | mgj://tuan
+mgj://daren | | 达人页面 | mgj://daren
+mgj://cart | | 购物车页面 | mgj://cart
+mgj://myprofile | | 我的页面 | mgj://myprofile
+mgj://detail?iid={iid} | iid(优店商品id) | 优店商品详情 | mgj://detail?iid=16mfm46
+mgj://tbdetail?tid={tid} | tid(推id) | 淘宝商品详情 | mgj://tbdetail?tid=1hmg9ja
+mgj://dapeidetail?tid={tid} | tid(推id) | 搭配详情 | mgj://dapeidetail?tid=1k1w2i8
+mgj://wall/{path}?fcid={fcid}|path(图墙接口路径),其它任意参数|
+mgj://catewall/{path}?fcid={fcid}|path(图墙接口路径),fcid(分类id)|图墙顶部多出子类目标签|mgj://catewall/book/shopping?fcid=12607,
+mgj://message | | 信息页面 | mgj://message
+mgj://setting | | 设置页面 | mgj://setting
+mgj://follow?uid={uid} | uid(用户id) | 关注列表 |mgj://follow?uid=11f322e
+mgj://fans?uid={uid} | uid(用户id) | 粉丝列表 |mgj://fans?uid=11f322e
+mgj://orderlist | | 订单列表 | mgj://orderlist
+mgj://couponlist | | 优惠券列表 | mgj://couponlist
+mgj://album?uid={uid} | uid(用户id) | 某人的专辑 | mgj://album?uid=11f322e
+mgj://createaddress | | 新增地址页面 | mgj://createaddress
+mgj://editprofile | | 编辑个人资料| mgj://editprofile
+mgj://searchfriend | | 查找闺密页面 | mgj://searchfriend
+mgj://order?orderId={orderId}&mStatus={mStatus} | orderId(订单号), mStatus(订单状态：1 代付款，2 待发货，3 待收获，4 交易结束) | 订单详情| mgj://order?orderId=199x2c&mStatus=3
+mgj://address | | 收获地址列表页面 | mgj://address
+mgj://bannerlist | | banner 列表页面 | mgj://bannerlist
+mgj://login || 登录页面 | mgj://login
+mgj://register || 注册页面 | mgj://register
+mgj://update || 去更新 | mgj://update
+mgj://rate?orderId=XXX || 去评价 | mgj://rate?orderId=2k34k1
+mgj://shop?shopId=XXX ||店铺首页|mgj://shop?shopId=14qse

@@ -1,0 +1,51 @@
+### 问题描述：
+  	针对目前移动端活动需求比较频繁，前端没有php模板，导致每次都要我们去问，或者自己找组件的情况。
+
+### 解决方式：
+	根据我们移动端需求，建立适合我们移动端活动这块需求的模板类名：Controller_Mage_Mobilexample_Basetemplate 后端使用这个模板渲染已经包括html5公用头部，机型适配， 前端常用组件： zepto，Tips，Confirm，Layload，fastClick，countTimer 以及一些我们自己封装的常用方法。
+	
+ ### 组件的使用方法：
+	Tips:
+	param:@xxx:内容
+	param:3000毫秒数
+
+	MFL.Tips("xxxxx",3000);
+
+	Confirm:
+	MFL.Confirm(option);
+	option具体配置参数：
+	type: 'confirm',
+	tip: '弹窗',
+	onConfirm: function () {},
+	onCancel: function(){},
+	confirmText: '确定',
+	cancelText: '取消'
+	
+	Layload:
+  	window.lazyload.init({
+          	effect :'fadeIn'
+  	 });
+	会把页面上所有img的class lazy 的懒加载属性
+	data-original="http://s12.mogujie.cn/b7/pic/131217/au7us_kqzegnsbkrbhgtcugfjeg5sckzsew_450x675.jpg"的图片
+
+	fastClick：
+	new FastClick(container);
+	参数container 为容器 对容器内的所有click都起效果，效果更快，体验感更好
+
+	countTimer：
+	是一款倒计时组件
+ 	var t = new MFL.countTimer({
+        	"id":"time",
+        	"time":57410,
+       	 	"callback":function(){alert("123")},//倒计时
+        	"showMicro":false
+   	 });
+    	$('#stop').on("click",function(){
+    		t.stop();
+   	 });
+    	$('#restart').on("click",function(){
+    		t.restart();
+   	 });
+    	$('#reset').on("click",function(){
+    		t.resetTime(3*60*1000);
+    	});

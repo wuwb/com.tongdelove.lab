@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>git config 配置</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-代码片段 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>git config 配置</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <h3 id="-git-">配置一些常用 git 命令</h3>
+<p>vim ~/.gitconfig</p>
+<pre><code class=" hljs java">[user]
+    name = yourname  <span class="hljs-comment">//如果name配置 github 帐号，会抓取你的 github 头像</span>
+    email = youremail<span class="hljs-annotation">@gmail</span>.com
+[push]
+    <span class="hljs-keyword">default</span> = simple
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+    br = branch
+    di = diff
+[color]
+    ui = <span class="hljs-keyword">true</span>
+[core]
+    quotepath = <span class="hljs-keyword">false</span>
+</code></pre>
+                    <a href="../edit/53c39e4ba6d012d51cfe2f56.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        22天前，
+                        2014年7月14日星期一下午5点12，
+                    </span>
+                    <a href="../delete/53c39e4ba6d012d51cfe2f56-redirect-category=代码片段.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

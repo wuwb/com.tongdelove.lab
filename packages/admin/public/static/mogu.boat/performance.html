@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>performance</title>
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="doc/代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="doc/划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <link rel="stylesheet" href="history/history.css">
+    <link rel="stylesheet" href="stylesheets/code.css">
+    <style>
+        #widget-channel {
+            background: red;
+            color: #fff;
+        }
+    </style>
+    <div class="row-fluid clearfix">
+        <form action="/submit" method="post">
+            <div class="module">
+                <div class="span3 col-side shadow-side">
+                    <h1>performance</h1>
+
+                    <p class="info">Version：
+                        <select id="version">
+                            
+                            <option value="v0.1.0">
+                             latest: v0.1.0
+                            </option>
+                            
+                            <option value="v0.0.1">
+                            v0.0.1
+                            </option>
+                            
+                        </select>
+                    </p>
+
+                    <p class="info">Committer： <span class="text">buji</span>
+                    </p>
+
+                    <p class="info">Author： <span class="text">buji</span></p>
+
+                    <p class="info"><span class="desc">fixed</span></p>
+
+                    <p class="btn link">
+                        <a href="performance.html">文档</a> |
+                        <a href="performance/history.txt">历史</a> |
+                        <a href="http://mogu.boat/performance/test/runner.html">用例</a> |
+                        <a href="http://gitlab.mogujie.org/mogu/performance/tree/master">
+                            <i class="icon-github"></i>
+                            Gitlab
+                        </a>
+                    </p>
+
+                    <div id="demo" class="hidden">
+                        <h2>演示</h2>
+                        <ul id="demo-list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="span9 offset3 col-content">
+                    <!-- 正文区域 -->
+                    <div id="content" class="content" name="content"><h1 id="-">前端性能参数</h1>
+<h2 id="pc">PC</h2>
+<h4 id="-">[球的颜色] - 响应时间统计</h4>
+<p>从寻址开始时间（F5||cmd+R按下时间、地址栏回车、点击链接跳转 etc.）到页面可以响应用户为止</p>
+<ul>
+<li><code>绿色</code> 5s以下</li>
+<li><code>橙色</code> 5s及以上</li>
+<li><code>红色</code> 20s及以上</li>
+</ul>
+<p><code>影响因素</code>：后端查询时间、头部资源阻塞下载时间、cdn下载速度（前后端都可以关注）</p>
+<h4 id="-cpu-">[球里面的直方图] - 当前页面实时cpu模拟</h4>
+<p>值越高代表页面越能感觉到明显的卡顿</p>
+<p><code>影响因素</code>：性能低的JavaScript执行，如：大量dom操作集中执行</p>
+<p><code>优化建议</code>：把比较耗性能的操作分散，使直方图最大值不至于太满 to @f2e（理论上是这样）</p>
+<h4 id="-">最受欢迎的功能</h4>
+<p>双击可以关闭球，再次打开需要在地址栏执行</p>
+<pre><code class=" hljs coffeescript"><span class="hljs-attribute">javascript</span>:<span class="hljs-built_in">window</span>.localStorage.removeItem(<span class="hljs-string">'f2efpm_hide'</span>);
+</code></pre><p>（嫌UI太丑的请原谅我，我只是个运营 = =）</p>
+<h2 id="mobile">Mobile</h2>
+<ul>
+<li>隐藏图片的下载 [防止写类似display:none引起不必要的图片下载]</li>
+<li>外联样式数量 [http请求数控制]</li>
+<li>css3性能 [box-shadow等低性能的css使用次数统计]</li>
+<li>no iframe [有iframe的直接差评]</li>
+</ul>
+</div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="javascripts/jquery-1.10.2.min.js"></script>
+    <script src="javascripts/comm.js"></script>
+</div>
+
+<script src="javascripts/highlight.min.js"></script>
+<script src="javascripts/page-edit.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    //获取example信息
+    $.get('/performance/example/EXAMPLE_MAP.txt', function (data) {
+
+        var fileList = {}
+        data.split(/[\r\n]/gm).forEach(function (file) {
+            var match = file.match(/^([^:]+).+?<title>([\s\S]+?)<\/title>/)
+            if (!match) return;
+            if (!fileList[RegExp.$1]) fileList[RegExp.$1] = RegExp.$2
+        })
+
+        var li = ''
+        Object.keys(fileList).forEach(function (key, i) {
+            li += '<li><a href="/performance/example/' + key + '">' + (i + 1) + '. ' + fileList[key] + '</a></li>'
+        })
+
+        $('#demo-list').html(li)
+        $('#demo').show()
+
+    })
+
+    jQuery(function () {
+        var re = /^(new|changed|fixed|html5|improved|unresolved|developer)[\s]+/
+        $('#content li').each(function (index, $li) {
+            $li = $($li)
+            var match = $.trim($li.text()).match(re)
+            if (!match) {
+                return
+            }
+            $li.html($li.html().replace(re, '<span class="history-tag history-tag-$1">$1</span>')).addClass('history')
+        })
+    })
+
+    //切换版本
+    $(function () {
+        $('#version').change(function () {
+            if (this.options[this.selectedIndex].text.indexOf('latest') > -1) {
+                location.href = '/performance'
+            } else {
+                location.href = '/performance/+/' + this.value
+            }
+        })
+    })
+</script>
+
+
+
+</body></html>

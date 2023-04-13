@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>select标签的操作</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-代码片段 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>select标签的操作</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <h2 id="-">原生方式</h2>
+<pre><code class="lang-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"abc"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"一"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"二"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"三"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+    abc.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        alert(<span class="hljs-string">'当前选中项：'</span>+ abc.selectedIndex)
+        alert(<span class="hljs-string">'选中的元素：'</span>+ abc.options[abc.selectedIndex])
+        alert(<span class="hljs-string">'选中的文本：'</span>+ abc.options[abc.selectedIndex].text)
+        alert(<span class="hljs-string">'选中的value：'</span>+ abc.value)
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<h2 id="-jquery-">使用 jQuery 的方式</h2>
+<pre><code class=" hljs javascript">    <span class="hljs-comment">// 直接获取 `select#abc` 的选中的值：</span>
+    $(<span class="hljs-string">'#abc'</span>).val();
+
+    <span class="hljs-comment">// 获取 `select#abc` 选中的元素：</span>
+    $(<span class="hljs-string">'#abc option:seleced'</span>);
+</code></pre>
+                    <a href="../edit/53c503b5dd3a267c196a57e2.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        20天前，
+                        2014年7月16日星期三下午4点56，
+                    </span>
+                    <a href="../delete/53c503b5dd3a267c196a57e2-redirect-category=代码片段.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

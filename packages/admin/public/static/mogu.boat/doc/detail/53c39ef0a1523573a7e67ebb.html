@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>本地图片上传即时预览，兼容各浏览器</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-代码片段 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>本地图片上传即时预览，兼容各浏览器</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <pre><code class=" hljs php"><span class="hljs-comment">/**
+ * 本地图片上传，支持本地预览
+ * 兼容各浏览器，包括IE6
+ * by rufeng 2014-7-1
+ * 
+ * HTML结构：
+ * &lt;div&gt;
+ *     &lt;input type="file" class="upload-img" /&gt;
+ *     &lt;img class="preview" /&gt;
+ * &lt;/div&gt;
+ * 
+ * 调用方法：
+ * var uploadImg = new UploadImg($('.upload-img'));
+ * uploadImg.init();
+ */</span>
+;(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($)</span></span>{
+
+    <span class="hljs-comment">/**
+     * 上传图片构造函数
+     *<span class="hljs-phpdoc"> @param</span> {jQuery} 文件域
+     */</span>
+    <span class="hljs-keyword">var</span> UploadImg = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$file</span>)</span></span>{
+        this.<span class="hljs-variable">$file</span> = <span class="hljs-variable">$file</span>;
+    }
+
+    UploadImg.prototype.init = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">var</span> <span class="hljs-keyword">self</span> = this;
+
+        <span class="hljs-comment">// 监听上传事件</span>
+        <span class="hljs-keyword">self</span>.<span class="hljs-variable">$file</span>.on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+            <span class="hljs-keyword">self</span>.<span class="hljs-variable">$pic</span> = $(this).<span class="hljs-keyword">parent</span>().find(<span class="hljs-string">'.preview'</span>);
+            change.call(<span class="hljs-keyword">self</span>, $(this));
+        });
+    }
+
+    <span class="hljs-comment">// 上传图片</span>
+    <span class="hljs-keyword">var</span> change = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$file</span>)</span></span>{
+
+        <span class="hljs-keyword">var</span> 
+            <span class="hljs-keyword">self</span> = this,
+
+            <span class="hljs-comment">// 文件地址</span>
+            fileVal = <span class="hljs-variable">$file</span>.val(),
+
+        <span class="hljs-comment">// 判断后缀</span>
+        <span class="hljs-keyword">if</span>(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(fileVal)){
+            alert(<span class="hljs-string">'文件必须为图片'</span>);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        show.call(<span class="hljs-keyword">self</span>, <span class="hljs-variable">$file</span>);
+    }
+
+    <span class="hljs-comment">// 显示本地预览图片</span>
+    <span class="hljs-keyword">var</span> show = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$file</span>)</span></span>{
+
+        <span class="hljs-keyword">var</span> <span class="hljs-keyword">self</span> = this;
+
+        <span class="hljs-comment">// 如果是IE</span>
+        <span class="hljs-keyword">if</span>(!window.FileReader){
+            <span class="hljs-variable">$file</span>[<span class="hljs-number">0</span>].select();
+            setImgPath(document.selection.createRange().text);
+        }<span class="hljs-keyword">else</span>{
+
+            <span class="hljs-keyword">var</span> 
+                file = <span class="hljs-variable">$file</span>[<span class="hljs-number">0</span>].files[<span class="hljs-number">0</span>],
+                fr = <span class="hljs-keyword">new</span> FileReader();
+
+            fr.readAsDataURL(file);
+            fr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+                setImgPath.call(<span class="hljs-keyword">self</span>, this.result);
+            }
+
+        }
+    }
+
+    <span class="hljs-comment">// 设置本地上传图片地址</span>
+    <span class="hljs-keyword">var</span> setImgPath = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(imgPath)</span></span>{
+
+        <span class="hljs-comment">// IE</span>
+        <span class="hljs-keyword">if</span>(document.all){
+
+            <span class="hljs-comment">// IE6</span>
+            <span class="hljs-keyword">if</span>(/msie <span class="hljs-number">6</span>/i.test(navigator.userAgent)){
+                this.<span class="hljs-variable">$pic</span>[<span class="hljs-number">0</span>].src = imgPath;
+            }<span class="hljs-keyword">else</span>{
+
+                <span class="hljs-comment">// 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现</span>
+                this.<span class="hljs-variable">$pic</span>[<span class="hljs-number">0</span>].style.filter = <span class="hljs-string">"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\""</span> + imgPath + <span class="hljs-string">"\")"</span>;
+
+                 <span class="hljs-comment">// 设置img的src为base64编码的透明图片 取消显示浏览器默认图片</span>
+                this.<span class="hljs-variable">$pic</span>[<span class="hljs-number">0</span>].src = <span class="hljs-string">'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='</span>;
+
+            }
+
+        }<span class="hljs-keyword">else</span>{
+            this.<span class="hljs-variable">$pic</span>[<span class="hljs-number">0</span>].src = imgPath;
+        }
+    }
+
+    window.UploadImg = UploadImg;
+
+})(jQuery);
+</code></pre>
+                    <a href="../edit/53c39ef0a1523573a7e67ebb.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        22天前，
+                        2014年7月14日星期一下午5点12，
+                    </span>
+                    <a href="../delete/53c39ef0a1523573a7e67ebb-redirect-category=代码片段.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

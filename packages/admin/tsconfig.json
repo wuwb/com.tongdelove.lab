@@ -1,0 +1,79 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@@/*": ["./src/.umi/*"],
+      "@@test/*": ["./src/.umi-test/*"]
+    },
+
+    "declaration": false,
+    // "jsx": "preserve",
+
+    "outDir": "build/dist",
+    "suppressImplicitAnyIndexErrors": true,
+
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    "allowJs": true,
+
+    // path
+    "typeRoots": ["./node_modules/@types"],
+
+    "rootDir": ".",
+
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
+
+    // debug
+    "pretty": true,
+    "removeComments": false,
+
+    // rules
+    "emitDecoratorMetadata": true,
+    "noEmit": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "useDefineForClassFields": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src", "shared", "config"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "scripts",
+    "src/.umi/*",
+    "webpack",
+    "jest",
+    "lib",
+    "es",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests",
+    "out",
+    "__mocks__",
+    ".babelrc",
+    "bundles",
+    "coverage",
+    "test/*"
+  ]
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Docker命令集</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-代码片段 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>Docker命令集</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <p>在10.0.16.131上已经安装好了<a href="https://www.docker.com/whatisdocker/">Docker1.0</a></p>
+<pre><code class="lang-bash hljs "><span class="hljs-comment">#密码同32</span>
+ssh f2e@<span class="hljs-number">10.0</span>.<span class="hljs-number">16.131</span>
+</code></pre>
+<h2 id="-mysql-">启动MySQL实例</h2>
+<h3 id="-mysql-">创建MySQL容器</h3>
+<pre><code class="lang-bash hljs "><span class="hljs-comment">##--name 实例名称，-p 将内部3306映射为宿主机的4002端口，-e设置环境变量（root的密码被设置为huachuan），-d 守护模式（后台一直运行）</span>
+<span class="hljs-built_in">sudo</span> docker run --name ams -p <span class="hljs-number">4002</span>:<span class="hljs-number">3306</span> <span class="hljs-operator">-e</span> MYSQL_ROOT_PASSWORD=huachuan <span class="hljs-operator">-d</span> mysql
+</code></pre>
+<h3 id="-mysql-">连接MySQL容器</h3>
+<pre><code class="lang-bash hljs ">mysql -h <span class="hljs-number">10.0</span>.<span class="hljs-number">16.131</span> -u root -p --port=<span class="hljs-number">4002</span>
+</code></pre>
+<h2 id="-">查询端口是否被占用</h2>
+<pre><code class="lang-bash hljs ">&gt; <span class="hljs-built_in">sudo</span> docker ps
+<span class="hljs-comment"># 返回结果中，PORTS中表示宿主机的4002端口被使用</span>
+<span class="hljs-comment"># 如果要创建新的容器，请使用非4002的端口</span>
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
+<span class="hljs-number">3</span>bd6ebb796bf        mysql:<span class="hljs-number">5</span>             /entrypoint.sh mysql   <span class="hljs-number">2</span> minutes ago       Up <span class="hljs-number">2</span> minutes        <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">4002</span>-&gt;<span class="hljs-number">3306</span>/tcp   ams
+</code></pre>
+
+                    <a href="../edit/53cdc828e6b018d55b049f79.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        14天前，
+                        2014年7月22日星期二上午10点37，
+                    </span>
+                    <a href="../delete/53cdc828e6b018d55b049f79-redirect-category=代码片段.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

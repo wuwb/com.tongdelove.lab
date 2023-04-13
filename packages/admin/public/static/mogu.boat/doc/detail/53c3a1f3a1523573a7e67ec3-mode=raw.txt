@@ -1,0 +1,154 @@
+#### 大家都知道wap开发中body宽度是按手机浏览器的虚拟像素宽度来适配的。而高度属性不像宽度一样可以直接取百分比来实现的。
+
+#### 这里我就举一个等比宽高（10:4.5）会场banner的例子,下面是文件列表
+
+    Js css：
+    public/jsmobile/src/page-tuan-brandsale.js
+    public/cssmobile/src/page-tuan-brandsale.css
+    Demo忽视吧：
+    appbeta/views/tuan/mact/mobile/demo_brandsale.php
+
+（这里不推荐直接用内容图去撑，站内的图片用的尺寸都比较大，加载起来较慢，用内容图去撑dom，会照成页面元素高度变化频繁，影响体验。）
+先展示下banner图的基本样式
+
+    /*设置屏幕宽度94%，最大宽度为480px，防止banner图过大失真*/
+    .active_pre_box { 
+        width: 94%; 
+        max-width: 480px;
+        margin: 8px auto;
+        overflow: hidden;
+        border: 1px solid #d9d9d9; 
+        border-radius: 5px; 
+
+    }
+    .active_pre_box .link_img { width: 100%; display: block; position: relative; overflow: hidden; }
+
+psd上的标准效果
+
+![alt text](http://s6.mogujie.cn/pic/140708/o61vu_kq2eo4s7krbegrkugfjeg5sckzsew_463x253.png "Title")
+    
+#### 1 设置一个多层min-height
+
+因为宽度是按百分比随手机浏览器宽度变化的，所以我们要按市面上主流的宽度来分层做min-height高度适配：
+
+
+    /*针对360px以下的屏幕做适配*/
+    @media (max-width: 360px)  {
+        .active_pre_box .link_img { min-height: 135px; }
+    }
+    
+    /*针对[360px,420px)的屏幕做适配*/
+    @media (min-width: 360px) and (max-width: 420px) {
+        /*不同屏幕设置不同min-height*/
+        .active_pre_box .link_img { min-height: 152px; }
+    }
+    
+    /*针对[420px,480px)的屏幕做适配*/
+    @media (min-width: 420px) and (max-width: 480px) {
+        /*不同屏幕设置不同min-height*/
+        .active_pre_box .link_img { min-height: 178px; }
+    }
+    
+    /*适配480px以上屏幕*/
+    @media (min-width: 480px) { 
+        /*不同屏幕设置不同min-height*/
+        .active_pre_box .link_img { min-height: 216px; }
+    }
+
+这样做好后在320px，360px，420px，480px这几个标准尺寸的浏览器宽度下宽高比都为标准的10:4.5。
+
+但是在这几个标准尺寸之间的值就会比例就会稍有失调，例如479px下的显示效果
+
+![alt text](http://s6.mogujie.cn/pic/140708/o61vu_kq2gkmkdkrbfiq2ugfjeg5sckzsew_461x230.png "Title")
+
+因为比列失调图片被截取了明显不能忍啊
+
+#### 2设置撑高占位图撑高 
+
+原理就是截取宽高比一张小的单色图来设置width:100%来实现等高占位。
+
+**html代码：**
+
+    <!-- 活动预览 -->
+    <div class="active_pre_box">
+        <a class="link_img" href="javascript:;" target="_blank">
+            <!-- 撑高占位图 -->
+            <img class="fill_img" src="http://s8.mogujie.cn/pic/140630/o61vu_kq2c42kkkrbdissugfjeg5sckzsew_20x9.png" alt="">
+            <!-- banner图片 -->
+            <img class="banner_img lazy" src="http://dummyimage.com/480x216/2ea79d/fff" alt="">
+        </a>
+        <!-- 信息栏 -->
+        <div class="active_info_bar">
+            <p class="fr active_discount">0.3折起</p>
+            <a class="fl active_name" href="javascript:;" target="_blank">SIX GOD--蓝胖最爱！</a>
+        </div>
+    
+    </div>
+
+**css代码**
+
+    .fill_img { display: block; width: 100%; }
+    /*内容图设置position:absolute,来定位*/
+    .active_pre_box .banner_img { 
+        display: block; 
+        position: absolute; 
+        top: 0; left: 0; 
+        width: 100%; 
+        border-radius: 5px 5px 0 0; 
+    }
+
+这样就算banner内容图加载比较慢，dom也可以撑起来，还可以有一个稍微好看的背景，体验提升啊。
+![alt text](http://s9.mogujie.cn/pic/140708/o61vu_kq2e2mkdkrbfcvsugfjeg5sckzsew_462x251.png "Title")
+
+但是！这样就有连带出2个问题了：
+
+1）怎么保证占位图预先出现
+
+2）怎么保证占位图加载成功
+
+解决1很简单在代码最上部设置一个预加载的dom，先把占位img放进去就好了
+
+    .img_pre_hid { height: 0; overflow: hidden; }
+    <!-- 占位图片预加载 -->
+    <div class="img_pre_hid">
+        <img src="http://s6.mogujie.cn/pic/140624/2_kq2g4tkdkrbegqkugfjeg5sckzsew_2x1.png" alt="">
+        <img src="http://s6.mogujie.cn/pic/140624/5_kq2ee3sdkrbgevsugfjeg5sckzsew_5x2.png" alt="">
+        <img src="http://s6.mogujie.cn/pic/140625/2_kq2hutk7krbhgssugfjeg5sckzsew_2x2.png" alt="">
+        <img src="http://s13.mogujie.cn/pic/140630/o61vu_kq2eiukkkrbdissugfjeg5sckzsew_20x11.png" alt="">
+        <img src="http://s6.mogujie.cn/pic/140630/o61vu_kq2c42kkkrbdissugfjeg5sckzsew_20x9.png" alt="">
+    </div>
+
+解决2 则利用img的onerror事件来做一个失败重加载
+
+    /**
+     * 图片出错处理，可以重加载指定的图片。超过重试次数仍不能正常显示的，显示缺省图片。  
+     * imgObj:img节点对象  
+     * maxErrorNum:最大出错次数，防止出现死循环  
+     */
+    function imgErrorReload(imgObj,maxErrorNum){
+        var imgSrc = imgObj.src;
+        // 每次加载失败次数减一
+        if(maxErrorNum>0){
+            imgObj.onerror=function(){
+                imgErrorReload(imgObj,maxErrorNum-1);
+            };
+            // 延迟0.5秒重新加载
+            setTimeout(function(){
+                imgObj.src=imgSrc;
+            },500);
+        }else{
+            // 加载次数用完处理
+            // imgObj.onerror=null;
+            // imgObj.src="images/default.jpg";
+        }
+    }
+    // 遍历占位图片，初始化onerror方法
+    $('.img_pre_hid img').each(function() {
+        if( this.complete ) {
+            imgErrorReload(this,10);
+        } else {
+            this.onerror = function() {
+                imgErrorReload(this,10);
+            };
+        }
+    });

@@ -1,0 +1,19 @@
+```bash
+# sshd
+#
+# VERSION               0.0.1
+
+FROM     ubuntu:14.04.sshd
+# 谢谢 https://registry.hub.docker.com/u/angelrr7702/docker-ubuntu-14.04-sshd/dockerfile
+MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
+
+RUN mkdir /var/run/sshd
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+RUN echo 'root:screencast' |chpasswd
+
+EXPOSE 22
+CMD    ["/usr/sbin/sshd", "-D"]
+```

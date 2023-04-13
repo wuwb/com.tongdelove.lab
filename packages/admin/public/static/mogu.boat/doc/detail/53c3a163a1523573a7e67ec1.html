@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>【基础规范01】项目发布规范</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-划船文档 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>【基础规范01】项目发布规范</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <h3 id="-">前端(商家)发布流程和规范</h3>
+<h4 id="1-trello-https-trello-com-b-wx0vq0bz-">1.在 trello 记下自己需求（ <a href="https://trello.com/b/wX0VQ0bz/">https://trello.com/b/wX0VQ0bz/</a> ）</h4>
+<p>　　• 标题格式 【产品线】需求简述 - 需求方/日期  </p>
+<p>　　• 标注开始时间、产品，并委派给自己</p>
+<p><img src="../../../s6.mogujie.cn/pic/140408/o61vu_kqzeey2lozbgussugfjeg5sckzsew_445x214.png_Title" alt="alt text"></p>
+<pre><code class=" hljs css">特别注意: 如果多个需求方之间时间有冲突，需及时让需求们协调<span class="hljs-tag">PK</span>，工时排满需及时<span class="hljs-at_rule">@<span class="hljs-keyword">贝勒协调。</span>
+</span></code></pre><hr>
+<h4 id="2-">2.在本地进行开发，需要完成功能测试和兼容性测试</h4>
+<p>　　• 需要测试的浏览器包括（按google流量统计）：</p>
+<p>　　　　1) 360 SE 6 (A 内核：chrome22+/IE7~9)</p>
+<p>　　　　2) Chrome 最新稳定版 (A 内核：chrome30+)</p>
+<p>　　　　3) IE 8 (A 重要：部分页面为IE7模式)</p>
+<p>　　　　4) IE 9 (A 重要：部分页面为IE7模式)</p>
+<p>　　　　5) IE 6 (B)  </p>
+<pre><code class=" hljs ">特别注意:
+1) A级浏览器需要保证样式和功能与需求一致，B级浏览器需要保证功能正常，不影响正常浏览及基本功能使用。
+2) 站内还有很多地方(优店首页、社区、商家后台)的UA用IE=EmulateIE7(即IE7模式)，修改相关模块或全站功能必须做好IE7兼容测试！！！
+</code></pre><hr>
+<h4 id="3-svn-">3.svn 提交规范</h4>
+<p><strong>A-准备提交：</strong></p>
+<p>　　• 开发完毕后，在 svn 提交前，使用 svn di 查看自己所要提交的代码 。</p>
+<p>　　• 对比改动无误后再确认日志：svn up后再 svn log -l5 查看提交日志，确定是否有别人提交到svn的代码没有发布。防止将别人写的代码带上线。</p>
+<p>　　• 修改了全站文件(例globe-v5-combo.css)或detail页、note页相关频繁改动文件，提交前在群里通知下，找相关伙伴确认下，并提醒其改动同模块功能时小心冲突。</p>
+<p>　　• 将自己修改的文件记录下来并整理好文件列表，放在 trello 里，以免漏传、错传文件。</p>
+<p><img src="../../../s6.mogujie.cn/pic/140408/o61vu_kqzgyvk7ozbdkrkugfjeg5sckzsew_552x212.png_Title" alt="alt text"></p>
+<p><strong>B-提交SVN：</strong></p>
+<p>　　• 使用 svn ci -m"提交人: 提交原因" 进行提交。js，css用tm d num 压缩成功后填写原因提交。
+    提交原因能够清楚知道此次提交的原因。</p>
+<p>　　• 提交需要grunt合并的特殊文件(例globe-v5-combo.css)时，必须将自己修改子文件(例mod-nav.css)一起上传。 
+如果不传，之后别人再grunt同一文件时会把老代码覆盖回combo文件里。</p>
+<pre><code class=" hljs ">特别注意:
+如果联调时间较长，修改代码会在svn滞留不发布，需要在提交原因加上发布时间， 防止联调阶段你的文件被别人修改发布。如图
+</code></pre><p><img src="../../../s12.mogujie.cn/pic/140408/o61vu_kqzhevlcozbfqrcugfjeg5sckzsew_604x336.jpg_Title" alt="alt text"></p>
+<hr>
+<h4 id="4-http-tech-mogujie-org-depoly-">4.项目发布规范（ <a href="http://tech.mogujie.org/depoly">http://tech.mogujie.org/depoly</a> ）</h4>
+<p>　　• 在发布系统中新建项目，项目名、文件名保持和 trello 一致。并把相关开发人员列入发布小伙伴列表。
+<img src="../../../s6.mogujie.cn/pic/140408/o61vu_kqzdgy27ozbg2q2ugfjeg5sckzsew_994x340.png_Title" alt="alt text"></p>
+<p><strong>A-发布到卷牛</strong></p>
+<p>　　• 核对发布项目文件列表，确定没有多发误发，并确认最后修改人是否正确。如图
+<img src="../../../s8.mogujie.cn/pic/140408/o61vu_kqzhqvkdozbdiq3wgfjeg5sckzsew_953x262.png_Title" alt="alt text"></p>
+<p>　　• 更新后和线上代码对比，代码 review，确保自己的发布代码（地址： <a href="http://tech.mogujie.org/depoly/diff">http://tech.mogujie.org/depoly/diff</a> ）如图
+<img src="../../../s6.mogujie.cn/pic/140408/o61vu_kqzgcy27ozbdorkugfjeg5sckzsew_745x393.png_Title" alt="alt text"></p>
+<p>　　• 更新125后测试切125检查页面代码搜索“src”，防止新人后端引错src内的js，css文件。
+　　　（ps：这点很重要，因为直到测试机时未压缩jscss还是可以获取的，所以测试ok，一旦上线走CND就无法获取照成bug。）</p>
+<p>　　• 通知需求方在125上进行发布前的最后确认。</p>
+<p>　　• 开始功能测试和兼容性测试</p>
+<p><strong>B-发布到周瑜（周一到周四 13:00开始14:00截止）</strong></p>
+<p>　　• 核对项目ID，勿报错ID给项目发布，这样可能会把别人项目发上周瑜，并且自己错过发布。</p>
+<p>　　• 如有发globe，base这类需要改大版本号的文件需要，特别向项目发布说明需要发布后更新大版本号。紧急发布需要根据 <b style="color:red">线上大版本号加1</b> 手动修改版本号文件appbeta/config/jscssver.php发布。</p>
+<p><img src="../../../s13.mogujie.cn/pic/140408/o61vu_kqzhgnsdozbhgwkugfjeg5sckzsew_871x209.jpg_Title" alt="alt text"></p>
+<p>　　• 开始功能测试和兼容性测试</p>
+<p>　　• 各项测试ok，一定要记得点“周瑜确认”，超过14:30没确认就不会被带上测试机错过发布。 </p>
+<p><strong>C-发布到测试机（周一到周四 14:30）</strong></p>
+<p>　　• 发布文件中有大段或全局 js 代码，需要看下 js 报错情况。</p>
+<p>　　• 14:30再次检查项目是否已周瑜确认</p>
+<p>　　• 上测试后检查后台是否有报警，并关注发布群，确认项目发布给出报错异常是否与自己项目文件有关。 </p>
+<p><strong>D-发布到线上（周一到周四 正常无意外15:00）</strong></p>
+<p>　　• 快速确认线上遍需求功能是否异常</p>
+<p>　　• 如有发globe，base这类需要改大版本号的文件，检查线上版本号是否更新成功，
+如果有异常立即@项目发布重新更新大版本号。</p>
+<p>　　• 通知需求方线上确认需求。</p>
+<pre><code class=" hljs coffeescript">特别注意:
+<span class="hljs-number">1</span>) 发布全站功能（顶通、气泡、全局弹窗）或则复杂核心功能（detail、图强），需要请另一位小伙伴review代码和check兼容性。
+<span class="hljs-number">2</span>) 除非整个目录都是本需求新建的，切忌直接发布整文件目录，如果特殊情况直接发目录一定要检查文件目录里每一个文件,确认为本需求改动。以防带上无关修改文件上线。
+（事故实例：<span class="hljs-number">4</span>月<span class="hljs-number">2</span>号多项全站功能异常事故就是由于误发appbeta<span class="hljs-regexp">/classes/model/</span>整个目录导致的，如图）
+</code></pre><p><img src="../../../s12.mogujie.cn/pic/140408/o61vu_kqzhs3k7ozbdkwkugfjeg5sckzsew_679x233.jpg_Title" alt="alt text"></p>
+
+                    <a href="../edit/53c3a163a1523573a7e67ec1.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        22天前，
+                        2014年7月14日星期一下午5点12，
+                    </span>
+                    <a href="../delete/53c3a163a1523573a7e67ec1-redirect-category=划船文档.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>

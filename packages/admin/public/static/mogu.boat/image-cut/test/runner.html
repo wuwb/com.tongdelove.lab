@@ -1,0 +1,56 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Test Unit</title>
+    <!--Start 测试框架所需文件-->
+    <link rel="stylesheet" href="mocha.css">
+    <script src="mocha.js"></script>
+    <script src="chai.js"></script>
+    <script>mocha.setup('tdd')</script>
+    <!-- End测试框架所需文件-->
+</head>
+<body>
+
+<h1>test</h1>
+
+<div id="mocha"></div>
+
+<script src="../require.js"></script>
+<script>
+
+    require(['../index'], function (M) {
+
+        var expect = chai.expect;
+
+        describe('min', function () {
+
+            it('测试逐个传参', function () {
+                expect(M.min(1, 2, 3)).to.equal(1)
+            })
+
+            it('测试数组传参', function () {
+                expect(M.min([1, 2, 3, 4, 5, 6, 7, 2, 3])).to.equal(1)
+            })
+
+        })
+
+        describe('max', function () {
+
+            it('1,2,3 // 3，异步测试', function (done) {
+                this.timeout = 1200
+                setTimeout(function () {
+                    expect(M.max(1, 2, 3)).to.equal(3)
+                    done()
+                }, 1000)
+            })
+
+        })
+
+        mocha.run()
+
+        //更多断言风格：http://chaijs.com/api/
+
+    })
+
+</script>
+
+</body></html>

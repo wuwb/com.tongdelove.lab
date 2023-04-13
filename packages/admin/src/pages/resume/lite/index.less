@@ -1,0 +1,64 @@
+.content {
+  padding: 60px 0;
+  width: 980px;
+  margin: 0 auto;
+  font-size: 120%;
+}
+
+.content ul,.content li {
+  padding: 0;
+  margin: 0;
+}
+
+.name {
+  margin-bottom: 15px;
+}
+
+.subTitleWrap {
+  transition: all ease-in-out 1s;
+}
+
+.subTitle {
+  margin: 10px 0;
+  cursor: pointer;
+
+  .subtitle {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  /* 收齐 */
+  &.arrow .subtitle {
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 10px;
+      border-color: transparent transparent transparent #444;
+      border-style: solid;
+      border-width: 5px 0 5px 8.66px;
+      content: '';
+    }
+  }
+
+  /* 展开 */
+  &.arrow.unfold .subtitle {
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 10px;
+      border-color: #444 transparent transparent transparent;
+      border-style: solid;
+      border-width: 8.66px 5px 0 5px;
+      content: '';
+    }
+  }
+}
+
+.list {
+  margin: 0 2em;
+  a {
+    color: #000;
+  }
+}

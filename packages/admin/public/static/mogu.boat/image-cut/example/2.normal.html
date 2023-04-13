@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html><head lang="zh">
+	<meta charset="UTF-8">
+	<title>在弹窗里裁</title>
+	<link rel="stylesheet" type="text/css" href="../../../10.0.0.32/dialog/index.css">
+	<style type="text/css">
+	.dialog{
+		width: auto;
+		height:auto;
+		left: 100px !important;
+		top: 100px !important;
+	}
+	.dialog .content{
+		height: auto
+	}
+	</style>
+</head>
+
+<body onselectstart="return false">
+
+	<div>
+		<a class="J_Box" href="javascript:;" data-src="http://s7.mogujie.cn/b7/pic/131128/11jh2m_kqzfgnczkrbdiwtwgfjeg5sckzsew_438x657.jpg_468x468.jpg">在弹窗里面裁起来1</a><br><br>
+		<a class="J_Box" href="javascript:;" data-src="http://s17.mogucdn.com/b7/pic/131020/11jh2m_kqyta3dckfbegssugfjeg5sckzsew_468x702.jpg_468x468.jpg">在弹窗里面裁起来2</a><br><br>
+		<a class="J_Box" href="javascript:;" data-src="http://s6.mogucdn.com/pic/140731/sp1ku_ieydsojvgyydomrwmiytambqgyyde_1024x1269.jpg">在弹窗里面裁起来3</a>
+	</div>
+	<p><img id="J_NewImg"></p>
+
+	<script type="text/javascript" src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../../../10.0.0.32/dialog/index.js"></script>
+	<script type="text/javascript" src="../jquery.crop.js"></script>
+	<script type="text/javascript">
+
+	;(function($){
+
+		// 划船
+		var path = 'http://mogu.boat/project/image-cut/';
+		var imgPath = 'http://mogu.boat/image-cut/';
+
+		// 本地
+		// var path = 'http://crop.com/';
+		// var imgPath = 'http://crop.com/';
+
+		var dialog = new Dialog({
+				content: '<img class="J_Crop"><button id="J_CutImg">裁剪</button>'
+			}).render();
+
+		$('.J_Box').on('click', function(){
+			var src = $(this).data('src');
+			
+			dialog.set('content', '<img class="J_Crop" src="'+ src +'"><button id="J_CutImg">裁剪</button>');
+			dialog.$node.find('.J_Crop').crop({
+				containerWidth: 500,
+				containerHeight: 500,
+			});
+
+			dialog.show();
+
+		});
+
+		// 裁剪
+		$(document).on('click', '#J_CutImg', function(){
+			console.log(dialog.$node.find('.J_Crop').length);
+			var pos = dialog.$node.find('.J_Crop').attr('data-pos'),
+				ratio = dialog.$node.find('.J_Crop').attr('data-ratio'),
+				src = dialog.$node.find('.J_Crop')[0].src;
+
+			$.ajax({
+				url: path + 'cut.php',
+				type: 'GET',
+				dataType: 'jsonp',
+				data: {pos: pos, src: src, ratio: ratio},
+			})
+			.done(function(data) {
+				if(data.code == 1001){
+					$('#J_NewImg')[0].src = imgPath + data.src;
+					 dialog.hide();
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		});
+
+	})(jQuery);
+		
+	</script><div id="dialog-mask-14072389744827728574583306909" class="dialog-mask dialog-mask" style="position:fixed;left:0;right:0;top:0;bottom:0;z-index:9998;display:none;"></div><div id="dialog-14072389744827728574583306909" class="dialog dialog" style="z-index: 9999; position: fixed; display: none;"><div class="J-content content"><img class="J_Crop"><button id="J_CutImg">裁剪</button></div><span class="close J-close"><b>×</b></span></div>
+
+
+</body></html>

@@ -1,0 +1,11 @@
+### 数组随机打乱：
+
+        var shuffle = function(o) {
+            for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        };
+
+	var a = [2, 4, 5, 7, 1];
+	shuffle(a); // output: [2, 1, 5, 4, 7];
+
+	

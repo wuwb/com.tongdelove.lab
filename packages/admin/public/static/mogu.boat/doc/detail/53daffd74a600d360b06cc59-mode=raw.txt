@@ -1,0 +1,8 @@
+```
+sudo brew install imagemagick --with-webp
+
+# 转换图片
+convert 123.psd[0] 123.webp
+```
+
+更多命令 http://www.imagemagick.org/

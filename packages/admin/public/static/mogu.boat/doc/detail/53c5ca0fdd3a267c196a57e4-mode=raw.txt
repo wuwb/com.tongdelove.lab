@@ -1,0 +1,9 @@
+```
+//编码
+var a = new Buffer('测试 abc 123456789').toString('base64');
+//output :  5rWL6K+VIGFiYyAxMjM0NTY3ODk=
+
+//解码
+new Buffer(a, 'base64').toString()
+//output : 测试 abc 123456789
+```

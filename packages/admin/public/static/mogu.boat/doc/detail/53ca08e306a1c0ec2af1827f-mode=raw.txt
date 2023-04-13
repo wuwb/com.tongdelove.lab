@@ -1,0 +1,14 @@
+## 查询仓库的目录树
+
+```
+git ls-tree HEAD -tr
+```
+
+## 强制回退到某个版本，湮灭后续所有的提交历史
+
+危险提示：指针后面的所有提交都将抹除，谨慎使用。
+
+```bash
+git reset --hard 指针
+git push -f origin master
+```

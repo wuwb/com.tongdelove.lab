@@ -1,0 +1,103 @@
+	/**
+	 * 本地图片上传，支持本地预览
+	 * 兼容各浏览器，包括IE6
+	 * by rufeng 2014-7-1
+	 * 
+	 * HTML结构：
+	 * <div>
+	 *     <input type="file" class="upload-img" />
+	 *     <img class="preview" />
+	 * </div>
+	 * 
+	 * 调用方法：
+	 * var uploadImg = new UploadImg($('.upload-img'));
+	 * uploadImg.init();
+	 */
+	;(function($){
+	
+	    /**
+	     * 上传图片构造函数
+	     * @param {jQuery} 文件域
+	     */
+	    var UploadImg = function($file){
+	        this.$file = $file;
+	    }
+	
+	    UploadImg.prototype.init = function(){
+	        var self = this;
+	
+	        // 监听上传事件
+	        self.$file.on('change', function(){
+	            self.$pic = $(this).parent().find('.preview');
+	            change.call(self, $(this));
+	        });
+	    }
+	
+	    // 上传图片
+	    var change = function($file){
+	
+	        var 
+	            self = this,
+	
+	            // 文件地址
+	            fileVal = $file.val(),
+	
+	        // 判断后缀
+	        if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(fileVal)){
+	            alert('文件必须为图片');
+	            return;
+	        }
+	
+	        show.call(self, $file);
+	    }
+	    
+	    // 显示本地预览图片
+	    var show = function($file){
+	        
+	        var self = this;
+	
+	        // 如果是IE
+	        if(!window.FileReader){
+	            $file[0].select();
+	            setImgPath(document.selection.createRange().text);
+	        }else{
+	
+	            var 
+	                file = $file[0].files[0],
+	                fr = new FileReader();
+	
+	            fr.readAsDataURL(file);
+	            fr.onload = function(){
+	                setImgPath.call(self, this.result);
+	            }
+	
+	        }
+	    }
+	
+	    // 设置本地上传图片地址
+	    var setImgPath = function(imgPath){
+	
+	        // IE
+	        if(document.all){
+	
+	            // IE6
+	            if(/msie 6/i.test(navigator.userAgent)){
+	                this.$pic[0].src = imgPath;
+	            }else{
+	
+	                // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+	                this.$pic[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + imgPath + "\")";
+	                
+	                 // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+	                this.$pic[0].src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+	            
+	            }
+	            
+	        }else{
+	            this.$pic[0].src = imgPath;
+	        }
+	    }
+	
+	    window.UploadImg = UploadImg;
+	
+	})(jQuery);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head lang="zh">
+    <meta charset="UTF-8">
+    <title>基本使用</title>
+    <script src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+    <style>
+        textarea {
+            padding: 12px;
+            width: 80%;
+            height: 80px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<textarea class="iframe_code">修改这里的内容，然后点击复制</textarea>
+
+<p>
+    <button class="code_copy">复制</button>
+</p>
+<script src="../require.js"></script>
+<script>
+    //可以直接引入线上文件
+    require(['http://www.mogujie.com/js/lib/ZeroClipboard.js'], function (ZeroClipboard) {
+        var clip = ZeroClipboard($('.code_copy'), {
+            moviePath: 'http://www.mogujie.com/swf/ZeroClipboard.swf'
+        });
+
+        $('.iframe_code').on('blur', function () {
+            $('.code_copy').attr('data-clipboard-text', $('.iframe_code').val());
+        }).trigger('blur')
+
+        clip.on('load', function (client) {
+            client.on('complete', function (client, args) {
+                //TODO 复制成功操作
+                alert('复制成功')
+            });
+        });
+    })
+
+</script>
+
+
+
+</body></html>

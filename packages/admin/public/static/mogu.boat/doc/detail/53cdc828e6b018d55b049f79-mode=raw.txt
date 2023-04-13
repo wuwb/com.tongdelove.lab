@@ -1,0 +1,28 @@
+在10.0.16.131上已经安装好了[Docker1.0](https://www.docker.com/whatisdocker/)
+```bash
+#密码同32
+ssh f2e@10.0.16.131
+```
+
+## 启动MySQL实例
+
+### 创建MySQL容器
+```bash
+##--name 实例名称，-p 将内部3306映射为宿主机的4002端口，-e设置环境变量（root的密码被设置为huachuan），-d 守护模式（后台一直运行）
+sudo docker run --name ams -p 4002:3306 -e MYSQL_ROOT_PASSWORD=huachuan -d mysql
+```
+### 连接MySQL容器
+
+```bash
+mysql -h 10.0.16.131 -u root -p --port=4002
+```
+
+## 查询端口是否被占用
+
+```bash
+> sudo docker ps
+# 返回结果中，PORTS中表示宿主机的4002端口被使用
+# 如果要创建新的容器，请使用非4002的端口
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
+3bd6ebb796bf        mysql:5             /entrypoint.sh mysql   2 minutes ago       Up 2 minutes        0.0.0.0:4002->3306/tcp   ams 
+```

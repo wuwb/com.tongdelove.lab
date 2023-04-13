@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html><head lang="zh">
+	<meta charset="UTF-8">
+	<title>在指定大小容器里裁</title>
+</head>
+
+<body onselectstart="return false">
+
+	<div style="float:left;">
+		<img class="J_Crop" src="../../../s6.mogucdn.com/pic/140731/sp1ku_ieydsojvgyydomrwmiytambqgyyde_1024x1269.jpg" data-pos="0,0,252.167060677699,378.25059101654847" data-ratio="2.54" style="display: none;"><div class="jcrop-holder" style="width: 403px; height: 500px; position: relative; display: inline-block; background-color: black;"><div style="position: absolute; z-index: 1000; cursor: move; left: 0px; top: 0px; width: 252.167060677699px; height: 378.25059101654847px;"><div style="position: absolute; width: 100%; height: 100%; overflow: hidden;"><img src="../../../s6.mogucdn.com/pic/140731/sp1ku_ieydsojvgyydomrwmiytambqgyyde_1024x1269.jpg" style="width: 403px; height: 500px; position: absolute; left: 0px; top: 0px;"><div style="position: absolute; background-image: url('../../../s6.mogucdn.com/pic/140725/sp1ku_ieydomrrguygimrumiytambqgyyde_8x8.gif'); background-color: rgb(255, 255, 255); font-size: 0px; height: 1px; width: 100%; background-position: initial initial; background-repeat: initial initial;"></div><div style="position: absolute; background-image: url('../../../s6.mogucdn.com/pic/140725/sp1ku_ieydomrrguygimrumiytambqgyyde_8x8.gif'); background-color: rgb(255, 255, 255); font-size: 0px; width: 1px; height: 100%; right: 0px; background-position: initial initial; background-repeat: initial initial;"></div><div style="position: absolute; background-image: url('../../../s6.mogucdn.com/pic/140725/sp1ku_ieydomrrguygimrumiytambqgyyde_8x8.gif'); background-color: rgb(255, 255, 255); font-size: 0px; height: 1px; width: 100%; bottom: 0px; background-position: initial initial; background-repeat: initial initial;"></div><div style="position: absolute; background-image: url('../../../s6.mogucdn.com/pic/140725/sp1ku_ieydomrrguygimrumiytambqgyyde_8x8.gif'); background-color: rgb(255, 255, 255); font-size: 0px; width: 1px; height: 100%; background-position: initial initial; background-repeat: initial initial;"></div></div><div style="position: absolute; top: -18px; left: 0px; background-color: rgb(221, 221, 221); color: rgb(0, 0, 0); width: 66px; opacity: 0.7; text-align: center; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; font-size: 12px; height: 16px; line-height: 16px; font-family: 'Microsoft YaHei'; background-position: initial initial; background-repeat: initial initial;"><span>640</span> * <span>960</span></div></div><div class="jcrop-tracker" style="width: 403px; height: 500px; position: absolute; top: 0px; left: 0px; cursor: crosshair; background-color: black; opacity: 0.5;"></div><img src="../../../s6.mogucdn.com/pic/140731/sp1ku_ieydsojvgyydomrwmiytambqgyyde_1024x1269.jpg" style="width: 403px; height: 500px;"></div>
+		<br>
+		<input type="button" id="J_CutImg" value="裁剪">
+		<span id="J_Show"></span>
+	</div>
+	<img style="float:left;margin-left:20px;" id="J_NewImg">
+
+	<script type="text/javascript" src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.crop.js"></script>
+	<script type="text/javascript">
+
+	;(function($){
+
+		// 划船
+		var path = 'http://mogu.boat/project/image-cut/';
+		var imgPath = 'http://mogu.boat/image-cut/';
+		
+		// 本地
+		// var path = 'http://crop.com/';
+		// var imgPath = 'http://crop.com/';
+
+		var $crop = $('.J_Crop');
+
+		// 启动裁剪
+		$crop.crop({
+			containerWidth: 800,
+			containerHeight: 500,
+			cropWidth: 640,
+			cropHeight: 960,
+			aspectRatio: 2/3,
+			initComplete: function(){
+				console.log('裁剪初始化完成');
+			}
+		});
+
+		// 裁剪
+		$('#J_CutImg').on('click', function(){
+			var pos = $crop.attr('data-pos'),
+				ratio = $crop.attr('data-ratio'),
+				src = $crop[0].src;
+
+			var arr = pos.split(',');
+
+			if(arr[2] * ratio < 640 || arr[3] * ratio < 960){
+				alert('宽度必须大于640，高度必须大于960');
+				return;
+			}
+
+			$.ajax({
+				url: path + 'cut.php',
+				type: 'GET',
+				dataType: 'jsonp',
+				data: {pos: pos, src: src, ratio: ratio},
+			})
+			.done(function(data) {
+				if(data.code == 1001){
+					$('#J_NewImg')[0].src = imgPath + data.src;
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		});
+
+	})(jQuery);
+		
+	</script>
+
+
+</body></html>

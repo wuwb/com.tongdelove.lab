@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head lang="zh">
+    <meta charset="UTF-8">
+    <title>浏览器可视区域局中</title>
+    <style>
+        #tip {
+            position: absolute;
+            top: 0;
+            padding: 2em;
+            background: #00d6b2;
+        }
+
+        p {
+            height: 2000px;
+        }
+    </style>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="../index" src="../index.js"></script></head>
+<body>
+
+<div id="tip">点击屏幕</div>
+
+<p>滚动页面并点击屏幕</p>
+
+<script src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+<script src="../require.js"></script>
+
+
+<script>
+    require(['../index'], function (Position) {
+        $(document.body).click(function () {
+            Position.center('#tip')
+        })
+    })
+</script>
+
+
+
+</body></html>

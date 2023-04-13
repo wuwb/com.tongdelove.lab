@@ -1,0 +1,90 @@
+import React, { Component } from 'react';
+import { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva';
+import Konva from 'konva';
+import { Pa, PMain, PSide } from '../../Slice';
+
+class Normal extends Component {
+  state = {
+    dashStyle: [3, 3],
+
+    pThickness: 0.05,
+
+    paddingLeft: 10,
+    paddingTop: 10,
+
+    pLength: 80,
+    pDeepth: 100,
+    pWidth: 30,
+
+    paType: 1,
+    pbType: 1,
+    pcType: 1,
+
+    paHeight: 15,
+    paWidth: 20,
+
+    pbHeight: 15,
+    pbWidth: 20,
+
+    pcHeight: 10,
+    pcRadius: 5,
+
+    pdWidth: 10,
+    pdLength: 9,
+  };
+
+  constructor(props) {
+    super(props);
+    this.handleChangeWidth = this.handleChangeWidth.bind(this);
+  }
+
+  handleChangeWidth(e) {
+    console.log('e: ', e);
+    this.setState({
+      paWidth: Number(e.currentTarget.value),
+    });
+  }
+
+  render() {
+    let pThickness = 0.05;
+    let paddingLeft = 10;
+    let paddingTop = 10;
+
+    let pLength = 80;
+    let pDeepth = 100;
+    let pWidth = 30;
+
+    let paType = 1;
+    let pbType = 1;
+    let pcType = 1;
+
+    let paHeight = 15;
+    let paWidth = 20;
+
+    let pbHeight = 15;
+    let pbWidth = 20;
+
+    let pcHeight = 10;
+    let pcRadius = 5;
+
+    let pdWidth = 10;
+    let pdLength = 90;
+
+    console.log('this.state: ', this.state);
+
+    const origin = [paddingLeft, paddingTop];
+
+    return (
+      <Group x={paddingLeft} y={paddingTop}>
+        <Pa options={this.state}></Pa>
+        <PMain options={this.state}></PMain>
+        <PSide options={this.state}></PSide>
+        <Transformer>
+          <Pa options={this.state}></Pa>
+        </Transformer>
+      </Group>
+    );
+  }
+}
+
+export default Normal;

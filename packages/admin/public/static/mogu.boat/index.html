@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>ImgBox</title>
+    <link rel="stylesheet" href="public/css/main.css">
+</head>
+<body>
+<div id="nav" class="fs">
+    <header id="header">
+        <h1>ImgBox</h1>
+    </header>
+
+    <div id="loginForm">
+        <h2>Login</h2>
+
+        <form onsubmit="return false;">
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button id="loginBtn">Login</button>
+        </form>
+    </div>
+
+    <input class="hidden" type="file" name="images" id="imageUploader" multiple="multiple" accept="image/*">
+    <div id="dropin" class="">
+        <div id="uploadProgress"></div>
+        <!--<div class="upload"></div>-->
+    </div>
+</div>
+<div id="main">
+    <ul id="imageList" class="clearfix"></ul>
+    <div id="pop" class="">
+        <div id="popNav">
+            <a href="javascript:void(0)" class="icon-cross2"></a>
+            <a href="javascript:void(0)" class="icon-arrow-left"></a>
+            <a href="javascript:void(0)" class="icon-arrow-right"></a>
+        </div>
+        <div id="popContent">
+            <img src="public/image/a.gif" alt="">
+        </div>
+        <div id="commentBox">
+            <form action="">
+                <textarea name="content" id="commentContent" class="shown"></textarea>
+                <button id="commentSubmitBtn" type="button" class="icon-comment"></button>
+            </form>
+        </div>
+        <div id="commentsGround"></div>
+    </div>
+</div>
+
+<script data-main="/public/js/app.js" src="public/js/require.js"></script>
+
+</body></html>

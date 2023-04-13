@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>example</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../doc/代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../doc/划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <link rel="stylesheet" href="../history/history.css">
+    <link rel="stylesheet" href="../stylesheets/code.css">
+    <style>
+        #widget-channel {
+            background: red;
+            color: #fff;
+        }
+    </style>
+    <div class="row-fluid clearfix">
+        <form action="/submit" method="post">
+            <div class="module">
+                <div class="span3 col-side shadow-side">
+                    <h1>example</h1>
+
+                    <p class="info">Version：
+                        <select id="version">
+                            
+                            <option value="v0.0.1">
+                             latest: v0.0.1
+                            </option>
+                            
+                        </select>
+                    </p>
+
+                    <p class="info">Committer： <span class="text">qixing</span>
+                    </p>
+
+                    <p class="info">Author： <span class="text">qixing</span></p>
+
+                    <p class="info"><span class="desc">修改文案</span></p>
+
+                    <p class="btn link">
+                        <a href="../example.html">文档</a> |
+                        <a href="history.html">历史</a> |
+                        <a href="test/runner.html">用例</a> |
+                        <a href="http://gitlab.mogujie.org/mogu/example/tree/master">
+                            <i class="icon-github"></i>
+                            Gitlab
+                        </a>
+                    </p>
+
+                    <div id="demo" class="hidden" style="display: block;">
+                        <h2>演示</h2>
+                        <ul id="demo-list"><li><a href="example/index.html">1. 例子</a></li></ul>
+                    </div>
+                </div>
+                <div class="span9 offset3 col-content">
+                    <!-- 正文区域 -->
+                    <div id="content" class="content" name="content"><h2 id="history">History</h2>
+<p>最新的版本号在前方。</p>
+<h3 id="0-0-0">0.0.0</h3>
+<ul>
+<li class="history"><span class="history-tag history-tag-new">new</span>行首词会作为className应用在当前行上，以下是可选项。</li>
+<li class="history"><span class="history-tag history-tag-new">new</span>有新特性。</li>
+<li class="history"><span class="history-tag history-tag-changed">changed</span>api变更。</li>
+<li class="history"><span class="history-tag history-tag-fixed">fixed</span>修复bug。</li>
+<li class="history"><span class="history-tag history-tag-html5">html5</span>h5特性。</li>
+<li class="history"><span class="history-tag history-tag-improved">improved</span>代码优化，性能改进。</li>
+<li class="history"><span class="history-tag history-tag-unresolved">unresolved</span>不推荐使用。</li>
+<li class="history"><span class="history-tag history-tag-developer">developer</span>开发版。</li>
+</ul>
+</div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../javascripts/comm.js"></script>
+</div>
+
+<script src="../javascripts/highlight.min.js"></script>
+<script src="../javascripts/page-edit.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    //获取example信息
+    $.get('/example/example/EXAMPLE_MAP.txt', function (data) {
+
+        var fileList = {}
+        data.split(/[\r\n]/gm).forEach(function (file) {
+            var match = file.match(/^([^:]+).+?<title>([\s\S]+?)<\/title>/)
+            if (!match) return;
+            if (!fileList[RegExp.$1]) fileList[RegExp.$1] = RegExp.$2
+        })
+
+        var li = ''
+        Object.keys(fileList).forEach(function (key, i) {
+            li += '<li><a href="/example/example/' + key + '">' + (i + 1) + '. ' + fileList[key] + '</a></li>'
+        })
+
+        $('#demo-list').html(li)
+        $('#demo').show()
+
+    })
+
+    jQuery(function () {
+        var re = /^(new|changed|fixed|html5|improved|unresolved|developer)[\s]+/
+        $('#content li').each(function (index, $li) {
+            $li = $($li)
+            var match = $.trim($li.text()).match(re)
+            if (!match) {
+                return
+            }
+            $li.html($li.html().replace(re, '<span class="history-tag history-tag-$1">$1</span>')).addClass('history')
+        })
+    })
+
+    //切换版本
+    $(function () {
+        $('#version').change(function () {
+            if (this.options[this.selectedIndex].text.indexOf('latest') > -1) {
+                location.href = '/example'
+            } else {
+                location.href = '/example/+/' + this.value
+            }
+        })
+    })
+</script>
+
+
+
+</body></html>

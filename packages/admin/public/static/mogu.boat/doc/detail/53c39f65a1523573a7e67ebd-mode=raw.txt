@@ -1,0 +1,21 @@
+### 问题描述：
+	IE6 IE7 IE8(Q) 不支持 JSON 对象。
+
+### 造成的影响：
+	使用了 JSON 对象的脚本代码在 IE6 IE7 IE8(Q) 中运行的时候可能会抛出异常，导致功能失效。
+
+### 解决方式：
+	使用站内的 lib-json.js 原始链接：https://github.com/douglascrockford/JSON-js/blob/master/json2.js
+	
+### 使用方法：
+	依赖于： public/js2/src/lib-json.js
+	// json 转字符串: 
+	var data = {"a": 123, "b": 222};
+	JSON.stringify(data); // 输出： "{"a":123,"b":222}"
+	
+	// 字符串转 json
+	var str = '{"a":123,"b":222}';
+	JSON.parse(str); // 输出 {a: 123, b: 222};
+	
+#### 参考文档：
+	http://www.w3help.org/zh-cn/causes/SJ9012

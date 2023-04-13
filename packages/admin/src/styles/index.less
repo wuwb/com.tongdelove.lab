@@ -1,0 +1,20 @@
+@import './theme/index.less';
+@import './mixin.less';
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix {
+  &:before,
+  &:after {
+    display: table;
+    content: ' ';
+  }
+
+  &:after {
+    clear: both;
+  }
+}

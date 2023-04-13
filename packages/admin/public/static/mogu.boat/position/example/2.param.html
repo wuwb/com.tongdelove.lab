@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html><head lang="zh">
+    <meta charset="UTF-8">
+    <title>各种参数</title>
+    <style>
+        #tip {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            line-height: 50px;
+            background: #00d6b2;
+            text-align: center;
+            font-family: verdana;
+        }
+
+        #x {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            border-bottom: solid 1px red;
+        }
+
+        #x span {
+            position: absolute;
+            left: 0;
+            top: -8px;
+        }
+
+        #y {
+            position: fixed;
+            left: 50%;
+            top: 0;
+            height: 100%;
+            border-left: solid 1px red;
+        }
+
+        #y span {
+            position: absolute;
+            left: -8px;
+        }
+    </style>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="../index" src="../index.js"></script></head>
+<body>
+
+<div id="tip" style="position: absolute; left: 0px; top: 0px;">#tip<br>100 100</div>
+
+<div id="x"><span>水平局中的线</span></div>
+<div id="y"><span>垂直局中的线</span></div>
+
+
+<script src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+<script src="../require.js"></script>
+
+<pre>Position.pin(
+    { element: '#tip', x: '<select id="x1"><option>center</option><option>left</option><option>top</option><option>right</option><option>bottom</option><option>20px</option><option>-20px</option><option>100</option><option>100%</option><option>-100%</option><option>100%+20px</option><option>-100</option></select>', y: '<select id="y1"><option>center</option><option>left</option><option>top</option><option>right</option><option>bottom</option><option>20px</option><option>-20px</option><option>100</option><option>100%</option><option>-100%</option><option>100%+20px</option><option>-100</option></select>' },
+    { element: Position.VIEWPORT, x: '<select id="x2"><option>center</option><option>left</option><option>top</option><option>right</option><option>bottom</option><option>20px</option><option>-20px</option><option>100</option><option>100%</option><option>-100%</option><option>100%+20px</option><option>-100</option></select>', y: '<select id="y2"><option>center</option><option>left</option><option>top</option><option>right</option><option>bottom</option><option>20px</option><option>-20px</option><option>100</option><option>100%</option><option>-100%</option><option>100%+20px</option><option>-100</option></select>' }
+)
+</pre>
+
+<script>
+
+    var opt = 'center,left,top,right,bottom,20px,-20px,100,100%,-100%,100%+20px,-100'
+    $('select').html(opt.split(',').map(function (item) {
+        return '<option>' + item + '</option>'
+    }).join(''))
+
+    require(['../index'], function (Position) {
+        $(document.body).click(function () {
+            reset()
+        })
+
+        $('select').change(reset)
+
+        function reset() {
+            Position.pin(
+                    { element: '#tip', x: x1.value, y: y1.value },
+                    //Position.VIEWPORT是个常量，代表浏览器可视区域
+                    { element: Position.VIEWPORT, x: x2.value, y: y2.value }
+            )
+        }
+
+        reset()
+
+    })
+</script>
+
+
+
+</body></html>

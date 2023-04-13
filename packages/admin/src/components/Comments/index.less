@@ -1,0 +1,97 @@
+.comments-section {
+  background: #fff;
+  // padding: 0 20px;
+
+  // 点赞、评论按钮
+  .opetions {
+    height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+    .fl-left {
+      height: 100%;
+    }
+    .comments,
+    .favorite,
+    .collect {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin: 8px;
+      cursor: pointer;
+    }
+    .favorite {
+      margin-left: 0;
+      &.active {
+      }
+    }
+    .comments {
+    }
+    .collect {
+      &.active {
+      }
+    }
+  }
+
+  // 点赞数
+  .dot-counts {
+    height: 18px;
+    margin-bottom: 10px;
+  }
+
+  // 评论列表
+  .comments-list {
+    width: 100%;
+    margin: 0;
+    .content {
+      margin: 5px 0;
+      .username {
+        margin-right: 10px;
+        font-weight: 600;
+      }
+      .replay-content {
+        font-weight: 400;
+        font-size: 13px;
+      }
+      &.show-more {
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+    &.fill {
+      height: 360px;
+      overflow-y: auto;
+      border-bottom: 1px solid #efefef;
+    }
+  }
+
+  // 发表时间
+  .release-time {
+    padding-bottom: 14px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  // 评论框
+  .add-comments {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    border-top: 1px solid #efefef;
+    input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      outline: none;
+      &::-webkit-input-placeholder {
+        color: #999;
+      }
+    }
+    .more {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+}

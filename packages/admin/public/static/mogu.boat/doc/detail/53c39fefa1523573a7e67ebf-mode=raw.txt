@@ -1,0 +1,31 @@
+#### 1 过需求时首要考虑到手机浏览器的性能，对一些好性能的需求要及时与需求方协商或砍掉。
+        比如，一个页面要显示100个以上的商品、每个商品都要加倒计时、50个商品一起滑动切换。
+#### 2 引用公用css，js从mobile4目录中取，因为x5里的wap公用js，css都针对他们新的开发环境做了对应改动，老模板都不适用。
+![alt text](http://s6.mogujie.cn/pic/140623/o61vu_kq2e2olykrbdkwkugfjeg5sckzsew_275x289.jpg"Title")
+#### 3 开发的时候要特别注意320px到640px之间的N种虚拟像素屏兼容，一般用百分比来设定宽度，会用js渲染计算宽度。
+        一般pc上开发选择iphone5，Galaxy模式各测试一遍。
+#### 4 使用花瓶手机绑定125测试页面
+
+a) 申请vpn并加载安装，然后启动。 [vpn使用说明](http://wiki.mogujie.org/pages/viewpage.action?pageId=18876775 "Title") 
+
+b) 启动vpn，并绑定相关域名到host。
+
+c) 下载安装Charles，注册码 name： **anthony ortolani**  key:  **a4036b2761c9583fda**
+
+d) 使用Charles绑定手机
+
+ 
+ 
+
+    1.先在pc上配置Charles代理先打开proxy setting，然后设置端口代理
+
+![alt text](http://s8.mogujie.cn/pic/140623/o61vu_kq2gookkkrbgetcugfjeg5sckzsew_343x490.png"Title") 
+
+![alt text](http://s6.mogujie.cn/pic/140623/o61vu_kq2fiokkkrbgeysugfjeg5sckzsew_647x241.jpg"Title")
+
+ 
+ 
+
+    2.手机上wifi配置代理，输入pcIP和代理端口号,点击保存，大功告成！
+
+![alt text](http://s6.mogujie.cn/pic/140623/o61vu_kq2fgz3ykrbegtcugfjeg5sckzsew_509x919.jpg"Title")

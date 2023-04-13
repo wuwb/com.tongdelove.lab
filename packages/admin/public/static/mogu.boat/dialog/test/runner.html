@@ -1,0 +1,175 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Test Unit</title>
+    <!--Start 测试框架所需文件-->
+    <link rel="stylesheet" href="mocha.css">
+    <script src="mocha.js"></script>
+    <script src="chai.js"></script>
+    <script>mocha.setup('tdd')</script>
+    <!-- End测试框架所需文件-->
+</head>
+<body>
+
+<div id="mocha"></div>
+
+<script src="../../../www.mogujie.com/js/core/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" href="../index.css">
+<script src="../require.js"></script>
+<script>
+
+    require(['../index'], function (Dialog) {
+
+        var expect = chai.expect;
+
+        describe('基本', function () {
+
+            var dialog = new Dialog({
+                content: '<p>内容</p>'
+            })
+
+            it('render前，DOM不能被创建', function () {
+                expect(dialog.$node).to.equal(undefined);
+            })
+
+            it('render后，遮罩和浮层都被创建', function () {
+                dialog.render()
+                expect(dialog.$node).to.have.property('animate')
+            })
+
+            it('除非调用show，否则弹层不应该被展示', function () {
+                expect(dialog.$node.is(':hidden')).to.equal(true)
+            })
+
+            it('调用show后，弹层应该被显示出来', function () {
+                dialog.show()
+                expect(dialog.$node.is(':hidden')).to.equal(false)
+            })
+
+            it('调用hide后，弹层应该被关闭', function () {
+                dialog.hide()
+                expect(dialog.$node.is(':hidden')).to.equal(true)
+            })
+
+            it('destroy', function () {
+                var id = dialog.$node[0].id
+                expect(document.getElementById(id).parentNode).to.equal(document.body)
+                if (dialog.$overlayNode) {
+                    var maskId = dialog.$overlayNode[0].id
+                    expect(document.getElementById(maskId).parentNode).to.equal(document.body)
+                }
+                dialog.destroy()
+                expect(document.getElementById(id)).to.equal(null)
+                expect(document.getElementById(maskId)).to.equal(null)
+            })
+
+        })
+
+
+        describe('事件', function () {
+
+            var dialog = new Dialog({
+                content: '<p>事件测试</p>'
+            })
+
+            it('show', function () {
+                dialog.on('show', function () {
+                    window.abc = 1
+                })
+                dialog.show()
+                expect(window.abc).to.equal(1)
+            })
+
+            it('hide', function () {
+                window.abc = 0
+                dialog.on('hide', function () {
+                    window.abc--
+                })
+                dialog.trigger('hide')
+                dialog.trigger('hide')
+                dialog.trigger('hide')
+                expect(window.abc).to.equal(-3)
+            })
+
+            it('trigger', function () {
+                window.timer = 0
+                dialog.on('show', function () {
+                    window.timer++
+                })
+                dialog.trigger('show')
+                dialog.trigger('show')
+                dialog.trigger('show')
+                expect(window.timer).to.equal(3)
+                dialog.hide()
+                dialog.destroy()
+            })
+
+
+        })
+
+        describe('隐藏弹框时的事件测试', function () {
+
+            it('阻止浮层被关闭', function (done) {
+                var dialog = new Dialog({
+                    content: '<p>阻止关闭</p>'
+                }).show()
+
+                dialog.on('hide', function () {
+                    setTimeout(function () {
+                        dialog.hide()
+                    }, 500)
+                    return false
+                })
+
+
+                dialog.trigger('hide')
+                //此时弹层应该显示
+                expect(dialog.$node.is(':hidden')).to.equal(false);
+
+                //此时弹层应该被关闭
+                setTimeout(function () {
+                    expect(dialog.$node.is(':hidden')).to.equal(true);
+                    done()
+                    dialog.destroy()
+                }, 510)
+
+            })
+
+            it('检测返回值', function (done) {
+                var dialog = new Dialog({
+                    content: '<button class="J-close" exit-code="-2"> 阻止关闭</button>'
+                }).show()
+
+                dialog.on('hide', function (code) {
+                    expect(code).to.equal(-2);
+                    done()
+                    dialog.destroy()
+                })
+
+                dialog.$node.find('.J-close').trigger('click')
+            })
+
+        })
+
+        describe('设置内容', function () {
+            it('设置浮层内容', function () {
+                var dialog = new Dialog({
+                    content: '<p>默认内容</p>'
+                }).show()
+                expect(dialog.$node.find('>div.J-content').text()).to.equal('默认内容');
+                expect(dialog.$node.find('>div.J-content').html()).to.equal('<p>默认内容</p>');
+                dialog.set('content', '<div>123</div>')
+                expect(dialog.$node.find('>div.J-content').html()).to.equal('<div>123</div>');
+                dialog.hide()
+                dialog.destroy()
+            })
+        })
+
+        mocha.run()
+
+        //更多断言风格：http://chaijs.com/api/
+
+    })
+
+</script>
+
+</body></html>

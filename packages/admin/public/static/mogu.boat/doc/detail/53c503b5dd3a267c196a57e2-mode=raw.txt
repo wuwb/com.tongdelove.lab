@@ -1,0 +1,27 @@
+## 原生方式
+
+```html
+<select id="abc">
+    <option value="一">1</option>
+    <option value="二">2</option>
+    <option value="三">3</option>
+</select>
+
+<script>
+    abc.onchange = function () {
+        alert('当前选中项：'+ abc.selectedIndex)
+        alert('选中的元素：'+ abc.options[abc.selectedIndex])
+        alert('选中的文本：'+ abc.options[abc.selectedIndex].text)
+        alert('选中的value：'+ abc.value)
+    }
+</script>
+```
+
+## 使用 jQuery 的方式
+```
+    // 直接获取 `select#abc` 的选中的值：
+    $('#abc').val();
+    
+    // 获取 `select#abc` 选中的元素：
+    $('#abc option:seleced');
+```

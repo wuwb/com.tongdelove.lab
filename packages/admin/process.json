@@ -1,0 +1,45 @@
+{
+  "apps": [
+    {
+      "name": "printlake-web",
+      "script": "npm",
+      "watch": false,
+      "args": "run start",
+      "instances": 1,
+      "exec_mode": "cluster",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "error_file": "./logs/process/error_file.log",
+      "out_file": "./logs/process/out_file.log"
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "ubuntu",
+      "host": ["118.24.105.97"],
+      "ref": "origin/master",
+      "repo": "https://13735851501:202402.@e.coding.net/wuwb/printlake/web.git",
+      "path": "/home/ubuntu/printlake/server",
+      "post-deploy": "npm install && npm run build && npm run pm2",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "staging": {
+      "user": "root",
+      "host": ["192.168.68.3"],
+      "ref": "origin/master",
+      "repo": "https://13735851501:202402.@e.coding.net/wuwb/printlake/web.git",
+      "path": "/root/printlake/web",
+      "post-deploy": "npm install && npm run build && npm run pm2",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

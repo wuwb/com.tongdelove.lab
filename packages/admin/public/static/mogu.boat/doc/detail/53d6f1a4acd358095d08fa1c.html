@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Dockerfile of ubuntu 14.04 sshd</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../../stylesheets/style.css">
+    </head>
+    <body class="day-mode font1" style="">
+<link rel="stylesheet" href="../../stylesheets/code.css">
+<style>
+    #doc-代码片段 {
+        background: red;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <!-- 导航 -->
+<div class="nav-bar expand">
+    <!-- <div class="head"> -->
+        <div class="list menu">
+            <a class="list-item" href="../../index.html" title="首页">
+                <i class="icon icon-blhome"></i>
+                <span class="title">首页</span>
+            </a>
+            <a class="list-item" id="widget-channel" href="../../widget.html" title="组件库">
+                <i class="icon icon-dasuolvetuliebiao"></i>
+                <span class="title">组件库</span>
+            </a>
+            <a class="list-item" id="doc-代码片段" href="../代码片段.html" title="代码库">
+                <i class="icon icon-daimawenjian"></i>
+                <span class="title">代码库</span>
+            </a>
+            <a class="list-item" id="doc-划船文档" href="../划船文档.html" title="公共文档">
+                <i class="icon icon-shumiao"></i>
+                <span class="title">公共文档</span>
+            </a>
+            <a class="list-item" id="weekly-channel" href="../../weekly.html" title="航海周记">
+                <i class="icon icon-kafei"></i>
+                <span class="title">航海周记</span>
+            </a>
+            <a class="list-item" id="image-channel" target="_blank" href="../../index.html#home" title="航海画册">
+                <i class="icon icon-liaotianyegongxiangxiangce"></i>
+                <span class="title">航海画册</span>
+            </a>
+
+            <a class="list-item" id="event-channel" href="http://mogu.boat/event" title="航海大事记">
+                <i class="icon icon-rili"></i>
+                <span class="title">航海大事记</span>
+            </a>
+
+        </div>
+        <div class="list config">
+            <a class="list-item change-font" href="javascript:;" title="修改字体">
+                <i class="icon icon-ziti"></i>
+                <span class="title">字体</span>
+            </a>
+        </div>
+    <!-- </div> -->
+</div>
+    <div class="row-fluid clearfix">
+        <div class="body wiki-view clearfix">
+            <div id="main" class="main">
+                <h1>Dockerfile of ubuntu 14.04 sshd</h1>
+                <!-- 正文区f域 -->
+                <div id="content" class="content" name="content">
+                    <pre><code class="lang-bash hljs "><span class="hljs-comment"># sshd</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># VERSION               0.0.1</span>
+
+FROM     ubuntu:<span class="hljs-number">14.04</span>.sshd
+<span class="hljs-comment"># 谢谢 https://registry.hub.docker.com/u/angelrr7702/docker-ubuntu-14.04-sshd/dockerfile</span>
+MAINTAINER Angel Rodriguez  <span class="hljs-string">"angelrr7702@gmail.com"</span>
+
+RUN mkdir /var/run/sshd
+RUN sed -ri <span class="hljs-string">'s/UsePAM yes/#UsePAM yes/g'</span> /etc/ssh/sshd_config
+RUN sed -ri <span class="hljs-string">'s/#UsePAM no/UsePAM no/g'</span> /etc/ssh/sshd_config
+RUN sed -ri <span class="hljs-string">'s/PermitRootLogin without-password/PermitRootLogin yes/g'</span> /etc/ssh/sshd_config
+
+RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">'root:screencast'</span> |chpasswd
+
+EXPOSE <span class="hljs-number">22</span>
+CMD    [<span class="hljs-string">"/usr/sbin/sshd"</span>, <span class="hljs-string">"-D"</span>]
+</code></pre>
+
+                    <a href="../edit/53d6f1a4acd358095d08fa1c.html" class="edit">编辑此文档</a>
+                </div>
+                <p class="control">
+                    <span>最后修改时间：
+                        7天前，
+                        2014年7月29日星期二早上8点58，
+                    </span>
+                    <a href="../delete/53d6f1a4acd358095d08fa1c-redirect-category=代码片段.html" onclick="return confirm('确认删除？')">删除此文档</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部 -->
+<div id="view-mode-modal" tabindex="-1" class="modal hidden read-modal" aria-hidden="true" data-js-module="view-mode-modal">
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+        <a class="btn font kai" data-font="font2" href="javascript:;">楷体</a>
+        <a class="btn font hei active" data-font="font1" href="javascript:;">黑体</a>
+    </div>
+</div>
+<div class="footer">
+    <script src="../../javascripts/jquery-1.10.2.min.js"></script>
+    <script src="../../javascripts/comm.js"></script>
+</div>
+
+    <script src="../../javascripts/highlight.min.js"></script>
+    <script>
+        ;(function($){
+
+            //高亮代码
+            hljs.initHighlightingOnLoad();
+
+        })(jQuery);
+    </script>
+
+  
+</body></html>
