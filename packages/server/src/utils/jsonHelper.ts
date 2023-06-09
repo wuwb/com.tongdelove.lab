@@ -27,7 +27,7 @@ export class JsonHelper {
     async getValue(name: string): Promise<JsonValue> {
         const packageJson = await this.packageJson;
         if (packageJson) {
-            return packageJson[name];
+            return packageJson[name] as JsonValue;
         } else {
             return null;
         }

@@ -3,6 +3,7 @@
  */
 
 import { PrismaClient } from '@prisma/client';
+import { Sql } from '@prisma/client/runtime';
 
 if (require.main === module) {
   clean().catch((error) => {
@@ -22,18 +23,21 @@ async function clean() {
   await prisma.$disconnect();
 }
 
+
+// TemplateStringsArray | Sql
+
 async function dropTables(
   prisma: PrismaClient,
   tables: string[]
 ): Promise<void> {
   for (const table of tables) {
-    await prisma.$executeRaw(`DROP TABLE public."${table}" CASCADE;`);
+    await prisma.$executeRaw(`DROP TABLE public."${table}" CASCADE;` as any);
   }
 }
 
 async function dropTypes(prisma: PrismaClient, types: string[]) {
   for (const type of types) {
-    await prisma.$executeRaw(`DROP TYPE IF EXISTS "${type}" CASCADE;`);
+    await prisma.$executeRaw(`DROP TYPE IF EXISTS "${type}" CASCADE;` as any);
   }
 }
 

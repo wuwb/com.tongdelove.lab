@@ -6,6 +6,5 @@
         "test",
         "dist",
         "**/*spec.ts",
-        "admin"
     ]
 }

@@ -1,0 +1,22 @@
+/**
+ * 系统错误码
+ */
+export enum ErrorCode {
+    LIMITED = -1, // 被限流
+
+    SUCCESS = 1001,
+
+    AUTH_ERROR = 2001,
+
+    PARSE_ERROR = 4000,
+
+    PARAM_ERROR = 4001,
+
+    DATASOURCE_ERROR = 4002,
+
+    DATAFETCH_ERROR = 4003,
+
+    UNKNOWN_ERROR = 4004,
+
+    DATAFORMAT_ERROR = 4005,
+}

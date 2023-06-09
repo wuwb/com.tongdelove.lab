@@ -1,5 +1,5 @@
 import { PostEntity } from '../entities/post.entity';
-import { User } from '@/modules/user/interfaces/user.interface';
+import { User } from '@/modules/system/user/interfaces/user.interface';
 
 interface IPost {
     readonly slug: string;

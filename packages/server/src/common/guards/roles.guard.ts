@@ -2,7 +2,7 @@ import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } 
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { RoleEnum } from '@/common/enums/role.enum';
-import { ROLES_KEY } from '@/common/constants/auth.constants';
+import { ROLES_KEY_METADATA } from '@/common/constants';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -12,7 +12,7 @@ export class RolesGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         // 反射获取角色信息
-        const roles = this.reflector.get<RoleEnum[]>(ROLES_KEY, context.getHandler());
+        const roles = this.reflector.get<RoleEnum[]>(ROLES_KEY_METADATA, context.getHandler());
         if (roles === undefined || !roles || roles.length === 0) {
             // 返回 true 表示有权限
             return true;

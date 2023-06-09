@@ -1,13 +1,13 @@
 import { PrimaryGeneratedColumn, Column, Entity, BeforeUpdate, ManyToOne, OneToMany, JoinColumn } from "typeorm";
-import { PublicEntity } from "@/utils/shared/entities/public.entity";
+import { BaseEntity } from "@/common/entities/base.entity";
 
 @Entity('post-category')
-export class PostCategoryEntity extends PublicEntity {
+export class PostCategoryEntity extends BaseEntity {
 
-  @Column()
-  postId: string;
+    @Column()
+    postId: string;
 
-  @Column()
-  categoryId: string;
+    @Column()
+    categoryId: string;
 
 }

@@ -12,27 +12,28 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
 // import * as csurf from 'csurf';
 import * as nunjucks from 'nunjucks';
 import { Stream } from 'stream';
-
-// import { RolesGuard } from './common/guards/roles.guard';
-// import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { PrismaClientExceptionFilter } from './common/filters/prisma-client-exception.filter';
-// import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
-// import { TransformInterceptor } from './common/interceptors/transform.interceptor';
-import { PrismaService } from './processors/prisma/prisma.service';
-
-import * as viewfilter from './utils/viewfilter';
-
 import * as Sentry from "@sentry/node";
 import '@sentry/tracing';
-import { AppModule } from './app.module';
-import { AppService } from './app.service';
-import { SentryInterceptor } from './common/interceptors/sentry.interceptor';
-import { AppConfigService } from './config/app/app-config.service';
-import { AuthService } from './processors/auth/auth.service';
-import { RedisService } from './processors/redis/redis.service';
 import { ValidationError } from 'class-validator';
-import { sendServerLoadEvent } from './utils/sendServerLoadEvent';
+
+import { AppConfigService } from '@/config/app/app-config.service';
+import { SwaggerConfig } from './config/swagger.config';
+import { SentryInterceptor } from '@/common/interceptors/sentry.interceptor';
+import { PrismaClientExceptionFilter } from '@/common/filters/prisma-client-exception.filter';
+import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
+// import { RolesGuard } from '@/common/guards/roles.guard';
+// import { AllExceptionsFilter } from '@/common/filters/all-exceptions.filter';
+// import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor';
+// import { TransformInterceptor } from '@/common/interceptors/transform.interceptor';
+
+import { RedisService } from '@/core/cache/redis/redis.service';
+import { PrismaService } from '@/core/database/prisma/prisma.service';
+
+import { AppModule } from '@/modules/app/app.module';
+import { AppService } from '@/modules/app/app.service';
+import { AuthService } from '@/modules/system/auth/auth.service';
+import { sendServerLoadEvent } from '@/utils/sendServerLoadEvent';
+import * as viewfilter from '@/utils/viewfilter';
 
 declare const module: any;
 
@@ -151,9 +152,10 @@ function initGlobalFilters(app, configService) {
     }
 }
 
-function setupSwagger(app: INestApplication, swaggerConfig) {
+async function setupSwagger(swaggerConfig) {
     // 配置api文档信息(不是生产环境配置文档)
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'development') {
+        const app = await NestFactory.create(AppModule);
         const swaggerPath = `${swaggerConfig.root}`;
         const swaggerDocumentConfig = new DocumentBuilder()
             .setTitle(swaggerConfig.title)
@@ -169,6 +171,7 @@ function setupSwagger(app: INestApplication, swaggerConfig) {
                 in: 'Header',
                 // name: 'token',
             })
+            .addTag('server')
             .build();
         const swaggerDocumentOptions: SwaggerDocumentOptions = {
             operationIdFactory: (
@@ -188,6 +191,7 @@ function setupSwagger(app: INestApplication, swaggerConfig) {
         const document = SwaggerModule.createDocument(app, swaggerDocumentConfig, swaggerDocumentOptions);
         // 打開 http://localhost:3000/api/docs 就會連結到 swagger 服務。
         SwaggerModule.setup(swaggerPath, app, document, swaggerSetupOptions);
+        await app.listen(swaggerConfig.port);
     }
 }
 
@@ -316,11 +320,11 @@ async function bootstrap() {
             disableErrorMessages: false,
             errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
             // 剥离属性，自动去除 dto 中未定义的属性
-            // whitelist: true,
+            whitelist: true,
             // 出现非白名单属性时停止处理请求
             // forbidNonWhitelisted: false,
             // 自动有效负载转换，可以写到方法级别，可以自动将 string id 转成 number
-            // transform: true,
+            transform: true,
             // exceptionFactory: (errors: ValidationError[]) => {
             //     let message = '';
             //     errors.forEach((error) => {
@@ -390,10 +394,10 @@ async function bootstrap() {
 
     // initGlobalFilters(app, configService);
 
-    // const swaggerConfig = configService.get<SwaggerConfig>('swagger');
-    // if (swaggerConfig && swaggerConfig.enabled) {
-    //   setupSwagger(app, swaggerConfig);
-    // }
+    const swaggerConfig = configService.get<SwaggerConfig>('swagger');
+    if (swaggerConfig && swaggerConfig.enabled) {
+        setupSwagger(swaggerConfig);
+    }
 
     // 禁止提示
     // app.disable('x-powered-by');
@@ -413,6 +417,7 @@ async function bootstrap() {
     await app.listen(appConfig.port);
 
     process.on('SIGINT', async () => {
+        console.log('process SIGINT.');
         setTimeout(() => process.exit(1), 5000);
         await app.close();
         process.exit(0);

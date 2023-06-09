@@ -5,7 +5,6 @@ import { Prisma } from "@prisma/client";
 import { plainToClass } from "class-transformer";
 import { OrderService } from "./order.service";
 
-
 @Injectable()
 export class OrderController {
     constructor(

@@ -1,40 +1,26 @@
+import { PaginatedDto } from '@/common/dto/paginated.dto';
+import { PaginationDto } from '@/common/dto/pagination.dto';
 import {
-  applyDecorators,
-  createParamDecorator,
-  ExecutionContext,
-  Type,
+    applyDecorators,
+    createParamDecorator,
+    ExecutionContext,
+    Type,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiProperty, getSchemaPath } from '@nestjs/swagger';
-
-export class Pager {
-  @ApiProperty()
-  pageIndex: number;
-
-  @ApiProperty()
-  pageSize: number;
-}
-
-export class PagedDto<T> {
-  pageIndex: number;
-  pageSize: number;
-  data?: T[];
-  totalCount?: number;
-}
-
 
 /**
  * 对分页查询参数进行转换的注解
  */
 export const Pageable = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext): Pager => {
-    const request = ctx.switchToHttp().getRequest();
-    const pageIndex = parseInt(request.query.pageIndex, 10) || 1;
-    const pageSize = parseInt(request.query.pageSize, 10) || 10;
-    return {
-      pageIndex,
-      pageSize,
-    };
-  },
+    (data: unknown, ctx: ExecutionContext): PaginationDto => {
+        const request = ctx.switchToHttp().getRequest();
+        const pageNum = parseInt(request.query.pageNum, 10) || 1;
+        const pageSize = parseInt(request.query.pageSize, 10) || 10;
+        return {
+            pageNum,
+            pageSize,
+        };
+    },
 );
 
 /**
@@ -45,16 +31,16 @@ export const Pageable = createParamDecorator(
  * @returns
  */
 export async function pageWrapper<T>(
-  queryPromise: () => Promise<T[]>,
-  countAllPromise: () => Promise<number>,
-  page: Pager,
-): Promise<PagedDto<T>> {
-  return {
-    data: await queryPromise(),
-    pageSize: page.pageSize,
-    pageIndex: page.pageIndex,
-    totalCount: await countAllPromise(),
-  };
+    queryPromise: () => Promise<T[]>,
+    countAllPromise: () => Promise<number>,
+    page: Required<PaginationDto>,
+): Promise<PaginatedDto<T>> {
+    return {
+        data: await queryPromise(),
+        pageSize: page.pageSize,
+        pageNum: page.pageNum,
+        total: await countAllPromise(),
+    };
 }
 
 /**
@@ -63,20 +49,20 @@ export async function pageWrapper<T>(
  * @returns
  */
 export const ApiPagedResponse = <TModel extends Type<any>>(model: TModel) => {
-  return applyDecorators(
-    ApiOkResponse({
-      //   type: Type<PagedDto,
-      schema: {
-        properties: {
-          data: {
-            type: 'array',
-            items: { $ref: getSchemaPath(model) },
-          },
-          pageIndex: { type: 'integer' },
-          pageSize: { type: 'integer' },
-          totalCount: { type: 'integer' },
-        },
-      },
-    }),
-  );
+    return applyDecorators(
+        ApiOkResponse({
+            //   type: Type<PagedDto,
+            schema: {
+                properties: {
+                    data: {
+                        type: 'array',
+                        items: { $ref: getSchemaPath(model) },
+                    },
+                    pageNum: { type: 'integer' },
+                    pageSize: { type: 'integer' },
+                    totalCount: { type: 'integer' },
+                },
+            },
+        }),
+    );
 };

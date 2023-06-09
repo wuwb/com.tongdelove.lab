@@ -1,4 +1,4 @@
-import { PrismaService } from "@/processors/prisma/prisma.service";
+import { PrismaService } from "@/core/database/prisma/prisma.service";
 import { Injectable } from "@nestjs/common";
 import { Customer, OrderDetail } from "@prisma/client";
 

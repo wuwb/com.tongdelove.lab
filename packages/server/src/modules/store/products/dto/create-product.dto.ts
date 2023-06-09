@@ -6,8 +6,9 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
+import { Product } from '../entities/product.entity';
 
-export class CreateProductDto {
+export class CreateProductDto extends Product {
   @IsNotEmpty()
   @MinLength(3)
   @ApiProperty()
@@ -16,7 +17,7 @@ export class CreateProductDto {
   @IsOptional()
   @MaxLength(150)
   @ApiProperty({ required: false })
-  description?: string;
+  description: string;
 
   @Min(1.0)
   @ApiProperty()
@@ -28,5 +29,5 @@ export class CreateProductDto {
   sku: string;
 
   @ApiProperty({ required: false, default: true })
-  published?: boolean = false;
+  published: boolean = false;
 }

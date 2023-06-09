@@ -1,16 +1,20 @@
 export class ResOp {
-    readonly data: any;
     readonly code: number;
-    readonly message: string;
+    readonly msg: string;
+    [key: string]: any;
 
-    constructor(code: number, data?: any, message = 'success') {
+    constructor(code: number, message = 'success', data?: any) {
         this.code = code;
-        this.data = data;
-        this.message = message;
+        this.msg = message;
+        Object.assign(this, data);
     }
 
-    static success(data?: any) {
-        return new ResOp(200, data);
+    static success(data?: any, msg = '操作成功', code = 200) {
+        return new ResOp(code, msg, data);
+    }
+
+    static error(msg = '操作失败', code = 500, data?: any) {
+        return new ResOp(code, msg, data);
     }
 }
 

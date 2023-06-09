@@ -12,8 +12,7 @@ import {
     Injectable,
     NestInterceptor,
 } from '@nestjs/common';
-import { RedisKeys } from '@/common/constants/redis.cache';
-import { CacheService } from '@/processors/cache/cache.service';
+import { RedisKeys } from '@/common/constants/redis.constant';
 import { getNestExecutionContextRequest } from '@/common/transformers/get-req.transformer';
 import { getIp } from '@/utils/ip.util';
 import { Request } from 'express';
@@ -25,7 +24,6 @@ export class AnalyzeInterceptor implements NestInterceptor {
 
     constructor(
 
-        private readonly cacheService: CacheService,
     ) {
         this.init()
     }

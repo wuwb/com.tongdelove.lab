@@ -93,7 +93,7 @@ export class HttpExceptionFilter extends BaseExceptionFilter
                 code = exceptionData.code;
             } catch (e) { }
 
-            result = new ResOp(code, null, message);
+            result = new ResOp(code, message, null);
 
             response.status(status)
                 .type('application/json')

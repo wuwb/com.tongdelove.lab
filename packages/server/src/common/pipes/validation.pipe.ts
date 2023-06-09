@@ -29,7 +29,7 @@ export class ValidationPipe implements PipeTransform<any> {
             //   };
             // });
             //获取第一个错误并且返回
-            const msg = values(errors[0].constraints)[0];
+            const msg = values(errors[0]?.constraints)[0];
             // 统一抛出异常
             throw new HttpException({ message: msg }, HttpStatus.OK);
         }

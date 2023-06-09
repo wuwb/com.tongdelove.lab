@@ -1,11 +1,11 @@
 import { PrimaryGeneratedColumn, Column, Entity, BeforeUpdate, ManyToOne, OneToMany, JoinColumn, Index } from "typeorm";
-import { UserEntity } from '@/modules/user/entities/user.entity';
+import { UserEntity } from '@/modules/system/user/entities/user.entity';
 import { CommentEntity } from './comment.entity';
-import { PublicEntity } from "@/utils/shared/entities/public.entity";
+import { BaseEntity } from "@/common/entities/base.entity";
 
 @Index('post_id', ['id'], { unique: true }) // 创建索引https://typeorm.io/#/indices，https://typeorm.biunav.com/zh/indices.html#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95
 @Entity()
-export class PostEntity extends PublicEntity {
+export class PostEntity extends BaseEntity {
 
     @Column()
     slug: string;

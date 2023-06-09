@@ -27,13 +27,15 @@
     // 让函数名后与括号加空格
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
     "workbench.colorCustomizations": {
-      "activityBar.activeBorder": "#ff0000",
-      "activityBar.activeBackground": "#888888",
-      "activityBar.background": "#ffffff",
-      "activityBar.foreground": "#000000"
+        "activityBar.activeBorder": "#ff0000",
+        "activityBar.activeBackground": "#888888",
+        "activityBar.background": "#ffffff",
+        "activityBar.foreground": "#000000"
     },
     "git.ignoreLimitWarning": true,
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "aiXcoder.showTrayIcon": true
 }

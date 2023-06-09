@@ -3,28 +3,26 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { TaobaoController } from './taobao.controller';
 import { TaobaoService } from './taobao.service';
-import { CustomerService } from '@/modules/erp/customer/customer.service';
-import { PrismaModule } from '@/processors/prisma/prisma.module';
+import { CustomerService } from '@/modules/store/customer/customer.service';
 
 @Module({
-  imports: [
-    MulterModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        dest: configService.get('MULTER_DEST'),
-      }),
-      inject: [ConfigService],
-    }),
-    PrismaModule,
-  ],
-  controllers: [
-    TaobaoController,
-  ],
-  providers: [
-    TaobaoService,
-    CustomerService,
-  ],
-  exports: [
-  ],
+    imports: [
+        MulterModule.registerAsync({
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => ({
+                dest: configService.get('MULTER_DEST'),
+            }),
+            inject: [ConfigService],
+        }),
+    ],
+    controllers: [
+        TaobaoController,
+    ],
+    providers: [
+        TaobaoService,
+        CustomerService,
+    ],
+    exports: [
+    ],
 })
 export class TaobaoModule { }

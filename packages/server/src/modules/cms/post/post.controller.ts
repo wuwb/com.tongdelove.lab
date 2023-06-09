@@ -2,11 +2,11 @@ import { Controller, Get, Put, Param, Post, Delete, Body, Query, Patch, DefaultV
 import { PostService } from './post.service';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { RoleEnum } from '@/common/enums/role.enum';
-import { UserService } from '@/modules/user/user.service';
+import { UserService } from '@/modules/system/user/user.service';
 import { User, Post as PostModel, Prisma } from '@prisma/client';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '@/processors/auth/guards/jwt-auth.guard';
-import { PrismaService } from '@/processors/prisma/prisma.service';
+import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard';
+import { PrismaService } from '@/core/database/prisma/prisma.service';
 import { skip } from 'rxjs';
 import { RolesGuard } from '@/common/guards/roles.guard';
 import { Roles } from '@/common/decorators/roles.decorator';
@@ -26,6 +26,16 @@ export class PostController {
     @Get()
     async getPublishedPosts(@Query() query) {
         return this.postService.posts(query);
+    }
+
+    @Get()
+    findAll() {
+        return this.postService.findAll();
+    }
+
+    @Get('drafts')
+    findDrafts() {
+        return this.postService.findDrafts();
     }
 
     async getPosts() {
@@ -48,7 +58,7 @@ export class PostController {
             orderBy: {
                 createdAt: 'desc',
             }
-        })
+        });
     }
 
     @Get('filtered-posts/:searchString')
@@ -77,6 +87,7 @@ export class PostController {
         this.logger.debug('data: ', data);
         this.logger.debug('req.user: ', req.user);
         return this.postService.createPost({
+            postAuthor: 0,
             postContent: data.postContent || '',
             postTitle: data.postTitle,
             postExcerpt: data.postExcerpt || '',
@@ -98,7 +109,6 @@ export class PostController {
             likesCount: 0,
             postDateGmt: new Date(),
             postModifiedGmt: new Date(),
-            user: req.user.id,
         }, {
             slug: 'category',
         });

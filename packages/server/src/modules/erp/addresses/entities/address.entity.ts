@@ -1,5 +1,5 @@
-import { PublicEntity } from '@/utils/shared/entities/public.entity';
+import { BaseEntity } from '@/common/entities/base.entity';
 
-export class Address extends PublicEntity {
+export class Address extends BaseEntity {
 
 }

@@ -1,4 +1,3 @@
-import { CacheService } from "@/processors/cache/cache.service";
 import { Controller, Get, Query, Scope } from "@nestjs/common";
 import { AnalyzeService } from "./analyze.service";
 
@@ -10,7 +9,6 @@ import { AnalyzeService } from "./analyze.service";
 export default class AnalyzeController {
     constructor(
         private readonly analyzeService: AnalyzeService,
-        private readonly cacheService: CacheService,
     ) { }
 
     @Get('/')

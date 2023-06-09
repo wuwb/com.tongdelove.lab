@@ -1,0 +1,22 @@
+import { Column, Entity, Unique } from 'typeorm';
+import { BaseEntity } from '@/common/entities/base.entity';
+
+@Entity('account_role')
+@Unique('account_role_deleted', ['accountId', 'roleId', 'deletedAt'])
+export class AccountRoleEntity extends BaseEntity {
+    @Column({
+        type: 'int',
+        nullable: false,
+        name: 'account_id',
+        comment: '账号id'
+    })
+    accountId: string;
+
+    @Column({
+        type: 'int',
+        nullable: false,
+        name: 'role_id',
+        comment: '角色id'
+    })
+    roleId: string;
+}

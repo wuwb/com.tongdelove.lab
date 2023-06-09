@@ -29,7 +29,7 @@ async function seed(bcryptSalt?) {
     };
 
     const alice = await client.user.upsert({
-        where: { email: aliceData.email },
+        where: { email: 'alice@prisma.io' },
         update: {},
         create: aliceData,
     });

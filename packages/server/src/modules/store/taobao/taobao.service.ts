@@ -5,80 +5,80 @@ import { Observable, of } from 'rxjs';
 import { makeSalt, encryptPassword } from '@/utils/cryptogram';
 import * as hasher from 'wordpress-hash-node';
 import { User, Prisma, TaobaoOrderRaw } from '@prisma/client';
-import { PrismaService } from '@/processors/prisma/prisma.service';
+import { PrismaService } from '@/core/database/prisma/prisma.service';
 
 @Injectable()
 export class TaobaoService {
-  private readonly logger = new Logger(TaobaoService.name);
+    private readonly logger = new Logger(TaobaoService.name);
 
-  constructor(private prisma: PrismaService) { }
+    constructor(private prisma: PrismaService) { }
 
-  // 保存
-  async createTaobaoOrderRaw(data) {
-    return this.prisma.taobaoOrderRaw.create({
-      data: {
-        ...data,
-      }
-    });
-  }
-
-  // 批量保存
-  async createTaobaoOrderRaws(data: Prisma.TaobaoOrderRawCreateManyInput[]) {
-    return this.prisma.taobaoOrderRaw.createMany({
-      data: data,
-      skipDuplicates: true,
-    });
-  }
-
-  async taobaoOrderRaw(id: string) {
-    let data = await this.prisma.taobaoOrderRaw.findUnique({
-      where: {
-        id,
-      }
-    });
-    console.log('data: ', data);
-    return data;
-  }
-
-
-  async taobaoOrderRaws(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.TaobaoOrderRawWhereUniqueInput;
-    where?: Prisma.TaobaoOrderRawWhereInput;
-    orderBy?: Prisma.TaobaoOrderRawOrderByWithRelationInput;
-  }): Promise<{ data: TaobaoOrderRaw[], count: number }> {
-    const { skip, take, cursor, where, orderBy } = params;
-    const count = await this.prisma.taobaoOrderRaw.count();
-    const data = await this.prisma.taobaoOrderRaw.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
-    });
-
-    return {
-      data,
-      count,
+    // 保存
+    async createTaobaoOrderRaw(data) {
+        return this.prisma.taobaoOrderRaw.create({
+            data: {
+                ...data,
+            }
+        });
     }
-  }
 
-  async list(current: number, pageSize: number) {
-    let [data, total] = await this.prisma.taobaoOrderRaw.findMany({
-      skip: (current - 1) * pageSize,
-      take: pageSize,
-    });
-    console.log('data: ', data);
-    return {
-      data,
-      total,
-    };
-  }
+    // 批量保存
+    async createTaobaoOrderRaws(data: Prisma.TaobaoOrderRawCreateManyInput[]) {
+        return this.prisma.taobaoOrderRaw.createMany({
+            data: data,
+            skipDuplicates: true,
+        });
+    }
 
-  async listAll() {
+    async taobaoOrderRaw(id: string) {
+        let data = await this.prisma.taobaoOrderRaw.findUnique({
+            where: {
+                id,
+            }
+        });
+        console.log('data: ', data);
+        return data;
+    }
 
-  }
+
+    async taobaoOrderRaws(params: {
+        skip?: number;
+        take?: number;
+        cursor?: Prisma.TaobaoOrderRawWhereUniqueInput;
+        where?: Prisma.TaobaoOrderRawWhereInput;
+        orderBy?: Prisma.TaobaoOrderRawOrderByWithRelationInput;
+    }): Promise<{ data: TaobaoOrderRaw[], count: number }> {
+        const { skip, take, cursor, where, orderBy } = params;
+        const count = await this.prisma.taobaoOrderRaw.count();
+        const data = await this.prisma.taobaoOrderRaw.findMany({
+            skip,
+            take,
+            cursor,
+            where,
+            orderBy,
+        });
+
+        return {
+            data,
+            count,
+        }
+    }
+
+    async list(current: number, pageSize: number) {
+        let [data, total] = await this.prisma.taobaoOrderRaw.findMany({
+            skip: (current - 1) * pageSize,
+            take: pageSize,
+        });
+        console.log('data: ', data);
+        return {
+            data,
+            total,
+        };
+    }
+
+    async listAll() {
+
+    }
 
 
 

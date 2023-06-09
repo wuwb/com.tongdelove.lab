@@ -1,4 +1,4 @@
-import { RedisKeys } from '@/common/constants/redis.cache';
+import { RedisKeys } from '@/common/constants/redis.constant';
 
 type Prefix = 'mx' | 'mx-demo';
 const prefix = 'mx';

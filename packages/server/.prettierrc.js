@@ -5,4 +5,8 @@ module.exports = {
     singleQuote: true,
     arrowParens: 'avoid',
     endOfLine: 'auto',
+    printWidth: 140,
+    bracketSpacing: true,
+    jsxBracketSameLine: false,
+    parser: 'babel'
 };

@@ -5,7 +5,7 @@ import { PostEntity } from './entities/post.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Prisma, Post } from '@prisma/client';
-import { PrismaService } from '@/processors/prisma/prisma.service';
+import { PrismaService } from '@/core/database/prisma/prisma.service';
 
 @Injectable()
 export class PostService {
@@ -129,7 +129,7 @@ export class PostService {
             data: {
                 ...category,
             },
-        });
+        })
 
         const newPost = await this.prisma.post.create({
             data: {
@@ -225,7 +225,7 @@ export class PostService {
         if (!_post) {
             throw new HttpException('Post not found', 404);
         }
-        if (_post.userId != post.userId) {
+        if (_post.postAuthor != post.postAuthor) {
             throw new HttpException('can not update another users post', 404);
         }
         const updatedPost = this.prisma.post.update({
@@ -292,4 +292,9 @@ export class PostService {
     async upvoteById(options) {
         //
     }
+
+    async findAll() {
+
+    }
+    async findDrafts() { }
 }

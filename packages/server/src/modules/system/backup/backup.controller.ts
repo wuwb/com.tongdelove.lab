@@ -2,33 +2,54 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BackupService } from './backup.service';
 import { CreateBackupDto } from './dto/create-backup.dto';
 import { UpdateBackupDto } from './dto/update-backup.dto';
+import { ConfigService } from "@nestjs/config";
 
 @Controller('backup')
 export class BackupController {
-  constructor(private readonly backupService: BackupService) {}
+    constructor(
+        private readonly backupService: BackupService,
+        private readonly configService: ConfigService,
 
-  @Post()
-  create(@Body() createBackupDto: CreateBackupDto) {
-    return this.backupService.create(createBackupDto);
-  }
+    ) { }
 
-  @Get()
-  findAll() {
-    return this.backupService.findAll();
-  }
+    @Get()
+    async backups() {
+        return this.backupService.backup()
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.backupService.findOne(+id);
-  }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBackupDto: UpdateBackupDto) {
-    return this.backupService.update(+id, updateBackupDto);
-  }
+    async delete(@Param('filename') filename: string) {
+        if (!filename) {
+            return;
+        }
+        return this.backupService.deleteBackup(filename);
+    }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.backupService.remove(+id);
-  }
+    @Post()
+    create(@Body() createBackupDto: CreateBackupDto) {
+        return this.backupService.create(createBackupDto);
+    }
+
+    @Get()
+    findAll() {
+        return this.backupService.findAll();
+    }
+
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.backupService.findOne(+id);
+    }
+
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updateBackupDto: UpdateBackupDto) {
+        return this.backupService.update(+id, updateBackupDto);
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+    	if (!id) {
+	    return ;
+	}
+        return this.backupService.remove(+id);
+    }
 }

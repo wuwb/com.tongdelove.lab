@@ -16,7 +16,7 @@ export const getIp = (request: Request | IncomingMessage) => {
     req?.raw?.socket?.remoteAddress ||
     undefined
   if (ip && ip.split(',').length > 0) {
-    ip = ip.split(',')[0]
+    ip = ip.split(',')[0] as string;
   }
   return ip
 }
