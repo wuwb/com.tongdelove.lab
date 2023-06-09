@@ -11,8 +11,8 @@ import {
   createPermission,
   removePermission,
   showPermission,
-} from '@/services/base/admin/permission';
-import { TableListItem } from '@/services/base/admin/permission.d';
+} from '@/services/base/permission';
+import { TableListItem } from '@/services/base/permission.d';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';

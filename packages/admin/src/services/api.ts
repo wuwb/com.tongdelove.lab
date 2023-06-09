@@ -1,4 +1,4 @@
-export default {
+const api = {
   queryRouteList: '/routes',
 
   queryUserInfo: '/user',
@@ -16,3 +16,5 @@ export default {
 
   queryDashboard: '/dashboard',
 }
+
+export default api;

@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { Form, Button, Space } from 'antd';
 
-import { TableListItem } from '@/services/base/admin/menu.d';
+import { TableListItem } from '@/services/base/menu.d';
 import BaseFormItems from './BaseFormItems';
 
 export interface CreateFormHandleProps {

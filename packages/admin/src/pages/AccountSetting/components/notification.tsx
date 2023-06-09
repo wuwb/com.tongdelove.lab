@@ -1,40 +1,41 @@
 import { List, Switch } from 'antd';
 import React, { Component, Fragment } from 'react';
 
-import { formatMessage } from '@umijs/max';
+import { useIntl } from '@umijs/max';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 
 class NotificationView extends Component {
-  getData = () => {
+  getData = (intl) => {
     const Action = (
       <Switch
-        checkedChildren={formatMessage({ id: 'accountsettings.settings.open' })}
-        unCheckedChildren={formatMessage({ id: 'accountsettings.settings.close' })}
+        checkedChildren={intl.formatMessage({ id: 'accountsettings.settings.open' })}
+        unCheckedChildren={intl.formatMessage({ id: 'accountsettings.settings.close' })}
         defaultChecked
       />
     );
     return [
       {
-        title: formatMessage({ id: 'accountsettings.notification.password' }, {}),
-        description: formatMessage({ id: 'accountsettings.notification.password-description' }, {}),
+        title: intl.formatMessage({ id: 'accountsettings.notification.password' }, {}),
+        description: intl.formatMessage({ id: 'accountsettings.notification.password-description' }, {}),
         actions: [Action],
       },
       {
-        title: formatMessage({ id: 'accountsettings.notification.messages' }, {}),
-        description: formatMessage({ id: 'accountsettings.notification.messages-description' }, {}),
+        title: intl.formatMessage({ id: 'accountsettings.notification.messages' }, {}),
+        description: intl.formatMessage({ id: 'accountsettings.notification.messages-description' }, {}),
         actions: [Action],
       },
       {
-        title: formatMessage({ id: 'accountsettings.notification.todo' }, {}),
-        description: formatMessage({ id: 'accountsettings.notification.todo-description' }, {}),
+        title: intl.formatMessage({ id: 'accountsettings.notification.todo' }, {}),
+        description: intl.formatMessage({ id: 'accountsettings.notification.todo-description' }, {}),
         actions: [Action],
       },
     ];
   };
 
   render() {
-    const data = this.getData();
+    const intl = useIntl();
+    const data = this.getData(intl);
     return (
       <Fragment>
         <List<Unpacked<typeof data>>

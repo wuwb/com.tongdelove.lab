@@ -1,5 +1,7 @@
 import { request } from '@umijs/max';
+
 import { apiPrefix } from '@/utils/config'
+
 import api from './api'
 
 const gen = params => {

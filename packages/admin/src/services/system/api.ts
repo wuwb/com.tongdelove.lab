@@ -34,21 +34,6 @@ export async function register(options?) {
   });
 };
 
-// 登录
-export async function login(options?) {
-  return request('/login', {
-    method: 'POST',
-    ...(options || {}),
-  });
-};
-// 退出登录
-export async function signout(options?) {
-  return request('/login/signout', {
-    method: 'GET',
-    ...(options || {}),
-  });
-};
-
 // 获取用户信息
 export async function getUserInfo(options?) {
   return request('/user/info', {
@@ -106,7 +91,7 @@ export async function addDiscuss(options?) {
 };
 // 帖子
 export async function searchTopic(options?) {
-  return request.get('/topic/search', {
+  return request('/topic/search', {
     method: 'GET',
     ...(options || {}),
   });
@@ -114,7 +99,7 @@ export async function searchTopic(options?) {
 
 // 未关注列表
 export async function friendList(options?) {
-  return request.get('/friend/list', {
+  return request('/friend/list', {
     method: 'GET',
     ...(options || {}),
   });

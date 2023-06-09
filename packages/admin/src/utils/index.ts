@@ -1,10 +1,12 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { cloneDeep } from 'lodash';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import store from 'store';
-import { pathToRegexp } from 'path-to-regexp';
+import pathToRegexp from 'path-to-regexp';
+// 常量先放在这里
+// 包括页面链接，打点字段
 
 /**
  * Query objects that specify keys and values in an array where all values are objects.
@@ -155,7 +157,7 @@ export function getLocale() {
 
 export function setLocale(language: string) {
   if (getLocale() !== language) {
-    moment.locale(language === 'zh' ? 'zh-cn' : language)
+    dayjs.locale(language === 'zh' ? 'zh-cn' : language)
     store.set('locale', language)
     window.location.reload()
   }
@@ -179,9 +181,12 @@ export function isBrowser() {
  *                         如果想忽略结束边界上的调用则传入 {trailing:false},
  * @returns {Function}     返回调用函数
  */
-export function throttle(fn, delay, options) {
-  var wait = false;
-  if (!options) options = {};
+type throttleOptions = {
+  leading?: boolean;
+  trailing?: boolean;
+}
+export function throttle(fn, delay: number, options: throttleOptions = {}) {
+  let wait = false;
   return function () {
     const args = arguments;
     if (!wait) {
@@ -205,9 +210,9 @@ export function throttle(fn, delay, options) {
  * @param delay{Number}    时间间隔
  * @returns {Function}     返回调用函数
  */
-export function debunce(fn, delay = 1000) {
-  var timer;
-  var context = this;
+export function debunce(fn, delay: number = 1000) {
+  let timer;
+  const context = this;
   return function () {
     if (timer) {
       clearTimeout(timer);
@@ -220,4 +225,8 @@ export function debunce(fn, delay = 1000) {
       }, delay);
     }
   };
-},
+}
+
+export function trim(str: string) {
+  return str.replace(/(^\s*)|(\s*$)/g, '')
+}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Tag, message } from 'antd';
 import { connect } from '@umijs/max';
 import groupBy from 'lodash/groupBy';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
 import { NoticeItem } from '@/models/global';
 import NoticeIcon from '../NoticeIcon';
 import { CurrentUser } from '@/models/user';
@@ -65,7 +66,7 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
       const newNotice = { ...notice };
 
       if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime as string).fromNow();
+        newNotice.datetime = dayjs(notice.datetime as string).fromNow();
       }
 
       if (newNotice.id) {

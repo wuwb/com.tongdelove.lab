@@ -6,9 +6,9 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { SorterResult } from 'antd/es/table/interface';
 import { useRequest } from '@umijs/max';
 
-import { queryRole, updateRole, createRole, removeRole, showRole } from '@/services/base/admin/role';
-import { queryPermission } from '@/services/base/admin/permission';
-import { TableListItem } from '@/services/base/admin/role.d';
+import { queryRole, updateRole, createRole, removeRole, showRole } from '@/services/base/role';
+import { queryPermission } from '@/services/base/permission';
+import { TableListItem } from '@/services/base/role.d';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';

@@ -1,6 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Input, Select, Upload, Form, message } from 'antd';
-import { connect, FormattedMessage, formatMessage } from '@umijs/max';
+import { connect, FormattedMessage, formatMessage, useIntl } from '@umijs/max';
 import React, { Component } from 'react';
 import { CurrentUser } from '../data.d';
 import GeographicView from './GeographicView';
@@ -90,7 +90,8 @@ class BaseView extends Component<BaseViewProps> {
   };
 
   handleFinish = () => {
-    message.success(formatMessage({ id: 'accountsettings.basic.update.success' }));
+    const intl = useIntl();
+    message.success(intl.formatMessage({ id: 'accountsettings.basic.update.success' }));
   };
 
   render() {

@@ -1,4 +1,3 @@
-import { Icon, Tooltip } from 'antd';
 import React from 'react';
 import { connect } from '@umijs/max';
 import { ConnectProps, ConnectState } from '@/models/connect';

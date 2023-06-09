@@ -84,7 +84,7 @@ const NewPage = () => {
             </BoxCell>
             {preview && preview !== '' ? (
               <BoxInner>
-                <ReactMarkdown children={preview} />
+                <ReactMarkdown>{preview}</ReactMarkdown>
               </BoxInner>
             ) : null}
           </BoxWrap>

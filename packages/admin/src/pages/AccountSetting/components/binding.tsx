@@ -1,13 +1,13 @@
-import { FormattedMessage, formatMessage } from '@umijs/max';
+import { FormattedMessage, useIntl } from '@umijs/max';
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
 import { List } from 'antd';
 import React, { Component, Fragment } from 'react';
 
 class BindingView extends Component {
-  getData = () => [
+  getData = (intl) => [
     {
-      title: formatMessage({ id: 'accountsettings.binding.taobao' }, {}),
-      description: formatMessage({ id: 'accountsettings.binding.taobao-description' }, {}),
+      title: intl.formatMessage({ id: 'accountsettings.binding.taobao' }, {}),
+      description: intl.formatMessage({ id: 'accountsettings.binding.taobao-description' }, {}),
       actions: [
         <a key="Bind">
           <FormattedMessage id="accountsettings.binding.bind" defaultMessage="Bind" />
@@ -16,8 +16,8 @@ class BindingView extends Component {
       avatar: <TaobaoOutlined className="taobao" />,
     },
     {
-      title: formatMessage({ id: 'accountsettings.binding.alipay' }, {}),
-      description: formatMessage({ id: 'accountsettings.binding.alipay-description' }, {}),
+      title: intl.formatMessage({ id: 'accountsettings.binding.alipay' }, {}),
+      description: intl.formatMessage({ id: 'accountsettings.binding.alipay-description' }, {}),
       actions: [
         <a key="Bind">
           <FormattedMessage id="accountsettings.binding.bind" defaultMessage="Bind" />
@@ -26,8 +26,8 @@ class BindingView extends Component {
       avatar: <AlipayOutlined className="alipay" />,
     },
     {
-      title: formatMessage({ id: 'accountsettings.binding.dingding' }, {}),
-      description: formatMessage({ id: 'accountsettings.binding.dingding-description' }, {}),
+      title: intl.formatMessage({ id: 'accountsettings.binding.dingding' }, {}),
+      description: intl.formatMessage({ id: 'accountsettings.binding.dingding-description' }, {}),
       actions: [
         <a key="Bind">
           <FormattedMessage id="accountsettings.binding.bind" defaultMessage="Bind" />
@@ -38,11 +38,12 @@ class BindingView extends Component {
   ];
 
   render() {
+    const intl = useIntl();
     return (
       <Fragment>
         <List
           itemLayout="horizontal"
-          dataSource={this.getData()}
+          dataSource={this.getData(intl)}
           renderItem={(item) => (
             <List.Item actions={item.actions}>
               <List.Item.Meta

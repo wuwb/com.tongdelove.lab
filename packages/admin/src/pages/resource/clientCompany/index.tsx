@@ -17,7 +17,7 @@ import {
 import { findDOMNode } from 'react-dom';
 import { PageHeader } from '@ant-design/pro-components';
 import { connect, Dispatch } from '@umijs/max';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import OperationModal from './components/OperationModal';
 import { StateType } from './model';
 import { BasicListItemDataType } from './data.d';
@@ -57,7 +57,7 @@ const ListContent = ({
     </div>
     <div className={styles.listContentItem}>
       <span>开始时间</span>
-      <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
+      <p>{dayjs(createdAt).format('YYYY-MM-DD HH:mm')}</p>
     </div>
     <div className={styles.listContentItem}>
       <Progress
@@ -274,7 +274,7 @@ export const Companies: FC<CompaniesProps> = props => {
       <OperationModal
         done={done}
         current={current}
-        visible={visible}
+        open={visible}
         onDone={handleDone}
         onCancel={handleCancel}
         onSubmit={handleSubmit}

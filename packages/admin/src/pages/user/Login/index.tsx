@@ -1,4 +1,3 @@
-// import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
@@ -17,16 +16,14 @@ import {
 import { FormattedMessage, history, SelectLang, useIntl, useModel, Helmet } from '@umijs/max';
 import { Link } from '@umijs/max';
 import { useRequest } from '@umijs/max';
-import { Alert, message, Tabs, Checkbox } from 'antd';
+import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import { getPageQuery } from '@/utils/utils';
 import { LoginParamsType, login } from '@/services/base/auth';
-// import LoginFrom from './components/Login';
 import Footer from '@/components/Footer';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
-import Settings from '../../../../config/defaultSettings';
-
+import { defaultSettings } from '../../../../config/defaultSettings';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -146,19 +143,18 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = async (values: LoginParamsType) => {
-    console.log('values: ', values);
     try {
       // 登录
       const msg = await login({ ...values, type });
       if (msg.success === true) {
-        localStorage.setItem('token', msg.data.accessToken);
+        localStorage.setItem('token', msg?.data?.accessToken);
 
-        const defaultLoginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
-          defaultMessage: '登录成功！',
-        });
-        message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
+        // const defaultLoginSuccessMessage = intl.formatMessage({
+        //   id: 'pages.login.success',
+        //   defaultMessage: '登录成功！',
+        // });
+        // message.success(defaultLoginSuccessMessage);
+        // await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
         return;
@@ -171,7 +167,6 @@ const Login: React.FC = () => {
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
-      console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };

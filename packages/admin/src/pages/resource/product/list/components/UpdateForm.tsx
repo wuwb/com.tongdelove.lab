@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Drawer} from 'antd';
+import { Form, Drawer } from 'antd';
 
 import { TableListItem } from '../data.d';
 
@@ -78,7 +78,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       bodyStyle={{ padding: '32px 40px 48px' }}
       destroyOnClose
       title="规则配置"
-      visible={updateModalVisible}
+      open={updateModalVisible}
       onCancel={() => handleUpdateModalVisible()}
     >
       <Form

@@ -1,7 +1,6 @@
 import { Button, Result } from 'antd';
 import { Link } from '@umijs/max';
 import React from 'react';
-import type { RouteChildrenProps } from 'react-router';
 
 import styles from './style.less';
 
@@ -20,7 +19,7 @@ const actions = (
 
 export type LocationState = Record<string, unknown>;
 
-const RegisterResult: React.FC<RouteChildrenProps> = ({ location }) => {
+const RegisterResult: React.FC = ({ location }) => {
   const email = location.state
     ? (location.state as LocationState).account
     : 'AntDesign@example.com';

@@ -3,6 +3,7 @@ import { Link } from '@umijs/max';
 import { Menu, Dropdown, notification } from 'antd';
 import { searchTopic, signout } from '@/service/user';
 import Style from './index.less';
+import { history } from 'umi';
 
 export class Nav extends React.Component {
   constructor(props) {
@@ -106,7 +107,7 @@ export class Nav extends React.Component {
     notification['success']({
       message: response.message,
     });
-    this.props.history.push('/login');
+    history.push('/login');
   }
 
   componentDidMount() {

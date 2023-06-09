@@ -1,14 +1,11 @@
-import { TableListItem as RoleTableListItem } from '@/services/base/admin/role.d';
-import { TableListItem as PermissionTableListItem } from '@/services/base/admin/permission.d';
+import { TableListItem as PermissionTableListItem } from '@/services/base/permission.d';
 
 // 列表内容结构以及表单提交结构
 export interface TableListItem {
   id: string; // 自增id
-  parentId: string; // 父级ID
   name: string; // 名称
-  path: ?string; // 路径
-  roles?: RoleTableListItem[]; // 角色
-  permission?: PermissionTableListItem; // 权限
+  slug: string; // 标识
+  permissions: PermissionTableListItem[]; // 权限
   updatedAt?: Date; // 更新时间
   createdAt?: Date; // 创建时间
 }
@@ -30,7 +27,8 @@ export interface TableListPagination {
 export interface TableListParams {
   id?: string; // 自增id
   name?: string; // 名称
-  username?: string; // 账号
+  slug?: string; // 标识
+  desc?: string; // 描述
   sorter?: string; // 排序
   pageSize?: number;
   currentPage?: number;

@@ -39,7 +39,7 @@ const teamMembersModel = {
     },
   ],
   effects: {
-    *query({ payload }, { call, put }) {},
+    *query({ payload }, { call, put }) { },
   },
   reducers: {
     delete(state, { payload: id }) {

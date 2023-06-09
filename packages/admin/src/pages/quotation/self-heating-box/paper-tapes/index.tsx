@@ -16,7 +16,7 @@ import {
   Switch,
   Select,
   Checkbox,
-} from '@formily/antd';
+} from '@formily/antd-v5';
 
 const SchemaField = createSchemaField({
   components: {

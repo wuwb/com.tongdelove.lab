@@ -1,5 +1,4 @@
 import React from 'react';
-import '@ant-design/pro-table';
 
 interface ToolBarProps {
   headerTitle?: React.ReactNode; // 标题

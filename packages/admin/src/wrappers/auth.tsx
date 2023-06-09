@@ -1,5 +1,4 @@
-import { Redirect } from '@umijs/max'
-import { Outlet } from '@umijs/max';
+import { Outlet, Redirect, Navigate } from '@umijs/max';
 
 export default (props) => {
   const { isLogin } = useAuth();

@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Subscription, Effect } from 'dva';
 import { NoticeIconData } from '@/components/NoticeIcon';
-import { getNotices } from '@/services/base/auth/index';
+import { getNotices } from '@/services/base/user';
 import { ConnectState } from './connect.d';
 
 export interface NoticeItem extends NoticeIconData {

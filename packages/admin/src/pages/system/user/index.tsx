@@ -20,10 +20,10 @@ import { useRequest } from '@umijs/max';
 // import ImgCrop from 'antd-img-crop';
 import { UploadFile } from 'antd/lib/upload/interface';
 
-import { queryUser, updateUser, createUser, removeUser, showUser } from '@/services/base/admin/user';
-import { queryPermission } from '@/services/base/admin/permission';
-import { queryRole } from '@/services/base/admin/role';
-import { TableListItem } from '@/services/base/admin/user.d';
+import { queryUser, updateUser, createUser, removeUser, showUser } from '@/services/base/user';
+import { queryPermission } from '@/services/base/permission';
+import { queryRole } from '@/services/base/role';
+import { TableListItem } from '@/services/base/user.d';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';

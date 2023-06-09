@@ -1,6 +1,6 @@
 import { history } from '@umijs/max';
 import store from 'store';
-import pathToRegexp from 'path-to-regexp';
+import { pathToRegexp } from 'path-to-regexp';
 import { ROLE_TYPE } from '@/utils/constant';
 import { queryLayout } from '@/utils';
 import { CANCEL_REQUEST_MESSAGE } from '@/utils/constant';
@@ -24,7 +24,7 @@ export default {
       {
         id: '1',
         icon: 'laptop',
-        name: 'Dashboard3',
+        name: 'Dashboard',
         zhName: '仪表盘',
         router: '/dashboard',
       },

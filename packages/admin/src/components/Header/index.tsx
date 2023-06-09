@@ -41,7 +41,7 @@ const Header = (props) => {
           placement="right"
           closable={false}
           onClose={onClose}
-          visible={visible}
+          open={visible}
         >
           <LeftMenu />
           <RightMenu />

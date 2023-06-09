@@ -1,5 +1,5 @@
 export default {
-  'pages.layouts.userLayout.title': 'Ant Design 是西湖区最具影响力的 Web 设计规范',
+  'pages.layouts.userLayout.title': '登录',
   'pages.login.accountLogin.tab': '账户密码登录',
   'pages.login.accountLogin.errorMessage': '错误的用户名和密码(admin/ant.design)',
   'pages.login.failure': '登录失败，请重试！',
@@ -21,6 +21,7 @@ export default {
   'pages.login.forgotPassword': '忘记密码 ?',
   'pages.login.submit': '登录',
   'pages.login.loginWith': '其他登录方式 :',
+  'pages.login.register': 'Register Account',
   'pages.login.registerAccount': '注册账户',
   'pages.welcome.advancedComponent': '高级表格',
   'pages.welcome.link': '欢迎使用',

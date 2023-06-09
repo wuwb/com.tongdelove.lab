@@ -16,14 +16,16 @@ function AvatarDropdown() {
     // });
 
     const { redirect } = parse(window.location.href.split('?')[1]);
-
+    console.log('window.location.pathname: ', window.location.pathname);
     if (window.location.pathname !== '/user/login' && !redirect) {
-      history.replace({
-        pathname: '/user/login',
-        search: stringify({
-          redirect: window.location.href,
-        }),
-      });
+      console.log('window.location.pathname: ', window.location.pathname);
+      // history.replace({
+      //   pathname: '/user/login',
+      //   search: stringify({
+      //     redirect: window.location.href,
+      //   }),
+      // });
+
       setInitialState({
         ...initialState,
         currentUser: 'none'

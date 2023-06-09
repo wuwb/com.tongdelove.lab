@@ -13,14 +13,13 @@ import { Component } from 'react';
  * @param icon 配置路由的图标，取值参考 https://ant.design/components/icon-cn， 注意去除风格后缀和大小写，如想要配置图标为 <StepBackwardOutlined /> 则取值应为 stepBackward 或 StepBackward，如想要配置图标为 <UserOutlined /> 则取值应为 user 或者 User
  * @doc https://umijs.org/docs/guides/routes
  */
-export default [
+const route = [
 
   // 首页，跳转到 welcome 页面
   {
     path: '/',
     redirect: '/dashboard/welcome',
   },
-  // 控制面板
   {
     path: '/dashboard',
     redirect: '/dashboard/welcome',
@@ -34,16 +33,16 @@ export default [
     component: './dashboard/main',
   },
 
-  // {
-  //   path: '/products',
-  //   layout: false,
-  //   component: './web/product',
-  // },
-  // {
-  //   path: '/products/:path',
-  //   layout: false,
-  //   component: './web/productDetail',
-  // },
+  {
+    path: '/products',
+    layout: false,
+    component: './web/product',
+  },
+  {
+    path: '/products/:path',
+    layout: false,
+    component: './web/productDetail',
+  },
 
   // 报价
   {
@@ -182,6 +181,76 @@ export default [
     ]
   },
 
+  // web
+  {
+    name: 'web',
+    path: '/web',
+    icon: 'crown',
+    routes: [
+      {
+        name: 'products',
+        path: '/web/products',
+        redirect: '/products',
+      },
+      // 查询表格
+      {
+        name: 'list.table-list',
+        icon: 'table',
+        path: '/web/list',
+        component: './Welcome',
+      },
+      // 项目
+      {
+        name: 'items',
+        icon: 'smile',
+        path: '/web/items',
+        component: './Welcome',
+      },
+      // 订单
+      {
+        name: 'orders',
+        icon: 'smile',
+        path: '/web/orders',
+        component: './Welcome',
+      },
+      // 物流
+      {
+        name: 'shipments',
+        icon: 'smile',
+        path: '/web/shipments',
+        component: './Welcome',
+      },
+      // 报价
+      {
+        name: 'billing',
+        icon: 'smile',
+        path: '/web/billing',
+        component: './Welcome',
+      },
+      // 店铺
+      {
+        name: 'shop',
+        icon: 'smile',
+        path: '/web/shop',
+        component: './Welcome',
+      },
+      // 分类
+      {
+        name: 'catalog',
+        icon: 'smile',
+        path: '/web/catalog',
+        component: './Welcome',
+      },
+      // 购物车
+      {
+        name: 'cart',
+        icon: 'smile',
+        path: '/web/cart',
+        component: './Welcome',
+      },
+    ]
+  },
+
   // 项目
   {
     name: 'dashboard',
@@ -272,19 +341,19 @@ export default [
   },
 
   // 设置
-  // {
-  //   name: 'setting',
-  //   path: '/settings',
-  //   icon: 'table',
-  //   routes: [
-  //     {
-  //       name: 'import-taobao-csv',
-  //       icon: 'smile',
-  //       path: '/settings/import-taobao-csv',
-  //       component: './settings/importTaobaoCsv',
-  //     },
-  //   ],
-  // },
+  {
+    name: 'setting',
+    path: '/settings',
+    icon: 'table',
+    routes: [
+      {
+        name: 'import-taobao-csv',
+        icon: 'smile',
+        path: '/settings/import-taobao-csv',
+        component: './resource/taobaoOrderRaw/importTaobaoCsv',
+      },
+    ],
+  },
 
   // 资源
   {
@@ -495,12 +564,12 @@ export default [
     routes: [
       {
         name: 'login',
-        path: '/user/Login',
+        path: '/user/login',
         component: './User/Login',
       },
       {
         name: 'register',
-        path: '/user/Register',
+        path: '/user/register',
         component: './User/Register',
       },
     ],
@@ -513,10 +582,9 @@ export default [
       {
         name: '首页',
         path: '/',
-        component: '@/pages/index',
-        exact: true,
+        component: '@/pages/Admin',
+        // exact: true,
       },
-
 
       // tools
       {
@@ -550,8 +618,6 @@ export default [
     ],
   },
 
-
-
   // 404
   {
     path: '*',
@@ -559,3 +625,5 @@ export default [
     component: './exception/404',
   },
 ];
+
+export default route;

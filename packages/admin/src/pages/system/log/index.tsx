@@ -5,8 +5,8 @@ import { Button, Divider, Dropdown, Menu, message, Tag, Popconfirm } from 'antd'
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { SorterResult } from 'antd/es/table/interface';
 
-import { queryLogs, removeLogs } from '@/services/base/admin/logs';
-import { TableListItem } from '@/services/base/admin/logs.d';
+import { queryLogs, removeLogs } from '@/services/base/logs';
+import { TableListItem } from '@/services/base/logs.d';
 
 import styles from './index.less';
 

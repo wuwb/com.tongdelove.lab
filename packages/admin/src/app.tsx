@@ -5,16 +5,14 @@ import type { RequestConfig } from '@umijs/max';
 import { history, Link } from '@umijs/max';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { message, notification } from 'antd';
-import type { RequestOptions } from '@@/plugin-request/request';
 import { getLocale, useLocation } from '@umijs/max';
 import RightContent, { Question, SelectLang } from '@/components/RightContent';
 import { BookOutlined, LinkOutlined, QuestionOutlined } from '@ant-design/icons';
-import { currentUser as queryCurrentUser } from '@/services/base/auth/index';
-import defaultSettings from '../config/defaultSettings';
+import { queryCurrentUser } from '@/services/base/user';
+import { defaultSettings } from '../config/defaultSettings';
 import { createLogger } from 'redux-logger';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { errorConfig } from './requestErrorConfig';
-import Footer from '@/components/Footer';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -40,7 +38,8 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
-      history.push(loginPath);
+      console.log("err: ", error);
+      // history.push(loginPath);
     }
     return undefined;
   };
@@ -55,9 +54,10 @@ export async function getInitialState(): Promise<{
   };
   // 如果是登录页面，不执行
   const { location } = history;
+
   if (location.pathname !== loginPath && location.pathname !== '/api') {
     const currentUser = await fetchUserInfo();
-    let currentMenu: any = [];
+    const currentMenu: any = [];
     // try {
     //   currentMenu = await fetchMenu();
     // } catch (err) {
@@ -83,6 +83,8 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 // 退出登陆的逻辑也可以通过配置来自定义。
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+  const location = useLocation();
+
   return {
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
@@ -109,7 +111,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         location.pathname !== '/user/register' &&
         location.pathname !== '/api'
       ) {
-        history.push(loginPath);
+
+        // history.push(loginPath);
+
       }
     },
     layoutBgImgList: [

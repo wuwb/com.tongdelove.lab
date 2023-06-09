@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { request } from '@umijs/max';
 import { useRequest } from '@umijs/max';
 import { Table, Tag, Space, Drawer, Button } from 'antd';
-import { queryMenu } from '@/services/base/admin/menu';
+import { queryMenu } from '@/services/base/menu';
 import { PageHeader } from '@ant-design/pro-components';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@umijs/max';
 
 const Ul = styled.ul`
   list-style: none;

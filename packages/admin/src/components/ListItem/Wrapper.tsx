@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@umijs/max';
 
 const Wrapper = styled.li`
   width: 100%;

@@ -1,4 +1,4 @@
-import './plugins/console';
+// import './plugins/console';
 import './plugins/pwa';
 // import './plugins/icon';
 // import './plugins';

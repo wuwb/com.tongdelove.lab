@@ -23,6 +23,10 @@ export const pageModel = modelExtend(model, {
     },
   },
 
+  effects: {
+
+  },
+
   reducers: {
     querySuccess(state, { payload }) {
       const { list, pagination } = payload
@@ -35,5 +39,18 @@ export const pageModel = modelExtend(model, {
         },
       }
     },
+
+    updateState(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      }
+    },
   },
-})
+
+  test(state) {
+    console.log('test');
+    return state;
+  },
+
+}

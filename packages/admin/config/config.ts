@@ -4,18 +4,24 @@ import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-// import { GeekBlue } from './theme';
+import { theme } from 'antd/lib';
+import { convertLegacyToken } from '@ant-design/compatible/lib';
+
+const { defaultAlgorithm, defaultSeed } = theme;
+
+const mapToken = defaultAlgorithm(defaultSeed);
+const v4Token = convertLegacyToken(mapToken);
 
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 // https://umijs.org/zh-CN/docs
 const { REACT_APP_ENV = 'dev' } = process.env;
 
 export default defineConfig({
-  define: {
-    REACT_APP_ENV: REACT_APP_ENV || false,
-    API_URL: 'https://api-test.xxx.com', // API address
-    API_SECRET_KEY: 'XXXXXXXXXXXXXXXX', // API call key
-  },
+  // define: {
+  //   REACT_APP_ENV: REACT_APP_ENV || false,
+  //   API_URL: 'https://api-test.xxx.com', // API address
+  //   API_SECRET_KEY: 'XXXXXXXXXXXXXXXX', // API call key
+  // },
 
   /**
    * @name 开启 hash 模式
@@ -53,12 +59,14 @@ export default defineConfig({
    * @doc umi 的theme 配置 https://umijs.org/docs/api/config#theme
    * Theme for antd: https://ant.design/docs/react/customize-theme-cn
    */
-  theme: {
-    // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
-    // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
-    'root-entry-name': 'variable',
-    // ...GeekBlue
-  },
+  // theme: {
+  // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
+  // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
+  // 'root-entry-name': 'variable',
+  // ...GeekBlue
+  // },
+
+  styledComponents: {},
 
   /**
    * @name moment 的国际化配置
@@ -142,7 +150,8 @@ export default defineConfig({
     // configProvider: {},
     // dark: false,
     // compact: true,
-    // import: true,
+    // https://ant-design.antgroup.com/docs/react/migration-v5-cn
+    import: false, // 兼容 v4 less 导入
     // style: 'less',
     // theme: {},
   },
@@ -342,7 +351,23 @@ export default defineConfig({
   //   ga: '',
   //   baidu: '',
   // },
-  chainWebpack(memo, { env, webpack }) {
+  chainWebpack(config, { env, webpack }) {
+
+    config.module
+      // 判断是否存在less-to-css规则
+      .rule('less-to-css')
+      // rule对象的test属性设置，返回rule对象
+      .test(/\.less$/)
+      .use('less-loader')
+      // 设置Use对象的loader属性，返回Use<this>对象
+      .loader('less-loader')
+      // 将上面的Use<this> 对象放到css-loader对象的后面
+      .options({
+        lessOptions: {
+          modifyVars: v4Token,
+        }
+      })
+      .end();
 
     // 对 ssr bundler memo 的修改
     // 服务端渲染构建扩展

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Row, Col, Card, Progress, Space, Tooltip, theme } from 'antd';
+import React from 'react';
+import { Card, theme } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
 

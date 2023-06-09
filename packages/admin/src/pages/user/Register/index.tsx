@@ -4,14 +4,13 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-
 import { Alert, Checkbox, message } from 'antd';
 import React, { useState } from 'react';
 import { Link, SelectLang, useModel } from '@umijs/max';
 import { useRequest } from '@umijs/max';
 import { getPageQuery } from '@/utils/utils';
 import { LoginParamsType, register } from '@/services/base/auth';
-import LoginFrom from '../Login/components/Login';
+import LoginFrom from '../components/Login';
 import style from './index.less';
 
 const { Tab, Username, Password, Mobile, Captcha, Submit } = LoginFrom;

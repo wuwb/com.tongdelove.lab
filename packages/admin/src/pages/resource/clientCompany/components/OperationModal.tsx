@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Modal, Result, Button, Form, DatePicker, Input, Select } from 'antd';
 import { BasicListItemDataType } from '../data.d';
 import styles from '../style.less';
@@ -33,7 +33,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
     if (current) {
       form.setFieldsValue({
         ...current,
-        createdAt: current.createdAt ? moment(current.createdAt) : null,
+        createdAt: current.createdAt ? dayjs(current.createdAt) : null,
       });
     }
   }, [props.current]);

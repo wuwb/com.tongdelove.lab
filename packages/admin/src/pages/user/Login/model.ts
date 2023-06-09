@@ -58,8 +58,8 @@ const Model = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      localStorage.setItem("token", payload.data.token);
-      localStorage.setItem("roles", payload.data.auth);
+      localStorage.setItem('token', payload.data.token);
+      localStorage.setItem('roles', payload.data.auth);
       console.log(`login, ${payload.data.auth}`);
       return { ...state };
     },

@@ -61,7 +61,7 @@ class OperatorDropdown extends React.Component {
       <Dropdown
         overlay={this.overlay()}
         onClick={this.handleClick}
-        visible={visible}
+        open={visible}
         onVisibleChange={this.handleVisibleChange}
       >
         <EllipsisOutlined style={{ color: '#1890ff' }} />

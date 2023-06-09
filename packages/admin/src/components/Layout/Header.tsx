@@ -10,7 +10,8 @@ import {
 } from '@ant-design/icons';
 import { FormattedMessage } from '@umijs/max';
 import { setLocale } from '@/utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
 import classnames from 'classnames';
 import config from '@/utils/config';
 import styles from './Header.less';
@@ -107,7 +108,7 @@ class Header extends PureComponent {
                         {item.title}
                       </Ellipsis>
                     }
-                    description={moment(item.date).fromNow()}
+                    description={dayjs(item.date).fromNow()}
                   />
                   <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
                 </List.Item>

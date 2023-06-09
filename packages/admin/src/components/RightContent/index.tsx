@@ -5,6 +5,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { SelectLang as UmiSelectLang, useModel } from '@umijs/max';
 import React from 'react';
 import HeaderSearch from '../HeaderSearch';
+import { AvatarDropdown } from './AvatarDropdown';
 import styles from './index.less';
 
 export type SiderTheme = 'light' | 'dark';
@@ -79,7 +80,7 @@ const GlobalHeaderRight: React.FC = () => {
       >
         <QuestionCircleOutlined />
       </span>
-      <Avatar />
+      <AvatarDropdown />
       <SelectLang className={styles.action} />
       {REACT_APP_ENV && (
         <span>

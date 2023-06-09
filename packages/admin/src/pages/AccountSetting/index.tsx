@@ -1,12 +1,11 @@
 import React, { FC, useState, useEffect, useRef, FunctionComponent } from 'react';
 import { Dispatch, ConnectProps, connect, useIntl, useModel } from '@umijs/max';
 import { GridContent } from '@ant-design/pro-components';
-import { Menu } from 'antd';
+import { Card, Menu, theme } from 'antd';
 import BaseView from './components/base';
 import BindingView from './components/binding';
-import { CurrentUser } from './data.d';
 import NotificationView from './components/notification';
-import SecurityView from './components/security';
+import { SecurityView } from './components/security';
 import styles from './style.less';
 import { PageContainer } from '@ant-design/pro-components';
 import { MenuMode } from 'rc-menu/lib/interface';
@@ -40,6 +39,7 @@ const AccountSettings: React.FC = (props) => {
   const [mode, setMode] = useState<MenuMode>('inline');
   const [selectKey, setSelectKey] = useState('base');
   const { currentUser, fetchUser } = useModel('useUser', model => ({ currentUser: model.user, fetchUser: model.fetchUser }));
+  const { initialState } = useModel('@@initialState');
 
   if (!currentUser.userid) {
     return '';
@@ -101,19 +101,31 @@ const AccountSettings: React.FC = (props) => {
 
   return (
     <PageContainer>
-      <div className={styles.main} ref={main}>
-        <div className={styles.leftMenu}>
-          <Menu mode={mode} selectedKeys={[selectKey]}
-            onClick={({ key }) => setSelectKey(key as AccountSettingsStateKeys)}
-          >
-            {getMenu()}
-          </Menu>
+      <Card
+        style={{
+          borderRadius: 8,
+        }}
+        bodyStyle={{
+          backgroundImage:
+            initialState?.settings?.navTheme === 'realDark'
+              ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+              : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+        }}
+      >
+        <div className={styles.main} ref={main}>
+          <div className={styles.leftMenu}>
+            <Menu mode={mode} selectedKeys={[selectKey]}
+              onClick={({ key }) => setSelectKey(key as AccountSettingsStateKeys)}
+            >
+              {getMenu()}
+            </Menu>
+          </div>
+          <div className={styles.right}>
+            <div className={styles.title}>{getRightTitle()}</div>
+            {renderChildren()}
+          </div>
         </div>
-        <div className={styles.right}>
-          <div className={styles.title}>{getRightTitle()}</div>
-          {renderChildren()}
-        </div>
-      </div>
+      </Card>
     </PageContainer>
   );
 };

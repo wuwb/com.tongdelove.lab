@@ -2,32 +2,32 @@ import React from 'react';
 import * as qiniu from 'qiniu-js';
 import Style from './index.less';
 import { notification } from 'antd';
-import API from '@/common/api';
+import { getToken } from '@/services/user';
 
 class Upload extends React.Component {
   uploadFn = async () => {
-    let response = await API.getToken();
-    let { baseUrl, token } = response.data;
-    let files = this.refs.upload.files;
+    const response = await getToken();
+    const { baseUrl, token } = response.data;
+    const files = this.refs.upload.files;
 
     // 校验图片
     if (!this.imageVerify) return;
 
-    var putExtra = {
+    const putExtra = {
       fname: '',
       params: {},
       mimeType: ['image/png', 'image/jpeg', 'image/gif'],
     };
 
-    var config = {
+    const config = {
       region: qiniu.region.z0,
     };
 
     // 文件名
-    let key = new Date().getTime() + files[0].name;
-    var observable = qiniu.upload(files[0], key, token, putExtra, config);
+    const key = new Date().getTime() + files[0].name;
+    const observable = qiniu.upload(files[0], key, token, putExtra, config);
 
-    var observer = {
+    const observer = {
       next: (res) => {
         // ...
       },
@@ -37,17 +37,17 @@ class Upload extends React.Component {
         });
       },
       complete: (res) => {
-        let imgUrl = baseUrl + '/' + res.key;
+        const imgUrl = baseUrl + '/' + res.key;
         this.props.successCb(imgUrl);
       },
     };
 
-    var subscription = observable.subscribe(observer); // 上传开始
+    const subscription = observable.subscribe(observer); // 上传开始
   };
 
   imageVerify = () => {
-    let files = this.refs.upload.files;
-    let fileType = files[0].type;
+    const files = this.refs.upload.files;
+    const fileType = files[0].type;
     if (/^image/.test(fileType)) {
       // 读取结果在fileReader.result里面
       return true;

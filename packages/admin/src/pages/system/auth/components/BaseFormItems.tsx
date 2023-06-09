@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Input, Transfer, Select, TreeSelect } from 'antd';
 import { useRequest } from '@umijs/max';
-import { queryPermission } from '@/services/base/admin/permission';
-import { queryMenu } from '@/services/base/admin/menu';
-import { queryRole } from '@/services/base/admin/role';
+import { queryPermission } from '@/services/base/permission';
+import { queryMenu } from '@/services/base/menu';
+import { queryRole } from '@/services/base/role';
 import { arrayTransTree } from '@/utils/utils';
 
 interface CustomFormItemProps {

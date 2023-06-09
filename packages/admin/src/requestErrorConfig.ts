@@ -24,6 +24,7 @@ interface ResponseStructure {
 const authHeaderInterceptor = (config: RequestOptions) => {
   // 拦截请求配置，进行个性化处理。
   const token = localStorage.getItem('token');
+
   if (token) {
     const headers = {
       'Content-Type': 'application/json; charset=utf-8',
@@ -39,7 +40,6 @@ const authHeaderInterceptor = (config: RequestOptions) => {
         ...headers,
       }
     };
-    console.log('result: ', result);
     return result;
   }
   return config;

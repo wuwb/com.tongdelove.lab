@@ -15,19 +15,19 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@/public/*": ["public/*"],
       "@@/*": ["./src/.umi/*"],
       "@@test/*": ["./src/.umi-test/*"]
     },
 
     "declaration": false,
-    // "jsx": "preserve",
-
     "outDir": "build/dist",
     "suppressImplicitAnyIndexErrors": true,
 
     "lib": ["dom", "dom.iterable", "esnext"],
 
     "allowJs": true,
+    // "jsx": "react-jsx",
 
     // path
     "typeRoots": ["./node_modules/@types"],

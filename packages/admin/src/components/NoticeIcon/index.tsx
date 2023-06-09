@@ -2,7 +2,7 @@ import { getNotices } from '@/services/ant-design-pro/api';
 import { useModel, useRequest } from '@umijs/max';
 import { message, Tag } from 'antd';
 import { groupBy } from 'lodash';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
 import NoticeIcon from './NoticeIcon';
@@ -22,7 +22,7 @@ const getNoticeData = (notices: API.NoticeIconItem[]): Record<string, API.Notice
     const newNotice = { ...notice };
 
     if (newNotice.datetime) {
-      newNotice.datetime = moment(notice.datetime as string).fromNow();
+      newNotice.datetime = dayjs(notice.datetime as string).fromNow();
     }
 
     if (newNotice.id) {

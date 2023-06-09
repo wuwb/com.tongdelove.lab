@@ -10,11 +10,10 @@ import {
   SaveOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-import Nestable from 'antd-nestable';
 import ToolBar from '@/components/ToolBar';
 
-import { queryMenu, createMenu, updateMenu, removeMenu, orderMenu } from '@/services/base/admin/menu';
-import { TableListItem } from '@/services/base/admin/menu.d';
+import { queryMenu, createMenu, updateMenu, removeMenu, orderMenu } from '@/services/base/menu';
+import { TableListItem } from '@/services/base/menu.d';
 
 import { arrayTransTree, treeTransArray } from '@/utils/utils';
 
@@ -98,7 +97,7 @@ const handleOrder = async (orders: { id: string; parentId: string }[]) => {
   }
 };
 
-export default () => {
+export const AuthPage = () => {
   const nestableRef = useRef<{ collapse: (type: string | number[]) => void }>(null);
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const [currentFormValues, setCurrentFormValues] = useState({});
@@ -191,10 +190,12 @@ export default () => {
     if (loading) {
       return <div>loading...</div>;
     }
-    console.log('data: ', data);
     const items = arrayTransTree(data?.list as any[], 'parentId') || [];
-    console.log('items: ', items);
-    return <Nestable ref={nestableRef} items={items} renderItem={renderItem} />;
+    return (
+      <div ref={nestableRef}>
+        {renderItem(items)}
+      </div>
+    )
   };
 
   return (
