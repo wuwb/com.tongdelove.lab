@@ -17,3 +17,12 @@ dist
 .DS_Store
 packages/spider/dist
 packages/.server-id
+packages/admin-pig-ui/
+packages/admin-react/
+packages/admin-vue/
+packages/changelog/
+packages/chore/
+packages/dtos/
+packages/forum/
+packages/myapp/
+packages/spider/
