@@ -1,7 +1,4 @@
-import 'react-image-lightbox/style.css';
 import React, { Component } from 'react';
-import ImageLightbox from 'react-image-lightbox';
-
 
 type Props = {
     getState: (setOpen: (open: boolean, index: number) => void) => void;
@@ -31,31 +28,12 @@ export class Lightbox extends Component<Props, {
         const { images } = this.props;
         this.props.getState(this.setOpen);
 
+        // 显示 images
+
         return (
             <>
                 {isOpen && (
-                    <ImageLightbox
-                        reactModalProps={{
-                            // overlayClassName: styles.modal,
-                            // shouldReturnFocusAfterClose: false,
-                            // shouldFocusAfterRender: false,
-                        }}
-                        reactModalStyle={{ zIndex: 5000 }}
-                        mainSrc={images[photoIndex]}
-                        nextSrc={images[(photoIndex + 1) % images.length]}
-                        prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                        onMovePrevRequest={() =>
-                            this.setState({
-                                photoIndex: (photoIndex + images.length - 1) % images.length,
-                            })
-                        }
-                        onMoveNextRequest={() =>
-                            this.setState({
-                                photoIndex: (photoIndex + 1) % images.length,
-                            })
-                        }
-                    />
+                    <div>images</div>
                 )}
             </>
         );

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-primary {
+    @apply rounded-md border-0 bg-slate-100 p-2 px-6;
+  }
+}
+
 :root {
   /* 通用 */
   --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',

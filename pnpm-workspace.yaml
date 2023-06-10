@@ -1,6 +1,6 @@
 packages:
-  - 'packages/api'
-  - 'packages/demo'
+  # all packages in direct subdirs of packages/
+  - 'packages/admin'
   - 'packages/design'
   - 'packages/lab'
-  - 'packages/*'
+  - 'packages/server'

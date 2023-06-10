@@ -1,0 +1,5 @@
+{
+    "vue.features.codeActions.enable": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "aiXcoder.showTrayIcon": true
+}

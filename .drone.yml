@@ -5,6 +5,9 @@ name: default
 # clone:
 #   depth: 1
 
+# metadata:
+#   namespace: default
+
 steps:
   - name: greeting
     image: alpine
@@ -27,15 +30,20 @@ steps:
     settings:
       restore: true
       mount:
+        - ./.npm-cache
+        - ./.pnpm-store
         - ./node_modules
 
   - name: build
     image: node:16-alpine
     commands:
-      - npm install -g pnpm
+      - npm config set registry http://mirrors.cloud.tencent.com/npm/
+      - npm install -g pnpm @nestjs/cli
+      - pnpm config set registry http://mirrors.cloud.tencent.com/npm/
       - pnpm install --frozen-lockfile
       - make drone-cache
       - cd packages/server
+      - pnpm run generate
       - NODE_ENV=production pnpm run build
 
   # - name: rebuild-cache
@@ -54,12 +62,16 @@ steps:
     settings:
       rebuild: true
       mount:
+        - ./.npm-cache
+        - ./.pnpm-store
         - ./node_modules
 
   - name: deploy
     image: drillster/drone-rsync
     settings:
-      hosts: ["118.24.105.97"]
+      repo: wenbin/com.tongdelove.api
+      hosts:
+        - 118.24.105.97
       port: 443
       user: ubuntu
       key:

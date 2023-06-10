@@ -11,6 +11,7 @@ import { usePercentValue } from '@/hooks/usePercentValue';
 import useUpdateEffect from '@/hooks/useUpdateEffect';
 import { ErrorMessage } from "../ErrorMessage";
 import "./Input.module.scss";
+import TextareaAutosize from 'react-autosize-textarea'
 
 export const Input = (props: any) => {
   const {
@@ -53,6 +54,28 @@ export const TextArea = (props: any) => (
     />
   </div>
 );
+
+const styles =
+  'w-full rounded-md text-primary px-4 py-2 text-primary bg-gray-1000 dark:bg-white dark:bg-opacity-5 bg-opacity-5 hover border-gray-200 dark:border-gray-700'
+
+export function SimpleInput(props) {
+  return <input className={styles} {...props} />
+}
+
+export function TextareaAutosize({ maxRows = 8, rows = 1, ...props }) {
+  return (
+    <TextareaAutosize
+      maxRows={maxRows}
+      rows={rows}
+      className={`${styles} block`}
+      {...props}
+    />
+  )
+}
+
+export function SimpleSelect(props) {
+  return <select className={styles} {...props} />
+}
 
 export const Select = (props: any) => {
   return (

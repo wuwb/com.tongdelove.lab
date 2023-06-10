@@ -1,29 +1,22 @@
 {
   // www.typescriptlang.org/tsconfig
   "compilerOptions": {
-    
     "skipDefaultLibCheck": true,
     "importHelpers": true,
     "noEmitHelpers": true,
-    "charset": "utf8",
     "pretty": true,
     "noEmitOnError": false,
     "noLib": false,
-
-
-
-
+    "experimentalDecorators": true,
+    "newLine": "LF",
     "outDir": "./dist",
     "allowUnusedLabels": true,
     "noImplicitUseStrict": false,
     "strictFunctionTypes": true,
-    "suppressImplicitAnyIndexErrors": true,
-
-    "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
-    "module": "CommonJS",/* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
-    "target": "es2015", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
+    "lib": ["dom", "es2018", "esnext.array", "dom.iterable", "esnext", "WebWorker"],
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
+    "target": "es2015" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
     "jsx": "react-jsx",
-
     "moduleResolution": "node", // 指定使用哪种模块解析策略，默认为 Classic
     "resolveJsonModule": true,
     "removeComments": true,
@@ -32,7 +25,6 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
-
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -40,52 +32,21 @@
     "noUnusedParameters": false,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-
-    // "outDir": "out",
     // "declarationDir": "dist/types", // .d.ts 类型文件的输出目录，默认为 outDir 目录
-    "declaration": true,
+    // "declaration": true,
+    // "composite": false,
     "sourceMap": true,
-
     "esModuleInterop": true, // 通过为导入内容创建命名空间，实现 CommonJS 和 ES 模块之间的互操作性
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "skipLibCheck": true, // 跳过导入第三方 lib 声明文件的类型检查，默认为 true
     "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写，默认为 true
-
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-
-    "jsxImportSource": "@emotion/react",
-    "baseUrl": ".",
-    "rootDir": "src",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/app/*": ["./src/*"],
-      "@/public/*": ["./public/*"],
-      "@/scripts/*": ["./scripts/*"],
-      "@@/*": ["./src/.umi/*"]
-    },
     "strictPropertyInitialization": false,
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "mock/**/*",
-    "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
-    "typings/**/*",
-    "config/**/*",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    ".prettierrc.js",
-    "jest.config.js",
-    "mock/*"
-  ],
-  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "build", "dist", "scripts"]
 }

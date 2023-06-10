@@ -6,12 +6,10 @@ import { Link } from '@/components/ui';
 import { getRencentTasks } from '@/services/task';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
-import { format } from 'date-fns';
 
 type IndexProps = {
   tasks: any[];
 };
-
 
 const TaskBlock = (props) => {
   return (
@@ -36,18 +34,13 @@ const TaskBlock = (props) => {
   );
 }
 
-
 const HomePage: NextPageWithLayout<IndexProps> = props => {
   const { t } = useTranslation();
-
   const user = useAppSelector((state) => state.auth.user);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
-
   const email = user?.email || '';
   const { tasks } = props;
-
-
 
   return (
     <Container>

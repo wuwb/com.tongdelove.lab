@@ -1,0 +1,29 @@
+{
+  "language": "ts",
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "packages/server/src",
+  "entryFile": "packages/server/src/main",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "assets": [
+      "assets",
+      "swagger",
+      "apps/api/src/assets/i18n/**/*"
+    ],
+    "plugins": [
+      {
+        "name": "@nestjs/swagger",
+        "options": {
+          "classValidatorShim": false,
+          "introspectComments": true,
+          "dtoFileNameSuffix": [
+            ".dto.ts",
+            ".model.ts"
+          ]
+        }
+      },
+      "@nestjs/graphql/plugin"
+    ]
+  }
+}

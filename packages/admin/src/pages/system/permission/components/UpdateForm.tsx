@@ -14,7 +14,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
     <Modal
       destroyOnClose
       title="修改权限"
-      visible={updateModalVisible}
+      open={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}
     >

@@ -58,7 +58,6 @@ export class AliossController {
       }
 
       const fileKey = uuidv4();
-      // await this.uploadService.uploadPublicFile(file.buffer, fileKey);
       return res.status(201).json({
         fileUrl: `${this.configService.get('CLOUDFRONT_URL')}/${fileKey}`,
         message: `Successfully uploaded file ${file.originalname}`,

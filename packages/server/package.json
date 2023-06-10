@@ -45,6 +45,7 @@
         "seed": "ts-node scripts/seed.ts"
     },
     "dependencies": {
+        "@aws-sdk/client-s3": "^3.350.0",
         "@google-cloud/trace-agent": "^7.1.2",
         "@nest-middlewares/serve-favicon": "^7.0.1",
         "@nestjs/apollo": "^10.0.22",

@@ -118,7 +118,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
       width={640}
       bodyStyle={done ? { padding: '72px 0' } : { padding: '28px 0 0' }}
       destroyOnClose
-      visible={visible}
+      open={visible}
       {...modalFooter}
     >
       {getModalContent()}

@@ -1,5 +1,10 @@
 # README
 
+- 简单简历
+- 小公举
+  - 节日头像制作
+  - 和明星合影
+
 todo
 
 @fortawesome/react-fontawesome 换成 @mui/icons-material

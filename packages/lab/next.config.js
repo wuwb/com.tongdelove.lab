@@ -8,7 +8,7 @@ const path = require('path');
 // });
 const { i18n } = require('./next-i18next.config');
 const { version } = require('./package.json');
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -47,6 +47,7 @@ const isDev = process.env.NODE_ENV === 'development';
 //     },
 // }],
 
+/** @type {import('next').NextConfig} */
 const nextConfig = async (phase, { defaultConfig }) => {
   const plugins = [
     // withTM
@@ -65,10 +66,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
       // },
       // Remove data-testid used for React Testing Library in production
       reactRemoveProperties: {
-        properties: [
-          '^data-custom$',
-          '^data-testid$'
-        ],
+        properties: ['^data-custom$', '^data-testid$'],
       },
     },
     swcMinify: true,
@@ -98,7 +96,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
         // 加入 wordpress 相关域名
         'blog.tongdelove.com',
         '127.0.0.1',
-        'localhost'
+        'localhost',
       ],
     },
     async redirects() {
@@ -172,12 +170,9 @@ const nextConfig = async (phase, { defaultConfig }) => {
         },
       ];
     },
-    webpack: (
-      config,
-      { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
-    ) => {
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
       // Important: return the modified config
-      return config
+      return config;
     },
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
@@ -203,11 +198,11 @@ const nextConfig = async (phase, { defaultConfig }) => {
     //       });
     //     }
     //   });
-      // return config;
+    // return config;
     // },
     typescript: {
-      ignoreBuildErrors: true
-    }
+      ignoreBuildErrors: true,
+    },
   };
   return plugins.reduce((acc, plugin) => plugin(acc), {
     ...defaultConfig,

@@ -17,6 +17,9 @@ module.exports = {
     project: './tsconfig.json',
   },
   plugins: ['@typescript-eslint', 'prettier'],
+  globals: {
+    React: 'readonly',
+  },
   rules: {
     'prettier/prettier': 0,
     'react/no-unescaped-entities': 'off',

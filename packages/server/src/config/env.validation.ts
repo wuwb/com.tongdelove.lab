@@ -26,8 +26,6 @@ export function validate(config: Record<string, unknown>) {
     forbidUnknownValues: false, // 允许存在 unkown 值的配置项
   });
 
-  console.log('error: ', errors);
-
   if (errors.length > 0) {
     throw new Error(errors.toString());
   }

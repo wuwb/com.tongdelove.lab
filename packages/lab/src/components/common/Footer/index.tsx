@@ -5,13 +5,16 @@ import { FooterIconList } from './FooterIconList';
 
 export function Copyright(props: any) {
   return (
-    <div className="text-center" {...props}>
-      {'Copyright © '}
-      {new Date().getFullYear()}
-      <Link href="https://lab.tongdelove.com/">
-        海维包装实验室
-      </Link>{' '}
-      All Rights Reserved.
+    <div className="text-center items-center justify-center flex" {...props}>
+      <p className="mb-0 text-base">
+        <a href="https://beian.miit.gov.cn/">浙ICP备00000000号-1</a>
+        {'Copyright © '}
+        {new Date().getFullYear()}
+        <Link href="https://lab.tongdelove.com/">
+          海维包装实验室
+        </Link>
+        <span>版权所有。</span>
+      </p>
     </div>
   );
 }
@@ -36,27 +39,30 @@ export function Footer(props): any {
     },
   ];
   return (
-    <div className="divider-top mt-8 py-3 md:py-6">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
-        {footers.map(footer => (
-          <div className="" key={footer.title}>
-            <div>
-              {footer.title}
+    <div className="section text-white flex relative pb-4 overflow-hidden bg-primary">
+      <div className="container">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+          {footers.map(footer => (
+            <div className="" key={footer.title}>
+              <div>
+                {footer.title}
+              </div>
+              <ul className="list-none m-0 p-0">
+                {footer.description.map(item => (
+                  <li key={item}>
+                    <Link href="#">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="list-none m-0 p-0">
-              {footer.description.map(item => (
-                <li key={item}>
-                  <Link href="#">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          ))}
+        </div>
+        <hr className="lg:my-12 border-t border-solid border-gray-800" />
+        <Copyright />
+        {/* <SwitchLang></SwitchLang> */}
       </div>
-      <Copyright />
-      {/* <SwitchLang></SwitchLang> */}
     </div>
   );
 }
