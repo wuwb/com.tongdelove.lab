@@ -1,7 +1,7 @@
 // https://umijs.org/config/
 import { defineConfig } from '@umijs/max';
 import { join } from 'path';
-import defaultSettings from './defaultSettings';
+import { defaultSettings } from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 import { theme } from 'antd/lib';
@@ -113,9 +113,13 @@ export default defineConfig({
    */
   title: 'Ant Design Pro',
   layout: {
+    // 支持任何不需要 dom 的
+    // https://procomponents.ant.design/components/layout#prolayout
+    name: '实验室',
     locale: true,
+    theme: 'pro',
     siderWidth: 208,
-    ...defaultSettings,
+    ...defaultSettings(),
   },
   /**
    * @name moment2dayjs 插件

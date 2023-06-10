@@ -1,4 +1,4 @@
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@ant-design/pro-layout';
 import React, { useState, useEffect } from 'react';
 import { Spin, Card, Form, InputNumber, Button, } from 'antd';
 import { FormInstance } from 'antd/lib/form';

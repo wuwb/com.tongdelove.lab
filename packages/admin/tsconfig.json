@@ -15,14 +15,14 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@/public/*": ["public/*"],
+      "@/config/*": ["./config/*"],
+      "@/public/*": ["./public/*"],
       "@@/*": ["./src/.umi/*"],
       "@@test/*": ["./src/.umi-test/*"]
     },
 
     "declaration": false,
     "outDir": "build/dist",
-    "suppressImplicitAnyIndexErrors": true,
 
     "lib": ["dom", "dom.iterable", "esnext"],
 

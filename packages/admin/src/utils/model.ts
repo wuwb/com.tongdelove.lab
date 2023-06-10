@@ -1,4 +1,3 @@
-import modelExtend from 'dva-model-extend'
 
 export const model = {
   reducers: {
@@ -11,7 +10,7 @@ export const model = {
   },
 }
 
-export const pageModel = modelExtend(model, {
+export const pageModel = {
   state: {
     list: [],
     pagination: {
@@ -52,5 +51,4 @@ export const pageModel = modelExtend(model, {
     console.log('test');
     return state;
   },
-
 }

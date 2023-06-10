@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useRequest } from '@umijs/max';
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@ant-design/pro-layout';
 import { Card, Alert, Row, Col, message, Popconfirm, Tag } from 'antd';
 import {
   PlusSquareOutlined,

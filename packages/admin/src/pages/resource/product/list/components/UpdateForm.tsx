@@ -79,7 +79,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       destroyOnClose
       title="规则配置"
       open={updateModalVisible}
-      onCancel={() => handleUpdateModalVisible()}
+      onClose={() => handleUpdateModalVisible()}
     >
       <Form
         {...formLayout}

@@ -3,7 +3,7 @@ import { request } from '@umijs/max';
 import { useRequest } from '@umijs/max';
 import { Table, Tag, Space, Drawer, Button } from 'antd';
 import { queryMenu } from '@/services/base/menu';
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 
@@ -111,7 +111,7 @@ export default (props): React.ReactNode => {
         title="Create a new account"
         width={720}
         onClose={() => setShowNew(false)}
-        visible={showNew}
+        open={showNew}
         bodyStyle={{ paddingBottom: 80 }}
         footer={
           <div style={{ textAlign: 'right' }}>

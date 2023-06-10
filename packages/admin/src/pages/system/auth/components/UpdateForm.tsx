@@ -52,7 +52,7 @@ const UpdateForm: React.RefForwardingComponent<UpdateFormHandleProps, UpdateForm
     <Modal
       destroyOnClose
       title="修改菜单"
-      visible={updateModalVisible}
+      open={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}
       width={768}

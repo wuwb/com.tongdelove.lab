@@ -17,7 +17,7 @@ const ShowForm: React.FC<ShowFormProps> = (props) => {
     <Modal
       destroyOnClose
       title="查看用户"
-      visible={showModalVisible}
+      open={showModalVisible}
       onCancel={() => onCancel()}
       footer={null}
     >

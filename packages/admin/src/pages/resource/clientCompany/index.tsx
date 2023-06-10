@@ -15,7 +15,7 @@ import {
   Row,
 } from 'antd';
 import { findDOMNode } from 'react-dom';
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@ant-design/pro-layout';
 import { connect, Dispatch } from '@umijs/max';
 import dayjs from 'dayjs';
 import OperationModal from './components/OperationModal';

@@ -82,7 +82,13 @@ export async function getInitialState(): Promise<{
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 // 退出登陆的逻辑也可以通过配置来自定义。
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: {
+  initialState: {
+    settings?: LayoutSettings;
+    currentUser?: any
+  };
+  setInitialState: any,
+}) => {
   const location = useLocation();
 
   return {

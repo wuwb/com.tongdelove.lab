@@ -1,5 +1,3 @@
-import dvaModelExtend from 'dva-model-extend';
-
 export interface TeamMembersModelState {
   name: string;
 }
