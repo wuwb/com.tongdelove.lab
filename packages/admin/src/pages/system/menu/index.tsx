@@ -97,8 +97,7 @@ export default (props): React.ReactNode => {
   // const tableData = [] // data.list;
 
   return (
-    <PageHeader content="">
-
+    <PageHeader>
       <ProTable
         toolBarRender={(action, { selectedRows }) => [
           <Button type="primary" onClick={() => setShowNew(true)}>
@@ -115,7 +114,7 @@ export default (props): React.ReactNode => {
         bodyStyle={{ paddingBottom: 80 }}
         footer={
           <div style={{ textAlign: 'right' }}>
-            <Button onClick={() => setShowNew(false)} style={{ marginRight: 8 }}>
+            <Button onClick={() => setShowNew(false)} rootStyle={{ marginRight: 8 }}>
               Cancel
             </Button>
             <Button onClick={() => setShowNew(false)} type="primary">
