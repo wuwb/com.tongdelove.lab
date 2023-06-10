@@ -1,4 +1,4 @@
-import { ConfigService as ConfigServiceBase } from '@nestjs/config';
+import { ConfigService as BaseConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
 import { ServerConfig } from './interface/server.config';
 import { StaticConfig } from './interface/static.config';
@@ -13,7 +13,7 @@ const DEVELOPMENT = 'development';
 const TEST = 'test';
 
 @Injectable()
-export class ConfigService extends ConfigServiceBase {
+export class ConfigService extends BaseConfigService {
   readonly environment: String;
   readonly server: ServerConfig;
   readonly static: StaticConfig;
@@ -23,7 +23,7 @@ export class ConfigService extends ConfigServiceBase {
   readonly github: GithubConfig;
   readonly weibo: WeiboConfig;
 
-  constructor(private configService: ConfigServiceBase) {
+  constructor(private configService: BaseConfigService) {
     super();
 
     this.environment = process.env.NODE_ENV || DEVELOPMENT;

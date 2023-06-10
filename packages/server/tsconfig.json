@@ -6,7 +6,7 @@
         "skipDefaultLibCheck": true,
         "importHelpers": true,
         "module": "commonjs",
-        "declaration": false,
+        "declaration": false, // ?
         "strictPropertyInitialization": false,
         "sourceMap": true,
         "pretty": true,
@@ -15,7 +15,7 @@
         "experimentalDecorators": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "target": "es2016",
+        "target": "es2017", //
         "outDir": "../../dist/server",
         "noLib": false,
         "rootDir": ".",

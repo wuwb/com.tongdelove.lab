@@ -6,7 +6,7 @@ import * as svgCaptcha from 'svg-captcha';
 import { CAPTCHA_IMG_KEY } from '@/common/constants/redis.constant';
 import { generateUUID } from '@/utils';
 import { TokenService } from "../system/auth/token.service";
-import { RedisService } from "@/core/cache/redis/redis.service";
+import { CacheService } from "@/core/cache/cache/cache.service";
 import { ConfigService } from "@nestjs/config";
 import { LoginDto } from "./dto/login.dto";
 import { LoginResDto, UserInfoResDto } from "./dto/login-res.dto";
@@ -21,7 +21,7 @@ export class LoginService {
         private readonly userService: UserService,
         private readonly authService: AuthService,
         private readonly tokenService: TokenService,
-        private readonly redisService: RedisService,
+        private readonly cacheService: CacheService,
         private readonly configService: ConfigService,
         private readonly menuService: MenuService,
     ) {
@@ -42,7 +42,7 @@ export class LoginService {
             img: data.toString(),
             uuid: generateUUID(),
         };
-        await this.redisService.set(
+        await this.cacheService.set(
             `${CAPTCHA_IMG_KEY}:${result.uuid}`,
             text,
             // 'EX',
@@ -84,7 +84,7 @@ export class LoginService {
         };
 
         // 缓存数据，用来查看在线用户
-        this.redisService.setUser(result);
+        this.cacheService.setUser(result);
 
         return result;
     }

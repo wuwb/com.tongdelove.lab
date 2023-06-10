@@ -5,26 +5,15 @@ import {
     RequestMethod
 } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import path from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ScheduleModule } from '@nestjs/schedule'; // 定时任务
 import { ThrottlerModule } from '@nestjs/throttler';
-import { BullModule } from '@nestjs/bull'; // 队列
-import { SendGridModule } from "@ntegral/nestjs-sendgrid"; // 邮件
 
 // config
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppConfigModule } from '@/config/app/app-config.module';
-import configuration from '@/config/configuration';
-import databaseConfig from '@/config/database.config';
+import { ConfigModule } from '@/config/config.module';
+import { ConfigService } from '@/config/config.service';
 import { validate } from '@/config/env.validation';
-import githubConfig from '@/config/github.config';
-import graphqlConfig from '@/config/graphql.config';
-import jwtConfig from '@/config/jwt.config';
-import serverConfig from '@/config/server.config';
-import swaggerConfig from '@/config/swagger.config';
 
 // common
 // import { CustomGlobalPipe } from '@/common/pipes/custom-global.pipe';
@@ -76,9 +65,6 @@ import { UserVerificationModule } from '@/modules/system/user/user-verification.
 // import { GqlConfigService } from '@/modules/gqlconfig/gqlconfig.service';
 
 // utils
-import { SendgridConfigService } from "@/shared/services/sendgridConfig.service";
-import { SegmentAnalyticsModule } from '@/shared/services/segmentAnalytics/segmentAnalytics.module';
-// import { SegmentAnalyticsOptionsService } from '@/shared/services/segmentAnalytics/segmentAnalyticsOptionsService';
 import { HelperModule } from '@/utils/helper/helper.module';
 
 // root
@@ -88,88 +74,15 @@ import { AppService } from './app.service';
 
 @Module({
     imports: [
-        // 配置
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: ['.env.local', '.env'],
-
-            load: [
-                configuration, // 默认配置
-                databaseConfig,
-                githubConfig,
-                graphqlConfig,
-                jwtConfig,
-                serverConfig,
-                swaggerConfig,
-            ],
-            ignoreEnvFile: false,
-            cache: true,
-            expandVariables: true, // 支持嵌套
-            validate,
-        }),
-        SendGridModule.forRootAsync({
-            imports: [ConfigModule],
-            inject: [ConfigService],
-            useClass: SendgridConfigService,
-        }),
-
-        AppConfigModule,
-
-        // 基础功能
-
-        ScheduleModule.forRoot(),
-
-        // ThrottlerModule.forRoot({
-        //   ttl: 60,
-        //   limit: 10,
-        // }),
-        // https://github.com/OptimalBits/bull/blob/master/REFERENCE.md#queue
-        BullModule.forRoot('master', {
-            redis: {
-                host: 'localhost',
-                port: 6379,
-            },
-            limiter: {
-                max: 10000,
-                duration: 10000,
-                bounceBack: true,
-            },
-            prefix: 'td',
-            // defaultJobOptions: {},
-            settings: {
-                lockDuration: 30000, // Key expiration time for job locks.
-                lockRenewTime: 15000, // Interval on which to acquire the job lock
-                stalledInterval: 30000, // How often check for stalled jobs (use 0 for never checking).
-                maxStalledCount: 1, // Max amount of times a stalled job will be re-processed.
-                guardInterval: 5000, // Poll interval for delayed jobs and added jobs.
-                retryProcessDelay: 5000, // delay before processing next job in case of internal error.
-                backoffStrategies: {}, // A set of custom backoff strategies keyed by name.
-                drainDelay: 5, // A timeout for when the queue is in drained state (empty waiting for jobs).
-            },
-        }),
-
-        // segment 分析，开始时候不用开启
-        // SegmentAnalyticsModule.registerAsync({
-        //     useClass: SegmentAnalyticsOptionsService,
-        // }),
-
-        // InitModule, // 初始化
-        // AliossModule,
-        // CacheModule.register({
-        //     // 自定义缓存时间
-        //     ttl: 5, // seconds
-        //     max: 10, // seconds
-        // }),
-
-        // TypeOrmModule.forRoot(),
-        // TypeOrmModule.forRootAsync({
-        //     imports: [ConfigModule],
-        // }),
+        // config
+        ConfigModule,
 
         // core
         CoreModule,
-        // modules
 
+        ScheduleModule.forRoot(),
+
+        // modules
         UserModule,
         UserVerificationModule,
         SystemModule,
@@ -201,9 +114,9 @@ import { AppService } from './app.service';
     providers: [
         AppService,
         AppResolver,
-        // AutohotboxService,
+
+        // 过滤器
         {
-            // 过滤器
             provide: APP_FILTER,
             useClass: HttpExceptionFilter,
         },

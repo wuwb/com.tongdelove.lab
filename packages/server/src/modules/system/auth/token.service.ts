@@ -6,7 +6,7 @@ import { User } from "@prisma/client";
 import { INVALID_PASSWORD_ERROR, INVALID_USERNAME_ERROR } from "./auth.constants";
 import { ITokenService, ITokenPayload } from "./interface/ITokenService";
 import { Md5Service } from "@/utils/helper/helper.service.md5";
-import { RedisService } from "@/core/cache/redis/redis.service";
+import { CacheService } from "@/core/cache/cache/cache.service";
 
 @Injectable()
 export class TokenService implements ITokenService {
@@ -28,7 +28,7 @@ export class TokenService implements ITokenService {
         protected readonly jwtService: JwtService,
         protected readonly configService: ConfigService,
         protected readonly md5Service: Md5Service,
-        protected readonly redisService: RedisService,
+        protected readonly cacheService: CacheService,
     ) {
         this.cachePrefix = this.configService.get('jwt.cache_prefix', 'jwt:');
     }
@@ -55,7 +55,7 @@ export class TokenService implements ITokenService {
 
         const redisScope = this.configService.get('jwt.redisScope');
         const redisTokenKey = `${redisScope}:accessToken:${id}`;
-        await this.redisService.set(redisTokenKey, token, this.ttl);
+        await this.cacheService.set(redisTokenKey, token, this.ttl);
 
         return token;
     }
@@ -73,7 +73,7 @@ export class TokenService implements ITokenService {
         // 使用 MD5 加密下，防止 key 过长
         const key = this.md5Service.generateMD5(token);
         // 返回获取该缓存
-        return this.redisService.has(this.cachePrefix + key);
+        return this.cacheService.has(this.cachePrefix + key);
     }
 
     jwtException(code: number, message: string): HttpException {
@@ -119,7 +119,7 @@ export class TokenService implements ITokenService {
         }
 
         // 储存到缓存黑名单中去
-        return this.redisService.set(
+        return this.cacheService.set(
             this.cachePrefix + key,
             '',
             refreshTtlTime,

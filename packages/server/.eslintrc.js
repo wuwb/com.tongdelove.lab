@@ -6,8 +6,8 @@ module.exports = {
         ecmaVersion: 'latest', // 2018, 2020
         sourceType: 'module',
         ecmaFeatures: {
-          jsx: true
-        }
+            jsx: true,
+        },
     },
     root: true,
     env: {
@@ -35,6 +35,7 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-var-requires': 0,
 
         'no-empty': 'warn',
         'no-fallthrough': 'error',
@@ -56,50 +57,41 @@ module.exports = {
                 argsIgnorePattern: '^_',
             },
         ],
-        "max-len": ["error", { "code": 140, "ignoreUrls": true }],
-        "import/prefer-default-export": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "react/no-unescaped-entities": [
-          "error",
-          {
-            "forbid": [
-              { "char": ">", "alternatives": ["&gt;"] },
-              { "char": "}", "alternatives": ["&#125;"] }
-            ]
-          }
+        'max-len': ['error', { code: 140, ignoreUrls: true }],
+        'import/prefer-default-export': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        'react/no-unescaped-entities': [
+            'error',
+            {
+                forbid: [
+                    { char: '>', alternatives: ['&gt;'] },
+                    { char: '}', alternatives: ['&#125;'] },
+                ],
+            },
         ],
-        "strict": 0,
-        "no-console": "warn",
-        "quotes": ["warn", "single"],
-        "prettier/prettier": "warn",
-        "react/prop-types": "warn",
+        strict: 0,
+        'no-console': 'warn',
+        quotes: ['warn', 'single'],
+        'prettier/prettier': 'warn',
+        'react/prop-types': 'warn',
 
-        "no-unused-vars": "warn",
-        "react/no-unused-state": "warn",
-        "react/jsx-filename-extension": "warn",
-        "react/destructuring-assignment": "warn",
-        "import/no-unresolved": "warn",
-        "react/forbid-prop-types": "warn",
-        "react/state-in-constructor": "warn",
-        "react/jsx-props-no-spreading": "warn",
-        "react/require-default-props": "warn",
-        "no-shadow": "warn",
-        "react/no-unused-prop-types": "warn",
-        "react/no-array-index-key": "warn"
+        'no-unused-vars': 'warn',
+        'react/no-unused-state': 'warn',
+        'react/jsx-filename-extension': 'warn',
+        'react/destructuring-assignment': 'warn',
+        'import/no-unresolved': 'warn',
+        'react/forbid-prop-types': 'warn',
+        'react/state-in-constructor': 'warn',
+        'react/jsx-props-no-spreading': 'warn',
+        'react/require-default-props': 'warn',
+        'no-shadow': 'warn',
+        'react/no-unused-prop-types': 'warn',
+        'react/no-array-index-key': 'warn',
     },
     settings: {
         react: {
-            version: "detect"
+            version: 'detect',
         },
-        extensions: [
-            '.ts',
-            '.d.ts',
-            '.cts',
-            '.mts',
-            '.js',
-            '.cjs',
-            'mjs',
-            '.json',
-        ],
+        extensions: ['.ts', '.d.ts', '.cts', '.mts', '.js', '.cjs', 'mjs', '.json'],
     },
 };

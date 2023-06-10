@@ -13,7 +13,7 @@ import { API_AUTH_KEY } from '@/common/constants';
 // import { ApiAuthService } from '@/utils/shared/api-auth.service';
 import { HelperService } from '@/utils/helper/helper.service';
 import { AuthService } from '@/modules/system/auth/auth.service';
-import { RedisService } from '@/core/cache/redis/redis.service';
+import { CacheService } from '@/core/cache/cache/cache.service';
 import { ConfigService } from '@nestjs/config/dist/config.service';
 import { Observable } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
     constructor(
         // private readonly apiAuthService: ApiAuthService,
         private readonly authService: AuthService,
-        private readonly redisService: RedisService,
+        private readonly cacheService: CacheService,
         private readonly configService: ConfigService,
     ) { }
 
@@ -106,7 +106,7 @@ export class AuthGuard implements CanActivate {
         const redisScope = this.configService.get('jwt.redisScope');
         const redisTokenKey = `${redisScope}:accessToken:${payload.id}`;
         console.log('redisTokenKey: ', redisTokenKey);
-        const redisToken = await this.redisService.get(redisTokenKey);
+        const redisToken = await this.cacheService.get(redisTokenKey);
 
         console.log('token: ', token);
         console.log('redisToken: ', redisToken);
@@ -119,7 +119,7 @@ export class AuthGuard implements CanActivate {
 
         // 根据 payload 获取用户信息
         const userInfoKey = `${redisScope}:userinfo:${payload.id}`;
-        const userInfo = await this.redisService.get(userInfoKey);
+        const userInfo = await this.cacheService.get(userInfoKey);
         console.log('userInfo: ', userInfo);
         if (!userInfo) {
             throw new Error('Authentication Failed2')

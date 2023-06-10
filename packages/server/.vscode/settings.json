@@ -1,4 +1,19 @@
 {
+    //eslint 代码自动检查相关配置
+    "eslint.enable": true,
+    "eslint.run": "onType",
+    "eslint.options": {
+        "extensions": [
+            ".js",
+            ".vue"
+        ]
+    },
+    "eslint.validate": [
+        "javascriptreact",
+        "vue",
+        "javascript",
+        "html",
+    ],
     "cSpell.words": [
         "Tencent",
         "metatype",
@@ -17,6 +32,7 @@
     "editor.formatOnSave": true,
     // 使用 eslint 格式化
     "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
         "source.fixAll": true
     },
     "prettier.semi": false,

@@ -46,8 +46,10 @@
     },
     "dependencies": {
         "@aws-sdk/client-s3": "^3.350.0",
+        "@aws-sdk/lib-storage": "^3.350.0",
         "@google-cloud/trace-agent": "^7.1.2",
         "@nest-middlewares/serve-favicon": "^7.0.1",
+        "@nestjs-modules/ioredis": "^1.0.1",
         "@nestjs/apollo": "^10.0.22",
         "@nestjs/axios": "2.0.0",
         "@nestjs/bull": "^0.6.2",

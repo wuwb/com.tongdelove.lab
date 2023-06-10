@@ -2,8 +2,6 @@ import { Injectable, HttpException, HttpStatus, Logger, UnauthorizedException } 
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@/modules/system/user/user.service';
 import { ConfigService } from '@nestjs/config';
-import { RedisService } from '@/core/cache/redis/redis.service';
-import { Md5Service } from '@/utils/helper/helper.service.md5';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
 import { OAuth2Client } from 'google-auth-library';
 import { MailService } from '@/core/mail/mail/mail.service';
@@ -25,8 +23,6 @@ export class AuthService {
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
         private readonly configService: ConfigService,
-        private readonly md5Service: Md5Service,
-        private readonly redisService: RedisService,
         private readonly mailService: MailService,
         private readonly schedulerRegistry: SchedulerRegistry,
         private readonly userVerificationService: UserVerificationService,

@@ -13,23 +13,41 @@ import { LoggerModule } from '@/core/logger/logger/logger.module';
 import { PrismaModule } from '@/core/database/prisma/prisma.module';
 // import { InitModule } from '@/core/init/init.module';
 import { MailModule } from '@/core/mail/mail/mail.module';
+import { CacheModule } from '@/core/cache/cache/cache.module';
 import { RedisModule } from '@/core/cache/redis/redis.module';
 import { AliossModule } from '@/core/storage/alioss/alioss.module';
 // import { GlobalScheduleModule } from '@/core/global-schedule/global-schedule.module';
 import { GraphqlService } from '@/core/graphql/graphql.service';
 import { ServeStaticOptionsService } from '@/core/serveStatic/serveStaticOptions.service';
 import { HttpConfigService } from '@/core/http-config/http-config.service';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ConfigModule } from '@/config/config.module';
 
 @Global()
 @Module({
     imports: [
+        ConfigModule,
+
+        /* 导入速率限制模块   ttl:单位秒钟， 表示ttl秒内最多只能请求 limit 次， 避免暴力攻击。*/
+        ThrottlerModule.forRoot({
+            ttl: 60,
+            limit: 60, // 10
+        }),
+
+
+
         HealthModule,
         DatabaseModule,
         LoggerModule,
         PrismaModule,
         // InitModule,
         MailModule,
+
+        // cache
+        CacheModule,
         RedisModule,
+
+        // storage
         AliossModule,
         // GlobalScheduleModule,
 
@@ -59,6 +77,7 @@ import { HttpConfigService } from '@/core/http-config/http-config.service';
         PrismaModule,
         // InitModule,
         MailModule,
+        CacheModule,
         RedisModule,
         AliossModule,
         // GlobalScheduleModule,

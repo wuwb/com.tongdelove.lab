@@ -1,26 +1,20 @@
-import { RedisService } from './redis.service';
-import { RedisController } from './redis.controller';
-import { Global, Module, DynamicModule } from '@nestjs/common';
-import { CacheModule } from '@nestjs/cache-manager';
-import * as redisStore from 'cache-manager-redis-store';
-import type { RedisClientType } from 'redis';
+import { ConfigService } from '@/config/config.service';
+import { RedisModule as BaseRedisModule } from '@nestjs-modules/ioredis';
+import { Module } from '@nestjs/common';
 
 @Module({
     imports: [
-        CacheModule.register({
-            ttl: 5, // seconds
-            max: 10, // maximum number of items in cache
-            isGlobal: true,
-            store: redisStore,
-            // Store-specific configuration:
-            host: 'localhost',
-            port: 6379,
+        /* 连接redis */
+        BaseRedisModule.forRootAsync({
+            useFactory: (configService: ConfigService) => ({
+                config: {
+                    url: configService.get<any>('redis'),
+                }
+            }),
+            inject: [ConfigService],
         }),
-    ],
-    controllers: [RedisController],
-    providers: [RedisService],
-    exports: [
-        RedisService,
     ]
 })
-export class RedisModule { }
+export class RedisModule {
+
+}

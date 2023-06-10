@@ -4,6 +4,7 @@ import {
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as path from 'path';
+import helmet from 'helmet';
 // import { WsAdapter } from '@nestjs/websockets';
 // import { IoAdapter } from '@nestjs/platform-socket.io';
 import { ConfigService } from '@nestjs/config';
@@ -26,7 +27,7 @@ import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 // import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor';
 // import { TransformInterceptor } from '@/common/interceptors/transform.interceptor';
 
-import { RedisService } from '@/core/cache/redis/redis.service';
+import { CacheService } from '@/core/cache/cache/cache.service';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
 
 import { AppModule } from '@/modules/app/app.module';
@@ -34,6 +35,7 @@ import { AppService } from '@/modules/app/app.service';
 import { AuthService } from '@/modules/system/auth/auth.service';
 import { sendServerLoadEvent } from '@/utils/sendServerLoadEvent';
 import * as viewfilter from '@/utils/viewfilter';
+import { setupSwagger } from './setup-swagger';
 
 declare const module: any;
 
@@ -152,48 +154,6 @@ function initGlobalFilters(app, configService) {
     }
 }
 
-async function setupSwagger(swaggerConfig) {
-    // 配置api文档信息(不是生产环境配置文档)
-    if (process.env.NODE_ENV === 'development') {
-        const app = await NestFactory.create(AppModule);
-        const swaggerPath = `${swaggerConfig.root}`;
-        const swaggerDocumentConfig = new DocumentBuilder()
-            .setTitle(swaggerConfig.title)
-            .setDescription(swaggerConfig.description)
-            .setVersion(swaggerConfig.version)
-            // .addTag('users')
-            // 方便在 swagger 中测试登录
-            .addBearerAuth({
-                description: `Please enter token`,
-                bearerFormat: 'Bearer', // I`ve tested not to use this field, but the result was the same
-                scheme: 'Bearer',
-                type: 'http', // I`ve attempted type: 'apiKey' too
-                in: 'Header',
-                // name: 'token',
-            })
-            .addTag('server')
-            .build();
-        const swaggerDocumentOptions: SwaggerDocumentOptions = {
-            operationIdFactory: (
-                controllerKey: string,
-                methodKey: string
-            ) => methodKey
-        };
-        // restful API 文檔
-        const swaggerSetupOptions = {
-            swaggerOptions: {
-                persistAuthorization: true,
-            },
-            customCssUrl: "./utils/swagger/swagger.css",
-            customfavIcon: "./utils/swagger/favicon.png",
-            customSiteTitle: "My app",
-        };
-        const document = SwaggerModule.createDocument(app, swaggerDocumentConfig, swaggerDocumentOptions);
-        // 打開 http://localhost:3000/api/docs 就會連結到 swagger 服務。
-        SwaggerModule.setup(swaggerPath, app, document, swaggerSetupOptions);
-        await app.listen(swaggerConfig.port);
-    }
-}
 
 async function bootstrap() {
     const logger = new Logger('App');
@@ -293,8 +253,10 @@ async function bootstrap() {
     });
     app.useGlobalInterceptors(new SentryInterceptor(appConfig.env));
 
-    // 安全,Web漏洞的
-    //   app.use(helmet());
+    // 设置 HTTP 标头来帮助保护应用免受一些众所周知的 Web 漏洞的影响,安全,Web漏洞的
+    app.use(helmet({
+        contentSecurityPolicy: false, // 取消 https 强制转换
+    }));
 
     // 压缩，最好使用反向代理中压缩，如 nignx
     //   app.use(compression());
@@ -338,7 +300,7 @@ async function bootstrap() {
     );
 
     const authService = app.get(AuthService);
-    const redisService = app.get(RedisService);
+    const cacheService = app.get(CacheService);
     const configService = app.get(ConfigService);
 
     // 全局所有异常过滤器
@@ -351,7 +313,7 @@ async function bootstrap() {
     // 全局守卫
     // app.useGlobalGuards(new AuthGuard(
     //   authService,
-    //   redisService,
+    //   CacheService,
     //   configService,
     // ));
     // app.useGlobalGuards(new RolesGuard());
@@ -396,7 +358,7 @@ async function bootstrap() {
 
     const swaggerConfig = configService.get<SwaggerConfig>('swagger');
     if (swaggerConfig && swaggerConfig.enabled) {
-        setupSwagger(swaggerConfig);
+        setupSwagger(app, swaggerConfig);
     }
 
     // 禁止提示

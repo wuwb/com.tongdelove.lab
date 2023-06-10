@@ -10,7 +10,7 @@ generator client {
     provider = "prisma-client-js"
     // interactiveTransactions 已经实现，不用 preview
     // previewFeatures = ["interactiveTransactions"]
-    output   = "../node_modules/.prisma/client"
+    output   = "../../../node_modules/.prisma/client"
     // binaryTargets   = ["native"]
 }
 

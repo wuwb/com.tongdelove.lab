@@ -6,9 +6,11 @@ import { AuthModule } from '@/modules/system/auth/auth.module';
 import { UserModule } from '@/modules/system/user/user.module';
 import { MenuModule } from '@/modules/system/menu/menu.module';
 import { LogModule } from '@/modules/monitor/log/log.module';
-import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
+import { ConfigType } from '@nestjs/config';
 import jwtConfig from '@/config/jwt.config';
 import { MailModule } from '@/core/mail/mail/mail.module';
+import { ConfigModule } from '@/config/config.module';
+import { ConfigService } from '@/config/config.service';
 
 const jwtModule = JwtModule.registerAsync({
     imports: [

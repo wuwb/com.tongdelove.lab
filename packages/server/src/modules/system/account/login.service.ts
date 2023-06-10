@@ -6,11 +6,9 @@ import { Repository, getConnection } from 'typeorm';
 import { isMobilePhone, isEmail } from 'class-validator';
 import { AccountLastLoginEntity } from './entities/account.last.login.entity';
 import { LoginResDto } from './dto/login.res.dto';
-import { RedisService } from '@/core/cache/redis/redis.service';
+import { CacheService } from '@/core/cache/cache/cache.service';
 import { HelperService } from '@/utils/helper/helper.service';
-import { AuthService } from '@/modules/system/auth/auth.service';
 import * as assert from 'assert';
-import { ConfigService } from '@nestjs/config';
 import { TokenService } from '../auth/token.service';
 
 @Injectable()
@@ -23,9 +21,7 @@ export class LoginService {
         @InjectRepository(AccountLastLoginEntity)
         private readonly accountLastLoginRepository: Repository<AccountLastLoginEntity>,
         private readonly helperService: HelperService,
-        private readonly redisService: RedisService,
-        private readonly authService: AuthService,
-        private readonly configService: ConfigService,
+        private readonly cacheService: CacheService,
         private readonly tokenService: TokenService,
     ) { }
 
@@ -109,10 +105,10 @@ export class LoginService {
                 // const redisTokenKey = `${redisScope}:accessToken:${findAccount.id}`;
                 // console.log('redisTokenKey: ', redisTokenKey);
                 // console.log(' result.token: ', result.token);
-                // await this.redisService.set(redisTokenKey, result.token, tokenExpire);
+                // await this.cacheService.set(redisTokenKey, result.token, tokenExpire);
 
                 // 缓存数据
-                this.redisService.setUser(result);
+                this.cacheService.setUser(result);
 
                 return result;
             } else {
