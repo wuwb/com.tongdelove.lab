@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as OSS from 'ali-oss';
 import * as stream from 'stream';
-import { ALIYUN_CLOUD_STORAGE } from '@/config/admin.config';
 import { ConfigService } from '@nestjs/config';
 import * as mime from 'mime';
 import moment from 'moment';
@@ -27,8 +26,8 @@ export class AliossService {
         private readonly configService: ConfigService,
     ) {
         this.sts = new STS({
-            accessKeyId: ALIYUN_CLOUD_STORAGE.accessKey,
-            accessKeySecret: ALIYUN_CLOUD_STORAGE.secretKey,
+            accessKeyId: configService.get('ALIYUN_CLOUD_STORAGE.accessKey'),
+            accessKeySecret: configService.get('ALIYUN_CLOUD_STORAGE.secretKey'),
         });
     }
 
@@ -45,7 +44,7 @@ export class AliossService {
     // 获取临时 Token
     public async getToken(): Promise<IUpToken> {
         const response = await this.sts.assumeRole(
-            ALIYUN_CLOUD_STORAGE.aliyunAcsARN,
+            this.configService.get('ALIYUN_CLOUD_STORAGE.aliyunAcsARN'),
             null,
             15 * 60,
             'session-name'

@@ -12,8 +12,8 @@ import { ModifyPasswordDto } from './dto/modify.password.dto';
 import { HelperService } from '@/utils/helper/helper.service';
 import { AccountResDto, AccountListResDtoDto } from './dto/account.res.dto';
 import { AccountReqDto } from './dto/account.req.dto';
-import adminConfig from '@/config/admin.config';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AccountService {
@@ -22,6 +22,7 @@ export class AccountService {
         private readonly accountRepository: Repository<AccountEntity>,
         private readonly helperService: HelperService,
         private readonly prisma: PrismaService,
+        private readonly configService: ConfigService,
     ) { }
 
     /**
@@ -61,7 +62,7 @@ export class AccountService {
         } else {
             const account = this.accountRepository.create({
                 ...createAccountDto,
-                password: adminConfig.defaultPassword,
+                password: this.configService.get('defaultPassword', ''),
             });
             await this.accountRepository.save(account);
             return '创建成功';
@@ -75,7 +76,7 @@ export class AccountService {
         const {
             raw: { affectedRows },
         } = await this.accountRepository.update(id, {
-            password: this.helperService.makePassword(adminConfig.defaultPassword),
+            password: this.helperService.makePassword(this.configService.get('defaultPassword', '')),
         });
         if (affectedRows) {
             return '重置成功';

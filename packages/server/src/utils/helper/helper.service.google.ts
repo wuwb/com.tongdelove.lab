@@ -2,20 +2,24 @@ import { google } from 'googleapis';
 import { Credentials, JWT } from 'google-auth-library';
 import { Injectable } from '@nestjs/common';
 import { getMessageFromNormalError } from '@/common/transformers/error.transformer';
-import { GOOGLE } from '@/config/admin.config';
 import logger from '@/utils/logger';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class GoogleService {
     private jwtClient: JWT | null = null;
 
-    constructor() {
+    constructor(
+        private readonly configService: ConfigService,
+
+    ) {
         this.initClient();
     }
 
     private initClient() {
         try {
-            const key = require(GOOGLE.serverAccountFilePath);
+            const serverAccountFilePath = this.configService.get('GOOGLE.serverAccountFilePath');
+            const key = require(serverAccountFilePath);
             this.jwtClient = new google.auth.JWT(
                 key.client_email,
                 undefined,

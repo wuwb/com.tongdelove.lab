@@ -1,7 +1,6 @@
 import { Controller, UseGuards, HttpCode, HttpStatus, Get } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import adminConfig from '@/config/admin.config';
 import { MenusService } from './menus.service';
 import { MenusListResDto } from './dto/menus.res.dto';
 import { CurrentUser, ICurrentUserType } from '@/common/decorators/current-user.decorator';
@@ -9,7 +8,7 @@ import { CurrentUser, ICurrentUserType } from '@/common/decorators/current-user.
 @ApiTags('后台-菜单管理')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
-@Controller(`${adminConfig.adminPath}/menus`)
+@Controller(`api/menus`)
 export class MenusController {
     constructor(private readonly menusService: MenusService) { }
 

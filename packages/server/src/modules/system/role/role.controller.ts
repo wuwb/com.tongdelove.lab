@@ -15,7 +15,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import adminConfig from '@/config/admin.config';
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dto/create.role.dto';
 import { UpdateRoleDto } from './dto/update.role.dto';
@@ -27,7 +26,7 @@ import { ApiAuth } from '@/common/decorators/api.auth';
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()
-@Controller(`${adminConfig.adminPath}/role`)
+@Controller(`api/role`)
 export class RoleController {
     constructor(
         private readonly roleService: RoleService

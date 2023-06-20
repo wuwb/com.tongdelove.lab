@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import adminConfig from '@/config/admin.config';
 import { AccountRoleService } from './account-role.service';
 import { AccountRoleListResDto, RoleAccountListDto } from './dto/account-role.res.dto';
 import { DistributionRoleDto } from './dto/distribution.role.dto';
@@ -21,7 +20,7 @@ import { ApiAuth } from '@/common/decorators/api.auth';
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()
-@Controller(`${adminConfig.adminPath}/account_role`)
+@Controller(`api/account_role`)
 export class AccountRoleController {
     constructor(private readonly accountRoleService: AccountRoleService) { }
 

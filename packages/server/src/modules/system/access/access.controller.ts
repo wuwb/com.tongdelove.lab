@@ -14,7 +14,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import adminConfig from '@/config/admin.config';
 import { AccessService } from './access.service';
 import { CreateAccessDto } from './dto/create.access.dto';
 import { UpdateAccessDto } from './dto/update.access.dto';
@@ -26,7 +25,7 @@ import { ApiAuth } from '@/common/decorators/api.auth';
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()
-@Controller(`${adminConfig.adminPath}/access`)
+@Controller(`api/access`)
 export class AccessController {
     constructor(private readonly accessService: AccessService) { }
 

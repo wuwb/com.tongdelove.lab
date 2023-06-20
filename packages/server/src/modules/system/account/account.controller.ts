@@ -14,7 +14,6 @@ import {
     Logger,
     Req,
 } from '@nestjs/common';
-import adminConfig from '@/config/admin.config';
 import { ApiOperation, ApiCreatedResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateAccountDto } from './dto/create.account.dto';
 import { AccountService } from './account.service';
@@ -31,7 +30,7 @@ import { ApiAuth } from '@/common/decorators/api.auth';
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()
-@Controller(`${adminConfig.adminPath}/account`)
+@Controller(`api/account`)
 export class AccountController {
     private readonly logger = new Logger(AccountController.name);
 

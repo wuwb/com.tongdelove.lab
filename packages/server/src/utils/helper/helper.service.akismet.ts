@@ -1,8 +1,8 @@
 import { AkismetClient } from 'akismet-api';
 import { Injectable } from '@nestjs/common';
 import { getMessageFromNormalError } from '@/common/transformers/error.transformer';
-import { AKISMET } from '@/config/admin.config';
 import logger from '@/utils/logger';
+import { ConfigService } from '@nestjs/config';
 
 // 验证器支持的操作行为
 export enum EAkismetActionType {
@@ -30,7 +30,9 @@ export class AkismetService {
     private client: AkismetClient;
     private clientIsValid = false;
 
-    constructor() {
+    constructor(
+        private readonly configService: ConfigService,
+    ) {
         this.initClient();
         this.initVerify();
     }
@@ -38,8 +40,8 @@ export class AkismetService {
     // 初始化客户端
     private initClient(): void {
         this.client = new AkismetClient({
-            key: AKISMET.key,
-            blog: AKISMET.blog,
+            key: this.configService.get('AKISMET.key', ''),
+            blog: this.configService.get('AKISMET.blog', ''),
         });
     }
 
