@@ -1,7 +1,7 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CookieParserMiddleware implements NestMiddleware {
@@ -11,7 +11,7 @@ export class CookieParserMiddleware implements NestMiddleware {
         private readonly configService: ConfigService,
         private readonly logger: MyLoggerService,
     ) {
-        this.cookieParser = cookieParser(this.configService.server.cookieSecret);
+        this.cookieParser = cookieParser(this.configService.get('server.cookieSecret', ''));
     }
 
     use(request: Request, response: Response, next: () => void) {

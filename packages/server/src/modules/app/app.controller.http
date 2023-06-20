@@ -1,0 +1,7 @@
+@baseUrl= http://localhost:56078
+
+###
+
+# @name 请求 / 接口 => 成功 
+POST {{baseUrl}}/
+Content-Type: application/json

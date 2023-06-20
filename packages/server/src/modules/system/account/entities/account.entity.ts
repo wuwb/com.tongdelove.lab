@@ -11,7 +11,7 @@ import { Exclude } from 'class-transformer';
 import { HashPassword } from 'wordpress-hash-node';
 import { isMobilePhone, isEmail } from 'class-validator';
 import { BaseEntity } from '@/shared/entities/base.entity';
-import { usernameReg } from '@/common/constants';
+import { usernameReg } from '@/common/constants/reg.constant';
 
 @Entity('account')
 @Unique('username_mobile_email_unique', ['username', 'mobile', 'email'])

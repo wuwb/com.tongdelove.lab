@@ -5,6 +5,7 @@ import { Cache } from 'cache-manager';
 import { HelperService } from '@/utils/helper/helper.service';
 import { isEmptyByAllTypes, isEmpty } from '@/utils/type';
 import { USER_USERINFO_KEY } from '@/common/constants/redis.constant';
+import { User } from '@prisma/client';
 
 type unitType = 'h' | 'm' | 's' | 'ms';
 
@@ -30,7 +31,9 @@ export class CacheService {
     }
 
     async getUser(userId: string) {
+        return {
 
+        } as User;
     }
 
     async setUser(data) {
@@ -63,7 +66,9 @@ export class CacheService {
     async getSignupCode(phone: string) { }
     async setSignupCode(phone: string, code: string) { }
 
-    async getUserToken(userId: string) { }
+    async getUserToken(userId: string) {
+        return '';
+    }
     async setUserToken(userId: string, token: string) { }
 
 

@@ -1,6 +1,5 @@
 import { DynamicModule, Global, Module, OnApplicationBootstrap, OnApplicationShutdown } from "@nestjs/common";
-import { ConfigService } from "./config.service";
-import { ConfigModule as BaseConfigModule } from '@nestjs/config';
+import { ConfigModule as BaseConfigModule, ConfigService } from '@nestjs/config';
 import Joi from 'joi';
 
 import { validate } from '@/config/env.validation';
@@ -64,10 +63,10 @@ const validationSchema = Joi.object({
             isGlobal: true,
             envFilePath: ['.env.local', '.env'],
             load: [
-                appConfig,
                 configuration, // 默认配置
 
                 // config/*
+                appConfig,
                 databaseConfig,
                 githubConfig,
                 // graphqlConfig,

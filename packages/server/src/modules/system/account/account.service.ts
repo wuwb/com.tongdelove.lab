@@ -2,7 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { isMobilePhone, isEmail } from 'class-validator';
 import { Repository, getConnection } from 'typeorm';
-import { usernameReg } from '@/common/constants';
+import { usernameReg } from '@/common/constants/reg.constant';
 import { AccountEntity } from './entities/account.entity';
 import { PageEnum, StatusEnum, PlatformEnum } from '@/common/enums';
 import { AccountLastLoginEntity } from './entities/account.last.login.entity';

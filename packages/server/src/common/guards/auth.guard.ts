@@ -9,7 +9,7 @@ import {
 import * as assert from 'assert';
 import { getUrlQuery } from '@/utils';
 import { CodeEnum, CodeMessage } from '@/common/enums/code.enum';
-import { API_AUTH_KEY } from '@/common/constants';
+import { API_AUTH_KEY } from '@/common/constants/auth.constant';
 import { AuthService } from '@/modules/system/auth/auth.service';
 import { CacheService } from '@/core/cache/cache/cache.service';
 import { ConfigService } from '@nestjs/config/dist/config.service';

@@ -11,7 +11,6 @@ import { ThrottlerModule } from '@nestjs/throttler';
 
 // config
 import { ConfigModule } from '@/config/config.module';
-import { ConfigService } from '@/config/config.service';
 import { validate } from '@/config/env.validation';
 
 // common
@@ -61,7 +60,6 @@ import { UserVerificationModule } from '@/modules/system/user/user-verification.
 // import { StockModule } from '@/modules/stock/stock.module';
 // import { TaobaoModule } from '@/modules/taobao/taobao.module';
 // import { TypeormService } from '@/modules/typeorm/typeorm.service';
-// import { GqlConfigService } from '@/modules/gqlconfig/gqlconfig.service';
 
 // utils
 import { HelperModule } from '@/utils/helper/helper.module';
@@ -179,7 +177,6 @@ export class AppModule implements NestModule, OnApplicationShutdown {
     // private isAuthEnabled: boolean;
 
     constructor(
-        private readonly configService: ConfigService,
         private readonly dataSource: DataSource,
     ) { }
 

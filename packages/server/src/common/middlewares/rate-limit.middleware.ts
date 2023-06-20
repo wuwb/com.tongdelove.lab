@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import rateLimit from 'express-rate-limit';
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '@nestjs/config';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
 
 @Injectable()
@@ -12,8 +12,8 @@ export class RateLimitMiddleware implements NestMiddleware {
         private readonly logger: MyLoggerService,
     ) {
         this.rateLimit = rateLimit({
-            windowMs: this.configService.server.rateLimitWindowMs,
-            max: this.configService.server.rateLimitMax,
+            windowMs: this.configService.get('server.rateLimitWindowMs'),
+            max: this.configService.get('server.rateLimitMax'),
         });
     }
 

@@ -26,7 +26,6 @@ import { LoginService } from './account/login.service';
 import { AccountRoleService } from './account/account-role.service';
 import { MenusService } from './access/menus.service';
 import { RoleAccessService } from './role/role-access.service';
-import { RedisModule } from '@/core/cache/redis/redis.module';
 import { AuthModule } from '@/modules/system/auth/auth.module';
 
 @Module({
@@ -39,7 +38,6 @@ import { AuthModule } from '@/modules/system/auth/auth.module';
             AccessEntity,
             RoleAccessEntity,
         ]),
-        RedisModule,
         forwardRef(() => AuthModule),
     ],
     controllers: [

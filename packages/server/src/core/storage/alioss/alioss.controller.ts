@@ -16,7 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { AliossService } from './alioss.service';
 import { MyHttpException } from '@/common/exceptions/my-http.exception';
-import { ErrorCode } from '@/common/constants';
+import { ErrorCode } from '@/common/constants/error.constant';
 
 interface SampleDto {
     name: string;

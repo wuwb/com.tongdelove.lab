@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { ConfigService } from '../../config/config.service';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ChoreMiddleware implements NestMiddleware {

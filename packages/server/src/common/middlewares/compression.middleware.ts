@@ -1,6 +1,6 @@
-import { ConfigService } from '@/config/config.service';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
 import { Injectable, NestMiddleware } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as compression from 'compression';
 
 @Injectable()

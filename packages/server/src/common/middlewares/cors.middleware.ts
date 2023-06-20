@@ -1,5 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '@nestjs/config';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class CorsMiddleware implements NestMiddleware {
         const req: any = request;
         const res: any = response;
 
-        if (this.configService.server.allowOrigins.indexOf(req.headers.origin) >= 0) {
+        if (this.configService.get('server.allowOrigins', '').indexOf(req.headers.origin) >= 0) {
             res.header('Access-Control-Allow-Origin', req.headers.origin);
         }
         res.header('Access-Control-Allow-Methods', 'OPTIONS,HEAD,PUT,POST,GET,DELETE');

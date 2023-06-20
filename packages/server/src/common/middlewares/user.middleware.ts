@@ -1,17 +1,17 @@
 import { Injectable, NestMiddleware, } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import { ConfigService } from '../../config/config.service';
+import { ConfigService } from '@nestjs/config';
 import { User } from '@prisma/client';
 import { MyLoggerService } from '@/core/logger/winston/logger.service';
 import { UserService } from '@/modules/system/user/user.service';
-import { RedisService } from '@/core/cache/redis/redis.service';
+import { CacheService } from '@/core/cache/cache/cache.service';
 import { ErrorCode } from '../constants/error.constant';
 
 @Injectable()
 export class UserMiddleware implements NestMiddleware {
     constructor(
         private readonly configService: ConfigService,
-        private readonly redisService: RedisService,
+        private readonly cacheService: CacheService,
         private readonly userService: UserService,
         private readonly logger: MyLoggerService,
     ) { }
@@ -20,8 +20,8 @@ export class UserMiddleware implements NestMiddleware {
         const req: any = request;
         const res: any = response;
 
-        const tokenName: string = this.configService.server.tokenName;
-        const tokenSecret: string = this.configService.server.tokenSecret;
+        const tokenName = this.configService.get('server.tokenName', '');
+        const tokenSecret = this.configService.get('server.tokenSecret', '');
         const token: string = req.cookies[tokenName] || '';
         req.user = null;
         res.locals.user = null;
@@ -43,8 +43,8 @@ export class UserMiddleware implements NestMiddleware {
             let user: User;
 
             [userToken, user] = await Promise.all([
-                this.redisService.getUserToken(userID),
-                this.redisService.getUser(userID),
+                this.cacheService.getUserToken(userID),
+                this.cacheService.getUser(userID),
             ]);
 
             const isLogin = userToken && token === userToken;

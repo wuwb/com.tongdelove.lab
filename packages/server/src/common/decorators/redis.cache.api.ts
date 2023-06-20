@@ -1,5 +1,5 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
-import { REDIS_CACHE_KEY, REDIS_CACHE_EX_SECOND_KEY } from '@/common/constants';
+import { REDIS_CACHE_KEY, REDIS_CACHE_EX_SECOND_KEY } from '@/common/constants/redis.constant';
 
 // 是否缓存
 const isCache = true;

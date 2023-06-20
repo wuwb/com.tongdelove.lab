@@ -20,7 +20,7 @@ import axios from 'axios';
 import { UserService } from './user.service';
 import { ConfigService } from '@nestjs/config';
 import { User as UserDecorator } from '@/common/decorators/user.decorator';
-import { UserConstants } from '@/common/constants';
+import { UserConstants } from '@/common/constants/index.constant';
 import { CurrentUser } from '@/common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -28,7 +28,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Prisma, User } from '@prisma/client';
-import { plainToInstance } from 'class-transformer';
 import { RateLimit } from 'nestjs-rate-limiter';
 
 @ApiTags('user')
