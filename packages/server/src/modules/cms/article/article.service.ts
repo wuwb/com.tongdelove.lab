@@ -3,13 +3,20 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
 @Injectable()
 export class ArticleService {
+
     constructor(
         private readonly prisma: PrismaService,
     ) { }
 
-    async findMany() { }
+    async findMany() {
+        // 
+    }
 
     async findInCategory(categoryId: string,) {
         this.prisma.article.findMany()
+    }
+
+    async allVerifyFail(id: string) {
+        // 
     }
 }

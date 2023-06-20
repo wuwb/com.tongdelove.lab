@@ -1,5 +1,5 @@
-import { PaginatedDto } from '@/common/dto/paginated.dto';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginatedDto } from '@/shared/dto/paginated.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 import {
     applyDecorators,
     createParamDecorator,

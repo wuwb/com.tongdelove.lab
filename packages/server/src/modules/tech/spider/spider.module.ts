@@ -1,5 +1,4 @@
 import { FreelancerModule } from '@/modules/tech/freelancer/freelancer.module';
-import { LoggerModule } from '@/core/logger/logger/logger.module';
 import { HttpModule } from '@nestjs/axios';
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
@@ -13,6 +12,7 @@ import { RrkfService } from './tasks/catcher/rrkf.service';
 import { ShixianService } from './tasks/catcher/shixian.service';
 import { UrlsProcessor } from './tasks/processors/urls.processor';
 import { RemindProcessor } from './tasks/processors/remind.processor';
+import { LoggerModule } from '@/core/logger/winston/logger.module';
 
 @Module({
     imports: [

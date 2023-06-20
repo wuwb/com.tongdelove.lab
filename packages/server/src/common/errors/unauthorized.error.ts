@@ -1,5 +1,5 @@
 import { UnauthorizedException } from '@nestjs/common';
-import { TMessage } from '@/common/interfaces/http.interface';
+import { TMessage } from '@/shared/interfaces/http.interface';
 import * as TEXT from '@/common/constants/text.constant';
 
 /**

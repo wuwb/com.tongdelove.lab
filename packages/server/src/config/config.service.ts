@@ -14,42 +14,42 @@ const TEST = 'test';
 
 @Injectable()
 export class ConfigService extends BaseConfigService {
-  readonly environment: String;
-  readonly server: ServerConfig;
-  readonly static: StaticConfig;
-  readonly alioss: AliossConfig;
+    readonly environment: String;
+    readonly server: ServerConfig;
+    readonly static: StaticConfig;
+    readonly alioss: AliossConfig;
 
-  readonly geetestCaptcha: GeetestCaptchaConfig;
-  readonly github: GithubConfig;
-  readonly weibo: WeiboConfig;
+    readonly geetestCaptcha: GeetestCaptchaConfig;
+    readonly github: GithubConfig;
+    readonly weibo: WeiboConfig;
 
-  constructor(private configService: BaseConfigService) {
-    super();
+    //   constructor(private configService: BaseConfigService) {
+    //     super();
 
-    this.environment = process.env.NODE_ENV || DEVELOPMENT;
+    //     this.environment = process.env.NODE_ENV || DEVELOPMENT;
 
-    this.server = new ServerConfig(ConfigDefault.server);
-    this.static = new StaticConfig(ConfigDefault.static);
-    this.alioss = new AliossConfig(ConfigDefault.alioss);
+    //     this.server = new ServerConfig(ConfigDefault.server);
+    //     this.static = new StaticConfig(ConfigDefault.static);
+    //     this.alioss = new AliossConfig(ConfigDefault.alioss);
 
-    this.geetestCaptcha = new GeetestCaptchaConfig(ConfigDefault.geetestCaptcha);
-    this.github = new GithubConfig(ConfigDefault.github);
-    this.weibo = new WeiboConfig(ConfigDefault.weibo);
-  }
+    //     this.geetestCaptcha = new GeetestCaptchaConfig(ConfigDefault.geetestCaptcha);
+    //     this.github = new GithubConfig(ConfigDefault.github);
+    //     this.weibo = new WeiboConfig(ConfigDefault.weibo);
+    //   }
 
-  get isAuthEnabled(): boolean {
-    return this.configService.get('AUTH_ENABLED') === 'true';
-  }
+    // get isAuthEnabled(): boolean {
+    //     return this.configService.get('AUTH_ENABLED') === 'true';
+    // }
 
-  public isDevMode() {
-    return Object.is(this.environment, DEVELOPMENT);
-  }
+    public isDevMode() {
+        return Object.is(this.environment, DEVELOPMENT);
+    }
 
-  public isProdMode() {
-    return Object.is(this.environment, PRODUCTION);
-  }
+    public isProdMode() {
+        return Object.is(this.environment, PRODUCTION);
+    }
 
-  public isTestMode() {
-    return Object.is(this.environment, TEST);
-  }
+    public isTestMode() {
+        return Object.is(this.environment, TEST);
+    }
 }

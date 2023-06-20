@@ -1,6 +1,6 @@
 import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 
 @Entity({ name: 'user_role' })
 export default class UserRole extends BaseEntity {

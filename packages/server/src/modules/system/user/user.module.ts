@@ -45,10 +45,10 @@ export class UserModule implements OnModuleInit {
     }
 
     private async createDefaultRole() {
-        console.log('createDefaultRole');
+        // console.log('createDefaultRole');
     }
 
     private async createSuperAdmin() {
-        console.log('createSuperAdmin');
+        // console.log('createSuperAdmin');
     }
 }

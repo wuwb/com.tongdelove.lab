@@ -1,73 +1,43 @@
 import {
     Module,
-    NestModule,
-    MiddlewareConsumer,
-    RequestMethod,
     forwardRef,
-    Global,
 } from '@nestjs/common';
-import { ConfigService } from "@nestjs/config";
-import { ConfigModule, ConfigType } from '@nestjs/config';
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
-import jwtConfig from '@/config/jwt.config';
 import { UserModule } from '@/modules/system/user/user.module';
-import { SystemModule } from '@/modules/system/system.module';
-import { MailModule } from '@/core/mail/mail/mail.module';
+// import { SystemModule } from '@/modules/system/system.module';
 import { UserVerificationModule } from '@/modules/system/user/user-verification.module';
 import { AuthResolver } from './auth.resolver';
 import { PasswordService } from './password.service';
 import { TokenService } from './token.service';
 import { GithubStrategy } from './strategies/github.strategy';
 import { HttpBearerStrategy } from './strategies/http-bearer.strategy';
-
-const jwtModule = JwtModule.registerAsync({
-    imports: [
-        ConfigModule.forFeature(jwtConfig),
-        MailModule,
-    ],
-    inject: [
-        jwtConfig.KEY,
-        ConfigService,
-    ],
-    useFactory: async (
-        config: ConfigType<typeof jwtConfig>,
-        configService: ConfigService
-    ) => {
-        const secret = configService.get('jwt.secret');
-        const expiresIn = configService.get('jwt.expiresIn');
-        if (!secret) {
-            throw new Error("Didn't get a valid jwt secret");
-        }
-        if (!expiresIn) {
-            throw new Error("Jwt expire in value is not valid");
-        }
-        return {
-            secret: secret,
-            signOptions: {
-                expiresIn: expiresIn, // '8h', default 60s
-            }
-        };
-    },
-});
+import { LogModule } from '@/modules/monitor/log/log.module';
+import { JwtConfigService } from '@/modules/login/jwt-config.service';
 
 @Module({
     imports: [
-        forwardRef(() => UserModule),
-
-        MailModule,
+        // forwardRef(() => UserModule),
+        ConfigModule,
+        JwtModule.registerAsync({
+            useClass: JwtConfigService,
+        }),
+        UserModule,
         UserVerificationModule,
-        forwardRef(() => SystemModule),
+
+        // forwardRef(() => SystemModule),
         PassportModule.register({
             defaultStrategy: 'local',
             session: true,
         }),
         // https://www.npmjs.com/package/@nestjs/jwt
-        forwardRef(() => jwtModule),
+        // forwardRef(() => jwtModule),
+        LogModule,
     ],
     controllers: [
         AuthController
@@ -77,7 +47,6 @@ const jwtModule = JwtModule.registerAsync({
         PasswordService,
         TokenService,
         AuthResolver,
-        PasswordService,
         HttpBearerStrategy,
         // GithubStrategy,
         JwtStrategy,

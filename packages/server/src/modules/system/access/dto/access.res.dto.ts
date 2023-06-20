@@ -1,6 +1,6 @@
-import { QueryResDto } from '@/common/dto/query-res.dto';
+import { QueryResDto } from '@/shared/dto/query-res.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { PaginatedDto } from '@/common/dto/paginated.dto';
+import { PaginatedDto } from '@/shared/dto/paginated.dto';
 
 export class AccessResDto extends QueryResDto {
     @ApiProperty({ description: '模块名称' })

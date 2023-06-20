@@ -1,9 +1,8 @@
-
 import lodash from 'lodash';
 import { createParamDecorator } from '@nestjs/common';
 import { HttpForbiddenError } from '@/common/errors/forbidden.error';
 import { HttpBadRequestError } from '@/common/errors/bad-request.error';
-import { EPublishState, EPublicState, EOriginState, ECommentState, ESortType } from '@/common/interfaces/state.interface';
+import { EPublishState, EPublicState, EOriginState, ECommentState, ESortType } from '@/shared/interfaces/state.interface';
 
 // 预置转换器可选字段
 export enum EQueryParamsField {

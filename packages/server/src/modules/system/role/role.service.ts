@@ -68,9 +68,7 @@ export class RoleService {
         }
     }
 
-    /**
-     * 根据角色 id 修改角色
-     */
+    // 根据角色 id 修改角色
     async modifyRoleById(id: string, updateRoleDto: UpdateRoleDto): Promise<string> {
         const { isDefault } = updateRoleDto;
         if (Object.is(isDefault, String(RoleEnum.Default))) {
@@ -92,9 +90,7 @@ export class RoleService {
         }
     }
 
-    /**
-     * 根据角色 id 查询角色
-     */
+    // 根据角色 id 查询角色
     async roleById(id: string): Promise<RoleResDto | null> {
         return this.roleRepository.findOne({
             where: {
@@ -103,9 +99,19 @@ export class RoleService {
         });
     }
 
-    /**
-     * 查询角色列表
-     */
+    async findByRoleId(roleId: string) {
+        const users = await this.prisma.user.findMany({
+            where: {
+                id: roleId,
+            }
+        });
+        if (!users.length) {
+            throw new HttpException('No users belong to this role', 404);
+        }
+        return;
+    }
+
+    // 查询角色列表
     async roleList(roleReqDto: RoleReqDto): Promise<RoleListResDto> {
         const {
             pageNum = PageEnum.PAGE_NUMBER,
@@ -140,16 +146,12 @@ export class RoleService {
         };
     }
 
-    /**
-     * 查询所有角色
-     */
+    // 查询所有角色
     async roleAll(): Promise<RoleResDto[]> {
         return this.roleRepository.find();
     }
 
-    /**
-     * 根据角色 id 查询角色
-     */
+    // 根据角色 id 查询角色
     async findById(id: string): Promise<Role | null> {
         return this.prisma.role.findUnique({
             where: {
@@ -171,6 +173,4 @@ export class RoleService {
     async updateById(id: string, updateRoleDTO) { }
 
     async removeById(id: string) { }
-
-
 }

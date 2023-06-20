@@ -10,7 +10,7 @@ import {
 import { BaseExceptionFilter } from "@nestjs/core";
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import type { Request, Response } from 'express';
-import { ResOp } from '../classes/res.class';
+import { ResOp } from '@/shared/classes/res.class';
 
 export type ErrorCodesStatusMapping = {
     [key: string]: number;

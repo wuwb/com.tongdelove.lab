@@ -4,7 +4,7 @@ import { HttpAdapterHost } from '@nestjs/core';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { ApiException } from '../exceptions/api.exception';
-import { ResOp } from '../classes/res.class';
+import { ResOp } from '@/shared/classes/res.class';
 
 /**
  * 异常接管，统一异常返回数据

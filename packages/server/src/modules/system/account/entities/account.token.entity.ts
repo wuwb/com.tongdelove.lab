@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { PlatformEnum } from '@/common/enums';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 
 @Entity('account_token')
 export class AccountTokenEntity extends BaseEntity {

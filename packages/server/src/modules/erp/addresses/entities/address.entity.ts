@@ -1,4 +1,4 @@
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 
 export class Address extends BaseEntity {
 

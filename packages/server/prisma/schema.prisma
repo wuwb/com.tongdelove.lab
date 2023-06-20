@@ -10,7 +10,8 @@ generator client {
     provider = "prisma-client-js"
     // interactiveTransactions 已经实现，不用 preview
     // previewFeatures = ["interactiveTransactions"]
-    output   = "../../../node_modules/.prisma/client"
+    // output   = "../../../node_modules/.prisma/client"
+    output   = "../node_modules/.prisma/client"
     // binaryTargets   = ["native"]
 }
 
@@ -1000,6 +1001,7 @@ model Role {
 
 model Dept {
     id       String  @id @default(cuid())
+    parentId String // 上级部门
     name     String
     sort     Int     @default(0)
     leader   String? // 负责人
@@ -1095,24 +1097,24 @@ model User {
     createdAt       DateTime?         @default(now()) @map(name: "created_at") @db.Timestamp(6) // 创建时间
     updatedAt       DateTime          @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6) // 更新时间
     roles           Role[]
-    Website         Website[]
-    Dept            Dept?             @relation(fields: [deptId], references: [id])
+    website         Website[]
+    dept            Dept?             @relation(fields: [deptId], references: [id])
     deptId          String?
-    Post            Post[]
-    Order           Order[]
-    PayMehod        PayMehod[]
+    post            Post[]
+    order           Order[]
+    payMehod        PayMehod[]
     // 电话号码，一个用户可以有多个电话号码，一个用户只能绑定一个电话号码
     telephone       Telephone? // User -> Telephone 1-1
     weixin_openid   String            @default("")
     session_key     String            @default("")
-    Cart            Cart[]
-    Book            Book[]
-    BookChapter     BookChapter[]
-    BookStar        BookStar[]
-    HandBook        HandBook[]
-    HandBookChapter HandBookChapter[]
-    Article         Article[]
-    Comment         Comment?
+    cart            Cart[]
+    book            Book[]
+    bookChapter     BookChapter[]
+    bookStar        BookStar[]
+    handbook        HandBook[]
+    handbookChapter HandBookChapter[]
+    article         Article[]
+    comment         Comment?
 
     @@index([login, phone, email])
     @@map(name: "users")
@@ -1149,9 +1151,9 @@ model Telephone {
     country_code String     @default("")
     userId       String     @unique @default("") @map(name: "user_id") // 一个用户有一个手机号
     user         User       @relation(fields: [userId], references: [id])
-    Store        Store[]
-    Address      Address[]
-    Feedback     Feedback[]
+    store        Store[]
+    address      Address[]
+    feedback     Feedback[]
 }
 
 /////////////////////////////////////////////////////
@@ -1227,16 +1229,16 @@ model Coupon {
     limit       Int       @default(1) @db.SmallInt // 用户领券限制数量，如果是0，则是不限制；默认是1，限领一张
     min         Decimal   @db.Decimal(10, 4) // 最少消费金额才能使用优惠券
     condition   Int       @db.Int // 使用条件
-    goods_type  Int       @default(0) @db.SmallInt // 商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制
-    goods_value String    @default("") @db.VarChar(1023)
+    goodsType   Int       @default(0) @map(name: "goods_type") @db.SmallInt // 商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制
+    goodsValue  String    @default("") @map(name: "goods_value") @db.VarChar(1023)
     total       Int       @default(0) @db.Int // 数量，0 表示无限
-    used_count  Int       @db.Int // 使用数量
-    time_type   Int       @default(0) @db.SmallInt // 有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则start_time和end_time是优惠券有效期
+    usedCount   Int       @map(name: "userd_count") @db.Int // 使用数量 
+    timeType    Int       @default(0) @map(name: "time_type") @db.SmallInt // 有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则start_time和end_time是优惠券有效期
     status      Int       @default(0) @db.SmallInt // 优惠券状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架
     expiration  DateTime  @db.DateTime(0)
     days        Int       @default(0) @db.SmallInt // 优惠券有效期天数
-    start_at    DateTime  @db.DateTime(0)
-    end_at      DateTime  @db.DateTime(0)
+    startAt     DateTime  @map(name: "start_at") @db.DateTime(0)
+    endAt       DateTime  @map(name: "end_at") @db.DateTime(0)
     tag         String    @default("") @db.VarChar(63)
 
     @@map(name: "coupon")
@@ -1248,63 +1250,63 @@ model CouponUsed {
     createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    coupon_id String    @unique @default("") @db.VarChar(255) // 优惠券 ID
+    couponId  String    @unique @default("") @map(name: "coupon_id") @db.VarChar(255) // 优惠券 ID
     userId    String    @unique @default("") @map(name: "user_id") @db.VarChar(255) // 用户 ID
-    order_id  String    @unique @default("") @db.VarChar(255) // 订单 ID
-    used_at   DateTime  @db.DateTime(0) // 使用时间
+    orderId   String    @unique @default("") @map(name: "order_id") @db.VarChar(255) // 订单 ID
+    usedAt    DateTime  @map(name: "used_at") @db.DateTime(0) // 使用时间
     status    Int       @default(0) @db.SmallInt // 使用状态, 如果是0则未使用；如果是1则已使用；如果是2则已过期；如果是3则已经下架
-    start_at  DateTime  @db.DateTime(0) // 有效期开始时间
-    end_at    DateTime  @db.DateTime(0) // 有效期截至时间
+    startAt   DateTime  @map(name: "start_at") @db.DateTime(0) // 有效期开始时间
+    endAt     DateTime  @map(name: "end_at") @db.DateTime(0) // 有效期截至时间
 
     @@map(name: "coupon_used")
 }
 
 model Groupon {
-    id              String    @id @default(cuid())
-    createdAt       DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
-    updatedAt       DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
-    isDeleted       Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    orderId         String    @unique @default("") @map(name: "order_id")
-    grouponId       String    @unique @default("") @map(name: "groupon_id") // 如果是开团用户，则groupon_id是0；如果是参团用户，则groupon_id是团购活动ID
-    rulesId         String    @unique @default("") @map(name: "rules_id") // 团购规则ID，关联litemall_groupon_rules表ID字段
-    userId          String    @unique @default("") @map(name: "user_id") // 用户ID
-    share_url       String    @default("") @db.VarChar(255) // 团购分享图片地址
-    creator_user_id String    @unique @default("") // 创建团购的用户ID
-    creator_user_at DateTime  @db.DateTime // 创建团购的时间
-    status          Int       @default(0) @db.SmallInt // 团购活动状态，开团未支付则0，开团中则1，开团失败则2
+    id            String    @id @default(cuid())
+    createdAt     DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
+    updatedAt     DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+    isDeleted     Boolean   @default(false) @map(name: "is_deleted") // 是否删除
+    orderId       String    @unique @default("") @map(name: "order_id")
+    grouponId     String    @unique @default("") @map(name: "groupon_id") // 如果是开团用户，则groupon_id是0；如果是参团用户，则groupon_id是团购活动ID
+    rulesId       String    @unique @default("") @map(name: "rules_id") // 团购规则ID，关联litemall_groupon_rules表ID字段
+    userId        String    @unique @default("") @map(name: "user_id") // 用户ID
+    shareUrl      String    @default("") @map(name: "share_url") @db.VarChar(255) // 团购分享图片地址
+    creatorUserId String    @unique @default("") @map(name: "creator_user_id") // 创建团购的用户ID
+    creatorUserAt DateTime  @map(name: "creator_user_at") @db.DateTime // 创建团购的时间
+    status        Int       @default(0) @db.SmallInt // 团购活动状态，开团未支付则0，开团中则1，开团失败则2
 
     @@map(name: "groupon")
 }
 
 model GrouponRules {
-    id              String   @id @default(cuid())
-    goodsId         String   @unique @default("") @map(name: "goods_id") // 商品表的商品ID
-    goodsName       String   @default("") @map(name: "goods_name") @db.VarChar(127) // 商品名称
-    picUrl          String   @default("") @map(name: "pic_url") @db.VarChar(255)
-    discount        Decimal  @db.Decimal(63, 0) // 优惠金额
-    discount_member Int      @db.Int // 达到优惠条件的人数
-    expireAt        DateTime @map(name: "expire_at") @db.DateTime(0) // 团购过期时间
-    status          Int      @default(0) @db.SmallInt // 团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2
+    id             String   @id @default(cuid())
+    goodsId        String   @unique @default("") @map(name: "goods_id") // 商品表的商品ID
+    goodsName      String   @default("") @map(name: "goods_name") @db.VarChar(127) // 商品名称
+    picUrl         String   @default("") @map(name: "pic_url") @db.VarChar(255)
+    discount       Decimal  @db.Decimal(63, 0) // 优惠金额
+    discountMember Int      @map(name: "discount_member") @db.Int // 达到优惠条件的人数
+    expireAt       DateTime @map(name: "expire_at") @db.DateTime(0) // 团购过期时间
+    status         Int      @default(0) @db.SmallInt // 团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2
 
     @@map(name: "groupon_rules")
 }
 
 // feedback
 model Feedback {
-    id           String    @id @default(cuid())
-    createdAt    DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
-    updatedAt    DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
-    isDeleted    Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    userId       String    @unique @default("") @map(name: "user_id")
-    username     String    @default("") @db.VarChar(63) // 用户名称
-    feed_type    String    @default("") @db.VarChar(63) // 反馈类型
-    telephone_id String    @unique @default("")
-    telephone    Telephone @relation(fields: [telephone_id], references: [id])
-    mobile       String    @default("") @db.VarChar(20) // 手机号
-    content      String    @default("") @db.VarChar(1023) // 反馈内容
-    status       Int       @default(0) @db.Int // 状态，0表示未处理，1表示已处理
-    has_picture  Int       @default(0) @db.TinyInt // 是否有图片
-    pic_utls     String    @default("") @db.VarChar(1023) // 图片地址列表，采用JSON数组格式
+    id          String    @id @default(cuid())
+    createdAt   DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
+    updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+    isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
+    userId      String    @unique @default("") @map(name: "user_id")
+    username    String    @default("") @db.VarChar(63) // 用户名称
+    feedType    String    @default("") @map(name: "feed_type") @db.VarChar(63) // 反馈类型
+    telephoneId String    @unique @default("") @map(name: "telephone_id")
+    telephone   Telephone @relation(fields: [telephoneId], references: [id])
+    mobile      String    @default("") @db.VarChar(20) // 手机号
+    content     String    @default("") @db.VarChar(1023) // 反馈内容
+    status      Int       @default(0) @db.Int // 状态，0表示未处理，1表示已处理
+    hasPicture  Int       @default(0) @map(name: "has_picture") @db.TinyInt // 是否有图片
+    picUtls     String    @default("") @map(name: "pic_utls") @db.VarChar(1023) // 图片地址列表，采用JSON数组格式
 
     @@map(name: "feedback")
 }
@@ -1330,8 +1332,8 @@ model Collection {
     userId    String   @default("") @map(name: "user_id") // 用户 id
     valueId   String   @default("") @map(name: "value_id") // 值
     type      Int      @default(0) @db.Int // 类型
-    Article   Article? @relation(fields: [articleId], references: [id])
-    articleId String?
+    article   Article? @relation(fields: [articleId], references: [id])
+    articleId String?  @map(name: "article_id")
 
     @@map(name: "collection")
 }
@@ -1359,15 +1361,15 @@ model SearchHistory {
 }
 
 model ProductKeyword {
-    id         String    @id @default(cuid())
-    createdAt  DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
-    updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
-    isDeleted  Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    keyword    String    @default("") @db.VarChar(255) // 关键词
-    url        String    @default("") @db.VarChar(255) // 关键词对应的url
-    is_hot     Int       @default(0) @db.Int // 是否热门
-    is_default Int       @default(0) @db.Int // 是否默认
-    sort       Int       @default(0) @db.Int // 排序
+    id        String    @id @default(cuid())
+    createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
+    updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+    isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
+    keyword   String    @default("") @db.VarChar(255) // 关键词
+    url       String    @default("") @db.VarChar(255) // 关键词对应的url
+    isHot     Int       @default(0) @map(name: "is_hot") @db.Int // 是否热门
+    isDefault Int       @default(0) @map(name: "is_default") @db.Int // 是否默认
+    sort      Int       @default(0) @db.Int // 排序
 
     @@map(name: "product_keyword")
 }
@@ -1398,20 +1400,20 @@ model Notice {
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     title     String    @default("") @db.VarChar(63) // 标题
     content   String    @default("") @db.VarChar(511) // 内容
-    admin_id  String    @unique @default("") // 创建通知的管理员ID，如果是系统内置通知则是0.
+    adminId   String    @unique @default("") @map(name: "admin_id") // 创建通知的管理员ID，如果是系统内置通知则是0.
 
     @@map(name: "notice")
 }
 
 model NoticeAdmin {
-    id           String    @id @default(cuid())
-    createdAt    DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
-    updatedAt    DateTime  @updatedAt @map(name: "updated_at") @db.Timestamp(6)
-    isDeleted    Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    noticeId     String    @unique @default("") @map(name: "notice_id") // 通知ID
-    notice_title String    @default("") @db.VarChar(63) // 通知标题
-    adminId      String    @default("") @map(name: "admin_id") // 接收通知的管理员ID
-    readAt       DateTime  @map(name: "read_at") @db.DateTime(0) // 阅读时间
+    id          String    @id @default(cuid())
+    createdAt   DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
+    updatedAt   DateTime  @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+    isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
+    noticeId    String    @unique @default("") @map(name: "notice_id") // 通知ID
+    noticeTitle String    @default("") @map(name: "notice_title") @db.VarChar(63) // 通知标题
+    adminId     String    @default("") @map(name: "admin_id") // 接收通知的管理员ID
+    readAt      DateTime  @map(name: "read_at") @db.DateTime(0) // 阅读时间
 
     @@map(name: "notice_admin")
 }
@@ -1800,4 +1802,14 @@ model HandBookChapterComment {
     createdAt         DateTime?       @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt         DateTime        @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted         Boolean         @default(false) @map(name: "is_deleted") // 是否删除
+}
+
+model Analyze {
+    id        String   @id @default(cuid())
+    ip        String
+    ua        String
+    path      String
+    timestamp DateTime
+
+    @@map(name: "analyze")
 }

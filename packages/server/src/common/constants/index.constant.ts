@@ -1,3 +1,5 @@
+export const APIPrefix = '';
+
 export const CONNECTION = 'Connection';
 
 export const API_ROOT_PATH = 'api';

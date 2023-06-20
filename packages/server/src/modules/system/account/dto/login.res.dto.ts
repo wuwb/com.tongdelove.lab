@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { QueryResDto } from '@/common/dto/query-res.dto';
+import { QueryResDto } from '@/shared/dto/query-res.dto';
 
 export class LoginResDto extends QueryResDto {
 

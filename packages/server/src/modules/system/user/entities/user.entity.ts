@@ -3,7 +3,7 @@ import { Exclude, Expose, Transform } from 'class-transformer';
 import { PostEntity } from '@/modules/cms/post/entities/post.entity';
 import * as crypto from 'crypto';
 import { IsEmail } from 'class-validator';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 // 用户表

@@ -10,22 +10,20 @@ import * as assert from 'assert';
 import { getUrlQuery } from '@/utils';
 import { CodeEnum, CodeMessage } from '@/common/enums/code.enum';
 import { API_AUTH_KEY } from '@/common/constants';
-// import { ApiAuthService } from '@/utils/shared/api-auth.service';
-import { HelperService } from '@/utils/helper/helper.service';
 import { AuthService } from '@/modules/system/auth/auth.service';
 import { CacheService } from '@/core/cache/cache/cache.service';
 import { ConfigService } from '@nestjs/config/dist/config.service';
-import { Observable } from 'rxjs';
+import { TokenService } from '@/modules/system/auth/token.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     private readonly logger = new Logger(AuthGuard.name);
 
     constructor(
-        // private readonly apiAuthService: ApiAuthService,
         private readonly authService: AuthService,
         private readonly cacheService: CacheService,
         private readonly configService: ConfigService,
+        private readonly tokenService: TokenService,
     ) { }
 
     async canActivate(
@@ -93,13 +91,13 @@ export class AuthGuard implements CanActivate {
     }
 
     /**
-     * 校验用户传递过来的token
+     * 校验用户传递过来的 token
      */
     private async validateRequest(token: string): Promise<any> {
         this.logger.debug('validateRequest');
 
         // 根据 token 解出 payload
-        const payload = await this.authService.getCustomClaims(token);
+        const payload = await this.tokenService.verifyToken(token);
         console.log('payload: ', payload);
 
         // 根据 payload 从redis 获取 token

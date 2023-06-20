@@ -19,7 +19,7 @@ export class UserVerificationService {
     ) { }
 
     async resendVerificationEmail(userId: string) {
-        const user = await this.userService.findOne({
+        const user = await this.userService.get({
             where: { id: userId }
         });
         if (!user) {

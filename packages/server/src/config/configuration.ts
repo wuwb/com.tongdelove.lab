@@ -5,7 +5,6 @@ export function isDev(): boolean {
     return process.env.NODE_ENV === 'development';
 }
 
-
 export default () => ({
     port: parseInt(process.env.PORT ? process.env.PORT : '3000', 10),
     isDev: process.env.NODE_ENV === 'development',

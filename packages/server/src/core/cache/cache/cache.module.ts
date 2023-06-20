@@ -2,7 +2,7 @@ import { CacheService } from './cache.service';
 import { CacheController } from './cache.controller';
 import { Global, Module, DynamicModule } from '@nestjs/common';
 import { CacheModule as BaseCacheModule } from '@nestjs/cache-manager';
-import * as redisStore from 'cache-manager-redis-store';
+import { redisStore } from 'cache-manager-redis-store';
 import type { RedisClientType } from 'redis';
 
 @Module({
@@ -12,7 +12,7 @@ import type { RedisClientType } from 'redis';
             ttl: 5, // seconds
             max: 10, // maximum number of items in cache
             isGlobal: true,
-            store: redisStore,
+            // store: redisStore,
             // Store-specific configuration:
             host: 'localhost',
             port: 6379,

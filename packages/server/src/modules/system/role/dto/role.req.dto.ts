@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { ValidateIf, IsOptional, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 
 export class RoleReqDto extends PaginationDto {
     @ApiPropertyOptional({ required: false, description: '角色名称' })

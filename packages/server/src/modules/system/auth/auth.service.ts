@@ -12,48 +12,35 @@ import { UserVerificationService } from '@/modules/system/user/user-verification
 import { UserInfo } from './interface/UserInfo';
 import { PasswordService } from './password.service';
 import { TokenService } from './token.service';
-import { isEmail, isMobilePhone } from 'class-validator';
+import { isEmail, isEmpty, isMobilePhone } from 'class-validator';
+import { CacheService } from '@/core/cache/cache/cache.service';
+import { CAPTCHA_IMAGE_KEY } from '@/common/constants/redis.constant';
+import { ApiException } from '@/common/exceptions/api.exception';
 
 @Injectable()
 export class AuthService {
     private readonly logger = new Logger(AuthService.name);
 
     constructor(
+        private readonly configService: ConfigService,
+        private readonly cacheService: CacheService,
+        private readonly mailService: MailService,
         private readonly prisma: PrismaService,
         private readonly userService: UserService,
-        private readonly jwtService: JwtService,
-        private readonly configService: ConfigService,
-        private readonly mailService: MailService,
-        private readonly schedulerRegistry: SchedulerRegistry,
         private readonly userVerificationService: UserVerificationService,
         private readonly passwordService: PasswordService,
         private readonly tokenService: TokenService,
+        private readonly jwtService: JwtService,
+        private readonly schedulerRegistry: SchedulerRegistry,
     ) {
     }
 
-    // jwt 登录，登录成功后，根据配置重新生成 token
-    async login(credentials: any): Promise<UserInfo> {
-        this.logger.log('credentials: ', credentials);
-
-        const { login, username, password } = credentials;
-
-        // 根据登录信息获取用户信息
-        const user = await this.validateUser(
-            credentials.username,
-            credentials.password
-        );
-        if (!user) {
-            throw new UnauthorizedException("The passed credentials are incorrect");
+    async checkImageCaptcha(uuid: string, code: string) {
+        const result = await this.cacheService.get(`${CAPTCHA_IMAGE_KEY}:${uuid}`);
+        if (isEmpty(result) || code.toLowerCase() !== result.toLowerCase()) {
+            throw new ApiException(10001, '验证码错误');
         }
-        const accessToken = await this.tokenService.createAccessToken({
-            id: user.id,
-            login: username,
-            password,
-        });
-        return {
-            ...user,
-            accessToken,
-        };
+        await this.cacheService.del(`${CAPTCHA_IMAGE_KEY}:${uuid}`);
     }
 
     /**
@@ -144,20 +131,15 @@ export class AuthService {
     }
 
     // 登录校验，JWT验证 - Step 2: 校验用户信息
-    async validateUser(
-        username: string,
-        password: string
-    ): Promise<UserInfo | null> {
+    async validateUser(username: string, password: string): Promise<UserInfo | null> {
         // 查询数据库，判断密码，密码正确的话，返回用户信息
         this.logger.log('auth service validateUser: ', username, password);
 
         // todo, 判断登录名类型，调用不同的查询用户方法
         let user;
-
         if (isMobilePhone(username, 'zh-CN')) {
             user = await this.userService.findByMobilePhone(username);
-        }
-        else if (isEmail(username)) {
+        } else if (isEmail(username)) {
             user = await this.userService.findByEmail(username);
         } else {
             user = await this.userService.findByLogin(username);
@@ -179,10 +161,10 @@ export class AuthService {
         }
 
         // 用户存在，密码正确。生成 token
-        const { pass, id, roles, ...result } = user;
-        const roleList = roles as string[];
+        delete user.pass;
+        delete user.password;
 
-        return { id, roles: roleList, ...result };
+        return user;
     }
 
     // JWT验证 - Step 3: 处理 jwt 签证
@@ -271,7 +253,7 @@ export class AuthService {
      */
     async getCustomClaims(token: string) {
         try {
-            const jwtData: any = await this.tokenService.verifyToken(token);
+            const jwtData: any = await this.jwtService.decode(token);
 
             this.logger.debug('jwtData: ', jwtData);
 
@@ -287,34 +269,34 @@ export class AuthService {
         }
     }
 
-    async authenticateWithGoogle(credential: string) {
-        const clientID = this.configService.get<string>('google.clientID');
-        const clientSecret = this.configService.get<string>('google.clientSecret');
+    // async authenticateWithGoogle(credential: string) {
+    //     const clientID = this.configService.get<string>('google.clientID');
+    //     const clientSecret = this.configService.get<string>('google.clientSecret');
 
-        const OAuthClient = new OAuth2Client(clientID, clientSecret);
-        const client = await OAuthClient.verifyIdToken({ idToken: credential });
-        const userPayload = client.getPayload();
+    //     const OAuthClient = new OAuth2Client(clientID, clientSecret);
+    //     const client = await OAuthClient.verifyIdToken({ idToken: credential });
+    //     const userPayload = client.getPayload();
 
-        if (!userPayload || !userPayload.email) {
-            throw new Error('google account not found.');
-        }
+    //     if (!userPayload || !userPayload.email) {
+    //         throw new Error('google account not found.');
+    //     }
 
-        // todo
-        // 找到邮箱的账号，直接进行登录，需要保证注册的时候必须验证邮箱，且邮箱不能修改
-        // 这种方法比较简陋，改成账号手动绑定的高级一些
-        try {
-            // 先从 account 中取出，判断有无绑定 user，
-            // 没有的话，返回提示绑定，或者自动创建账号，
-            // 有的话，取出 user
-            const user = await this.userService.findByEmail(userPayload.email);
+    //     // todo
+    //     // 找到邮箱的账号，直接进行登录，需要保证注册的时候必须验证邮箱，且邮箱不能修改
+    //     // 这种方法比较简陋，改成账号手动绑定的高级一些
+    //     try {
+    //         // 先从 account 中取出，判断有无绑定 user，
+    //         // 没有的话，返回提示绑定，或者自动创建账号，
+    //         // 有的话，取出 user
+    //         const user = await this.userService.findByEmail(userPayload.email);
 
-            return user;
-        } catch (error: any) {
-            if (error.status !== HttpStatus.NOT_FOUND) {
-                throw new HttpException(error, HttpStatus.BAD_GATEWAY);
-            }
-        }
-    }
+    //         return user;
+    //     } catch (error: any) {
+    //         if (error.status !== HttpStatus.NOT_FOUND) {
+    //             throw new HttpException(error, HttpStatus.BAD_GATEWAY);
+    //         }
+    //     }
+    // }
 
     async removeUser(id: string) {
         return this.userService.removeById(id);

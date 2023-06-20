@@ -7,6 +7,8 @@ import { INVALID_PASSWORD_ERROR, INVALID_USERNAME_ERROR } from "./auth.constants
 import { ITokenService, ITokenPayload } from "./interface/ITokenService";
 import { Md5Service } from "@/utils/helper/helper.service.md5";
 import { CacheService } from "@/core/cache/cache/cache.service";
+import { USER_TOKEN_KEY, USER_VERSION_KEY } from "@/common/constants/redis.constant";
+import { ApiException } from "@/common/exceptions/api.exception";
 
 @Injectable()
 export class TokenService implements ITokenService {
@@ -33,6 +35,7 @@ export class TokenService implements ITokenService {
         this.cachePrefix = this.configService.get('jwt.cache_prefix', 'jwt:');
     }
 
+    // 创建 token
     async createTokens(payload: Partial<User>) {
         return {
             accessToken: await this.createAccessToken(payload),
@@ -40,11 +43,7 @@ export class TokenService implements ITokenService {
         };
     }
 
-    /**
-     * 创建 token
-     * @object { id: String, username: String, password: String} token 的标识（默认为用户标识）
-     * @returns a jwt token sign with the username and user id
-     */
+    // 创建 token
     async createAccessToken({ id, login, password }: Partial<User>, options?: JwtSignOptions): Promise<string> {
         if (!login) return Promise.reject(INVALID_USERNAME_ERROR);
         if (!password) return Promise.reject(INVALID_PASSWORD_ERROR);
@@ -69,28 +68,35 @@ export class TokenService implements ITokenService {
         return token;
     }
 
-    async verifyBlack(token) {
-        // 使用 MD5 加密下，防止 key 过长
-        const key = this.md5Service.generateMD5(token);
-        // 返回获取该缓存
-        return this.cacheService.has(this.cachePrefix + key);
-    }
-
-    jwtException(code: number, message: string): HttpException {
-        return new HttpException(message, HttpStatus.UNAUTHORIZED);
-    }
-
-    /**
-     * 验证 token 是否有效
-     *
-     * @param token
-     */
     async verifyToken(token: string) {
-        this.logger.debug(`varify ${token}`);
+        // 获取解密成功的数据，验证失败直接抛出错误。
+        const result = await this.jwtService.verify(token, {
+            clockTolerance: 30, // 检查 nbf (token 最早可用时间) 和 exp (token 过期时间) 声明时容忍的秒数，以处理不同服务器之间的小时钟差异
+        });
+
+        return result;
+    }
+
+    // 验证 token 是否有效，是否过期，或者被重置
+    async validateToken(userId: string, passwordVersion: number, token: string) {
 
         // 判断该 token 是否已被拉黑
-        if (await this.verifyBlack(token)) {
-            this.jwtException(403, '无效 token');
+        if (await this.validateBlockToken(token)) {
+            return new HttpException('无效 token', HttpStatus.UNAUTHORIZED);
+        }
+
+        const cachedToken = await this.cacheService.get(`${USER_TOKEN_KEY}:${userId}`)
+
+        if (token !== cachedToken) {
+            throw new ApiException(1001, `Cached token`)
+        }
+
+        const cachedPasswordVersion = parseInt(
+            await this.cacheService.get(`${USER_VERSION_KEY}:${userId}`)
+        )
+
+        if (passwordVersion !== cachedPasswordVersion) {
+            throw new ApiException(10001, '用户信息已经被修改');
         }
 
         // 获取解密成功的数据，验证失败直接抛出错误。
@@ -99,15 +105,20 @@ export class TokenService implements ITokenService {
         });
 
         return result;
-
     }
 
     async blackToken(token: string) {
-        // 解密 token
-        const jwtData: any = await this.verifyToken(token);
 
         const key = this.md5Service.generateMD5(token);
+        const jwtData = this.jwtService.decode(token);
 
+        if (!jwtData) {
+            throw new ApiException(10001, 'token 无效');
+        }
+        // 解码 token
+        if (typeof jwtData === 'string') {
+            throw new ApiException(10001, 'token 无效');
+        }
         const refreshTtl = jwtData.payload.iat + this.refreshTtl;
 
         const refreshTtlTime =
@@ -124,5 +135,12 @@ export class TokenService implements ITokenService {
             '',
             refreshTtlTime,
         );
+    }
+
+    async validateBlockToken(token) {
+        // 使用 MD5 加密下，防止 key 过长
+        const key = this.md5Service.generateMD5(token);
+        // 返回获取该缓存
+        return this.cacheService.has(this.cachePrefix + key);
     }
 }

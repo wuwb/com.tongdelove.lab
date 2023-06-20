@@ -14,8 +14,8 @@ export class AuthResolver {
     ) { }
 
     @Mutation(() => UserInfo)
-    async login(@Args() args: LoginArgs): Promise<UserInfo> {
-        return this.authService.login(args.data);
+    async login(@Args() args: LoginArgs) {
+        // return this.authService.login(args.data);
     }
 
     // 查询用户信息

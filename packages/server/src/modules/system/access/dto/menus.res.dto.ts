@@ -1,4 +1,4 @@
-import { QueryResDto } from '@/common/dto/query-res.dto';
+import { QueryResDto } from '@/shared/dto/query-res.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class MenusListResDto extends QueryResDto {

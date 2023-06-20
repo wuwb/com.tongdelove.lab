@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { QueryResDto } from '@/common/dto/query-res.dto';
-import { PaginatedDto } from '@/common/dto/paginated.dto';
+import { QueryResDto } from '@/shared/dto/query-res.dto';
+import { PaginatedDto } from '@/shared/dto/paginated.dto';
 
 export class RoleResDto extends QueryResDto {
     @ApiProperty({ description: '角色名称' })

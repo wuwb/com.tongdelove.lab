@@ -1,4 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
+import { LogService } from './log.service';
 
 @Module({
     imports: [
@@ -6,8 +7,10 @@ import { forwardRef, Module } from '@nestjs/common';
     controllers: [
     ],
     providers: [
+        LogService,
     ],
     exports: [
+        LogService,
     ],
 })
 export class LogModule { }

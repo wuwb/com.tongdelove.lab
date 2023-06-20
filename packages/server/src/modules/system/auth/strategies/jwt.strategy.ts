@@ -8,14 +8,18 @@ import { HttpUnauthorizedError } from '@/common/errors/unauthorized.error';
 import { ConfigService } from '@nestjs/config';
 import { IAuthStrategy } from '../interface/IAuthStrategy';
 import { UserInfo } from '../interface/UserInfo';
+import { Payload } from '../interface/login.interface';
+import { TokenService } from '../token.service';
 // import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'myjwt')
     implements IAuthStrategy {
+
     constructor(
         private readonly authService: AuthService,
         private readonly configService: ConfigService,
+        private readonly tokenService: TokenService,
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -26,8 +30,14 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'myjwt')
     }
 
     // JWT验证 - Step 4: 被守卫调用
-    async validate(request: Request, payload: UserInfo): Promise<UserInfo> {
+    async validate(request: Request, payload: Payload): Promise<UserInfo> {
         console.log('payload: ', payload);
+
+        const { userId, pv } = payload;
+        const token = (request.headers as any).authorization.slice(7);
+
+        // 验证通过直接返回 userId
+        await this.tokenService.validateToken(userId, pv, token);
 
         // todo 判断 payload 类型，是 ApiToken 的话，进行验证
         const user = await this.authService.validateAuthData(payload);

@@ -1,5 +1,5 @@
 import { Column, Entity, Unique } from 'typeorm';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 
 @Entity('access')
 @Unique('module_name_delete_at', ['moduleName', 'deletedAt'])

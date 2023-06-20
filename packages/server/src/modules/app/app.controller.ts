@@ -6,23 +6,13 @@ import {
     Logger,
     HttpCode,
     Header,
+    Req,
 } from '@nestjs/common';
-// import { ConfigService } from '@nestjs/config';
-// import jsonfile from 'jsonfile';
-// import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger'
 import { AppService } from './app.service';
-// import { AuthService } from '@/modules/system/auth/auth.service';
-// import { LinksService } from '@/modules/cms/link/link.service';
-// import { PhotoService } from '@/modules/photo/photo.service';
-// import { cal } from './test/cal';
-import * as captcha from 'trek-captcha';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { User } from '@/common/decorators/user.decorator';
 import * as PKG from '../../../package.json'
-import { Observable } from 'rxjs';
-import { AxiosResponse } from 'axios';
-import { ClientProxy } from '@nestjs/microservices';
 import { UserService } from '@/modules/system/user/user.service';
 import { LoginService } from '@/modules/login/login.service';
 
@@ -90,34 +80,16 @@ export class AppController {
         return this.appService.root();
     }
 
-    // fix
-    @Get('api/charts/radar.json')
-    async a() {
-        return {};
-    }
-    @Get('api/charts/pie.json')
-    async b() {
-        return {};
-    }
-    @Get('api/charts/map.json')
-    async c() {
-        return {};
+    @Get(`*`)
+    @Render('pages/admin/app')
+    // @UseGuards(ActiveGuard, RolesGuard)
+    // @Roles(UserRole.Editor, UserRole.Admin, UserRole.SuperAdmin)
+    async adminIndex(@Req() req) {
+        return {
+            adminPageURL: '/',
+        };
     }
 
-    // 文字验证码
-    @Get('api/get-image-code')
-    @HttpCode(200)
-    @Header('Cache-Control', 'none')
-    async getImageCode(ctx: ExecutionContext, @User() user: any = {}, @Res() res) {
-        const { token, buffer } = await captcha();
-        user.imageCode = token;
-        buffer.pip(res);
-    }
-
-    @Get('api/create-qrcode')
-    createQrcode() {
-
-    }
 
     // @Get()
     // @Render('products')

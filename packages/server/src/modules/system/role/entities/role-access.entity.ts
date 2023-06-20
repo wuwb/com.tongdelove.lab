@@ -1,5 +1,5 @@
 import { Entity, Unique, Column } from 'typeorm';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 
 @Entity('role_access')
 @Unique('role_access_type_deleted', ['roleId', 'accessId', 'type', 'deletedAt'])

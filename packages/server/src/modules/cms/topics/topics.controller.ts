@@ -5,7 +5,7 @@ import { UpdateTopicDto } from './dto/update-topic.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiPagedResponse, Pageable } from '@/utils/pager';
 import { SelectTopicDto } from './dto/select-topic.dto';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 
 @ApiTags('topics')
 // @ApiBearerAuth()

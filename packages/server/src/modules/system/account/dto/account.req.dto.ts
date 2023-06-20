@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsMobilePhone, ValidateIf, IsOptional, IsEmail, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 
 export class AccountReqDto extends PaginationDto {
     @ApiPropertyOptional({ required: false, description: '用户名' })

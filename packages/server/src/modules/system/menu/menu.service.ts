@@ -21,4 +21,8 @@ export class MenuService {
         }
         return '';
     }
+
+    async getAllPermissionsByRoles(roleIdArr: string[]): Promise<string[]> {
+        return [];
+    }
 }

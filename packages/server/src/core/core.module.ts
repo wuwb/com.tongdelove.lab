@@ -1,27 +1,22 @@
 import { Global, Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { HttpModule } from '@nestjs/axios'; // 网络请求
+import { HttpModule } from '@nestjs/axios';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { GraphQLModule } from '@nestjs/graphql';
-
+import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '@/common/interceptors/transform.interceptor';
-
 import { HealthModule } from '@/core/health/health.module';
 import { DatabaseModule } from '@/core/database/database/database.module';
-import { LoggerModule } from '@/core/logger/logger/logger.module';
 import { PrismaModule } from '@/core/database/prisma/prisma.module';
-// import { InitModule } from '@/core/init/init.module';
 import { MailModule } from '@/core/mail/mail/mail.module';
 import { CacheModule } from '@/core/cache/cache/cache.module';
 import { RedisModule } from '@/core/cache/redis/redis.module';
 import { AliossModule } from '@/core/storage/alioss/alioss.module';
-// import { GlobalScheduleModule } from '@/core/global-schedule/global-schedule.module';
-import { GraphqlService } from '@/core/graphql/graphql.service';
 import { ServeStaticOptionsService } from '@/core/serveStatic/serveStaticOptions.service';
 import { HttpConfigService } from '@/core/http-config/http-config.service';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { ConfigModule } from '@/config/config.module';
+import { LoggerModule } from './logger/winston/logger.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Global()
 @Module({
@@ -33,8 +28,7 @@ import { ConfigModule } from '@/config/config.module';
             ttl: 60,
             limit: 60, // 10
         }),
-
-
+        ScheduleModule.forRoot(),
 
         HealthModule,
         DatabaseModule,

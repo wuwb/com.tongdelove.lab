@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { NotFoundException } from '@/common/exceptions/not-found.exception';
-import { PaginationDto } from '@/common/dto/pagination.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 
 
 @Injectable()

@@ -12,8 +12,8 @@ import { QQService } from '@/utils/helper/qq.service';
 import { generateRandomValue } from '@/utils';
 import { ConfigService } from '@nestjs/config';
 import UserRole from './entities/user-role.entity';
-import { IUserService } from './IUserService';
-
+import { IUserService } from './interfaces/IUserService';
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
     include: {
@@ -22,14 +22,19 @@ const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
                 id: true,
                 key: true,
             }
+        },
+        dept: {
+            select: {
+                id: true,
+                name: true,
+            }
         }
     },
 })
 type UserWithRoles = Prisma.UserGetPayload<typeof userWithRoles>
 
-
 @Injectable()
-export class UserService implements IUserService {
+export class UserService {
     private readonly logger = new Logger(UserService.name);
 
     constructor(
@@ -38,19 +43,15 @@ export class UserService implements IUserService {
 
         @InjectRepository(UserEntity)
         private userRepository: Repository<UserEntity>,
+
         private readonly configService: ConfigService,
-
         private readonly prisma: PrismaService,
-
         private qqService: QQService,
     ) { }
 
     // typeorm
 
-    /**
-     * 根据用户名查找已经启用的用户
-     * @param login 
-     */
+    // 根据用户名查找已经启用的用户
     async tfindByLogin(login: string): Promise<UserEntity | null> {
         return this.userRepository.findOneBy({
             login: login,
@@ -70,11 +71,7 @@ export class UserService implements IUserService {
         return user;
     }
 
-    /**
-     * 更新个人信息
-     * @param id 
-     * @param info 
-     */
+    // 更新个人信息
     async updateAccountInfo(id: string, info): Promise<void> {
         const user = await this.userRepository.findOneBy({
             id,
@@ -104,7 +101,7 @@ export class UserService implements IUserService {
     async tcreate(dto: CreateUserDto) {
         const user = this.userRepository.create(dto);
         const salt = bcrypt.genSaltSync(10);
-        // user.salt = salt;
+
         user.pass = bcrypt.hashSync(user.pass, salt);
 
         return this.userRepository.save(user)
@@ -157,10 +154,7 @@ export class UserService implements IUserService {
         });
     }
 
-    /**
-     * 获取用户信息
-     * @param email 
-     */
+    // 获取用户信息
     async getAccountInfo(id: string): Promise<any> {
         const user = await this.userRepository.findOneBy({
             id,
@@ -177,30 +171,18 @@ export class UserService implements IUserService {
     }
 
     // prisma
-    async count<T extends Prisma.UserFindManyArgs>(
-        args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
-    ): Promise<number> {
-        return this.prisma.user.count(args);
-    }
-
-    async findAll(): Promise<User[]> {
+    async all(): Promise<User[]> {
         return []
     }
 
-    async findMany<T extends Prisma.UserFindManyArgs>(
+    async list<T extends Prisma.UserFindManyArgs>(
         args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
     ) {
-        const where = {
-        };
         const [count, data] = await this.prisma.$transaction([
             this.prisma.user.count({
-                where,
+                where: args.where,
             }),
-            this.prisma.user.findMany({
-                skip: args.skip,
-                take: args.take,
-                where,
-            }),
+            this.prisma.user.findMany(args),
         ]);
         return {
             list: data,
@@ -208,11 +190,74 @@ export class UserService implements IUserService {
         }
     }
 
-    async findOne<T extends Prisma.UserFindUniqueArgs>(
+    async get<T extends Prisma.UserFindUniqueArgs>(
         args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>
     ) {
         this.logger.log(`findOne args: ${args}`);
-        return this.prisma.user.findUnique(args);
+        const user = await this.prisma.user.findUnique(args);
+
+        if (!user) {
+            throw new ApiException(10001, '未找到用户');
+        }
+
+        return user;
+    }
+
+    async getByUsername(username: string) {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                login: username
+            }
+        })
+        return user;
+    }
+
+    async getByUsernameState(username: string) {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                login: username
+            },
+            select: {
+                id: true,
+                password: true,
+            },
+        });
+        return user;
+    }
+
+    async count<T extends Prisma.UserFindManyArgs>(
+        args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
+    ): Promise<number> {
+        return this.prisma.user.count(args);
+    }
+
+    // 返回用户公开的基本信息
+    async basicInfo(id: string): Promise<Partial<User> | null> {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                id,
+            },
+            select: {
+                id: true,
+                username: true,
+                createdAt: true,
+            }
+        });
+        return user;
+    }
+
+    async detailInfo(id: string): Promise<Partial<User> | null> {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                id,
+            },
+            select: {
+                id: true,
+                username: true,
+                createdAt: true,
+            }
+        });
+        return user;
     }
 
     async findById(id: string): Promise<Partial<UserWithRoles> | null> {
@@ -226,23 +271,16 @@ export class UserService implements IUserService {
                         id: true,
                         key: true,
                     }
+                },
+                dept: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
                 }
             },
         };
-
         return this.prisma.user.findUnique(params);
-    }
-
-    async findByRoleId(roleId: string) {
-        const users = await this.prisma.user.findMany({
-            where: {}
-        });
-
-        if (!users.length) {
-            // throw new HttpException(t('No users belong to this role'), 404);
-            throw new HttpException('No users belong to this role', 404);
-        }
-        return
     }
 
     async findByLogin(login: string): Promise<User | null> {
@@ -314,30 +352,24 @@ export class UserService implements IUserService {
         throw new HttpException('A user with this username/email does not exist.', HttpStatus.NOT_FOUND);
     }
 
-    async findByResetKey() { }
+    async findByResetKey() {
 
-    async findByUsername() { }
+    }
+
+    async findByUsername() {
+
+    }
 
     // 创建普通账号，创建谷歌登录账号
     async create(args): Promise<User> {
         return this.prisma.user.create(args);
     }
 
-    /**
-     * Add a role to the user
-     *
-     * @param userId The specified user id
-     * @param roleId The specified role id
-     */
+    // Add a role to the user
     async addUserRole(userId: string, roleId: string) {
     }
 
-    /**
-     * Delete a role from the user
-     *
-     * @param userId The specified user id
-     * @param roleId The specified role id
-     */
+    // Delete a role from the user
     async deleteUserRole(userId: string, roleId: string) {
 
     }
@@ -357,6 +389,33 @@ export class UserService implements IUserService {
         args: Prisma.SelectSubset<T, Prisma.UserUpdateArgs>
     ): Promise<User> {
         return this.prisma.user.update<T>(args);
+    }
+
+    async updateStatus(userId: string, status, operatorRole) {
+
+    }
+
+    // 更新用户信息(头像、职位、公司、个人介绍、个人主页)
+    async updateUserInfo(userId, updateUserInfoDto) {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                login: updateUserInfoDto.login,
+            },
+            select: {
+                id: true
+            }
+        });
+        if (user) {
+            throw new ApiException(10001, `已经存在名为`);
+        }
+        return await this.prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                ...updateUserInfoDto
+            }
+        });
     }
 
     async updateById(id: string, data) {
@@ -381,6 +440,31 @@ export class UserService implements IUserService {
         });
     }
 
+    async updatePassword(userId, oldPass, pass): Promise<boolean> {
+        let user = await this.prisma.user.findUnique({
+            where: {
+                id: userId,
+            }
+        });
+
+        if (!user) {
+            throw new ApiException(10001, '未找到用户');
+        }
+
+        // 验证老密码
+
+        // 更新新密码
+        user = await this.prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                pass: pass,
+            }
+        });
+        return true;
+    }
+
     async delete<T extends Prisma.UserDeleteArgs>(
         args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
     ): Promise<User> {
@@ -388,7 +472,7 @@ export class UserService implements IUserService {
     }
 
     async remove(where: Partial<Prisma.UserWhereUniqueInput>): Promise<User> {
-        const user = await this.findOne({ where });
+        const user = await this.prisma.user.findUnique({ where });
         if (!user) {
             throw new NotFoundException('user not found');
         }
@@ -423,16 +507,25 @@ export class UserService implements IUserService {
 
     // others
 
-    async existsByUsername() { }
+    async existsByUsername() {
 
-    async existsByEmail() { }
+    }
 
-    async getProfileImageBuffer() { }
+    async existsByEmail() {
 
-    async uploadProfileImage() { }
+    }
 
-    async deleteProfileImage() { }
+    async getProfileImageBuffer() {
 
+    }
+
+    async uploadProfileImage() {
+
+    }
+
+    async deleteProfileImage() {
+
+    }
 
     // get relations
 
@@ -454,7 +547,9 @@ export class UserService implements IUserService {
 
     }
 
-    async verifyUpdatedEmail(token: string) { }
+    async verifyUpdatedEmail(token: string) {
+
+    }
 
     async disableUser() {
 
@@ -468,5 +563,4 @@ export class UserService implements IUserService {
     async sendActivationMail() {
 
     }
-
 }

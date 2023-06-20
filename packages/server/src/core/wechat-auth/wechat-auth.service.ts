@@ -7,6 +7,7 @@ import { HttpService } from "@nestjs/axios";
 import { AuthService } from '@/modules/system/auth/auth.service';
 import { AccountService } from '@/modules/system/user/account/account.service';
 import { ConfigService } from "@nestjs/config";
+import { LoginService } from "@/modules/login/login.service";
 
 @Injectable()
 export class WechatAuthService {
@@ -18,6 +19,7 @@ export class WechatAuthService {
         private readonly authService: AuthService,
         private readonly accountService: AccountService,
         private readonly configSerivce: ConfigService,
+        private readonly loginService: LoginService,
     ) { }
 
     accessTokenInfo: AccessTokenInfo;
@@ -88,7 +90,7 @@ export class WechatAuthService {
         // 根据 account，查询 user 表，获取用户信息
         const user = await this.usersService.findById(account.userId);
 
-        return this.authService.login(user);
+        // return this.loginService.login(user);
     }
 
     async getUserByOpenid() {

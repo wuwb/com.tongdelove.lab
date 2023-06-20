@@ -10,7 +10,7 @@ import {
 import { Exclude } from 'class-transformer';
 import { HashPassword } from 'wordpress-hash-node';
 import { isMobilePhone, isEmail } from 'class-validator';
-import { BaseEntity } from '@/common/entities/base.entity';
+import { BaseEntity } from '@/shared/entities/base.entity';
 import { usernameReg } from '@/common/constants';
 
 @Entity('account')

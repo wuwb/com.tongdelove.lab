@@ -7,7 +7,6 @@ import {
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { DataSource } from 'typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ScheduleModule } from '@nestjs/schedule'; // 定时任务
 import { ThrottlerModule } from '@nestjs/throttler';
 
 // config
@@ -71,6 +70,15 @@ import { HelperModule } from '@/utils/helper/helper.module';
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
+import { IpMiddleware } from '@/common/middlewares/ip.middleware';
+import { CookieParserMiddleware } from '@/common/middlewares/cookie-parser.middleware';
+import { RateLimitMiddleware } from '@/common/middlewares/rate-limit.middleware';
+import { CorsMiddleware } from '@/common/middlewares/cors.middleware';
+import { CSRFMiddleware } from '@/common/middlewares/csrf.middleware';
+import { HelmetMiddleware } from '@/common/middlewares/helmet.middleware';
+import { UserMiddleware } from '@/common/middlewares/user.middleware';
+import { LocalsMiddleware } from '@/common/middlewares/locals.middleware';
+import { CompressionMiddleware } from '@/common/middlewares/compression.middleware';
 
 @Module({
     imports: [
@@ -80,16 +88,14 @@ import { AppService } from './app.service';
         // core
         CoreModule,
 
-        ScheduleModule.forRoot(),
-
         // modules
         UserModule,
         UserVerificationModule,
         SystemModule,
         LoginModule,
         AuthModule,
-        FreelancerModule,
-        LinkModule,
+        // FreelancerModule,
+        // LinkModule,
         // TopicsModule,
         // PostModule,
         // V2exModule,
@@ -179,28 +185,42 @@ export class AppModule implements NestModule, OnApplicationShutdown {
 
     configure(consumer: MiddlewareConsumer) {
         const middlewares = [
-            LoggerMiddleware, // logger 中间件
+            // IpMiddleware,
+            // CookieParserMiddleware,
+            // RateLimitMiddleware,
+            // CorsMiddleware,
+            // CSRFMiddleware,
+            // HelmetMiddleware,
+            // UserMiddleware,
+            // LocalsMiddleware,
+            // CompressionMiddleware,
+            // LoggerMiddleware, // logger 中间件
             // OriginMiddleware, // origin 合法性检测
             // CompressionMiddleware, // 压缩
             // LocalsMiddleware, // 本地配置
-            AttachAuthMiddleware, // 添加认证信息
+            // AttachAuthMiddleware, // 添加认证信息
         ];
-        consumer.apply(...middlewares).forRoutes({
-            path: '*',
-            method: RequestMethod.ALL,
-        });
+        consumer
+            .apply(...middlewares)
+            .forRoutes({
+                path: '*',
+                method: RequestMethod.ALL,
+            });
     }
 
-    // normalizePort(port: number | string): number | string {
-    //     const portNumber: number = typeof port === 'string' ? parseInt(port, 10) : port;
-    //     if (isNaN(portNumber)) {
-    //         return port;
-    //     } else if (portNumber >= 0) {
-    //         return portNumber;
-    //     }
-    // }
+    normalizePort(port: number | string): number | string {
+        const portNumber: number = typeof port === 'string' ? parseInt(port, 10) : port;
+        if (isNaN(portNumber)) {
+            return port;
+        } else if (portNumber >= 0) {
+            return portNumber;
+        } else {
+            return port;
+        }
+    }
 
     onApplicationShutdown(signal: string): void {
-        console.trace(`Application shut down (signal: ${signal})`);
+        console.log('应用停止，停止信号：', signal);
+        // console.trace(`Application shut down (signal: ${signal})`);
     }
 }

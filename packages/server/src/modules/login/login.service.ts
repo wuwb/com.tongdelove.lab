@@ -3,7 +3,7 @@ import { UserService } from "../system/user/user.service";
 import { UserInfo } from "../system/auth/interface/UserInfo";
 import { AuthService } from "../system/auth/auth.service";
 import * as svgCaptcha from 'svg-captcha';
-import { CAPTCHA_IMG_KEY } from '@/common/constants/redis.constant';
+import { CAPTCHA_IMAGE_KEY, USER_TOKEN_KEY, USER_VERSION_KEY } from '@/common/constants/redis.constant';
 import { generateUUID } from '@/utils';
 import { TokenService } from "../system/auth/token.service";
 import { CacheService } from "@/core/cache/cache/cache.service";
@@ -12,6 +12,10 @@ import { LoginDto } from "./dto/login.dto";
 import { LoginResDto, UserInfoResDto } from "./dto/login-res.dto";
 import { ApiException } from "@/common/exceptions/api.exception";
 import { MenuService } from "../system/menu/menu.service";
+import { JwtService } from "@nestjs/jwt";
+import { Request } from 'express';
+import { LogService } from "../monitor/log/log.service";
+import { UpdatePasswordDto } from "../system/user/dto/update-password.dto";
 
 @Injectable()
 export class LoginService {
@@ -24,6 +28,8 @@ export class LoginService {
         private readonly cacheService: CacheService,
         private readonly configService: ConfigService,
         private readonly menuService: MenuService,
+        private readonly jwtService: JwtService,
+        private readonly logService: LogService,
     ) {
     }
 
@@ -43,7 +49,7 @@ export class LoginService {
             uuid: generateUUID(),
         };
         await this.cacheService.set(
-            `${CAPTCHA_IMG_KEY}:${result.uuid}`,
+            `${CAPTCHA_IMAGE_KEY}:${result.uuid}`,
             text,
             // 'EX',
             60 * 5,
@@ -51,9 +57,10 @@ export class LoginService {
         return result;
     }
 
-
     // jwt 登录，登录成功后，根据配置重新生成 token
-    async login(loginDto: LoginDto): Promise<LoginResDto> {
+    async login(request: Request, loginDto: LoginDto): Promise<LoginResDto> {
+
+        // const { user } = request as any;
         const { username, password } = loginDto;
 
         // 根据登录信息获取用户信息
@@ -67,16 +74,27 @@ export class LoginService {
 
         // 登录成功，
 
-        // 更新登录日志
-
         // 签发 token
+        let jwtSign = this.jwtService.sign({
+            id: user.id,
+            pv: 1,
+        })
         const accessToken = await this.tokenService.createAccessToken({
             id: user.id,
             login: username,
             password,
         });
+        if (this.configService.get('isDemo')) {
+            const token = await this.cacheService.get(`${USER_TOKEN_KEY}:${user.id}`);
+            if (token) {
+                jwtSign = token;
+            }
+        }
+        // 存储密码版本号，防止登录期间 密码被管理员更改后 还能继续登录
+        await this.cacheService.set(`${USER_VERSION_KEY}:${user.id}`, 1);
 
         // 储存 token
+        await this.cacheService.set(`${USER_TOKEN_KEY}:${user.id}`, jwtSign, 60 * 60 * 24)
 
         const result = {
             ...user,
@@ -84,17 +102,42 @@ export class LoginService {
         };
 
         // 缓存数据，用来查看在线用户
-        this.cacheService.setUser(result);
+        await this.cacheService.setUser(result);
+        // 更新登录日志
+        await this.logService.addLoginInfo(request, '登录成功', `${USER_TOKEN_KEY}:${user.id}`)
 
         return result;
     }
 
     async logout(token: string) {
         try {
-            const payload = this.tokenService.verifyToken(token);
+            const payload = this.jwtService.verify(token);
+            if (await this.cacheService.get(`${USER_TOKEN_KEY}:${payload.userId}`)) {
+                await this.cacheService.del(`${USER_TOKEN_KEY}:${payload.userId}`);
+            }
         } catch (err) {
 
         }
+    }
+
+    async updatePassword(updatePasswordDto: UpdatePasswordDto) {
+        const user = await this.userService.findById(updatePasswordDto.id);
+
+        if (!user) {
+            throw new ApiException(10001, '未找到用户');
+        }
+
+        const updated = await this.userService.updatePassword(user.id, user.pass, updatePasswordDto.password);
+
+        if (!updated) {
+            throw new ApiException(10001, '密码更新失败');
+        }
+
+        // 避免用户重新登录
+        // 生成新的 token
+
+        // 更新 redis 中的 token
+
     }
 
     /* 获取用户信息 */
@@ -103,6 +146,22 @@ export class LoginService {
 
         if (!user) {
             throw new ApiException(10003, '用户不存在');
+        }
+
+        const deptId = user.dept ? user.dept.id : '';
+        const deptName = user.dept ? user.dept.name : '';
+        const roleKeyArr: string[] = user.roles?.map((role) => role.key) ?? [];
+        let permissions: string[] = [];
+
+        if (!roleKeyArr.length) {
+            permissions = [];
+        } else {
+            if (roleKeyArr.find((roleKey) => roleKey == 'admin')) {
+                permissions = ['*:*:*'];
+            } else {
+                const roleIdArr = user.roles?.map((role) => role.id) ?? [];
+                permissions = await this.menuService.getAllPermissionsByRoles(roleIdArr);
+            }
         }
 
         return {

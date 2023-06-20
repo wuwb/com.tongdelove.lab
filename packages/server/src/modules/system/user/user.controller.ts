@@ -85,7 +85,7 @@ export class UserController {
 
     @Get()
     async findMany(@Query() query): Promise<any> {
-        const data = await this.userService.findMany({
+        const data = await this.userService.list({
             ...query,
             select: {
                 createdAt: true,
@@ -195,16 +195,16 @@ export class UserController {
 
     @Get('/signin/github')
     async githubSign(@Res() res) {
-        const authorizeURL = this.configService.get('github.authorizeURL');
-        const clientID = this.configService.get('github.clientID');
+        // const authorizeURL = this.configService.get('github.authorizeURL');
+        // const clientID = this.configService.get('github.clientID');
         res.status(302);
         // res.redirect(util.format(authorizeURL, clientID));
     }
 
     @Get('/signup/github')
     async githubSiup(@Res() res) {
-        const authorizeURL = this.configService.get('github.authorizeURL');
-        const clientID = this.configService.get('github.clientID');
+        // const authorizeURL = this.configService.get('github.authorizeURL');
+        // const clientID = this.configService.get('github.clientID');
         res.status(302);
         // res.redirect(util.format(authorizeURL, clientID));
     }
@@ -212,9 +212,6 @@ export class UserController {
     @Get('/auth/github/callback')
     async githubAuthCallback(@Query('code') code: string, @Res() res) {
         if (!code) {
-            // throw new MyHttpException({
-            //   errorCode: ErrorCode.Forbidden.CODE,
-            // });
             throw new ForbiddenException();
         }
         const result = await axios.post(

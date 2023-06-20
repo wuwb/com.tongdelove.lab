@@ -46,10 +46,18 @@ export const ErrorCodeMap = {
 
 export class ErrorCode {
     static Forbidden = {
-        CODE: '-1',
+        CODE: -1,
     }
 
     static NotFound = {
-        CODE: '-1',
+        CODE: -1,
+    }
+
+    static ParamsError = {
+        CODE: -1
+    }
+
+    static TokenError = {
+        CODE: -1
     }
 }

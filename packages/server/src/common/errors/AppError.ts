@@ -1,6 +1,6 @@
-import { AppErrorTypeEnum } from '../enums/AppErrorTypeEnum';
-import { IErrorMessage } from '../interfaces/IErrorMessage';
 import { HttpStatus } from '@nestjs/common';
+import { AppErrorTypeEnum } from '../enums/AppErrorTypeEnum';
+import { IErrorMessage } from '@/shared/interfaces/IErrorMessage';
 
 export class AppError extends Error {
     public errorCode: AppErrorTypeEnum;

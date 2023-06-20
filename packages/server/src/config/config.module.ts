@@ -3,19 +3,18 @@ import { ConfigService } from "./config.service";
 import { ConfigModule as BaseConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
-import appConfig from './app.config';
-import databaseConfig from './database.config';
-import googleConfig from './google.config';
-import mailConfig from './mail.config';
-import storageConfig from './storage.config';
-import { AppConfigModule } from './app/app-config.module';
 import { validate } from '@/config/env.validation';
-import swaggerConfig from "./swagger.config";
-import jwtConfig from "./jwt.config";
-import serverConfig from "./server.config";
-import githubConfig from "./github.config";
+import appConfig from './config/app.config';
+import databaseConfig from './config/database.config';
+import googleConfig from './config/google.config';
+import mailConfig from './config/mail.config';
+import storageConfig from './config/storage.config';
+import swaggerConfig from "./config/swagger.config";
+import jwtConfig from "./config/jwt.config";
+import serverConfig from "./config/server.config";
+import githubConfig from "./config/github.config";
 import configuration from "./configuration";
-// import graphqlConfig from "./graphql.config";
+// import graphqlConfig from "./config/graphql.config";
 
 const validationSchema = Joi.object({
     // App
@@ -67,6 +66,8 @@ const validationSchema = Joi.object({
             load: [
                 appConfig,
                 configuration, // 默认配置
+
+                // config/*
                 databaseConfig,
                 githubConfig,
                 // graphqlConfig,
@@ -84,12 +85,11 @@ const validationSchema = Joi.object({
             validate,
             validationSchema: validationSchema,
         }),
-        AppConfigModule,
-    ],
-    exports: [
-        ConfigService,
     ],
     providers: [
+        ConfigService,
+    ],
+    exports: [
         ConfigService,
     ]
 })
