@@ -2,9 +2,7 @@ import {
     Module,
     forwardRef,
 } from '@nestjs/common';
-import { ConfigModule, ConfigService } from "@nestjs/config";
 import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
@@ -18,15 +16,11 @@ import { TokenService } from './token.service';
 import { GithubStrategy } from './strategies/github.strategy';
 import { HttpBearerStrategy } from './strategies/http-bearer.strategy';
 import { LogModule } from '@/modules/monitor/log/log.module';
-import { JwtConfigService } from '@/modules/login/jwt-config.service';
 
 @Module({
     imports: [
         // forwardRef(() => UserModule),
-        ConfigModule,
-        JwtModule.registerAsync({
-            useClass: JwtConfigService,
-        }),
+
         UserModule,
         UserVerificationModule,
 

@@ -17,6 +17,7 @@ import { HttpConfigService } from '@/core/http-config/http-config.service';
 import { ConfigModule } from '@/config/config.module';
 import { LoggerModule } from './logger/winston/logger.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { JwtModule } from './auth/jwt/jwt.module';
 
 @Global()
 @Module({
@@ -29,6 +30,8 @@ import { ScheduleModule } from '@nestjs/schedule';
             limit: 60, // 10
         }),
         ScheduleModule.forRoot(),
+
+        JwtModule,
 
         HealthModule,
         DatabaseModule,
@@ -74,6 +77,7 @@ import { ScheduleModule } from '@nestjs/schedule';
         CacheModule,
         RedisModule,
         AliossModule,
+        JwtModule,
         // GlobalScheduleModule,
     ],
 })
