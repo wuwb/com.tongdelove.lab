@@ -1,6 +1,6 @@
 import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
-import { DingdingModule } from '@/utils/dingding/dingding.module';
-import { WebhookModule } from '@/utils/webhook/webhook.module';
+import { DingdingModule } from '@/core/sms/dingding/dingding.module';
+import { WebhookModule } from '@/core/sms/webhook/webhook.module';
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';

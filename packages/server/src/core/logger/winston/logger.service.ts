@@ -9,7 +9,7 @@ import {
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
-import { isObject } from '@/utils/data-type';
+import { isObject } from '@/utils/type';
 
 const isDevMod = process.env.NODE_ENV !== 'production';
 

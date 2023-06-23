@@ -9,7 +9,7 @@ import { AccountLastLoginEntity } from './entities/account.last.login.entity';
 import { CreateAccountDto } from './dto/create.account.dto';
 import { UpdateAccountDto } from './dto/update.account.dto';
 import { ModifyPasswordDto } from './dto/modify.password.dto';
-import { HelperService } from '@/utils/helper/helper.service';
+import { HelperService } from '@/shared/helper/helper.service';
 import { AccountResDto, AccountListResDtoDto } from './dto/account.res.dto';
 import { AccountReqDto } from './dto/account.req.dto';
 import { PrismaService } from '@/core/database/prisma/prisma.service';

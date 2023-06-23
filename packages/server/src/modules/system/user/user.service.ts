@@ -8,12 +8,14 @@ import { UserEntity } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { isEmpty } from 'lodash';
 import { ApiException } from '@/common/exceptions/api.exception';
-import { QQService } from '@/utils/helper/qq.service';
-import { generateRandomValue } from '@/utils';
+import { QQService } from '@/shared/services/qq.service';
+import { generateRandomValue } from '@/utils/base/string.util';
 import { ConfigService } from '@nestjs/config';
 import UserRole from './entities/user-role.entity';
 import { IUserService } from './interfaces/IUserService';
 import { UpdatePasswordDto } from './dto/update-password.dto';
+
+console.log(module);
 
 const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
     include: {

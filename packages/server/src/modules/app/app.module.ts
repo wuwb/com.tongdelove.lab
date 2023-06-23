@@ -30,6 +30,9 @@ import { LoggerMiddleware } from '@/common/middlewares/logger.middleware';
 // core
 import { CoreModule } from '@/core/core.module';
 
+// shared 
+import { SharedModule } from '@/shared/shared.module';
+
 // modules 
 
 // 核心业务模块
@@ -61,8 +64,6 @@ import { UserVerificationModule } from '@/modules/system/user/user-verification.
 // import { TaobaoModule } from '@/modules/taobao/taobao.module';
 // import { TypeormService } from '@/modules/typeorm/typeorm.service';
 
-// utils
-import { HelperModule } from '@/utils/helper/helper.module';
 
 // root
 import { AppController } from './app.controller';
@@ -85,6 +86,9 @@ import { CompressionMiddleware } from '@/common/middlewares/compression.middlewa
 
         // core
         CoreModule,
+
+        // shared
+        SharedModule,
 
         // modules
         UserModule,
@@ -110,7 +114,6 @@ import { CompressionMiddleware } from '@/common/middlewares/compression.middlewa
         // ImageProcessModule,
         // FileModule,
         // CommentModule,
-        HelperModule,
     ],
     controllers: [
         AppController

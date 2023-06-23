@@ -16,7 +16,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { User } from '@/common/decorators/user.decorator';
 // import { QueryParams } from '@/common/decorators/query-params.decorator';
-import { IPService } from '@/utils/helper/helper.service.ip';
+import { IPService } from '@/shared/helper/helper.service.ip';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';

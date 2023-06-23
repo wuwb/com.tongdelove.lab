@@ -1,14 +1,14 @@
-/* eslint-disable import/no-unresolved */
 import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { JwtService, JwtSignOptions } from "@nestjs/jwt";
+import { JwtSignOptions } from "@nestjs/jwt";
 import { User } from "@prisma/client";
 import { INVALID_PASSWORD_ERROR, INVALID_USERNAME_ERROR } from "./auth.constants";
 import { ITokenService, ITokenPayload } from "./interface/ITokenService";
-import { Md5Service } from "@/utils/helper/helper.service.md5";
+import { Md5Service } from "@/shared/helper/helper.service.md5";
 import { CacheService } from "@/core/cache/cache/cache.service";
 import { USER_TOKEN_KEY, USER_VERSION_KEY } from "@/common/constants/redis.constant";
 import { ApiException } from "@/common/exceptions/api.exception";
+import { JwtService } from "@/core/auth/jwt/jwt.service";
 
 @Injectable()
 export class TokenService implements ITokenService {

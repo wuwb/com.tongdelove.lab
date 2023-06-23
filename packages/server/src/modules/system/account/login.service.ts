@@ -7,7 +7,7 @@ import { isMobilePhone, isEmail } from 'class-validator';
 import { AccountLastLoginEntity } from './entities/account.last.login.entity';
 import { LoginResDto } from './dto/login.res.dto';
 import { CacheService } from '@/core/cache/cache/cache.service';
-import { HelperService } from '@/utils/helper/helper.service';
+import { HelperService } from '@/shared/helper/helper.service';
 import * as assert from 'assert';
 import { TokenService } from '../auth/token.service';
 

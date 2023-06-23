@@ -1,8 +1,8 @@
 import { User } from '@/common/decorators/user.decorator';
 import { ParseIntPipe } from '@/common/pipes/parse-int.pipe';
 import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard';
-import { DingdingService } from '@/utils/dingding/dingding.service';
-import { WebhookService } from '@/utils/webhook/webhook.service';
+import { DingdingService } from '@/core/sms/dingding/dingding.service';
+import { WebhookService } from '@/core/sms/webhook/webhook.service';
 import { HttpService } from '@nestjs/axios';
 import {
     Body, Controller, Get, HttpException, Logger, Param, Post, Query, UseGuards

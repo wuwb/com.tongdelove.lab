@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { Account, Prisma } from '@prisma/client';
 import { PrismaService } from "@/core/database/prisma/prisma.service";
-import { HelperService } from '@/utils/helper/helper.service';
+import { HelperService } from '@/shared/helper/helper.service';
 
 @Injectable()
 export class AccountService {

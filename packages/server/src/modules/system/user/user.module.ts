@@ -7,8 +7,7 @@ import { UserService } from './user.service';
 import { MailModule } from '@/core/mail/mail/mail.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
-import { HelperModule } from '@/utils/helper/helper.module';
-import { QQService } from '@/utils/helper/qq.service';
+import { QQService } from '@/shared/services/qq.service';
 // import { HttpService } from '@nestjs/axios';
 
 @Global()
@@ -24,7 +23,6 @@ import { QQService } from '@/utils/helper/qq.service';
     ],
     providers: [
         UserService,
-        HelperModule,
     ],
     exports: [
         UserService,
