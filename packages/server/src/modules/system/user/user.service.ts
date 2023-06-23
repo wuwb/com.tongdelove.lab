@@ -15,8 +15,6 @@ import UserRole from './entities/user-role.entity';
 import { IUserService } from './interfaces/IUserService';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 
-console.log(module);
-
 const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
     include: {
         roles: {

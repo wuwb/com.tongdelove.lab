@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsOptional, IsBoolean } from 'class-validator';
 import { IsUserName } from '@/common/validators';
 
-export class LoginDto {
+export class LoginReqVO {
 
     /* 用户名 */
     @ApiProperty({ required: true, description: '用户名' })
@@ -20,10 +20,6 @@ export class LoginDto {
     /* 验证码 code */
     @IsString()
     readonly code: string;
-
-    /* 验证码 code id */
-    @IsString()
-    readonly codeId: string;
 
     /* 登录类型 */
     @IsOptional()

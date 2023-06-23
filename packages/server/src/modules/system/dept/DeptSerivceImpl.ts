@@ -4,7 +4,7 @@ import { DeptUpdateReqVO } from "./vo/DeptUpdateReqVO";
 import { DeptListReqVO } from "./vo/DeptListReqVO";
 import { PrismaService } from "@/core/database/prisma/prisma.service";
 import { ApiException } from "@/common/exceptions/api.exception";
-import { CommonStatusEnum } from "@/common/enums/CommonStatusEnum";
+import { CommonStatusEnum } from "@/common/enums/CommonStatus.enum";
 import { TenantContextHolder } from "@/core/tenant/context/TenantContextHolder";
 
 @Injectable()

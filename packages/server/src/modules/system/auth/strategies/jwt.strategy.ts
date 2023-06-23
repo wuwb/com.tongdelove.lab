@@ -2,7 +2,6 @@ import { Injectable, ExecutionContext } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { JwtDto, EnumTokenType } from '../dto/jwt.dto';
-
 import { AuthService } from '../auth.service';
 import { HttpUnauthorizedError } from '@/common/errors/unauthorized.error';
 import { ConfigService } from '@nestjs/config';

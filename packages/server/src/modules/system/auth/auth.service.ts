@@ -16,6 +16,13 @@ import { CacheService } from '@/core/cache/cache/cache.service';
 import { CAPTCHA_IMAGE_KEY } from '@/common/constants/redis.constant';
 import { ApiException } from '@/common/exceptions/api.exception';
 import { JwtService } from '@/core/auth/jwt/jwt.service';
+import { CommonStatusEnum } from '@/common/enums/CommonStatus.enum';
+import { LoginLogTypeEnum } from '@/common/enums/LoginLogType.enum';
+import { LoginResultEnum } from '@/modules/login/LoginResult.enum';
+import { LoginLogService } from '@/modules/monitor/log/LoginLog.service';
+import { LoginLogCreateReqDTO } from '@/modules/monitor/log/dto/LoginLogCreateReq.dto';
+import { TraceUtil } from '@/utils/TraceUtil';
+import { RequestUtil } from '@/utils/Request.util';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +37,7 @@ export class AuthService {
         private readonly userVerificationService: UserVerificationService,
         private readonly passwordService: PasswordService,
         private readonly tokenService: TokenService,
+        private readonly loginLogService: LoginLogService,
         private readonly jwtService: JwtService,
         private readonly schedulerRegistry: SchedulerRegistry,
     ) {
@@ -131,36 +139,40 @@ export class AuthService {
     }
 
     // 登录校验，JWT验证 - Step 2: 校验用户信息
-    async validateUser(username: string, password: string): Promise<UserInfo | null> {
-        // 查询数据库，判断密码，密码正确的话，返回用户信息
-        this.logger.log('auth service validateUser: ', username, password);
-
+    async validateUser(username: string, password: string): Promise<UserInfo> {
+        // 判断账号是否存在
         // todo, 判断登录名类型，调用不同的查询用户方法
         let user;
+        let loginType;
         if (isMobilePhone(username, 'zh-CN')) {
+            loginType = LoginLogTypeEnum.LOGIN_MOBILE;
             user = await this.userService.findByMobilePhone(username);
         } else if (isEmail(username)) {
+            loginType = LoginLogTypeEnum.LOGIN_EMAIL;
             user = await this.userService.findByEmail(username);
         } else {
+            loginType = LoginLogTypeEnum.LOGIN_USERNAME;
             user = await this.userService.findByLogin(username);
         }
-
-        this.logger.debug('user: ', user);
-
         if (!user) {
-            // return null;
-            // throw new NotFoundException('用户不存在');
+            this.createLoginLog(user.id, username, loginType, LoginResultEnum.BAD_CREDENTIALS);
             throw new HttpException('用户不存在', HttpStatus.UNAUTHORIZED);
         }
-        const checked = this.passwordService.compare(password, user.pass);
 
-        this.logger.debug('checked: ', checked);
+        // 判断密码是否存在
+        const checked = this.passwordService.compare(password, user.pass);
         if (!checked) {
-            // return null;
+            this.createLoginLog(user.id, username, loginType, LoginResultEnum.BAD_CREDENTIALS);
             throw new HttpException('密码错误', HttpStatus.UNAUTHORIZED);
         }
 
+        // 判断账号是否禁用
+        if (user.status === CommonStatusEnum.DISABLE) {
+            throw new ApiException(10001, 'AUTH_LOGIN_USER_DISABLED');
+        }
+
         // 用户存在，密码正确。生成 token
+        // todo, 在 userService 中直接过滤掉
         delete user.pass;
         delete user.password;
 
@@ -327,5 +339,23 @@ export class AuthService {
         } catch {
             //
         }
+    }
+
+    private createLoginLog(userId: string, username: string, loginType: LoginLogTypeEnum, loginResult: number) {
+        // 插入登录日志
+        const reqDto: LoginLogCreateReqDTO = {
+            logType: loginType,
+            traceId: TraceUtil.getTraceId(),
+            userId,
+            userType: 'admin', // 根据登录入口不同设置？
+            username,
+            userAgent: RequestUtil.getUserAgent(),
+            ip: RequestUtil.getClientIP(),
+            result: loginResult,
+        };
+        this.loginLogService.create(reqDto);
+
+        // // 更新登录 IP 地址和时间
+        // this.accountLastLoginService.create(reqDto);
     }
 }

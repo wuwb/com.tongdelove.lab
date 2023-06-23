@@ -1374,21 +1374,62 @@ model ProductKeyword {
     @@map(name: "product_keyword")
 }
 
-// 操作日志
+// 操作日志，operateLogDO
 model Log {
-    id        String    @id @default(cuid())
+    id       String @id @default(cuid())
+    // 链路追踪编号
+    // 一般来说，通过链路追踪编号，可以将访问日志，错误日志，链路追踪日志，logger 打印日志等，结合在一起，从而进行排错。
+    traceId  String @map(name: "trace_id")
+    userId   String @map(name: "user_id")
+    userType String @map(name: "user_type")
+    ip       String @default("") @db.VarChar(45) // 管理员IP
+
     createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    admin     String    @default("") @db.VarChar(45) // 管理员名称
-    ip        String    @default("") @db.VarChar(45) // 管理员IP
-    type      Int       @db.Int // 操作分类
-    action    String    @default("") @db.VarChar(45) // 操作动作
-    status    Int       @db.TinyInt // 操作状态
-    result    String    @default("") @db.VarChar(127) // 操作结果，或者成功消息，或者失败消息
-    comment   String    @default("") @db.VarChar(255) // 补充信息
+
+    module        String // 操作模块
+    type          Int      @db.Int // 操作分类
+    name          String   @default("") @db.VarChar(45) // 操作名称
+    // 操作内容，记录整个操作的明细
+    // 例如说，修改编号为 1 的用户信息，将性别从男改成女，将姓名从。
+    content       String   @db.VarChar(255)
+    status        Int      @db.TinyInt // 操作状态
+    result        String   @default("") @db.VarChar(127) // 操作结果，或者成功消息，或者失败消息
+    // 拓展字段，有些复杂的业务，需要记录一些字段
+    // 例如说，记录订单编号，则可以添加 key 为 "orderId"，value 为订单编号
+    exts          Json
+    requestMethod String   @map(name: "request_method")
+    requestUrl    String   @map(name: "request_url")
+    userAgent     String   @map(name: "user_agent")
+    methodName    String   @map(name: "method_name")
+    methodArgs    String   @map(name: "method_args")
+    startAt       DateTime @map(name: "start_at")
+    duration      Int
+    resultCode    Int      @map(name: "result_code")
+    resultMsg     String   @map(name: "result_msg") @db.VarChar(127) // 操作结果，或者成功消息，或者失败消息
+    resultData    Json     @map(name: "result_data")
 
     @@map(name: "log")
+}
+
+// 登录日志
+model LoginLog {
+    id        String    @id @default(cuid())
+    logType   Int       @map(name: "log_type") // 日志类型
+    traceId   String    @map(name: "trace_id")
+    userId    String    @map(name: "user_id")
+    userType  String    @map(name: "user_type")
+    username  String
+    ip        String
+    // 冗余，因为账号可以变更
+    result    String
+    userAgent String    @map(name: "user_agent")
+    createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
+    updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+    isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
+
+    @@map(name: "login_log")
 }
 
 // 系统日志

@@ -21,6 +21,8 @@ import { JwtService } from "@/core/auth/jwt/jwt.service";
 export class LoginService {
     private readonly logger = new Logger(LoginService.name);
 
+    captchaEnable;
+
     constructor(
         private readonly userService: UserService,
         private readonly authService: AuthService,
@@ -31,6 +33,7 @@ export class LoginService {
         private readonly jwtService: JwtService,
         private readonly logService: LogService,
     ) {
+        this.captchaEnable = configService.get('captchaEnable', true);
     }
 
     /* 创建验证码图片 */
@@ -46,13 +49,13 @@ export class LoginService {
         });
         const result = {
             img: data.toString(),
-            uuid: generateUUID(),
+            codeId: generateUUID(),
         };
         await this.cacheService.set(
-            `${CAPTCHA_IMAGE_KEY}:${result.uuid}`,
+            `${CAPTCHA_IMAGE_KEY}:${result.codeId}`,
             text,
             // 'EX',
-            60 * 5,
+            60 * 5, // 验证码 5 分钟过期
         );
         return result;
     }
@@ -60,7 +63,9 @@ export class LoginService {
     // jwt 登录，登录成功后，根据配置重新生成 token
     async login(request: Request, loginDto: LoginDto): Promise<LoginResDto> {
 
-        // const { user } = request as any;
+        // 校验验证码
+        this.validateCaptcha(loginDto);
+
         const { username, password } = loginDto;
 
         // 根据登录信息获取用户信息
@@ -68,9 +73,6 @@ export class LoginService {
             loginDto.username,
             loginDto.password
         );
-        if (!user) {
-            throw new UnauthorizedException("The passed loginDto are incorrect");
-        }
 
         // 登录成功，
 
@@ -107,6 +109,22 @@ export class LoginService {
         await this.logService.addLoginInfo(request, '登录成功', `${USER_TOKEN_KEY}:${user.id}`)
 
         return result;
+    }
+
+    // 验证码开关，
+    async validateCaptcha(loginDto) {
+        // 如果验证码关闭，则不进行校验
+        if (!this.captchaEnable) {
+            return;
+        }
+
+        // 校验验证码
+        const code = await this.cacheService.get(
+            `${CAPTCHA_IMAGE_KEY}:${loginDto.codeId}`,
+        );
+        if (loginDto.code !== code) {
+            throw new ApiException(10001, '登录验证码错误');
+        }
     }
 
     async logout(token: string) {

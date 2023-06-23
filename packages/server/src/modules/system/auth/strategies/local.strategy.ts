@@ -34,7 +34,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
         const body: LoginDto = request.body; // 获取请求体
 
-        await this.authService.checkImageCaptcha(body.uuid, body.code);
+        await this.authService.checkImageCaptcha(body.codeId, body.code);
 
         // 查询数据库，判断密码，密码正确的话，返回用户信息
         const user = await authService.validateUser(username, password);

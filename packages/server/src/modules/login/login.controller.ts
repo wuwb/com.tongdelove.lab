@@ -58,17 +58,18 @@ export class LoginController {
 
     }
 
-    // 用户登录
+    /**
+     * 用户登录
+     */
     @Post()
     @Public()
     @UseGuards(LocalAuthGuard)
     @HttpCode(200)
     async login(
-        @Body() body: LoginDto,
         @Req() req: Request,
+        @Body() loginDto: LoginDto,
     ): Promise<UserInfo> {
-        this.logger.log('登入后获取的用户信息', req.user);
-        return this.loginService.login(req, body);
+        return this.loginService.login(req, loginDto);
     }
 
     // 获取用户信息
@@ -88,7 +89,6 @@ export class LoginController {
 
     // 用户注册
     async register(@Body() body) {
-        console.log('body: ', body);
         const user = await this.authService.register({
             repassword: body.password,
             ...body
