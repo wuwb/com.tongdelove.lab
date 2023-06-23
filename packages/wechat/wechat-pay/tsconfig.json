@@ -1,0 +1,27 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+      "module": "commonjs",
+      "declaration": true,
+      "noImplicitAny": false,
+      "removeComments": true,
+      "noLib": false,
+      "allowSyntheticDefaultImports": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "outDir": "../../../dist/wechat/wechat-pay",
+      "rootDir": ".",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+    ]
+  }
