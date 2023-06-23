@@ -18,7 +18,10 @@ class RedisSubPub {
     }
 
     public init() {
-        const pubClient = new IORedis({ host: '', port: '' })
+        const pubClient = new IORedis({
+            host: '127.0.0.1',
+            port: 6339,
+        })
         const subClient = pubClient.duplicate()
         this.pubClient = pubClient
         this.subClient = subClient
