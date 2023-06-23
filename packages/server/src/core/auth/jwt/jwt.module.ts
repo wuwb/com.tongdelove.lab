@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { JwtModule as BaseJwtModule } from "@nestjs/jwt";
 import { JwtConfigService } from "./jwt-config.service";
-import { JwtService } from "@nestjs/jwt";
+import { JwtService } from "./jwt.service";
 
 @Module({
     imports: [

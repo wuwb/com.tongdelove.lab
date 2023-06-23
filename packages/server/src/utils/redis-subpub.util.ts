@@ -1,14 +1,12 @@
 import IORedis, { Redis } from 'ioredis'
-
 import { Logger } from '@nestjs/common'
-
 // import { REDIS } from '~/app.config'
-
 // import { isTest } from '../global/env.global'
 
 class RedisSubPub {
     public pubClient: Redis
     public subClient: Redis
+
     constructor(private channelPrefix: string = 'mx-channel#') {
         // if (!isTest) {
         this.init()
@@ -26,6 +24,7 @@ class RedisSubPub {
         this.pubClient = pubClient
         this.subClient = subClient
     }
+
     public async publish(event: string, data: any) {
         const channel = this.channelPrefix + event
         const _data = JSON.stringify(data)

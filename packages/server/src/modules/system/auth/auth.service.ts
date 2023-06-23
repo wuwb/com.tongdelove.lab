@@ -1,5 +1,4 @@
 import { Injectable, HttpException, HttpStatus, Logger, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@/modules/system/user/user.service';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
@@ -16,6 +15,7 @@ import { isEmail, isEmpty, isMobilePhone } from 'class-validator';
 import { CacheService } from '@/core/cache/cache/cache.service';
 import { CAPTCHA_IMAGE_KEY } from '@/common/constants/redis.constant';
 import { ApiException } from '@/common/exceptions/api.exception';
+import { JwtService } from '@/core/auth/jwt/jwt.service';
 
 @Injectable()
 export class AuthService {

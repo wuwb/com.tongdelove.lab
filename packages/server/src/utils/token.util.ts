@@ -1,5 +1,6 @@
 import { InternalServerErrorException } from '@nestjs/common';
-import * as JwtUtil from './jwt.util';
+import { JwtService } from '@/core/auth/jwt/jwt.service';
+
 
 class TokenException extends InternalServerErrorException {
     constructor(err) {
@@ -19,7 +20,7 @@ class TokenException extends InternalServerErrorException {
  */
 export const produce = (issuer: string, appSecret: string, audience: string, expirationTimeMinutesInTheFuture: number) => {
     try {
-        return JwtUtil.produce(issuer, appSecret, audience, expirationTimeMinutesInTheFuture);
+        return JwtService.produce(issuer, appSecret, audience, expirationTimeMinutesInTheFuture);
     } catch (err) {
         throw new TokenException(err);
     }
@@ -35,5 +36,5 @@ export const produce = (issuer: string, appSecret: string, audience: string, exp
  * @return 是否有效
  */
 export const consume = (token: string, issuer: string, appSecret: string, audience: string, allowedClockSkewSeconds: number) => {
-    return JwtUtil.consume(token, issuer, appSecret, audience, allowedClockSkewSeconds);
+    return JwtService.consume(token, issuer, appSecret, audience, allowedClockSkewSeconds);
 }
