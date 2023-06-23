@@ -10,6 +10,7 @@ module.exports = {
     testRegex: '.*\\.spec\\.ts$',
     transform: {
         '^.+\\.(t|j)s$': 'ts-jest',
+        // '^.+\\.(t|j)s?$': ['@swc/jest'],
     },
     collectCoverageFrom: ['**/*.(t|j)s'],
     coverageDirectory: '../coverage',
@@ -17,7 +18,7 @@ module.exports = {
     extensionsToTreatAsEsm: ['.ts'],
     preset: 'ts-jest',
     testEnvironment: 'node',
-    modulePathIgnorePatterns: ["<rootDir>/dist/"],
+    modulePathIgnorePatterns: ['<rootDir>/dist/'],
     globals: {
         'ts-jest': {
             useESM: true,
