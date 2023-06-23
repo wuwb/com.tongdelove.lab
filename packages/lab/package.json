@@ -103,8 +103,8 @@
     "@types/react-datepicker": "4.8.0",
     "@types/react-dom": "18.0.11",
     "@types/uuid": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^3.3.0",
-    "@typescript-eslint/parser": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "autoprefixer": "10.4.14",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
@@ -125,9 +125,6 @@
     "eslint-plugin-storybook": "^0.6.10",
     "husky": "^8.0.3",
     "util": "^0.12.5"
-  },
-  "resolutions": {
-    "webpack": "^5"
   },
   "packageManager": "pnpm@8.1.1",
   "engines": {

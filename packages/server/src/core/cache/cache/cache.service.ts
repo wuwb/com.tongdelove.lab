@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { Cache } from 'cache-manager';
-import { HelperService } from '@/utils/helper/helper.service';
 import { isEmptyByAllTypes, isEmpty } from '@/utils/type';
 import { USER_USERINFO_KEY } from '@/common/constants/redis.constant';
 import { User } from '@prisma/client';

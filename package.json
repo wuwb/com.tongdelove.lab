@@ -7,33 +7,27 @@
   "author": "WuWenbin <541330190@qq.com>",
   "license": "ISC",
   "scripts": {
-    "dev2": "pnpm --filter @tongdelove/api-server run dev",
-    "build2": "pnpm --filter @tongdelove/api-server run build",
-    "start2": "pnpm --filter @tongdelove/api-server run start",
-    "dev:design2": "pnpm --filter design run dev",
-    "deploy2": "rsync -az --del ./packages/@tongdelove/api-server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
-    "dev": "pnpm -w lab dev",
-    "build": "pnpm -w lab build",
-    "start": "pnpm -w lab start",
-    "dev:design": "pnpm -w design dev",
-    "dev2": "pnpm workspace lab dev",
-    "build2": "pnpm workspace lab build",
-    "start2": "pnpm workspace lab start",
-    "dev:design2": "pnpm workspace design dev",
+    "dev": "pnpm --filter @tongdelove/api-server run dev",
+    "build": "pnpm --filter @tongdelove/api-server run build",
+    "start": "pnpm --filter @tongdelove/api-server run start",
+    "dev:design": "pnpm --filter design run dev",
+    "deploy": "rsync -az --del ./packages/@tongdelove/api-server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
     "postinstall": "husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "^17.0.3",
-    "husky": "^8.0.1"
+    "@commitlint/cli": "17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "husky": "^8.0.3"
   },
-  "packageManager": "pnpm@7.29.0",
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@8.6.3",
   "engines": {
     "node": ">=16",
-    "pnpm": ">=7",
+    "pnpm": ">=8.6.3",
     "yarn": ">=1.13.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": []
+    }
   }
 }

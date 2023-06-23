@@ -4,7 +4,7 @@ import { UserInfo } from "../system/auth/interface/UserInfo";
 import { AuthService } from "../system/auth/auth.service";
 import * as svgCaptcha from 'svg-captcha';
 import { CAPTCHA_IMAGE_KEY, USER_TOKEN_KEY, USER_VERSION_KEY } from '@/common/constants/redis.constant';
-import { generateUUID } from '@/utils';
+import { generateUUID } from '@/utils/base/string.util';
 import { TokenService } from "../system/auth/token.service";
 import { CacheService } from "@/core/cache/cache/cache.service";
 import { ConfigService } from "@nestjs/config";
@@ -12,10 +12,10 @@ import { LoginDto } from "./dto/login.dto";
 import { LoginResDto, UserInfoResDto } from "./dto/login-res.dto";
 import { ApiException } from "@/common/exceptions/api.exception";
 import { MenuService } from "../system/menu/menu.service";
-import { JwtService } from "@nestjs/jwt";
 import { Request } from 'express';
 import { LogService } from "../monitor/log/log.service";
 import { UpdatePasswordDto } from "../system/user/dto/update-password.dto";
+import { JwtService } from "@/core/auth/jwt/jwt.service";
 
 @Injectable()
 export class LoginService {
