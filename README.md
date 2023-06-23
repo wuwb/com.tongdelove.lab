@@ -4,6 +4,7 @@
 - 小公举
   - 节日头像制作
   - 和明星合影
+- 学习资料印刷
 
 todo
 
@@ -119,6 +120,7 @@ Error
 - https://mui.com/zh/getting-started/installation/
 - https://github.com/spencerwooo/onedrive-vercel-index
 - https://github.com/BoxPistols/tokyo-admin-next-mui
+- https://www.npmjs.com/package/@liaoliaots/nestjs-redis
 
 ## 已参考
 

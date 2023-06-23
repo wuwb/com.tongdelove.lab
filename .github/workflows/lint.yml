@@ -4,24 +4,24 @@ on:
   push:
     branches: [master]
     paths:
-    - src/**
+      - src/**
   pull_request:
     types: [opened, synchronize]
     paths:
-    - src/**
+      - src/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12
       - name: install
-        run: npm install 
+        run: npm install
       - name: lint
         run: npm run lint
       - name: prettier

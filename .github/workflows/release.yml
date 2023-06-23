@@ -6,15 +6,15 @@ name: Release
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths:
-    - src/**
-    - public/**
+      - src/**
+      - public/**
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths:
-    - src/**
-    - public/**
+      - src/**
+      - public/**
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,22 +25,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Checkout 🛎️
-      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-      with:
-        persist-credentials: false
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3 # If you're using actions/checkout@v3 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
 
-    # Runs a single command using the runners shell
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
+      # Runs a single command using the runners shell
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
 
-    # Runs a set of commands using the runners shell
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: docs # The folder the action should deploy.
+      # Runs a set of commands using the runners shell
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs # The folder the action should deploy.
