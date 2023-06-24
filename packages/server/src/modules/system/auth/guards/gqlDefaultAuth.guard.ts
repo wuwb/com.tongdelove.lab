@@ -1,11 +1,8 @@
 import { ExecutionContext } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
 import type { Request } from "express";
-// @ts-ignore
-// eslint-disable-next-line
-import { BasicAuthGuard } from "./basic-auth.guard";
 
-export class GqlDefaultAuthGuard extends BasicAuthGuard {
+export class GqlDefaultAuthGuard {
   // This method is required for the interface - do not delete it.
   getRequest(context: ExecutionContext): Request {
     const ctx = GqlExecutionContext.create(context);

@@ -18,7 +18,11 @@ const DEFAULT_STATIC_MODULE_OPTIONS_LIST: ServeStaticModuleOptions[] = [
 export class ServeStaticOptionsService implements ServeStaticModuleOptionsFactory {
     private readonly logger = new Logger(ServeStaticOptionsService.name);
 
-    constructor(private readonly configService: ConfigService) { }
+    constructor(
+        private readonly configService: ConfigService
+    ) {
+
+    }
 
     createLoggerOptions(): ServeStaticModuleOptions[] {
         const serveStaticRootPath = this.configService.get(SERVE_STATIC_ROOT_PATH_VAR);

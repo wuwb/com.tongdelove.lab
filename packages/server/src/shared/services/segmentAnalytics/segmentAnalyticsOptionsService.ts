@@ -13,6 +13,7 @@ export const MISSING_SEGMENT_WRITE_KEY_SECRET_ERROR = `Must provide either ${SEG
 @Injectable()
 export class SegmentAnalyticsOptionsService
   implements SegmentAnalyticsOptionsFactory {
+
   constructor(
     private readonly configService: ConfigService,
   ) { }

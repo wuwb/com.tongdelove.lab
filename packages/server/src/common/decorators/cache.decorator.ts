@@ -1,5 +1,6 @@
 import lodash from 'lodash';
-import { SetMetadata, CacheKey } from '@nestjs/common';
+import { SetMetadata } from '@nestjs/common';
+import { CacheKey } from '@nestjs/cache-manager';
 import * as META from '@/common/constants/meta.constant';
 
 // 缓存器配置
