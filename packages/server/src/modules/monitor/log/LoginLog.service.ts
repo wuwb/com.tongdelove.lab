@@ -18,4 +18,8 @@ export class LoginLogService {
             }
         });
     }
+
+    async addLoginInfo(req, msg, key) {
+
+    }
 }

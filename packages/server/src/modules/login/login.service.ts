@@ -16,6 +16,7 @@ import { Request } from 'express';
 import { LogService } from "../monitor/log/log.service";
 import { UpdatePasswordDto } from "../system/user/dto/update-password.dto";
 import { JwtService } from "@/core/auth/jwt/jwt.service";
+import { LoginLogService } from "../monitor/log/LoginLog.service";
 
 @Injectable()
 export class LoginService {
@@ -31,7 +32,7 @@ export class LoginService {
         private readonly configService: ConfigService,
         private readonly menuService: MenuService,
         private readonly jwtService: JwtService,
-        private readonly logService: LogService,
+        private readonly logininService: LoginLogService,
     ) {
         this.captchaEnable = configService.get('captchaEnable', true);
     }
@@ -54,7 +55,6 @@ export class LoginService {
         await this.cacheService.set(
             `${CAPTCHA_IMAGE_KEY}:${result.codeId}`,
             text,
-            // 'EX',
             60 * 5, // 验证码 5 分钟过期
         );
         return result;
@@ -64,7 +64,7 @@ export class LoginService {
     async login(request: Request, loginDto: LoginDto): Promise<LoginResDto> {
 
         // 校验验证码
-        this.validateCaptcha(loginDto);
+        await this.validateCaptcha(loginDto);
 
         const { username, password } = loginDto;
 
@@ -74,29 +74,20 @@ export class LoginService {
             loginDto.password
         );
 
-        // 登录成功，
+        // todo 判断是否需要绑定社交站好
 
         // 签发 token
-        let jwtSign = this.jwtService.sign({
-            id: user.id,
-            pv: 1,
-        })
-        const accessToken = await this.tokenService.createAccessToken({
+        let accessToken = await this.tokenService.createAccessToken({
             id: user.id,
             login: username,
             password,
         });
-        if (this.configService.get('isDemo')) {
+        if (await this.configService.get('isDemo')) {
             const token = await this.cacheService.get(`${USER_TOKEN_KEY}:${user.id}`);
             if (token) {
-                jwtSign = token;
+                accessToken = token;
             }
         }
-        // 存储密码版本号，防止登录期间 密码被管理员更改后 还能继续登录
-        await this.cacheService.set(`${USER_VERSION_KEY}:${user.id}`, 1);
-
-        // 储存 token
-        await this.cacheService.set(`${USER_TOKEN_KEY}:${user.id}`, jwtSign, 60 * 60 * 24)
 
         const result = {
             ...user,
@@ -105,8 +96,9 @@ export class LoginService {
 
         // 缓存数据，用来查看在线用户
         await this.cacheService.setUser(result);
+
         // 更新登录日志
-        await this.logService.addLoginInfo(request, '登录成功', `${USER_TOKEN_KEY}:${user.id}`)
+        await this.logininService.addLoginInfo(request, '登录成功', `${USER_TOKEN_KEY}:${user.id}`)
 
         return result;
     }

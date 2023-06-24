@@ -45,16 +45,25 @@ export class TokenService implements ITokenService {
 
     // 创建 token
     async createAccessToken({ id, login, password }: Partial<User>, options?: JwtSignOptions): Promise<string> {
-        if (!login) return Promise.reject(INVALID_USERNAME_ERROR);
-        if (!password) return Promise.reject(INVALID_PASSWORD_ERROR);
+        if (!login) {
+            return Promise.reject(INVALID_USERNAME_ERROR);
+        }
+        if (!password) {
+            return Promise.reject(INVALID_PASSWORD_ERROR);
+        }
+
         const token = await this.jwtService.signAsync({
             sub: id,
             login,
         }, options);
 
-        const redisScope = this.configService.get('jwt.redisScope');
-        const redisTokenKey = `${redisScope}:accessToken:${id}`;
-        await this.cacheService.set(redisTokenKey, token, this.ttl);
+        // todo 存在数据库中
+
+        // 存储密码版本号，防止登录期间 密码被管理员更改后 还能继续登录
+        await this.cacheService.set(`${USER_VERSION_KEY}:${id}`, 1);
+
+        // 储存 token
+        await this.cacheService.set(`${USER_TOKEN_KEY}:${id}`, token, 60 * 60 * 24)
 
         return token;
     }
