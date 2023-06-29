@@ -31,7 +31,7 @@ export class OschinaService {
 
     async spider() {
         // &currentTime=2022-09-18+23:08:32
-        const response = await this.httpService.axiosRef.get(`${this.url}?applicationAreas=&type=1&sortBy=30&pageSize=20&currentPage=1`, {
+        const response = await this.httpService.axiosRef.get(`${this.url}?applicationAreas=&type=1&sortBy=30&page=20&currentPage=1`, {
             headers: {
                 'accept-encoding': 'gzip, deflate, br',
                 'accept-language': 'zh,zh-CN;q=0.9,zh-TW;q=0.8,en;q=0.7,en-US;q=0.6,ja;q=0.5',

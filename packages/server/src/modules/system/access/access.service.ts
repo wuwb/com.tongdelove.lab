@@ -111,23 +111,23 @@ export class AccessService {
      */
     async accessListPage(accessReqDto: AccessReqDto): Promise<AccessListResDtoDto> {
         const {
-            pageSize = PageEnum.PAGE_SIZE,
-            pageNum = PageEnum.PAGE_NUMBER,
+            page = PageEnum.PAGE_SIZE,
+            limit = PageEnum.PAGE_NUMBER,
             parentId = 0,
         } = accessReqDto;
         const [data, total] = await getConnection()
             .createQueryBuilder(AccessEntity, 'access')
             .where('access.parentId = :parentId', { parentId })
-            .skip((pageNum - 1) * pageSize)
-            .take(pageSize)
+            .skip((page - 1) * limit)
+            .take(limit)
             .orderBy({ 'access.sort': 'ASC', 'access.createdAt': 'DESC' })
             .printSql()
             .getManyAndCount();
         return {
             data,
             total,
-            pageNum,
-            pageSize,
+            page,
+            limit,
         };
     }
 }

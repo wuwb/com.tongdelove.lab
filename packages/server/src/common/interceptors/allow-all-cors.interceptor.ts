@@ -8,7 +8,9 @@ import { Request } from 'express';
 
 export class AllowAllCorsInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler<any>) {
-        const response: Request = context.switchToHttp().getResponse()
+        const handle = next.handle();
+        const request = context.switchToHttp().getRequest();
+        const response: Request = context.switchToHttp().getResponse();
         const allowedMethods = [
             RequestMethod.GET,
             RequestMethod.HEAD,
@@ -32,6 +34,7 @@ export class AllowAllCorsInterceptor implements NestInterceptor {
         // 'Access-Control-Allow-Headers': allowedHeaders.join(','),
         //     'Access-Control-Allow-Methods': allowedMethods.join(','),
         //         'Access-Control-Max-Age': '86400',
+        request.cors = true;
         return next.handle();
     }
 }

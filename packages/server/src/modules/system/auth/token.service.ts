@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { JwtSignOptions } from "@nestjs/jwt";
+import { JwtService, JwtSignOptions } from "@nestjs/jwt";
 import { User } from "@prisma/client";
 import { INVALID_PASSWORD_ERROR, INVALID_USERNAME_ERROR } from "./auth.constants";
 import { ITokenService, ITokenPayload } from "./interface/ITokenService";
@@ -8,7 +8,6 @@ import { Md5Service } from "@/shared/helper/helper.service.md5";
 import { CacheService } from "@/core/cache/cache/cache.service";
 import { USER_TOKEN_KEY, USER_VERSION_KEY } from "@/common/constants/redis.constant";
 import { ApiException } from "@/common/exceptions/api.exception";
-import { JwtService } from "@/core/auth/jwt/jwt.service";
 
 @Injectable()
 export class TokenService implements ITokenService {
@@ -24,7 +23,6 @@ export class TokenService implements ITokenService {
 
     // 储存到缓存的前缀
     private cachePrefix: string;
-
 
     constructor(
         protected readonly jwtService: JwtService,
@@ -44,25 +42,36 @@ export class TokenService implements ITokenService {
     }
 
     // 创建 token
-    async createAccessToken({ id, login, password }: Partial<User>, options?: JwtSignOptions): Promise<string> {
-        if (!login) {
+    async createAccessToken({ id, username, password }: Partial<User>, options?: JwtSignOptions): Promise<string> {
+
+        this.logger.log('user: ', id, username, password);
+
+        if (!username) {
             return Promise.reject(INVALID_USERNAME_ERROR);
         }
         if (!password) {
             return Promise.reject(INVALID_PASSWORD_ERROR);
         }
 
-        const token = await this.jwtService.signAsync({
-            sub: id,
-            login,
-        }, options);
+        this.logger.log('this.jwtService.signAsync: ');
 
+        let token;
+        try {
+            token = await this.jwtService.signAsync({
+                sub: id,
+                username,
+            });
+        } catch (err) {
+            console.error(err);
+        }
         // todo 存在数据库中
 
         // 存储密码版本号，防止登录期间 密码被管理员更改后 还能继续登录
         await this.cacheService.set(`${USER_VERSION_KEY}:${id}`, 1);
 
         // 储存 token
+        console.log('token key: ', `${USER_TOKEN_KEY}:${id}`);
+
         await this.cacheService.set(`${USER_TOKEN_KEY}:${id}`, token, 60 * 60 * 24)
 
         return token;

@@ -8,7 +8,9 @@ import { DingdingService } from "./dingding.service";
     imports: [
         HttpModule,
     ],
-    providers: [DingdingService],
+    providers: [
+        DingdingService,
+    ],
     exports: [
         DingdingService,
     ],

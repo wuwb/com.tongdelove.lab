@@ -31,14 +31,13 @@ export class LinkService {
     async findMany(page: number = 1, limit: number = 10) {
         const offset = (page - 1) * limit;
 
-        const count = await this.prisma.website.count();
-
-        const websites = await this.prisma.website.findMany({
+        const total = await this.prisma.website.count();
+        const data = await this.prisma.website.findMany({
             take: limit,
             skip: offset,
         });
 
-        return { websites, count };
+        return { data, total };
     }
 
     findOne(id: string) {

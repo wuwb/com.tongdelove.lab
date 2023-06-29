@@ -1,6 +1,5 @@
 import { INestApplication, Logger, ValidationPipe, HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import * as path from 'path';
 import helmet from 'helmet';
 import * as nunjucks from 'nunjucks';
@@ -15,6 +14,9 @@ import { AppService } from '@/modules/app/app.service';
 import { AuthService } from '@/modules/system/auth/auth.service';
 import * as viewfilter from '@/utils/viewfilter';
 import { setupSwagger } from './setup-swagger';
+import { ConfigService } from '@/config/config.service';
+import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
+import { AllExceptionsFilter } from '@/common/filters/all-exceptions.filter';
 
 // 解决 Nodejs 环境中请求 HTTPS 的证书授信问题
 const isProdMod = process.env.NODE_ENV === 'production';
@@ -169,11 +171,11 @@ export async function bootstrap(app, listening: boolean = true) {
 
     // service
     const configService = app.get(ConfigService);
-    const appService: AppService = app.get(AppService);
+    const appService = app.get(AppService);
     const authService = app.get(AuthService);
     const cacheService = app.get(CacheService);
     const prismaService = app.get(PrismaService);
-    const { httpAdapter } = app.get(HttpAdapterHost);
+    const httpAdapterHost = app.get(HttpAdapterHost);
     // const myLogger = app.get(MyLogger);
 
     // config
@@ -267,8 +269,9 @@ export async function bootstrap(app, listening: boolean = true) {
 
     // 全局所有异常过滤器
     // Prisma Client Exception Filter for unhandled exceptions
-    // app.useGlobalFilters(new HttpExceptionFilter()); // 把所有的异常都转换成{code：code，data：null，message：message}
-    app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
+    // 把所有的异常都转换成{code：code，data：null，message：message}
+    app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost.httpAdapter));
+    app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapterHost.httpAdapter));
 
     // 全局守卫
     // app.useGlobalGuards(new AuthGuard(
@@ -291,7 +294,7 @@ export async function bootstrap(app, listening: boolean = true) {
     // app.use(express.json()); // For parsing application/json
     // app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 
-    // initView(app);
+    initView(app);
 
     // initPublic(app, configService);
 
@@ -335,7 +338,7 @@ export async function bootstrap(app, listening: boolean = true) {
 
 
     if (listening) {
-        await app.listen(configService.port);
+        await app.listen(configService.get('port', 3001));
     }
 
     process.on('SIGINT', async () => {

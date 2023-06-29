@@ -8,7 +8,7 @@
         "module": "commonjs",
         "declaration": false, // ?
         "strictPropertyInitialization": false,
-        "sourceMap": true,
+        "sourceMap": false,
         "pretty": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
@@ -52,21 +52,14 @@
         "allowJs": true,
         "strict": true,
         "paths": {
-            "@prisma/client": ["./node_modules/.prisma/client"],
-            "@/generated/*": ["./generated/*"],
-            "@/scripts/*": ["./scripts/*"],
-            "@/*": ["./src/*"]
+            "@prisma/client": ["node_modules/.prisma/client"],
+            "@/generated/*": ["generated/*"],
+            "@/scripts/*": ["scripts/*"],
+            "@/*": ["src/*"]
         }
     },
-    "files": [],
-    "include": ["src/**/*", "jest.config.js"],
+    "include": ["**/*", "jest.config.js"],
     "exclude": [
-        "node_modules",
-        "build",
-        "dist",
-        "scripts",
-        "src/.umi/*",
-        "webpack",
-        "jest"
+        "node_modules"
     ]
 }

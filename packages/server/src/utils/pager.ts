@@ -14,34 +14,14 @@ import { ApiOkResponse, ApiProperty, getSchemaPath } from '@nestjs/swagger';
 export const Pageable = createParamDecorator(
     (data: unknown, ctx: ExecutionContext): PaginationDto => {
         const request = ctx.switchToHttp().getRequest();
-        const pageNum = parseInt(request.query.pageNum, 10) || 1;
-        const pageSize = parseInt(request.query.pageSize, 10) || 10;
+        const page = parseInt(request.query.limit, 10) || 1;
+        const limit = parseInt(request.query.limit, 10) || 10;
         return {
-            pageNum,
-            pageSize,
+            page,
+            limit,
         };
     },
 );
-
-/**
- * 生成分页数据
- * @param queryPromise
- * @param countAllPromise
- * @param page
- * @returns
- */
-export async function pageWrapper<T>(
-    queryPromise: () => Promise<T[]>,
-    countAllPromise: () => Promise<number>,
-    page: Required<PaginationDto>,
-): Promise<PaginatedDto<T>> {
-    return {
-        data: await queryPromise(),
-        pageSize: page.pageSize,
-        pageNum: page.pageNum,
-        total: await countAllPromise(),
-    };
-}
 
 /**
  * 分页响应装饰器
@@ -58,9 +38,9 @@ export const ApiPagedResponse = <TModel extends Type<any>>(model: TModel) => {
                         type: 'array',
                         items: { $ref: getSchemaPath(model) },
                     },
-                    pageNum: { type: 'integer' },
-                    pageSize: { type: 'integer' },
-                    totalCount: { type: 'integer' },
+                    limit: { type: 'integer' },
+                    page: { type: 'integer' },
+                    total: { type: 'integer' },
                 },
             },
         }),

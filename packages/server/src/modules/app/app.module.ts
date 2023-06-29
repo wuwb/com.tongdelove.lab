@@ -75,7 +75,7 @@ import { RateLimitMiddleware } from '@/common/middlewares/rate-limit.middleware'
 import { CorsMiddleware } from '@/common/middlewares/cors.middleware';
 import { CSRFMiddleware } from '@/common/middlewares/csrf.middleware';
 import { HelmetMiddleware } from '@/common/middlewares/helmet.middleware';
-import { UserMiddleware } from '@/common/middlewares/user.middleware';
+// import { UserMiddleware } from '@/common/middlewares/user.middleware';
 import { LocalsMiddleware } from '@/common/middlewares/locals.middleware';
 import { CompressionMiddleware } from '@/common/middlewares/compression.middleware';
 

@@ -1,8 +1,8 @@
-import lodash from 'lodash';
 import { SetMetadata, HttpStatus } from '@nestjs/common';
 import { ResponseMessage } from '@/shared/interfaces/http.interface';
 import * as META from '@/common/constants/meta.constant';
 import * as TEXT from '@/common/constants/text.constant';
+import lodash from 'lodash';
 
 // 构造器参数
 interface DecoratorBuilderOption {
@@ -49,7 +49,7 @@ const buildHttpDecorator = (options: DecoratorBuilderOption): MethodDecorator =>
 /**
  * 异常响应装饰器
  * @exports success
- * @example @HttpProcessor.success('error message', 500)
+ * @example @HTTPDecorators.success('error message', 500)
  */
 export const error = (message: ResponseMessage, statusCode?: HttpStatus): MethodDecorator => {
     return buildHttpDecorator({ errMessage: message, errCode: statusCode })
@@ -58,7 +58,7 @@ export const error = (message: ResponseMessage, statusCode?: HttpStatus): Method
 /**
  * 成功响应装饰器
  * @exports success
- * @example @HttpProcessor.success('success message', 200)
+ * @example @HTTPDecorators.success('success message', 200)
  */
 export const success = (message: ResponseMessage, statusCode?: HttpStatus): MethodDecorator => {
     return buildHttpDecorator({
@@ -71,8 +71,8 @@ export const success = (message: ResponseMessage, statusCode?: HttpStatus): Meth
  * 统配构造器
  * @function handle
  * @description 两种用法
- * @example @HttpProcessor.handle('获取某项数据')
- * @example @HttpProcessor.handle({ message: '操作', error: error, success: 200, usePaginate: true })
+ * @example @HTTPDecorators.handle('获取某项数据')
+ * @example @HTTPDecorators.handle({ message: '操作', error: error, success: 200, usePaginate: true })
  */
 export function handle(args: HandleOptionConfig): MethodDecorator
 export function handle(...args) {
@@ -95,23 +95,30 @@ export function handle(...args) {
     });
 }
 
+export const bypass = (target, key, descriptor: PropertyDescriptor) => {
+    SetMetadata(META.RESPONSE_PASSTHROUGH_METADATA, true)(descriptor.value);
+}
+
 /**
  * 分页装饰器
  * @exports paginate
- * @example @HttpProcessor.paginate()
+ * @example @HTTPDecorators.paginate()
  */
 export const paginate = (): MethodDecorator => {
-    return buildHttpDecorator({ usePaginate: true });
+    return buildHttpDecorator({
+        usePaginate: true
+    });
 }
 
 /**
  * 导出的不同模块
- * @exports HttpProcessor
+ * @exports HTTPDecorators
  * @description { error, success, handle, paginate }
  */
-export const HttpProcessor = {
+export const HTTPDecorators = {
     error,
     success,
     handle,
+    bypass,
     paginate
 };

@@ -1,11 +1,9 @@
 import { PrismaService } from '@/core/database/prisma/prisma.service';
-import { pageWrapper } from '@/utils/pager';
 import { Injectable } from '@nestjs/common';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { NotFoundException } from '@/common/exceptions/not-found.exception';
 import { PaginationDto } from '@/shared/dto/pagination.dto';
-
 
 @Injectable()
 export class TopicsService {
@@ -20,37 +18,35 @@ export class TopicsService {
         return result;
     }
 
-    findAll(pager: Required<PaginationDto>, isAdmin = false) {
+    async findTopics(pager: Required<PaginationDto>, isAdmin = false) {
         const condition: any = {
             isDeleted: false,
         };
         if (isAdmin) {
             condition.userRole = 1;
         }
-        return pageWrapper(
-            () => {
-                return this.prisma.topic.findMany({
-                    skip: (pager.pageNum - 1) * pager.pageSize,
-                    take: pager.pageSize,
-                    where: condition,
-                    orderBy: [{ useCount: 'desc' }],
-                    select: {
-                        isDeleted: false,
-                        id: false,
-                        uid: true,
-                        name: true,
-                        useCount: true,
-                        createdAt: true,
-                        updatedAt: true,
-                    },
-                });
+        const topics = await this.prisma.topic.findMany({
+            skip: (pager.page - 1) * pager.limit,
+            take: pager.limit,
+            where: condition,
+            orderBy: [{ useCount: 'desc' }],
+            select: {
+                isDeleted: false,
+                id: false,
+                uid: true,
+                name: true,
+                useCount: true,
+                createdAt: true,
+                updatedAt: true,
             },
-            () =>
-                this.prisma.topic.count({
-                    where: condition,
-                }),
-            pager,
-        );
+        });
+        const total = await this.prisma.topic.count({
+            where: condition,
+        });
+        return {
+            topics,
+            total
+        }
     }
 
     async findOne(id: string) {

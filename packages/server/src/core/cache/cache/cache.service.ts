@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { Cache } from 'cache-manager';
@@ -19,7 +19,8 @@ class CacheKeys {
 @Injectable()
 export class CacheService {
 
-    readonly cacheKeys: CacheKeys;
+    private readonly cacheKeys: CacheKeys;
+    private readonly logger = new Logger(CacheService.name)
 
     constructor(
         @Inject(CACHE_MANAGER)
@@ -29,13 +30,24 @@ export class CacheService {
         this.cacheKeys = new CacheKeys();
     }
 
-    async getUser(userId: string) {
-        return {
-
-        } as User;
+    async getUser(id: string) {
+        const userInfoKey = `${USER_USERINFO_KEY}:${id}`;
+        let user = await this.cacheManager.get<string>(userInfoKey);
+        if (!user) {
+            return;
+        }
+        try {
+            user = JSON.parse(user);
+            console.log(user);
+            return user;
+        } catch (err) {
+            console.error(err);
+            return;
+        }
     }
 
     async setUser(data) {
+        console.log('setUser data: ', data);
         const {
             avatar,
             email,
@@ -58,8 +70,8 @@ export class CacheService {
         }
 
         const userInfoKey = `${USER_USERINFO_KEY}:${userinfo.id}`;
-
-        return this.cacheManager.set(userInfoKey, JSON.stringify(userinfo), 1000);
+        console.log('userInfoKey: ', userInfoKey);
+        return this.cacheManager.set(userInfoKey, JSON.stringify(userinfo), 60 * 60 * 24);
     }
 
     async getSignupCode(phone: string) { }
@@ -69,8 +81,6 @@ export class CacheService {
         return '';
     }
     async setUserToken(userId: string, token: string) { }
-
-
 
     // global function
 
@@ -82,8 +92,6 @@ export class CacheService {
     async has(key: string): Promise<boolean> {
         return this.get(key);
     }
-
-
 
     /**
      * 设置字符串类型缓存

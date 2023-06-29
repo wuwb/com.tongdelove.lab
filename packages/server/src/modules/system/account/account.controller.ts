@@ -123,7 +123,7 @@ export class AccountController {
         summary: '查询账号列表',
         description: '根据条件查询账号列表',
         externalDocs: {
-            url: 'xx?pageSize=10&pageNum=1&username=xx&email=xx&mobile=xx&status=0&platform=1',
+            url: 'xx?limit=10&page=1&username=xx&email=xx&mobile=xx&status=0&platform=1',
         },
     })
     @ApiCreatedResponse({

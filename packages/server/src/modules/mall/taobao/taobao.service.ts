@@ -47,9 +47,9 @@ export class TaobaoService {
         cursor?: Prisma.TaobaoOrderRawWhereUniqueInput;
         where?: Prisma.TaobaoOrderRawWhereInput;
         orderBy?: Prisma.TaobaoOrderRawOrderByWithRelationInput;
-    }): Promise<{ data: TaobaoOrderRaw[], count: number }> {
+    }): Promise<{ data: TaobaoOrderRaw[], total: number }> {
         const { skip, take, cursor, where, orderBy } = params;
-        const count = await this.prisma.taobaoOrderRaw.count();
+        const total = await this.prisma.taobaoOrderRaw.count();
         const data = await this.prisma.taobaoOrderRaw.findMany({
             skip,
             take,
@@ -60,14 +60,14 @@ export class TaobaoService {
 
         return {
             data,
-            count,
+            total,
         }
     }
 
-    async list(current: number, pageSize: number) {
+    async list(current: number, page: number) {
         let [data, total] = await this.prisma.taobaoOrderRaw.findMany({
-            skip: (current - 1) * pageSize,
-            take: pageSize,
+            skip: (current - 1) * page,
+            take: page,
         });
         console.log('data: ', data);
         return {

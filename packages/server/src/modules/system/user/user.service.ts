@@ -14,6 +14,8 @@ import { ConfigService } from '@nestjs/config';
 import UserRole from './entities/user-role.entity';
 import { IUserService } from './interfaces/IUserService';
 import { UpdatePasswordDto } from './dto/update-password.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
+import { QueryUserDto } from './dto/query-user.dto';
 
 const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
     include: {
@@ -175,19 +177,26 @@ export class UserService {
         return []
     }
 
-    async list<T extends Prisma.UserFindManyArgs>(
+    async findUsers<T extends Prisma.UserFindManyArgs>(
+        query: QueryUserDto,
+        page,
+        limit,
         args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
     ) {
-        const [count, data] = await this.prisma.$transaction([
-            this.prisma.user.count({
-                where: args.where,
+        this.logger.debug(query);
+        const skip = (page - 1) * limit;
+        const [data, total] = await this.prisma.$transaction([
+            this.prisma.user.findMany({
+                where: query,
+                skip,
+                take: limit,
+                ...args,
             }),
-            this.prisma.user.findMany(args),
+            this.prisma.user.count({
+                where: query,
+            }),
         ]);
-        return {
-            list: data,
-            count,
-        }
+        return { data, total }
     }
 
     async get<T extends Prisma.UserFindUniqueArgs>(
@@ -204,12 +213,12 @@ export class UserService {
     }
 
     async getByUsername(username: string) {
-        const user = await this.prisma.user.findUnique({
+        this.logger.log('login: ', username);
+        return this.prisma.user.findUnique({
             where: {
-                login: username
-            }
-        })
-        return user;
+                username,
+            },
+        });
     }
 
     async getByUsernameState(username: string) {
@@ -283,6 +292,8 @@ export class UserService {
         return this.prisma.user.findUnique(params);
     }
 
+
+
     async findByLogin(login: string): Promise<User | null> {
         this.logger.log('login: ', login);
         return this.prisma.user.findUnique({
@@ -312,11 +323,17 @@ export class UserService {
     }
 
     async findByResetToken(resetKey: string) {
-        return this.prisma.user.findFirst({
+        const user = this.prisma.user.findFirst({
             where: {
                 resetKey,
             },
         });
+
+        if (!user) {
+            throw new HttpException('A user with this email does not exist.', HttpStatus.NOT_FOUND);
+        }
+
+        return user;
     }
 
     async findByEmail(email: string): Promise<User> {
@@ -345,11 +362,11 @@ export class UserService {
             },
         });
 
-        if (user) {
-            return user;
+        if (!user) {
+            throw new HttpException('A user with this username/email does not exist.', HttpStatus.NOT_FOUND);
         }
 
-        throw new HttpException('A user with this username/email does not exist.', HttpStatus.NOT_FOUND);
+        return user;
     }
 
     async findByResetKey() {

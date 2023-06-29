@@ -11,14 +11,30 @@ async function seed(bcryptSalt?) {
 
     const aliceData: Prisma.UserCreateInput = {
         login: 'admin',
-        nicename: 'admin',
+        username: 'admin',
+        nicename: 'DW_admin',
         email: 'alice@prisma.io',
         displayName: 'Alice',
         isSuper: 1,
         pass: hasher.HashPassword('123456'),
         password: hasher.HashPassword('123456'),
         activationKey: '',
-        roles: [],
+        roles: {
+            create: [
+                {
+                    name: 'admin',
+                    description: '管理员',
+                    key: 'admin',
+                    value: 'admin',
+                },
+                {
+                    name: 'user',
+                    description: '会员',
+                    key: 'user',
+                    value: 'user',
+                }
+            ]
+        },
         // post: {
         //   create: {
         //     title: 'Check out Prisma with Next.js',
@@ -37,13 +53,28 @@ async function seed(bcryptSalt?) {
     const bobData: Prisma.UserCreateInput = {
         id: '2',
         login: 'wenbin',
-        nicename: 'wenbin',
+        username: 'wenbin',
+        nicename: 'DW_wenbin',
         email: 'bob@prisma.io',
         displayName: 'Bob',
         pass: hasher.HashPassword('123456'),
         password: hasher.HashPassword('123456'),
         activationKey: '',
-        roles: [],
+        roles: {
+            connectOrCreate: [
+                {
+                    where: {
+                        name: 'user',
+                    },
+                    create: {
+                        name: 'user',
+                        description: '会员',
+                        key: 'user',
+                        value: 'user',
+                    }
+                }
+            ]
+        },
         // post: {
         //   create: [
         //     {

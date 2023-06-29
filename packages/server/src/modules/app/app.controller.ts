@@ -13,8 +13,8 @@ import { AppService } from './app.service';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { User } from '@/common/decorators/user.decorator';
 import * as PKG from '../../../package.json'
-import { UserService } from '@/modules/system/user/user.service';
 import { LoginService } from '@/modules/login/login.service';
+import { UserService } from '@/modules/system/user/user.service';
 
 @ApiTags('App')
 @Controller()
@@ -80,7 +80,7 @@ export class AppController {
         return this.appService.root();
     }
 
-    @Get(`*`)
+    @Get('dashboard')
     @Render('pages/admin/app')
     // @UseGuards(ActiveGuard, RolesGuard)
     // @Roles(UserRole.Editor, UserRole.Admin, UserRole.SuperAdmin)

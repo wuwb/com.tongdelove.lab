@@ -79,7 +79,7 @@ export class AccessController {
         summary: '获取资源列表',
         description: '分页获取资源列表(顶层的)',
         externalDocs: {
-            url: 'xxx?pageSize=10&pageNum=1',
+            url: 'xxx?limit=10&page=1',
         },
     })
     @ApiCreatedResponse({

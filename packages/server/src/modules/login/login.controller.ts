@@ -37,14 +37,14 @@ export class LoginController {
     ) { }
 
     // 获取 SVG 验证码
-    @Get('captchaImage')
+    @Get('captcha-image-svg')
     async captchaImage() {
         const result = await this.loginService.createImageCaptcha();
         return result;
     }
 
     // 文字验证码
-    @Get('api/get-image-code')
+    @Get('captcha-image-code')
     @HttpCode(200)
     @Header('Cache-Control', 'none')
     async getImageCode(ctx: ExecutionContext, @User() user: any = {}, @Res() res) {
@@ -53,17 +53,12 @@ export class LoginController {
         buffer.pip(res);
     }
 
-    @Get('api/create-qrcode')
-    createQrcode() {
-
-    }
-
     /**
      * 用户登录
      */
     @Post()
-    @Public()
-    @UseGuards(LocalAuthGuard)
+    // @Public()
+    // @UseGuards(LocalAuthGuard)
     @HttpCode(200)
     async login(
         @Req() req: Request,
@@ -73,14 +68,14 @@ export class LoginController {
     }
 
     // 获取用户信息
-    @Get('getInfo')
+    @Get('get-info')
     @UseGuards(JwtAuthGuard)
     async getUserInfo(@User(UserEnum.userId) userId: string) {
         return await this.loginService.getUserInfo(userId);
     }
 
     // 获取用户路由信息
-    @Get('getRouters')
+    @Get('get-routers')
     @UseGuards(JwtAuthGuard)
     async getRouters(@User(UserEnum.userId) userId: string) {
         const router = await this.loginService.getRouterByUser(userId);

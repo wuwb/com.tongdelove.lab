@@ -1,9 +1,9 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
 export class PaginatedDto<T> {
-    constructor(pageSize: number, pageNum: number, data: T[]) {
-        this.pageSize = pageSize;
-        this.pageNum = pageNum;
+    constructor(page: number, limit: number, data: T[]) {
+        this.page = page;
+        this.limit = limit;
         this.data = data;
     }
 
@@ -15,8 +15,8 @@ export class PaginatedDto<T> {
     data: T[];
 
     @ApiProperty({ description: '页码' })
-    pageSize: number;
+    page: number;
 
-    @ApiProperty({ description: '当前页' })
-    pageNum: number;
+    @ApiProperty({ description: '当前页数量' })
+    limit?: number;
 }

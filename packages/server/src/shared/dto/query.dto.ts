@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 import moment from 'moment';
 
-export class QueryReqDto {
+export class QueryDto {
 
     /* 开始日期 */
     @IsOptional()

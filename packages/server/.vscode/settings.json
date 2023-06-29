@@ -25,6 +25,7 @@
         "dtos",
         "nestjs"
     ],
+    "material-icon-theme.activeIconPack": "nest",
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.detectIndentation": false,
@@ -39,6 +40,18 @@
     "prettier.singleQuote": true,
     "[prisma]": {
         "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     // 让函数名后与括号加空格
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,

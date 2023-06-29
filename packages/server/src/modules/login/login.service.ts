@@ -57,14 +57,15 @@ export class LoginService {
             text,
             60 * 5, // 验证码 5 分钟过期
         );
+        this.logger.debug(`验证码：${text}`)
         return result;
     }
 
     // jwt 登录，登录成功后，根据配置重新生成 token
     async login(request: Request, loginDto: LoginDto): Promise<LoginResDto> {
 
-        // 校验验证码
-        await this.validateCaptcha(loginDto);
+        // // 校验验证码
+        // await this.validateCaptcha(loginDto);
 
         const { username, password } = loginDto;
 
@@ -74,14 +75,17 @@ export class LoginService {
             loginDto.password
         );
 
+        this.logger.log(`user: ${JSON.stringify(user)}`);
+
         // todo 判断是否需要绑定社交站好
 
         // 签发 token
         let accessToken = await this.tokenService.createAccessToken({
             id: user.id,
-            login: username,
+            username: username,
             password,
         });
+        this.logger.log('accessToken: ', accessToken);
         if (await this.configService.get('isDemo')) {
             const token = await this.cacheService.get(`${USER_TOKEN_KEY}:${user.id}`);
             if (token) {

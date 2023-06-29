@@ -26,13 +26,13 @@ export class BookController {
 
         if (category) {
             bookListQuery = this.bookService.list({
-                pageNum: page,
-                pageSize: 10,
+                page,
+                limit: 10,
             });
         } else {
             bookListQuery = this.bookService.list({
-                pageNum: page,
-                pageSize: 10
+                page,
+                limit: 10
             });
         }
 

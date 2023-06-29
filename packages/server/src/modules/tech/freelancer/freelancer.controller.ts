@@ -29,11 +29,12 @@ export class FreelancerController {
     ) { }
 
     @Get('tasks')
-    async getTasks(@Query('pageSize', new ParseIntPipe()) pageSize: number = 10, @Query('page') page: number = 1) {
-        let data = await this.freelancerService.getFreeProjects({
-            take: pageSize,
-            skip: page - 1,
-        });
+    async getTasks(
+        @Query() paginationDto,
+        @Query('page') page: number = 1,
+        @Query('limit') limit: number = 10,
+    ) {
+        let data = await this.freelancerService.getFreeProjects(page, limit);
 
         this.logger.debug(data);
 

@@ -1,9 +1,6 @@
-/**
- * 创建用户
- */
 import { IsString, IsNotEmpty, IsMobilePhone, IsInt, Min, MinLength, ArrayNotEmpty, ArrayMinSize, ArrayMaxSize, IsEmail, ValidateIf, isEmpty, IsOptional } from 'class-validator';
 import { ApiProperty, PartialType } from "@nestjs/swagger";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client/extension";
 
 export class CreateUserDto {
 

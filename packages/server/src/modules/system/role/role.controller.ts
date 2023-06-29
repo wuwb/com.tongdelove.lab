@@ -4,14 +4,13 @@ import {
     Post,
     Body,
     Delete,
-    ParseIntPipe,
     Param,
     Patch,
     Get,
     Query,
     HttpCode,
     HttpStatus,
-    Version,
+    Logger,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
@@ -24,13 +23,33 @@ import { ApiAuth } from '@/common/decorators/api.auth';
 
 @ApiTags('后台-角色管理')
 @ApiBearerAuth()
-@UseGuards(AuthGuard)
-@ApiAuth()
-@Controller(`api/role`)
+@Controller(`api/system/role`)
 export class RoleController {
+
+    private readonly logger = new Logger(RoleController.name);
+    
     constructor(
         private readonly roleService: RoleService
     ) { }
+
+    @ApiOperation({
+        summary: '查询角色列表',
+        description: '查询角色',
+        externalDocs: {
+            url: 'xx?page=10&limit=1&name=x&status=0',
+        },
+    })
+    @ApiCreatedResponse({
+        type: RoleResDto,
+        isArray: true,
+        description: '分页查询角色返回值',
+    })
+    @HttpCode(HttpStatus.OK)
+    @Get()
+    async findRoles(@Query() roleReqDto: RoleReqDto) {
+        this.logger.debug(JSON.stringify(roleReqDto));
+        return this.roleService.findRoles(roleReqDto);
+    }
 
     @ApiOperation({
         summary: '创建角色',
@@ -82,22 +101,5 @@ export class RoleController {
         return this.roleService.roleById(id);
     }
 
-    @ApiOperation({
-        summary: '查询角色列表',
-        description: '查询角色',
-        externalDocs: {
-            url: 'xx?pageSize=10&pageNum=1&name=x&status=0',
-        },
-    })
-    @ApiCreatedResponse({
-        type: RoleResDto,
-        isArray: true,
-        description: '分页查询角色返回值',
-    })
-    @HttpCode(HttpStatus.OK)
-    @Version('1')
-    @Get()
-    async roleList(@Query() roleReqDto: RoleReqDto): Promise<RoleListResDto> {
-        return this.roleService.roleList(roleReqDto);
-    }
+
 }

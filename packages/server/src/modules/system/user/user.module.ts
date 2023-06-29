@@ -1,5 +1,4 @@
 import { forwardRef, Module, Global, OnModuleInit, Inject } from '@nestjs/common';
-import { MetadataScanner } from '@nestjs/core/metadata-scanner';
 import { DatabaseModule } from '@/core/database/database/database.module';
 import { UserController } from './user.controller';
 import { UserPageController } from './user.page.controller';
@@ -7,14 +6,13 @@ import { UserService } from './user.service';
 import { MailModule } from '@/core/mail/mail/mail.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
-import { QQService } from '@/shared/services/qq.service';
-// import { HttpService } from '@nestjs/axios';
+import { AuthModule } from '../auth/auth.module';
 
-@Global()
 @Module({
     imports: [
         DatabaseModule,
         MailModule,
+        forwardRef(() => AuthModule),
         TypeOrmModule.forFeature([UserEntity])
     ],
     controllers: [

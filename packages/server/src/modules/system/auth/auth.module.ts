@@ -16,14 +16,13 @@ import { TokenService } from './token.service';
 import { GithubStrategy } from './strategies/github.strategy';
 import { HttpBearerStrategy } from './strategies/http-bearer.strategy';
 import { LogModule } from '@/modules/monitor/log/log.module';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtConfigService } from '@/core/auth/jwt/jwt-config.service';
 
 @Module({
     imports: [
-        // forwardRef(() => UserModule),
-
-        UserModule,
+        forwardRef(() => UserModule),
         UserVerificationModule,
-
         // forwardRef(() => SystemModule),
         PassportModule.register({
             defaultStrategy: 'local',
@@ -32,6 +31,9 @@ import { LogModule } from '@/modules/monitor/log/log.module';
         // https://www.npmjs.com/package/@nestjs/jwt
         // forwardRef(() => jwtModule),
         LogModule,
+        JwtModule.registerAsync({
+            useClass: JwtConfigService,
+        }),
     ],
     controllers: [
         AuthController

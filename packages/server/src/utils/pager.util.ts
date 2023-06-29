@@ -14,12 +14,12 @@ export class Pager {
     pageIndex: number;
 
     @ApiProperty()
-    pageSize: number;
+    page: number;
 }
 
 export class PagedDto<T> {
     pageIndex: number;
-    pageSize: number;
+    page: number;
     data?: T[];
     totalCount?: number;
 }
@@ -32,10 +32,10 @@ export const Pageable = createParamDecorator(
     (data: unknown, ctx: ExecutionContext): Pager => {
         const request = ctx.switchToHttp().getRequest();
         const pageIndex = parseInt(request.query.pageIndex, 10) || 1;
-        const pageSize = parseInt(request.query.pageSize, 10) || 10;
+        const page = parseInt(request.query.page, 10) || 10;
         return {
             pageIndex,
-            pageSize,
+            page,
         };
     },
 );
@@ -54,7 +54,7 @@ export async function pageWrapper<T>(
 ): Promise<PagedDto<T>> {
     return {
         data: await queryPromise(),
-        pageSize: page.pageSize,
+        page: page.page,
         pageIndex: page.pageIndex,
         totalCount: await countAllPromise(),
     };
@@ -76,7 +76,7 @@ export const ApiPagedResponse = <TModel extends Type<any>>(model: TModel) => {
                         items: { $ref: getSchemaPath(model) },
                     },
                     pageIndex: { type: 'integer' },
-                    pageSize: { type: 'integer' },
+                    page: { type: 'integer' },
                     totalCount: { type: 'integer' },
                 },
             },
@@ -85,14 +85,14 @@ export const ApiPagedResponse = <TModel extends Type<any>>(model: TModel) => {
 };
 
 
-export const getPager = (totalItems, currentPage: number, pageSize: number = 10) => {
-    if (pageSize === undefined || pageSize === 0) {
-        pageSize = 1;
+export const getPager = (totalItems, currentPage: number, page: number = 10) => {
+    if (page === undefined || page === 0) {
+        page = 1;
     }
     if (currentPage === undefined || currentPage === 0) {
         currentPage = 1;
     }
-    const totalPages = Math.ceil(totalItems / pageSize);
+    const totalPages = Math.ceil(totalItems / page);
     let startPage, endPage;
     if (totalPages <= 10) {
         startPage = 1;
@@ -112,13 +112,13 @@ export const getPager = (totalItems, currentPage: number, pageSize: number = 10)
             endPage = currentPage + 4;
         }
     }
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+    const startIndex = (currentPage - 1) * page;
+    const endIndex = Math.min(startIndex + page - 1, totalItems - 1);
     const pages = _.range(startPage, endPage + 1);
     return {
         totalItems,
         currentPage,
-        pageSize,
+        page,
         totalPages,
         startPage,
         endPage,
@@ -131,10 +131,10 @@ export const getPager = (totalItems, currentPage: number, pageSize: number = 10)
 /**
  * 校验分页数据
  */
-export const checkPage = (pageNumber: number, pageSize: number): void => {
-    if (!isInt(Number(pageSize)) || !isInt(Number(pageNumber))) {
+export const checkPage = (limitber: number, page: number): void => {
+    if (!isInt(Number(page)) || !isInt(Number(limitber))) {
         throw new HttpException(
-            `传递的pageSize:${pageSize},pageNumber:${pageNumber}其中一个不是整数`,
+            `传递的page:${page},limitber:${limitber}其中一个不是整数`,
             HttpStatus.OK,
         );
     }

@@ -5,8 +5,8 @@ import { SENDGRID_MAIL } from './sendgrid.constants';
 import { SendgridService } from './sendgrid.service';
 
 describe('SendgridService', () => {
-  let service: SendgridService;
-  let mailService: MailService;
+  let service;
+  let mailService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

@@ -4,6 +4,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
 import { ISourceType } from '../spider/spider.interface';
 import { SourceEnum } from "@prisma/client";
+import { ApiException } from '@/common/exceptions/api.exception';
 
 
 @Injectable()
@@ -16,25 +17,21 @@ export class FreelancerService {
         private readonly webhookService: WebhookService,
     ) { }
 
-    async getFreeProjects(query) {
-        const take = query.take || 10;
-        const skip = query.skip || 0;
+    async getFreeProjects(page, limit) {
+        const skip = (page - 1) * limit;
 
-        const count = await this.prisma.freelancerTask.count();
         const data = await this.prisma.freelancerTask.findMany({
             skip: skip,
-            take: take,
-            orderBy: {
-                // data: 'desc',
-            },
+            take: limit,
         });
+        const total = await this.prisma.freelancerTask.count();
 
         if (!data) {
-            return;
+            throw new ApiException(10011, `No data found`);
         }
         return {
             data,
-            count
+            total
         };
     }
 
@@ -54,7 +51,6 @@ export class FreelancerService {
                 remindSource: SourceEnum[data.source] // 'codemar',
             }
         });
-        this.logger.debug('remindTarget: ', remindTarget);
 
         if (!remindTarget || remindTarget.length === 0) {
             return;

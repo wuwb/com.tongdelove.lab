@@ -6,6 +6,10 @@ import { isBlank } from '@/utils/base/string.util';
 @Injectable()
 export class JwtService extends BaseJwtService {
 
+    constructor(props) {
+        super(props);
+    }
+
     /**
      * token校验
      *

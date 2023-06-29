@@ -14,7 +14,7 @@ export class RoleResDto extends QueryResDto {
 }
 
 export class RoleListResDto extends PaginatedDto<RoleResDto>{
-    constructor(pageSize: number, pageNum: number, data: RoleResDto[]) {
-        super(pageSize, pageNum, data);
+    constructor(page: number, limit: number, data: RoleResDto[]) {
+        super(page, limit, data);
     }
 }

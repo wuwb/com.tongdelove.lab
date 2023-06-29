@@ -141,6 +141,8 @@ export class AuthService {
     // 登录校验，JWT验证 - Step 2: 校验用户信息
     async validateUser(username: string, password: string): Promise<UserInfo> {
         // 判断账号是否存在
+        this.logger.log(`username: ${username}`);
+        this.logger.log(`password: ${password}`);
         // todo, 判断登录名类型，调用不同的查询用户方法
         let user;
         let loginType;
@@ -152,7 +154,7 @@ export class AuthService {
             user = await this.userService.findByEmail(username);
         } else {
             loginType = LoginLogTypeEnum.LOGIN_USERNAME;
-            user = await this.userService.findByLogin(username);
+            user = await this.userService.getByUsername(username);
         }
         if (!user) {
             this.createLoginLog(user.id, username, loginType, LoginResultEnum.BAD_CREDENTIALS);
@@ -165,11 +167,13 @@ export class AuthService {
             this.createLoginLog(user.id, username, loginType, LoginResultEnum.BAD_CREDENTIALS);
             throw new HttpException('密码错误', HttpStatus.UNAUTHORIZED);
         }
+        this.logger.log(`密码正确`);
 
         // 判断账号是否禁用
         if (user.status === CommonStatusEnum.DISABLE) {
             throw new ApiException(10001, 'AUTH_LOGIN_USER_DISABLED');
         }
+        this.logger.log(`账号未禁用`);
 
         // 用户存在，密码正确。生成 token
         // todo, 在 userService 中直接过滤掉
@@ -320,7 +324,6 @@ export class AuthService {
 
     async resetPassword(resetPasswordDto: ResetPasswordDto) {
         const user = await this.userService.findByResetToken(resetPasswordDto.resetToken);
-
 
         if (!user) {
             throw Error('链接已经失效，请重新申请。')

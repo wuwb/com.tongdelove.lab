@@ -5,8 +5,8 @@ export class QueryListVo {
     total: number;
 
     @ApiProperty({ description: '页码' })
-    pageSize: number;
+    page: number;
 
     @ApiProperty({ description: '当前页' })
-    pageNum: number;
+    limit: number;
 }

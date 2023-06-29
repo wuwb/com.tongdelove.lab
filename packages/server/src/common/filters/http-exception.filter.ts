@@ -41,7 +41,8 @@ export class HttpExceptionFilter extends BaseExceptionFilter
         P2025: HttpStatus.NOT_FOUND,
     };
 
-    catch(exception: Error, host: ArgumentsHost) {
+    catch(exception: any, host: ArgumentsHost) {
+        console.log('-----------------')
         this.logger.error(exception);
 
         let statusCode, code, message, result;

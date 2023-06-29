@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsOptional, IsBoolean } from 'class-validator';
 import { IsUserName } from '@/common/validators';
 
+// 验证错误抛出 422 参数错误。
 export class LoginReqVO {
 
     /* 用户名 */

@@ -1,7 +1,7 @@
 import { OrderWhereUniqueInput } from "@/generated/prisma-nestjs-graphql/order";
 import { Get, Injectable, Param, Query } from "@nestjs/common";
 import { NotFoundException } from '@/common/exceptions/not-found.exception';
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client/extension";
 import { plainToClass } from "class-transformer";
 import { OrderService } from "./order.service";
 

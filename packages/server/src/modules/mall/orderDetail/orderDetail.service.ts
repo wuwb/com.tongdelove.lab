@@ -1,5 +1,5 @@
 import { PrismaService } from "@/core/database/prisma/prisma.service";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client/extension";
 
 export class OrderDetailService {
     constructor(protected readonly prisma: PrismaService) { }

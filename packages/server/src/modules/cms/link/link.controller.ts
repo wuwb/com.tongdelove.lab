@@ -28,20 +28,13 @@ export class LinkController {
     }
 
     @Get()
-    async findAll(
-        @Query('page', new ParseIntPipe()) page: number = 1,
-        @Query('limit', new ParseIntPipe()) limit: number = 10
+    async findMany(
+        @Query('page', new ParseIntPipe()) current: number = 1,
+        @Query('limit', new ParseIntPipe()) page: number = 10
     ) {
-        console.log('page: ', page);
-        console.log('limit: ', limit);
-        const data = await this.linkService.findMany(page, limit);
+        const data = await this.linkService.findMany(current, page);
 
-        console.log('data: ', data);
-
-        return {
-            list: data.websites,
-            total: data.count,
-        };
+        return data;
     }
 
     @Get(':id')

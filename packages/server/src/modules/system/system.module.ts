@@ -27,18 +27,13 @@ import { AccountRoleService } from './account/account-role.service';
 import { MenusService } from './access/menus.service';
 import { RoleAccessService } from './role/role-access.service';
 import { AuthModule } from '@/modules/system/auth/auth.module';
+import { RoleModule } from './role/role.module';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([
-            AccountEntity,
-            AccountLastLoginEntity,
-            AccountRoleEntity,
-            RoleEntity,
-            AccessEntity,
-            RoleAccessEntity,
-        ]),
+        TypeOrmModule.forFeature([AccountEntity, AccountLastLoginEntity, AccountRoleEntity, RoleEntity, AccessEntity, RoleAccessEntity]),
         forwardRef(() => AuthModule),
+        RoleModule,
     ],
     controllers: [
         AccountController,
@@ -47,21 +42,11 @@ import { AuthModule } from '@/modules/system/auth/auth.module';
         LoginController,
         AccountRoleController,
         MenusController,
-        RoleAccessController
+        RoleAccessController,
     ],
-    providers: [
-        AccountService,
-        AccessService,
-        RoleService,
-        LoginService,
-        AccountRoleService,
-        MenusService,
-        RoleAccessService
-    ],
-    exports: [
-        AccountService,
-    ],
+    providers: [AccountService, AccessService, RoleService, LoginService, AccountRoleService, MenusService, RoleAccessService],
+    exports: [AccountService],
 })
-export class SystemModule { }
+export class SystemModule {}
 // 路由前缀 作用该模块下全部的控制器
 // Reflect.defineMetadata(MODULE_PATH, 'admin', SystemModule);

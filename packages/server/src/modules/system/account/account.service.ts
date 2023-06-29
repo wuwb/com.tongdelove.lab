@@ -216,8 +216,8 @@ export class AccountService {
      */
     async accountList(accountReqDto: AccountReqDto): Promise<AccountListResDtoDto> {
         const {
-            pageNum = PageEnum.PAGE_NUMBER,
-            pageSize = PageEnum.PAGE_SIZE,
+            limit = PageEnum.PAGE_NUMBER,
+            page = PageEnum.PAGE_SIZE,
             email,
             username,
             mobile,
@@ -290,8 +290,8 @@ export class AccountService {
                 'lastLoginTime',
             )
             .where(queryCondition, { username, email, mobile, status, platform })
-            .skip((pageNum - 1) * pageSize)
-            .take(pageSize)
+            .skip((limit - 1) * page)
+            .take(page)
             .printSql()
             .getRawMany();
         const total = await getConnection()
@@ -311,8 +311,8 @@ export class AccountService {
         return {
             data: formatData,
             total,
-            pageSize,
-            pageNum,
+            page,
+            limit,
         };
     }
 

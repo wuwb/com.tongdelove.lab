@@ -32,7 +32,7 @@ export class ProductsService {
         const skip = query.skip || 0;
         const keyword = query.keyword || '';
 
-        const count = await this.prisma.product.count();
+        const total = await this.prisma.product.count();
 
         const data = await this.prisma.product.findMany({
             skip: skip,
@@ -49,7 +49,7 @@ export class ProductsService {
 
         return {
             data,
-            count,
+            total,
         }
     }
 

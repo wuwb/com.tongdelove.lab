@@ -1,9 +1,9 @@
 import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
+import { Expose, Transform, Type } from 'class-transformer';
 import { IsInt, IsOptional, Min, IsNumber, IsString } from 'class-validator';
-import { QueryReqDto } from './query-req.dto';
+import { QueryDto } from './query.dto';
 
-export class PaginationDto extends QueryReqDto {
+export class PaginationDto extends QueryDto {
     @ApiPropertyOptional({
         required: false,
         description: '一页显示多少条',
@@ -14,7 +14,11 @@ export class PaginationDto extends QueryReqDto {
     @IsInt()
     @IsNumber()
     @Min(1)
-    readonly pageSize?: number;
+    @Expose()
+    @Transform(({ value: val }) => (val ? parseInt(val) : 10), {
+        toClassOnly: true,
+    })
+    readonly limit?: number;
 
     @ApiPropertyOptional({
         required: false,
@@ -26,7 +30,11 @@ export class PaginationDto extends QueryReqDto {
     @IsInt()
     @Min(1)
     @IsNumber()
-    readonly pageNum?: number;
+    @Expose()
+    @Transform(({ value: val }) => (val ? parseInt(val) : 1), {
+        toClassOnly: true,
+    })
+    readonly page?: number;
 
     /* 排序方式 */
     @IsOptional()

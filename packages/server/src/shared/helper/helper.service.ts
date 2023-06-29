@@ -96,10 +96,10 @@ export class HelperService {
     /**
      * 校验分页数据
      */
-    public checkPage(pageNum: number, pageSize: number): void {
-        if (!isInt(Number(pageSize)) || !isInt(Number(pageNum))) {
+    public checkPage(limit: number, page: number): void {
+        if (!isInt(Number(page)) || !isInt(Number(limit))) {
             throw new HttpException(
-                `传递的pageSize:${pageSize},pageNum:${pageNum}其中一个不是整数`,
+                `传递的page:${page},limit:${limit}其中一个不是整数`,
                 HttpStatus.OK,
             );
         }

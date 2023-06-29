@@ -1,7 +1,6 @@
 import { DynamicModule, Global, Module, OnApplicationBootstrap, OnApplicationShutdown } from "@nestjs/common";
-import { ConfigModule as BaseConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule as BaseConfigModule } from '@nestjs/config';
 import Joi from 'joi';
-
 import { validate } from '@/config/env.validation';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
@@ -13,6 +12,7 @@ import jwtConfig from "./config/jwt.config";
 import serverConfig from "./config/server.config";
 import githubConfig from "./config/github.config";
 import configuration from "./configuration";
+import { ConfigService } from "./config.service";
 // import graphqlConfig from "./config/graphql.config";
 
 const validationSchema = Joi.object({

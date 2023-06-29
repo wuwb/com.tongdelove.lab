@@ -32,7 +32,7 @@ export class CompaniesService {
         const skip = query.skip || 0;
         const keyword = query.keyword || '';
 
-        const count = await this.prisma.company.count();
+        const total = await this.prisma.company.count();
 
         const data = await this.prisma.company.findMany({
             skip: skip,
@@ -46,7 +46,7 @@ export class CompaniesService {
 
         return {
             data,
-            count,
+            total,
         }
     }
 
@@ -55,7 +55,7 @@ export class CompaniesService {
         const skip = query.skip || 0;
         const keyword = query.keyword || '';
 
-        const count = await this.prisma.company.count();
+        const total = await this.prisma.company.count();
 
         const data = await this.prisma.company.findMany({
             skip: skip,
@@ -70,7 +70,7 @@ export class CompaniesService {
 
         return {
             data,
-            count,
+            total,
         }
     }
 

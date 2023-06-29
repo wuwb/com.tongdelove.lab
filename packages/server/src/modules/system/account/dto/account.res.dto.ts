@@ -20,7 +20,7 @@ export class AccountResDto extends QueryResDto {
 }
 
 export class AccountListResDtoDto extends PaginatedDto<AccountResDto>{
-    constructor(pageSize: number, pageNum: number, data: AccountResDto[]) {
-        super(pageSize, pageNum, data);
+    constructor(page: number, limit: number, data: AccountResDto[]) {
+        super(page, limit, data);
     }
 }

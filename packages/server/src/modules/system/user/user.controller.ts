@@ -26,9 +26,11 @@ import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AuthGuard } from '@nestjs/passport';
 import { Prisma, User } from '@prisma/client';
 import { RateLimit } from 'nestjs-rate-limiter';
+import { AuthGuard } from '@/common/guards/auth.guard';
+import { QueryUserDto } from './dto/query-user.dto';
+import { PaginationDto } from '@/shared/dto/pagination.dto';
 
 @ApiTags('user')
 @Controller('api/base/user')
@@ -45,19 +47,17 @@ export class UserController {
     @ApiOperation({ summary: '获取用户信息' })
     @ApiResponse({ status: 200, description: 'User Found.' })
     @ApiResponse({ status: 404, description: 'User not Found.' })
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     @Get('profile')
     getProfile(@Request() req) {
-        this.logger.debug('-------------------');
         this.logger.debug('req.user: ', req.user);
-        this.logger.debug('-------------------');
         return req.user;
     }
 
     @ApiOperation({ summary: '获取用户信息' })
     @ApiResponse({ status: 200, description: 'User Found.' })
     @ApiResponse({ status: 404, description: 'User not Found.' })
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     @Get('/current-user')
     getCurrentUser(@Request() req) {
         return req.user;
@@ -83,9 +83,13 @@ export class UserController {
     }
 
     @Get()
-    async findMany(@Query() query): Promise<any> {
-        const data = await this.userService.list({
-            ...query,
+    async findUsers(
+        @Query() query: QueryUserDto,
+        @Query() pagination: PaginationDto,
+    ): Promise<any> {
+        const page = pagination.page || 1;
+        const limit = pagination.limit || 10;
+        const args = {
             select: {
                 createdAt: true,
                 firstName: true,
@@ -94,7 +98,15 @@ export class UserController {
                 roles: true,
                 updatedAt: true,
             },
-        });
+        };
+        this.logger.debug(query);
+        this.logger.debug(pagination);
+        const data = await this.userService.findUsers(
+            query,
+            page,
+            limit,
+            args,
+        );
         console.log('data: ', data);
         return data;
     }
@@ -308,7 +320,7 @@ export class UserController {
     }
 
     // 用户的登录信息
-    @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard)
     @Get('/logininfo')
     async loginUserInfo(@CurrentUser() user) {
         this.logger.debug('user: ', user);

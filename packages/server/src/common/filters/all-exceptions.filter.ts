@@ -1,62 +1,33 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpServer, Inject, HttpStatus, Logger, HttpException, ForbiddenException } from '@nestjs/common';
-import { BaseExceptionFilter, ModuleRef } from '@nestjs/core';
+import { BaseExceptionFilter, ModuleRef, Reflector } from '@nestjs/core';
 import { HttpAdapterHost } from '@nestjs/core';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { ApiException } from '../exceptions/api.exception';
 import { ResOp } from '@/shared/classes/res.class';
+import { REFLECTOR } from '../constants/meta.constant';
 
 /**
  * 异常接管，统一异常返回数据
  */
 @Catch()
-export class AllExceptionsFilter<T> implements ExceptionFilter {
+export class AllExceptionsFilter implements ExceptionFilter {
     private readonly logger = new Logger(AllExceptionsFilter.name);
 
     constructor(
-        private readonly httpAdapterHost: HttpAdapterHost,
-        private readonly configService: ConfigService,
+        private readonly httpAdapter,
     ) {
     }
 
-    catch(exception: unknown, host: ArgumentsHost) {
+    catch(exception: unknown, host: ArgumentsHost): void {
         // In certain situations `httpAdapter` might not be available in the
-        // constructor method, thus we should resolve it here.
-        const { httpAdapter } = this.httpAdapterHost;
-
+        // constructor method, thus we should resolve it here
         const ctx = host.switchToHttp();
-        const response = ctx.getResponse();
-        const { status, result } = this.errorResult(exception);
-        response.header('Content-Type', 'application/json; charset=utf-8');
-        response.status(status).json(result);
 
-        const httpStatus =
-            exception instanceof HttpException
-                ? exception.getStatus()
-                : HttpStatus.INTERNAL_SERVER_ERROR;
+        // const response = ctx.getResponse();
 
-        const responseBody = {
-            statusCode: httpStatus,
-            timestamp: new Date().toISOString(),
-            path: httpAdapter.getRequestUrl(ctx.getRequest()),
-        };
-
-        httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
-    }
-
-    /* 解析错误类型，获取状态码和返回值 */
-    errorResult(exception: unknown) {
-        const { httpAdapter } = this.httpAdapterHost;
-
-        const status =
-            exception instanceof HttpException
-                ? exception.getStatus()
-                : HttpStatus.INTERNAL_SERVER_ERROR;
-
-        const code =
-            exception instanceof ApiException
-                ? (exception as ApiException).getErrorCode()
-                : status;
+        // response.header('Content-Type', 'application/json; charset=utf-8');
+        // response.status(status).json(result);
 
         let message: string;
         if (exception instanceof HttpException) {
@@ -65,11 +36,22 @@ export class AllExceptionsFilter<T> implements ExceptionFilter {
         } else {
             message = `${exception}`;
         }
-        return {
-            status,
-            result: ResOp.error(message, code, {
+
+        const httpStatus =
+            exception instanceof HttpException
+                ? exception.getStatus()
+                : HttpStatus.INTERNAL_SERVER_ERROR;
+        const code =
+            exception instanceof ApiException
+                ? (exception as ApiException).getErrorCode()
+                : httpStatus;
+        const responseBody = ResOp.error('', httpStatus, {
+            data: {
                 timestamp: new Date().toISOString(),
-            }),
-        };
+                path: this.httpAdapter.getRequestUrl(ctx.getRequest()),
+            }
+        });
+
+        this.httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
     }
 }

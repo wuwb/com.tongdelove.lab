@@ -1,6 +1,19 @@
-@baseUrl= http://localhost:54314
+@baseUrl= http://localhost:3001
 @adminTenentId=123
 @token=123
+
+###
+
+# @name 请求 /login 接口 => 成功 
+GET {{baseUrl}}/api/base/login/captcha-image-svg
+Content-Type: application/json
+ 
+###
+
+# @name 请求 /login 接口 => 成功 
+GET {{baseUrl}}/api/base/login/captcha-image-code
+Content-Type: application/json
+tenant-id: {{adminTenentId}}
 
 ###
 
@@ -11,9 +24,9 @@ tenant-id: {{adminTenentId}}
 
 {
   "username": "admin",
-  "password": "admin123",
-  "uuid": "3acd87a09a4f48fb9118333780e94883",
-  "code": "1024"
+  "password": "123456",
+  "codeId": "a3fc0d8d-499e-4417-bbd6-69271f944852",
+  "code": "11"
 }
 
 ###
@@ -27,6 +40,12 @@ tenant-id: {{adminTenentId}}
   "username": "admin",
   "password": "admin123",
 }
+
+### 
+
+# @name 请求 /login 接口 => 成功（无验证码)
+POST {{baseUrl}}/api/base/login/get-info
+Content-Type: application/json
 
 ### 
 

@@ -29,7 +29,7 @@ export class AccessResDto extends QueryResDto {
 }
 
 export class AccessListResDtoDto extends PaginatedDto<AccessResDto>{
-    constructor(pageSize: number, pageNum: number, data: AccessResDto[]) {
-        super(pageSize, pageNum, data);
+    constructor(limit: number, page: number, data: AccessResDto[]) {
+        super(limit, page, data);
     }
 }

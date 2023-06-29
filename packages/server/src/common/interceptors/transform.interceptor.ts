@@ -11,6 +11,9 @@ import { map, tap } from 'rxjs/operators';
 import { Request } from 'express';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { instanceToPlain } from 'class-transformer';
+import { RESPONSE_PASSTHROUGH_METADATA } from '../constants/meta.constant';
+import { isArrayLike, isObjectLike } from 'lodash';
+import snakecaseKeys from 'snakecase-keys';
 
 export interface Response<T> {
     code?: number;
@@ -21,21 +24,33 @@ export interface Response<T> {
     status?: string;
 
     page?: number;
-    total?: number;
+     total?: number;
 }
 
 /**
  * 包装 response 返回
- * @class TransformInterceptor
- * @classdesc 当控制器所需的 Promise service 成功响应时，将在此被转换为标准的数据结构 IHttpResultPaginate
+ * 当控制器所需的 Promise service 成功响应时，将在此被转换为标准的数据结构 IHttpResultPaginate
  */
 @Injectable()
 export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
     private readonly logger = new Logger(TransformInterceptor.name);
 
+    constructor(
+        private readonly reflector: Reflector,
+    ) { }
+
     intercept(context: ExecutionContext, next: CallHandler<T>): Observable<Response<T>> {
-        console.log('Before...');
         const handler = context.getHandler();
+
+        // 跳过 bypass 装饰的请求
+        const bypass = this.reflector.get<boolean>(
+            RESPONSE_PASSTHROUGH_METADATA,
+            handler,
+        )
+        if (bypass) {
+            return next.handle().pipe(map(data => ({ data })));
+        }
+
         const ctx = context.switchToHttp();
         const request = ctx.getRequest<Request>();
         const response = ctx.getResponse();
@@ -44,29 +59,18 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
         const graphqlRequest = gqlCtx.getContext().req;
 
         const req = context.getArgByIndex(1).req;
-        // this.logger.debug('context: ');
-        // this.logger.log(JSON.stringify(context));
-        // this.logger.log('request: ', JSON.stringify(request));
 
         if (request) {
-            this.logger.log('request transform.');
-            this.logger.log(`Request original url: ${req.originalUrl}`);
-            this.logger.log(`Method: ${req.method}`);
-            this.logger.log(`IP: ${req.ip}`);
-            this.logger.log(`User: ${JSON.stringify(req.user)}`);
-            this.logger.log('----------------------------------------');
-
+            this.logger.log('http transform.');
             return next.handle().pipe(
                 map((data: any) => {
-                    // this.logger.log(`Response data:\n ${JSON.stringify(data)}`);
-                    if (request.query.current && request.query.pageSize) {
+                    if (request.query.page && request.query.limit) {
                         return {
                             code: response.statusCode,
                             data: data.data,
                             message: '请求成功',
                             success: true,
-
-                            page: +request.query.current,
+                            page: +request.query.page,
                             total: data.count,
                         };
                     } else {
@@ -86,5 +90,45 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
             this.logger.log('default transform.');
             return next.handle().pipe(map(data => ({ data })));
         }
+    }
+
+    private serialize(obj: any) {
+        if (!isObjectLike(obj)) {
+            return obj
+        }
+
+        if (isArrayLike(obj)) {
+            obj = Array.from(obj).map((i) => {
+                return this.serialize(i)
+            })
+        } else {
+            // if is Object
+            if (obj.toJSON || obj.toObject) {
+                obj = obj.toJSON?.() ?? obj.toObject?.()
+            }
+
+            Reflect.deleteProperty(obj, '__v')
+
+            const keys = Object.keys(obj)
+            for (const key of keys) {
+                const val = obj[key]
+                // first
+                if (!isObjectLike(val)) {
+                    continue
+                }
+
+                if (val.toJSON) {
+                    obj[key] = val.toJSON()
+                    // second
+                    if (!isObjectLike(obj[key])) {
+                        continue
+                    }
+                    Reflect.deleteProperty(obj[key], '__v')
+                }
+                obj[key] = this.serialize(obj[key])
+            }
+            obj = snakecaseKeys(obj)
+        }
+        return obj
     }
 }

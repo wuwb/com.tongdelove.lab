@@ -114,8 +114,8 @@ export class RoleService {
     // 查询角色列表
     async roleList(roleReqDto: RoleReqDto): Promise<RoleListResDto> {
         const {
-            pageNum = PageEnum.PAGE_NUMBER,
-            pageSize = PageEnum.PAGE_SIZE,
+            limit = PageEnum.PAGE_NUMBER,
+            page = PageEnum.PAGE_SIZE,
             name,
             status,
         } = roleReqDto;
@@ -134,15 +134,34 @@ export class RoleService {
         const [data, total] = await getConnection()
             .createQueryBuilder(RoleEntity, 'role')
             .where(queryCondition, { name: `%${name}%`, status })
-            .skip((pageNum - 1) * pageSize)
-            .take(pageSize)
+            .skip((limit - 1) * page)
+            .take(page)
             .printSql()
             .getManyAndCount();
         return {
             data,
             total,
-            pageSize,
-            pageNum,
+            page,
+            limit,
+        };
+    }
+
+    async findRoles(queryRoleDto) {
+        const {
+            limit = PageEnum.PAGE_NUMBER,
+            page = PageEnum.PAGE_SIZE,
+        } = queryRoleDto;
+        const skip = (page - 1) * limit;
+        const data = await this.prisma.role.findMany({
+            skip,
+            take: limit, 
+        });
+        const total = await this.prisma.role.count({
+        });
+        return {
+            data,
+            total,
+            page,
         };
     }
 

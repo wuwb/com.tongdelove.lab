@@ -142,13 +142,13 @@ export class TaobaoController {
     @Get('/order-raw')
     async taobaoOrderRaws(
         @Query('current') current: number,
-        @Query('pageSize') pageSize: number,
+        @Query('page') page: number,
         @Query('sorter') sorter: string,
         @Query('filter') filter: string) {
 
         return this.taobaoService.taobaoOrderRaws({
-            skip: (current - 1) * pageSize,
-            take: pageSize,
+            skip: (current - 1) * page,
+            take: page,
             where: JSON.parse(filter),
             orderBy: JSON.parse(sorter),
         });

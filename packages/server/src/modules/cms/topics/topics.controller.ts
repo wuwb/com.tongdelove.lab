@@ -32,7 +32,7 @@ export class TopicsController {
     ) {
         this.logger.log('findAll');
         const onlyAdminP = String(onlyAdmin) == 'true';
-        return this.topicsService.findAll(pager, onlyAdminP);
+        return this.topicsService.findTopics(pager, onlyAdminP);
     }
 
     @Get(':id')
