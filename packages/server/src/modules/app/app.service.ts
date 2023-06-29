@@ -22,6 +22,6 @@ export class AppService {
   }
 
   root(): string {
-    return 'Hi.';
+    return 'Hello World!';
   }
 }

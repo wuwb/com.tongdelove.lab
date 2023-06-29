@@ -52,7 +52,7 @@
         "allowJs": true,
         "strict": true,
         "paths": {
-            "@prisma/client": ["node_modules/.prisma/client"],
+            // "@prisma/client": ["node_modules/.prisma/client"],
             "@/generated/*": ["generated/*"],
             "@/scripts/*": ["scripts/*"],
             "@/*": ["src/*"]

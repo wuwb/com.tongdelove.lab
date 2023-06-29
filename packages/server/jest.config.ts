@@ -1,16 +1,21 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { pathsToModuleNameMapper } from 'ts-jest';
-// In the following statement, replace `./tsconfig` with the path to your `tsconfig` file
-// which contains the path mapping (ie the `compilerOptions.paths` option):
-import { compilerOptions } from './tsconfig.json';
 import type { JestConfigWithTsJest } from 'ts-jest'
+import fs from 'fs';
+
+const tsconfigJson = fs.readFileSync('./tsconfig.json', 'utf-8');
+const tsconfigJsonWithoutComments = tsconfigJson.replace(/\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g, (m, g) => g ? "" : m);
+const tsconfigJsonObj = JSON.parse(tsconfigJsonWithoutComments);
 
 const config: JestConfigWithTsJest = {
+    verbose: true,
     moduleFileExtensions: ['js', 'json', 'ts'],
     rootDir: '.',
     testRegex: '.*\\.spec\\.ts$',
     transform: {
-        '^.+\\.(t|j)s$': 'ts-jest',
+        '^.+\\.(t|j)s$': ['ts-jest', {
+            useESM: true,
+            tsconfig: './tsconfig.json',
+        }],
         // '^.+\\.(t|j)s?$': ['@swc/jest'],
     },
     collectCoverageFrom: ['**/*.(t|j)s'],
@@ -21,14 +26,10 @@ const config: JestConfigWithTsJest = {
     testEnvironment: 'node',
     modulePathIgnorePatterns: ['<rootDir>/dist/'],
     globals: {
-        'ts-jest': {
-            useESM: true,
-            tsconfig: './tsconfig.json',
-        },
         isDev: process.env.NODE_ENV === 'development',
     },
     moduleNameMapper: {
-        ...pathsToModuleNameMapper(compilerOptions.paths, {
+        ...pathsToModuleNameMapper(tsconfigJsonObj.compilerOptions.paths, {
             prefix: '<rootDir>/',
         }),
 

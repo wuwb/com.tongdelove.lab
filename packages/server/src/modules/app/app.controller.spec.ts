@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+// import { UserModule } from '../system/user/user.module';
 
 describe('AppController', () => {
     let appController: AppController;
@@ -8,13 +9,16 @@ describe('AppController', () => {
 
     beforeEach(async () => {
         const app: TestingModule = await Test.createTestingModule({
+            imports: [
+                // UserModule,
+            ],
             controllers: [AppController],
             providers: [
                 {
                     provide: AppService,
                     useValue: {
                         constructor: jest.fn(),
-                        getHello: jest.fn(),
+                        root: jest.fn(),
                     },
                 },
             ],
@@ -29,7 +33,7 @@ describe('AppController', () => {
         });
 
         it('should return "Hello World!"', () => {
-            //  jest.spyOn(service, "getHello").mockReturnValue("Hello");
+            jest.spyOn(appService, "root").mockReturnValue("Hello World!");
             expect(appController.getRoot()).toBe('Hello World!');
         });
     });

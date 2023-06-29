@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger'
 import { AppService } from './app.service';
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { User } from '@/common/decorators/user.decorator';
+// import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+// import { User } from '@/common/decorators/user.decorator';
 import * as PKG from '../../../package.json'
-import { LoginService } from '@/modules/login/login.service';
-import { UserService } from '@/modules/system/user/user.service';
+// import { LoginService } from '@/modules/login/login.service';
+// import { UserService } from '@/modules/system/user/user.service';
 
 @ApiTags('App')
 @Controller()
@@ -25,8 +25,8 @@ export class AppController {
 
     constructor(
         private readonly appService: AppService,
-        private readonly userService: UserService,
-        private readonly loginService: LoginService,
+        // private readonly userService: UserService,
+        // private readonly loginService: LoginService,
         // private readonly configService: ConfigService,
         // private readonly authService: AuthService,
         // private readonly linksService: LinksService,
