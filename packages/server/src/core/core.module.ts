@@ -10,7 +10,7 @@ import { DatabaseModule } from '@/core/database/database/database.module';
 import { PrismaModule } from '@/core/database/prisma/prisma.module';
 import { MailModule } from '@/core/mail/mail/mail.module';
 import { CacheModule } from '@/core/cache/cache/cache.module';
-import { AliossModule } from '@/core/storage/alioss/alioss.module';
+import { AliossModule } from '@/core/storage/ali-oss/alioss.module';
 import { ServeStaticOptionsService } from '@/core/serveStatic/serveStaticOptions.service';
 import { HttpConfigService } from '@/core/http-config/http-config.service';
 import { ConfigModule } from '@/config/config.module';
@@ -78,4 +78,4 @@ import { JwtModule } from './auth/jwt/jwt.module';
         // GlobalScheduleModule,
     ],
 })
-export class CoreModule { }
+export class CoreModule {}

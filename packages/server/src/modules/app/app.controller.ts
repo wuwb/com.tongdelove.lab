@@ -16,8 +16,8 @@ import * as PKG from '../../../package.json'
 // import { LoginService } from '@/modules/login/login.service';
 // import { UserService } from '@/modules/system/user/user.service';
 
-@ApiTags('App')
-@Controller()
+@ApiTags('app')
+@Controller('api/app')
 // @UseInterceptors(ClassSerializerInterceptor)
 // @UseInterceptors(CacheInterceptor)
 export class AppController {

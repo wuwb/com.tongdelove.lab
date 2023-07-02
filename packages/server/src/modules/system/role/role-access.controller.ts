@@ -8,7 +8,7 @@ import { AllMenusResDto } from './dto/all.menus.res.dto';
 import { AllApiResDto } from './dto/all.api.res.dto';
 import { ApiAuth } from '@/common/decorators/api.auth';
 
-@ApiTags('后台-角色资源管理')
+@ApiTags('role_access')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()

@@ -16,11 +16,11 @@ import { AccountRoleListResDto, RoleAccountListDto } from './dto/account-role.re
 import { DistributionRoleDto } from './dto/distribution.role.dto';
 import { ApiAuth } from '@/common/decorators/api.auth';
 
-@ApiTags('后台-账号角色管理')
+@ApiTags('system/account/accountRole') // 按拼音转化成接口文件名，自动转成驼峰
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()
-@Controller(`api/account_role`)
+@Controller(`api/asystem/account/account-role`)
 export class AccountRoleController {
     constructor(private readonly accountRoleService: AccountRoleService) { }
 

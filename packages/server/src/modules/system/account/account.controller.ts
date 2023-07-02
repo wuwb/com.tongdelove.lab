@@ -25,7 +25,7 @@ import { AccountReqDto } from './dto/account.req.dto';
 import { CurrentUser, ICurrentUserType } from '@/common/decorators/current-user.decorator';
 import { ApiAuth } from '@/common/decorators/api.auth';
 
-@ApiTags('后台-账号管理')
+@ApiTags('system/account')
 // @PermissionModule('账号管理')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)

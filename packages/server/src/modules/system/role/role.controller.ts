@@ -21,7 +21,7 @@ import { RoleResDto, RoleListResDto } from './dto/role.res.dto';
 import { RoleReqDto } from './dto/role.req.dto';
 import { ApiAuth } from '@/common/decorators/api.auth';
 
-@ApiTags('后台-角色管理')
+@ApiTags('system/role')
 @ApiBearerAuth()
 @Controller(`api/system/role`)
 export class RoleController {

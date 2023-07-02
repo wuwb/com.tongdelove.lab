@@ -1,4 +1,4 @@
-import { ConfigService as BaseConfigService } from '@nestjs/config';
+import { ConfigService as NestConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
 import { ServerConfig } from './interface/server.config';
 import { StaticConfig } from './interface/static.config';
@@ -6,14 +6,13 @@ import { AliossConfig } from './interface/alioss.config';
 import { GeetestCaptchaConfig } from './interface/geetestCaptcha.config';
 import { WeiboConfig } from './interface/weibo.config';
 import { GithubConfig } from './interface/github.config';
-import { ConfigDefault } from './config.default';
 
 const PRODUCTION = 'production';
 const DEVELOPMENT = 'development';
 const TEST = 'test';
 
 @Injectable()
-export class ConfigService extends BaseConfigService {
+export class ConfigService extends NestConfigService {
     readonly environment: String;
     readonly server: ServerConfig;
     readonly static: StaticConfig;
@@ -23,7 +22,7 @@ export class ConfigService extends BaseConfigService {
     readonly github: GithubConfig;
     readonly weibo: WeiboConfig;
 
-    constructor(private configService: BaseConfigService) {
+    constructor(private configService: NestConfigService) {
         super();
 
         this.environment = process.env.NODE_ENV || DEVELOPMENT;

@@ -3,6 +3,7 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/
 
 export async function setupSwagger(app: INestApplication, swaggerConfig): Promise<void> {
     const swaggerPath = `${swaggerConfig.root}`;
+    console.log('swaggerPath: ', swaggerPath);
     const swaggerDocumentConfig = new DocumentBuilder()
         .setTitle(swaggerConfig.title)
         .setDescription(swaggerConfig.description)
@@ -19,13 +20,9 @@ export async function setupSwagger(app: INestApplication, swaggerConfig): Promis
             in: 'Header',
             // name: 'token',
         })
-        .addTag('server')
         .build();
     const swaggerDocumentOptions: SwaggerDocumentOptions = {
-        operationIdFactory: (
-            controllerKey: string,
-            methodKey: string
-        ) => methodKey
+        operationIdFactory: (controllerKey: string, methodKey: string) => `${methodKey}`,
     };
     const document = SwaggerModule.createDocument(app, swaggerDocumentConfig, swaggerDocumentOptions);
     // restful API 文檔
@@ -33,9 +30,9 @@ export async function setupSwagger(app: INestApplication, swaggerConfig): Promis
         swaggerOptions: {
             persistAuthorization: true,
         },
-        customCssUrl: "./utils/swagger/swagger.css",
-        customfavIcon: "./utils/swagger/favicon.png",
-        customSiteTitle: "My app",
+        customCssUrl: './utils/swagger/swagger.css',
+        customfavIcon: './utils/swagger/favicon.png',
+        customSiteTitle: 'Dowu',
     };
     // 打開 http://localhost:3000/api/docs 就會連結到 swagger 服務。
     SwaggerModule.setup(swaggerPath, app, document, swaggerSetupOptions);

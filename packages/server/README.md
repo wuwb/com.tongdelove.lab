@@ -111,3 +111,6 @@ validation.pipe 用于验证所有基于 class-validate 的验证类
 - https://github.com/kuizuo/kz-nest-admin/blob/main/src/entities/base.entity.ts
 - https://github.com/notadd/nt-addon-pay 支付
 - https://github.com/galaxy-s10/vue3-blog-server
+- https://github.com/baaxl9vh/nest-wechat
+- https://github.com/Javen205/TNWX
+- https://github.com/hiro1107/nestjs-supabase-auth

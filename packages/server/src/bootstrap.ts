@@ -4,7 +4,7 @@ import * as path from 'path';
 import helmet from 'helmet';
 import * as nunjucks from 'nunjucks';
 import { Stream } from 'stream';
-import * as Sentry from "@sentry/node";
+import * as Sentry from '@sentry/node';
 import '@sentry/tracing';
 import { SentryInterceptor } from '@/common/interceptors/sentry.interceptor';
 import { PrismaClientExceptionFilter } from '@/common/filters/prisma-client-exception.filter';
@@ -14,9 +14,9 @@ import { AppService } from '@/modules/app/app.service';
 import { AuthService } from '@/modules/system/auth/auth.service';
 import * as viewfilter from '@/utils/viewfilter';
 import { setupSwagger } from './setup-swagger';
-import { ConfigService } from '@/config/config.service';
 import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 import { AllExceptionsFilter } from '@/common/filters/all-exceptions.filter';
+import { ConfigService } from '@nestjs/config';
 
 // 解决 Nodejs 环境中请求 HTTPS 的证书授信问题
 const isProdMod = process.env.NODE_ENV === 'production';
@@ -38,24 +38,19 @@ async function setupMicroservice(app: INestApplication) {
 // 替换 console 为更统一友好的
 function replaceConsole() {
     const { log, warn, info } = console;
-    const color = (color) => (isProdMod ? '' : color);
+    const color = color => (isProdMod ? '' : color);
     Object.assign(global.console, {
         log: (...args) => log('[log]', '[core]', ...args),
-        warn: (...args) =>
-            warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[core]', ...args),
-        info: (...args) =>
-            info(color('\x1b[34m%s\x1b[0m'), '[info]', '[core]', ...args),
-        error: (...args) =>
-            info(color('\x1b[31m%s\x1b[0m'), '[error]', '[core]', ...args),
+        warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[core]', ...args),
+        info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[core]', ...args),
+        error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[core]', ...args),
     });
 }
 
 function initView(app) {
-    const configService: ConfigService = app.get(ConfigService);
+    const configService = app.get(ConfigService);
     const baseViewDir = path.join(__dirname, '../views');
     const baseViewDirList = [baseViewDir];
-
-    console.log('baseViewDirList: ', baseViewDirList);
 
     app.setBaseViewsDir(baseViewDirList);
     app.setViewEngine('html');
@@ -179,7 +174,7 @@ export async function bootstrap(app, listening: boolean = true) {
     // const myLogger = app.get(MyLogger);
 
     // config
-    const env = configService.get('environment')
+    const env = configService.get('environment');
     const swaggerConfig = configService.get('swagger');
     const nestConfig = configService.get('nest');
     const corsConfig = configService.get('cors');
@@ -211,9 +206,11 @@ export async function bootstrap(app, listening: boolean = true) {
     // app.useGlobalInterceptors(new SentryInterceptor(configService.env));
 
     // 设置 HTTP 标头来帮助保护应用免受一些众所周知的 Web 漏洞的影响,安全,Web漏洞的
-    app.use(helmet({
-        contentSecurityPolicy: false, // 取消 https 强制转换
-    }));
+    app.use(
+        helmet({
+            contentSecurityPolicy: false, // 取消 https 强制转换
+        }),
+    );
 
     // 压缩，最好使用反向代理中压缩，如 nignx
     //   app.use(compression());
@@ -287,8 +284,6 @@ export async function bootstrap(app, listening: boolean = true) {
 
     // app.useWebSocketAdapter(new WsAdapter(app));
 
-
-
     // app.use(cookieParser());
 
     // app.use(express.json()); // For parsing application/json
@@ -303,9 +298,10 @@ export async function bootstrap(app, listening: boolean = true) {
     // initGlobalFilters(app, configService);
 
     // Swagger Api
-    // if (swaggerConfig && swaggerConfig.enabled) {
-    //     setupSwagger(app, swaggerConfig);
-    // }
+    console.log('swaggerConfig: ', swaggerConfig);
+    if (swaggerConfig && swaggerConfig.enabled) {
+        setupSwagger(app, swaggerConfig);
+    }
 
     // Cors
     if (corsConfig && corsConfig.enabled) {
@@ -328,14 +324,13 @@ export async function bootstrap(app, listening: boolean = true) {
     // Starts listening to shutdown hooks
     if (process.env.ENABLE_SHUTDOWN_HOOKS) {
         // Remove listeners created by Prisma
-        process.removeAllListeners("SIGTERM");
-        process.removeAllListeners("SIGINT");
+        process.removeAllListeners('SIGTERM');
+        process.removeAllListeners('SIGINT');
         app.enableShutdownHooks();
     }
 
     // The error handler must be before any other error middleware and after all controllers
     // app.use(Sentry.Handlers.errorHandler());
-
 
     if (listening) {
         await app.listen(configService.get('port', 3001));
@@ -347,7 +342,6 @@ export async function bootstrap(app, listening: boolean = true) {
         await app.close();
         process.exit(0);
     });
-
 
     logger.log(`${appService.root()}: environment: ${env}`);
     logger.log(`pid: ${process.pid}`);

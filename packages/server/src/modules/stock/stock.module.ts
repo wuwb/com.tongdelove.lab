@@ -1,15 +1,10 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { StockController } from './stock.controller';
+import { SymbolController } from './symbol/symbol.controller';
 
 @Module({
-  imports: [
-  ],
-  controllers: [
-    StockController,
-  ],
-  providers: [
-  ],
-  exports: [
-  ],
+    imports: [],
+    controllers: [SymbolController],
+    providers: [],
+    exports: [],
 })
-export class StockModule { }
+export class StockModule {}

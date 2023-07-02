@@ -3,7 +3,9 @@ import { BackupService } from './backup.service';
 import { CreateBackupDto } from './dto/create-backup.dto';
 import { UpdateBackupDto } from './dto/update-backup.dto';
 import { ConfigService } from "@nestjs/config";
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('system/backup')
 @Controller('backup')
 export class BackupController {
     constructor(

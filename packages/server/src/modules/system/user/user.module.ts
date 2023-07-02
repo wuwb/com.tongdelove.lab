@@ -1,7 +1,6 @@
 import { forwardRef, Module, Global, OnModuleInit, Inject } from '@nestjs/common';
 import { DatabaseModule } from '@/core/database/database/database.module';
 import { UserController } from './user.controller';
-import { UserPageController } from './user.page.controller';
 import { UserService } from './user.service';
 import { MailModule } from '@/core/mail/mail/mail.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -17,7 +16,6 @@ import { AuthModule } from '../auth/auth.module';
     ],
     controllers: [
         UserController,
-        UserPageController,
     ],
     providers: [
         UserService,

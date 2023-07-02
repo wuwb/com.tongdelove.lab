@@ -23,9 +23,15 @@ import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
 // common middlewares
 import { AttachAuthMiddleware } from '@/common/middlewares/attach-auth.middleware';
 import { LoggerMiddleware } from '@/common/middlewares/logger.middleware';
-// import { OriginMiddleware } from '@/common/middlewares/origin.middleware';
-// import { CompressionMiddleware } from '@/common/middlewares/compression.middleware';
-// import { LocalsMiddleware } from '@/common/middlewares/locals.middleware';
+import { OriginMiddleware } from '@/common/middlewares/origin.middleware';
+import { CompressionMiddleware } from '@/common/middlewares/compression.middleware';
+import { LocalsMiddleware } from '@/common/middlewares/locals.middleware';
+import { IpMiddleware } from '@/common/middlewares/ip.middleware';
+import { CookieParserMiddleware } from '@/common/middlewares/cookie-parser.middleware';
+import { RateLimitMiddleware } from '@/common/middlewares/rate-limit.middleware';
+import { CorsMiddleware } from '@/common/middlewares/cors.middleware';
+import { CSRFMiddleware } from '@/common/middlewares/csrf.middleware';
+import { HelmetMiddleware } from '@/common/middlewares/helmet.middleware';
 
 // core
 import { CoreModule } from '@/core/core.module';
@@ -34,50 +40,19 @@ import { CoreModule } from '@/core/core.module';
 import { SharedModule } from '@/shared/shared.module';
 
 // modules 
-
-// 核心业务模块
 import { LoginModule } from '@/modules/login/login.module';
-import { AuthModule } from '@/modules/system/auth/auth.module';
-import { BackupModule } from '@/modules/system/backup/backup.module';
-import { LinkModule } from '@/modules/cms/link/link.module';
-import { FreelancerModule } from '@/modules/tech/freelancer/freelancer.module';
+import { StockModule } from '@/modules/stock/stock.module';
 import { SystemModule } from '@/modules/system/system.module';
+import { ToolModule } from '@/modules/tool/tool.module';
+import { AuthModule } from '@/modules/system/auth/auth.module';
 import { UserModule } from '@/modules/system/user/user.module';
 import { UserVerificationModule } from '@/modules/system/user/user-verification.module';
-// import { AddressesModule } from '@/modules/addresses/addresses.module';
-// import { CouponModule } from '@/modules/coupon/coupon.module';
-// import { CompaniesModule } from '@/modules/companies/companies.module';
-// import { OrganizationsModule } from '@/modules/tech/github/organizations.module';
-// import { TopicsModule } from '@/modules/topics/topics.module';
-// import { PostModule } from '@/modules/post/post.module';
-// import { V2exModule } from '@/modules/v2ex/v2ex.module';
-// import { ProductsModule } from '@/modules/products/products.module';
-// import { ProductsGqlModule } from '@/modules/products-gql/products-gql.module';
-// import { AutohotboxService } from './autohotbox/autohotbox.service';
-// import { DasboardModule } from '@/modules/dashboard/dashboard.module';
-// import { LinksModule } from '@/modules/links/links.module';
-// import { AvatarModule } from '@/modules/avatar/avatar.module';
-// import { ImageProcessModule } from '@/modules/image-process/image-process.module';
-// import { FileModule } from '@/modules/file/file.module';
-// import { CommentModule } from '@/modules/comment/comment.module';
-// import { StockModule } from '@/modules/stock/stock.module';
-// import { TaobaoModule } from '@/modules/taobao/taobao.module';
-// import { TypeormService } from '@/modules/typeorm/typeorm.service';
-
 
 // root
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
-import { IpMiddleware } from '@/common/middlewares/ip.middleware';
-import { CookieParserMiddleware } from '@/common/middlewares/cookie-parser.middleware';
-import { RateLimitMiddleware } from '@/common/middlewares/rate-limit.middleware';
-import { CorsMiddleware } from '@/common/middlewares/cors.middleware';
-import { CSRFMiddleware } from '@/common/middlewares/csrf.middleware';
-import { HelmetMiddleware } from '@/common/middlewares/helmet.middleware';
-// import { UserMiddleware } from '@/common/middlewares/user.middleware';
-import { LocalsMiddleware } from '@/common/middlewares/locals.middleware';
-import { CompressionMiddleware } from '@/common/middlewares/compression.middleware';
+
 
 @Module({
     imports: [
@@ -91,29 +66,13 @@ import { CompressionMiddleware } from '@/common/middlewares/compression.middlewa
         SharedModule,
 
         // modules
+        LoginModule,
+        StockModule,
+        SystemModule,
+        ToolModule,
         UserModule,
         UserVerificationModule,
-        SystemModule,
-        LoginModule,
         AuthModule,
-        // FreelancerModule,
-        // LinkModule,
-        // TopicsModule,
-        // PostModule,
-        // V2exModule,
-        // PostsModule,
-        // OrganizationsModule,
-        // ProductsModule,
-        // ProductsGqlModule,
-        // AddressesModule,
-        // CouponModule,
-        // CompaniesModule,
-        // StockModule,
-        // TaobaoModule,
-        // AvatarModule,
-        // ImageProcessModule,
-        // FileModule,
-        // CommentModule,
     ],
     controllers: [
         AppController

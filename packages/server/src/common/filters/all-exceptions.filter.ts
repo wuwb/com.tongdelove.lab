@@ -20,6 +20,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     }
 
     catch(exception: unknown, host: ArgumentsHost): void {
+        this.logger.debug(exception);
         // In certain situations `httpAdapter` might not be available in the
         // constructor method, thus we should resolve it here
         const ctx = host.switchToHttp();

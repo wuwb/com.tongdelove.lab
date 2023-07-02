@@ -1,0 +1,16 @@
+@baseUrl= http://localhost:3000
+@adminTenentId=123
+@token=123
+
+###
+
+# @name taobao-order-raw
+GET {{baseUrl}}/api/tool/taobao-order-raw
+Content-Type: application/json
+
+{
+  "page": 1,
+  "limit": 10,
+}
+ 
+###

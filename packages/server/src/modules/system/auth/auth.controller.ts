@@ -25,8 +25,8 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { UserInfo } from './interface/UserInfo';
 
-@ApiTags('auth')
-@Controller('api/base/auth')
+@ApiTags('system/auth')
+@Controller('api/system/auth')
 export class AuthController {
     private readonly logger = new Logger(AuthController.name);
 

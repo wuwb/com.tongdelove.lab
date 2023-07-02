@@ -3,15 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getConnection } from 'typeorm';
 import { Observable, of } from 'rxjs';
 import { makeSalt, encryptPassword } from '@/utils/cryptogram';
-import * as hasher from 'wordpress-hash-node';
 import { User, Prisma, TaobaoOrderRaw } from '@prisma/client';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
 
 @Injectable()
-export class TaobaoService {
-    private readonly logger = new Logger(TaobaoService.name);
+export class TaobaoOrderRawService {
+    private readonly logger = new Logger(TaobaoOrderRawService.name);
 
-    constructor(private prisma: PrismaService) { }
+    constructor(
+        private prisma: PrismaService,
+    ) { }
 
     // 保存
     async createTaobaoOrderRaw(data) {

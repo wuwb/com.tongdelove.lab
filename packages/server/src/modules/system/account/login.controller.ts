@@ -5,7 +5,7 @@ import { LoginDto } from './dto/login.dto';
 import { IpAddress } from '@/common/decorators/ip.address';
 import { LoginResDto } from './dto/login.res.dto';
 
-@ApiTags('后台-用户登录')
+@ApiTags('account/login')
 @Controller(`api/account/login`)
 export class LoginController {
     private readonly logger = new Logger(LoginController.name);

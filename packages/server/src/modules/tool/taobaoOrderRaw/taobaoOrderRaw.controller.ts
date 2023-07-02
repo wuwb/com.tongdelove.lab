@@ -5,22 +5,20 @@ import { basename, join } from 'path';
 import { CastingContext, parse } from 'csv-parse';
 import * as iconv from 'iconv-lite';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { createReadStream } from 'fs';
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
-import { Prisma } from '@prisma/client';
-import { TaobaoService } from './taobao.service';
+import { TaobaoOrderRawService } from './taobaoOrderRaw.service';
 import { CustomerService } from '@/modules/mall/customer/customer.service';
 
-@ApiTags('taobao')
-@Controller('api/taobao')
-export class TaobaoController {
+@ApiTags('tool/taobao-order-raw')
+@Controller('api/tool/taobao-order-raw')
+export class TaobaoOrderRawController {
 
     constructor(
-        private readonly taobaoService: TaobaoService,
+        private readonly taobaoService: TaobaoOrderRawService,
         private readonly customerService: CustomerService,
     ) { }
 
-    @Post('/upload-taobao-order-csv')
+    @Post('/upload')
     @UseInterceptors(FileInterceptor('file'))
     async uploadTaobaoOrderCSV(@UploadedFile() file: Express.Multer.File) {
         const fileStreamObj = new StreamableFile(file.buffer);
@@ -139,18 +137,21 @@ export class TaobaoController {
         console.log(file);
     }
 
-    @Get('/order-raw')
-    async taobaoOrderRaws(
-        @Query('current') current: number,
+    @Get('/')
+    async listTaobaoOrderRaw(
         @Query('page') page: number,
-        @Query('sorter') sorter: string,
-        @Query('filter') filter: string) {
+        @Query('limit') limit: number,
+        @Query('sorter') sorter,
+        @Query('filter') filter,
+    ) {
+        console.log('sorter: ', sorter);
+        console.log('filter: ', filter);
 
         return this.taobaoService.taobaoOrderRaws({
-            skip: (current - 1) * page,
-            take: page,
-            where: JSON.parse(filter),
-            orderBy: JSON.parse(sorter),
+            skip: (page - 1) * limit,
+            take: limit,
+            // where: JSON.parse(filter),
+            // orderBy: JSON.parse(sorter),
         });
     }
 

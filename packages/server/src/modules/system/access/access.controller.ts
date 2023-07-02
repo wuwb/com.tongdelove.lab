@@ -21,7 +21,7 @@ import { AccessResDto, AccessListResDtoDto } from './dto/access.res.dto';
 import { AccessReqDto } from './dto/access.req.dto';
 import { ApiAuth } from '@/common/decorators/api.auth';
 
-@ApiTags('后台-资源管理')
+@ApiTags('system/access')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @ApiAuth()

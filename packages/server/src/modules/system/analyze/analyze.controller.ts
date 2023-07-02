@@ -1,7 +1,8 @@
 import { Controller, Get, Query, Scope } from "@nestjs/common";
 import { AnalyzeService } from "./analyze.service";
+import { ApiTags } from "@nestjs/swagger";
 
-
+@ApiTags('system/analyze')
 @Controller({
     path: 'api/system/analyze',
     scope: Scope.REQUEST,

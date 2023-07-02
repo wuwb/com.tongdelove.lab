@@ -1,8 +1,8 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
-import { TaobaoController } from './taobao.controller';
-import { TaobaoService } from './taobao.service';
+import { TaobaoOrderRawController } from './taobaoOrderRaw.controller';
+import { TaobaoOrderRawService } from './taobaoOrderRaw.service';
 import { CustomerService } from '@/modules/mall/customer/customer.service';
 
 @Module({
@@ -15,14 +15,8 @@ import { CustomerService } from '@/modules/mall/customer/customer.service';
             inject: [ConfigService],
         }),
     ],
-    controllers: [
-        TaobaoController,
-    ],
-    providers: [
-        TaobaoService,
-        CustomerService,
-    ],
-    exports: [
-    ],
+    controllers: [TaobaoOrderRawController],
+    providers: [TaobaoOrderRawService, CustomerService],
+    exports: [],
 })
-export class TaobaoModule { }
+export class TaobaoOrderRawModule {}

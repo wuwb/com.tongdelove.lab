@@ -32,7 +32,7 @@ import { AuthGuard } from '@/common/guards/auth.guard';
 import { QueryUserDto } from './dto/query-user.dto';
 import { PaginationDto } from '@/shared/dto/pagination.dto';
 
-@ApiTags('user')
+@ApiTags('system/user')
 @Controller('api/base/user')
 export class UserController {
     private readonly logger = new Logger(UserController.name);

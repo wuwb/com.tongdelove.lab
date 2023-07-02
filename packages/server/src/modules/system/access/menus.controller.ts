@@ -5,7 +5,7 @@ import { MenusService } from './menus.service';
 import { MenusListResDto } from './dto/menus.res.dto';
 import { CurrentUser, ICurrentUserType } from '@/common/decorators/current-user.decorator';
 
-@ApiTags('后台-菜单管理')
+@ApiTags('menus')
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
 @Controller(`api/menus`)
