@@ -12,18 +12,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  admin-ci:
-    name: admin-ci
-    runs-on: ubuntu-latest
-    steps: 
+  env: 
       - name: checkout repo
         uses: actions/checkout@v3
-
-      - name: setup node 
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
@@ -46,6 +37,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+  admin-ci:
+    name: admin-ci
+    needs: env
+    runs-on: ubuntu-latest
+    steps: 
       - name: copy env
         working-directory: ./packages/admin
         run: .env.exacmple .env
@@ -64,17 +66,9 @@ jobs:
 
   server-ci:
     name: server-ci
+    needs: env
     runs-on: ubuntu-latest
     steps: 
-      - name: checkout repo
-        uses: actions/checkout@v3
-
-      - name: setup node 
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
       - name: copy env
         working-directory: ./packages/server
         run: .env.exacmple .env
@@ -92,17 +86,9 @@ jobs:
         run: pnpm run build
 
   linter:
+    needs: env
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-        
-      - name: setup node 
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
       - name: npm ci
         run: npm ci
 
@@ -120,7 +106,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'pnpm'
 
       - name: npm ci
         run: npm ci
