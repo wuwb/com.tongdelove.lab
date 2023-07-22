@@ -1,7 +1,17 @@
 {
     "extends": "../../tsconfig.base.json",
-    "files": [],
-    "include": [],
+    "compilerOptions": {
+      "declaration": true,
+      "outDir": "dist",
+      "rootDir": "src",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "target": "es2017",
+      "lib": ["es2017", "dom"],
+      "module": "commonjs"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"],
     "references": [
       {
         "path": "./tsconfig.lib.json"

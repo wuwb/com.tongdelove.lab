@@ -1,12 +1,12 @@
 import { registerAs } from '@nestjs/config';
 
 export default registerAs('database', () => ({
-  type: process.env.DATABASE_TYPE || 'mysql',
+  type: process.env.DATABASE_TYPE || 'postgres',
   host: process.env.DATABASE_HOST || 'localhost',
-  port: Number(process.env.DATABASE_PORT) || 3306, // 5432,
-  database: process.env.DATABASE_DATABASE,
-  username: process.env.DATABASE_USERNAME || 'root',
-  password: process.env.DATABASE_PASSWORD,
+  port: Number(process.env.DATABASE_PORT) || 5432,
+  database: process.env.DATABASE_DATABASE || 'postgres',
+  username: process.env.DATABASE_USERNAME || 'postgres',
+  password: process.env.DATABASE_PASSWORD || 'postgres',
   synchronize: process.env.DATABASE_SYNCHRONIZE === 'true' ? true : false,
   logging: process.env.DATABASE_LOGGING === 'true' ? true : false,
 }));

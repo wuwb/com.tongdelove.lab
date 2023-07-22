@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Link } from '@umijs/max';
 import { DefaultLayout as Layout } from '@/components/Layout/DefaultLayout';
-import style from './index.module.less';
+import { createStyles } from 'antd-style';
 
 {
   /* <script src="https://cdn.jsdelivr.net/gh/iMuFeng/bmdb@3.0.0/dist/bmdb.js" /> */
@@ -17,7 +16,17 @@ import style from './index.module.less';
 //     noMoreDataTips: '没有更多数据了'
 //   })
 
+const useStyles = createStyles(({ token, css }) => ({
+  item: css`
+    width: 200px;
+    height: 100px;
+    border: 1px solid #ddd;
+  `
+}));
+
 const Page = () => {
+  const { styles, cx, theme } = useStyles();
+
   const data = [
     {
       cate: '服务',
@@ -65,7 +74,6 @@ const Page = () => {
         );
       })}
       {/*
-
             <div>
                 <h3>前端资讯</h3>
                 <div>

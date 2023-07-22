@@ -21,11 +21,11 @@ import { RoleAccessController } from './role/role-access.controller';
 // service
 import { AccountService } from './account/account.service';
 import { AccessService } from './access/access.service';
-import { RoleService } from './role/role.service';
+import { RoleService } from './role/services/role.service';
 import { LoginService } from './account/login.service';
 import { AccountRoleService } from './account/account-role.service';
 import { MenusService } from './access/menus.service';
-import { RoleAccessService } from './role/role-access.service';
+import { RoleAccessService } from './role/services/role-access.service';
 import { AuthModule } from '@/modules/system/auth/auth.module';
 import { RoleModule } from './role/role.module';
 
@@ -47,6 +47,6 @@ import { RoleModule } from './role/role.module';
     providers: [AccountService, AccessService, RoleService, LoginService, AccountRoleService, MenusService, RoleAccessService],
     exports: [AccountService],
 })
-export class SystemModule {}
+export class SystemModule { }
 // 路由前缀 作用该模块下全部的控制器
 // Reflect.defineMetadata(MODULE_PATH, 'admin', SystemModule);

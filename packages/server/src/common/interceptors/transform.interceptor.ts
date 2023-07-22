@@ -24,7 +24,7 @@ export interface Response<T> {
     status?: string;
 
     page?: number;
-     total?: number;
+    total?: number;
 }
 
 /**

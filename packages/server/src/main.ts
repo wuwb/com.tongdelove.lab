@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { bootstrap } from './bootstrap';
 import { sendServerLoadEvent } from './utils/sendServerLoadEvent';
 import { AppModule } from './modules/app/app.module';
+import { initExpress } from './common/adappters/adapters.init';
 
 declare const module: any;
 
@@ -54,4 +55,5 @@ async function main() {
     // }
 }
 
-main();
+void main();
+

@@ -1,26 +1,21 @@
 const path = require('path');
-// const withTM = require('next-transpile-modules')([
-//   '../bar',
-//   '../api'
-// ], {
-//   resolveSymlinks: true,
-//   debug: false,
-// });
+const withTM = require('next-transpile-modules');
+const withBundleAnalyzer = require('@next/bundle-analyzer');
+const withLess = require('next-with-less');
+
 const { i18n } = require('./next-i18next.config');
 const { version } = require('./package.json');
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const getWebpackConfig = require('./webpack.config');
 
+const isProd = process.env.NODE_ENV === 'production';
 const isDev = process.env.NODE_ENV === 'development';
 
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-// enabled: process.env.ANALYZE === 'true',
-// })
 // const withImages = require('next-images')({
 //     disableStaticImages: true,
 // });
 // const withOffline = require('next-offline')
 
-// [withBundleAnalyzer],
 // [withImages],
 // [withOffline, {
 //     workboxOpts: {
@@ -50,7 +45,38 @@ const isDev = process.env.NODE_ENV === 'development';
 /** @type {import('next').NextConfig} */
 const nextConfig = async (phase, { defaultConfig }) => {
   const plugins = [
-    // withTM
+    [
+      withLess,
+      {
+        lessLoaderOptions: {
+          lessOptions: {
+            paths: [path.resolve(__dirname, './src')],
+          },
+        },
+      },
+    ],
+    [
+      withTM(
+        [
+          'antd',
+          'rc-pagination',
+          'rc-util',
+          'rc-picker',
+          'rc-notification',
+          '@ant-design/icons',
+          'rc-calendar',
+        ],
+        {
+          resolveSymlinks: true,
+          debug: false,
+        }
+      ),
+    ],
+    [
+      withBundleAnalyzer({
+        enabled: process.env.ANALYZE === 'true',
+      }),
+    ],
   ];
 
   /**
@@ -71,6 +97,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
     },
     swcMinify: true,
     experimental: {
+      esmExternals: true,
       // Google fonts
       // optimizeFonts: true,
       // removeConsole: {
@@ -90,6 +117,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
       dirs: ['src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
     },
     images: {
+      unoptimized: true,
       domains: [
         'www.gravatar.com',
         'iph.href.lu',
@@ -98,6 +126,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
         '127.0.0.1',
         'localhost',
       ],
+      remotePatterns: [],
     },
     async redirects() {
       return [
@@ -170,10 +199,8 @@ const nextConfig = async (phase, { defaultConfig }) => {
         },
       ];
     },
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
-      // Important: return the modified config
-      return config;
-    },
+    webpack: getWebpackConfig,
+
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
     // webpack: config => {
@@ -204,6 +231,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
       ignoreBuildErrors: true,
     },
   };
+
   return plugins.reduce((acc, plugin) => plugin(acc), {
     ...defaultConfig,
     ...config,

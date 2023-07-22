@@ -7,16 +7,79 @@ on:
   pull_request:
     branches:
       - '**'
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
+  admin-ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: copy env
+        working-directory: ./packages/admin
+        run: .env.exacmple .env
+
+      - name: Download deps
+        working-directory: ./packages/admin
+        run: pnpm install
+
+      - name: Type check
+        working-directory: ./packages/admin
+        run: pnpm run lint
+
+      - name: Build
+        working-directory: ./packages/admin
+        run: pnpm run build
+
+  server-ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: copy env
+        working-directory: ./packages/server
+        run: .env.exacmple .env
+
+      - name: Download deps
+        working-directory: ./packages/server
+        run: pnpm install
+
+      - name: Type check
+        working-directory: ./packages/server
+        run: pnpm run lint
+
+      - name: Build
+        working-directory: ./packages/server
+        run: pnpm run build
+
   linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
        with:
-          node-version: 16
+          node-version: 20
       - run: npm ci
       - run: npm run lint
+
   tests:
     needs: linter
     runs-on: ubuntu-latest
@@ -24,6 +87,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
        with:
-          node-version: 16
+          node-version: 20
       - run: npm ci
       - run: npm run test

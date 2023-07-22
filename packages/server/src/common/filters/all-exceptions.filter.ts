@@ -6,6 +6,8 @@ import { ConfigService } from '@nestjs/config';
 import { ApiException } from '../exceptions/api.exception';
 import { ResOp } from '@/shared/classes/res.class';
 import { REFLECTOR } from '../constants/meta.constant';
+import * as Sentry from '@sentry/node';
+import { ServerException } from '../exceptions/server.exception';
 
 /**
  * 异常接管，统一异常返回数据
@@ -19,13 +21,37 @@ export class AllExceptionsFilter implements ExceptionFilter {
     ) {
     }
 
-    catch(exception: unknown, host: ArgumentsHost): void {
-        this.logger.debug(exception);
+    catch(exception: any, host: ArgumentsHost): void {
         // In certain situations `httpAdapter` might not be available in the
         // constructor method, thus we should resolve it here
         const ctx = host.switchToHttp();
+        const request = ctx.getRequest();
+        const response = ctx.getResponse();
 
-        // const response = ctx.getResponse();
+        // 上报非自定义异常
+        if (!(exception instanceof ServerException) && !(exception instanceof ApiException)) {
+            const headers = request.headers;
+            if (headers) {
+              request.headers.authorization = undefined;
+              request.headers.cookie = undefined;
+            }
+      
+            Sentry.captureException(exception, {
+              extra: {
+                ip: request.ip,
+                headers: request.headers,
+                url: request.url,
+                params: request.params,
+                query: request.query,
+                body: request.body,
+                replyHeaders: response.getHeaders(),
+                msg: exception?.message,
+                method: request.method,
+                stack: exception?.stack,
+              },
+            });
+        }
+
 
         // response.header('Content-Type', 'application/json; charset=utf-8');
         // response.status(status).json(result);

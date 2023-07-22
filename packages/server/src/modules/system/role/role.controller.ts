@@ -14,7 +14,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import { RoleService } from './role.service';
+import { RoleService } from './services/role.service';
 import { CreateRoleDto } from './dto/create.role.dto';
 import { UpdateRoleDto } from './dto/update.role.dto';
 import { RoleResDto, RoleListResDto } from './dto/role.res.dto';

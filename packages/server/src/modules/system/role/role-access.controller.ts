@@ -1,7 +1,7 @@
 import { Controller, UseGuards, Get, Param, ParseIntPipe, Body, Patch } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiCreatedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@/common/guards/auth.guard';
-import { RoleAccessService } from './role-access.service';
+import { RoleAccessService } from './services/role-access.service';
 import { RoleAccessResDto } from './dto/role.access.res.dto';
 import { RoleAccessReqDto } from './dto/role.access.req.dto';
 import { AllMenusResDto } from './dto/all.menus.res.dto';

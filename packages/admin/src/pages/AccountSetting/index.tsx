@@ -1,6 +1,5 @@
-import React, { FC, useState, useEffect, useRef, FunctionComponent } from 'react';
-import { Dispatch, ConnectProps, connect, useIntl, useModel } from '@umijs/max';
-import { GridContent } from '@ant-design/pro-components';
+import React, { FC, useState, useEffect, useRef } from 'react';
+import { useIntl, useModel } from '@umijs/max';
 import { Card, Menu, theme } from 'antd';
 import BaseView from './components/base';
 import BindingView from './components/binding';
@@ -9,12 +8,16 @@ import { SecurityView } from './components/security';
 import styles from './style.less';
 import { PageContainer } from '@ant-design/pro-components';
 import { MenuMode } from 'rc-menu/lib/interface';
+import { createStyles } from 'antd-style';
+
+const useStyles = createStyles(({ token, css }) => ({
+}));
 
 const { Item } = Menu;
 
 type AccountSettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
 
-const AccountSettings: React.FC = (props) => {
+const AccountSettingsPage: React.FC = (props) => {
   const main = useRef();
   const intl = useIntl();
   const defaultMenuMap = {
@@ -130,4 +133,4 @@ const AccountSettings: React.FC = (props) => {
   );
 };
 
-export default AccountSettings;
+export default AccountSettingsPage;

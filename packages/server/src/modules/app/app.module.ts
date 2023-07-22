@@ -13,6 +13,9 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { ConfigModule } from '@/config/config.module';
 import { validate } from '@/config/env.validation';
 
+// common single
+import { WinstonModule } from 'nest-winston';
+
 // common
 // import { CustomGlobalPipe } from '@/common/pipes/custom-global.pipe';
 // import { RolesGuard } from '@/common/guards/roles.guard';

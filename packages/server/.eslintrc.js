@@ -15,7 +15,12 @@ module.exports = {
         node: true,
         jest: true,
     },
-    plugins: ['@typescript-eslint', 'jest', 'prettier', 'unused-imports'],
+    plugins: [
+        '@typescript-eslint',
+        'jest',
+        'prettier',
+        'unused-imports',
+    ],
     extends: [
         // typescript 的 eslint 插件
         'plugin:@typescript-eslint/recommended',

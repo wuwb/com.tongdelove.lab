@@ -73,7 +73,7 @@ export class PostController {
                         postTitle: { contains: searchString },
                     },
                     {
-                        postContent: { contains: searchString },
+                        content: { contains: searchString },
                     },
                 ],
             },
@@ -89,7 +89,7 @@ export class PostController {
         this.logger.debug('req.user: ', req.user);
         return this.postService.createPost({
             postAuthor: 0,
-            postContent: data.postContent || '',
+            content: data.content || '',
             postTitle: data.postTitle,
             postExcerpt: data.postExcerpt || '',
             postStatus: data.postStatus,
@@ -110,6 +110,7 @@ export class PostController {
             likesCount: 0,
             postDateGmt: new Date(),
             postModifiedGmt: new Date(),
+            readTime: 0
         }, {
             slug: 'category',
         });
@@ -172,7 +173,7 @@ export class PostController {
             ? {
                 OR: [
                     { postTitle: { contains: searchString } },
-                    { postContent: { contains: searchString } },
+                    { content: { contains: searchString } },
                 ],
             }
             : {};

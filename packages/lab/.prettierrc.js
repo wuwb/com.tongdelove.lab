@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 100,
+  printWidth: 150,
   arrowParens: 'avoid', // always
   semi: true, // 是否使用分号
   singleQuote: true, // 使用单引号代替双引号

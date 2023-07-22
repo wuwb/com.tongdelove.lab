@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { RoleController } from './role.controller';
-import { RoleService } from './role.service';
+import { RoleService } from './services/role.service';
 
 describe('CatsController', () => {
     let roleController: RoleController;

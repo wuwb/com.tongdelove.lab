@@ -55,6 +55,7 @@ module.exports = {
             ref: 'origin/master',
             repo: 'ssh://git@github.com/wuwb/com.tongdelove.lab.git',
             path: '/var/www/dowu',
+            'pre-deploy-local': 'echo "start"',
             'post-setup': 'ls -la',
             'post-deploy': 'pnpm install && pnpm run build && pm2 reload ecosystem.config.js --env production',
         },

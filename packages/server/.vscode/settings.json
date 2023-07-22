@@ -58,7 +58,7 @@
     "workbench.colorCustomizations": {
         "activityBar.activeBorder": "#ff0000",
         "activityBar.activeBackground": "#888888",
-        "activityBar.background": "#ffffff",
+        "activityBar.background": "#444444",
         "activityBar.foreground": "#000000"
     },
     "git.ignoreLimitWarning": true,

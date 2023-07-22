@@ -1,13 +1,15 @@
 datasource db {
     // sqlite, postgresql, mysql, sqlserver, mongodb
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider  = "postgres"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
     // shadowDatabaseUrl
     // referentialIntegrity
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["jsonProtocol"]
     // interactiveTransactions 已经实现，不用 preview
     // previewFeatures = ["interactiveTransactions"]
     // output   = "../../../node_modules/.prisma/client"
@@ -109,8 +111,8 @@ model Carousel {
     country     String    @default("")
     startAt     DateTime  @map(name: "start_at")
     endAt       DateTime  @map(name: "end_at")
-    isAudit     Int       @default(0) @db.Int
-    sort        Int       @default(0) @db.Int // 排序
+    isAudit     Int       @default(0) @db.SmallInt
+    sort        Int       @default(0) @db.SmallInt // 排序
     createdAt   DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
@@ -124,7 +126,7 @@ model Product {
     createdAt     DateTime?    @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt     DateTime     @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted     Boolean      @default(false) @map(name: "is_deleted") // 是否删除
-    deleted       Boolean      @default(false) @db.TinyInt()
+    deleted       Boolean      @default(false)
     slug          String       @db.VarChar(100)
     title         String?      @default("") @db.VarChar(100) // 标题
     subTitle      String       @default("") @map(name: "sub_title") @db.VarChar(100) // 副标题
@@ -132,28 +134,28 @@ model Product {
     brief         String       @db.VarChar(255)
     description   String?      @default("") @db.VarChar(255) // 描述
     code          String       @db.VarChar(63) // 商品编码
-    flag          Int          @db.Int // 二进制打标
+    flag          Int          @db.SmallInt // 二进制打标
     brand_id      String       @default("")
     category_id   String       @default("") // 分类
     custom_id     String // 关联其他自定义系统的数据
     summary       String       @default("") @db.VarChar(255) // 商品简介
     content       String       @db.Text // 商品详情，富文本测试
-    is_on_sale    Int          @default(1) @db.TinyInt // 是否上架
+    is_on_sale    Int          @default(1) @db.SmallInt // 是否上架
     sort          Int          @default(100) @db.SmallInt // 排序
     image         String       @db.VarChar(255) // 主图片
     pic_url       String       @default("") @db.VarChar(255) // 图片，json 格式，可扩展
     share_url     String       @default("") @db.VarChar(255) // 分享链接
-    is_new        Int          @default(0) @db.TinyInt // 是否新品
-    is_hot        Int          @default(0) @db.TinyInt // 是否人气
+    is_new        Int          @default(0) @db.SmallInt // 是否新品
+    is_hot        Int          @default(0) @db.SmallInt // 是否人气
     unit          String       @default("件") @db.VarChar(31) // 单位
     counter_price Decimal      @default(0.0000) @db.Decimal(10, 4) // 专柜价格
     retail_price  Decimal      @default(0.0000) @db.Decimal(10, 4) // 零售价格
     detail        String       @db.Text
     price         Decimal      @db.Decimal(10, 4)
     sku           String       @db.VarChar(100)
-    published     Boolean      @default(false) @db.TinyInt()
+    published     Boolean      @default(false)
     published_at  DateTime     @db.Timestamp(6)
-    biz_type      Int          @db.Int
+    biz_type      Int          @db.SmallInt
     Post          Post?        @relation(fields: [postId], references: [id])
     postId        String?
     Brand         Brand?       @relation(fields: [brandId], references: [id])
@@ -176,16 +178,16 @@ model ProductSnapshot {
 
 model ProductCategory {
     id          String @id @default(cuid())
-    type        Int    @default(0) @db.Int // 类型，默认为 0 是产品分类，1 是文章分类
+    type        Int    @default(0) @db.SmallInt // 类型，默认为 0 是产品分类，1 是文章分类
     title       String @db.VarChar(63)
     keywords    String @default("") @db.VarChar(1023)
     description String @default("") @db.VarChar(255)
-    pid         Int    @db.Int
-    status      Int    @default(1) @db.Int // 状态 1 启用，0禁用
+    pid         Int    @db.SmallInt
+    status      Int    @default(1) @db.SmallInt // 状态 1 启用，0禁用
     icons       String @default("") @db.VarChar(255)
     picture     String @default("") @db.VarChar(255)
     level       String @default("") @db.VarChar(255)
-    sort        Int    @default(50) @db.Int
+    sort        Int    @default(50) @db.SmallInt
 
     @@map(name: "product_category")
 }
@@ -196,9 +198,9 @@ model Collect {
     createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    user_id   Int       @default(0) @db.Int
-    value_id  Int       @default(0) @db.Int
-    type      Int       @default(0) @db.Int
+    user_id   Int       @default(0) @db.SmallInt
+    value_id  Int       @default(0) @db.SmallInt
+    type      Int       @default(0) @db.SmallInt
 
     @@map(name: "collect")
 }
@@ -211,7 +213,7 @@ model ProductImage {
 
 model ProductAttrKey {
     id         String @id @default(cuid())
-    product_id Int    @default(0) @db.Int
+    product_id Int    @default(0) @db.SmallInt
     title      String @db.VarChar(255) // 商品参数名称
 
     @@map("product_attr_key")
@@ -222,9 +224,9 @@ model ProductAttrValue {
     createdAt   DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-    attr_key_id Int       @default(0) @db.Int
-    product_id  Int       @default(0) @db.Int
-    symbol      Int       @db.Int // '属性编码'
+    attr_key_id Int       @default(0) @db.SmallInt
+    product_id  Int       @default(0) @db.SmallInt
+    symbol      Int       @db.SmallInt // '属性编码'
     value       String    @db.VarChar(255) // 商品参数值
 
     @@map(name: "product_attr_value")
@@ -237,7 +239,7 @@ model ProductSku {
     orderDetail      OrderDetail[]
     attr_symbol_path String        @db.VarChar(255)
     price            Decimal       @default(0.0000) @db.Decimal(10, 4)
-    stock            Int           @db.Int
+    stock            Int           @db.SmallInt
 
     @@map(name: "product_sku")
 }
@@ -260,12 +262,12 @@ model ProductSku {
 // 支付信息
 model PayInfo {
     id           String    @id @default(cuid())
-    user_id      Int       @default(0) @db.Int
+    user_id      Int       @default(0) @db.SmallInt
     pay_id       String    @db.VarChar(63) // 微信付款编号
-    pay_status   Int       @default(0) @db.Int // 支付状态，0是未支付，1是已支付
+    pay_status   Int       @default(0) @db.SmallInt // 支付状态，0是未支付，1是已支付
     pay_at       DateTime  @db.Timestamp(6) // 微信付款时间
-    pay_platform Int       @default(0) @db.Int // 订单来源，1 支付宝，2微信
-    pay_type     Int       @default(0) @db.Int // 支付类型，1 在线支付
+    pay_platform Int       @default(0) @db.SmallInt // 订单来源，1 支付宝，2微信
+    pay_type     Int       @default(0) @db.SmallInt // 支付类型，1 在线支付
     createdAt    DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt    DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted    Boolean   @default(false) @map(name: "is_deleted") // 是否删除
@@ -299,11 +301,11 @@ model Order {
     userId           String    @unique @default("") @map(name: "user_id")
     user             User      @relation(fields: [userId], references: [id])
     order_sn         String    @default("") @db.VarChar(63) // 订单编号
-    status           Int       @default(0) @db.Int // 订单状态
+    status           Int       @default(0) @db.SmallInt // 订单状态
     aftersale_status Int       @default(0) @db.SmallInt // 售后状态，0是可申请，1是用户已申请，2是管理员审核通过，3是管理员退款成功，4是管理员审核拒绝，5是用户已取消
     consignee        String    @default("") // 收件人
     phone_id         String    @unique @default("")
-    address_id       Int       @default(0) @db.Int
+    address_id       Int       @default(0) @db.SmallInt
     message          String    @default("") @db.VarChar(512) // 用户订单留言
     product_price    Decimal   @db.Decimal(10, 4) // 总价
     freight_price    Decimal   @db.Decimal(10, 4) // 运费
@@ -374,7 +376,7 @@ model OrderDetail {
     productName  String     @default("") @db.VarChar(255)
     productPic   String     @default("") @db.VarChar(255)
     unitPrice    Decimal    @db.Decimal(10, 4)
-    quantity     Int?       @default(0) @db.Int
+    quantity     Int?       @default(0) @db.SmallInt
     totalPrice   Decimal    @db.Decimal(10, 4)
     createdAt    DateTime?  @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt    DateTime   @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
@@ -391,11 +393,11 @@ model TaobaoOrderRaw {
     payDetail                  String   @default("") @db.VarChar(255) // 付款详情，支付详情
     tradePayable               Decimal  @db.Decimal(10, 2) // 买家应付货款
     postage                    Decimal  @db.Decimal(10, 2) // 买家应付邮费
-    integration                Int      @db.Int // 买家支付积分
+    integration                Int      @db.SmallInt // 买家支付积分
     total                      Decimal  @db.Decimal(10, 2) // 总金额
-    rebateIntegration          Int      @db.Int // 返点积分
+    rebateIntegration          Int      @db.SmallInt // 返点积分
     realTotal                  Decimal  @db.Decimal(10, 2) // 买家实际支付金额
-    realIntegration            Int      @db.Int // 买家实际支付积分
+    realIntegration            Int      @db.SmallInt // 买家实际支付积分
     status                     String   @default("") @db.VarChar(255) // 订单状态
     message                    String   @default("") @db.VarChar(255) // 买家留言
     receiver                   String   @default("") @db.VarChar(255) // 收货人姓名
@@ -407,30 +409,30 @@ model TaobaoOrderRaw {
     orderCreatedAt             DateTime // 订单创建时间
     payAt                      DateTime // 订单付款时间
     goodsTitle                 String   @default("") @db.VarChar(255) // 商品标题
-    goodsType                  Int      @db.Int // 宝贝种类，1是普通商品，2是拍卖商品
+    goodsType                  Int      @db.SmallInt // 宝贝种类，1是普通商品，2是拍卖商品
     deliveryOrder              String   @default("") @db.VarChar(255) // 物流单号
     deliveryCompany            String   @default("") @db.VarChar(255) // 物流公司
     orderNote                  String   @default("") @db.VarChar(255) // 订单备注
-    goodsCount                 Int      @default(0) @db.Int // 宝贝总数
+    goodsCount                 Int      @default(0) @db.SmallInt // 宝贝总数
     shopId                     String   @default("") @db.VarChar(255) // 店铺ID
     shopName                   String   @default("") @db.VarChar(255) // 店铺名称
     closedReason               String   @default("") @db.VarChar(255) // 订单关闭原因
-    sellerSerivce              Int      @default(0) @db.Int // 卖家服务
-    buyerService               Int      @default(0) @db.Int // 买家服务
+    sellerSerivce              Int      @default(0) @db.SmallInt // 卖家服务
+    buyerService               Int      @default(0) @db.SmallInt // 买家服务
     invoiceTitle               String   @default("") @db.VarChar(255) // 发票抬头
     isCellphoneOrder           String   @default("") @db.VarChar(255) // 是否手机订单
     stagingOrderInfo           String   @default("") @db.VarChar(255) // 分阶段订单信息
-    privilegeDownPaymentOderId Int      @default(0) @db.Int // 特权订金订单ID
-    isUploadContractPicture    Int      @default(0) @db.Int // 是否上传合同图片
-    isUploadInvoicePicture     Int      @default(0) @db.Int // 是否上传小票
-    isPayForAnother            Int      @default(0) @db.Int // 是否代付
-    downPaymentRank            Int      @default(0) @db.Int // 订金排名
+    privilegeDownPaymentOderId Int      @default(0) @db.SmallInt // 特权订金订单ID
+    isUploadContractPicture    Int      @default(0) @db.SmallInt // 是否上传合同图片
+    isUploadInvoicePicture     Int      @default(0) @db.SmallInt // 是否上传小票
+    isPayForAnother            Int      @default(0) @db.SmallInt // 是否代付
+    downPaymentRank            Int      @default(0) @db.SmallInt // 订金排名
     modifiedSku                String   @default("") // 修改后的 sku
     modifiedAddress            String   @default("") // 修改后的收货地址
     exceptionMessage           String   @default("") // 异常信息
-    tmallCouponDeduction       Int      @default(0) @db.Int // 天猫卡券抵扣
-    integrationDeduction       Int      @default(0) @db.Int // 积分宝抵扣
-    isO2OOrder                 Int      @default(0) @db.Int // 是否 O2O 交易
+    tmallCouponDeduction       Int      @default(0) @db.SmallInt // 天猫卡券抵扣
+    integrationDeduction       Int      @default(0) @db.SmallInt // 积分宝抵扣
+    isO2OOrder                 Int      @default(0) @db.SmallInt // 是否 O2O 交易
     newRetailTradeType         String   @default("") @db.VarChar(255) // 新零售交易类型，电商订单
     newRetailGuideShopName     String   @default("") @db.VarChar(255) // 新零售导购店名
     newRetailGuideShopId       String   @default("") @db.VarChar(255) // 新零售导购店ID
@@ -441,17 +443,17 @@ model TaobaoOrderRaw {
     confirmReceiptAt           DateTime // 确认收货时间
     remitNum                   Decimal  @db.Decimal(10, 2) // 打款商家金额
     personalRedEnvelope        String   @default("") @db.VarChar(255) // 含应开票给个人的个人红包
-    isCreditBuy                Int      @default(0) @db.Int // 是否是信用购
+    isCreditBuy                Int      @default(0) @db.SmallInt // 是否是信用购
     experienceEndAt            DateTime // 体验期结束时间
     topNGift                   String   @default("") @db.VarChar(255) // 前 N 有礼
     deliveryType               String   @default("") @db.VarChar(255) // 配送类型
     liveCashbackStatus         String   @default("") @db.VarChar(255) // 直播返现状态
-    cashbackAmount             Int      @default(0) @db.Int // 返现金额
-    slowDeliveryCompensate     Int      @default(0) @db.Int // 延迟发货自动赔付金额
+    cashbackAmount             Int      @default(0) @db.SmallInt // 返现金额
+    slowDeliveryCompensate     Int      @default(0) @db.SmallInt // 延迟发货自动赔付金额
     newRetailDealShopName      String   @default("") // 新零售成交门店昵称
     newRetailDealShopId        String   @default("") // 新零售成交门店ID
     newRetailDealDealerId      String   @default("") // 新零售成交经销商ID
-    isPresell                  Int      @default(0) @db.Int // 是否预售
+    isPresell                  Int      @default(0) @db.SmallInt // 是否预售
     deliveryAt                 DateTime // 发货时间
     comment                    String   @default("") @db.VarChar(255) // 商家备忘
     masterOrderId              String   @default("") @db.VarChar(255) // 主订单编号
@@ -474,7 +476,7 @@ model Brand {
     counter_views Int?      @default(0)
     products      Product[] // 产品
     status        String    @default("")
-    sort          Int       @default(50) @db.Int
+    sort          Int       @default(50) @db.SmallInt
     floor_price   Decimal   @default(0.0000) @db.Decimal(10, 4)
 
     @@map(name: "brand")
@@ -500,7 +502,7 @@ model Address {
     postcode    String    @db.VarChar(6) // 邮政邮编
     zip         Int?
     mobile      String    @db.VarChar(20) // 电话
-    isDefault   Int       @default(0) @map(name: "is_default") @db.TinyInt // 是否默认地址
+    isDefault   Boolean   @default(false) @map(name: "is_default") // 是否默认地址
     customer    Customer  @relation(fields: [customerId], references: [id])
     customerId  String    @map(name: "customer_id")
     telephoneId String    @unique @default("")
@@ -521,7 +523,7 @@ model Cart {
     price          Decimal @default(0.0000) @db.Decimal(10, 4) // 商品价格
     number         Int     @default(0) @db.SmallInt // 商品数量
     specifications String  @db.VarChar(1023)
-    checked        Int     @default(1) @db.TinyInt // 是否选中
+    isChecked      Boolean @default(true) @map(name: "is_checked") // 是否选中
     pictures       String  @db.VarChar(255)
 
     @@map(name: "cart")
@@ -581,7 +583,7 @@ model Ad {
     content   String    @default("") @db.VarChar(255)
     start_at  DateTime  @db.Timestamp(6) // 开始时间
     end_at    DateTime  @db.Timestamp(6) // 结束时间
-    enabled   Int       @default(0) @db.TinyInt // 是否启动
+    enabled   Boolean   @default(false) // 是否启动
 
     @@map(name: "ad")
 }
@@ -598,10 +600,10 @@ model Page {
 
 model Post {
     id                  String    @id @default(cuid())
-    postAuthor          Int       @default(0) @map(name: "post_author") @db.Int
-    postDate            DateTime  @default(now()) @map(name: "post_date") @db.DateTime(0)
-    postDateGmt         DateTime  @map(name: "post_date_gmt") @db.DateTime(0)
-    postContent         String?   @map(name: "post_content") @db.Text
+    postAuthor          Int       @default(0) @map(name: "post_author") @db.SmallInt
+    postDate            DateTime  @default(now()) @map(name: "post_date")
+    postDateGmt         DateTime  @map(name: "post_date_gmt")
+    content             String?   @map(name: "content") @db.Text
     postTitle           String    @map(name: "post_title") @db.Text
     postExcerpt         String?   @default("") @map(name: "post_excerpt") @db.VarChar(255) // summary
     postStatus          String    @default("") @map(name: "post_status") @db.VarChar(255) // 文章状态，publish，draft
@@ -611,28 +613,58 @@ model Post {
     postName            String    @unique @default("") @map(name: "post_name") @db.VarChar(200) // slug
     toPing              String    @default("") @map(name: "to_ping") @db.VarChar(255)
     pinged              String    @default("") @map(name: "pinged") @db.VarChar(255)
-    postModified        DateTime  @updatedAt @map(name: "post_modified") @db.DateTime(0)
-    postModifiedGmt     DateTime  @map(name: "post_modified_gmt") @db.DateTime(0)
-    postContentFiltered Int       @map(name: "post_content_filtered") @db.Int
-    postParent          Int       @map(name: "post_parent") @db.Int
+    postModified        DateTime  @updatedAt @map(name: "post_modified")
+    postModifiedGmt     DateTime  @map(name: "post_modified_gmt")
+    postContentFiltered Int       @map(name: "post_content_filtered") @db.SmallInt
+    postParent          Int       @map(name: "post_parent") @db.SmallInt
     guid                String    @default("") @db.VarChar(255)
-    menuOrder           Int       @map(name: "menu_order") @db.Int
+    menuOrder           Int       @map(name: "menu_order") @db.SmallInt
     postType            String    @default("") @map(name: "post_type") @db.VarChar(255)
     postMimeType        String    @default("") @map(name: "post_mime_type") @db.VarChar(255)
-    commentCount        Int       @map(name: "comment_count") @db.Int
-    viewCount           Int       @default(0) @map(name: "view_count") @db.Int
-    likesCount          Int       @map(name: "likes_count") @db.Int
-    user                User      @relation(fields: [userId], references: [id])
+    commentCount        Int       @map(name: "comment_count") @db.SmallInt
+    viewCount           Int       @default(0) @map(name: "view_count") @db.SmallInt
+    likesCount          Int       @map(name: "likes_count") @db.SmallInt
+    user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId              String    @default("")
     createdAt           DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt           DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted           Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     Product             Product[]
+    readTime            Int?
 
     @@index([postType, postStatus, postDate, id])
     @@index([postParent])
     @@index([postAuthor])
     @@map(name: "post")
+}
+
+model Notification {
+    id          String    @id
+    createdAt   DateTime  @default(now())
+    senderId    String
+    deletedAt   DateTime?
+    entityId    String?
+    entityType  String
+    metaData    Json?
+    readAt      DateTime?
+    recipientId String
+}
+
+model CreditTransaction {
+    id                String              @id @default(nanoid())
+    createdAt         DateTime            @default(now())
+    userId            String
+    amount            Float
+    type              TransactionType
+    status            TransactionStatus   @default(SUCCESS)
+    User              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+    StripeTransaction StripeTransaction[]
+}
+
+model StripeTransaction {
+    sessionId         String            @id
+    transactionId     String
+    CreditTransaction CreditTransaction @relation(fields: [transactionId], references: [id])
 }
 
 model PostAuthor {
@@ -674,15 +706,15 @@ model Comment {
     commentAuthorIp    String        @default("") @map(name: "comment_author_ip") @db.VarChar(255)
     commentDate        DateTime      @map(name: "comment_date") @db.Timestamp(6)
     commentDateGmt     DateTime      @map(name: "comment_date_gmt") @db.Timestamp(6)
-    commentkarma       Int           @map(name: "comment_karma") @db.Int
-    commentApproved    Int           @map(name: "comment_approved") @db.Int
+    commentkarma       Int           @map(name: "comment_karma") @db.SmallInt
+    commentApproved    Int           @map(name: "comment_approved") @db.SmallInt
     commentAgent       String        @default("") @map(name: "comment_agent") @db.VarChar(255)
     commentType        String        @default("") @map(name: "comment_type") @db.VarChar(255) // comment, pingback, trackback
-    commentParent      Int           @map(name: "comment_parent") @db.Int
+    commentParent      Int           @map(name: "comment_parent") @db.SmallInt
     userId             String        @unique @default("") @map(name: "user_id")
-    type               Int           @default(0) @db.Int // 评论类型，如果type=0，则是商品评论；如果是type=1，则是专题评论；
+    type               Int           @default(0) @db.SmallInt // 评论类型，如果type=0，则是商品评论；如果是type=1，则是专题评论；
     replay             String        @default("") @db.VarChar(511) // 回复信息
-    hasPicture         Int           @default(0) @map(name: "has_picture") @db.Int // 是否有图片
+    hasPicture         Int           @default(0) @map(name: "has_picture") @db.SmallInt // 是否有图片
     picUrls            String        @default("") @map(name: "picUrls") @db.VarChar(1023) // 图片地址列表，采用JSON数组格式
     star               Int           @default(0) @db.SmallInt
     valueId            String        @unique @default("") @map(name: "value_id")
@@ -731,9 +763,9 @@ model Keyword {
     id        String    @id @default(cuid())
     keyword   String    @default("") @db.VarChar(127)
     url       String    @default("") @db.VarChar(255)
-    isHot     Int       @db.TinyInt
-    isDefault Int       @db.TinyInt
-    sortOrder Int       @db.TinyInt
+    isHot     Int
+    isDefault Int
+    sortOrder Int
     createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDelete  Boolean   @default(false) @map(name: "is_delete")
@@ -746,7 +778,7 @@ model Storage {
     key       String   @default("") @db.VarChar(63)
     name      String   @default("") @db.VarChar(255)
     type      String   @default("") @db.VarChar(20)
-    size      Int      @db.Int
+    size      Int      @db.SmallInt
     url       String   @default("") @db.VarChar(255)
     createdAt DateTime @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt DateTime @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
@@ -771,8 +803,8 @@ model Region {
     id   String @id @default(cuid())
     pid  String @default("")
     name String @default("") @db.VarChar(120)
-    type Int    @db.TinyInt
-    code Int    @db.Int
+    type Int
+    code Int    @db.SmallInt
 }
 
 // ----------------------------------------------
@@ -798,7 +830,7 @@ model Access {
     updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     moduleName  String?   @map("module_name") @db.VarChar(50) // 模块名称
-    type        Int?      @db.TinyInt // 类型,1:表示模块,2:表示菜单,3:表示接口(API)
+    type        Int? // 类型,1:表示模块,2:表示菜单,3:表示接口(API)
     actionName  String?   @map("action_name") @db.VarChar(100) // 操作名称
     apiName     String?   @map("api_name") @db.VarChar(100) // 接口名称
     icon        String?   @db.VarChar(100) // 小图标
@@ -806,7 +838,7 @@ model Access {
     method      String?   @db.VarChar(10) // 请求方式
     parentId    String    @map("parent_id") // 父模块id
     sort        Int       @default(1) // 排序
-    status      Int?      @default(1) @db.TinyInt // 状态,0表示禁止,1表示正常
+    status      Int?      @default(1) // 状态,0表示禁止,1表示正常
     description String?   @db.VarChar(100) // 描述
 
     @@unique([actionName, isDeleted], map: "action_name_delete_at")
@@ -884,16 +916,16 @@ model Category {
     updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     title       String    @default("") @db.VarChar(255) // 类目名称
-    type        Int       @default(0) @db.TinyInt // 类目类型，0:表示普通类目，1:表示系统类目
+    type        Int       @default(0) // 类目类型，0:表示普通类目，1:表示系统类目
     status      String    @default("")
     description String    @default("") @db.VarChar(255) // 类目广告语介绍
     slug        String    @db.VarChar(255)
     keywords    String    @default("") @db.VarChar(1023) // 类目关键字，以JSON数组格式
-    pid         Int       @default(0) @db.Int
+    pid         Int       @default(0) @db.SmallInt
     icon_url    String    @default("") @db.VarChar(255) // 类目图标
     pic_url     String    @default("") @db.VarChar(255) // 类目图片
     level       String    @default("L1") @db.VarChar(255) // 类目级别
-    sort        Int       @default(50) @db.TinyInt
+    sort        Int       @default(50)
     Article     Article?  @relation(fields: [articleId], references: [id])
     articleId   String?
     Website     Website[]
@@ -906,18 +938,18 @@ model Company {
     name              String   @default("") @db.VarChar(255) // 中文名
     enName            String   @default("") @map(name: "en_name") @db.VarChar(255) // 英文名
     formerName        String   @default("") @map(name: "former_name") @db.VarChar(255) // 曾用名
-    type              Int      @default(0) @db.Int // 类型，1为供应商，
+    type              Int      @default(0) @db.SmallInt // 类型，1为供应商，
     registryAt        DateTime @default(now()) @map(name: "registry_at") // 注册时间
     registryAddress   String   @default("") @map(name: "registry_address") @db.VarChar(255) // 注册地址
     identifier        String   @default("") @db.VarChar(255) // 注册编号
     legalEntity       String   @default("") @map(name: "legal_entity") @db.VarChar(255) // 法人实体
-    property          Int      @default(0) @db.Int
-    chairman          Int      @default(0) @db.Int // 主席
+    property          Int      @default(0) @db.SmallInt
+    chairman          Int      @default(0) @db.SmallInt // 主席
     location          String   @default("") @db.VarChar(255) // 地址
     address           String   @default("") @db.VarChar(255) // 地址
-    hasBranch         Int      @default(0) @map(name: "has_branch") @db.TinyInt // 是否有分支机构
-    staffSize         Int      @default(1) @map(name: "staff_size") @db.Int // 员工数量
-    registeredCapital Int      @default(0) @map(name: "registered_capital") @db.Int // 注册资本
+    hasBranch         Int      @default(0) @map(name: "has_branch") // 是否有分支机构
+    staffSize         Int      @default(1) @map(name: "staff_size") @db.SmallInt // 员工数量
+    registeredCapital Int      @default(0) @map(name: "registered_capital") @db.SmallInt // 注册资本
     website           String   @unique @default("") @db.VarChar(255) // 网站
     email             String   @unique @default("") @db.VarChar(255) // 邮箱
     classificationId  String   @map(name: "classification_id") // 分类 id
@@ -958,13 +990,13 @@ model Organization {
     location                 String    @default("") @db.VarChar(255)
     email                    String    @unique @default("") @db.VarChar(255)
     twitterUsername          String    @default("") @map(name: "twitter_username") @db.VarChar(255)
-    isVerified               Int       @map(name: "is_verified") @db.TinyInt
-    hasOrganization_projects Int       @map(name: "has_organization_projects") @db.TinyInt
-    hasRepository_projects   Int       @map(name: "has_repository_projects") @db.TinyInt
-    publicRepos              Int       @map(name: "public_repos") @db.Int
-    publicGists              Int       @map(name: "public_gists") @db.Int
-    followers                Int       @map(name: "followers") @db.Int
-    following                Int       @map(name: "following") @db.Int
+    isVerified               Int       @map(name: "is_verified")
+    hasOrganization_projects Int       @map(name: "has_organization_projects")
+    hasRepository_projects   Int       @map(name: "has_repository_projects")
+    publicRepos              Int       @map(name: "public_repos") @db.SmallInt
+    publicGists              Int       @map(name: "public_gists") @db.SmallInt
+    followers                Int       @map(name: "followers") @db.SmallInt
+    following                Int       @map(name: "following") @db.SmallInt
     htmlUrl                  String    @map(name: "html_url") @db.VarChar(255)
     type                     String    @db.VarChar(255)
     createdAt                DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
@@ -984,11 +1016,11 @@ model Role {
     scope             Int         @default(1) // '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限 5：仅本人数据权限）',
     menuCheckStrictly Boolean     @default(true) @map(name: "menu_check_strictly") // 菜单树选择项是否关联显示
     deptCheckStrictly Boolean     @default(true) @map(name: "dept_check_strictly")
-    status            Int?        @default(1) @db.TinyInt // 状态1表示正常,0表示不正常
+    status            Int?        @default(1) // 状态1表示正常,0表示不正常
     delFlag           Int         @default(0) @map(name: "del_flag") // 删除标志（0代表存在 2代表删除）
     depts             Dept[]
     menus             Menu[]
-    isDefault         Int?        @default(0) @map(name: "is_default") @db.TinyInt // 针对后期提供注册用,1表示默认角色,0表示非默认角色
+    isDefault         Int?        @default(0) @map(name: "is_default") // 针对后期提供注册用,1表示默认角色,0表示非默认角色
     users             User[]
     createdAt         DateTime?   @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt         DateTime    @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
@@ -1023,7 +1055,7 @@ model RoleAccess {
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     roleId    String    @map(name: "role_id")
     accessId  String    @map(name: "access_id")
-    type      Int       @db.TinyInt // 资源类型:2:表示菜单,3:表示接口(API)
+    type      Int // 资源类型:2:表示菜单,3:表示接口(API)
 
     @@unique([roleId, accessId, type, isDeleted], map: "role_access_type_deleted")
     @@map(name: "role_access")
@@ -1052,68 +1084,86 @@ model Profile {
     @@map(name: "profile")
 }
 
+enum UserLanguageCode {
+    en
+    zh
+    all
+}
+
 model User {
-    id              String            @id @default(cuid())
-    name            String?
-    email           String?           @unique @map(name: "user_email") @db.VarChar(50) // 邮箱
-    emailVerified   DateTime?         @map(name: "email_verified")
-    image           String?
-    accounts        Account[]
-    sessions        Session[]
-    username        String            @unique @db.VarChar(50) // 用户名
-    gender          Int               @default(0)
-    birthday        DateTime?
-    last_login_time DateTime?
-    last_login_ip   String            @default("")
-    level           Int               @default(0) // 用户等级
+    id                String              @id @default(cuid())
+    name              String
+    email             String?             @unique @map(name: "user_email") @db.VarChar(50) // 邮箱
+    emailVerified     DateTime?           @map(name: "email_verified")
+    about             String?             @default("")
+    interests         String?             @default("")
+    isPublic          Boolean             @default(true)
+    tagline           String?             @default("")
+    location          String?             @default("")
+    subscription      String?             @default("free")
+    credit            Float               @default(0)
+    subscriptionStart DateTime?
+    stripeCustomerId  String?             @default("")
+    subscriptionId    String?             @default("")
+    language          UserLanguageCode?
+    image             String              @default("")
+    accounts          Account[]
+    sessions          Session[]
+    username          String              @unique @db.VarChar(50) // 用户名
+    gender            Int                 @default(0)
+    birthday          DateTime?
+    last_login_time   DateTime?
+    last_login_ip     String              @default("")
+    level             Int                 @default(0) // 用户等级
     // 用户名
-    login           String            @unique @map(name: "user_login") @db.VarChar(60) // 用户名
-    pass            String            @map(name: "user_pass") @db.VarChar(100) // 密码
-    password        String            @default("") @db.VarChar(100) // 添加到 LocalAuth 表中
+    login             String              @unique @map(name: "user_login") @db.VarChar(60) // 用户名
+    pass              String              @map(name: "user_pass") @db.VarChar(100) // 密码
+    password          String              @default("") @db.VarChar(100) // 添加到 LocalAuth 表中
     // 名称
     // 自动生成一个内部 id，比如京东的  JD_JDLKFJSDLFJ
-    nicename        String            @unique @default("") @map(name: "user_nicename") @db.VarChar(50) // 昵称
-    url             String            @default("") @map(name: "user_url") @db.VarChar(100) // 网址
-    registered      DateTime          @default(now()) @map(name: "user_registered") @db.DateTime(0) // 注册时间
+    nicename          String              @unique @default("") @map(name: "user_nicename") @db.VarChar(50) // 昵称
+    url               String              @default("") @map(name: "user_url") @db.VarChar(100) // 网址
+    registered        DateTime            @default(now()) @map(name: "user_registered") // 注册时间
     // 通过代码保证唯一性
-    activationKey   String            @map(name: "user_activation_key") @db.VarChar(255) // 激活码
-    status          Int               @default(0) @map(name: "user_status") @db.Int() // 状态
-    displayName     String            @default("") @map(name: "display_ame") @db.VarChar(250) // 显示名称
-    resetKey        String?           @map(name: "user_reset_key") @db.VarChar(255) // 重置密码
+    activationKey     String              @map(name: "user_activation_key") @db.VarChar(255) // 激活码
+    status            Int                 @default(0) @map(name: "user_status") @db.SmallInt() // 状态
+    displayName       String              @default("") @map(name: "display_ame") @db.VarChar(250) // 显示名称
+    resetKey          String?             @map(name: "user_reset_key") @db.VarChar(255) // 重置密码
     // 通过代码保证唯一性
-    phone           String?           @default("") @map(name: "user_phone") @db.VarChar(11) // 手机号
-    spam            Int               @default(0) @db.TinyInt // 是否是垃圾用户
-    firstName       String?           @default("") @map(name: "first_name") @db.VarChar(255) // 名
-    lastName        String?           @default("") @map(name: "last_name") @db.VarChar(255) // 姓
-    age             Int?              @db.Int // 年龄
-    platform        Int?              @default(0) @db.TinyInt // 平台
-    isSuper         Int               @default(0) @map(name: "is_super") @db.TinyInt // 是否是超级管理员
-    avatar          String            @default("") @db.VarChar(255) // 头像
-    isDeleted       Boolean           @default(false) @map(name: "is_deleted") // 是否删除
-    createdAt       DateTime?         @default(now()) @map(name: "created_at") @db.Timestamp(6) // 创建时间
-    updatedAt       DateTime          @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6) // 更新时间
-    roles           Role[]
-    website         Website[]
-    dept            Dept?             @relation(fields: [deptId], references: [id])
-    deptId          String?
-    post            Post[]
-    order           Order[]
-    payMehod        PayMehod[]
+    phone             String?             @default("") @map(name: "user_phone") @db.VarChar(11) // 手机号
+    spam              Int                 @default(0) // 是否是垃圾用户
+    firstName         String?             @default("") @map(name: "first_name") @db.VarChar(255) // 名
+    lastName          String?             @default("") @map(name: "last_name") @db.VarChar(255) // 姓
+    age               Int?                @db.SmallInt // 年龄
+    platform          Int?                @default(0) // 平台
+    isSuper           Int                 @default(0) @map(name: "is_super") // 是否是超级管理员
+    avatar            String              @default("") @db.VarChar(255) // 头像
+    isDeleted         Boolean             @default(false) @map(name: "is_deleted") // 是否删除
+    createdAt         DateTime?           @default(now()) @map(name: "created_at") @db.Timestamp(6) // 创建时间
+    updatedAt         DateTime            @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6) // 更新时间
+    roles             Role[]
+    website           Website[]
+    dept              Dept?               @relation(fields: [deptId], references: [id])
+    deptId            String?
+    post              Post[]
+    order             Order[]
+    payMehod          PayMehod[]
     // 电话号码，一个用户可以有多个电话号码，一个用户只能绑定一个电话号码
-    telephone       Telephone? // User -> Telephone 1-1
-    weixin_openid   String            @default("")
-    session_key     String            @default("")
-    cart            Cart[]
-    book            Book[]
-    bookChapter     BookChapter[]
-    bookStar        BookStar[]
-    handbook        HandBook[]
-    handbookChapter HandBookChapter[]
-    article         Article[]
-    comment         Comment?
+    telephone         Telephone? // User -> Telephone 1-1
+    weixin_openid     String              @default("")
+    session_key       String              @default("")
+    cart              Cart[]
+    book              Book[]
+    bookChapter       BookChapter[]
+    bookStar          BookStar[]
+    handbook          HandBook[]
+    handbookChapter   HandBookChapter[]
+    article           Article[]
+    comment           Comment[]
+    CreditTransaction CreditTransaction[]
 
     @@index([login, phone, email])
-    @@map(name: "users")
+    @@map(name: "user")
 }
 
 model LocalAuth {
@@ -1177,7 +1227,7 @@ model Client {
     alipay    String    @default("") @map(name: "alipay") @db.VarChar(255)
     contact   String    @default("") @map(name: "contact") @db.VarChar(255)
     phone     String    @default("") @map(name: "phone") @db.VarChar(255)
-    lastOrder DateTime? @map(name: "last_order") @db.DateTime(0)
+    lastOrder DateTime? @map(name: "last_order")
 
     @@map(name: "client")
 }
@@ -1205,7 +1255,7 @@ model VerificationToken {
 model Options {
     id       String @id @default(cuid())
     name     String @map(name: "option_name") @db.VarChar(191)
-    value    String @map(name: "option_value") @db.LongText
+    value    String @map(name: "option_value")
     autoload String @map(name: "user_login") @db.VarChar(20)
 
     @@map(name: "options")
@@ -1224,17 +1274,17 @@ model Coupon {
     type        Int       @db.SmallInt // 类型
     limit       Int       @default(1) @db.SmallInt // 用户领券限制数量，如果是0，则是不限制；默认是1，限领一张
     min         Decimal   @db.Decimal(10, 4) // 最少消费金额才能使用优惠券
-    condition   Int       @db.Int // 使用条件
+    condition   Int       @db.SmallInt // 使用条件
     goodsType   Int       @default(0) @map(name: "goods_type") @db.SmallInt // 商品限制类型，如果0则全商品，如果是1则是类目限制，如果是2则是商品限制
     goodsValue  String    @default("") @map(name: "goods_value") @db.VarChar(1023)
-    total       Int       @default(0) @db.Int // 数量，0 表示无限
-    usedCount   Int       @map(name: "userd_count") @db.Int // 使用数量 
+    total       Int       @default(0) @db.SmallInt // 数量，0 表示无限
+    usedCount   Int       @map(name: "userd_count") @db.SmallInt // 使用数量 
     timeType    Int       @default(0) @map(name: "time_type") @db.SmallInt // 有效时间限制，如果是0，则基于领取时间的有效天数days；如果是1，则start_time和end_time是优惠券有效期
     status      Int       @default(0) @db.SmallInt // 优惠券状态，如果是0则是正常可用；如果是1则是过期; 如果是2则是下架
-    expiration  DateTime  @db.DateTime(0)
+    expiration  DateTime
     days        Int       @default(0) @db.SmallInt // 优惠券有效期天数
-    startAt     DateTime  @map(name: "start_at") @db.DateTime(0)
-    endAt       DateTime  @map(name: "end_at") @db.DateTime(0)
+    startAt     DateTime  @map(name: "start_at")
+    endAt       DateTime  @map(name: "end_at")
     tag         String    @default("") @db.VarChar(63)
 
     @@map(name: "coupon")
@@ -1249,10 +1299,10 @@ model CouponUsed {
     couponId  String    @unique @default("") @map(name: "coupon_id") @db.VarChar(255) // 优惠券 ID
     userId    String    @unique @default("") @map(name: "user_id") @db.VarChar(255) // 用户 ID
     orderId   String    @unique @default("") @map(name: "order_id") @db.VarChar(255) // 订单 ID
-    usedAt    DateTime  @map(name: "used_at") @db.DateTime(0) // 使用时间
+    usedAt    DateTime  @map(name: "used_at") // 使用时间
     status    Int       @default(0) @db.SmallInt // 使用状态, 如果是0则未使用；如果是1则已使用；如果是2则已过期；如果是3则已经下架
-    startAt   DateTime  @map(name: "start_at") @db.DateTime(0) // 有效期开始时间
-    endAt     DateTime  @map(name: "end_at") @db.DateTime(0) // 有效期截至时间
+    startAt   DateTime  @map(name: "start_at") // 有效期开始时间
+    endAt     DateTime  @map(name: "end_at") // 有效期截至时间
 
     @@map(name: "coupon_used")
 }
@@ -1268,7 +1318,7 @@ model Groupon {
     userId        String    @unique @default("") @map(name: "user_id") // 用户ID
     shareUrl      String    @default("") @map(name: "share_url") @db.VarChar(255) // 团购分享图片地址
     creatorUserId String    @unique @default("") @map(name: "creator_user_id") // 创建团购的用户ID
-    creatorUserAt DateTime  @map(name: "creator_user_at") @db.DateTime // 创建团购的时间
+    creatorUserAt DateTime  @map(name: "creator_user_at") // 创建团购的时间
     status        Int       @default(0) @db.SmallInt // 团购活动状态，开团未支付则0，开团中则1，开团失败则2
 
     @@map(name: "groupon")
@@ -1280,8 +1330,8 @@ model GrouponRules {
     goodsName      String   @default("") @map(name: "goods_name") @db.VarChar(127) // 商品名称
     picUrl         String   @default("") @map(name: "pic_url") @db.VarChar(255)
     discount       Decimal  @db.Decimal(63, 0) // 优惠金额
-    discountMember Int      @map(name: "discount_member") @db.Int // 达到优惠条件的人数
-    expireAt       DateTime @map(name: "expire_at") @db.DateTime(0) // 团购过期时间
+    discountMember Int      @map(name: "discount_member") @db.SmallInt // 达到优惠条件的人数
+    expireAt       DateTime @map(name: "expire_at") // 团购过期时间
     status         Int      @default(0) @db.SmallInt // 团购规则状态，正常上线则0，到期自动下线则1，管理手动下线则2
 
     @@map(name: "groupon_rules")
@@ -1300,8 +1350,8 @@ model Feedback {
     telephone   Telephone @relation(fields: [telephoneId], references: [id])
     mobile      String    @default("") @db.VarChar(20) // 手机号
     content     String    @default("") @db.VarChar(1023) // 反馈内容
-    status      Int       @default(0) @db.Int // 状态，0表示未处理，1表示已处理
-    hasPicture  Int       @default(0) @map(name: "has_picture") @db.TinyInt // 是否有图片
+    status      Int       @default(0) @db.SmallInt // 状态，0表示未处理，1表示已处理
+    hasPicture  Int       @default(0) @map(name: "has_picture") // 是否有图片
     picUtls     String    @default("") @map(name: "pic_utls") @db.VarChar(1023) // 图片地址列表，采用JSON数组格式
 
     @@map(name: "feedback")
@@ -1327,7 +1377,7 @@ model Collection {
     isDeleted Boolean  @default(false) @map(name: "is_deleted") // 是否删除
     userId    String   @default("") @map(name: "user_id") // 用户 id
     valueId   String   @default("") @map(name: "value_id") // 值
-    type      Int      @default(0) @db.Int // 类型
+    type      Int      @default(0) @db.SmallInt // 类型
     article   Article? @relation(fields: [articleId], references: [id])
     articleId String?  @map(name: "article_id")
 
@@ -1363,9 +1413,9 @@ model ProductKeyword {
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
     keyword   String    @default("") @db.VarChar(255) // 关键词
     url       String    @default("") @db.VarChar(255) // 关键词对应的url
-    isHot     Int       @default(0) @map(name: "is_hot") @db.Int // 是否热门
-    isDefault Int       @default(0) @map(name: "is_default") @db.Int // 是否默认
-    sort      Int       @default(0) @db.Int // 排序
+    isHot     Int       @default(0) @map(name: "is_hot") @db.SmallInt // 是否热门
+    isDefault Int       @default(0) @map(name: "is_default") @db.SmallInt // 是否默认
+    sort      Int       @default(0) @db.SmallInt // 排序
 
     @@map(name: "product_keyword")
 }
@@ -1385,12 +1435,12 @@ model Log {
     isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
 
     module        String // 操作模块
-    type          Int      @db.Int // 操作分类
+    type          Int      @db.SmallInt // 操作分类
     name          String   @default("") @db.VarChar(45) // 操作名称
     // 操作内容，记录整个操作的明细
     // 例如说，修改编号为 1 的用户信息，将性别从男改成女，将姓名从。
     content       String   @db.VarChar(255)
-    status        Int      @db.TinyInt // 操作状态
+    status        Int // 操作状态
     result        String   @default("") @db.VarChar(127) // 操作结果，或者成功消息，或者失败消息
     // 拓展字段，有些复杂的业务，需要记录一些字段
     // 例如说，记录订单编号，则可以添加 key 为 "orderId"，value 为订单编号
@@ -1450,7 +1500,7 @@ model NoticeAdmin {
     noticeId    String    @unique @default("") @map(name: "notice_id") // 通知ID
     noticeTitle String    @default("") @map(name: "notice_title") @db.VarChar(63) // 通知标题
     adminId     String    @default("") @map(name: "admin_id") // 接收通知的管理员ID
-    readAt      DateTime  @map(name: "read_at") @db.DateTime(0) // 阅读时间
+    readAt      DateTime  @map(name: "read_at") // 阅读时间
 
     @@map(name: "notice_admin")
 }
@@ -1461,39 +1511,39 @@ model SelfHeatingBO {
     createdAt            DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt            DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
     innerCode            String    @unique @map(name: "inner_code") @db.VarChar(255) // 内部编码
-    type                 Int       @db.Int // 类型，1表示长方形，2表示正方形，3表示圆形，4表示其他
+    type                 Int       @db.SmallInt // 类型，1表示长方形，2表示正方形，3表示圆形，4表示其他
     code                 String    @db.VarChar(255) // 外部编码
-    outBoxType           Int       @map(name: "out_box_type") @db.Int // 外盒类型
-    innerBoxType         Int       @map(name: "inner_box_type") @db.Int // 内盒类型,1 通各自，2分隔，3...
-    materialType         Int       @map(name: "material_type") @db.Int // 材质类型, 1 塑料，2 铝箔
-    color                Int       @db.Int // 颜色 1 红色 2 红白 3 橙色 4 黑色
-    outBoxCapacity       Int       @map(name: "out_box_capacity") @db.Int // 外盒容量
-    innerBoxCapacity     Int       @map(name: "inner_box_capacity") @db.Int // 内盒容量
-    innerBoxCapacityLine Int       @map(name: "inner_box_capacity_line") @db.Int // 内盒容量
-    innerBoxCapacity2    Int       @map(name: "inner_box_capacity2") @db.Int // 内盒容量
-    innerBoxCapacity3    Int       @map(name: "inner_box_capacity3") @db.Int // 内盒容量
-    innerBoxCapacity4    Int       @map(name: "inner_box_capacity4") @db.Int // 内盒容量
-    outBoxSize           Int       @map(name: "out_box_size") @db.Int // 外盒尺寸
-    innerBoxSize         Int       @map(name: "inner_box_size") @db.Int // 内盒尺寸
-    outBoxSizeX          Int       @map(name: "out_box_size_x") @db.Int // 外盒尺寸x
-    innerBoxSizeX        Int       @map(name: "inner_box_size_x") @db.Int // 内盒尺寸x
-    outBoxSizeY          Int       @map(name: "out_box_size_y") @db.Int // 外盒尺寸y
-    innerBoxSizeY        Int       @map(name: "inner_box_size_y") @db.Int // 内盒尺寸y
-    outBoxSizeZ          Int       @map(name: "out_box_size_z") @db.Int // 外盒尺寸z
-    innerBoxSizeZ        Int       @map(name: "inner_box_size_z") @db.Int // 内盒尺寸z
-    lidWeight            Int       @map(name: "lid_weights") @db.Int // 封盖重量
-    bottomWeight         Int       @map(name: "bottom_weight") @db.Int // 底座重量
-    innerWeight          Int       @map(name: "inner_weight") @db.Int // 内盒重量
-    cost                 Int       @db.Int // 成本
+    outBoxType           Int       @map(name: "out_box_type") @db.SmallInt // 外盒类型
+    innerBoxType         Int       @map(name: "inner_box_type") @db.SmallInt // 内盒类型,1 通各自，2分隔，3...
+    materialType         Int       @map(name: "material_type") @db.SmallInt // 材质类型, 1 塑料，2 铝箔
+    color                Int       @db.SmallInt // 颜色 1 红色 2 红白 3 橙色 4 黑色
+    outBoxCapacity       Int       @map(name: "out_box_capacity") @db.SmallInt // 外盒容量
+    innerBoxCapacity     Int       @map(name: "inner_box_capacity") @db.SmallInt // 内盒容量
+    innerBoxCapacityLine Int       @map(name: "inner_box_capacity_line") @db.SmallInt // 内盒容量
+    innerBoxCapacity2    Int       @map(name: "inner_box_capacity2") @db.SmallInt // 内盒容量
+    innerBoxCapacity3    Int       @map(name: "inner_box_capacity3") @db.SmallInt // 内盒容量
+    innerBoxCapacity4    Int       @map(name: "inner_box_capacity4") @db.SmallInt // 内盒容量
+    outBoxSize           Int       @map(name: "out_box_size") @db.SmallInt // 外盒尺寸
+    innerBoxSize         Int       @map(name: "inner_box_size") @db.SmallInt // 内盒尺寸
+    outBoxSizeX          Int       @map(name: "out_box_size_x") @db.SmallInt // 外盒尺寸x
+    innerBoxSizeX        Int       @map(name: "inner_box_size_x") @db.SmallInt // 内盒尺寸x
+    outBoxSizeY          Int       @map(name: "out_box_size_y") @db.SmallInt // 外盒尺寸y
+    innerBoxSizeY        Int       @map(name: "inner_box_size_y") @db.SmallInt // 内盒尺寸y
+    outBoxSizeZ          Int       @map(name: "out_box_size_z") @db.SmallInt // 外盒尺寸z
+    innerBoxSizeZ        Int       @map(name: "inner_box_size_z") @db.SmallInt // 内盒尺寸z
+    lidWeight            Int       @map(name: "lid_weights") @db.SmallInt // 封盖重量
+    bottomWeight         Int       @map(name: "bottom_weight") @db.SmallInt // 底座重量
+    innerWeight          Int       @map(name: "inner_weight") @db.SmallInt // 内盒重量
+    cost                 Int       @db.SmallInt // 成本
 
     @@map(name: "self_heating_bo")
 }
 
 model HeatingBag {
     id      String @id @default(cuid())
-    weight  Int    @db.Int // 重量
-    cost    Int    @db.Int // 成本
-    company Int    @db.Int // 供应商
+    weight  Int    @db.SmallInt // 重量
+    cost    Int    @db.SmallInt // 成本
+    company Int    @db.SmallInt // 供应商
 
     @@map(name: "heating_bag")
 }
@@ -1557,24 +1607,24 @@ model FreelancerTask {
     minPrice     Decimal    @default(0) @db.Decimal(10, 0)
     maxPrice     Decimal    @default(0) @db.Decimal(10, 0)
     fixedPrice   String     @default("") @map(name: "fixed_price") @db.VarChar(255)
-    bargain      Boolean    @default(false) @db.TinyInt
-    cycle        Int        @default(0) @db.Int
+    bargain      Boolean    @default(false)
+    cycle        Int        @default(0) @db.SmallInt
     cycleName    String     @default("天") @map(name: "cycle_name") @db.VarChar(255)
     date         DateTime   @db.Timestamp(6)
     url          String     @default("") @db.VarChar(255)
-    applyCount   Int        @default(0) @map(name: "apply_count") @db.Int
-    visitCount   Int        @default(0) @map(name: "visit_count") @db.Int
+    applyCount   Int        @default(0) @map(name: "apply_count") @db.SmallInt
+    visitCount   Int        @default(0) @map(name: "visit_count") @db.SmallInt
     status       String     @default("") @db.VarChar(255)
-    auditStatus  Int        @default(0) @map(name: "audit_status") @db.Int
+    auditStatus  Int        @default(0) @map(name: "audit_status") @db.SmallInt
     auditReason  String     @default("") @map(name: "audit_reason") @db.VarChar(255)
     auditAt      DateTime   @map(name: "audit_at") @db.Timestamp(6)
-    handleStatus Int        @default(0) @db.Int
+    handleStatus Int        @default(0) @db.SmallInt
     handleAt     DateTime   @map(name: "handle_at") @db.Timestamp(6)
     userId       String     @unique @default("") @map(name: "user_id")
     userName     String     @default("") @map(name: "user_name") @db.VarChar(255)
     userUrl      String     @default("") @map(name: "user_url") @db.VarChar(255)
-    type         Int        @default(0) @db.Int
-    application  Int        @default(0) @db.Int // 应用类型
+    type         Int        @default(0) @db.SmallInt
+    application  Int        @default(0) @db.SmallInt // 应用类型
     tags         String     @default("") @db.VarChar(255)
     createdAt    DateTime   @default(now()) @map(name: "created_at") @db.Timestamp(6)
     updatedAt    DateTime   @updatedAt @map(name: "updated_at") @db.Timestamp(6)
@@ -1588,18 +1638,18 @@ model FreeProject {
     title         String   @default("") @map(name: "webhook") @db.VarChar(255)
     content       String   @default("") @map(name: "content") @db.Text
     price         String   @default("") @map(name: "price") @db.VarChar(255)
-    duration      Int      @db.Int
+    duration      Int      @db.SmallInt
     time          DateTime @db.Timestamp(6)
     origin        String   @default("") @map(name: "origin") @db.VarChar(255)
     url           String   @default("") @map(name: "url") @db.VarChar(255)
     originId      String?  @default("") @map(name: "origin_id") @db.VarChar(255)
     status        String?  @default("") // 状态是否还在招募
-    applyCount    Int?     @default(0) @map(name: "apply_count") @db.Int
-    visitCount    Int?     @default(0) @map(name: "visit_count") @db.Int
-    developerType Int?     @map(name: "developer_type") @db.Int // 二次开发PERSONAL、全新开发、产品优化
-    specificRole  Int?     @map(name: "specific_role") @db.Int // 招募对象
+    applyCount    Int?     @default(0) @map(name: "apply_count") @db.SmallInt
+    visitCount    Int?     @default(0) @map(name: "visit_count") @db.SmallInt
+    developerType Int?     @map(name: "developer_type") @db.SmallInt // 二次开发PERSONAL、全新开发、产品优化
+    specificRole  Int?     @map(name: "specific_role") @db.SmallInt // 招募对象
     type          String?  @default("") @db.VarChar(255) // 类型：web 网站、APP 开发、小程序等
-    bargain       Boolean? @db.TinyInt // 是否可以议价
+    bargain       Boolean? // 是否可以议价
 
     @@unique([origin, originId])
     @@map(name: "free_project")
@@ -1811,13 +1861,13 @@ model HandBook {
 model HandBookChapter {
     id           String                   @id @default(cuid())
     name         String                   @db.VarChar(200)
-    browseCount  Int                      @db.Int
-    commentCount Int                      @db.Int
-    rootComment  Int                      @db.Int
+    browseCount  Int                      @db.SmallInt
+    commentCount Int                      @db.SmallInt
+    rootComment  Int                      @db.SmallInt
     tryRead      Boolean
     content      String
     htmlContent  String
-    wordCount    Int                      @map(name: "word_count") @db.Int
+    wordCount    Int                      @map(name: "word_count") @db.SmallInt
     userId       String                   @map(name: "user_id")
     user         User                     @relation(fields: [userId], references: [id])
     bookId       String
@@ -1849,4 +1899,34 @@ model Analyze {
     timestamp DateTime
 
     @@map(name: "analyze")
+}
+
+enum TransactionType {
+    CHAT_CHATGPT
+    CHAT_GPT_4
+    CREDIT_PURCHASE
+    CHAT_CLAUDE
+    TASK_DAILY_LOGIN
+    TASK_JOIN_DISCORD
+    TASK_FOLLOW_TWITTER
+    TASK_FOLLOW_IG
+    TASK_TRY_10_PROMPTS
+    TASK_CREATE_PROMPT
+    TASK_LIKE_10_PROMPTS
+    TASK_GET_10_LIKES
+    TASK_GET_1_FOLLOWER
+    TASK_FOLLOW_5
+    TASK_GET_5_COMMENTS
+    TIP_CREATOR
+    TASK_SAVE_1_PROMPT
+    TASK_COMMENT_1_PROMPT
+    TASK_SHARE_SOCIAL_MEDIA
+    TASK_JOIN_NEWSLETTER
+    LLAMA2
+}
+
+enum TransactionStatus {
+    PENDING
+    SUCCESS
+    FAILED
 }

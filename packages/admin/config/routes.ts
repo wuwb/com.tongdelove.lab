@@ -30,18 +30,18 @@ const route = [
     name: 'welcome',
     path: '/dashboard/welcome',
     icon: 'smile', // 图标
-    component: './dashboard/main',
+    component: './Dashboard/main',
   },
 
   {
     path: '/products',
     layout: false,
-    component: './web/product',
+    component: './Web/product',
   },
   {
     path: '/products/:path',
     layout: false,
-    component: './web/productDetail',
+    component: './Web/productDetail',
   },
 
   // 报价
@@ -57,7 +57,7 @@ const route = [
           {
             name: '普通单页',
             path: '/quotation/broadsheet/normal',
-            component: './quotation/broadsheet/normal',
+            component: './Quotation/broadsheet/normal',
           }
         ]
       },
@@ -68,7 +68,7 @@ const route = [
           {
             name: '普通单页',
             path: '/quotation/sticker/normal',
-            component: './quotation/sticker/normal',
+            component: './Quotation/sticker/normal',
           }
         ]
       },
@@ -79,7 +79,7 @@ const route = [
           {
             name: '普通单页',
             path: '/quotation/business-card/normal',
-            component: './quotation/business-card/normal',
+            component: './Quotation/business-card/normal',
           }
         ]
       },
@@ -90,14 +90,14 @@ const route = [
           {
             name: '普通单页',
             path: '/quotation/paperbox/normal',
-            component: './quotation/paperbox/normal',
+            component: './Quotation/paperbox/normal',
           }
         ]
       },
       {
         name: '自热餐盒',
         path: '/quotation/self-heating-boxes',
-        component: './quotation/self-heating-box/box',
+        component: './Quotation/SelfHeatingBox/Box',
       },
       {
         name: '自热餐盒包装',
@@ -106,22 +106,22 @@ const route = [
           {
             name: '不干胶',
             path: '/quotation/self-heating-box/sticker',
-            component: './quotation/self-heating-box/sticker',
+            component: './Quotation/SelfHeatingBox/sticker',
           },
           {
             name: '单页',
             path: '/quotation/self-heating-box/broadsheet',
-            component: './quotation/self-heating-box/broadsheet',
+            component: './Quotation/SelfHeatingBox/broadsheet',
           },
           {
             name: '腰封',
             path: '/quotation/self-heating-box/paper-sleeve',
-            component: './quotation/self-heating-box/paper-sleeve',
+            component: './Quotation/SelfHeatingBox/paper-sleeve',
           },
           {
             name: '纸套',
             path: '/quotation/self-heating-box/paper-tapes',
-            component: './quotation/self-heating-box/paper-tapes',
+            component: './Quotation/SelfHeatingBox/paper-tapes',
           }
         ]
       },
@@ -132,7 +132,7 @@ const route = [
           {
             name: '对联',
             path: '/quotation/stocking/normal',
-            component: './quotation/broadsheet/normal',
+            component: './Quotation/broadsheet/normal',
           }
         ]
       },
@@ -143,7 +143,7 @@ const route = [
           {
             name: '牛皮纸袋',
             path: '/quotation/reticule/normal',
-            component: './quotation/broadsheet/normal',
+            component: './Quotation/broadsheet/normal',
           }
         ]
       },
@@ -154,7 +154,7 @@ const route = [
           {
             name: '牛皮纸袋',
             path: '/quotation/paper-can/normal',
-            component: './quotation/broadsheet/normal',
+            component: './Quotation/broadsheet/normal',
           }
         ]
       },
@@ -170,13 +170,13 @@ const route = [
       {
         name: '简历',
         path: '/internal/resume',
-        component: '@/pages/resume',
+        component: '@/pages/Resume',
       },
       {
         name: '简历lite',
         icon: 'crown',
         path: '/internal/resume-lite',
-        component: '@/pages/resume/lite',
+        component: '@/pages/Resume/lite',
       },
     ]
   },
@@ -302,12 +302,12 @@ const route = [
           {
             name: 'paper-price-transform',
             path: '/tools/transform/paper-price-transform',
-            component: './tools/PaperPriceTransform',
+            component: './Tool/PaperPriceTransform',
           },
           {
             name: 'book-thickness',
             path: '/tools/transform/book-thickness',
-            component: './tools/BookThickness',
+            component: './Tool/BookThickness',
           },
         ]
       },
@@ -318,24 +318,24 @@ const route = [
           {
             name: 'puncture-resistance',
             path: '/tools/physics/puncture-resistance',
-            component: './tools/Physics/PunctureResistance',
+            component: './Tool/Physics/PunctureResistance',
           }
         ],
       },
       {
         name: 'common-platemaking-size',
         path: '/tools/common-platemaking-size',
-        component: './tools/CommonPlatemakingSize',
+        component: './Tool/CommonPlatemakingSize',
       },
       {
         name: 'printed-size',
         path: '/tools/printed-size',
-        component: './tools/PrintedSize'
+        component: './Tool/PrintedSize'
       },
       {
         name: 'jian-la-ji',
         path: '/tools/jian-la-ji',
-        component: './tools/JianLaJi'
+        component: './Tool/JianLaJi'
       }
     ],
   },
@@ -350,7 +350,7 @@ const route = [
         name: 'import-taobao-csv',
         icon: 'smile',
         path: '/settings/import-taobao-csv',
-        component: './resource/taobaoOrderRaw/importTaobaoCsv',
+        component: './Resource/TaobaoOrderRaw/ImportTaobaoCsv',
       },
     ],
   },
@@ -364,28 +364,28 @@ const route = [
       {
         name: 'product-list',
         path: '/resource/product-list',
-        // component: './resource/product/list',
-        component: './resource/customOrder',
+        // component: './Resource/product/list',
+        component: './Resource/customOrder',
       },
       {
         name: 'post',
         path: '/resource/post',
-        component: './resource/post',
+        component: './Resource/post',
         routes: [
           {
             name: 'create',
             path: '/resource/post/create',
-            component: './resource/post/create',
+            component: './Resource/post/create',
           },
           {
             name: 'edit',
             path: '/resource/post/edit/:id',
-            component: './resource/post/edit',
+            component: './Resource/post/edit',
           },
           {
             name: 'list',
             path: '/resource/post/list',
-            component: './resource/post/list',
+            component: './Resource/post/list',
           },
         ]
       },
@@ -396,40 +396,40 @@ const route = [
           {
             name: 'list',
             path: '/resource/product/list',
-            // component: './resource/product/list',
-            component: './resource/customOrder',
+            // component: './Resource/product/list',
+            component: './Resource/customOrder',
           },
           {
             name: 'category',
             path: '/resource/product/category',
-            component: './resource/product/category',
+            component: './Resource/product/category',
           },
           {
             name: 'property',
             path: '/resource/product/property',
-            component: './resource/product/property',
+            component: './Resource/product/property',
           },
         ]
       },
       {
         name: 'inquiry',
         path: '/resource/inquiry',
-        component: './resource/inquiry',
+        component: './Resource/inquiry',
         routes: [
           {
             name: 'list',
             path: '/resource/inquiry/list',
-            component: './resource/inquiry/list',
+            component: './Resource/inquiry/list',
           },
           {
             name: 'dustbin',
             path: '/resource/inquiry/dustbin',
-            component: './resource/inquiry/dustbin',
+            component: './Resource/inquiry/dustbin',
           },
           {
             name: 'setting',
             path: '/resource/inquiry/setting',
-            component: './resource/inquiry/setting',
+            component: './Resource/inquiry/setting',
           },
         ]
       },
@@ -440,32 +440,32 @@ const route = [
       {
         name: 'clientCompany',
         path: '/resource/client-company',
-        component: './resource/clientCompany',
+        component: './Resource/clientCompany',
       },
       {
         name: 'experts',
         path: '/resource/experts',
-        component: './resource/experts',
+        component: './Resource/experts',
       },
       {
         name: 'agencyCompany',
         path: '/resource/agency-company',
-        component: './resource/agencyCompany',
+        component: './Resource/agencyCompany',
       },
       {
         name: 'supplyCompany',
         path: '/resource/supply-company',
-        component: './resource/supplyCompany',
+        component: './Resource/supplyCompany',
       },
       {
         name: 'customOrder',
         path: '/resource/custom-order',
-        component: './resource/customOrder',
+        component: './Resource/customOrder',
       },
       {
         name: 'taobaoOrderRaw',
         path: '/resource/taobao-order-raw',
-        component: './resource/taobaoOrderRaw',
+        component: './Resource/TaobaoOrderRaw',
       },
     ],
   },
@@ -480,70 +480,70 @@ const route = [
       {
         name: 'crud-demo',
         path: '/system/crud',
-        component: './system/crud',
+        component: './System/crud',
         // component: './Welcome',
       },
       {
         path: '/system/demo',
         name: 'demo',
         icon: 'TeamOutlined',
-        component: './system/crud',
+        component: './System/crud',
         // access: 'canAdmin',
       },
       {
         path: '/system/user',
         name: 'user',
         icon: 'TeamOutlined',
-        component: './system/user',
+        component: './System/User',
         // access: 'canAdmin',
       },
       {
         path: '/system/role',
         name: 'role',
         icon: 'UserOutlined',
-        component: './system/role',
+        component: './System/Role',
         // access: 'canAdmin',
       },
       {
         path: '/system/permission',
         name: 'permission',
         icon: 'StopOutlined',
-        component: './system/permission',
+        component: './System/Permission',
         // access: 'canAdmin',
       },
       {
         path: '/system/menu',
         name: 'menu',
         icon: 'MenuOutlined',
-        component: './system/menu',
+        component: './System/Menu',
         // access: 'canAdmin',
       },
       {
         path: '/system/auth',
         name: 'auth',
         icon: 'MenuOutlined',
-        component: './system/auth',
+        component: './System/Auth',
         // access: 'canAdmin',
       },
       {
         path: '/system/plugin',
         name: 'plugin',
         icon: 'HistoryOutlined',
-        component: './system/plugin',
+        component: './System/Plugin',
         // access: 'canAdmin',
       },
       {
         path: '/system/task',
         name: 'task',
         icon: 'HistoryOutlined',
-        component: './system/task',
+        component: './System/Task',
         // access: 'canAdmin',
       },
       {
         path: '/system/log',
         name: 'log',
         icon: 'HistoryOutlined',
-        component: './system/log',
+        component: './System/Log',
         // access: 'canAdmin',
       },
     ],
@@ -594,12 +594,12 @@ const route = [
           {
             name: '时间工具',
             path: '/tools/timestamp',
-            component: '@/pages/tools/timestamp',
+            component: '@/pages/Tool/timestamp',
           },
           {
             name: '血缘关系',
             path: '/tools/blood',
-            component: '@/pages/tools/blood',
+            component: '@/pages/Tool/blood',
           },
         ],
       },
@@ -611,7 +611,7 @@ const route = [
           {
             exact: true,
             path: '/finance/materials',
-            component: '@/pages/finance/materials',
+            component: '@/pages/Finance/materials',
           }
         ],
       },
@@ -622,7 +622,7 @@ const route = [
   {
     path: '*',
     layout: false,
-    component: './exception/404',
+    component: './Exception/404',
   },
 ];
 

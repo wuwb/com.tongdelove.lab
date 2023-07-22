@@ -8,6 +8,8 @@
       "msjsdiag.debugger-for-chrome",
       "bradlc.vscode-tailwindcss",
       "stylelint.vscode-stylelint",
-      "wangzy.sneak-mark"
+      "wangzy.sneak-mark",
+      "graphql.vscode-graphql",
+      "prisma.prisma"
     ]
   }

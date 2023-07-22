@@ -1,8 +1,16 @@
 import React from 'react';
-import { getAllLocales, getLocale, setLocale } from '@umijs/max';
+import { getAllLocales, getLocale } from '@umijs/max';
 import { Layout } from 'antd';
-import Styles from './index.less';
 import { Table, Tag, Space } from 'antd';
+import { createStyles } from 'antd-style';
+
+const useStyles = createStyles(({ token, css }) => ({
+  content: css`
+    position: relative;
+    width: 1260px;
+    margin: 20px auto;
+  `
+}));
 
 const columns = [
   {
@@ -171,12 +179,14 @@ const data = [
 ];
 
 const FinanceMaterialsPage = (props) => {
+  const { styles, cx, theme } = useStyles();
+
   console.log('getAllLocales: ', getAllLocales()); // en-US,zh-CN
   console.log('getLocale: ', getLocale()); // en-US | zh-CN
 
   return (
     <Layout.Content>
-      <div className={Styles.content}>
+      <div className={styles.content}>
         <Table columns={columns} dataSource={data} />
       </div>
     </Layout.Content>

@@ -2,12 +2,10 @@ import React, { useState, useRef } from 'react';
 import { Button, Divider, message, Input, Space } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data';
 import { queryData, syncData, syncById } from './service';
 import { useRequest } from '@umijs/max';
-import ImportTabaoCSV from './importTaobaoCsv';
+import ImportTabaoCSV from './ImportTaobaoCsv';
 
 
 const onSyncData = async (id: string | null) => {

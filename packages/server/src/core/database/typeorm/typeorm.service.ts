@@ -34,12 +34,12 @@ export class TypeormService implements TypeOrmOptionsFactory {
   // }
   createTypeOrmOptions(): TypeOrmModuleOptions {
     let options: TypeOrmModuleOptions = {
-      type: 'mysql',
-      host: '127.0.0.1',
-      port: 3306,
-      username: 'root',
-      password: '202402.',
-      database: 'typeorm',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'postgres',
       synchronize: true,
       logging: true,
       entities: [
@@ -57,7 +57,7 @@ export class TypeormService implements TypeOrmOptionsFactory {
     options = {
       ...options,
       ...{
-        type: 'mysql',
+        type: 'postgres',
         charset: 'utf8mb4',
         collation: 'utf8mb4_unicode_ci',
         // https://stackoverflow.com/questions/35553432/error-handshake-inactivity-timeout-in-node-js-mysql-module

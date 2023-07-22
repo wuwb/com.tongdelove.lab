@@ -11,6 +11,7 @@ async function seed(bcryptSalt?) {
 
     const aliceData: Prisma.UserCreateInput = {
         login: 'admin',
+        name: 'admin',
         username: 'admin',
         nicename: 'DW_admin',
         email: 'alice@prisma.io',
@@ -53,6 +54,7 @@ async function seed(bcryptSalt?) {
     const bobData: Prisma.UserCreateInput = {
         id: '2',
         login: 'wenbin',
+        name: 'admin',
         username: 'wenbin',
         nicename: 'DW_wenbin',
         email: 'bob@prisma.io',
