@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - name: Setup pnpm cache 
+      - name: setup pnpm cache 
         uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -45,7 +45,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Download deps
+      - name: download deps
         run: pnpm install
 
       - name: copy admin env

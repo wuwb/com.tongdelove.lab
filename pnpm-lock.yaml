@@ -315,9 +315,6 @@ importers:
       '@testing-library/react':
         specifier: ^13.4.0
         version: 13.4.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/classnames':
-        specifier: ^2.3.1
-        version: 2.3.1
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.17
@@ -375,9 +372,6 @@ importers:
       express:
         specifier: ^4.18.2
         version: 4.18.2
-      husky:
-        specifier: ^7.0.4
-        version: 7.0.4
       jest:
         specifier: ^29.4.3
         version: 29.5.0(@types/node@18.14.6)(ts-node@10.9.1)
@@ -893,9 +887,6 @@ importers:
       eslint-plugin-tailwindcss:
         specifier: 3.13.0
         version: 3.13.0(tailwindcss@3.3.2)
-      husky:
-        specifier: ^8.0.3
-        version: 8.0.3
       jest:
         specifier: ^28.1.3
         version: 28.1.3(@types/node@18.11.12)(ts-node@10.9.1)
@@ -923,15 +914,6 @@ importers:
       util:
         specifier: ^0.12.5
         version: 0.12.5
-
-  packages/prisma:
-    dependencies:
-      '@prisma/client':
-        specifier: 4.6.1
-        version: 4.6.1(prisma@4.6.1)
-      prisma:
-        specifier: 4.6.1
-        version: 4.6.1
 
   packages/server:
     dependencies:
@@ -11645,20 +11627,6 @@ packages:
       '@prisma/engines-version': 4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c
       prisma: 4.16.1
 
-  /@prisma/client@4.6.1(prisma@4.6.1):
-    resolution: {integrity: sha512-M1+NNrMzqaOIxT7PBGcTs3IZo7d1EW/+gVQd4C4gUgWBDGgD9AcIeZnUSidgWClmpMSgVUdnVORjsWWGUameYA==}
-    engines: {node: '>=14.17'}
-    requiresBuild: true
-    peerDependencies:
-      prisma: '*'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
-    dependencies:
-      '@prisma/engines-version': 4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32
-      prisma: 4.6.1
-    dev: false
-
   /@prisma/debug@3.14.0:
     resolution: {integrity: sha512-cvA2NRJU6oLCFpYcOJO6jjUZZcPwQqdKYVpa6OY+jFrSwLdYLgSPjrfbnBPOD2z1gzODdnrWYfpz3wPKVhZ0IQ==}
     dependencies:
@@ -11738,10 +11706,6 @@ packages:
 
   /@prisma/engines-version@4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c:
     resolution: {integrity: sha512-tMWAF/qF00fbUH1HB4Yjmz6bjh7fzkb7Y3NRoUfMlHu6V+O45MGvqwYxqwBjn1BIUXkl3r04W351D4qdJjrgvA==}
-
-  /@prisma/engines-version@4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32:
-    resolution: {integrity: sha512-HUCmkXAU2jqp2O1RvNtbE+seLGLyJGEABZS/R38rZjSAafAy0WzBuHq+tbZMnD+b5OSCsTVtIPVcuvx1ySxcWQ==}
-    dev: false
 
   /@prisma/engines@3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e:
     resolution: {integrity: sha512-NHlojO1DFTsSi3FtEleL9QWXeSF/UjhCW0fgpi7bumnNZ4wj/eQ+BJJ5n2pgoOliTOGv9nX2qXvmHap7rJMNmg==}
@@ -13426,13 +13390,6 @@ packages:
 
   /@types/cache-manager@4.0.2:
     resolution: {integrity: sha512-fT5FMdzsiSX0AbgnS5gDvHl2Nco0h5zYyjwDQy4yPC7Ww6DeGMVKPRqIZtg9HOXDV2kkc18SL1B0N8f0BecrCA==}
-    dev: true
-
-  /@types/classnames@2.3.1:
-    resolution: {integrity: sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==}
-    deprecated: This is a stub types definition. classnames provides its own type definitions, so you do not need this installed.
-    dependencies:
-      classnames: 2.3.2
     dev: true
 
   /@types/connect@3.4.35:
@@ -18780,7 +18737,7 @@ packages:
 
   /chokidar@2.1.8:
     resolution: {integrity: sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg==}
-    deprecated: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+    deprecated: Chokidar 2 will break on node v14+. Upgrade to chokidar 3 with 15x less dependencies.
     dependencies:
       anymatch: 2.0.0
       async-each: 1.0.6
@@ -24995,12 +24952,6 @@ packages:
     dependencies:
       ms: 2.1.3
     dev: false
-
-  /husky@7.0.4:
-    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
-    engines: {node: '>=12'}
-    hasBin: true
-    dev: true
 
   /husky@8.0.3:
     resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
@@ -33222,15 +33173,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.16.1
-
-  /prisma@4.6.1:
-    resolution: {integrity: sha512-BR4itMCuzrDV4tn3e2TF+nh1zIX/RVU0isKtKoN28ADeoJ9nYaMhiuRRkFd2TZN8+l/XfYzoRKyHzUFXLQhmBQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      '@prisma/engines': 4.6.1
-    dev: false
 
   /probe.gl@3.6.0:
     resolution: {integrity: sha512-19JydJWI7+DtR4feV+pu4Mn1I5TAc0xojuxVgZdXIyfmTLfUaFnk4OloWK1bKbPtkgGKLr2lnbnCXmpZEcEp9g==}
