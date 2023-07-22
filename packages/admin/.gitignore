@@ -46,7 +46,6 @@ build
 src/.umi
 .vscode
 node_modules
-.env.example
 config/config.local.ts
 dist
 

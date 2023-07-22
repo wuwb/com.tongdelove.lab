@@ -46,19 +46,19 @@ jobs:
           node-version: 20
 
       - name: copy env
-        working-directory: packages/admin
-        run: cp .env.exacmple .env
+        working-directory: ./packages/admin
+        run: cp .env.example .env
 
       - name: Download deps
-        working-directory: packages/admin
+        working-directory: ./packages/admin
         run: pnpm install
 
       - name: Type check
-        working-directory: packages/admin
+        working-directory: ./packages/admin
         run: pnpm run lint
 
       - name: Build
-        working-directory: packages/admin
+        working-directory: ./packages/admin
         run: pnpm run build
 
   server-ci:
@@ -95,19 +95,19 @@ jobs:
           node-version: 20
 
       - name: copy env
-        working-directory: packages/server
-        run: cp .env.exacmple .env
+        working-directory: ./packages/server
+        run: cp .env.example .env
 
       - name: Download deps
-        working-directory: packages/server
+        working-directory: ./packages/server
         run: pnpm install
 
       - name: Type check
-        working-directory: packages/server
+        working-directory: ./packages/server
         run: pnpm run lint
 
       - name: Build
-        working-directory: packages/server
+        working-directory: ./packages/server
         run: pnpm run build
 
   linter:
@@ -120,7 +120,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          
+
       - name: npm ci
         run: npm ci
 
