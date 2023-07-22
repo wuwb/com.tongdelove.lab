@@ -7,18 +7,28 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      with:
-          node-version: 16
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       # https://github.com/semantic-release/git/issues/209
-      - run: npm ci --ignore-scripts
-      - run: npm run build
-      - run: npx semantic-release
+      - name: ci
+        run: pnpm ci --ignore-scripts
+
+      - name: build
+        run: pnpm run build
+
+      - name: release
+        run: pnpx semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

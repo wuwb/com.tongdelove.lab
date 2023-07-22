@@ -73,20 +73,36 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-       with:
+      - name: checkout repo
+        uses: actions/checkout@v3
+        
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
           node-version: 20
-      - run: npm ci
-      - run: npm run lint
+          cache: 'pnpm'
+
+      - name: npm ci
+        run: npm ci
+
+      - name: npm lint
+        run: npm run lint
 
   tests:
     needs: linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-       with:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
           node-version: 20
-      - run: npm ci
-      - run: npm run test
+          cache: 'pnpm'
+
+      - name: npm ci
+        run: npm ci
+
+      - name: npm lint
+        run: npm run test
