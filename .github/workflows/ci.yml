@@ -52,7 +52,7 @@ jobs:
     steps: 
       - name: copy env
         working-directory: ./packages/admin
-        run: .env.exacmple .env
+        run: cp .env.exacmple .env
 
       - name: Download deps
         working-directory: ./packages/admin
@@ -73,7 +73,7 @@ jobs:
     steps: 
       - name: copy env
         working-directory: ./packages/server
-        run: .env.exacmple .env
+        run: cp .env.exacmple .env
 
       - name: Download deps
         working-directory: ./packages/server
