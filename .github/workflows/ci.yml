@@ -12,28 +12,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  admin-ci:
-    name: admin-ci
+  ci:
+    name: ci
     runs-on: ubuntu-latest
     steps: 
       - name: checkout repo
         uses: actions/checkout@v3
 
-      - name: Install pnpm
+      - name: install pnpm
         uses: pnpm/action-setup@v2.2.4
         id: pnpm-install
         with:
           version: 8
           run_install: false
 
-      - name: Get pnpm store directory
+      - name: get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Setup pnpm cache 
+        uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -43,15 +43,18 @@ jobs:
       - name: setup node 
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
-      - name: copy env
+      - name: Download deps
+        run: pnpm install
+
+      - name: copy admin env
         working-directory: ./packages/admin
         run: cp .env.example .env
 
-      - name: Download deps
-        working-directory: ./packages/admin
-        run: pnpm install
+      - name: copy server env
+        working-directory: ./packages/server
+        run: cp .env.example .env
 
       - name: Type check
         working-directory: ./packages/admin
@@ -60,47 +63,6 @@ jobs:
       - name: Build
         working-directory: ./packages/admin
         run: pnpm run build
-
-  server-ci:
-    name: server-ci
-    runs-on: ubuntu-latest
-    steps: 
-      - name: checkout repo
-        uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: setup node 
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: copy env
-        working-directory: ./packages/server
-        run: cp .env.example .env
-
-      - name: Download deps
-        working-directory: ./packages/server
-        run: pnpm install
 
       - name: Type check
         working-directory: ./packages/server
@@ -119,12 +81,14 @@ jobs:
       - name: setup node 
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: npm ci
+        working-directory: ./packages/server
         run: npm ci
 
       - name: npm lint
+        working-directory: ./packages/server
         run: npm run lint
 
   tests:
@@ -137,10 +101,12 @@ jobs:
       - name: setup node 
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: npm ci
+        working-directory: ./packages/server
         run: npm ci
 
       - name: npm lint
+        working-directory: ./packages/server
         run: npm run test

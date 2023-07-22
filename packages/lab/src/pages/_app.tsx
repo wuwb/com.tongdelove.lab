@@ -21,6 +21,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import nextI18NextConfig from '../../next-i18next.config.js';
+import { Analytics } from '@vercel/analytics/react';
 
 interface MyAppProps extends AppProps {
 }
@@ -81,6 +82,7 @@ function MyApp(props: AppPropsWithLayout) {
           </ErrorBoundary>
         </PersistGate>
       </ReduxProvider>
+      <Analytics />
     </>
   );
 };

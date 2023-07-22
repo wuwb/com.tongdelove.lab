@@ -12,7 +12,7 @@
     "start": "pnpm --filter @tongdelove/api-server run start",
     "dev:design": "pnpm --filter design run dev",
     "deploy": "rsync -az --del ./packages/@tongdelove/api-server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.5",
