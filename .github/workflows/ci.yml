@@ -12,8 +12,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  env: 
-    name: env
+  admin-ci:
+    name: admin-ci
     runs-on: ubuntu-latest
     steps: 
       - name: checkout repo
@@ -45,46 +45,69 @@ jobs:
         with:
           node-version: 20
 
-  admin-ci:
-    name: admin-ci
-    needs: env
-    runs-on: ubuntu-latest
-    steps: 
       - name: copy env
-        working-directory: ./packages/admin
+        working-directory: packages/admin
         run: cp .env.exacmple .env
 
       - name: Download deps
-        working-directory: ./packages/admin
+        working-directory: packages/admin
         run: pnpm install
 
       - name: Type check
-        working-directory: ./packages/admin
+        working-directory: packages/admin
         run: pnpm run lint
 
       - name: Build
-        working-directory: ./packages/admin
+        working-directory: packages/admin
         run: pnpm run build
 
   server-ci:
     name: server-ci
-    needs: env
     runs-on: ubuntu-latest
     steps: 
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: setup node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       - name: copy env
-        working-directory: ./packages/server
+        working-directory: packages/server
         run: cp .env.exacmple .env
 
       - name: Download deps
-        working-directory: ./packages/server
+        working-directory: packages/server
         run: pnpm install
 
       - name: Type check
-        working-directory: ./packages/server
+        working-directory: packages/server
         run: pnpm run lint
 
       - name: Build
-        working-directory: ./packages/server
+        working-directory: packages/server
         run: pnpm run build
 
   linter:
