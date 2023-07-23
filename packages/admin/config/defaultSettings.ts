@@ -6,7 +6,7 @@ import { RuntimeConfig } from '@umijs/max';
 export const defaultSettings: RuntimeConfig['layout'] & {
   pwa?: boolean;
   logo?: string;
-} = () => {
+} = (initData) => {
   return {
     // 设置标题的 title
 

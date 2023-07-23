@@ -22,8 +22,32 @@ import { flushSync } from 'react-dom';
 import { getPageQuery } from '@/utils/utils';
 import { LoginParamsType, login } from '@/services/base/auth';
 import Footer from '@/components/Footer';
-import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { defaultSettings } from '../../../../config/defaultSettings';
+import { createStyles } from 'antd-style';
+
+const useStyles = createStyles(({ token, css }) => ({
+  container: {
+    marginLeft: '8px',
+    color: 'rgba(0, 0, 0, 0.2)',
+    fontSize: '24px',
+    verticalAlign: 'middle',
+    cursor: 'pointer',
+    transition: 'color 0.3s',
+    '&:hover': {
+      color: token.colorPrimaryActive,
+    },
+  },
+  lang: {
+    width: 42,
+    height: 42,
+    lineHeight: '42px',
+    position: 'fixed',
+    right: 16,
+    borderRadius: token.borderRadius,
+    ':hover': {
+      backgroundColor: token.colorBgTextHover,
+    },
+  }
+}));
 
 const LoginMessage: React.FC<{
   content: string;
@@ -63,20 +87,6 @@ const replaceGoto = () => {
 };
 
 const ActionIcons = () => {
-  const langClassName = useEmotionCss(({ token }) => {
-    return {
-      marginLeft: '8px',
-      color: 'rgba(0, 0, 0, 0.2)',
-      fontSize: '24px',
-      verticalAlign: 'middle',
-      cursor: 'pointer',
-      transition: 'color 0.3s',
-      '&:hover': {
-        color: token.colorPrimaryActive,
-      },
-    };
-  });
-
   return (
     <>
       <AlipayCircleOutlined key="AlipayCircleOutlined" className={langClassName} />
@@ -87,22 +97,10 @@ const ActionIcons = () => {
 };
 
 const Lang = () => {
-  const langClassName = useEmotionCss(({ token }) => {
-    return {
-      width: 42,
-      height: 42,
-      lineHeight: '42px',
-      position: 'fixed',
-      right: 16,
-      borderRadius: token.borderRadius,
-      ':hover': {
-        backgroundColor: token.colorBgTextHover,
-      },
-    };
-  });
+  const { styles, cx, theme } = useStyles();
 
   return (
-    <div className={langClassName} data-lang>
+    <div className={styles.lang} data-lang>
       {SelectLang && <SelectLang />}
     </div>
   );
@@ -112,18 +110,7 @@ const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
-
-  const containerClassName = useEmotionCss(() => {
-    return {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-      overflow: 'auto',
-      backgroundImage:
-        "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
-      backgroundSize: '100% 100%',
-    };
-  });
+  const { styles, cx, theme } = useStyles();
 
   const intl = useIntl();
 
@@ -173,7 +160,7 @@ const Login: React.FC = () => {
   const { status, type: loginType } = userLoginState;
 
   return (
-    <div className={containerClassName}>
+    <div className={styles.container}>
       <Helmet>
         <title>
           {intl.formatMessage({

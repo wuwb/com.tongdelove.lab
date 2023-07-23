@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import type { MenuDataItem } from '@ant-design/pro-components';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import type { RequestConfig } from '@umijs/max';
+import type { AntdConfig, RequestConfig } from '@umijs/max';
 import { history, Link } from '@umijs/max';
 import { SettingDrawer } from '@ant-design/pro-components';
 import { message, notification } from 'antd';
@@ -14,6 +14,8 @@ import { createLogger } from 'redux-logger';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { errorConfig } from './requestErrorConfig';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
+import { theme } from 'antd';
+import type { RuntimeAntdConfig } from '@umijs/max';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -275,6 +277,12 @@ export const dva = {
       message.error(e.message, 3);
     },
   },
+};
+
+export const antd: RuntimeAntdConfig = (memo: any) => {
+  memo.theme ||= {};
+  memo.theme.algorithm = theme.compactAlgorithm;
+  return memo;
 };
 
 const codeMessage: CodeMsg = {

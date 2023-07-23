@@ -31,6 +31,7 @@ const route = [
     path: '/dashboard/welcome',
     icon: 'smile', // 图标
     component: './Dashboard/main',
+
   },
 
   {

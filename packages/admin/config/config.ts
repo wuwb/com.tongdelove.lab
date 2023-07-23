@@ -4,7 +4,7 @@ import { join } from 'path';
 import { defaultSettings } from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-import { theme } from 'antd/lib';
+import { theme } from 'antd';
 import { convertLegacyToken } from '@ant-design/compatible/lib';
 
 const { defaultAlgorithm, defaultSeed } = theme;
@@ -35,14 +35,14 @@ export default defineConfig({
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
    * @doc https://umijs.org/docs/api/config#targets
    */
-  // targets: {
-  //   ie: 11,
-  //   chrome: 80,
-  //   firefox: 64,
-  //   safari: 10,
-  //   edge: 13,
-  //   ios: 10,
-  // },
+  targets: {
+    //   ie: 11,
+    //   chrome: 80,
+    //   firefox: 64,
+    //   safari: 10,
+    //   edge: 13,
+    //   ios: 10,
+  },
 
   /**
    * @name 路由的配置，不在路由中引入的文件不会编译
@@ -66,12 +66,16 @@ export default defineConfig({
   // ...GeekBlue
   // },
 
-  styledComponents: {},
+  /**
+   * 使用 antd-style
+   */
+  // styledComponents: {}, 
 
   /**
    * @name moment 的国际化配置
    * @description 如果对国际化没有要求，打开之后能减少js的包大小
    * @doc https://umijs.org/docs/api/config#ignoremomentlocale
+   * 后期统一加
    */
   ignoreMomentLocale: true,
 
@@ -151,14 +155,19 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/antd#antd
    */
   antd: {
-    // configProvider: {},
     // dark: false,
-    // compact: true,
+    compact: true, // 开启后报错
     // https://ant-design.antgroup.com/docs/react/migration-v5-cn
     import: false, // 兼容 v4 less 导入
     // style: 'less',
     // theme: {},
+    configProvider: {
+      theme: {
+        algorithm: theme.compactAlgorithm,
+      }
+    },
   },
+
   /**
    * @name 网络请求配置
    * @description 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
@@ -229,7 +238,10 @@ export default defineConfig({
   // ],
   //================ 老版本配置 ====================
 
-  // lessLoader: { javascriptEnabled: true },
+  lessLoader: {
+    modifyVars: v4Token,
+    javascriptEnabled: true
+  },
 
   // cssLoader: {
   //   // 这里的 modules 可以接受 getLocalIdent
@@ -310,7 +322,6 @@ export default defineConfig({
 
   // extra configuration 前后端分离点
   // runtimePublicPath: true, // umi4 去除
-  outputPath: '../server/src/app/public',
 
   // publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '/',
   // outputPath: './dist',
@@ -321,14 +332,9 @@ export default defineConfig({
   extraBabelPlugins: [
     // libraryDirectory: 'es' 必须这样写
   ],
-  // publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '/',
-  // outputPath: './dist',
-  // devtool: false,
-
 
   // 使用最低成本的 sourcemap 生成方式，默认是 cheap-module-source-map
   // devtool: 'eval',
-
 
   // a lower cost way to genereate sourcemap, default is cheap-module-source-map, could save 60% time in dev hotload
   devtool: 'cheap-module-source-map',

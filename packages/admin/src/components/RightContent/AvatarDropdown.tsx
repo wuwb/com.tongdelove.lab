@@ -8,7 +8,7 @@ import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
-import { useEmotionCss } from '@ant-design/use-emotion-css';
+import { createStyles } from 'antd-style';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -20,6 +20,20 @@ export const AvatarName = () => {
   const { currentUser } = initialState || {};
   return <span className="anticon">{currentUser?.name}</span>;
 };
+
+const useStyles = createStyles(({ token, css }) => ({
+  display: 'flex',
+  height: '48px',
+  marginLeft: 'auto',
+  overflow: 'hidden',
+  alignItems: 'center',
+  padding: '0 8px',
+  cursor: 'pointer',
+  borderRadius: token.borderRadius,
+  '&:hover': {
+    backgroundColor: token.colorBgTextHover,
+  },
+}));
 
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, children }) => {
   /**
@@ -41,21 +55,8 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
       });
     }
   };
-  const actionClassName = useEmotionCss(({ token }) => {
-    return {
-      display: 'flex',
-      height: '48px',
-      marginLeft: 'auto',
-      overflow: 'hidden',
-      alignItems: 'center',
-      padding: '0 8px',
-      cursor: 'pointer',
-      borderRadius: token.borderRadius,
-      '&:hover': {
-        backgroundColor: token.colorBgTextHover,
-      },
-    };
-  });
+  const { styles, cx, theme } = useStyles();
+
   const { initialState, setInitialState } = useModel('@@initialState');
 
   const onMenuClick = useCallback(
@@ -74,7 +75,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
   );
 
   const loading = (
-    <span className={actionClassName}>
+    <span className={styles}>
       <Spin
         size="small"
         style={{

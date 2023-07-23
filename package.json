@@ -12,19 +12,28 @@
     "start": "pnpm --filter @tongdelove/api-server run start",
     "dev:design": "pnpm --filter design run dev",
     "deploy": "rsync -az --del ./packages/@tongdelove/api-server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/cz-commitlint": "^17.6.7",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^3.0.0",
     "husky": "^8.0.3"
   },
-  "packageManager": "pnpm@8.6.3",
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "engines": {
     "node": ">=16",
     "pnpm": ">=8.6.3",
     "yarn": ">=1.13.0"
   },
+  "packageManager": "pnpm@8.6.3",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": []
