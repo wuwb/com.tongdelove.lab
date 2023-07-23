@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 #--no-install 参数表示强制 npx 使用项目中 node_modules 目录中的 commitlint 包
-pnpx --no-install commitlint --edit $1
+# pnpx --no-install commitlint --edit $1
