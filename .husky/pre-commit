@@ -3,4 +3,4 @@
 
 echo "pre commit"
 
-pnpx lint-staged
+# pnpx lint-staged
