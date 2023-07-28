@@ -12,9 +12,6 @@ function SofewarePage(): any {
 
     return (
         <>
-            <Head>
-                <title>软件推荐</title>
-            </Head>
             <div className="p-2 box max-w-screen-lg mx-auto">
                 Tuxera Disk Manager
 
