@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import BlogCard from "@/content/dashboard/BlogCard";
 import DailyActivity from "@/content/dashboard/DailyActivity";
 import ProductPerfomance from "@/content/dashboard/ProductPerfomance";

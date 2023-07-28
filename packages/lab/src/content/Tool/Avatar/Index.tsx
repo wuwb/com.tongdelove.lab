@@ -1,3 +1,5 @@
+'use client';
+
 import { Circle, Rect, Stage, Layer, Text, Star, Image as KonvaImage, Transformer, Group } from 'react-konva';
 import Konva from 'konva';
 import { SyntheticEvent, useEffect, useImperativeHandle, useRef, useState } from 'react';

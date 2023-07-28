@@ -1,13 +1,27 @@
 import Head from 'next/head'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/shortcut-icon.png',
+    apple: [
+      {
+        url: '/favicon/apple-touch-icon.png',
+        sizes: '180x180',
+      }
+    ], // apple-touch-icon
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/apple-touch-icon-precomposed.png',
+    },
+  },
+}
+
 
 export default function Meta() {
   return (
     <Head>
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon/apple-touch-icon.png"
-      />
       <link
         rel="icon"
         type="image/png"

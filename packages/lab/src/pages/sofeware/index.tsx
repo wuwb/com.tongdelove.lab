@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Head from 'next/head';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: '软件推荐',
+}
 
 function SofewarePage(): any {
     const { t } = useTranslation()

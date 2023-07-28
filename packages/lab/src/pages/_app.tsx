@@ -13,7 +13,6 @@ import {
 } from '@tanstack/react-query';
 import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { useEffect } from 'react';
@@ -22,6 +21,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import nextI18NextConfig from '../../next-i18next.config.js';
 import { Analytics } from '@vercel/analytics/react';
+import type { Metadata } from 'next'
 
 interface MyAppProps extends AppProps {
 }
@@ -33,6 +33,17 @@ export type AppPropsWithLayout = MyAppProps & {
 const helmetContext = {};
 
 NProgress.configure({ showSpinner: false });
+
+export const metadata: Metadata = {
+  title,
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1, // to enable GPU rasterization
+    // shrinkToFit: 'no'
+  },
+}
 
 function MyApp(props: AppPropsWithLayout) {
   const [queryClient] = React.useState(() => new QueryClient({
@@ -63,14 +74,6 @@ function MyApp(props: AppPropsWithLayout) {
               <Hydrate state={pageProps.dehydratedState}>
                 <HelmetProvider context={helmetContext}>
                   <StyledEngineProvider injectFirst>
-                    <Head>
-                      <title>{title}</title>
-                      {/* Use minimum-scale=1 to enable GPU rasterization */}
-                      <meta
-                        name="viewport"
-                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-                      />
-                    </Head>
                     <ThemeProvider>
                       {getLayout(<Component {...pageProps} />)}
                     </ThemeProvider>
