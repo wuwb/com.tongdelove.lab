@@ -10,7 +10,6 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import styles from './index.module.scss';
 import { Avatar } from '../_components/Avatar/index'
 
 type IndexProps = {
@@ -233,7 +232,6 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
                         </div>
                     )}
                     <input
-                        className={styles.input}
                         type="file"
                         ref={fileInputField}
                         onChange={handleNewFileUpload}
@@ -252,7 +250,7 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
                     let file = files[fileName];
                     let isImageFile = file.type.split("/")[0] === "image";
                     return (
-                        <div key={fileName} className={styles.previewContent}>
+                        <div key={fileName}>
                             {isImageFile && (
                                 <>
                                     {/* <Image
