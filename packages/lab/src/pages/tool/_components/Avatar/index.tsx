@@ -5,12 +5,11 @@ import Konva from 'konva';
 import { SyntheticEvent, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useImage from 'use-image';
 
-const Avatar = ({
+export const Avatar = ({
     url = '',
     item = '',
     cRef,
 }) => {
-
     const [image] = useImage(url);
     const [itemImage] = useImage(item);
 
@@ -141,4 +140,3 @@ const Avatar = ({
     );
 }
 
-export default Avatar

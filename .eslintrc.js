@@ -10,7 +10,6 @@ module.exports = {
     node: true
   },
   extends: [
-    'next/core-web-vitals',
     "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended",
   ],

@@ -1,20 +1,17 @@
-import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
 import { Container, Footer } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
 import { NextPageWithLayout } from '@/types/app';
-import Box from '@mui/material/Box';
 import { ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import styles from './index.module.scss';
-import NoSSRComponent from '../_components/Avatar/index'
+import { Avatar } from '../_components/Avatar/index'
 
 type IndexProps = {
 };
@@ -27,7 +24,6 @@ const FORMATS = ['jpg', 'png'];
 const convertBytesToKB = (bytes) => Math.round(bytes / KILO_BYTES_PER_BYTE);
 
 const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
-
     const fileInputField = useRef(null);
     const [files, setFiles] = useState({});
     const multiple = true;
@@ -265,7 +261,7 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
                                         width="200"
                                         height="200"
                                     /> */}
-                                    <NoSSRComponent cRef={avatarRef}
+                                    <Avatar cRef={avatarRef}
                                         url={URL.createObjectURL(file)}
                                         item={item} />
                                 </>

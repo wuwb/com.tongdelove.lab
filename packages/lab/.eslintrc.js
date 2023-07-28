@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   settings: {
     next: {
       rootDir: ['@/'],
@@ -9,7 +10,8 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: [
+    'next/core-web-vitals', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
