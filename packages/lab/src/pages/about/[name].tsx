@@ -1,1 +1,1 @@
-export { AboutName as default } from '@/content/about/AboutName/AboutName';
+export { AboutName as default } from './_components/AboutName/AboutName';

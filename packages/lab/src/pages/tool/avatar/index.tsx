@@ -14,7 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import styles from './index.module.scss';
-import NoSSRComponent from '@/content/Tool/Avatar/index'
+import NoSSRComponent from '../_components/Avatar/index'
 
 type IndexProps = {
 };
