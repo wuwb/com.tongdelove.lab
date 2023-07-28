@@ -1,10 +1,6 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids';
 import { styled } from '@mui/system';
-import dynamic from 'next/dynamic';
-
-const LazyDownload = dynamic(import('./Download'), {
-  ssr: false
-});
+import LazyDownload from './Download';
 
 const Container = styled('div')`
   width: 100%;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import dynamic from "next/dynamic";
 import BaseCard from "@/components/module/baseCard/BaseCard";
 
 const SalesOverview = () => {

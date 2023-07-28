@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';

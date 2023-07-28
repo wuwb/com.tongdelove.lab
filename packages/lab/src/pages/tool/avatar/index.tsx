@@ -14,11 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import styles from './index.module.scss';
-import dynamic from "next/dynamic";
-
-const NoSSRComponent = dynamic(() => import('@/content/Tool/Avatar/index'), {
-    ssr: false,
-});
+import NoSSRComponent from '@/content/Tool/Avatar/index'
 
 type IndexProps = {
 };
