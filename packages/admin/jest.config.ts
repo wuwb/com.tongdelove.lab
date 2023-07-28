@@ -16,10 +16,7 @@ export default async () => {
     },
     testURL: 'http://localhost:8000',
     verbose: false,
-    setupFiles: [
-      ...(config.setupFiles || []),
-      './tests/setupTests.jsx'
-    ],
+    setupFiles: [...(config.setupFiles || []), './tests/setupTests.jsx'],
     globals: {
       ...config.globals,
       localStorage: null,
@@ -27,6 +24,3 @@ export default async () => {
     },
   };
 };
-
-
-

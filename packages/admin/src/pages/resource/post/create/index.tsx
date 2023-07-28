@@ -1,9 +1,9 @@
-import React from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import { Row, Col, Collapse, Form, Input, Space, Button, Radio, message } from 'antd';
-import { create, remove, update, list, get } from '../service';
-import ReactQuill, { Quill, Mixin, Toolbar } from 'react-quill'; // Typescript
+import { Button, Col, Collapse, Form, Input, message, Radio, Row, Space } from 'antd';
+import React from 'react';
+import ReactQuill from 'react-quill'; // Typescript
 import 'react-quill/dist/quill.snow.css';
+import { create } from '../service';
 
 const { Panel } = Collapse;
 const { TextArea } = Input;
@@ -12,14 +12,12 @@ function callback(key) {
   console.log(key);
 }
 
-
-
 const PostCreatePage: React.FC<{}> = () => {
   const [postContent, setPostContent] = React.useState('');
 
   const handlePostContentChange = (value: any) => {
     setPostContent(value);
-  }
+  };
 
   const onFinish = async (values: any) => {
     console.log('Success:', values);
@@ -58,10 +56,14 @@ const PostCreatePage: React.FC<{}> = () => {
                     style={{
                       height: '542px',
                     }}
-                    onChange={handlePostContentChange}>
-                    <div className="my-editing-area" style={{
-                      height: '500px',
-                    }} />
+                    onChange={handlePostContentChange}
+                  >
+                    <div
+                      className="my-editing-area"
+                      style={{
+                        height: '500px',
+                      }}
+                    />
                   </ReactQuill>
                 </Panel>
               </Collapse>
@@ -82,7 +84,6 @@ const PostCreatePage: React.FC<{}> = () => {
           </Col>
           <Col xs={6} sm={6} md={6} lg={6} xl={6}>
             <Space direction="vertical" style={{ width: '100%' }}>
-
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="发布" key="1">
                   <Form.Item name="order" label="顺序" rules={[{ required: false }]}>
@@ -128,7 +129,6 @@ const PostCreatePage: React.FC<{}> = () => {
                 </Panel>
               </Collapse>
             </Space>
-
           </Col>
         </Row>
       </Form>

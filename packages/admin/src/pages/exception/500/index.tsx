@@ -1,7 +1,7 @@
 import { Link } from '@umijs/max';
-import { Result, Button } from 'antd';
+import { Button, Result } from 'antd';
 
-export default () => (
+const Page500 = () => (
   <Result
     status="500"
     title="500"
@@ -16,3 +16,5 @@ export default () => (
     }
   />
 );
+
+export default Page500

@@ -1,26 +1,15 @@
-import { Button, Divider, message, Input, Card, Typography, Collapse, Descriptions } from 'antd';
-import React, { useState, useRef } from 'react';
-import { PageContainer, FooterToolbar } from '@ant-design/pro-components';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import { TableListItem } from './data.d';
+import { PageContainer } from '@ant-design/pro-components';
 import ProForm, {
+  ProFormFieldSet,
+  ProFormRadio,
+  ProFormSelect,
   ProFormSwitch,
   ProFormText,
-  ProFormRadio,
-  ProFormCheckbox,
-  ProFormRate,
-  ProFormDatePicker,
-  ProFormSelect,
-  ProFormDigit,
-  ProFormDateTimePicker,
-  ProFormSlider,
-  ProFormDateTimeRangePicker,
-  ProFormDateRangePicker,
-  ProFormUploadButton,
-  ProFormUploadDragger,
-  ProFormFieldSet,
-  ProFormTimePicker,
 } from '@ant-design/pro-form';
+import { ActionType } from '@ant-design/pro-table';
+import { Card, Collapse, Descriptions, Divider, message, Typography } from 'antd';
+import React, { useRef, useState } from 'react';
+import { TableListItem } from './data.d';
 const { Title, Paragraph, Text, Link } = Typography;
 const { Panel } = Collapse;
 
@@ -267,7 +256,12 @@ const TableList: React.FC<{}> = () => {
 
           <Divider />
 
-          <Descriptions title={<Title level={3}>可选工序</Title>} bordered size="small" labelStyle={{ width: 208 }}>
+          <Descriptions
+            title={<Title level={3}>可选工序</Title>}
+            bordered
+            size="small"
+            labelStyle={{ width: 208 }}
+          >
             <Descriptions.Item label="粘盒套" span={3}>
               <ProFormSwitch name="switch" />
             </Descriptions.Item>
@@ -289,7 +283,6 @@ const TableList: React.FC<{}> = () => {
                 <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
                 <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
               </ProFormFieldSet>
-
             </Descriptions.Item>
 
             <Descriptions.Item label="过胶" span={3}>
@@ -461,14 +454,17 @@ const TableList: React.FC<{}> = () => {
             <Descriptions.Item label="粘盒套" span={3}>
               <ProFormSwitch name="switch" />
             </Descriptions.Item>
-
           </Descriptions>
-          <Descriptions title={<Title level={3}>可选配件</Title>} bordered size="small" labelStyle={{ width: 208 }}>
+          <Descriptions
+            title={<Title level={3}>可选配件</Title>}
+            bordered
+            size="small"
+            labelStyle={{ width: 208 }}
+          >
             <Descriptions.Item label="开窗" span={3}>
               <ProFormSwitch name="switch" />
             </Descriptions.Item>
           </Descriptions>
-
         </ProForm>
       </Card>
     </PageContainer>

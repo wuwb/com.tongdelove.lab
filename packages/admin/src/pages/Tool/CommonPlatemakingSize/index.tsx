@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography, Input } from 'antd';
-import { useIntl, FormattedMessage } from '@umijs/max';
+import { Card } from 'antd';
 
 function CommonPlatemakingSize() {
   return (
-    <PageContainer
-      content="常用制版尺寸表（单位：cm）"
-    >
+    <PageContainer content="常用制版尺寸表（单位：cm）">
       <Card>
-        <table border="0" cellPadding="0" cellSpacing="0">
+        <table style={{ border: "0" }} cellPadding="0" cellSpacing="0">
           <tbody>
             <tr>
-              <th width="102" rowSpan="2">
+              <th style={{ width: "102" }} rowSpan={2}>
                 开度\规格
               </th>
-              <th colSpan="2">正度</th>
-              <th colSpan="2">大度</th>
+              <th colSpan={2}>正度</th>
+              <th colSpan={2}>大度</th>
             </tr>
             <tr>
-              <th width="124">纸张规格</th>
-              <th width="139">制版规格</th>
-              <th width="162">纸张规格</th>
-              <th width="142">制版规格</th>
+              <th style={{ width: "124" }}>纸张规格</th>
+              <th style={{ width: "139" }}>制版规格</th>
+              <th style={{ width: "162" }}>纸张规格</th>
+              <th style={{ width: "142" }}>制版规格</th>
             </tr>
             <tr>
               <td>全张</td>
@@ -32,14 +28,14 @@ function CommonPlatemakingSize() {
               <td>118 × 86 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB">对开</td>
-              <td bgcolor="#EBEBEB">54.5 × 78.7 </td>
-              <td bgcolor="#EBEBEB">53 × 76 </td>
-              <td bgcolor="#EBEBEB">59.7 × 88.9 </td>
-              <td bgcolor="#EBEBEB">58 × 86 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>对开</td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>54.5 × 78.7 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>53 × 76 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>59.7 × 88.9 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>58 × 86 </td>
             </tr>
             <tr>
-              <td rowSpan="2">3开</td>
+              <td rowSpan={2}>3开</td>
               <td>36.2 × 78.7 </td>
               <td>34.5 × 76 </td>
               <td>39.7 × 88.9 </td>
@@ -52,22 +48,22 @@ function CommonPlatemakingSize() {
               <td>42 × 74 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 4开
               </td>
-              <td bgcolor="#EBEBEB">39.2 × 54.5 </td>
-              <td bgcolor="#EBEBEB">38 × 53 </td>
-              <td bgcolor="#EBEBEB">44.4 × 59.7 </td>
-              <td bgcolor="#EBEBEB">42 × 58 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>39.2 × 54.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>38 × 53 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>44.4 × 59.7 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>42 × 58 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB">27.2 × 78.5</td>
-              <td bgcolor="#EBEBEB">26 × 76</td>
-              <td bgcolor="#EBEBEB">29.8 × 88.5</td>
-              <td bgcolor="#EBEBEB">28 × 86</td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>27.2 × 78.5</td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>26 × 76</td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>29.8 × 88.5</td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>28 × 86</td>
             </tr>
             <tr>
-              <td rowSpan="2">6开</td>
+              <td rowSpan={2}>6开</td>
               <td> 36.2 × 39.2 </td>
               <td> 34.5 × 37.5 </td>
               <td> 39.7 × 44.4 </td>
@@ -80,19 +76,19 @@ function CommonPlatemakingSize() {
               <td> 28.5 × 58 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 8开
               </td>
-              <td bgcolor="#EBEBEB"> 27.2 × 39.2 </td>
-              <td bgcolor="#EBEBEB"> 26 × 38 </td>
-              <td bgcolor="#EBEBEB"> 29.8 × 44.4 </td>
-              <td bgcolor="#EBEBEB"> 28.5 × 42 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 27.2 × 39.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 26 × 38 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 29.8 × 44.4 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 28.5 × 42 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB"> 19.6 × 54.5 </td>
-              <td bgcolor="#EBEBEB"> 18 × 53 </td>
-              <td bgcolor="#EBEBEB"> 22.2 × 59.7 </td>
-              <td bgcolor="#EBEBEB"> 21 × 57 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 19.6 × 54.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 18 × 53 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 22.2 × 59.7 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 21 × 57 </td>
             </tr>
             <tr>
               <td>9开</td>
@@ -102,22 +98,22 @@ function CommonPlatemakingSize() {
               <td> 28 × 38 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 10开
               </td>
-              <td bgcolor="#EBEBEB"> 21.8 × 39.2 </td>
-              <td bgcolor="#EBEBEB"> 20.5 × 38 </td>
-              <td bgcolor="#EBEBEB"> 23.8 × 44.4 </td>
-              <td bgcolor="#EBEBEB"> 22.5 × 42 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 21.8 × 39.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 20.5 × 38 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 23.8 × 44.4 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 22.5 × 42 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB"> 15.7 × 54.5 </td>
-              <td bgcolor="#EBEBEB"> 14.5 × 53 </td>
-              <td bgcolor="#EBEBEB"> 17.7 × 59.7 </td>
-              <td bgcolor="#EBEBEB"> 16.5 × 58 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 15.7 × 54.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 14.5 × 53 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 17.7 × 59.7 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 16.5 × 58 </td>
             </tr>
             <tr>
-              <td rowSpan="4">12开</td>
+              <td rowSpan={4}>12开</td>
               <td> 26.2 × 27.2 </td>
               <td> 25 × 26 </td>
               <td> 29.6 × 29.8 </td>
@@ -142,22 +138,22 @@ function CommonPlatemakingSize() {
               <td>13 × 58 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 16开
               </td>
-              <td bgcolor="#EBEBEB">19.6 × 27.2 </td>
-              <td bgcolor="#EBEBEB">18.5 × 26 </td>
-              <td bgcolor="#EBEBEB">22.2 × 29.8 </td>
-              <td bgcolor="#EBEBEB">21 × 28.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>19.6 × 27.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>18.5 × 26 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>22.2 × 29.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>21 × 28.5 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB">13.6 × 39.2 </td>
-              <td bgcolor="#EBEBEB">12.5 × 38 </td>
-              <td bgcolor="#EBEBEB">14.8 × 44.4 </td>
-              <td bgcolor="#EBEBEB">14 × 42 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>13.6 × 39.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>12.5 × 38 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>14.8 × 44.4 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>14 × 42 </td>
             </tr>
             <tr>
-              <td rowSpan="2">18开</td>
+              <td rowSpan={2}>18开</td>
               <td>18 × 26.2 </td>
               <td>17 × 25 </td>
               <td>19.8 × 29.6 </td>
@@ -170,22 +166,22 @@ function CommonPlatemakingSize() {
               <td>13.5 × 38 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 20开
               </td>
-              <td bgcolor="#EBEBEB">19.6 × 21.8 </td>
-              <td bgcolor="#EBEBEB">18.5 × 20.5 </td>
-              <td bgcolor="#EBEBEB">22.2 × 23.8 </td>
-              <td bgcolor="#EBEBEB">21 × 22.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>19.6 × 21.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>18.5 × 20.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>22.2 × 23.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>21 × 22.5 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB">15.7 × 27.2 </td>
-              <td bgcolor="#EBEBEB">14.5 × 26 </td>
-              <td bgcolor="#EBEBEB">17.7 × 29.8 </td>
-              <td bgcolor="#EBEBEB">16.5 × 28.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>15.7 × 27.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>14.5 × 26 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>17.7 × 29.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>16.5 × 28.5 </td>
             </tr>
             <tr>
-              <td rowSpan="4">24开</td>
+              <td rowSpan={4}>24开</td>
               <td> 18 × 19.6 </td>
               <td> 17 × 18.5 </td>
               <td> 19.8 × 22.2 </td>
@@ -210,22 +206,22 @@ function CommonPlatemakingSize() {
               <td> 10 × 38 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 32开
               </td>
-              <td bgcolor="#EBEBEB"> 13.6 × 19.6 </td>
-              <td bgcolor="#EBEBEB"> 12.5 × 18.5 </td>
-              <td bgcolor="#EBEBEB"> 14.8 × 22.2 </td>
-              <td bgcolor="#EBEBEB"> 14 × 21 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 13.6 × 19.6 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 12.5 × 18.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 14.8 × 22.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 14 × 21 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB"> 9.8 × 27.2 </td>
-              <td bgcolor="#EBEBEB"> 8.5 × 26 </td>
-              <td bgcolor="#EBEBEB"> 11.1 × 29.8 </td>
-              <td bgcolor="#EBEBEB"> 10 × 28.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 9.8 × 27.2 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 8.5 × 26 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 11.1 × 29.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}> 10 × 28.5 </td>
             </tr>
             <tr>
-              <td rowSpan="4">40开</td>
+              <td rowSpan={4}>40开</td>
               <td> 13.6 × 15.7 </td>
               <td> 12.5 × 14.5 </td>
               <td> 14.9 × 17.7 </td>
@@ -250,19 +246,19 @@ function CommonPlatemakingSize() {
               <td> 7 × 26 </td>
             </tr>
             <tr>
-              <td rowSpan="2" bgcolor="#EBEBEB">
+              <td rowSpan={2} style={{ backgroundColor: "#EBEBEB" }}>
                 48开
               </td>
-              <td bgcolor="#EBEBEB">13.6 × 13 </td>
-              <td bgcolor="#EBEBEB">12.5 × 12 </td>
-              <td bgcolor="#EBEBEB">14.8 × 14.9 </td>
-              <td bgcolor="#EBEBEB">13.5 × 13.5 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>13.6 × 13 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>12.5 × 12 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>14.8 × 14.9 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>13.5 × 13.5 </td>
             </tr>
             <tr>
-              <td bgcolor="#EBEBEB">18 × 9.8 </td>
-              <td bgcolor="#EBEBEB">17 × 9 </td>
-              <td bgcolor="#EBEBEB">11.1 × 19.8 </td>
-              <td bgcolor="#EBEBEB">10 × 19 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>18 × 9.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>17 × 9 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>11.1 × 19.8 </td>
+              <td style={{ backgroundColor: "#EBEBEB" }}>10 × 19 </td>
             </tr>
           </tbody>
         </table>

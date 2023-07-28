@@ -1,4 +1,3 @@
-import React from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 
 function Crud() {
@@ -9,30 +8,35 @@ function Crud() {
       field: {
         type: 'input',
         props: {
-          placeholder: 'please input'
-        }
-      }
-    }, {
+          placeholder: 'please input',
+        },
+      },
+    },
+    {
       name: 'nat',
       label: 'Country',
-      field: 'input'
-    }, {
+      field: 'input',
+    },
+    {
       name: 'email',
       label: 'Email',
-      field: 'input'
-    }, {
+      field: 'input',
+    },
+    {
       name: 'index',
       label: 'Sequence',
-      field: 'input'
-    }, {
+      field: 'input',
+    },
+    {
       name: 'age',
       label: 'Age',
-      field: 'input'
-    }, {
+      field: 'input',
+    },
+    {
       name: 'others',
       label: 'Others',
-      field: 'input'
-    }
+      field: 'input',
+    },
   ];
   const remoteDataSource = {
     url: 'http://rap2.taobao.org:38080/app/mock/256045/table/list',
@@ -59,17 +63,21 @@ function Crud() {
   const columns = [
     {
       title: 'Sequence',
-      key: 'index'
-    }, {
+      key: 'index',
+    },
+    {
       title: 'Country',
-      key: 'nat'
-    }, {
+      key: 'nat',
+    },
+    {
       title: 'Age',
       key: 'age',
-    }, {
+    },
+    {
       title: 'Name',
-      key: 'name'
-    }, {
+      key: 'name',
+    },
+    {
       title: 'Email',
       key: 'email',
     },
@@ -81,7 +89,7 @@ function Crud() {
           confirm: 'delete or not',
           type: 'icon',
           props: {
-            type: 'delete'
+            type: 'delete',
           },
           action: [
             {
@@ -93,17 +101,13 @@ function Crud() {
               },
               successMessage: 'successfully deleted',
             },
-            'refreshTable'
-          ]
-        }
-      ]
-    }
+            'refreshTable',
+          ],
+        },
+      ],
+    },
   ];
-  return (
-    <PageContainer>
-
-    </PageContainer>
-  );
+  return <PageContainer></PageContainer>;
 }
 
 export default Crud;

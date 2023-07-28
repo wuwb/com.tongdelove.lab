@@ -1,17 +1,16 @@
-import React from 'react';
 import classnames from 'classnames';
-import style from './index';
 
-export default () => {
+const LoginComponent = () => {
   return (
-    <div className={style['wrapper']}>
-      <div className={classnames('g-full-container', style['full-container'])}>
-        <div className={style['login-box']}>
-          <h2 className={style['title']}>Login</h2>
-          <div className={style['login-form']}>
-          </div>
+    <div className="">
+      <div className={classnames('g-full-container')}>
+        <div className="">
+          <h2 className="">Login</h2>
+          <div className=""></div>
         </div>
       </div>
     </div>
   );
 };
+
+export default LoginComponent;

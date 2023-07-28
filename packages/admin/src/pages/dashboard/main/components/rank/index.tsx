@@ -3,7 +3,7 @@ import React from 'react';
 import style from './index.less';
 
 export default class Rank extends React.Component {
-  renderRankItem = data => {
+  renderRankItem = (data) => {
     if (!data) return;
     return data.map(({ name, value }, idx) => {
       return (

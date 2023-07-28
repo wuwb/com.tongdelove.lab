@@ -1,6 +1,6 @@
+import { Helmet as Head } from '@umijs/max';
 import React from 'react';
 import { getDataFromTree } from 'react-apollo';
-import { Helmet as Head } from '@umijs/max';
 import initApollo from './initApollo';
 
 export default (App) => {

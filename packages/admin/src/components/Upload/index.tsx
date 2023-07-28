@@ -1,8 +1,8 @@
-import React from 'react';
-import * as qiniu from 'qiniu-js';
-import Style from './index.less';
-import { notification } from 'antd';
 import { getToken } from '@/services/user';
+import { notification } from 'antd';
+import * as qiniu from 'qiniu-js';
+import React from 'react';
+import Style from './index.less';
 
 class Upload extends React.Component {
   uploadFn = async () => {
@@ -67,7 +67,7 @@ class Upload extends React.Component {
 }
 
 Upload.defaultProps = {
-  successCb: () => { },
+  successCb: () => {},
 };
 
 export default Upload;

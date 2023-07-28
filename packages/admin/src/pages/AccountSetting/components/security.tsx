@@ -1,5 +1,4 @@
 import { FormattedMessage, useIntl } from '@umijs/max';
-import React from 'react';
 import { List } from 'antd';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
@@ -100,4 +99,4 @@ export const SecurityView = () => {
       />
     </>
   );
-}
+};

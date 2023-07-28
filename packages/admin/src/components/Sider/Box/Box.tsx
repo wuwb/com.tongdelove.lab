@@ -1,9 +1,8 @@
-import React from 'react';
-import BoxWrap from './BoxWrap';
+import { Outlet } from '@umijs/max';
 import BoxCell from './BoxCell';
 import BoxInner from './BoxInner';
+import BoxWrap from './BoxWrap';
 import Styles from './index.less';
-import { Outlet } from '@umijs/max';
 
 const Box = (props) => {
   return (

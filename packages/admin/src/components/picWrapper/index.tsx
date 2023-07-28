@@ -1,5 +1,5 @@
+import { Col, Row } from 'antd';
 import React from 'react';
-import { Row, Col } from 'antd';
 
 class PicWrapper extends React.Component {
   render() {

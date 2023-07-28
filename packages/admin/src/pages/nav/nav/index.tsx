@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DefaultLayout as Layout } from '@/components/Layout/DefaultLayout';
 import { createStyles } from 'antd-style';
 
@@ -21,7 +20,7 @@ const useStyles = createStyles(({ token, css }) => ({
     width: 200px;
     height: 100px;
     border: 1px solid #ddd;
-  `
+  `,
 }));
 
 const Page = () => {

@@ -1,10 +1,10 @@
-import * as path from 'path';
-import * as fs from 'fs';
-import { cloneDeep } from 'lodash';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import store from 'store';
+import * as fs from 'fs';
+import { cloneDeep } from 'lodash';
+import * as path from 'path';
 import pathToRegexp from 'path-to-regexp';
+import store from 'store';
 // 常量先放在这里
 // 包括页面链接，打点字段
 
@@ -17,9 +17,9 @@ import pathToRegexp from 'path-to-regexp';
  */
 export function queryArray(array, key, value) {
   if (!Array.isArray(array)) {
-    return
+    return;
   }
-  return array.find(_ => _[key] === value)
+  return array.find((_) => _[key] === value);
 }
 
 /**
@@ -34,7 +34,7 @@ export function arrayToTree(
   array,
   id: string = 'id',
   parentId: string = 'pid',
-  children: string = 'children'
+  children: string = 'children',
 ): any[] {
   const result = [];
   const hash = {};
@@ -44,7 +44,7 @@ export function arrayToTree(
     hash[data[index][id]] = data[index];
   });
 
-  data.forEach(item => {
+  data.forEach((item) => {
     const hashParent = hash[item[parentId]];
     if (hashParent) {
       !hashParent[children] && (hashParent[children] = []);
@@ -52,7 +52,7 @@ export function arrayToTree(
     } else {
       result.push(item);
     }
-  })
+  });
   return result;
 }
 
@@ -65,20 +65,20 @@ export function arrayToTree(
  * @return  {array}    Return a key array.
  */
 export function queryPathKeys(array, current, parentId, id = 'id') {
-  const result = [current]
-  const hashMap = new Map()
-  array.forEach(item => hashMap.set(item[id], item))
+  const result = [current];
+  const hashMap = new Map();
+  array.forEach((item) => hashMap.set(item[id], item));
 
-  const getPath = current => {
-    const currentParentId = hashMap.get(current)[parentId]
+  const getPath = (current) => {
+    const currentParentId = hashMap.get(current)[parentId];
     if (currentParentId) {
-      result.push(currentParentId)
-      getPath(currentParentId)
+      result.push(currentParentId);
+      getPath(currentParentId);
     }
-  }
+  };
 
-  getPath(current)
-  return result
+  getPath(current);
+  return result;
 }
 
 /**
@@ -90,20 +90,20 @@ export function queryPathKeys(array, current, parentId, id = 'id') {
  * @return  {array}    Return a key array.
  */
 export function queryAncestors(array, current, parentId, id = 'id') {
-  const result = [current]
-  const hashMap = new Map()
-  array.forEach(item => hashMap.set(item[id], item))
+  const result = [current];
+  const hashMap = new Map();
+  array.forEach((item) => hashMap.set(item[id], item));
 
-  const getPath = current => {
-    const currentParentId = hashMap.get(current[id])[parentId]
+  const getPath = (current) => {
+    const currentParentId = hashMap.get(current[id])[parentId];
     if (currentParentId) {
-      result.push(hashMap.get(currentParentId))
-      getPath(hashMap.get(currentParentId))
+      result.push(hashMap.get(currentParentId));
+      getPath(hashMap.get(currentParentId));
     }
-  }
+  };
 
-  getPath(current)
-  return result
+  getPath(current);
+  return result;
 }
 
 /**
@@ -113,22 +113,20 @@ export function queryAncestors(array, current, parentId, id = 'id') {
  * @return  {string}   Return frist object when query success.
  */
 export function queryLayout(layouts, pathname) {
-  let result = 'public'
+  let result = 'public';
 
-  const isMatch = regepx => {
-    return regepx instanceof RegExp
-      ? regepx.test(pathname)
-      : pathToRegexp(regepx).exec(pathname)
-  }
+  const isMatch = (regepx) => {
+    return regepx instanceof RegExp ? regepx.test(pathname) : pathToRegexp(regepx).exec(pathname);
+  };
 
   for (const item of layouts) {
-    let include = false
-    let exclude = false
+    let include = false;
+    let exclude = false;
     if (item.include) {
       for (const regepx of item.include) {
         if (isMatch(regepx)) {
-          include = true
-          break
+          include = true;
+          break;
         }
       }
     }
@@ -136,42 +134,41 @@ export function queryLayout(layouts, pathname) {
     if (include && item.exclude) {
       for (const regepx of item.exclude) {
         if (isMatch(regepx)) {
-          exclude = true
-          break
+          exclude = true;
+          break;
         }
       }
     }
 
     if (include && !exclude) {
-      result = item.name
-      break
+      result = item.name;
+      break;
     }
   }
 
-  return result
+  return result;
 }
 
 export function getLocale() {
-  return store.get('locale') || defaultLanguage
+  return store.get('locale') || defaultLanguage;
 }
 
 export function setLocale(language: string) {
   if (getLocale() !== language) {
-    dayjs.locale(language === 'zh' ? 'zh-cn' : language)
-    store.set('locale', language)
-    window.location.reload()
+    dayjs.locale(language === 'zh' ? 'zh-cn' : language);
+    store.set('locale', language);
+    window.location.reload();
   }
 }
 
 export function getPackageJson() {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'))
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'));
 }
 
 export function isBrowser() {
   const isServer = typeof window === 'undefined';
   return !isServer;
-};
-
+}
 
 /**
  * 频率控制函数， fn执行次数不超过 1 次/delay
@@ -184,19 +181,19 @@ export function isBrowser() {
 type throttleOptions = {
   leading?: boolean;
   trailing?: boolean;
-}
+};
 export function throttle(fn, delay: number, options: throttleOptions = {}) {
   let wait = false;
   return function () {
     const args = arguments;
     if (!wait) {
       if (!(options.leading === false)) {
-        fn.apply(this, args);
+        fn.apply(throttle, args);
       }
       wait = true;
       setTimeout(() => {
         if (!(options.trailing === false)) {
-          fn.apply(this, args);
+          fn.apply(throttle, args);
         }
         wait = false;
       }, delay);
@@ -212,21 +209,20 @@ export function throttle(fn, delay: number, options: throttleOptions = {}) {
  */
 export function debunce(fn, delay: number = 1000) {
   let timer;
-  const context = this;
   return function () {
     if (timer) {
       clearTimeout(timer);
       timer = setTimeout(() => {
-        fn.apply(context, arguments);
+        fn.apply(debunce, arguments);
       }, delay);
     } else {
       timer = setTimeout(() => {
-        fn.apply(context, arguments);
+        fn.apply(debunce, arguments);
       }, delay);
     }
   };
 }
 
 export function trim(str: string) {
-  return str.replace(/(^\s*)|(\s*$)/g, '')
+  return str.replace(/(^\s*)|(\s*$)/g, '');
 }

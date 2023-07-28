@@ -1,6 +1,6 @@
-import React from 'react';
-import { Modal } from 'antd';
 import { Outlet } from '@umijs/max';
+import { Modal } from 'antd';
+import React from 'react';
 
 interface UpdateFormProps {
   updateModalVisible: boolean;

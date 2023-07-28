@@ -1,6 +1,4 @@
-import React from 'react';
-import { connect, useIntl, getLocale, setLocale } from '@umijs/max';
-import { Button } from 'antd';
+import { connect, getLocale, setLocale, useIntl } from '@umijs/max';
 
 const Home = (props) => {
   const { title } = props;

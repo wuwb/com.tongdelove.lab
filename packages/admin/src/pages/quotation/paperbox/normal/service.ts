@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from './data.d';
+import { TableListItem, TableListParams } from './data.d';
 
 export async function queryData(params?: TableListParams) {
   return request('/api/demo/client/query', {

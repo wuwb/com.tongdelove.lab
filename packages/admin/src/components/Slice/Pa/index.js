@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Stage, Layer, Rect, Text, Line, Shape } from 'react-konva';
-import Konva from 'konva';
+import { Component } from 'react';
+import { Shape } from 'react-konva';
 
 class Pa extends Component {
-
   static defaultProps = {
     origin: [0, 0],
   };

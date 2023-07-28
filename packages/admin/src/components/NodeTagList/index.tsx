@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NodeTagList = (props) => {
   return (
     <div>

@@ -33,12 +33,10 @@ export default {
   'menu.system.plugins': '插件',
   'menu.system.tasks': '任务',
 
-
   'menu.setting': '设置',
   'menu.setting.import-taobao-csv': '导入淘宝订单',
 
   'menu.account-settings': '个人设置',
-
 
   'menu.more-blocks': '更多区块',
   'menu.login': '登录',

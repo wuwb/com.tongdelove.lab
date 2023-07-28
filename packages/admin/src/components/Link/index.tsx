@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Link as UmiLink } from '@umijs/max';
+import React from 'react';
 
 interface LinkProps {
   to: string;

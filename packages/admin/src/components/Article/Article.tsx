@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from '@umijs/max';
 import classnames from 'classnames';
 import Styles from './Article.less';

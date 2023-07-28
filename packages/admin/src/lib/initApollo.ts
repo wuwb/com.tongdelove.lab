@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { PrimeLink } from 'apollo-link-prime';
-import fetch from 'isomorphic-unfetch';
 
 const endpoint = 'https://example-prime.herokuapp.com';
 

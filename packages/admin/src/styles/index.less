@@ -4,17 +4,19 @@
 .fl {
   float: left;
 }
+
 .fr {
   float: right;
 }
+
 .clearfix {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     display: table;
     content: ' ';
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }

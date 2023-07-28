@@ -1,7 +1,7 @@
 ﻿import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
+import { history } from '@umijs/max';
 import { message, notification } from 'antd';
-import { history, Link } from '@umijs/max';
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -20,7 +20,6 @@ interface ResponseStructure {
   showType?: ErrorShowType;
 }
 
-
 const authHeaderInterceptor = (config: RequestOptions) => {
   // 拦截请求配置，进行个性化处理。
   const token = localStorage.getItem('token');
@@ -28,9 +27,9 @@ const authHeaderInterceptor = (config: RequestOptions) => {
   if (token) {
     const headers = {
       'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      'X-tenant': "default" // 公司编码？
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+      'X-tenant': 'default', // 公司编码？
     };
     const result = {
       url: config.url,
@@ -38,7 +37,7 @@ const authHeaderInterceptor = (config: RequestOptions) => {
       headers: {
         ...config.headers,
         ...headers,
-      }
+      },
     };
     return result;
   }
@@ -127,9 +126,7 @@ export const requestConfig: RequestConfig = {
   },
 
   // 请求拦截器
-  requestInterceptors: [
-    authHeaderInterceptor
-  ],
+  requestInterceptors: [authHeaderInterceptor],
 
   // 响应拦截器
   responseInterceptors: [

@@ -1,6 +1,6 @@
+import { queryCurrentUser, queryUser } from '@/services/base/user';
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
-import { queryCurrentUser, queryUser } from '@/services/base/user';
 
 export interface CurrentUser {
   avatar?: string;

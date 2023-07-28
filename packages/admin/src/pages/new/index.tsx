@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getAllLocales, getLocale, setLocale } from '@umijs/max';
-import { Layout, Button, Input, Space } from 'antd';
+import { BoxCell, BoxInner, BoxWrap, NewTips } from '@/components/Sider';
 import { basicSetup } from '@codemirror/basic-setup';
+import { markdown } from '@codemirror/lang-markdown';
 import { EditorState } from '@codemirror/state';
 import { EditorView, ViewUpdate } from '@codemirror/view';
-import { markdown } from '@codemirror/lang-markdown';
+import { Button, Input, Layout, Space } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { NewTips, BoxWrap, BoxCell, BoxInner } from '@/components/Sider';
 import Styles from './index.less';
 
 const { TextArea } = Input;

@@ -1,4 +1,3 @@
-import { Settings as LayoutSettings, ProLayoutProps } from '@ant-design/pro-components';
 import { RuntimeConfig } from '@umijs/max';
 /**
  * @name
@@ -36,6 +35,5 @@ export const defaultSettings: RuntimeConfig['layout'] & {
     },
     headerHeight: 48,
     splitMenus: false,
-  }
+  };
 };
-

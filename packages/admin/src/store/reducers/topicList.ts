@@ -15,19 +15,6 @@ const defaultValue = [
   },
 ];
 
-const topicList = (state = defaultValue, action) => {
-  switch (action.type) {
-    case 'ADD_TOPICLIST':
-      return [...action.info];
-    case 'ADD_COMMENT':
-      return addComments(state, action.info);
-    case 'TOPIC_LIKE':
-      return topicLike(state, action.info);
-    default:
-      return state;
-  }
-};
-
 // 点赞
 function topicLike(state, { index, topicLikeCounts, topicLike }) {
   let newArray = [...state];
@@ -50,5 +37,18 @@ function addComments(state, { index, replyContent, replyName }) {
   newArray[index].discuss.push(sourceComment);
   return newArray;
 }
+
+const topicList = (state = defaultValue, action) => {
+  switch (action.type) {
+    case 'ADD_TOPICLIST':
+      return [...action.info];
+    case 'ADD_COMMENT':
+      return addComments(state, action.info);
+    case 'TOPIC_LIKE':
+      return topicLike(state, action.info);
+    default:
+      return state;
+  }
+};
 
 export default topicList;

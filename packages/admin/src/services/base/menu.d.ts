@@ -1,5 +1,5 @@
-import { TableListItem as RoleTableListItem } from '@/services/base/role.d';
 import { TableListItem as PermissionTableListItem } from '@/services/base/permission.d';
+import { TableListItem as RoleTableListItem } from '@/services/base/role.d';
 
 // 列表内容结构以及表单提交结构
 export interface TableListItem {

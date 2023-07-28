@@ -6,7 +6,7 @@
   z-index: 1;
   width: 100%;
   background: @template-nav-bg-color;
-  box-shadow: 0 5px 8px fade(#000, 15);
+  box-shadow: 0 5px 8px rgba(0,0,0, 0.15);
 
   .home-page {
     padding: 0 24px;
@@ -82,7 +82,7 @@
 
       &-content {
         margin-left: 46px;
-        color: fade(#fff, 75);
+        color: rgba(255,255,255, 0.75);
         font-size: 12px;
       }
     }
@@ -115,6 +115,7 @@
           padding: 0;
         }
       }
+
       .item {
         &-sub-item {
           padding: 8px 0;
@@ -178,6 +179,7 @@
         pointer-events: auto;
       }
     }
+
     &-item-block {
       height: 40px;
       line-height: 40px;

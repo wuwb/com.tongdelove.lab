@@ -1,26 +1,22 @@
 import { PageHeader } from '@ant-design/pro-layout';
-import React, { useState, useEffect } from 'react';
-import { Spin, Card, Form, InputNumber, Button, } from 'antd';
-import { FormInstance } from 'antd/lib/form';
-import _ from 'lodash';
 import {
-  FormItem,
-  Editable,
-  Input,
-  Select,
-  Radio,
-  DatePicker,
   ArrayItems,
-  FormButtonGroup,
-  Submit,
-  Space,
-  NumberPicker,
   Cascader,
+  DatePicker,
+  Editable,
+  FormButtonGroup,
+  FormItem,
+  Input,
+  NumberPicker,
+  Radio,
+  Select,
+  Space,
+  Submit,
 } from '@formily/antd-v5';
 import { createForm } from '@formily/core';
-import { FormProvider, createSchemaField } from '@formily/react';
+import { createSchemaField, FormProvider } from '@formily/react';
 import { action } from '@formily/reactive';
-import { createStyles } from 'antd-style';
+import { Card } from 'antd';
 
 const SchemaField = createSchemaField({
   components: {
@@ -51,14 +47,10 @@ const transformAddress = (data = {}) => {
     return buf.concat({
       label: name,
       value: code,
-      children: _cities.length
-        ? _cities
-        : _districts.length
-          ? _districts
-          : undefined,
+      children: _cities.length ? _cities : _districts.length ? _districts : undefined,
     });
   }, []);
-}
+};
 
 const useAsyncDataSource = (url: string, transform: (data: any) => any) => (field) => {
   field.loading = true;
@@ -66,11 +58,11 @@ const useAsyncDataSource = (url: string, transform: (data: any) => any) => (fiel
     .then((res) => res.json())
     .then(
       action.bound((data) => {
-        field.dataSource = transform(data)
-        field.loading = false
-      })
+        field.dataSource = transform(data);
+        field.loading = false;
+      }),
     );
-}
+};
 
 const form = createForm();
 
@@ -272,10 +264,7 @@ const BoxPage = () => {
     <PageHeader>
       <Card>
         <FormProvider form={form}>
-          <SchemaField
-            schema={schema}
-            scope={{ useAsyncDataSource, transformAddress }}
-          />
+          <SchemaField schema={schema} scope={{ useAsyncDataSource, transformAddress }} />
           <FormButtonGroup>
             <Submit onSubmit={console.log}>提交</Submit>
           </FormButtonGroup>

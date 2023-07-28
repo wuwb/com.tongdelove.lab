@@ -1,6 +1,6 @@
-import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from './data.d';
 import { BaseService } from '@/services/base';
+import { request } from '@umijs/max';
+import { TableListItem, TableListParams } from './data.d';
 
 export class SupplyCompanyService extends BaseService {
   constructor() {
@@ -21,7 +21,7 @@ export class SupplyCompanyService extends BaseService {
     return request('/api/demo/client/remove', {
       method: 'delete',
       data: {
-        id: params
+        id: params,
       },
     });
   }
@@ -62,7 +62,7 @@ export async function remove(params) {
   return request('/api/demo/client/remove', {
     method: 'delete',
     data: {
-      id: params
+      id: params,
     },
   });
 }
@@ -88,5 +88,3 @@ export async function get(params?: TableListParams) {
     params,
   });
 }
-
-

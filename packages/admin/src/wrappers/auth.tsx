@@ -1,6 +1,7 @@
-import { Outlet, Redirect, Navigate } from '@umijs/max';
+import { Outlet, useNavigate } from '@umijs/max';
 
-export default (props) => {
+const Auth = (props) => {
+  const navigate = useNavigate()
   const { isLogin } = useAuth();
   if (isLogin) {
     return (
@@ -9,6 +10,8 @@ export default (props) => {
       </div>
     );
   } else {
-    return <Redirect to="/login" />;
+    return navigate("../login", { replace: true });
   }
-}
+};
+
+export default Auth

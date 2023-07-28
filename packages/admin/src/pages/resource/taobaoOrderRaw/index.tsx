@@ -1,12 +1,11 @@
-import React, { useState, useRef } from 'react';
-import { Button, Divider, message, Input, Space } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import { TableListItem } from './data';
-import { queryData, syncData, syncById } from './service';
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
 import { useRequest } from '@umijs/max';
+import { Button, message, Space } from 'antd';
+import React, { useRef } from 'react';
+import { TableListItem } from './data';
 import ImportTabaoCSV from './ImportTaobaoCsv';
-
+import { queryData, syncById, syncData } from './service';
 
 const onSyncData = async (id: string | null) => {
   const hide = message.loading('正在清洗');
@@ -17,9 +16,11 @@ const onSyncData = async (id: string | null) => {
 
       await run();
     } else {
-      const { loading, run } = useRequest(syncById({
-        id,
-      }));
+      const { loading, run } = useRequest(
+        syncById({
+          id,
+        }),
+      );
 
       await syncById({
         id,
@@ -35,8 +36,7 @@ const onSyncData = async (id: string | null) => {
   }
 };
 
-const TableList: React.FC<{}> = () => {
-
+const TableList: React.FC = () => {
   const { loading, run } = useRequest(syncData, {
     manual: true,
     onSuccess: (result, params) => {
@@ -100,8 +100,8 @@ const TableList: React.FC<{}> = () => {
       onFilter: true,
       valueType: 'select',
       valueEnum: {
-        '交易成功': { text: '成功', status: 'Success' },
-        '交易关闭': {
+        交易成功: { text: '成功', status: 'Success' },
+        交易关闭: {
           text: '关闭',
           status: 'Error',
         },
@@ -149,14 +149,14 @@ const TableList: React.FC<{}> = () => {
       valueType: 'option',
       render: (_, record) => (
         <Space>
-          <a onClick={() => {
-            onSyncData(record.id);
-          }}>
+          <a
+            onClick={() => {
+              onSyncData(record.id);
+            }}
+          >
             清洗
           </a>
-          <a onClick={() => { }}>
-            归档
-          </a>
+          <a onClick={() => { }}>归档</a>
         </Space>
       ),
     },
@@ -188,7 +188,7 @@ const TableList: React.FC<{}> = () => {
           setting: true,
         }}
         toolBarRender={() => [
-          <ImportTabaoCSV />,
+          <ImportTabaoCSV key="import" />,
           <Button key="button" type="primary" onClick={() => run()}>
             清洗所有
           </Button>,
@@ -226,7 +226,7 @@ const TableList: React.FC<{}> = () => {
                 </div>
               </div>
             </div>
-          )
+          ),
         }}
       />
     </PageContainer>

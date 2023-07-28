@@ -1,6 +1,6 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
+import TweenOne from 'rc-tween-one';
+import React from 'react';
 
 class Footer extends React.PureComponent {
   render() {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Table, Tag, Space, Collapse } from 'antd';
-import { getAllLocales, getLocale, setLocale } from '@umijs/max';
+import { getAllLocales, getLocale } from '@umijs/max';
+import { Collapse, Layout, Table } from 'antd';
+import { useEffect, useState } from 'react';
 import Styles from './index.less';
 
 const { Panel } = Collapse;

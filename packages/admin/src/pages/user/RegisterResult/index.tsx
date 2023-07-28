@@ -1,5 +1,5 @@
-import { Button, Result } from 'antd';
 import { Link } from '@umijs/max';
+import { Button, Result } from 'antd';
 import React from 'react';
 
 import styles from './style.less';

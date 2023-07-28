@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva';
-import Konva from 'konva';
+import { Component } from 'react';
+import { Group, Transformer } from 'react-konva';
 import { Pa, PMain, PSide } from '../../Slice';
 
 class Normal extends Component {

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Statistic, Tooltip, Divider } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Card, Divider, Statistic, Tooltip } from 'antd';
+import React from 'react';
 
 import style from './index.less';
 
@@ -26,18 +26,7 @@ export default class Static extends React.Component {
       xAxis: {
         type: 'category',
         show: false,
-        data: [
-          '1月',
-          '2月',
-          '3月',
-          '4月',
-          '5月',
-          '6月',
-          '7月',
-          '8月',
-          '9月',
-          '10月',
-        ],
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月'],
       },
       yAxis: {
         type: 'value',

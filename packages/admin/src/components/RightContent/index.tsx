@@ -1,4 +1,4 @@
-import { Tooltip, Tag, Space } from 'antd';
+import { Space, Tag } from 'antd';
 // import Dropdown from '@/components/avatarDropdown';
 // import LocaleSwitch from '@/components/localeSwitch';
 import { QuestionCircleOutlined } from '@ant-design/icons';
@@ -68,9 +68,9 @@ const GlobalHeaderRight: React.FC = () => {
             value: 'Ant Design',
           },
         ]}
-      // onSearch={value => {
-      //   console.log('input', value);
-      // }}
+        // onSearch={value => {
+        //   console.log('input', value);
+        // }}
       />
       <span
         className={styles.action}

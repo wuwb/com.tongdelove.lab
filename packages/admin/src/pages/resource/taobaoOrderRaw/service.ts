@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from './data';
+import { TableListItem, TableListParams } from './data';
 
 export async function queryData(params?: TableListParams) {
   return request('/api/taobao/order-raw', {
@@ -10,8 +10,7 @@ export async function queryData(params?: TableListParams) {
 export async function syncData() {
   return request('/api/taobao/purge-all', {
     method: 'POST',
-    data: {
-    },
+    data: {},
   });
 }
 

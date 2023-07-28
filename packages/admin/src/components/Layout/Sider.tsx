@@ -1,25 +1,17 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { Switch, Layout } from 'antd'
-import { BulbOutlined } from '@ant-design/icons'
+import { BulbOutlined } from '@ant-design/icons';
 import { FormattedMessage } from '@umijs/max';
+import { Layout, Switch } from 'antd';
+import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
-import ScrollBar from '../ScrollBar'
 import { config } from '@/utils';
-import SiderMenu from './Menu'
-import styles from './Sider.less'
+import ScrollBar from '../ScrollBar';
+import SiderMenu from './Menu';
+import styles from './Sider.less';
 
 class Sider extends PureComponent {
   render() {
-    const {
-      i18n,
-      menus,
-      theme,
-      isMobile,
-      collapsed,
-      onThemeChange,
-      onCollapseChange,
-    } = this.props
+    const { i18n, menus, theme, isMobile, collapsed, onThemeChange, onCollapseChange } = this.props;
 
     return (
       <Layout.Sider
@@ -39,7 +31,7 @@ class Sider extends PureComponent {
           </div>
         </div>
 
-        <div className={styles.menuContainer}>
+        <div className={styles['menu-container']}>
           <ScrollBar
             options={{
               // Disabled horizontal scrolling, https://github.com/utatti/perfect-scrollbar#options
@@ -56,16 +48,13 @@ class Sider extends PureComponent {
           </ScrollBar>
         </div>
         {!collapsed && (
-          <div className={styles.switchTheme}>
+          <div className={styles['switch-theme']}>
             <span>
               <BulbOutlined />
               <FormattedMessage id="switch-theme" defaultMessage="Switch Theme" />
             </span>
             <Switch
-              onChange={onThemeChange.bind(
-                this,
-                theme === 'dark' ? 'light' : 'dark'
-              )}
+              onChange={onThemeChange.bind(this, theme === 'dark' ? 'light' : 'dark')}
               defaultChecked={theme === 'dark'}
               checkedChildren={i18n.t`Dark`}
               unCheckedChildren={i18n.t`Light`}
@@ -73,7 +62,7 @@ class Sider extends PureComponent {
           </div>
         )}
       </Layout.Sider>
-    )
+    );
   }
 }
 
@@ -84,6 +73,6 @@ Sider.propTypes = {
   collapsed: PropTypes.bool,
   onThemeChange: PropTypes.func,
   onCollapseChange: PropTypes.func,
-}
+};
 
-export default Sider
+export default Sider;

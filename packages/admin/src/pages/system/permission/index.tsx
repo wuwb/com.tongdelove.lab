@@ -1,21 +1,21 @@
-import React, { useState, useRef, Fragment } from 'react';
-import { PageHeader } from '@ant-design/pro-layout';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Dropdown, Menu, message, Tag, Popconfirm } from 'antd';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
+import { PageHeader } from '@ant-design/pro-layout';
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
+import { Button, Divider, Dropdown, Menu, message, Popconfirm, Tag } from 'antd';
 import { SorterResult } from 'antd/es/table/interface';
+import { Fragment, useRef, useState } from 'react';
 
 import {
-  queryPermission,
-  updatePermission,
   createPermission,
+  queryPermission,
   removePermission,
   showPermission,
+  updatePermission,
 } from '@/services/base/permission';
 import { TableListItem } from '@/services/base/permission.d';
 import CreateForm from './components/CreateForm';
-import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';
+import UpdateForm from './components/UpdateForm';
 
 import styles from './index.less';
 

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
+import React, { useEffect } from 'react';
 import LoginContext, { LoginContextProps } from './LoginContext';
 
 const { TabPane } = Tabs;

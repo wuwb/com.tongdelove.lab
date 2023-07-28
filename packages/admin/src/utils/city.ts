@@ -4018,38 +4018,34 @@ let DICT = {
   820200: '离岛',
   990000: '海外',
   990100: '海外',
-}
+};
 
-const tree = list => {
-  let hashTable = Object.create(null)
-  list.forEach(aData => (hashTable[aData.id] = { ...aData, children: [] }))
-  let dataTree = []
-  list.forEach(aData => {
+const tree = (list) => {
+  let hashTable = Object.create(null);
+  list.forEach((aData) => (hashTable[aData.id] = { ...aData, children: [] }));
+  let dataTree = [];
+  list.forEach((aData) => {
     if (aData.pid) {
-      if (hashTable[aData.pid])
-        hashTable[aData.pid].children.push(hashTable[aData.id])
-    } else dataTree.push(hashTable[aData.id])
-  })
-  return dataTree
-}
+      if (hashTable[aData.pid]) hashTable[aData.pid].children.push(hashTable[aData.id]);
+    } else dataTree.push(hashTable[aData.id]);
+  });
+  return dataTree;
+};
 
-let DICT_FIXED = (function() {
-  let fixed = []
+let DICT_FIXED = (function () {
+  let fixed = [];
   for (let id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {
-      let pid
-      const tmpObj = { id, value: DICT[id], label: DICT[id] }
+      let pid;
+      const tmpObj = { id, value: DICT[id], label: DICT[id] };
       if (id.slice(2, 6) !== '0000') {
-        pid =
-          id.slice(4, 6) === '00'
-            ? `${id.slice(0, 2)}0000`
-            : `${id.slice(0, 4)}00`
+        pid = id.slice(4, 6) === '00' ? `${id.slice(0, 2)}0000` : `${id.slice(0, 4)}00`;
       }
-      if (pid) tmpObj.pid = pid
-      fixed.push(tmpObj)
+      if (pid) tmpObj.pid = pid;
+      fixed.push(tmpObj);
     }
   }
-  return tree(fixed)
-})()
+  return tree(fixed);
+})();
 
-export default DICT_FIXED
+export default DICT_FIXED;

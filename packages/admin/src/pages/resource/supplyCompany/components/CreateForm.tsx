@@ -1,13 +1,15 @@
-import React, { useRef } from 'react';
-import { Button, message } from 'antd';
-import { ProFormCheckbox, ProFormDatePicker, ProFormDigit, ProFormInstance, ProFormRadio } from '@ant-design/pro-form';
+import { PlusOutlined } from '@ant-design/icons';
 import ProForm, {
   DrawerForm,
-  ProFormText,
-  ProFormDateRangePicker,
+  ProFormDatePicker,
+  ProFormDigit,
+  ProFormInstance,
+  ProFormRadio,
   ProFormSelect,
+  ProFormText,
 } from '@ant-design/pro-form';
-import { PlusOutlined } from '@ant-design/icons';
+import { Button, message } from 'antd';
+import { useRef } from 'react';
 import { create } from '../service';
 
 const waitTime = (time: number = 100) => {
@@ -83,13 +85,11 @@ export default (props) => {
             label: '是',
             value: 1,
           },
-
         ]}
       />
       <ProFormDigit width="sm" name="staffSize" label="员工数量" min={1} max={999999} />
       <ProFormDigit width="sm" name="registeredCapital" label="注册资本" min={1} max={999999} />
       <ProForm.Group>
-
         <ProFormText width="sm" name="website" label="网站" placeholder="" />
         <ProFormText width="sm" name="email" label="邮箱" placeholder="" />
       </ProForm.Group>
@@ -105,7 +105,6 @@ export default (props) => {
         name="classificationId"
         label="分类"
       />
-
     </DrawerForm>
   );
 };

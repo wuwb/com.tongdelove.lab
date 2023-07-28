@@ -1,5 +1,5 @@
+import { Drawer, Form } from 'antd';
 import React, { useState } from 'react';
-import { Form, Drawer } from 'antd';
 
 import { TableListItem } from '../data.d';
 
@@ -66,11 +66,9 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
     }
   };
 
-  const renderContent = () => {
-  };
+  const renderContent = () => {};
 
-  const renderFooter = () => {
-  };
+  const renderFooter = () => {};
 
   return (
     <Drawer
@@ -92,8 +90,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name: formVals.name,
           desc: formVals.desc,
         }}
-      >
-      </Form>
+      ></Form>
     </Drawer>
   );
 };

@@ -1,7 +1,7 @@
-import React from 'react';
-import cx from 'classnames';
-import { Spin } from 'antd';
 import { Outlet } from '@umijs/max';
+import { Spin } from 'antd';
+import cx from 'classnames';
+import React from 'react';
 
 import style from './style.less';
 

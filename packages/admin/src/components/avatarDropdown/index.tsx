@@ -1,9 +1,7 @@
-import React from 'react';
-import { Avatar, Dropdown, Menu } from 'antd';
-import { request } from '@umijs/max';
 import { LogoutOutlined } from '@ant-design/icons';
-import { history, useModel } from '@umijs/max';
-import { stringify, parse } from 'querystring';
+import { useModel } from '@umijs/max';
+import { Avatar, Dropdown, Menu } from 'antd';
+import { parse } from 'querystring';
 
 function AvatarDropdown() {
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -28,7 +26,7 @@ function AvatarDropdown() {
 
       setInitialState({
         ...initialState,
-        currentUser: 'none'
+        currentUser: 'none',
       });
     }
   };

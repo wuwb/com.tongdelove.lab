@@ -1,12 +1,7 @@
-import React, { useRef } from 'react';
-import { Button, message } from 'antd';
-import ProForm, {
-  DrawerForm,
-  ProFormText,
-  ProFormDateRangePicker,
-  ProFormSelect,
-} from '@ant-design/pro-form';
 import { PlusOutlined } from '@ant-design/icons';
+import ProForm, { DrawerForm, ProFormDateRangePicker, ProFormText } from '@ant-design/pro-form';
+import { Button, message } from 'antd';
+import { useRef } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -16,7 +11,7 @@ const waitTime = (time: number = 100) => {
   });
 };
 
-export default () => {
+const CreateForm = () => {
   const formRef = useRef();
 
   return (
@@ -45,12 +40,12 @@ export default () => {
       }}
     >
       <ProFormText
-          name="name"
-          width="md"
-          label="客户名称"
-          tooltip="最长为 24 位"
-          placeholder="请输入名称"
-        />
+        name="name"
+        width="md"
+        label="客户名称"
+        tooltip="最长为 24 位"
+        placeholder="请输入名称"
+      />
       <ProForm.Group>
         <ProFormText
           name="taobao"
@@ -59,12 +54,7 @@ export default () => {
           tooltip="最长为 24 位"
           placeholder="请输入名称"
         />
-        <ProFormText
-          width="md"
-          name="alipay"
-          label="支付宝"
-          placeholder="请输入名称"
-        />
+        <ProFormText width="md" name="alipay" label="支付宝" placeholder="请输入名称" />
       </ProForm.Group>
       <ProForm.Group>
         <ProFormText
@@ -74,15 +64,10 @@ export default () => {
           tooltip="最长为 24 位"
           placeholder="请输入名称"
         />
-        <ProFormText
-          width="md"
-          name="tel"
-          label="电话"
-          placeholder="请输入名称"
-        />
+        <ProFormText width="md" name="tel" label="电话" placeholder="请输入名称" />
       </ProForm.Group>
       <ProForm.Group>
-      <ProFormText
+        <ProFormText
           name="country"
           width="sm"
           label="国家"
@@ -96,34 +81,13 @@ export default () => {
           tooltip="最长为 24 位"
           placeholder="请输入名称"
         />
-        <ProFormText
-          width="sm"
-          name="city"
-          label="城市"
-          placeholder="请输入名称"
-        />
+        <ProFormText width="sm" name="city" label="城市" placeholder="请输入名称" />
       </ProForm.Group>
       <ProForm.Group>
-        <ProFormText
-          width="sm"
-          name="district"
-          label="区县"
-          placeholder="请输入名称"
-        />
-        <ProFormText
-          width="sm"
-          name="street"
-          label="街道"
-          placeholder="请输入名称"
-        />
+        <ProFormText width="sm" name="district" label="区县" placeholder="请输入名称" />
+        <ProFormText width="sm" name="street" label="街道" placeholder="请输入名称" />
       </ProForm.Group>
-      <ProFormText
-          disabled
-          width="md"
-          name="preview"
-          label="地址预览"
-          placeholder="请输入名称"
-        />
+      <ProFormText disabled width="md" name="preview" label="地址预览" placeholder="请输入名称" />
       <ProForm.Group>
         <ProFormText width="md" name="address" label="地址" placeholder="请输入名称" />
       </ProForm.Group>
@@ -131,3 +95,5 @@ export default () => {
     </DrawerForm>
   );
 };
+
+export default CreateForm

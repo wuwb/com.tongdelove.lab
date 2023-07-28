@@ -1,9 +1,9 @@
+import { ConnectProps, ConnectState } from '@/models/connect';
+import { CurrentUser } from '@/models/user';
+import { connect, history } from '@umijs/max';
 import { Avatar, Icon, Menu, Spin } from 'antd';
 import { ClickParam } from 'antd/es/menu';
 import React from 'react';
-import { history, connect } from '@umijs/max';
-import { ConnectProps, ConnectState } from '@/models/connect';
-import { CurrentUser } from '@/models/user';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 

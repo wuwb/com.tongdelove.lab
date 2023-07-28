@@ -1,11 +1,7 @@
-import { history } from '@umijs/max';
-import store from 'store';
-import { pathToRegexp } from 'path-to-regexp';
-import { ROLE_TYPE } from '@/utils/constant';
-import { queryLayout } from '@/utils';
-import { CANCEL_REQUEST_MESSAGE } from '@/utils/constant';
 import api from '@/services/api';
-import config from '@/utils/config';
+import { history } from '@umijs/max';
+import { pathToRegexp } from 'path-to-regexp';
+import store from 'store';
 
 const { queryRouteList, logoutUser, queryUserInfo } = api;
 
@@ -15,7 +11,7 @@ const goDashboard = () => {
       pathname: '/dashboard',
     });
   }
-}
+};
 
 export default {
   namespace: 'app',
@@ -116,7 +112,6 @@ export default {
     //     })
     //   }
     // },
-
     // async signOut({ payload }, { call, put }) {
     //   const data = await call(logoutUser)
     //   if (data.success) {
@@ -137,19 +132,16 @@ export default {
     //     ...payload,
     //   }
     // },
-
     // handleThemeChange(state, { payload }) {
     //   store.set('theme', payload)
     //   state.theme = payload
     // },
-
     // handleCollapseChange(state, { payload }) {
     //   store.set('collapsed', payload)
     //   state.collapsed = payload
     // },
-
     // allNotificationsRead(state) {
     //   state.notifications = []
     // },
   },
-}
+};

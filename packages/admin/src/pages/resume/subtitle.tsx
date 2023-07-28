@@ -1,7 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
-import classnames from 'classnames';
-import styles from './index.less';
 import { Outlet } from '@umijs/max';
+import classnames from 'classnames';
+import { Component, useState } from 'react';
+import styles from './index.less';
 
 interface Props {
   title: string | Component;

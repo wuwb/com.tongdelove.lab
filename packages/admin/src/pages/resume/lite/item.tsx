@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from '@/components/Link';
-import styles from './item.less';
 import { Outlet } from '@umijs/max';
+import React from 'react';
+import styles from './item.less';
 
 interface ItemProps {
   img?: string;
@@ -18,17 +18,15 @@ interface ItemProps {
 const Item = (props: ItemProps) => {
   return (
     <div className={styles.item} {...props}>
-      {props.img ? <div className={styles.pic}><img src={props.img} alt={props.imgTitle} /></div> : null}
+      {props.img ? (
+        <div className={styles.pic}>
+          <img src={props.img} alt={props.imgTitle} />
+        </div>
+      ) : null}
       <div className={styles.detail}>
         <div className={styles.wrap}>
           <h4 className={styles.title}>
-            {props.link ? (
-              <Link to={props.link}>
-                {props.title}
-              </Link>
-            ) : (
-              props.title
-            )}
+            {props.link ? <Link to={props.link}>{props.title}</Link> : props.title}
             {props.badges ? <span className={styles.badges}>{props.badges.join(', ')}</span> : null}
           </h4>
           {props.meta ? <div>{props.meta}</div> : null}

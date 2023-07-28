@@ -53,27 +53,14 @@
     "useDefineForClassFields": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src", "shared", "config"],
+  "include": ["src", "config"],
   "exclude": [
     "node_modules",
-    "build",
     "dist",
-    "scripts",
     "src/.umi/*",
-    "webpack",
-    "jest",
-    "lib",
-    "es",
     "typings",
     "**/__test__",
     "test",
-    "docs",
-    "tests",
-    "out",
-    "__mocks__",
-    ".babelrc",
-    "bundles",
-    "coverage",
-    "test/*"
+    ".babelrc"
   ]
 }

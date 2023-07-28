@@ -1,4 +1,4 @@
-import { Helmet as Head, Link } from '@umijs/max';
+import { Link } from '@umijs/max';
 import { Table } from 'antd';
 
 const Home = () => {

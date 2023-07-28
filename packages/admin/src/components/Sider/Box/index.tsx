@@ -1,6 +1,6 @@
 import Box from './Box';
 import BoxCell from './BoxCell';
-import BoxWrap from './BoxWrap';
 import BoxInner from './BoxInner';
+import BoxWrap from './BoxWrap';
 
 export { Box, BoxCell, BoxInner, BoxWrap };

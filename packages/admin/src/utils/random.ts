@@ -1,5 +1,3 @@
-
-
 /**
  *  生成一个随机浮点数
  */
@@ -11,9 +9,9 @@ export const random = () => +(Math.random() * 60).toFixed(2);
  * @param max 最大值
  */
 export const randomIntFrom = (min: number, max: number) => {
-    const minc = Math.ceil(min);
-    const maxc = Math.floor(max);
-    return Math.floor(Math.random() * (maxc - minc + 1)) + minc;
+  const minc = Math.ceil(min);
+  const maxc = Math.floor(max);
+  return Math.floor(Math.random() * (maxc - minc + 1)) + minc;
 };
 
 /**

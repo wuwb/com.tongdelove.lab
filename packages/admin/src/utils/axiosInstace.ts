@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { notification } from 'antd';
+import axios from 'axios';
 
 const instance = axios.create({
   //当创建实例的时候配置默认配置

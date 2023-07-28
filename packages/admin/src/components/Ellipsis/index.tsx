@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
+import { Component } from 'react';
 import styles from './index.less';
 
 /* eslint react/no-did-mount-set-state: 0 */
@@ -161,37 +161,30 @@ export default class Ellipsis extends Component {
     return this.bisection(th, mid, begin, end, text, shadowNode);
   };
 
-  handleRoot = n => {
+  handleRoot = (n) => {
     this.root = n;
   };
 
-  handleContent = n => {
+  handleContent = (n) => {
     this.content = n;
   };
 
-  handleNode = n => {
+  handleNode = (n) => {
     this.node = n;
   };
 
-  handleShadow = n => {
+  handleShadow = (n) => {
     this.shadow = n;
   };
 
-  handleShadowChildren = n => {
+  handleShadowChildren = (n) => {
     this.shadowChildren = n;
   };
 
   render() {
     const { text, targetCount } = this.state;
-    const {
-      children,
-      lines,
-      length,
-      className,
-      tooltip,
-      fullWidthRecognition,
-      ...restProps
-    } = this.props;
+    const { children, lines, length, className, tooltip, fullWidthRecognition, ...restProps } =
+      this.props;
 
     const cls = classNames(styles.ellipsis, className, {
       [styles.lines]: lines && !isSupportLineClamp,

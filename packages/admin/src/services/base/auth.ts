@@ -1,5 +1,4 @@
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from '@/services/base/user.d';
 
 export interface LoginParamsType {
   username: string;

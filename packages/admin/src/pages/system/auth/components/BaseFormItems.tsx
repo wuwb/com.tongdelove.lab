@@ -1,10 +1,10 @@
-import React from 'react';
-import { Form, Input, Transfer, Select, TreeSelect } from 'antd';
-import { useRequest } from '@umijs/max';
-import { queryPermission } from '@/services/base/permission';
 import { queryMenu } from '@/services/base/menu';
+import { queryPermission } from '@/services/base/permission';
 import { queryRole } from '@/services/base/role';
 import { arrayTransTree } from '@/utils/utils';
+import { useRequest } from '@umijs/max';
+import { Form, Input, Select, Transfer, TreeSelect } from 'antd';
+import React from 'react';
 
 interface CustomFormItemProps {
   value?: any;
@@ -16,19 +16,29 @@ const BaseFormItems: React.FC<{
   disabledParentKeys?: string[];
 }> = ({ disabledParentKeys }) => {
   // 加载菜单数据
-  const { data: menuData, loading: menuLoading, error: menuError } = useRequest(() => {
+  const {
+    data: menuData,
+    loading: menuLoading,
+    error: menuError,
+  } = useRequest(() => {
     return queryMenu({ pageSize: 1000 });
   });
 
   // 预先加载权限选择器数据
-  const { data: permissionData, loading: permissionLoading, error: permissionError } = useRequest(
-    () => {
-      return queryPermission({ pageSize: 1000 });
-    },
-  );
+  const {
+    data: permissionData,
+    loading: permissionLoading,
+    error: permissionError,
+  } = useRequest(() => {
+    return queryPermission({ pageSize: 1000 });
+  });
 
   // 预先加载角色选择器数据
-  const { data: roleData, loading: roleLoading, error: roleError } = useRequest(() => {
+  const {
+    data: roleData,
+    loading: roleLoading,
+    error: roleError,
+  } = useRequest(() => {
     return queryRole({ pageSize: 1000 });
   });
 

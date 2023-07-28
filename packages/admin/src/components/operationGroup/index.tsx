@@ -1,6 +1,6 @@
-import React from 'react';
-import { Space } from 'antd';
 import Dropdown from '@/components/dropdown';
+import { Space } from 'antd';
+import React from 'react';
 
 function arrCut(arr, cutLength) {
   const arrLength = arr.length;
@@ -39,7 +39,7 @@ class OperationGroup extends React.Component {
       const { arrBefore, arrAfter } = arrCut(renders, max);
       let arrAfterRender = null;
       const arrBeforeRender = arrBefore.map((item, idx) => {
-        return {}
+        return {};
       });
 
       let finalAfterRender;
@@ -73,11 +73,7 @@ class OperationGroup extends React.Component {
         });
 
         arrAfterRender = (
-          <Dropdown
-            ctx={ctx}
-            config={{ render: finalAfterRender }}
-            key={ctx.record.id}
-          />
+          <Dropdown ctx={ctx} config={{ render: finalAfterRender }} key={ctx.record.id} />
         );
       }
       return [arrBeforeRender, arrAfterRender];

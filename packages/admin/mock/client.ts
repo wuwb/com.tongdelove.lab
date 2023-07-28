@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { TableListItem, TableListParams } from '@/pages/ListTableList/data';
 import { Request, Response } from 'express';
 import { parse } from 'url';
-import { TableListItem, TableListParams } from '@/pages/ListTableList/data';
 
 // mock tableListDataSource
 const genList = (current: number, pageSize: number) => {
@@ -42,7 +42,7 @@ function getRule(req: Request, res: Response, u: string) {
     realUrl = req.url;
   }
   const { current = 1, pageSize = 10 } = req.query;
-  const params = (parse(realUrl, true).query as unknown) as TableListParams;
+  const params = parse(realUrl, true).query as unknown as TableListParams;
 
   let dataSource = [...tableListDataSource].slice(
     ((current as number) - 1) * (pageSize as number),

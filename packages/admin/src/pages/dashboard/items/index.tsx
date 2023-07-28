@@ -1,8 +1,7 @@
-import React from 'react';
+import Header from '@/components/Index/Header';
 import { PageContainer } from '@ant-design/pro-components';
 import { Helmet as Head } from '@umijs/max';
-import { Button, Row, Col, Image, Pagination } from 'antd';
-import Header from '@/components/Index/Header';
+import { Button, Image, Pagination, Row } from 'antd';
 
 function Clients() {
   const items = [
@@ -67,7 +66,7 @@ function Clients() {
             <Row>
               {items.map((item) => {
                 return (
-                  <Row xs={12} sm={6} md={4.8} lg={4} xl={3}>
+                  <Row key={item} xs={12} sm={6} md={4.8} lg={4} xl={3}>
                     <div
                       style={{
                         margin: '1rem',
@@ -80,7 +79,7 @@ function Clients() {
                             margin: '-16pt',
                           }}
                         >
-                          <Image src="/assets/dashboard/demo.png" />
+                          <Image src="/assets/dashboard/demo.png" alt="" />
                         </div>
                         <div
                           style={{
@@ -90,7 +89,7 @@ function Clients() {
                         >
                           飞机盒
                           <br />
-                          18" x 15" x 7"
+                          18&quot; x 15&quot; x 7&quot;
                         </div>
                       </div>
                       {/* <Image src="/assets/dashboard/demo.png" /> */}

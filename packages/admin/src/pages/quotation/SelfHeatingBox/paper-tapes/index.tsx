@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography } from 'antd';
-import { useIntl, FormattedMessage } from '@umijs/max';
-import { createForm } from '@formily/core'
-import { FormProvider, FormConsumer, Field, createSchemaField } from '@formily/react'
 import {
+  Checkbox,
+  FormButtonGroup,
+  FormGrid,
   FormItem,
   FormLayout,
-  Input,
-  FormButtonGroup,
-  Submit,
-  Radio,
   NumberPicker,
-  FormGrid,
-  Switch,
+  Radio,
   Select,
-  Checkbox,
+  Submit,
+  Switch,
 } from '@formily/antd-v5';
+import { createForm } from '@formily/core';
+import { createSchemaField, FormConsumer, FormProvider } from '@formily/react';
+import { useIntl } from '@umijs/max';
+import { Card } from 'antd';
+import React from 'react';
 
 const SchemaField = createSchemaField({
   components: {
@@ -28,7 +27,7 @@ const SchemaField = createSchemaField({
     Select,
     Checkbox,
   },
-})
+});
 
 const form = createForm();
 
@@ -110,15 +109,15 @@ const schema = {
           type: 'number',
           title: '纸张长',
           'x-decorator': 'FormItem',
-          'x-component': "NumberPicker",
+          'x-component': 'NumberPicker',
         },
         paperSizeWidth: {
           type: 'number',
           title: '纸张宽',
           'x-decorator': 'FormItem',
-          'x-component': "NumberPicker",
-        }
-      }
+          'x-component': 'NumberPicker',
+        },
+      },
     },
     printColor: {
       type: 'number',
@@ -190,12 +189,12 @@ const schema = {
           type: 'number',
           title: '数量',
           'x-decorator': 'FormItem',
-          'x-component': "NumberPicker",
+          'x-component': 'NumberPicker',
         },
-      }
+      },
     },
   },
-}
+};
 
 const Page = (): React.ReactNode => {
   const intl = useIntl();
@@ -225,12 +224,8 @@ const Page = (): React.ReactNode => {
                 >
                   订单明细：{form.values.paperType}
                 </div>
-                <div>
-                  订单价格：
-                </div>
-                <div>
-                  预计出货时间：
-                </div>
+                <div>订单价格：</div>
+                <div>预计出货时间：</div>
               </>
             )}
           </FormConsumer>

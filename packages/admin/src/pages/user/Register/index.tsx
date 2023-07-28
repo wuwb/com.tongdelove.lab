@@ -1,15 +1,8 @@
-import {
-  LoginForm,
-  ProFormCaptcha,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { LoginParamsType, register } from '@/services/base/auth';
+import { getPageQuery } from '@/utils/utils';
+import { Link, SelectLang, useModel, useRequest } from '@umijs/max';
 import { Alert, Checkbox, message } from 'antd';
 import React, { useState } from 'react';
-import { Link, SelectLang, useModel } from '@umijs/max';
-import { useRequest } from '@umijs/max';
-import { getPageQuery } from '@/utils/utils';
-import { LoginParamsType, register } from '@/services/base/auth';
 import LoginFrom from '../components/Login';
 import style from './index.less';
 
@@ -50,7 +43,7 @@ const replaceGoto = () => {
   window.location.href = urlParams.href.split(urlParams.pathname)[0] + (redirect || '/');
 };
 
-const Register: React.FC<{}> = () => {
+const Register: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
 
   const { refresh } = useModel('@@initialState');

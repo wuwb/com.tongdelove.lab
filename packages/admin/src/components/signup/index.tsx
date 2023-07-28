@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox, notification } from 'antd';
+import { Button, Checkbox, Form, Input, notification } from 'antd';
 
 const layout = {
   labelCol: { span: 8 },
@@ -29,7 +28,7 @@ export const Signup = (props) => {
     });
 
     // 登录成功后，获取用户基础数据
-    this.getUserinfo();
+    getUserinfo();
 
     const { history } = props;
 

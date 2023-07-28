@@ -8,4 +8,4 @@ export const IrisBlue = {
 
 export const GeekBlue = {
   'primary-color': defaultSettings.primaryColor, // '#2f54eb', // 修改主题色
-}
+};

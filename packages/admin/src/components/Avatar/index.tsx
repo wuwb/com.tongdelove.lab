@@ -1,4 +1,3 @@
-import React from 'react';
 import { history } from 'umi';
 import Style from './index.less';
 
@@ -44,7 +43,7 @@ export function Avatar(props) {
         onClick={this.goAbout}
         style={{ ...this.props.avatarStyle, backgroundImage: `url(${userInfo.avatarUrl}` }}
       ></div>
-      <div className="user_abstract">
+      <div className="user-abstract">
         <div
           className={`username ${userInfo.username && 'clear-bg'}`}
           style={{ ...this.props.usernameStyle }}

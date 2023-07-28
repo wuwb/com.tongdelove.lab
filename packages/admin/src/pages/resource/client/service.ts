@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from './data.d';
+import { TableListItem, TableListParams } from './data.d';
 
 export async function create(params: TableListItem) {
   return request('/api/demo/client/create', {
@@ -15,7 +15,7 @@ export async function remove(params) {
   return request('/api/demo/client/remove', {
     method: 'delete',
     data: {
-      id: params
+      id: params,
     },
   });
 }
@@ -41,5 +41,3 @@ export async function get(params?: TableListParams) {
     params,
   });
 }
-
-

@@ -49,7 +49,7 @@ class Carousel extends React.Component {
               <li
                 className={this.state.isActived === index ? 'acitve' : ''}
                 key={index}
-                // onClick={this.changeSlick.bind(this, index)}
+              // onClick={this.changeSlick.bind(this, index)}
               ></li>
             );
           })}
@@ -88,14 +88,10 @@ class Carousel extends React.Component {
             <div>
               <span
                 className="pre-btn"
-                type="left-circle"
-                theme="outlined"
                 onClick={this.slickPre.bind(this)}
               ></span>
               <span
                 className="next-btn"
-                type="right-circle"
-                theme="outlined"
                 onClick={this.slickNext.bind(this)}
               ></span>
             </div>

@@ -1,7 +1,7 @@
 import { Link } from '@umijs/max';
-import { Result, Button } from 'antd';
+import { Button, Result } from 'antd';
 
-export default () => (
+const Page404 = () => (
   <Result
     status="404"
     title="404"
@@ -16,3 +16,4 @@ export default () => (
     }
   />
 );
+export default Page404

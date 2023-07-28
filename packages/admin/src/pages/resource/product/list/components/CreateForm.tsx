@@ -1,16 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import { useRequest } from '@umijs/max';
-import { Button, message } from 'antd';
-import ProForm, {
-  DrawerForm,
-  ProFormText,
-  ProFormDateRangePicker,
-  ProFormSelect,
-  ProFormTextArea,
-} from '@ant-design/pro-form';
 import { PlusOutlined } from '@ant-design/icons';
+import { DrawerForm, ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import { useIntl } from '@umijs/max';
-import { queryCreateMetadata, createProduct } from '../service';
+import { Button, message } from 'antd';
+import { useEffect, useRef } from 'react';
+import { createProduct } from '../service';
 
 export default () => {
   const formRef = useRef();
@@ -22,7 +15,7 @@ export default () => {
 
   useEffect(() => {
     // 获取初始化数据
-    return () => { };
+    return () => {};
   });
 
   return (
@@ -58,28 +51,15 @@ export default () => {
         return true;
       }}
     >
-      <ProFormText
-        name="title"
-        width="md"
-        label="title"
-      />
-      <ProFormText
-        name="slug"
-        width="md"
-        label="slug"
-      />
-      <ProFormTextArea
-        name="description"
-        label="description"
-      />
+      <ProFormText name="title" width="md" label="title" />
+      <ProFormText name="slug" width="md" label="slug" />
+      <ProFormTextArea name="description" label="description" />
       <ProFormSelect
         width="md"
         fieldProps={{
           labelInValue: true,
         }}
-        request={async () => [
-          { label: '全部', value: 'all' },
-        ]}
+        request={async () => [{ label: '全部', value: 'all' }]}
         name="category"
         label="category"
       />

@@ -2,29 +2,29 @@ import { request } from '@umijs/max';
 
 // 查询登录日志列表
 export function list(query) {
-    return request('/monitor/logininfor/list', {
-        method: 'get',
-        params: query
-    })
+  return request('/monitor/logininfor/list', {
+    method: 'get',
+    params: query,
+  });
 }
 
 // 删除登录日志
 export function delLogininfor(infoId) {
-    return request('/monitor/logininfor/' + infoId, {
-        method: 'delete'
-    })
+  return request('/monitor/logininfor/' + infoId, {
+    method: 'delete',
+  });
 }
 
 // 解锁用户登录状态
 export function unlockLogininfor(userName) {
-    return request('/monitor/logininfor/unlock/' + userName, {
-        method: 'get'
-    })
+  return request('/monitor/logininfor/unlock/' + userName, {
+    method: 'get',
+  });
 }
 
 // 清空登录日志
 export function cleanLogininfor() {
-    return request('/monitor/logininfor/clean', {
-        method: 'delete'
-    })
+  return request('/monitor/logininfor/clean', {
+    method: 'delete',
+  });
 }

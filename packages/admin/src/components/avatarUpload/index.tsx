@@ -1,6 +1,6 @@
-import { Upload, message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import access from '@/components/access';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { message, Upload } from 'antd';
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -25,13 +25,13 @@ class Avatar extends React.Component {
     loading: false,
   };
 
-  handleChange = info => {
+  handleChange = (info) => {
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
     }
     if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, imageUrl => {
+      getBase64(info.file.originFileObj, (imageUrl) => {
         this.setState({
           imageUrl,
           loading: false,
@@ -47,9 +47,7 @@ class Avatar extends React.Component {
     const uploadButton = (
       <div>
         {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
-        <div>
-          {this.props.formatMessage({ id: 'uploadIcon' })}
-        </div>
+        <div>{this.props.formatMessage({ id: 'uploadIcon' })}</div>
       </div>
     );
 
@@ -62,11 +60,7 @@ class Avatar extends React.Component {
         onChange={this.handleChange}
         disabled={mode === 'view'}
       >
-        {value ? (
-          <img src={value} alt="avatar" style={{ width: '100%' }} />
-        ) : (
-          uploadButton
-        )}
+        {value ? <img src={value} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
       </Upload>
     );
   }

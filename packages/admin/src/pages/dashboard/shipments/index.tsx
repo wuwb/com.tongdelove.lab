@@ -1,16 +1,7 @@
-import React from 'react';
-import { Helmet as Head } from '@umijs/max';
-import { Link } from '@umijs/max';
-import { Table, Select, Tag } from 'antd';
 import Footer from '@/components/Footer';
 import Header from '@/components/Index/Header';
-import TopMenu from '@/components/Index/TopMenu';
-import UsgCate from '@/components/Index/UsgCate';
-import StructureCate from '@/components/Index/StructureCate';
-import Solution from '@/components/Index/Solution';
-import Customers from '@/components/Index/Customers';
-import GlobalNav from '@/components/GlobalNav';
-import Ready from '@/components/Index/Ready';
+import { Helmet as Head, Link } from '@umijs/max';
+import { Select, Table, Tag } from 'antd';
 
 const { Option } = Select;
 

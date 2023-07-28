@@ -1,11 +1,11 @@
-import { Button, Divider, message, Input, Drawer, Space, Popconfirm, Card, Row, Col } from 'antd';
-import React, { useState, useRef, FC } from 'react';
-import { PageContainer, FooterToolbar } from '@ant-design/pro-components';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
+import { PageContainer } from '@ant-design/pro-components';
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
+import { Card, Col, Input, message, Popconfirm, Row, Space } from 'antd';
+import React, { FC, useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
-import { create, remove, update, list, get } from './service';
+import { list, remove } from './service';
 import styles from './style.less';
 
 const handleUpdate = async (fields: FormValueType) => {
@@ -49,7 +49,7 @@ const TableList: React.FC<{}> = () => {
     await remove(id);
     message.success('删除成功。');
     actionRef.current?.reload();
-  }
+  };
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -143,7 +143,7 @@ const TableList: React.FC<{}> = () => {
       render: (_, record) => {
         return (
           <Space>
-            <a onClick={() => { }}>转存公司</a>
+            <a onClick={() => {}}>转存公司</a>
             <a href="">清洗</a>
             <a href="">打标签</a>
             <Popconfirm
@@ -155,7 +155,7 @@ const TableList: React.FC<{}> = () => {
               <a href="#">删除</a>
             </Popconfirm>
           </Space>
-        )
+        );
       },
     },
   ];
@@ -186,16 +186,14 @@ const TableList: React.FC<{}> = () => {
           fullScreen: true,
           setting: true,
         }}
-        toolBarRender={() => [
-          <CreateForm />,
-        ]}
+        toolBarRender={() => [<CreateForm />]}
         request={async (params, sorter, filter) => {
           const result = await list({ ...params, sorter, filter });
           setTotal(result.total);
           return {
             data: result.data,
             success: true,
-          }
+          };
         }}
         columns={columns}
       />

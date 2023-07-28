@@ -1,7 +1,5 @@
-import React from 'react';
 import { getAllLocales, getLocale } from '@umijs/max';
-import { Layout } from 'antd';
-import { Table, Tag, Space } from 'antd';
+import { Layout, Space, Table, Tag } from 'antd';
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token, css }) => ({
@@ -9,7 +7,7 @@ const useStyles = createStyles(({ token, css }) => ({
     position: relative;
     width: 1260px;
     margin: 20px auto;
-  `
+  `,
 }));
 
 const columns = [

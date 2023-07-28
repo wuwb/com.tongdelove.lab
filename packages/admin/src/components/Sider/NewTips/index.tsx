@@ -1,5 +1,5 @@
-import { Tabs } from 'antd';
 import { SiderBox } from '@/components/Sider';
+import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 

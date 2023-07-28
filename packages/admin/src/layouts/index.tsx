@@ -1,9 +1,10 @@
-import React from 'react';
 import { Outlet } from '@umijs/max';
 
-export default (props) => {
+const Layouts = () => {
   return <Outlet />;
-}
+};
+
+export default Layouts
 
 // class LayoutComponent extends React.Component {
 //   render() {

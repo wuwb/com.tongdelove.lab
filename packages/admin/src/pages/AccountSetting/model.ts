@@ -1,6 +1,6 @@
 import { Effect, Reducer } from '@umijs/max';
 import { CurrentUser, GeographicItemType } from './data.d';
-import { queryCity, queryProvince, query as queryUsers } from './service';
+import { query as queryUsers, queryCity, queryProvince } from './service';
 
 export interface ModalState {
   currentUser?: Partial<CurrentUser>;

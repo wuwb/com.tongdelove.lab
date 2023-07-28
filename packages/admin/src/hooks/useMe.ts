@@ -1,9 +1,9 @@
-import { useGetMeQuery } from "../services/api";
+import { useGetMeQuery } from '../services/api';
 
 export const useMe = () => {
-    const { data, isLoading } = useGetMeQuery(null);
-    return {
-        isLoading,
-        me: data?.data,
-    };
+  const { data, isLoading } = useGetMeQuery(null);
+  return {
+    isLoading,
+    me: data?.data,
+  };
 };

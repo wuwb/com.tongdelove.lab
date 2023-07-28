@@ -1,5 +1,4 @@
-import React, { Component, useState, useCallback } from 'react';
-import { Link as NextLink } from '@umijs/max';
+import { useCallback, useState } from 'react';
 import css from './index.module.less';
 
 const GlobalNav = () => {

@@ -1,5 +1,5 @@
+import { TableListItem, TableListParams } from '@/services/server/base/permission.d';
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from '@/services/server/base/permission.d';
 
 export async function queryPermission(params?: TableListParams) {
   return request<API.Response<API.PagingData<TableListItem>>>('/api/base/permission/query', {

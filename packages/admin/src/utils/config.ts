@@ -90,9 +90,7 @@ export const config = {
         required: true,
       },
     ],
-    serverChan: [
-      { label: 'serverChanKey', tip: 'Server酱SENDKEY', required: true },
-    ],
+    serverChan: [{ label: 'serverChanKey', tip: 'Server酱SENDKEY', required: true }],
     bark: [
       {
         label: 'barkPush',

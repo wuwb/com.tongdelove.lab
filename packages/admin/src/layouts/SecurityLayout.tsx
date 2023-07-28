@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from '@umijs/max';
-import { PageLoading } from '@ant-design/pro-components';
-import { ConnectState, ConnectProps } from '@/models/connect';
+import { ConnectProps, ConnectState } from '@/models/connect';
 import { CurrentUser } from '@/models/user';
+import { PageLoading } from '@ant-design/pro-components';
+import { connect } from '@umijs/max';
+import React from 'react';
 
 interface SecurityLayoutProps extends ConnectProps {
   loading?: boolean;

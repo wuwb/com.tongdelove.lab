@@ -1,7 +1,7 @@
-import { stringify } from 'querystring';
-import { history } from '@umijs/max';
 import { login } from '@/services/base/auth';
 import { getPageQuery } from '@/utils/utils';
+import { history } from '@umijs/max';
+import { stringify } from 'querystring';
 
 const Model = {
   namespace: 'login',
@@ -42,14 +42,14 @@ const Model = {
     },
 
     logout() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("roles");
+      localStorage.removeItem('token');
+      localStorage.removeItem('roles');
       // If it is not the login interface, jump to the login interface
       if (window.location.pathname !== '/login') {
         history.replace({
           pathname: '/login',
           search: stringify({
-            redirect: window.location.href
+            redirect: window.location.href,
           }),
         });
       }

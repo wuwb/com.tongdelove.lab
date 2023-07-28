@@ -1,18 +1,5 @@
 const defaultValue = [];
 
-const searchInfo = (state = defaultValue, action) => {
-  switch (action.type) {
-    case 'ADD_SEARCH_INFO':
-      return [...action.info];
-    case 'ADD_SEARCH_COMMENT':
-      return addComments(state, action.info);
-    case 'TOPIC_SEARCH_LIKE':
-      return topicLike(state, action.info);
-    default:
-      return state;
-  }
-};
-
 // 点赞
 function topicLike(state, { index, topicLikeCounts, topicLike }) {
   let newArray = [...state];
@@ -35,5 +22,18 @@ function addComments(state, { index, replyContent, replyName }) {
   newArray[index].discuss.push(sourceComment);
   return newArray;
 }
+
+const searchInfo = (state = defaultValue, action) => {
+  switch (action.type) {
+    case 'ADD_SEARCH_INFO':
+      return [...action.info];
+    case 'ADD_SEARCH_COMMENT':
+      return addComments(state, action.info);
+    case 'TOPIC_SEARCH_LIKE':
+      return topicLike(state, action.info);
+    default:
+      return state;
+  }
+};
 
 export default searchInfo;

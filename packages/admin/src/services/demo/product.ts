@@ -1,4 +1,4 @@
-import { request } from "umi";
+import { request } from 'umi';
 
 export async function queryProducts(params) {
   return request('/api/demo/product/query', {

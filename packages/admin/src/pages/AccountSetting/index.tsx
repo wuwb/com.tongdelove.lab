@@ -1,17 +1,16 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import { PageContainer } from '@ant-design/pro-components';
 import { useIntl, useModel } from '@umijs/max';
-import { Card, Menu, theme } from 'antd';
+import { Card, Menu } from 'antd';
+import { createStyles } from 'antd-style';
+import { MenuMode } from 'rc-menu/lib/interface';
+import React, { useEffect, useRef, useState } from 'react';
 import BaseView from './components/base';
 import BindingView from './components/binding';
 import NotificationView from './components/notification';
 import { SecurityView } from './components/security';
 import styles from './style.less';
-import { PageContainer } from '@ant-design/pro-components';
-import { MenuMode } from 'rc-menu/lib/interface';
-import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token, css }) => ({
-}));
+const useStyles = createStyles(({ token, css }) => ({}));
 
 const { Item } = Menu;
 
@@ -41,7 +40,10 @@ const AccountSettingsPage: React.FC = (props) => {
   const [menuMap, setMenuMap] = useState(defaultMenuMap);
   const [mode, setMode] = useState<MenuMode>('inline');
   const [selectKey, setSelectKey] = useState('base');
-  const { currentUser, fetchUser } = useModel('useUser', model => ({ currentUser: model.user, fetchUser: model.fetchUser }));
+  const { currentUser, fetchUser } = useModel('useUser', (model) => ({
+    currentUser: model.user,
+    fetchUser: model.fetchUser,
+  }));
   const { initialState } = useModel('@@initialState');
 
   if (!currentUser.userid) {
@@ -117,7 +119,9 @@ const AccountSettingsPage: React.FC = (props) => {
       >
         <div className={styles.main} ref={main}>
           <div className={styles.leftMenu}>
-            <Menu mode={mode} selectedKeys={[selectKey]}
+            <Menu
+              mode={mode}
+              selectedKeys={[selectKey]}
               onClick={({ key }) => setSelectKey(key as AccountSettingsStateKeys)}
             >
               {getMenu()}

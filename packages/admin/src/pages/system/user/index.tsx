@@ -1,32 +1,32 @@
-import React, { useState, useRef } from 'react';
-import { PageHeader } from '@ant-design/pro-layout';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { PageHeader } from '@ant-design/pro-layout';
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
+import { useRequest } from '@umijs/max';
 import {
   Button,
   Divider,
   Dropdown,
-  Menu,
-  message,
-  Tag,
-  Popconfirm,
   // Upload,
   Input,
+  Menu,
+  message,
+  Popconfirm,
   Select,
+  Tag,
 } from 'antd';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { FormInstance } from 'antd/es/form';
 import { SorterResult } from 'antd/es/table/interface';
-import { useRequest } from '@umijs/max';
+import { useRef, useState } from 'react';
 // import ImgCrop from 'antd-img-crop';
 import { UploadFile } from 'antd/lib/upload/interface';
 
-import { queryUser, updateUser, createUser, removeUser, showUser } from '@/services/base/user';
 import { queryPermission } from '@/services/base/permission';
 import { queryRole } from '@/services/base/role';
+import { createUser, queryUser, removeUser, showUser, updateUser } from '@/services/base/user';
 import { TableListItem } from '@/services/base/user.d';
 import CreateForm from './components/CreateForm';
-import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';
+import UpdateForm from './components/UpdateForm';
 
 import styles from './index.less';
 
@@ -36,7 +36,7 @@ import styles from './index.less';
  */
 const handleCreate = async (fields: TableListItem) => {
   const hide = message.loading('正在添加');
-  const avatar = ((fields.avatar as unknown) as UploadFile[]) || [];
+  const avatar = (fields.avatar as unknown as UploadFile[]) || [];
   try {
     await createUser({ ...fields, avatar: avatar[0]?.response?.url });
     hide();
@@ -119,14 +119,20 @@ export default () => {
   const updateFormRef = useRef<FormInstance>();
 
   // 预先加载权限选择器数据
-  const { data: permissionData, loading: permissionLoading, error: permissionError } = useRequest(
-    () => {
-      return queryPermission({ pageSize: 1000 });
-    },
-  );
+  const {
+    data: permissionData,
+    loading: permissionLoading,
+    error: permissionError,
+  } = useRequest(() => {
+    return queryPermission({ pageSize: 1000 });
+  });
 
   // 预先加载角色选择器数据
-  const { data: roleData, loading: roleLoading, error: roleError } = useRequest(() => {
+  const {
+    data: roleData,
+    loading: roleLoading,
+    error: roleError,
+  } = useRequest(() => {
     return queryRole({ pageSize: 1000 });
   });
 
@@ -415,7 +421,6 @@ export default () => {
           if (sorterResult.field) {
             setSorter(`${sorterResult.field}_${sorterResult.order}`);
           } else {
-
           }
         }}
         params={{

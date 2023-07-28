@@ -11,7 +11,7 @@ export interface TableListItem {
   updatedAt: Date;
   createdAt: Date;
   progress: number;
-  [string]: any
+  [string]: any;
 }
 
 export interface TableListPagination {

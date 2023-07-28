@@ -1,15 +1,15 @@
-import { Tabs, Form } from 'antd';
+import { LoginParamsType } from '@/services/base/auth';
+import { Outlet } from '@umijs/max';
+import { Form, Tabs } from 'antd';
+import { FormInstance } from 'antd/es/form';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import useMergeValue from 'use-merge-value';
-import classNames from 'classnames';
-import { FormInstance } from 'antd/es/form';
-import { LoginParamsType } from '@/services/base/auth';
+import styles from './index.less';
 import LoginContext from './LoginContext';
 import LoginItem, { LoginItemProps } from './LoginItem';
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
-import styles from './index.less';
-import { Outlet } from '@umijs/max';
 
 export interface LoginProps {
   activeKey?: string;
@@ -100,8 +100,9 @@ const Login: LoginType = (props) => {
               </Tabs>
               {otherChildren}
             </React.Fragment>
-          ) : <Outlet />
-          }
+          ) : (
+            <Outlet />
+          )}
         </Form>
       </div>
     </LoginContext.Provider>

@@ -1,12 +1,12 @@
-import React from 'react';
 import { Progress } from 'antd';
+import React from 'react';
 
 import style from './index.less';
 
 export default class CardProgress extends React.Component {
-  renderItem = data => {
+  renderItem = (data) => {
     if (!data) return;
-    return data.map(item => {
+    return data.map((item) => {
       const { name, value } = item;
       return (
         <div className={style.item} key={item.name}>

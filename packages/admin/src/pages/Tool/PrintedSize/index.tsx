@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography, Input, Image } from 'antd';
 import PrintedSize from '@/assets/printed-size.jpg';
+import { PageContainer } from '@ant-design/pro-components';
+import { Card, Image } from 'antd';
 
 function Page() {
   return (
     <PageContainer>
       <Card>
-        <Image
-          src={PrintedSize}
-        />
+        <Image src={PrintedSize} alt="" />
       </Card>
     </PageContainer>
   );

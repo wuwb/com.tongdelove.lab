@@ -1,11 +1,11 @@
 // https://umijs.org/config/
+import { convertLegacyToken } from '@ant-design/compatible/lib';
 import { defineConfig } from '@umijs/max';
+import { theme } from 'antd';
 import { join } from 'path';
 import { defaultSettings } from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-import { theme } from 'antd';
-import { convertLegacyToken } from '@ant-design/compatible/lib';
 
 const { defaultAlgorithm, defaultSeed } = theme;
 
@@ -69,7 +69,7 @@ export default defineConfig({
   /**
    * 使用 antd-style
    */
-  // styledComponents: {}, 
+  // styledComponents: {},
 
   /**
    * @name moment 的国际化配置
@@ -94,7 +94,6 @@ export default defineConfig({
    * Fast Refresh 热更新，和 mfsu 冲突，关闭其中一个
    */
   fastRefresh: true,
-
 
   //============== 以下都是max的插件配置 ===============
   /**
@@ -164,7 +163,7 @@ export default defineConfig({
     configProvider: {
       theme: {
         algorithm: theme.compactAlgorithm,
-      }
+      },
     },
   },
 
@@ -206,7 +205,6 @@ export default defineConfig({
   // 自动加载 preset 和 plugins
   presets: ['umi-presets-pro'],
 
-
   /**
    * @name openAPI 插件的配置
    * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
@@ -228,7 +226,7 @@ export default defineConfig({
   ],
   mfsu: {
     strategy: 'normal',
-    exclude: ['@playwright/test']
+    exclude: ['@playwright/test'],
   },
   requestRecord: {},
 
@@ -240,7 +238,7 @@ export default defineConfig({
 
   lessLoader: {
     modifyVars: v4Token,
-    javascriptEnabled: true
+    javascriptEnabled: true,
   },
 
   // cssLoader: {
@@ -292,9 +290,8 @@ export default defineConfig({
 
   manifest: {
     basePath: '/',
-    fileName: '../../config/manifest.json',
+    fileName: '../config/manifest.json',
   },
-
 
   // openAPI: [
   //   {
@@ -362,7 +359,6 @@ export default defineConfig({
   //   baidu: '',
   // },
   chainWebpack(config, { env, webpack }) {
-
     config.module
       // 判断是否存在less-to-css规则
       .rule('less-to-css')
@@ -375,7 +371,7 @@ export default defineConfig({
       .options({
         lessOptions: {
           modifyVars: v4Token,
-        }
+        },
       })
       .end();
 
@@ -438,5 +434,4 @@ export default defineConfig({
     //   }
     // });
   },
-
 });

@@ -3,24 +3,26 @@
   width: 100%;
   height: 100%;
   overflow: auto;
+
   .leftMenu {
     width: 224px;
     border-right: @border-width-base @border-style-base @border-color-split;
+
     :global {
       .ant-menu-inline {
         border: none;
       }
+
       .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
         font-weight: bold;
       }
     }
   }
+
   .right {
     flex: 1;
-    padding-top: 8px;
-    padding-right: 40px;
-    padding-bottom: 8px;
-    padding-left: 40px;
+    padding: 8px 40px;
+
     .title {
       margin-bottom: 12px;
       // color: @heading-color;
@@ -29,16 +31,19 @@
       line-height: 28px;
     }
   }
+
   :global {
     .ant-list-split .ant-list-item:last-child {
       border-bottom: 1px solid @border-color-split;
     }
+
     .ant-list-item {
       padding-top: 14px;
       padding-bottom: 14px;
     }
   }
 }
+
 :global {
   .ant-list-item-meta {
     // 账号绑定图标
@@ -49,6 +54,7 @@
       line-height: 48px;
       border-radius: @border-radius-base;
     }
+
     .dingding {
       margin: 2px;
       padding: 6px;
@@ -58,6 +64,7 @@
       background-color: #2eabff;
       border-radius: @border-radius-base;
     }
+
     .alipay {
       color: #2eabff;
       font-size: 48px;
@@ -70,9 +77,11 @@
   font.strong {
     color: @success-color;
   }
+
   font.medium {
     color: @warning-color;
   }
+
   font.weak {
     color: @error-color;
   }
@@ -81,10 +90,12 @@
 @media screen and (max-width: @screen-md) {
   .main {
     flex-direction: column;
+
     .leftMenu {
       width: 100%;
       border: none;
     }
+
     .right {
       padding: 40px;
     }

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Tag, message } from 'antd';
 import { connect } from '@umijs/max';
-import groupBy from 'lodash/groupBy';
+import { message, Tag } from 'antd';
 import dayjs from 'dayjs';
+import groupBy from 'lodash/groupBy';
+import { Component } from 'react';
 
-import { NoticeItem } from '@/models/global';
-import NoticeIcon from '../NoticeIcon';
-import { CurrentUser } from '@/models/user';
 import { ConnectProps, ConnectState } from '@/models/connect';
+import { NoticeItem } from '@/models/global';
+import { CurrentUser } from '@/models/user';
+import NoticeIcon from '../NoticeIcon';
 import styles from './index.less';
 
 export interface GlobalHeaderRightProps extends ConnectProps {
@@ -62,7 +62,7 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
       return {};
     }
 
-    const newNotices = notices.map(notice => {
+    const newNotices = notices.map((notice) => {
       const newNotice = { ...notice };
 
       if (newNotice.datetime) {
@@ -101,7 +101,7 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
     const unreadMsg: {
       [key: string]: number;
     } = {};
-    Object.keys(noticeData).forEach(key => {
+    Object.keys(noticeData).forEach((key) => {
       const value = noticeData[key];
 
       if (!unreadMsg[key]) {
@@ -109,7 +109,7 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
       }
 
       if (Array.isArray(value)) {
-        unreadMsg[key] = value.filter(item => !item.read).length;
+        unreadMsg[key] = value.filter((item) => !item.read).length;
       }
     });
     return unreadMsg;
@@ -123,7 +123,7 @@ class GlobalHeaderRight extends Component<GlobalHeaderRightProps> {
       <NoticeIcon
         className={styles.action}
         count={currentUser && currentUser.unreadCount}
-        onItemClick={item => {
+        onItemClick={(item) => {
           this.changeReadState(item as NoticeItem);
         }}
         loading={fetchingNotices}

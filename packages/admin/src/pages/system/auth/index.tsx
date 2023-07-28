@@ -1,25 +1,25 @@
-import React, { useRef, useState } from 'react';
-import { useRequest } from '@umijs/max';
-import { PageHeader } from '@ant-design/pro-layout';
-import { Card, Alert, Row, Col, message, Popconfirm, Tag } from 'antd';
-import {
-  PlusSquareOutlined,
-  MinusSquareOutlined,
-  FormOutlined,
-  DeleteOutlined,
-  SaveOutlined,
-  ReloadOutlined,
-} from '@ant-design/icons';
 import ToolBar from '@/components/ToolBar';
+import {
+  DeleteOutlined,
+  FormOutlined,
+  MinusSquareOutlined,
+  PlusSquareOutlined,
+  ReloadOutlined,
+  SaveOutlined,
+} from '@ant-design/icons';
+import { PageHeader } from '@ant-design/pro-layout';
+import { useRequest } from '@umijs/max';
+import { Alert, Card, Col, message, Popconfirm, Row, Tag } from 'antd';
+import { useRef, useState } from 'react';
 
-import { queryMenu, createMenu, updateMenu, removeMenu, orderMenu } from '@/services/base/menu';
+import { createMenu, orderMenu, queryMenu, removeMenu, updateMenu } from '@/services/base/menu';
 import { TableListItem } from '@/services/base/menu.d';
 
 import { arrayTransTree, treeTransArray } from '@/utils/utils';
 
-import styles from './index.less';
 import CreateForm, { CreateFormHandleProps } from './components/CreateForm';
 import UpdateForm, { UpdateFormHandleProps } from './components/UpdateForm';
+import styles from './index.less';
 
 /**
  * 添加
@@ -191,16 +191,11 @@ export const AuthPage = () => {
       return <div>loading...</div>;
     }
     const items = arrayTransTree(data?.list as any[], 'parentId') || [];
-    return (
-      <div ref={nestableRef}>
-        {renderItem(items)}
-      </div>
-    )
+    return <div ref={nestableRef}>{renderItem(items)}</div>;
   };
 
   return (
     <PageHeader className={styles.main}>
-
       <Row gutter={[24, 24]}>
         <Col md={12} sm={24}>
           <Card bodyStyle={{ padding: 0 }}>

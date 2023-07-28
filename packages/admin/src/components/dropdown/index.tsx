@@ -1,7 +1,7 @@
-import React from 'react';
-import { Dropdown, Menu } from 'antd';
-import { EllipsisOutlined } from '@ant-design/icons';
 import access from '@/components/access';
+import { EllipsisOutlined } from '@ant-design/icons';
+import { Dropdown, Menu } from 'antd';
+import React from 'react';
 
 class OperatorDropdown extends React.Component {
   state = {
@@ -20,7 +20,7 @@ class OperatorDropdown extends React.Component {
     });
   };
 
-  handleVisibleChange = flag => {
+  handleVisibleChange = (flag) => {
     this.setState({ visible: flag });
   };
 
@@ -28,7 +28,7 @@ class OperatorDropdown extends React.Component {
   componentWillUnmount() {
     this.setState = () => {
       return;
-    }
+    };
   }
 
   overlay = () => {
@@ -40,14 +40,13 @@ class OperatorDropdown extends React.Component {
         ...v,
         action: [
           ...action,
-          ctx => {
+          (ctx) => {
             ctx.menu.hidden();
           },
         ],
       };
       return (
         <Menu.Item key={idx} style={{ padding: '5px 8px' }}>
-
           {finalConfig.text}
         </Menu.Item>
       );

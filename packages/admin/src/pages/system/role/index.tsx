@@ -1,17 +1,17 @@
-import React, { useState, useRef } from 'react';
-import { PageHeader } from '@ant-design/pro-layout';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Dropdown, Menu, message, Tag, Popconfirm, Select } from 'antd';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import { SorterResult } from 'antd/es/table/interface';
+import { PageHeader } from '@ant-design/pro-layout';
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
 import { useRequest } from '@umijs/max';
+import { Button, Divider, Dropdown, Menu, message, Popconfirm, Select, Tag } from 'antd';
+import { SorterResult } from 'antd/es/table/interface';
+import { useRef, useState } from 'react';
 
-import { queryRole, updateRole, createRole, removeRole, showRole } from '@/services/base/role';
 import { queryPermission } from '@/services/base/permission';
+import { createRole, queryRole, removeRole, showRole, updateRole } from '@/services/base/role';
 import { TableListItem } from '@/services/base/role.d';
 import CreateForm from './components/CreateForm';
-import UpdateForm from './components/UpdateForm';
 import ShowForm from './components/ShowForm';
+import UpdateForm from './components/UpdateForm';
 
 import styles from './index.less';
 
@@ -101,11 +101,13 @@ export default () => {
   const actionRef = useRef<ActionType>();
 
   // 预先加载权限选择器数据
-  const { data: permissionData, loading: permissionLoading, error: permissionError } = useRequest(
-    () => {
-      return queryPermission({ pageSize: 1000 });
-    },
-  );
+  const {
+    data: permissionData,
+    loading: permissionLoading,
+    error: permissionError,
+  } = useRequest(() => {
+    return queryPermission({ pageSize: 1000 });
+  });
 
   const columns: ProColumns<TableListItem>[] = [
     {

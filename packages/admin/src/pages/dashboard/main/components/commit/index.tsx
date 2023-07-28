@@ -72,9 +72,6 @@ export default class Commit extends React.Component {
 
   render() {
     const { option } = this.state;
-    return (
-      <div style={{ background: '#fff', padding: '16px' }}>
-      </div>
-    );
+    return <div style={{ background: '#fff', padding: '16px' }}></div>;
   }
 }

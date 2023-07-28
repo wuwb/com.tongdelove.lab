@@ -8,6 +8,7 @@
 .logo {
   float: left;
   width: 150px;
+
   a {
     display: inline-block;
     font-size: 20px;
@@ -20,7 +21,7 @@
 }
 
 .menuCon .ant-menu-item {
-  padding: 0px 5px;
+  padding: 0 5px;
 }
 
 .menuCon .ant-menu-submenu-title {
@@ -61,8 +62,8 @@
   background: #1890ff;
 }
 
-.barsBtn:after,
-.barsBtn:before {
+.barsBtn::after,
+.barsBtn::before {
   position: absolute;
   top: -6px;
   left: 0;
@@ -72,7 +73,7 @@
   content: attr(x);
 }
 
-.barsBtn:after {
+.barsBtn::after {
   top: auto;
   bottom: -6px;
 }

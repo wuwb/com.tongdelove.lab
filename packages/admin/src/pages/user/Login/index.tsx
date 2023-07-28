@@ -1,4 +1,7 @@
+import Footer from '@/components/Footer';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { login, LoginParamsType } from '@/services/base/auth';
+import { getPageQuery } from '@/utils/utils';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -13,16 +16,20 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { FormattedMessage, history, SelectLang, useIntl, useModel, Helmet } from '@umijs/max';
-import { Link } from '@umijs/max';
-import { useRequest } from '@umijs/max';
+import {
+  FormattedMessage,
+  Helmet,
+  history,
+  Link,
+  SelectLang,
+  useIntl,
+  useModel,
+  useRequest,
+} from '@umijs/max';
 import { Alert, message, Tabs } from 'antd';
+import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
-import { getPageQuery } from '@/utils/utils';
-import { LoginParamsType, login } from '@/services/base/auth';
-import Footer from '@/components/Footer';
-import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token, css }) => ({
   container: {
@@ -46,7 +53,7 @@ const useStyles = createStyles(({ token, css }) => ({
     ':hover': {
       backgroundColor: token.colorBgTextHover,
     },
-  }
+  },
 }));
 
 const LoginMessage: React.FC<{
@@ -62,7 +69,7 @@ const LoginMessage: React.FC<{
       showIcon
     />
   );
-}
+};
 
 /**
  * 此方法会跳转到 redirect 参数所在的位置

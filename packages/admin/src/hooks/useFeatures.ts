@@ -1,4 +1,4 @@
-import { useListFeaturesQuery } from "@/services/api";
+import { useListFeaturesQuery } from '@/services/api';
 
 export type AppFeatures = {
   emailVerification: boolean;

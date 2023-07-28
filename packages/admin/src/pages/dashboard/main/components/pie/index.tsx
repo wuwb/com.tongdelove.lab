@@ -1,5 +1,5 @@
-import React from 'react';
 import { request } from '@umijs/max';
+import React from 'react';
 
 export default class Pie extends React.Component {
   state = {
@@ -23,8 +23,7 @@ export default class Pie extends React.Component {
   };
 
   componentDidMount() {
-    request('/api/charts/pie.json', {
-    }).then(data => {
+    request('/api/charts/pie.json', {}).then((data) => {
       this.setState({
         option: {
           ...this.state.option,
@@ -42,9 +41,6 @@ export default class Pie extends React.Component {
 
   render() {
     const { option } = this.state;
-    return (
-      <div style={{ background: '#fff' }}>
-      </div>
-    );
+    return <div style={{ background: '#fff' }}></div>;
   }
 }

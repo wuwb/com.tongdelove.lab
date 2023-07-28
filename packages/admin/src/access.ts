@@ -3,10 +3,8 @@
  * @see https://umijs.org/zh-CN/plugins/plugin-access
  * https://beta-pro.ant.design/docs/upgrade-v5-cn
  */
-import { InitialState } from '@umijs/max';
-
-export default function access(initialState: { currentUser?: API.CurrentUser } | undefined) {
-  const { currentUser } = initialState ?? {};
+export default function access(initialState) {
+  const { currentUser, role } = initialState ?? {};
   return {
     readArticle: initialState.name === 'haha',
     canAdmin: currentUser && currentUser.access === 'admin',

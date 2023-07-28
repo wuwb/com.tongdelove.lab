@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Blood() {
   return (
     <div>
@@ -7,9 +5,9 @@ function Blood() {
       <table width="100%" cellPadding="0" cellSpacing="0">
         <tbody>
           <tr>
-            <th style={{width: '33%'}}>父母血型</th>
-            <th style={{width: '33%'}}>子女会出现的血型</th>
-            <th style={{width: '33%'}}>子女不会出现的血型</th>
+            <th style={{ width: '33%' }}>父母血型</th>
+            <th style={{ width: '33%' }}>子女会出现的血型</th>
+            <th style={{ width: '33%' }}>子女不会出现的血型</th>
           </tr>
           <tr>
             <td>O+O</td>

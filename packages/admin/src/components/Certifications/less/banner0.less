@@ -10,6 +10,7 @@
   background-size: cover;
   background-attachment: fixed;
   border-color: #666;
+
   & &-text-wrapper {
     position: absolute;
     top: 20%;
@@ -20,10 +21,12 @@
     margin: auto;
     color: @template-text-color-light;
     font-size: 14px;
+
     > .queue-anim-leaving {
       position: relative !important;
     }
   }
+
   & &-title {
     position: relative;
     left: 30px;
@@ -33,11 +36,13 @@
     margin: auto;
     font-size: 40px;
   }
+
   & &-content {
     min-height: 24px;
     margin-bottom: 20px;
     word-wrap: break-word;
   }
+
   & &-button {
     height: 40px;
     color: #fff;
@@ -46,20 +51,24 @@
     border: 1px solid #fff;
     box-shadow: 0 0 0 transparent;
     transition: background 0.45s @ease-out, box-shadow 0.45s @ease-out;
+
     &:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 10%);
       border-color: #fff;
-      box-shadow: 0 0 10px rgba(50, 250, 255, 0.75);
+      box-shadow: 0 0 10px rgba(50, 250, 255, 75%);
     }
+
     &:focus {
       color: #fff;
       border-color: #fff;
     }
+
     &.queue-anim-leaving {
       width: auto;
     }
   }
+
   & &-icon {
     position: absolute;
     bottom: 20px;
@@ -73,9 +82,11 @@
 @media screen and (max-width: 767px) {
   .@{banner0} {
     background-attachment: inherit;
+
     & &-text-wrapper {
       width: 90%;
     }
+
     & &-title {
       left: 0;
       width: 90%;

@@ -1,9 +1,13 @@
+/** @type {import("prettier").Config} */
 module.exports = {
+  plugins: [require.resolve('prettier-plugin-tailwindcss')],
+
   singleQuote: true,
-  trailingComma: 'all',
+  semi: false,
+  trailingComma: 'es5',
   printWidth: 100,
   proseWrap: 'never',
-  endOfLine: 'lf',
+  endOfLine: 'auto',
   overrides: [
     {
       files: '.prettierrc',
@@ -19,7 +23,7 @@ module.exports = {
     },
   ],
   plugins: [
-    "prettier-plugin-organize-imports", 
-    "prettier-plugin-packagejson"
-  ]
+    'prettier-plugin-organize-imports',
+    'prettier-plugin-packagejson'
+  ],
 };

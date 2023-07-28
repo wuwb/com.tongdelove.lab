@@ -1,6 +1,6 @@
-import React from 'react';
 import { Popover, Tag } from 'antd';
 import classNames from 'classnames';
+import React from 'react';
 
 import './index.less';
 
@@ -15,9 +15,7 @@ class StatusView extends React.Component {
       statusList.map((item, index) => {
         const { key, statusSuffix = '', value, children: childrenVal } = item;
         if (key === children) {
-          childrenTex = `${childrenVal || value} ${
-            statusSuffix ? statusSuffix + '%' : ''
-          }`;
+          childrenTex = `${childrenVal || value} ${statusSuffix ? statusSuffix + '%' : ''}`;
           color = item.color;
         }
         return (
@@ -35,8 +33,7 @@ class StatusView extends React.Component {
                 'popoverText',
                 index === statusList.length - 1 && 'propoverDisplayNone',
               )}
-            >
-            </span>
+            ></span>
           </div>
         );
       });

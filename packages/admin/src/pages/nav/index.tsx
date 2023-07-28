@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from '@umijs/max';
 import { Anchor } from 'antd';
 import DefaultLayout from '../../layouts';

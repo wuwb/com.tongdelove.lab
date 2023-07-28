@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import { connect, Dispatch } from '@umijs/max';
 import { Select, Spin } from 'antd';
 import { LabeledValue } from 'antd/es/select';
-import { connect, Dispatch } from '@umijs/max';
+import { Component } from 'react';
 import { GeographicItemType } from '../data.d';
 import styles from './GeographicView.less';
 

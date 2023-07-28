@@ -1,5 +1,5 @@
+import { TableListItem, TableListParams } from '@/services/base/role.d';
 import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from '@/services/base/role.d';
 
 export async function queryRole(params?: TableListParams) {
   return request<API.Response<API.PagingData<TableListItem>>>('/api/base/role/query', {

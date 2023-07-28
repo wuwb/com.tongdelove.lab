@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography, Input } from 'antd';
-import { useIntl, FormattedMessage, useRequest, useParams } from '@umijs/max';
 import { showProduct } from '@/services/demo/product';
+import { PageContainer } from '@ant-design/pro-components';
+import { useIntl, useParams, useRequest } from '@umijs/max';
+import React from 'react';
 
-export default (): React.ReactNode => {
+const ProductDetail = (): React.ReactNode => {
   const intl = useIntl();
   const params = useParams();
 
   const { data, error, loading } = useRequest(() => showProduct(params.path));
 
   if (loading) {
-    return <div>loading</div>
+    return <div>loading</div>;
   }
   if (error) {
-    return <div>{error}</div>
+    return <div>{error}</div>;
   }
 
   return (
@@ -24,3 +23,5 @@ export default (): React.ReactNode => {
     </PageContainer>
   );
 };
+
+export default ProductDetail

@@ -1,6 +1,6 @@
 import { Effect, Reducer } from '@umijs/max';
-import { create, list, remove, update } from './service';
 import { BasicListItemDataType } from './data.d';
+import { create, list, remove, update } from './service';
 
 export interface StateType {
   list: BasicListItemDataType[];

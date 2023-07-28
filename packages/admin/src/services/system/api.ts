@@ -1,7 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
 import { MenuDataItem } from '@ant-design/pro-components';
+import { request } from '@umijs/max';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
@@ -32,7 +32,7 @@ export async function register(options?) {
     method: 'POST',
     ...(options || {}),
   });
-};
+}
 
 // 获取用户信息
 export async function getUserInfo(options?) {
@@ -40,7 +40,7 @@ export async function getUserInfo(options?) {
     method: 'GET',
     ...(options || {}),
   });
-};
+}
 
 // 获取用户关注、发帖信息
 export async function getPersonalInfo(options?) {
@@ -48,7 +48,7 @@ export async function getPersonalInfo(options?) {
     method: 'GET',
     ...(options || {}),
   });
-};
+}
 
 // 更新用户信息
 export async function updatePersonalInfo(options?) {
@@ -56,7 +56,7 @@ export async function updatePersonalInfo(options?) {
     method: 'POST',
     ...(options || {}),
   });
-};
+}
 
 // 新增帖子
 export async function addTopic(options?) {
@@ -64,7 +64,7 @@ export async function addTopic(options?) {
     method: 'POST',
     ...(options || {}),
   });
-};
+}
 
 // 点赞
 export async function topicLike(options?) {
@@ -72,7 +72,7 @@ export async function topicLike(options?) {
     method: 'PUT',
     ...(options || {}),
   });
-};
+}
 
 // 获取好友帖子列表
 export async function frientTopicList(options?) {
@@ -80,7 +80,7 @@ export async function frientTopicList(options?) {
     method: 'GET',
     ...(options || {}),
   });
-};
+}
 
 // 添加评论
 export async function addDiscuss(options?) {
@@ -88,14 +88,14 @@ export async function addDiscuss(options?) {
     method: 'POST',
     ...(options || {}),
   });
-};
+}
 // 帖子
 export async function searchTopic(options?) {
   return request('/topic/search', {
     method: 'GET',
     ...(options || {}),
   });
-};
+}
 
 // 未关注列表
 export async function friendList(options?) {
@@ -103,7 +103,7 @@ export async function friendList(options?) {
     method: 'GET',
     ...(options || {}),
   });
-};
+}
 
 // 关注
 export async function followUser(options?) {
@@ -111,7 +111,7 @@ export async function followUser(options?) {
     method: 'POST',
     ...(options || {}),
   });
-};
+}
 
 // 关注
 export async function getToken(options?) {
@@ -119,4 +119,4 @@ export async function getToken(options?) {
     method: 'GET',
     ...(options || {}),
   });
-};
+}

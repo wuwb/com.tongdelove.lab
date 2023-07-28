@@ -1,10 +1,11 @@
-import { FormattedMessage, useIntl } from '@umijs/max';
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
+import { FormattedMessage, useIntl } from '@umijs/max';
 import { List } from 'antd';
-import React, { Component, Fragment } from 'react';
+import { Fragment } from 'react';
 
-class BindingView extends Component {
-  getData = (intl) => [
+const BindingView = (props) => {
+
+  const getData = (intl) => [
     {
       title: intl.formatMessage({ id: 'accountsettings.binding.taobao' }, {}),
       description: intl.formatMessage({ id: 'accountsettings.binding.taobao-description' }, {}),
@@ -37,26 +38,24 @@ class BindingView extends Component {
     },
   ];
 
-  render() {
-    const intl = useIntl();
-    return (
-      <Fragment>
-        <List
-          itemLayout="horizontal"
-          dataSource={this.getData(intl)}
-          renderItem={(item) => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta
-                avatar={item.avatar}
-                title={item.title}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
-      </Fragment>
-    );
-  }
+  const intl = useIntl();
+  return (
+    <Fragment>
+      <List
+        itemLayout="horizontal"
+        dataSource={getData(intl)}
+        renderItem={(item) => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta
+              avatar={item.avatar}
+              title={item.title}
+              description={item.description}
+            />
+          </List.Item>
+        )}
+      />
+    </Fragment>
+  );
 }
 
 export default BindingView;

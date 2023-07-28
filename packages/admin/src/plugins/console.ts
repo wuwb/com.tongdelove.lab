@@ -5,10 +5,7 @@
 const consoleError = console.error.bind(console);
 // eslint-disable-next-line
 console.error = (message, ...args) => {
-  if (
-    typeof message === 'string' &&
-    message.startsWith('[React Intl] Missing message:')
-  ) {
+  if (typeof message === 'string' && message.startsWith('[React Intl] Missing message:')) {
     return;
   }
   consoleError(message, ...args);

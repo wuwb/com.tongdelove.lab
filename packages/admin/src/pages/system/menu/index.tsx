@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { request } from '@umijs/max';
-import { useRequest } from '@umijs/max';
-import { Table, Tag, Space, Drawer, Button } from 'antd';
-import { queryMenu } from '@/services/base/menu';
+import { PlusOutlined } from '@ant-design/icons';
 import { PageHeader } from '@ant-design/pro-layout';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import ProTable from '@ant-design/pro-table';
+import { Button, Drawer, Space } from 'antd';
+import React, { useState } from 'react';
 
 const columns = [
   {
@@ -105,7 +102,8 @@ export default (props): React.ReactNode => {
           </Button>,
         ]}
         columns={columns}
-        dataSource={tableData} />
+        dataSource={tableData}
+      />
       <Drawer
         title="Create a new account"
         width={720}

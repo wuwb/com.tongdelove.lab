@@ -1,6 +1,5 @@
-import React from 'react';
-import { Menu, Grid } from 'antd';
 import { Link } from '@umijs/max';
+import { Grid, Menu } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 

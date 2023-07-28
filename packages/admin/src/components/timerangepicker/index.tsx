@@ -1,6 +1,6 @@
-import React from 'react';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
+import React from 'react';
 
 const { RangePicker } = TimePicker;
 
@@ -27,7 +27,7 @@ export default class TimeRangePicker extends React.Component {
     const { valueFormat, value, ...restProps } = this.props;
     let finalValue = value;
     if (value) {
-      finalValue = value.map(v => {
+      finalValue = value.map((v) => {
         if (valueFormat === true) {
           return dayjs(v, restProps.format);
         } else {

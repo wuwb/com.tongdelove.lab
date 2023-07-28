@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { Button, Divider, message, Input, Drawer, Space } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import { create, remove, update, list, get } from '../service';
+import ProTable, { ActionType } from '@ant-design/pro-table';
 import { Link } from '@umijs/max';
+import { Space } from 'antd';
+import React, { useRef } from 'react';
+import { list } from '../service';
 
 const PostListPage: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
@@ -46,12 +46,8 @@ const PostListPage: React.FC<{}> = () => {
       render: (_, record) => (
         <Space>
           <Link to={`/resource/post/edit/${record.id}`}>编辑</Link>
-          <a onClick={() => { }}>
-            发布
-          </a>
-          <a onClick={() => { }}>
-            删除
-          </a>
+          <a onClick={() => {}}>发布</a>
+          <a onClick={() => {}}>删除</a>
         </Space>
       ),
     },
@@ -69,8 +65,7 @@ const PostListPage: React.FC<{}> = () => {
           fullScreen: true,
           setting: true,
         }}
-        toolBarRender={() => [
-        ]}
+        toolBarRender={() => []}
         request={(params, sorter, filter) => list({ ...params, sorter, filter })}
         columns={columns}
       />

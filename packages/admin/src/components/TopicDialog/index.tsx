@@ -1,16 +1,16 @@
-import React from 'react';
-import Style from './index.scss';
-import ReactDOM from 'react-dom';
-import Carousel from '@/components/Carousel';
 import Avatar from '@/components/Avatar';
+import Carousel from '@/components/Carousel';
 import Comments from '@/components/Comments';
 import store from '@/store';
 import { Icon } from 'antd';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Style from './index.scss';
 
 let defaultState = {
   alertStatus: false,
   alertTip: '提示',
-  closeAlert: function () { },
+  closeAlert: function () {},
   userInfo: {
     avatarUrl: '',
     username: null,
@@ -25,8 +25,8 @@ let defaultState = {
     topicLikeCounts: 20,
   },
   discuss: [],
-  addComments: () => { }, // 添加评论
-  topicLikeFn: () => { }, // 点赞
+  addComments: () => {}, // 添加评论
+  topicLikeFn: () => {}, // 点赞
 };
 
 class TopicDialog extends React.Component {

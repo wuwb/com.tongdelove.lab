@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
 import { Space } from 'antd';
 
+import MoguLive from './img/mogu-live.png';
 import Mogu from './img/mogu.png';
-import Youpeng from './img/youpeng.png';
-import Zust from './img/zust.png';
-import Tt from './img/tt.png';
+import Mogujie from './img/mogujie.jpg';
 import Qts from './img/qts.png';
-import Tongde from './img/tongde.png';
 import Slh from './img/slh.jpg';
-import Zjslgj from './img/zjslgj.jpg';
+import Tongde from './img/tongde.png';
+import Tt from './img/tt.png';
 import Weibo from './img/weibo.jpg';
 import Yidong from './img/yidong.jpg';
-import Mogujie from './img/mogujie.jpg';
-import MoguLive from './img/mogu-live.png';
+import Youpeng from './img/youpeng.png';
+import Zjslgj from './img/zjslgj.jpg';
+import Zust from './img/zust.png';
 
-import Title from './title';
+import Styles from './index.less';
 import Item from './item';
 import SubTitle from './subtitle';
-import Styles from './index.less';
+import Title from './title';
 
 const ResumePage = () => {
   return (
@@ -35,9 +34,9 @@ const ResumePage = () => {
         <div>
           <h3>联系</h3>
           <div>电话：+86 13735851501</div>
-          <div>邮箱：<a href="mailto:bin2302@gmail.com">
-            bin2302@gmail.com
-          </a></div>
+          <div>
+            邮箱：<a href="mailto:bin2302@gmail.com">bin2302@gmail.com</a>
+          </div>
           <div>Github: https://github.com/wuwb</div>
           <div>博客：https://blog.tongdelove.com</div>
         </div>
@@ -116,7 +115,6 @@ const ResumePage = () => {
         <Title title="项目经历" subTitle="Project" />
 
         <SubTitle title="蘑菇街 · 会员账户业务" subTitle="2018.01 - 2020.04" arrow fold>
-
           <Item
             img={MoguLive}
             imgTitle="蘑菇直播伴侣"

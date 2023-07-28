@@ -84,7 +84,6 @@ const handleRemove = async (selectedRows: API.RuleListItem[]) => {
 };
 
 const TableList: React.FC = () => {
-
   const [createModalOpen, handleModalOpen] = useState<boolean>(false);
   const [updateModalOpen, handleUpdateModalOpen] = useState<boolean>(false);
   const [showDetail, setShowDetail] = useState<boolean>(false);
@@ -300,7 +299,6 @@ const TableList: React.FC = () => {
           </Button>
         </FooterToolbar>
       )}
-
 
       <ModalForm
         title={intl.formatMessage({

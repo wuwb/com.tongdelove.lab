@@ -7,7 +7,7 @@ declare module '*.svg' {
   export function ReactComponent(props: React.SVGProps<SVGSVGElement>): React.ReactElement;
   const url: string;
   export default url;
-};
+}
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';
@@ -53,7 +53,6 @@ interface Window {
 
 declare let ga: Function;
 
-
 /* eslint-disable @typescript-eslint/ban-types */
 /**
  * 获取数组中元素的类型
@@ -87,22 +86,22 @@ declare type ReactProps<T> = T extends FC<infer C> ? C : never;
 
 declare type RePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[] | undefined
-  ? RePartial<U>[]
-  : T[P] extends object | undefined
-  ? T[P] extends ((...args: any[]) => any) | ClassType<T[P]> | undefined
-  ? T[P]
-  : RePartial<T[P]>
-  : T[P];
+    ? RePartial<U>[]
+    : T[P] extends object | undefined
+    ? T[P] extends ((...args: any[]) => any) | ClassType<T[P]> | undefined
+      ? T[P]
+      : RePartial<T[P]>
+    : T[P];
 };
 
 declare type ReRequired<T> = {
   [P in keyof T]-?: T[P] extends (infer U)[] | undefined
-  ? ReRequired<U>[]
-  : T[P] extends object | undefined
-  ? T[P] extends ((...args: any[]) => any) | ClassType<T[P]> | undefined
-  ? T[P]
-  : ReRequired<T[P]>
-  : T[P];
+    ? ReRequired<U>[]
+    : T[P] extends object | undefined
+    ? T[P] extends ((...args: any[]) => any) | ClassType<T[P]> | undefined
+      ? T[P]
+      : ReRequired<T[P]>
+    : T[P];
 };
 
 declare type RecordAny = Record<string, any>;
@@ -116,5 +115,5 @@ declare type RecordScalable<T extends RecordAny, U extends RecordAnyOrNever> = T
  */
 declare type ClassInstanceType<T extends abstract new (...args: any) => any> =
   T extends abstract new (...args: any) => infer R ? R : never;
-declare type ClassType<T> = { new(...args: any[]): T };
+declare type ClassType<T> = { new (...args: any[]): T };
 declare type ObjectType<T> = ClassType<T> | ((...args: any[]) => any);

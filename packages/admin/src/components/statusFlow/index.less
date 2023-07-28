@@ -12,11 +12,13 @@
 .flow {
   display: flex;
   padding-right: 20px;
+
   :global {
     .ant-btn {
       border: none;
       padding: 0;
     }
+
     .ant-btn[disabled]:hover {
       color: #fff;
     }
@@ -35,14 +37,18 @@
     border-top-right-radius: 5px;
     font-size: 12px;
     user-select: none;
+
     .leftcorner {
       .arrow();
+
       left: -13px;
       z-index: 9;
       border: 11.7px solid #fff;
     }
+
     .corner {
       .arrow();
+
       left: 61.4px;
       border: 11.7px solid rgb(72, 144, 248);
       z-index: 10;

@@ -3,4 +3,4 @@
 
 echo "pre commit"
 
-# npm test
+pnpx lint-staged

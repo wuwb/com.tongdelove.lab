@@ -1,21 +1,15 @@
-import React, { createRef } from 'react';
-import type { MenuDataItem } from '@ant-design/pro-components';
-import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import type { AntdConfig, RequestConfig } from '@umijs/max';
-import { history, Link } from '@umijs/max';
-import { SettingDrawer } from '@ant-design/pro-components';
-import { message, notification } from 'antd';
-import { getLocale, useLocation } from '@umijs/max';
 import RightContent, { Question, SelectLang } from '@/components/RightContent';
-import { BookOutlined, LinkOutlined, QuestionOutlined } from '@ant-design/icons';
 import { queryCurrentUser } from '@/services/base/user';
-import { defaultSettings } from '../config/defaultSettings';
+import { QuestionOutlined } from '@ant-design/icons';
+import type { MenuDataItem, Settings as LayoutSettings } from '@ant-design/pro-components';
+import { SettingDrawer } from '@ant-design/pro-components';
+import type { RequestConfig, RuntimeAntdConfig, RunTimeLayoutConfig } from '@umijs/max';
+import { getLocale, history, Link, useLocation } from '@umijs/max';
+import { message, theme } from 'antd';
 import { createLogger } from 'redux-logger';
-import type { RunTimeLayoutConfig } from '@umijs/max';
-import { errorConfig } from './requestErrorConfig';
+import { defaultSettings } from '../config/defaultSettings';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
-import { theme } from 'antd';
-import type { RuntimeAntdConfig } from '@umijs/max';
+import { errorConfig } from './requestErrorConfig';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -40,7 +34,7 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
-      console.log("err: ", error);
+      console.log('err: ', error);
       // history.push(loginPath);
     }
     return undefined;
@@ -84,12 +78,15 @@ export async function getInitialState(): Promise<{
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 // 退出登陆的逻辑也可以通过配置来自定义。
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: {
+export const layout: RunTimeLayoutConfig = ({
+  initialState,
+  setInitialState,
+}: {
   initialState: {
     settings?: LayoutSettings;
-    currentUser?: any
+    currentUser?: any;
   };
-  setInitialState: any,
+  setInitialState: any;
 }) => {
   const location = useLocation();
 
@@ -119,9 +116,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: {
         location.pathname !== '/user/register' &&
         location.pathname !== '/api'
       ) {
-
         // history.push(loginPath);
-
       }
     },
     layoutBgImgList: [
@@ -146,33 +141,34 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: {
     ],
     links: isDev
       ? [
-        // <Link to="/umi/plugin/openapi" target="_blank">
-        //   <LinkOutlined />
-        //   <span>OpenAPI 文档</span>
-        // </Link>,
-        // <Link to="/~docs">
-        //   <BookOutlined />
-        //   <span>业务组件文档</span>
-        // </Link>,
-        // <Link
-        //   target="_blank"
-        //   to="https://pro.ant.design/docs/getting-started"
-        //   rel="noopener noreferrer"
-        // >
-        //   <QuestionOutlined />
-        //   <span>使用文档</span>
-        // </Link>,
-      ] : [
-        <Link
-          target="_blank"
-          to="https://pro.ant.design/docs/getting-started"
-          rel="noopener noreferrer"
-          key="help"
-        >
-          <QuestionOutlined />
-          <span>使用文档</span>
-        </Link>
-      ],
+          // <Link to="/umi/plugin/openapi" target="_blank">
+          //   <LinkOutlined />
+          //   <span>OpenAPI 文档</span>
+          // </Link>,
+          // <Link to="/~docs">
+          //   <BookOutlined />
+          //   <span>业务组件文档</span>
+          // </Link>,
+          // <Link
+          //   target="_blank"
+          //   to="https://pro.ant.design/docs/getting-started"
+          //   rel="noopener noreferrer"
+          // >
+          //   <QuestionOutlined />
+          //   <span>使用文档</span>
+          // </Link>,
+        ]
+      : [
+          <Link
+            target="_blank"
+            to="https://pro.ant.design/docs/getting-started"
+            rel="noopener noreferrer"
+            key="help"
+          >
+            <QuestionOutlined />
+            <span>使用文档</span>
+          </Link>,
+        ],
     menuHeaderRender: undefined, // () => <div>menu</div>, undefined, false
 
     // 自定义 403 页面
@@ -267,8 +263,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: {
 };
 
 type CodeMsg = {
-  [key: number]: string
-}
+  [key: number]: string;
+};
 
 export const dva = {
   config: {
@@ -316,7 +312,6 @@ export const request: RequestConfig = {
   // 当后端接口不满足该规范的时候你需要通过该配置把后端接口数据转换为该格式
   ...errorConfig,
 };
-
 
 // export const ssr = {
 //   modifyGetInitialPropsCtx: async (ctx) => {

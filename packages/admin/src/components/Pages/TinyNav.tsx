@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from '@umijs/max';
-import { withRouter } from '@umijs/max';
+import { Link, withRouter } from '@umijs/max';
 import './TinyNav.less';
 
 const Home = ({ navs, history, location, match }) => {
@@ -8,7 +6,7 @@ const Home = ({ navs, history, location, match }) => {
     <div className="sub-nav">
       {navs.map((item) => {
         return (
-          <Link to={item.href}>
+          <Link to={item.href} key={item.href}>
             <a className={location.pathname === item.href ? 'active' : ''}>{item.name}</a>
           </Link>
         );

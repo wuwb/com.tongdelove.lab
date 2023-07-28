@@ -1,7 +1,7 @@
-import React from 'react';
-import { Dropdown, Menu, Button, Modal } from 'antd';
-import { history, request } from '@umijs/max';
 import access from '@/components/access';
+import { history } from '@umijs/max';
+import { Button, Dropdown, Menu, Modal } from 'antd';
+import React from 'react';
 
 import styles from './index.less';
 
@@ -18,23 +18,19 @@ class StatusList extends React.Component {
   };
 
   renderButton = ({ index, text }) => (
-    <Button
-      className={styles.flowItem}
-      disabled={this.getCurrentIndex() < index}
-    >
+    <Button className={styles.flowItem} disabled={this.getCurrentIndex() < index}>
       {text}
     </Button>
   );
 
-  getColor = idx => {
+  getColor = (idx) => {
     let color =
       this.getCurrentIndex() === idx
         ? '#1890ff'
         : this.getCurrentIndex() > idx
-          ? '#69c0ff'
-          : '#DBE2EC';
-    let fontColor =
-      this.getCurrentIndex() < idx ? 'rgba(0, 0, 0, .65)' : '#fff';
+        ? '#69c0ff'
+        : '#DBE2EC';
+    let fontColor = this.getCurrentIndex() < idx ? 'rgba(0, 0, 0, .65)' : '#fff';
     return {
       backgroundColor: color,
       borderColor: color,
@@ -42,7 +38,7 @@ class StatusList extends React.Component {
     };
   };
 
-  getMenu = data => (
+  getMenu = (data) => (
     <Menu>
       {data.map((item, index) => {
         const { value = '', text, disabled } = item;
@@ -62,7 +58,7 @@ class StatusList extends React.Component {
     </Menu>
   );
 
-  handleMenuItemClick = item => {
+  handleMenuItemClick = (item) => {
     const { text, confirm, action, url, href } = item;
     const {
       table,
@@ -119,10 +115,7 @@ class StatusList extends React.Component {
               ) : (
                 <div style={{ zIndex: 100, position: 'relative' }}>{text}</div>
               )}
-              <div
-                className={styles.corner}
-                style={{ ...this.getColor(index) }}
-              />
+              <div className={styles.corner} style={{ ...this.getColor(index) }} />
             </div>
           );
         })}

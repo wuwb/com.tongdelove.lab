@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
-import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography, Input } from 'antd';
-import { useRequest, useIntl, Link } from '@umijs/max';
 import { queryProducts } from '@/services/demo/product';
+import { PageContainer } from '@ant-design/pro-components';
+import { Link, useIntl, useRequest } from '@umijs/max';
+import React from 'react';
 
-export default (): React.ReactNode => {
+const Product = (): React.ReactNode => {
   const intl = useIntl();
 
   const { data, error, loading } = useRequest(queryProducts);
 
   if (loading) {
-    return <div>loading</div>
+    return <div>loading</div>;
   }
   if (error) {
-    return <div>loading</div>
+    return <div>loading</div>;
   }
 
   return (
     <PageContainer>
-      {
-        data.map((item) => {
-          return (
-
-            <div key={item.id}>
-              <Link to={`/products/${item.path}`}>{item.name}</Link>
-            </div>
-          )
-        })
-      }
+      {data.map((item) => {
+        return (
+          <div key={item.id}>
+            <Link to={`/products/${item.path}`}>{item.name}</Link>
+          </div>
+        );
+      })}
     </PageContainer>
   );
 };
+
+export default Product

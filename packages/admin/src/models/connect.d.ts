@@ -1,8 +1,8 @@
-import { AnyAction } from 'redux';
 import { MenuDataItem } from '@ant-design/pro-components';
 import { RouterTypes } from '@umijs/max';
-import { GlobalModelState } from './global';
+import { AnyAction } from 'redux';
 import { defaultSettings as SettingModelState } from '../../config/defaultSettings';
+import { GlobalModelState } from './global';
 import { UserModelState } from './user';
 
 export { GlobalModelState, SettingModelState, UserModelState };

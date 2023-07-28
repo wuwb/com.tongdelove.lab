@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Alert, Typography, Input } from 'antd';
-import { useIntl, FormattedMessage } from '@umijs/max';
+import { useIntl } from '@umijs/max';
+import { Card } from 'antd';
+import React from 'react';
 
-export default (): React.ReactNode => {
-  const intl = useIntl()
+const Welcome = (): React.ReactNode => {
+  const intl = useIntl();
 
   return (
     <PageContainer>
-      <Card>
-        Welcome !
-      </Card>
+      <Card>Welcome !</Card>
     </PageContainer>
   );
 };
+
+export default Welcome

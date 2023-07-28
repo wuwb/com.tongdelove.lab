@@ -1,5 +1,4 @@
 import ms from 'ms';
-import { Configs } from '../utils';
 
 export const msToString = (time) => {
   const str = ms(time, { long: true });

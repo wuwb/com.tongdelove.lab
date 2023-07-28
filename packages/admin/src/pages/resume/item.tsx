@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from '@/components/Link';
-import styles from './item.less';
 import { Outlet } from '@umijs/max';
+import React from 'react';
+import styles from './item.less';
 
 interface ItemProps {
   img?: string;
@@ -33,7 +33,9 @@ const Item = (props: ItemProps) => {
         </h4>
         {props.subTitle ? <div className="text-gray-500">{props.subTitle}</div> : null}
         {props.meta ? <div className="text-gray-500 mb-2">{props.meta}</div> : null}
-        <div className="text-sm max-w-3xl"><Outlet /></div>
+        <div className="text-sm max-w-3xl">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 declare namespace API {
-
-  export interface Response<T = {}> {
+  export interface Response<T = any> {
     success: boolean; // if request is success
     data: T; // response data
     code?: number; // code for errorType
@@ -10,7 +9,7 @@ declare namespace API {
     host?: string; // onvenient for backend Troubleshooting: host of current access server
   }
 
-  export interface PagingData<T = {}> {
+  export interface PagingData<T = any> {
     current: number;
     pageSize: number;
     total: number;

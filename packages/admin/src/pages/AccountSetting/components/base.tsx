@@ -1,35 +1,37 @@
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Input, Select, Upload, Form, message } from 'antd';
-import { connect, FormattedMessage, formatMessage, useIntl } from '@umijs/max';
-import React, { Component } from 'react';
+import { connect, formatMessage, FormattedMessage, useIntl } from '@umijs/max';
+import { Button, Form, Input, message, Select, Upload } from 'antd';
+import { Component } from 'react';
 import { CurrentUser } from '../data.d';
+import styles from './BaseView.less';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
-import styles from './BaseView.less';
 
 const { Option } = Select;
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => {
-
   return (
     <>
-      <div className={styles.avatar_title}>
+      <div className={styles['avatar-title']}>
         <FormattedMessage id="accountsettings.basic.avatar" defaultMessage="Avatar" />
       </div>
       <div className={styles.avatar}>
         <img src={avatar} alt="avatar" />
       </div>
       <Upload showUploadList={false}>
-        <div className={styles.button_view}>
+        <div className={styles['button-view']}>
           <Button>
             <UploadOutlined />
-            <FormattedMessage id="accountsettings.basic.change-avatar" defaultMessage="Change avatar" />
+            <FormattedMessage
+              id="accountsettings.basic.change-avatar"
+              defaultMessage="Change avatar"
+            />
           </Button>
         </div>
       </Upload>
     </>
-  )
+  );
 };
 
 interface SelectItem {
@@ -98,7 +100,7 @@ class BaseView extends Component<BaseViewProps> {
     const { currentUser } = this.props;
 
     return (
-      <div className={styles.baseView} ref={this.getViewDom}>
+      <div className={styles['base-view']} ref={this.getViewDom}>
         <div className={styles.left}>
           <Form
             layout="vertical"

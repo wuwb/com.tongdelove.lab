@@ -1,5 +1,4 @@
-import { addRule, removeRule, rule, updateRule } from '@/services/ant-design-pro/api';
-import { PlusOutlined } from '@ant-design/icons';
+import { addRule, removeRule } from '@/services/ant-design-pro/api';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
@@ -11,15 +10,13 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl, useRequest } from '@umijs/max';
-import { Button, Divider, message, Input, Drawer, Space, Popconfirm, Card, Row, Col } from 'antd';
-import React, { useState, useRef, FC, useEffect } from 'react';
-import type { FormValueType } from './components/UpdateForm';
-import UpdateForm from './components/UpdateForm';
+import { Button, Card, Col, Drawer, message, Popconfirm, Row, Space } from 'antd';
+import React, { FC, useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
+import UpdateForm from './components/UpdateForm';
 // import UpdateForm, { FormValueType } from './components/UpdateForm';
 // import { TableListItem } from './data.d';
-import { create, remove, update, list, get, getColumns } from './service';
-import SupplyCompanyService from './service';
+import { list } from './service';
 // import styles from './style.less';
 
 /**
@@ -132,10 +129,9 @@ const SupplyCompanyPage: React.FC<{}> = () => {
     // await remove(id);
     message.success('删除成功。');
     actionRef.current?.reload();
-  }
+  };
 
   const init = useRequest('/api/supplyCompany/list');
-
 
   const columns: ProColumns[] = [
     {
@@ -205,7 +201,7 @@ const SupplyCompanyPage: React.FC<{}> = () => {
       render: (_, record) => {
         return (
           <Space>
-            <a onClick={() => { }}>转存公司</a>
+            <a onClick={() => {}}>转存公司</a>
             <a href="">清洗</a>
             <a href="">编辑</a>
             <Popconfirm
@@ -217,15 +213,14 @@ const SupplyCompanyPage: React.FC<{}> = () => {
               <a href="#">删除</a>
             </Popconfirm>
           </Space>
-        )
+        );
       },
     },
   ];
 
   const onCreated = async () => {
     actionRef.current?.reload();
-  }
-
+  };
 
   return (
     <PageContainer>
@@ -251,16 +246,14 @@ const SupplyCompanyPage: React.FC<{}> = () => {
           fullScreen: true,
           setting: true,
         }}
-        toolBarRender={() => [
-          <CreateForm onCreated={onCreated} />,
-        ]}
+        toolBarRender={() => [<CreateForm onCreated={onCreated} />]}
         request={async (params, sorter, filter) => {
           const result = await list({ ...params, sorter, filter });
           setTotal(result.total);
           return {
             data: result.data,
             success: true,
-          }
+          };
         }}
         columns={columns}
       />

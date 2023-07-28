@@ -1,6 +1,5 @@
-import React from 'react';
-import styles from './title.less';
 import { Outlet } from '@umijs/max';
+import styles from './title.less';
 
 function Title(props) {
   return (

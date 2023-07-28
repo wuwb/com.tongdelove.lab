@@ -1,6 +1,6 @@
-import { request } from '@umijs/max';
-import { TableListParams, TableListItem } from '@/services/base/menu.d';
+import { TableListItem, TableListParams } from '@/services/base/menu.d';
 import { MenuDataItem } from '@ant-design/pro-components';
+import { request } from '@umijs/max';
 
 export async function queryMenu(params?: TableListParams) {
   return request<API.Response<API.PagingData<TableListItem>>>('/api/base/menu/query', {

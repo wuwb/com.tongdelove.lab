@@ -1,13 +1,9 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, message, Input, Drawer } from 'antd';
-import React, { useState, useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
-import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
+import { ActionType, ProColumns } from '@ant-design/pro-table';
+import { Card } from 'antd';
+import React, { useRef } from 'react';
 import { TableListItem } from './data.d';
-import { findProductAll, updateRule, addRule, removeProduct } from './service';
-import { Card, Alert, Typography } from 'antd';
+import { removeProduct } from './service';
 
 export default (): React.ReactNode => {
   console.log('--------');
@@ -42,7 +38,9 @@ export default (): React.ReactNode => {
       render: (_, record) => (
         <>
           <a href="">编辑</a>
-          <a href="" onClick={() => removeProduct(record.id)}>删除</a>
+          <a href="" onClick={() => removeProduct(record.id)}>
+            删除
+          </a>
         </>
       ),
     },
@@ -75,4 +73,3 @@ export default (): React.ReactNode => {
     </PageContainer>
   );
 };
-

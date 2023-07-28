@@ -1,5 +1,5 @@
 // utils/withAuth.js - a HOC for protected pages
-import React, { Component } from 'react';
+import { Component } from 'react';
 import AuthService from './auth';
 
 export default function withAuth(AuthComponent) {

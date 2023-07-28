@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from '@umijs/max';
 import { ConnectProps, ConnectState } from '@/models/connect';
-import Avatar from './AvatarDropdown';
+import { connect } from '@umijs/max';
+import React from 'react';
 import HeaderSearch from '../HeaderSearch';
+import Avatar from './AvatarDropdown';
 import styles from './index.less';
 
 export type SiderTheme = 'light' | 'dark';
@@ -11,7 +11,7 @@ export interface GlobalHeaderRightProps extends ConnectProps {
   layout: 'sidemenu' | 'topmenu';
 }
 
-const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
+const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
   const { theme, layout } = props;
   let className = styles.right;
 
@@ -26,10 +26,10 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
         placeholder="站内搜索"
         defaultValue="umi ui"
         dataSource={['搜索提示一', '搜索提示二', '搜索提示三']}
-        onSearch={value => {
+        onSearch={(value) => {
           console.log('input', value);
         }}
-        onPressEnter={value => {
+        onPressEnter={(value) => {
           console.log('enter', value);
         }}
       />

@@ -1,5 +1,6 @@
-import React, { FC, useRef, useState, useEffect } from 'react';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { PageHeader } from '@ant-design/pro-layout';
+import { connect, Dispatch } from '@umijs/max';
 import {
   Avatar,
   Button,
@@ -14,13 +15,12 @@ import {
   Radio,
   Row,
 } from 'antd';
-import { findDOMNode } from 'react-dom';
-import { PageHeader } from '@ant-design/pro-layout';
-import { connect, Dispatch } from '@umijs/max';
 import dayjs from 'dayjs';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { findDOMNode } from 'react-dom';
 import OperationModal from './components/OperationModal';
-import { StateType } from './model';
 import { BasicListItemDataType } from './data.d';
+import { StateType } from './model';
 import styles from './style.less';
 
 const RadioButton = Radio.Button;
@@ -72,7 +72,7 @@ const ListContent = ({
   </div>
 );
 
-export const Companies: FC<CompaniesProps> = props => {
+export const Companies: FC<CompaniesProps> = (props) => {
   const addBtn = useRef(null);
   const {
     loading,
@@ -208,7 +208,6 @@ export const Companies: FC<CompaniesProps> = props => {
     <div>
       <PageHeader>
         <div className={styles.standardList}>
-
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
@@ -235,19 +234,18 @@ export const Companies: FC<CompaniesProps> = props => {
             }}
             extra={extraContent}
           >
-
             <List
               size="large"
               rowKey="id"
               loading={loading}
               pagination={paginationProps}
               dataSource={list}
-              renderItem={item => (
+              renderItem={(item) => (
                 <List.Item
                   actions={[
                     <a
                       key="edit"
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         showEditModal(item);
                       }}
@@ -267,7 +265,6 @@ export const Companies: FC<CompaniesProps> = props => {
               )}
             />
           </Card>
-
         </div>
       </PageHeader>
 
@@ -297,5 +294,5 @@ export default connect(
   }) => ({
     adminAndCompanies,
     loading: loading.models.adminAndCompanies,
-  })
+  }),
 )(Companies);

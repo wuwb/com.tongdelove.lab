@@ -1,5 +1,3 @@
-import React from 'react';
-
 function IssueIcon(props) {
   return (
     <svg height="1em" width="0.875em" className={props.className} {...props}>

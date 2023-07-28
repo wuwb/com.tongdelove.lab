@@ -1,10 +1,10 @@
-import React from 'react';
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
-import { Card, Typography, Alert } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
 import { Outlet } from '@umijs/max';
+import { Alert, Card, Typography } from 'antd';
+import React from 'react';
 
-export default (props): React.ReactNode => (
+const Supply = (props): React.ReactNode => (
   <PageContainer content=" 这个页面只有 admin 权限才能查看">
     <Card>
       <Alert
@@ -31,3 +31,5 @@ export default (props): React.ReactNode => (
     <Outlet />
   </PageContainer>
 );
+
+export default Supply

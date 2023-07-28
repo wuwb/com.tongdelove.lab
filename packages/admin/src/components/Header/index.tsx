@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import { Link } from '@umijs/max';
-import { Button, Layout, Drawer, Grid } from 'antd';
+import { Button, Drawer, Grid, Layout } from 'antd';
+import { useState } from 'react';
+import Styles from './index.less';
 import LeftMenu from './LeftMenu';
 import RightMenu from './RightMenu';
-import Styles from './index.less';
 
 const { useBreakpoint } = Grid;
 

@@ -1,14 +1,14 @@
 import { outLogin } from '@/services/ant-design-pro/api';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
-import { Avatar, Menu, Spin } from 'antd';
+import { Spin } from 'antd';
+import { createStyles } from 'antd-style';
 import type { ItemType } from 'antd/es/menu/hooks/useItems';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
-import { createStyles } from 'antd-style';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -96,26 +96,27 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
     return loading;
   }
 
-  currentUser.avatar = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png';
+  currentUser.avatar =
+    'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png';
   currentUser.name = currentUser?.login;
 
   const menuItems: ItemType[] = [
     ...(menu
       ? [
-        {
-          key: 'center',
-          icon: <UserOutlined />,
-          label: '个人中心',
-        },
-        {
-          key: 'settings',
-          icon: <SettingOutlined />,
-          label: '个人设置',
-        },
-        {
-          type: 'divider' as const,
-        },
-      ]
+          {
+            key: 'center',
+            icon: <UserOutlined />,
+            label: '个人中心',
+          },
+          {
+            key: 'settings',
+            icon: <SettingOutlined />,
+            label: '个人设置',
+          },
+          {
+            type: 'divider' as const,
+          },
+        ]
       : []),
     {
       key: 'logout',
@@ -136,4 +137,3 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
     </HeaderDropdown>
   );
 };
-

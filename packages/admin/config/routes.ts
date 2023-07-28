@@ -1,4 +1,3 @@
-import { Component } from 'react';
 // umi routes: https://umijs.org/docs/routing
 
 /**
@@ -14,7 +13,6 @@ import { Component } from 'react';
  * @doc https://umijs.org/docs/guides/routes
  */
 const route = [
-
   // 首页，跳转到 welcome 页面
   {
     path: '/',
@@ -31,7 +29,6 @@ const route = [
     path: '/dashboard/welcome',
     icon: 'smile', // 图标
     component: './Dashboard/main',
-
   },
 
   {
@@ -59,8 +56,8 @@ const route = [
             name: '普通单页',
             path: '/quotation/broadsheet/normal',
             component: './Quotation/broadsheet/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '不干胶',
@@ -70,8 +67,8 @@ const route = [
             name: '普通单页',
             path: '/quotation/sticker/normal',
             component: './Quotation/sticker/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '名片',
@@ -81,8 +78,8 @@ const route = [
             name: '普通单页',
             path: '/quotation/business-card/normal',
             component: './Quotation/business-card/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '纸盒',
@@ -92,8 +89,8 @@ const route = [
             name: '普通单页',
             path: '/quotation/paperbox/normal',
             component: './Quotation/paperbox/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '自热餐盒',
@@ -123,8 +120,8 @@ const route = [
             name: '纸套',
             path: '/quotation/self-heating-box/paper-tapes',
             component: './Quotation/SelfHeatingBox/paper-tapes',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '年货',
@@ -134,8 +131,8 @@ const route = [
             name: '对联',
             path: '/quotation/stocking/normal',
             component: './Quotation/broadsheet/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '手提袋',
@@ -145,8 +142,8 @@ const route = [
             name: '牛皮纸袋',
             path: '/quotation/reticule/normal',
             component: './Quotation/broadsheet/normal',
-          }
-        ]
+          },
+        ],
       },
       {
         name: '纸罐',
@@ -156,8 +153,8 @@ const route = [
             name: '牛皮纸袋',
             path: '/quotation/paper-can/normal',
             component: './Quotation/broadsheet/normal',
-          }
-        ]
+          },
+        ],
       },
     ],
   },
@@ -179,7 +176,7 @@ const route = [
         path: '/internal/resume-lite',
         component: '@/pages/Resume/lite',
       },
-    ]
+    ],
   },
 
   // web
@@ -249,7 +246,7 @@ const route = [
         path: '/web/cart',
         component: './Welcome',
       },
-    ]
+    ],
   },
 
   // 项目
@@ -286,7 +283,7 @@ const route = [
         path: '/dashboard/billing',
         component: './Welcome',
       },
-    ]
+    ],
   },
 
   // 工具
@@ -310,7 +307,7 @@ const route = [
             path: '/tools/transform/book-thickness',
             component: './Tool/BookThickness',
           },
-        ]
+        ],
       },
       {
         name: 'physics',
@@ -320,7 +317,7 @@ const route = [
             name: 'puncture-resistance',
             path: '/tools/physics/puncture-resistance',
             component: './Tool/Physics/PunctureResistance',
-          }
+          },
         ],
       },
       {
@@ -331,13 +328,13 @@ const route = [
       {
         name: 'printed-size',
         path: '/tools/printed-size',
-        component: './Tool/PrintedSize'
+        component: './Tool/PrintedSize',
       },
       {
         name: 'jian-la-ji',
         path: '/tools/jian-la-ji',
-        component: './Tool/JianLaJi'
-      }
+        component: './Tool/JianLaJi',
+      },
     ],
   },
 
@@ -388,7 +385,7 @@ const route = [
             path: '/resource/post/list',
             component: './Resource/post/list',
           },
-        ]
+        ],
       },
       {
         name: 'product',
@@ -410,7 +407,7 @@ const route = [
             path: '/resource/product/property',
             component: './Resource/product/property',
           },
-        ]
+        ],
       },
       {
         name: 'inquiry',
@@ -432,7 +429,7 @@ const route = [
             path: '/resource/inquiry/setting',
             component: './Resource/inquiry/setting',
           },
-        ]
+        ],
       },
       {
         name: 'client',
@@ -613,7 +610,7 @@ const route = [
             exact: true,
             path: '/finance/materials',
             component: '@/pages/Finance/materials',
-          }
+          },
         ],
       },
     ],

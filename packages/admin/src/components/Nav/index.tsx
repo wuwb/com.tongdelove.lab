@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from '@umijs/max';
-import { Menu, Dropdown, notification } from 'antd';
 import { searchTopic, signout } from '@/service/user';
-import Style from './index.less';
+import { Link } from '@umijs/max';
+import { Dropdown, Menu, notification } from 'antd';
+import React from 'react';
 import { history } from 'umi';
+import Style from './index.less';
 
 export class Nav extends React.Component {
   constructor(props) {
