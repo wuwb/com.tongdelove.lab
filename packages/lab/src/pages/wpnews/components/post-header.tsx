@@ -1,5 +1,5 @@
 import Avatar from './avatar'
-import Date from './date'
+// import Date from './date'
 import CoverImage from './cover-image'
 import PostTitle from './post-title'
 import Categories from './categories'
@@ -25,7 +25,7 @@ export default function PostHeader({
           <Avatar author={author} />
         </div>
         <div className="mb-6 text-lg">
-          Posted <Date dateString={date} />
+          {/* Posted <Date dateString={date} /> */}
           <Categories categories={categories} />
         </div>
       </div>

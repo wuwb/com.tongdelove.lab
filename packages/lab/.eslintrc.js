@@ -9,7 +9,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['next', 'prettier'],
+  extends: ['next/core-web-vitals', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,

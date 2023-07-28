@@ -62,7 +62,7 @@ export function SimpleInput(props) {
   return <input className={styles} {...props} />
 }
 
-export function TextareaAutosize({ maxRows = 8, rows = 1, ...props }) {
+export function TextareaAutosizeWrap({ maxRows = 8, rows = 1, ...props }) {
   return (
     <TextareaAutosize
       maxRows={maxRows}

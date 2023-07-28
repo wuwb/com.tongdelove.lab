@@ -45,38 +45,33 @@ const isDev = process.env.NODE_ENV === 'development';
 /** @type {import('next').NextConfig} */
 const nextConfig = async (phase, { defaultConfig }) => {
   const plugins = [
-    [
-      withLess,
+    // withLess(
+    //   {
+    //     lessLoaderOptions: {
+    //       lessOptions: {
+    //         paths: [path.resolve(__dirname, './src')],
+    //       },
+    //     },
+    //   },
+    // ),
+    withTM(
+      [
+        // 'antd',
+        // 'rc-pagination',
+        // 'rc-util',
+        // 'rc-picker',
+        // 'rc-notification',
+        // '@ant-design/icons',
+        // 'rc-calendar',
+      ],
       {
-        lessLoaderOptions: {
-          lessOptions: {
-            paths: [path.resolve(__dirname, './src')],
-          },
-        },
-      },
-    ],
-    [
-      withTM(
-        [
-          'antd',
-          'rc-pagination',
-          'rc-util',
-          'rc-picker',
-          'rc-notification',
-          '@ant-design/icons',
-          'rc-calendar',
-        ],
-        {
-          resolveSymlinks: true,
-          debug: false,
-        }
-      ),
-    ],
-    [
-      withBundleAnalyzer({
-        enabled: process.env.ANALYZE === 'true',
-      }),
-    ],
+        resolveSymlinks: true,
+        debug: false,
+      }
+    ),
+    withBundleAnalyzer({
+      enabled: process.env.ANALYZE === 'true',
+    }),
   ];
 
   /**
