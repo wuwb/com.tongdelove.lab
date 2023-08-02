@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useTranslation, Trans } from 'next-i18next';
 import { AppContext, reducer, initialState } from '@/services/store';
 import { Settings } from '@/content/ETFGrid/Settings';

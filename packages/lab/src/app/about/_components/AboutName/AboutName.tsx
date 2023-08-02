@@ -1,6 +1,6 @@
 import cx from 'clsx';
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { IPageBaseProps } from '@/interfaces';
 import { useDarkMode } from '@/hooks';
@@ -35,3 +35,5 @@ export const AboutName: React.FC<IProps> = (props) => {
         </PageWrapper>
     );
 };
+
+export default {}

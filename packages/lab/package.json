@@ -140,7 +140,7 @@
   },
   "packageManager": "pnpm@8.1.1",
   "engines": {
-    "node": "16.20.1",
+    "node": "16.x",
     "pnpm": ">=8"
   },
   "browserslist": {

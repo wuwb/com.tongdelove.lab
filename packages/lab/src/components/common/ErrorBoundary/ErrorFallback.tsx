@@ -1,6 +1,4 @@
-
-
-const ErrorFallback = () => {
+export const ErrorFallback = () => {
     return (
         <div>
             ErrorFallback

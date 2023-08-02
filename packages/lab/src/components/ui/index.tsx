@@ -7,7 +7,7 @@ export * from './Link';
 export * from './Spinner';
 // export * from './Table';
 export * from './Form';
-export * from './CoverFlowImages';
+// export * from './CoverFlowImages';
 export * from './PageWrapper';
 export * from './Breadcrumb';
 export * from './Text';

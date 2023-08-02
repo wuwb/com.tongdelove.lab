@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 
 import { GA_ADS_ID } from '@/lib/googleAds';

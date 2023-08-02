@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'clsx';
 import { Button } from '@mui/material';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import PercentIcon from '@mui/icons-material/Percent';
 import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';

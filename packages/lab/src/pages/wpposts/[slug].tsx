@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';

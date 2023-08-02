@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Box, List, styled } from '@mui/material';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import NavigationMenuItem from './item';
 import menuItems, { MenuItem } from './items';
 import { v4 as uuidv4 } from 'uuid';

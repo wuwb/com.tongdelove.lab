@@ -1,6 +1,6 @@
 import { DefaultLayout } from '@/components/layouts';
 import type { NextPageWithLayout } from '@/types/app';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface Props {
 };

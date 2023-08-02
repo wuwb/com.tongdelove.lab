@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import Joi from 'joi';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';

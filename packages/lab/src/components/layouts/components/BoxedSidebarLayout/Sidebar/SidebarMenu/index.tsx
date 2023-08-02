@@ -9,7 +9,7 @@ import {
   List,
   styled
 } from '@mui/material';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import SidebarMenuItem from './item';
 import menuItems, { MenuItem } from './items';
 import { useTranslation } from 'next-i18next';
@@ -82,9 +82,9 @@ const SubMenuWrapper = styled(Box)(
             border-radius: ${theme.general.borderRadius};
             background: ${lighten(theme.sidebar.menuItemBgActive, 0.1)};
             box-shadow: 0px 1px 2px 0 ${alpha(
-              darken(theme.sidebar.menuItemIconColor, 0.2),
-              0.46
-            )};
+    darken(theme.sidebar.menuItemIconColor, 0.2),
+    0.46
+  )};
             font-size: ${theme.typography.pxToRem(18)};
             margin-right: ${theme.spacing(1.5)};
             width: 36px;
@@ -92,11 +92,10 @@ const SubMenuWrapper = styled(Box)(
             display: flex;
             align-items: center;
             justify-content: center;
-            color: ${
-              theme.palette.mode === 'dark'
-                ? lighten(theme.sidebar.menuItemBgActive, 0.8)
-                : theme.sidebar.menuItemIconColor
-            };
+            color: ${theme.palette.mode === 'dark'
+      ? lighten(theme.sidebar.menuItemBgActive, 0.8)
+      : theme.sidebar.menuItemIconColor
+    };
           }
           
           .MuiButton-endIcon {
@@ -121,9 +120,9 @@ const SubMenuWrapper = styled(Box)(
           &.Mui-active {
             background-color: ${alpha(theme.sidebar.menuItemBgActive, 0.8)};
             box-shadow: 0px 1px 2px 0 ${alpha(
-              darken(theme.sidebar.menuItemIconColor, 0.2),
-              0.46
-            )};
+      darken(theme.sidebar.menuItemIconColor, 0.2),
+      0.46
+    )};
             color: ${theme.sidebar.menuItemColorActive};
             font-weight: bold;
 

@@ -10,8 +10,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    'next/core-web-vitals', 'prettier'],
+  extends: ['next/core-web-vitals', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
@@ -26,7 +25,7 @@ module.exports = {
     'prettier/prettier': 0,
     'react/no-unescaped-entities': 'off',
     'unused-imports/no-unused-imports': 'off',
-    'max-len': 1,
+    'max-len': [1, { "code": 160 }],
     'no-unused-vars': 'off',
   },
   overrides: [],

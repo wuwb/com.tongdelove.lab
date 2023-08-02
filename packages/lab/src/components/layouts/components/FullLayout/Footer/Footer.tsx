@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import CurrentTime from '@/components/common/datetime/CurrentTime';
+import { CurrentDateTime } from '@/components/common/datetime/CurrentTime/CurrentDateTime';
 
 type Props = {
   siteTitle?: string;
@@ -20,7 +20,7 @@ const Footer = (props: Props = { siteTitle: '海维包装' }) => {
           </Link>{" "}
         </cite>
       </Typography>
-      <CurrentTime updateBy="minute" />
+      <CurrentDateTime updateBy="minute" />
     </Box>
   );
 };

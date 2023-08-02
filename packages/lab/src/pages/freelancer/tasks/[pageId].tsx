@@ -6,7 +6,7 @@ import { Pagination } from '@/components/ui/Pagination';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import axios from '@/utils/axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { parseSourceType } from '@/content/freelancer/interface';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';

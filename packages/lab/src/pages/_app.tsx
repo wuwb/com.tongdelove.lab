@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@/components/common';
 import { title } from '@/constants';
 import { persistor, store } from '@/store/index';
-import '@/styles/globals.scss';
 import '@/styles/nprogress.scss';
 import ThemeProvider from '@/theme/ThemeProvider';
 import { NextPageWithLayout } from '@/types/app';
@@ -13,7 +12,7 @@ import {
 } from '@tanstack/react-query';
 import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import NProgress from 'nprogress';
 import React, { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
   },
 }
 
-function MyApp(props: AppPropsWithLayout) {
+const MyApp = (props: AppPropsWithLayout) => {
   const [queryClient] = React.useState(() => new QueryClient({
     defaultOptions: {
       queries: {
@@ -75,7 +74,7 @@ function MyApp(props: AppPropsWithLayout) {
                 <HelmetProvider context={helmetContext}>
                   <StyledEngineProvider injectFirst>
                     <ThemeProvider>
-                      {getLayout(<Component {...pageProps} />)}
+                      <Component {...pageProps} />
                     </ThemeProvider>
                   </StyledEngineProvider>
                 </HelmetProvider>

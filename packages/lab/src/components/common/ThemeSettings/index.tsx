@@ -1,3 +1,5 @@
+"use client"
+
 import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react';
 import {
   Popover,

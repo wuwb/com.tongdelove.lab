@@ -10,7 +10,6 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Avatar } from '../_components/Avatar/index'
 
 type IndexProps = {
 };
@@ -159,7 +158,7 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
     };
 
     const handleAddItem = () => {
-        setItem('http://localhost:3000/images/avatars/1.jpg')
+        // setItem('http://localhost:3000/images/avatars/1.jpg')
     }
 
     const handleTabPanelAddItem = (e) => {
@@ -171,7 +170,6 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
 
     return (
         <Container>
-
             <Breadcrumbs aria-label="breadcrumb" className="mt-5">
                 <Link underline="hover" color="inherit" href="/">
                     工具
@@ -259,9 +257,9 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
                                         width="200"
                                         height="200"
                                     /> */}
-                                    <Avatar cRef={avatarRef}
+                                    {/* <Avatar cRef={avatarRef}
                                         url={URL.createObjectURL(file)}
-                                        item={item} />
+                                        item={item} /> */}
                                 </>
                             )}
                             <div>

@@ -10,7 +10,6 @@ import { Lightbox } from '../Lightbox';
 
 Swiper.use([Lazy, EffectCoverflow]);
 
-
 export const CoverFlowImages = (props: {
     images: string[]
 }) => {

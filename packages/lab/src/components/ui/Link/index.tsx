@@ -1,7 +1,7 @@
 import MuiLink from '@mui/material/Link';
 import clsx from 'clsx';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import cx from 'clsx';
 

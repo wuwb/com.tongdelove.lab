@@ -62,7 +62,7 @@ module.exports = {
                 argsIgnorePattern: '^_',
             },
         ],
-        'max-len': ['error', { code: 140, ignoreUrls: true }],
+        'max-len': ['1', { code: 160, ignoreUrls: true }],
         'import/prefer-default-export': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         'react/no-unescaped-entities': [

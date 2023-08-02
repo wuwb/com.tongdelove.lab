@@ -58,7 +58,7 @@ function getTimeString(dateObj: any, options: any) {
     } ${meridiem}`;
 }
 
-export default function DateDisplay({
+export function DateDisplay({
   children,
   options = {
     includeFullTime: false,
