@@ -16,7 +16,7 @@
     "commit": "git-cz"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.5",
+    "@commitlint/cli": "17.6.7",
     "@commitlint/config-conventional": "^17.6.5",
     "@commitlint/cz-commitlint": "^17.6.7",
     "commitizen": "^4.3.0",
