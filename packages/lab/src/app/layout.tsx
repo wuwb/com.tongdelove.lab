@@ -1,4 +1,8 @@
-import './globals.css'
+import '../styles/code-highlight.css'
+import '../styles/globals.css'
+import '../styles/markdown.css'
+import '../styles/quill.css'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 

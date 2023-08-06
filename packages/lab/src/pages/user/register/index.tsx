@@ -1,13 +1,12 @@
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import Joi from 'joi';
 import { Link } from '@/components/ui/Link';
-import Image from 'next/legacy/image';
-import { useMutation } from '@tanstack/react-query';
+import { RegisterParams, register as registerUser } from '@/server/auth';
 import { ServerError } from '@/utils/axios';
-import { RegisterParams, register as registerUser } from '@/services/auth';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { useMutation } from '@tanstack/react-query';
+import Joi from 'joi';
+import Image from 'next/legacy/image';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 
 function Register() {
   const router = useRouter();

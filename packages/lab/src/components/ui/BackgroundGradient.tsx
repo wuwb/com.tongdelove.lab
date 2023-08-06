@@ -1,4 +1,4 @@
-import classNames from "clsx";
+import cn from "classnames";
 import { motion } from "framer-motion";
 
 export default function BackgroundGradient({
@@ -8,7 +8,7 @@ export default function BackgroundGradient({
 }) {
     return (
         <div
-            className={classNames("absolute -z-10 animate-fluid blur-3xl", className)}
+            className={cn("absolute -z-10 animate-fluid blur-3xl", className)}
         />
     );
 }

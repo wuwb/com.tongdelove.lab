@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 

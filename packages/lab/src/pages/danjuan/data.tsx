@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     "order_id": "509056204180336641",
     "uid": 995880548,
@@ -15060,10 +15060,3 @@ const data = [
     "ia": false
   }
 ]
-
-const page = () => {
-  return (
-    <div>123</div>
-  )
-}
-export default page;

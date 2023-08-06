@@ -1,5 +1,5 @@
-import { fetchFundData, Resource } from '@/services/resource';
-import { FundDataItem } from '@/services/service';
+import { fetchFundData, Resource } from '@/server/resource';
+import { FundDataItem } from '@/server/service';
 import { styled } from '@mui/system';
 import {
   useCallback, useEffect,

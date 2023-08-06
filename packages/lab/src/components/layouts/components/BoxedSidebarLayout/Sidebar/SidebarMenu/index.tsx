@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 
 import {
-  ListSubheader,
   Box,
+  List,
+  ListSubheader,
   alpha,
   darken,
   lighten,
-  List,
   styled
 } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import SidebarMenuItem from './item';
 import menuItems, { MenuItem } from './items';
-import { useTranslation } from 'next-i18next';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `

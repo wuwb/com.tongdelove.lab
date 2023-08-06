@@ -1,16 +1,8 @@
-import React from 'react';
 // import Bar from 'bar';
-import Router from 'next/router';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import { DefaultLayout } from '@/components/layouts';
-import { Home } from '@/content/home/Home';
 import { Footer } from '@/components/common/Footer';
-import { Header } from '@/components/common/Header';
+import { Home } from '@/content/home/Home';
+import Container from '@mui/material/Container';
+import Router from 'next/router';
 
 function ForumPage(props): any {
   const handleRedirectToDashboards = () => {
@@ -26,10 +18,6 @@ function ForumPage(props): any {
     </Container>
   );
 }
-
-ForumPage.getLayout = function getLayout(page: JSX.Element) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
 
 export default ForumPage;
 

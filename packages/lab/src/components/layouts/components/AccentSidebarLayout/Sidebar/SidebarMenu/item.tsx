@@ -1,5 +1,5 @@
 import { FC, ReactNode, useState, useContext } from 'react';
-import clsx from 'clsx';
+import cn from 'classnames';
 import { SidebarContext } from '@/contexts/SidebarContext';
 import NextLink from 'next/link';
 import {
@@ -67,7 +67,7 @@ const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
     return (
       <div className="Mui-children" key={name} {...rest}>
         <Button
-          className={clsx({ 'active': menuToggle })}
+          className={cn({ 'active': menuToggle })}
           startIcon={Icon && <Icon />}
           endIcon={
             menuToggle ? <ExpandLessTwoToneIcon /> : <ExpandMoreTwoToneIcon />
@@ -100,7 +100,7 @@ const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
         <Button
           disableRipple
           component="a"
-          className={clsx({ 'active': active })}
+          className={cn({ 'active': active })}
           onClick={closeSidebar}
           startIcon={Icon && <Icon />}
         >

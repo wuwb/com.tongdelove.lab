@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import cx from 'clsx';
+import cx from 'classnames';
 import { WithChildren } from '@/helper/WithChildren';
 
 const sizes = {

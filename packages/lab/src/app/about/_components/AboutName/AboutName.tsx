@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import DarkModeIcon from '@mui/icons-material/DarkMode';

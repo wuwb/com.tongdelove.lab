@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchJson } from '../services/api';
+import { fetchJson } from '../server/api';
 
 const USER_QUERY_KEY = 'user';
 

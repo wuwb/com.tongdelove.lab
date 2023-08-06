@@ -1,10 +1,12 @@
-import { useTranslation } from 'next-i18next';
-import { Container, Footer } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
-import { Link } from '@/components/ui';
-import { getRencentTasks } from '@/services/task';
+import { Container } from '@/components/common';
+import { getRencentTasks } from '@/server/task';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
+import { useTranslation } from 'next-i18next';
+import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { api } from "@/utils/api";
+import { Footer } from '@/components/layouts/components/BaseLayout/Footer'
 
 type IndexProps = {
   tasks: any[];
@@ -37,35 +39,35 @@ const Page: NextPageWithLayout<IndexProps> = props => {
   const { t } = useTranslation();
   const user = useAppSelector((state) => state.auth.user);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   const email = user?.email || '';
   const { tasks } = props;
 
-  return (
-    <Container>
-      {
-        tasks ? <TaskBlock tasks={tasks} /> : null
-      }
+  // {
+  //   tasks ? <TaskBlock tasks={tasks} /> : null
+  // }
 
-      <div className="">
-        {/* <div>
-          微信扫一扫，访问小程序
-        </div> */}
-        <div>
-          <div></div>
+  return (
+    <>
+      <Container>
+        <div className="">
+          {/* <div>
+            微信扫一扫，访问小程序
+          </div> */}
           <div>
-            <p>关注公众号，</p>
-            <p>不定期分享成功的副业案例</p>
+            <div></div>
+            <div>
+              <p>关注公众号，</p>
+              <p>不定期分享成功的副业案例</p>
+            </div>
           </div>
         </div>
-      </div>
+        <AuthShowcase />
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
-};
-
-Page.getLayout = function getLayout(page: JSX.Element) {
-  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Page;
@@ -85,4 +87,28 @@ export async function getServerSideProps() {
       },
     };
   }
+}
+
+function AuthShowcase() {
+  const { data: sessionData } = useSession();
+
+  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
+    undefined, // no input
+    { enabled: sessionData?.user !== undefined }
+  );
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-4">
+      <p className="text-center text-2xl text-white">
+        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+        {secretMessage && <span> - {secretMessage}</span>}
+      </p>
+      <button
+        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        onClick={sessionData ? () => void signOut() : () => void signIn()}
+      >
+        {sessionData ? "Sign out" : "Sign in"}
+      </button>
+    </div>
+  );
 }

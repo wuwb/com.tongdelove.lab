@@ -1,29 +1,25 @@
-import { ErrorBoundary } from '@/components/common';
+import { BaseLayout } from '@/components/layouts';
 import { title } from '@/constants';
 import { persistor, store } from '@/store/index';
-import '@/styles/nprogress.scss';
-import ThemeProvider from '@/theme/ThemeProvider';
 import { NextPageWithLayout } from '@/types/app';
-import { StyledEngineProvider } from '@mui/material/styles';
 import { QueryClient } from '@tanstack/query-core';
-import {
-  Hydrate,
-  QueryClientProvider
-} from '@tanstack/react-query';
-import { appWithTranslation } from 'next-i18next';
-import { AppProps } from 'next/app';
-import { useRouter } from 'next/navigation';
-import NProgress from 'nprogress';
-import React, { useEffect } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
+import { type Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import PlausibleProvider from 'next-plausible';
+import { AppProps, type AppType } from 'next/app';
+import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import nextI18NextConfig from '../../next-i18next.config.js';
-import { Analytics } from '@vercel/analytics/react';
-import type { Metadata } from 'next'
+import nextI18NextConfig from '../../next-i18next.config.cjs';
+import { api } from "@/utils/api";
+import '../styles/code-highlight.css';
+import '../styles/globals.css';
+import '../styles/markdown.css';
+import '../styles/quill.css';
+import { appWithTranslation } from 'next-i18next';
 
-interface MyAppProps extends AppProps {
-}
+type MyAppProps = AppProps
 
 export type AppPropsWithLayout = MyAppProps & {
   Component: NextPageWithLayout
@@ -31,9 +27,7 @@ export type AppPropsWithLayout = MyAppProps & {
 
 const helmetContext = {};
 
-NProgress.configure({ showSpinner: false });
-
-export const metadata: Metadata = {
+export const metadata = {
   title,
   viewport: {
     width: 'device-width',
@@ -42,9 +36,15 @@ export const metadata: Metadata = {
     minimumScale: 1, // to enable GPU rasterization
     // shrinkToFit: 'no'
   },
+  metadata: {
+    'google-site-verification': '',
+  }
 }
 
-const MyApp = (props: AppPropsWithLayout) => {
+const MyApp: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) => {
   const [queryClient] = React.useState(() => new QueryClient({
     defaultOptions: {
       queries: {
@@ -53,43 +53,23 @@ const MyApp = (props: AppPropsWithLayout) => {
     },
   }));
 
-  const { Component, pageProps } = props;
-  let getLayout = Component.getLayout || (page => page);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    router.events.on('routeChangeStart', () => NProgress.start());
-    router.events.on('routeChangeComplete', () => NProgress.done());
-    router.events.on('routeChangeError', () => NProgress.done());
-  }, [router]);
-
   return (
-    <>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ErrorBoundary>
-            <QueryClientProvider client={queryClient}>
-              <Hydrate state={pageProps.dehydratedState}>
-                <HelmetProvider context={helmetContext}>
-                  <StyledEngineProvider injectFirst>
-                    <ThemeProvider>
-                      <Component {...pageProps} />
-                    </ThemeProvider>
-                  </StyledEngineProvider>
-                </HelmetProvider>
-              </Hydrate>
-              {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-            </QueryClientProvider>
-          </ErrorBoundary>
-        </PersistGate>
-      </ReduxProvider>
-      <Analytics />
-    </>
+    <SessionProvider session={session}>
+      <PlausibleProvider domain="flowgpt.com" trackOutboundLinks>
+        <ReduxProvider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <BaseLayout>
+              <Component {...pageProps} />
+              <Analytics />
+            </BaseLayout>
+          </PersistGate>
+        </ReduxProvider>
+      </PlausibleProvider>
+    </SessionProvider>
   );
 };
 
-export default appWithTranslation(MyApp, nextI18NextConfig);
+export default api.withTRPC(appWithTranslation(MyApp, nextI18NextConfig)); 
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

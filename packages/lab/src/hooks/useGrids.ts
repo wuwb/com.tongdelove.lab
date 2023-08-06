@@ -1,4 +1,4 @@
-import { useAppState, State } from '@/services/store';
+import { State, useAppState } from '@/server/store';
 
 // 网格类型
 export enum GearType {

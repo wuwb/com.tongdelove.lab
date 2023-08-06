@@ -1,20 +1,18 @@
-import { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import {
-  IconButton,
   Box,
+  IconButton,
   List,
-  alpha,
   ListItem,
-  Divider,
-  Typography,
   ListItemText,
   Popover,
   Tooltip,
+  Typography,
+  alpha,
   styled
 } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import styles from './styles.module.css';
+import { useRouter } from 'next/router';
+import { useRef, useState } from 'react';
 
 const SectionHeading = styled(Typography)(
   ({ theme }) => `

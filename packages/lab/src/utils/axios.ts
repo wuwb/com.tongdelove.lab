@@ -1,6 +1,6 @@
 import { logout } from '@/store/authSlice';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import Router from 'next/router';
+import Router from 'next/navigation';
 import { store } from '../store';
 
 const isDev = process.env.NODE_ENV === 'development';

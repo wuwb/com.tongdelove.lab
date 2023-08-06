@@ -1,9 +1,8 @@
 import MuiLink from '@mui/material/Link';
-import clsx from 'clsx';
+import { default as cn, default as cx } from 'classnames';
 import NextLink from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import * as React from 'react';
-import cx from 'clsx';
 
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
   const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
@@ -40,7 +39,7 @@ const Links = React.forwardRef(function Link(props: any, ref) {
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
-  const className = clsx(classNameProps, {
+  const className = cn(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
@@ -84,5 +83,6 @@ function Link({ href, children, ...props }: any) {
 export {
   Link,
   Links,
-  NextLinkComposed,
+  NextLinkComposed
 };
+

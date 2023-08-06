@@ -13,7 +13,6 @@ import {
   Box,
   Tooltip
 } from '@mui/material';
-import { ThemeContext } from '@/theme/ThemeProvider';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import Fab from '@mui/material/Fab';
@@ -194,8 +193,6 @@ const ThemeSettings: FC = () => {
     setOpen(false);
   };
 
-  const setThemeName = useContext(ThemeContext);
-
   useEffect(() => {
     const curThemeName =
       window.localStorage.getItem('appTheme') || 'PureLightTheme';
@@ -206,7 +203,6 @@ const ThemeSettings: FC = () => {
 
   const changeTheme = (theme): void => {
     setTheme(theme);
-    setThemeName(theme);
   };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

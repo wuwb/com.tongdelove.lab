@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import cx from 'clsx';
+import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './Modal.module.scss';

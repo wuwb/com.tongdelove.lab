@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { Box, List, Divider, styled } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { Box, Divider, List, styled } from '@mui/material';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import SidebarMenuItem from './item';
 import menuItems, { MenuItem } from './items';
-import { v4 as uuidv4 } from 'uuid';
-import { Fragment } from 'react';
 
 const DividerWrapper = styled(Divider)(
   ({ theme }) => `

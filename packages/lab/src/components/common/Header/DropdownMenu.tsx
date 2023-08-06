@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import styles from './DropdownMenu.module.scss';
 import { MenuItems } from './MenuItems';
 

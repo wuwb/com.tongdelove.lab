@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from '@/components/ui/Link';
-import { Button } from '@/components/ui/Button';
-import { joiResolver } from '@hookform/resolvers/joi';
-import Image from 'next/legacy/image';
-import { useRouter } from 'next/navigation';
-import { UserService } from '@/services';
 import { useAuth } from '@/contexts/auth';
+import { ForgotPasswordParams, forgotPassword } from '@/server/auth';
+import { useAppDispatch } from '@/store/hooks';
+import { ServerError } from '@/utils/axios';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { useMutation } from '@tanstack/react-query';
+import Joi from 'joi';
+import { useTranslation } from 'next-i18next';
+import Image from 'next/legacy/image';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import Joi from 'joi';
-import { Trans, useTranslation } from 'next-i18next';
-import { useIsMutating, useMutation } from '@tanstack/react-query';
-import { forgotPassword, ForgotPasswordParams } from '@/services/auth';
-import { ServerError } from '@/utils/axios';
 
 type FormData = {
   email: string;

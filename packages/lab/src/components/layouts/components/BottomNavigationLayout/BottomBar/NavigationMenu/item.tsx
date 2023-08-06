@@ -1,5 +1,5 @@
 import { FC, ReactNode, MouseEvent, useState, useContext } from 'react';
-import clsx from 'clsx';
+import cn from 'classnames';
 import { SidebarContext } from '@/contexts/SidebarContext';
 import NextLink from 'next/link';
 
@@ -143,7 +143,7 @@ const NavigationMenuItem: FC<NavigationMenuItemProps> = ({
         >
           <IconButton
             disableRipple
-            className={clsx({ 'Mui-active': menuToggle })}
+            className={cn({ 'Mui-active': menuToggle })}
             onClick={handleClick}
           >
             {Icon && <Icon />}
@@ -196,7 +196,7 @@ const NavigationMenuItem: FC<NavigationMenuItemProps> = ({
         <IconButton
           disableRipple
           component="a"
-          className={clsx({ 'Mui-active': active })}
+          className={cn({ 'Mui-active': active })}
           onClick={closeSidebar}
         >
           {Icon && <Icon />}

@@ -1,18 +1,18 @@
 import { Link } from '@/components/ui/Link';
 import { useAuth } from '@/contexts/auth';
+import { login, LoginParams } from '@/server/auth';
 import { UserService } from "@/services";
-import { login, LoginParams } from '@/services/auth';
 import { ServerError } from '@/utils/axios';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useMutation } from '@tanstack/react-query';
+import cn from 'classnames';
 import Joi from 'joi';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import clsx from 'clsx';
 
 type FormData = {
   identifier: string;
@@ -119,7 +119,7 @@ const UserLoginPage = (props) => {
                   aria-invalid={errors.identifier ? "true" : "false"}
                   placeholder="请输入用户名"
                   autoComplete='off'
-                  className={clsx(
+                  className={cn(
                     "form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
                     {
                       'is-invalid': errors.identifier

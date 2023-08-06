@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'clsx';
+import cx from 'classnames';
 import { Loader } from '../Loader';
 import { Spinner } from '../Spinner';
 import styles from './styles.module.scss';

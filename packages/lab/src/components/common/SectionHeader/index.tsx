@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'clsx';
+import cx from 'classnames';
 
 type Props = {
     data: {

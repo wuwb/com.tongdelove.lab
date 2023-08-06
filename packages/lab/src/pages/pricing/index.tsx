@@ -1,10 +1,9 @@
 // import Bar from 'bar';
 import { Container, Footer } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
-import { getRencentTasks } from '@/services/task';
-import { useAppSelector } from '@/store/hooks';
-import type { NextPageWithLayout } from '@/types/app';
 import { PricingCardGroup } from '@/components/ui/Pricing';
+import { getRencentTasks } from '@/server/task';
+import type { NextPageWithLayout } from '@/types/app';
 
 type IndexProps = {
     tasks: any[];

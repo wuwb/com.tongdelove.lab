@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import { FC } from 'react';
 
 type Props = {

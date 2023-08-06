@@ -1,17 +1,17 @@
 /* eslint-disable no-irregular-whitespace */
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useAppState } from '@/services/store';
-import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input';
 import { CheckBox } from '@/components/ui/Checkbox/Checkbox';
-import { styled } from '@mui/system';
-import { FundDataItem } from '@/services/service';
-import noop from 'lodash/noop';
+import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input';
 import {
-  UnitInputContainer,
+  FlexendInputContainer,
   InputContainer,
-  FlexendInputContainer
+  UnitInputContainer
 } from '@/components/ui/InputContainer/InputContainer';
 import { Suggestion } from '@/components/ui/Suggestion/Suggestion';
+import { FundDataItem } from '@/server/service';
+import { useAppState, useDispatch } from '@/server/store';
+import { styled } from '@mui/system';
+import noop from 'lodash/noop';
+import { useCallback, useState } from 'react';
 
 const Fieldset = styled('fieldset') <{ last?: boolean }>`
   border: 0;

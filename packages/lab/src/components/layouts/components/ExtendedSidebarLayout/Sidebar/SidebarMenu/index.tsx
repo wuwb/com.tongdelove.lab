@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import { ListSubheader, Box, List, styled } from '@mui/material';
-import SidebarMenuItem from './item';
-import { useRouter } from 'next/navigation';
-import menuItems, { MenuItem } from './items';
+import { Box, List, ListSubheader, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import SidebarMenuItem from './item';
+import menuItems, { MenuItem } from './items';
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `

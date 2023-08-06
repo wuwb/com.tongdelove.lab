@@ -1,5 +1,5 @@
 // 空白
-export * from './components/BaseLayout';
+import BaseLayout from './components/BaseLayout';
 
 // 头部
 export * from './components/DefaultLayout';
@@ -30,3 +30,7 @@ export * from './components/DocsLayout';
 
 // 全包大头部
 // export * from './components/TopNavigationLayout';
+
+export {
+    BaseLayout,
+}

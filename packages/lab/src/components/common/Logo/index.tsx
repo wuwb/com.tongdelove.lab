@@ -1,6 +1,6 @@
 import { Link } from '@/components/ui/Link';
 import { Box, styled } from '@mui/material';
-import cx from 'clsx';
+import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 
 const LogoWrapper = styled(Link)(

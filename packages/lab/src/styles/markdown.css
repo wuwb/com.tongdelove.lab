@@ -1,0 +1,75 @@
+.flowgpt-markdown h1 {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.flowgpt-markdown h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.flowgpt-markdown h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.flowgpt-markdown h4 {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.flowgpt-markdown h5,
+.flowgpt-markdown h6 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.flowgpt-markdown em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.flowgpt-markdown a {
+  text-decoration: underline;
+}
+
+.flowgpt-markdown p {
+  line-height: 1.75rem;
+}
+
+.flowgpt-markdown ol,
+.flowgpt-markdown ul {
+  margin: 0rem;
+  padding: 0rem;
+  white-space: normal;
+  line-height: 1.75rem;
+}
+
+.flowgpt-markdown li {
+  margin-bottom: 0.5rem;
+  margin: 0rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding: 0rem;
+}
+
+.flowgpt-markdown ul ul,
+.flowgpt-markdown ul ol,
+.flowgpt-markdown ol ul,
+.flowgpt-markdown ol ol {
+  padding-left: 1.25rem; /* Increase left padding for nested lists */
+}
+
+.flowgpt-markdown a {
+  text-decoration: underline;
+  color: #007bff; /* Blue color */
+  transition: color 0.15s ease-in-out; /* Smooth color transition */
+}
+
+.flowgpt-markdown a:hover {
+  color: #0056b3; /* Darker blue color on hover */
+}
+
+.flowgpt-markdown a:visited {
+  color: #6c757d; /* Gray color for visited links */
+}

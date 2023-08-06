@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import React from 'react';
 import { ICompBaseProps } from '@/interfaces';
 import styles from './styles.module.scss';

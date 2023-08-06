@@ -1,24 +1,24 @@
-import React from "react";
-import NextLink from "next/link";
 import {
   Box,
   Drawer,
-  useMediaQuery,
-  List,
   Link,
+  List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Theme,
+  useMediaQuery,
 } from "@mui/material";
-import Menuitems from "./MenuItems";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
+import Menuitems from "./MenuItems";
 
 interface propTypes {
   isMobileSidebarOpen: boolean;
   onSidebarClose: () => void;
   isSidebarOpen: boolean;
-};
+}
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: propTypes) => {
   const [open, setOpen] = React.useState(true);
@@ -32,7 +32,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }: propTyp
       setOpen(index);
     }
   };
-  let curl = useRouter();
+  const curl = useRouter();
   const location = curl.pathname;
 
   const SidebarContent = (

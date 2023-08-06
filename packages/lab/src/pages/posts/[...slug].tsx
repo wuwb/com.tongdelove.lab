@@ -1,7 +1,7 @@
-import { useRouter } from 'next/navigation';
-import ErrorPage from 'next/error'
 import { DefaultLayout } from "@/components/layouts";
-import { Breadcrumbs, Container, Grid, Link, Typography } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import ErrorPage from 'next/error';
+import { useRouter } from 'next/router';
 import Article from './Article';
 import Sidebar from './Sidebar';
 

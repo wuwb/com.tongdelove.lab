@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import Router, { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/navigation';
 import axios from '@/utils/axios';
 
 const AuthContext = createContext({} as any);

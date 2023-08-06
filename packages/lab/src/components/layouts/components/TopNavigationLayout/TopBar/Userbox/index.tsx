@@ -1,26 +1,26 @@
-import { useRef, useState } from 'react';
 import { useAuth } from '@/contexts/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { useRef, useState } from 'react';
 
+import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
+import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
+import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
+import UnfoldMoreTwoToneIcon from '@mui/icons-material/UnfoldMoreTwoTone';
 import {
   Avatar,
   Box,
   Button,
   Divider,
-  alpha,
   List,
   ListItem,
   ListItemText,
   Popover,
-  styled,
-  Typography
+  Typography,
+  alpha,
+  styled
 } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
-import UnfoldMoreTwoToneIcon from '@mui/icons-material/UnfoldMoreTwoTone';
-import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `

@@ -1,6 +1,6 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import Image from 'next/legacy/image';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 type IVerticalFeatureRowProps = {
     title: string;

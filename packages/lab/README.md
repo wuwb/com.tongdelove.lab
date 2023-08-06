@@ -1,3 +1,6 @@
+<!-- 模板 -->
+https://chakra-templates.dev/page-sections/hero
+
 https://github.com/creativetimofficial/nextjs-material-dashboard
 https://github.com/sedgwickz/new_v2ex/blob/master/pages/_document.js
 https://github.com/btahir/next-shopify-starter

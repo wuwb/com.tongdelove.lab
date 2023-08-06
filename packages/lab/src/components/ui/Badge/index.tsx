@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import cx from 'classnames';
 import styles from './Badge.module.scss';
 
 type Props = {

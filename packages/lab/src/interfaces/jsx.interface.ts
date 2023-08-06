@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'next/router';
+import { Router } from 'next/navigation';
 
 export type ILayout = 'master' | 'test';
 

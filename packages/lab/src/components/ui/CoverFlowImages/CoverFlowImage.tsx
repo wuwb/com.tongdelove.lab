@@ -1,6 +1,6 @@
 import 'swiper/css/bundle';
 import Image from 'next/legacy/image';
-import clsx from 'clsx';
+import cn from 'classnames';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import React from 'react';
@@ -67,7 +67,7 @@ export const CoverFlowImages = (props: {
     }, [props.images]);
 
     return (
-        <div className={clsx("swiper", styles.swiper,
+        <div className={cn("swiper", styles.swiper,
             props.images.length < 2 ? styles.content : styles.screenshots)}
             ref={containerRef}
             tabIndex={1}
@@ -84,7 +84,7 @@ export const CoverFlowImages = (props: {
                                 id={image}
                                 src={image}
                                 data-src={image}
-                                className={clsx("swiper-lazy", styles.video)}
+                                className={cn("swiper-lazy", styles.video)}
                             />
                         );
                     } else {
@@ -95,7 +95,7 @@ export const CoverFlowImages = (props: {
                                 alt={image}
                                 src={image}
                                 data-src={image}
-                                className={clsx("swiper-lazy", styles.image)}
+                                className={cn("swiper-lazy", styles.image)}
                             />
                         )
                     }
@@ -103,7 +103,7 @@ export const CoverFlowImages = (props: {
                     return (
                         <div key={image}
                             style={{ width: props.images.length < 2 ? '100%' : undefined }}
-                            className={clsx("swiper-slide", styles.slide)}>
+                            className={cn("swiper-slide", styles.slide)}>
                             {content}
                             <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                         </div>

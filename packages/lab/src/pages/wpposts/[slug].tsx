@@ -1,17 +1,17 @@
-import { useRouter } from 'next/navigation';
+import { getPostAndMorePosts } from '@/lib/wordpress/api';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import Container from '../wpnews/components/container';
-import PostBody from '../wpnews/components/post-body';
-import MoreStories from '../wpnews/components/more-stories';
 import Header from '../wpnews/components/header';
-import PostHeader from '../wpnews/components/post-header';
-import SectionSeparator from '../wpnews/components/section-separator';
 import Layout from '../wpnews/components/layout';
+import MoreStories from '../wpnews/components/more-stories';
+import PostBody from '../wpnews/components/post-body';
+import PostHeader from '../wpnews/components/post-header';
 import PostTitle from '../wpnews/components/post-title';
+import SectionSeparator from '../wpnews/components/section-separator';
 import Tags from '../wpnews/components/tags';
-import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/wordpress/api';
 
 export default function Post({ post, posts, preview }) {
     const router = useRouter();

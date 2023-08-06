@@ -1,11 +1,10 @@
 import { Container } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
-import { subscribe, testSubscribe } from '@/services/freelancer';
+import { subscribe, testSubscribe } from '@/server/freelancer';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import { Button, AppearanceButton } from '@/components/ui/Button';
 import { useMutation } from '@tanstack/react-query';
 import { InferGetServerSidePropsType } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -15,7 +14,7 @@ import toast from 'react-hot-toast';
 
 interface Props {
     data: any;
-};
+}
 
 const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const { t } = useTranslation();
@@ -67,7 +66,7 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
     const handleTest = async (data) => {
         console.log('result: ', data);
 
-        let result = await testSubscribe(data);
+        const result = await testSubscribe(data);
         console.log('result: ', result);
     }
 

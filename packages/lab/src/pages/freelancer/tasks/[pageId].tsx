@@ -1,21 +1,21 @@
-import { useTranslation } from 'next-i18next';
 import { Container } from '@/components/common';
 import { DefaultLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { Pagination } from '@/components/ui/Pagination';
+import { parseSourceType } from '@/content/freelancer/interface';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import axios from '@/utils/axios';
-import { useRouter } from 'next/navigation';
-import { parseSourceType } from '@/content/freelancer/interface';
+import cx from 'classnames';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
-import cx from 'clsx';
 
 interface Props {
     data: any[];
     count: number;
-};
+}
 
 const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
     const router = useRouter();
@@ -26,8 +26,8 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
     const user = useAppSelector((state) => state.auth.user);
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
-    let pageId = parseInt(router.query?.pageId as string || '1', 10);
-    let pageSize = parseInt(router.query?.pageSize as string || '10', 10);
+    const pageId = parseInt(router.query?.pageId as string || '1', 10);
+    const pageSize = parseInt(router.query?.pageSize as string || '10', 10);
 
     // 页码错误返回第一页
     if (pageId < props.count) {
@@ -38,7 +38,7 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
         if (pageId === 1) {
             return;
         }
-        let num = pageId - 1;
+        const num = pageId - 1;
         fetchData(pageSize, num);
 
         router.push(`/freelancer/tasks/${num}`)
@@ -48,7 +48,7 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
         if (pageId >= Math.ceil(props.count / pageSize)) {
             return;
         }
-        let num = pageId + 1;
+        const num = pageId + 1;
         fetchData(pageSize, num);
         router.push(`/freelancer/tasks/${num}`)
     }

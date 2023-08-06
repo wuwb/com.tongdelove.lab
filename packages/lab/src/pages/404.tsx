@@ -8,10 +8,7 @@ import {
 import Image from 'next/legacy/image';
 import React from 'react';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import type { ReactElement } from 'react';
-import { BaseLayout } from '@/components/layouts';
 import { useTranslation } from 'next-i18next';
-import { Divider } from '@/components/ui';
 import { Metadata } from 'next';
 
 const ButtonSearch = styled(Button)(
@@ -75,7 +72,3 @@ function Status404(): any {
 }
 
 export default Status404;
-
-Status404.getLayout = function getLayout(page: ReactElement) {
-  return <BaseLayout>{page}</BaseLayout>;
-};

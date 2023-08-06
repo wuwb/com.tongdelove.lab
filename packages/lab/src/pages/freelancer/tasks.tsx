@@ -1,9 +1,9 @@
 import { DefaultLayout } from '@/components/layouts';
 import type { NextPageWithLayout } from '@/types/app';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 interface Props {
-};
+}
 
 const TasksPage: NextPageWithLayout<Props> = (props) => {
     const router = useRouter();

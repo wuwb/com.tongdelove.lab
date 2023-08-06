@@ -1,15 +1,15 @@
-import React from 'react';
-import cx from 'clsx';
-import { Button } from '@mui/material';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { ICompBaseProps } from '@/interfaces';
+import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import PercentIcon from '@mui/icons-material/Percent';
-import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
-import { ICompBaseProps } from '@/interfaces';
+import { Button } from '@mui/material';
+import cx from 'classnames';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 import styles from './styles.module.scss';
 
-interface IProps extends ICompBaseProps { }
+type IProps = ICompBaseProps
 
 export const HeaderNavbar: React.FC<IProps> = (props) => {
   const { pathname, route, query } = useRouter();

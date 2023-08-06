@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import cx from 'clsx';
+import cx from 'classnames';
 import { getScroll } from "@/utils/getWindow";
 import styles from './ScrollToTop.module.scss';
 

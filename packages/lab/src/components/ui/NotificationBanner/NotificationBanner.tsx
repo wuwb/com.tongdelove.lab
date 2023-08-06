@@ -1,5 +1,5 @@
 // import Markdown from 'react-markdown';
-import cx from 'clsx';
+import cx from 'classnames';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
