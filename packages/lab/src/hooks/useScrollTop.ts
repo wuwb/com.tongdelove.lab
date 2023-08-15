@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 const useScrollTop = (): null => {
   const location = useRouter();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [location.pathname]);
 
   return null;
 };

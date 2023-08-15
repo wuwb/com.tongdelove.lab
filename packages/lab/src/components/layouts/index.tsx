@@ -2,7 +2,7 @@
 import BaseLayout from './components/BaseLayout';
 
 // 头部
-export * from './components/DefaultLayout';
+// export * from './components/DefaultLayout';
 
 // 侧边
 // export * from './components/FullLayout';
@@ -23,7 +23,7 @@ export * from './components/DefaultLayout';
 // export * from './components/CollapsedSidebarLayout';
 
 // 头部+文档侧边
-export * from './components/DocsLayout';
+// export * from './components/DocsLayout';
 
 // ?
 // export * from './components/ExtendedSidebarLayout';

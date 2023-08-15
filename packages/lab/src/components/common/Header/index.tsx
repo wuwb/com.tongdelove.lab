@@ -5,7 +5,7 @@ import { Navbar } from './Navbar';
 
 function MenuIcon() {
   const handleMobileMenu = () => {
-
+    // 
   }
   return (
     <div className={styles['menu-icon']} onClick={handleMobileMenu}>

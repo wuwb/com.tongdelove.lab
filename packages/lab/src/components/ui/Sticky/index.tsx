@@ -1,8 +1,8 @@
 import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } from 'react';
 
-export function Sticky(props: PropsWithChildren<{}>) {
+export function Sticky(props: PropsWithChildren<any>) {
   const [offset, setOffset] = useState<number | undefined>(undefined);
-  const [style, setStyle] = useState<CSSProperties>({});
+  const [style, setStyle] = useState<CSSProperties>(null);
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

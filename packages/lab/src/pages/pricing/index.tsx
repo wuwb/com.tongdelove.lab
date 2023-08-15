@@ -1,6 +1,6 @@
 // import Bar from 'bar';
 import { Container, Footer } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { PricingCardGroup } from '@/components/ui/Pricing';
 import { getRencentTasks } from '@/server/task';
 import type { NextPageWithLayout } from '@/types/app';
@@ -29,7 +29,7 @@ const HomePage: NextPageWithLayout<IndexProps> = props => {
 };
 
 HomePage.getLayout = function getLayout(page: JSX.Element) {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default HomePage;

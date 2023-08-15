@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { IPageBaseProps } from '@/interfaces';
 import { useDarkMode } from '@/hooks';
@@ -12,8 +12,8 @@ interface IProps extends IPageBaseProps { }
 
 export const AboutName: React.FC<IProps> = (props) => {
     useDarkMode();
-
-    const { name } = useRouter()?.query;
+    const searchParams = useSearchParams()
+    const name = searchParams.get('name')
 
     return (
         <PageWrapper

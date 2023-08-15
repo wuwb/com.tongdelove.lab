@@ -1,14 +1,16 @@
-import { DefaultLayout } from "@/components/layouts";
+import { BaseLayout } from "@/components/layouts";
 import { Container, Grid } from "@mui/material";
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import Article from './Article';
 import Sidebar from './Sidebar';
+import { useSearchParams } from 'next/navigation';
 
 const PostIdPage = (props) => {
     const router = useRouter();
     const { asPath } = router;
-    const slug = (router.query.slug as string[]) || []
+    const searchParams = useSearchParams()
+    const slug = searchParams.get('slug')
 
     if (!router.isFallback && !props.post?.slug) {
         return <ErrorPage statusCode={404} />
@@ -62,7 +64,7 @@ const PostIdPage = (props) => {
 };
 
 PostIdPage.getLayout = function getLayout(page: JSX.Element) {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 }
 
 // export const getStaticProps = async ({ params }) => {

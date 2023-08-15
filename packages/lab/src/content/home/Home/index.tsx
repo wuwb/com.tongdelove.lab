@@ -11,16 +11,7 @@ interface IProps extends IPageBaseProps { }
 
 export const Home: React.FC<any> = (props) => {
     return (
-        <PageWrapper
-            className={cx(
-                styles['comp-wrapper'],
-                { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode },
-                `g-comp--${Home.displayName}`,
-                props.className,
-                'container'
-            )}
-            style={props.style}
-        >
+        <PageWrapper>
             <HtmlMeta title="海维包装" disableSiteName />
             <div className="mt-5 clearfix">
                 <div className="float-left" style={{

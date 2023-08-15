@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-module.exports = {
+const config = {
   printWidth: 150,
   arrowParens: 'avoid', // always
   semi: false, // 是否使用分号
@@ -16,3 +16,5 @@ module.exports = {
   quoteProps: 'as-needed',
   htmlWhitespaceSensitivity: 'css',
 };
+
+module.exports = config;

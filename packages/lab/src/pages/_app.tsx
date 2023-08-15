@@ -75,3 +75,24 @@ export default api.withTRPC(appWithTranslation(MyApp, nextI18NextConfig));
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
+
+
+if (process.env.NEXT_MANUAL_SIG_HANDLE) {
+  process.on('SIGTERM', () => {
+    console.log('Received SIGTERM: ', 'cleaning up');
+    process.exit(0);
+  });
+
+  process.on('SIGINT', () => {
+    console.log('Received SIGINT: ', 'cleaning up');
+    process.exit(0);
+  });
+}
+
+process.on('unhandledRejection', err => {
+  // Sentry.captureException(err);
+});
+
+process.on('uncaughtException', err => {
+  // Sentry.captureException(err);
+});

@@ -1,5 +1,5 @@
 import { Container } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { Pagination } from '@/components/ui/Pagination';
 import { parseSourceType } from '@/content/freelancer/interface';
@@ -140,7 +140,7 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
 };
 
 TasksPageIdPage.getLayout = (page: JSX.Element) => {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default TasksPageIdPage;

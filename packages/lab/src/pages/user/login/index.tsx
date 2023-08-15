@@ -1,7 +1,7 @@
 import { Link } from '@/components/ui/Link';
 import { useAuth } from '@/contexts/auth';
 import { login, LoginParams } from '@/server/auth';
-import { UserService } from "@/services";
+import { UserService } from "@/server";
 import { ServerError } from '@/utils/axios';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useMutation } from '@tanstack/react-query';

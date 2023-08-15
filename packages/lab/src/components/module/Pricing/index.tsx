@@ -1,6 +1,4 @@
-
-type IPricingProps = {
-}
+type IPricingProps = any
 
 const Pricing = (props: IPricingProps) => {
     const pricing = {

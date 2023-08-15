@@ -15060,3 +15060,11 @@ export const data = [
     "ia": false
   }
 ]
+
+const DanjuanPage = () => {
+  return (
+    <div>DanjuanPage</div>
+  )
+}
+
+export default DanjuanPage;

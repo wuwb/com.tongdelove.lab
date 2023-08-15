@@ -11,22 +11,22 @@ const fetchPosts = async (limit = 10) => {
 }
 
 const fetchGQLPosts = async () => {
-  const {
-    posts: { data },
-  } = await request(
-    endpoint,
-    gql`
-      query {
-        posts {
-          data {
-            id
-            title
-          }
-        }
-      }
-    `
-  );
-  return data;
+  // const {
+  //   posts: { data },
+  // } = await request(
+  //   endpoint,
+  //   gql`
+  //     query {
+  //       posts {
+  //         data {
+  //           id
+  //           title
+  //         }
+  //       }
+  //     }
+  //   `
+  // );
+  // return data;
 }
 
 const usePosts = (limit) => {

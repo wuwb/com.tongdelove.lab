@@ -8,10 +8,6 @@ import Link from "next/link";
 import { api } from "@/utils/api";
 import { Footer } from '@/components/layouts/components/BaseLayout/Footer'
 
-type IndexProps = {
-  tasks: any[];
-};
-
 const TaskBlock = (props) => {
   return (
     <div className="">
@@ -35,7 +31,11 @@ const TaskBlock = (props) => {
   );
 }
 
-const Page: NextPageWithLayout<IndexProps> = props => {
+type IndexPageProps = {
+  tasks: any[];
+};
+
+const IndexPage: NextPageWithLayout<IndexPageProps> = props => {
   const { t } = useTranslation();
   const user = useAppSelector((state) => state.auth.user);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
@@ -43,10 +43,6 @@ const Page: NextPageWithLayout<IndexProps> = props => {
 
   const email = user?.email || '';
   const { tasks } = props;
-
-  // {
-  //   tasks ? <TaskBlock tasks={tasks} /> : null
-  // }
 
   return (
     <>
@@ -70,7 +66,7 @@ const Page: NextPageWithLayout<IndexProps> = props => {
   );
 };
 
-export default Page;
+export default IndexPage;
 
 export async function getServerSideProps() {
   try {

@@ -1,4 +1,4 @@
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import type { NextPageWithLayout } from '@/types/app';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +15,7 @@ const ToolCCategoryPage: NextPageWithLayout = (props) => {
 };
 
 ToolCCategoryPage.getLayout = (page: JSX.Element) => {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default ToolCCategoryPage;

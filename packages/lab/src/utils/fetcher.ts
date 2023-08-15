@@ -1,2 +1,1 @@
-export const fetcher = (...args) => fetch.apply(null, args).then((res) => res.json())
-
+export const fetcher = (...args: [RequestInfo, RequestInit?]) => fetch(...args).then((res) => res.json())

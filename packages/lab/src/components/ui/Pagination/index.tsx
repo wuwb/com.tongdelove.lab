@@ -3,9 +3,9 @@ import { Link } from '@/components/ui/Link';
 type Props = {
     postsPerPage: number;
     totalPosts: number;
-    paginatePrev: Function;
-    paginateNext: Function;
-    handleTo: Function;
+    paginatePrev: any;
+    paginateNext: any;
+    handleTo: any;
     currentPage: number;
 }
 
@@ -22,7 +22,7 @@ export const Pagination = ({
         return null;
     }
     const PageNum = Math.ceil(totalPosts / postsPerPage);
-    let pageNumbers = [...Array(PageNum + 1).keys()];
+    let pageNumbers = Array.from({ length: PageNum }, (_, index) => index + 1);
     pageNumbers.shift();
     return (
         <div className='py-2'>

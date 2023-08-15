@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image';
 import { Container, Footer } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { NextPageWithLayout } from '@/types/app';
 import { ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -11,8 +11,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-type IndexProps = {
-};
+type IndexProps = any;
 
 const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000;
 const KILO_BYTES_PER_BYTE = 1000;
@@ -23,7 +22,7 @@ const convertBytesToKB = (bytes) => Math.round(bytes / KILO_BYTES_PER_BYTE);
 
 const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
     const fileInputField = useRef(null);
-    const [files, setFiles] = useState({});
+    const [files, setFiles] = useState(null);
     const multiple = true;
     const drop = useRef(null);
     const drag = useRef(null);
@@ -310,7 +309,7 @@ const ToolAvatarPage: NextPageWithLayout<IndexProps> = (props) => {
 };
 
 ToolAvatarPage.getLayout = function getLayout(page: JSX.Element) {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default ToolAvatarPage;

@@ -1,4 +1,4 @@
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import Daohang from '@/content/Applications/Links/index';
 
 // ## 运营数据
@@ -18,7 +18,7 @@ function DaohangPage(): JSX.Element {
 }
 
 DaohangPage.getLayout = function getLayout(page) {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default DaohangPage;

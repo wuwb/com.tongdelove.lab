@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
 import { Container, Footer } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { NextPageWithLayout } from '@/types/app';
 import Box from '@mui/material/Box';
 import { ReactNode } from 'react';
@@ -1006,7 +1006,7 @@ const ToolPage: NextPageWithLayout<IndexProps> = (props) => {
 };
 
 ToolPage.getLayout = function getLayout(page: JSX.Element) {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default ToolPage;

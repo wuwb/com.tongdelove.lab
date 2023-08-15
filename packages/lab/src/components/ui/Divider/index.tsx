@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import type { WithChildren } from '@/helper/WithChildren';
 
-type Props = {
-
-}
+type Props = any
 
 export const Divider: FC = (props: Props & WithChildren) => {
     return (

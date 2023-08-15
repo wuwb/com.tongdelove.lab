@@ -2,13 +2,8 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-const path = require('path');
-const withTM = require('next-transpile-modules');
-const withBundleAnalyzer = require('@next/bundle-analyzer');
-
-const { i18n } = require('./next-i18next.config.cjs');
-const { version } = require('./package.json');
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+import withTM from 'next-transpile-modules';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 await import("./src/env.mjs");
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -121,7 +116,7 @@ const nextConfig = async (phase, { defaultConfig }) => {
       defaultLocale: "en",
     },
     env: {
-      appVersion: version,
+      appVersion: '0.0.1',
     },
     poweredByHeader: false,
     basePath: '',
@@ -214,13 +209,13 @@ const nextConfig = async (phase, { defaultConfig }) => {
         },
       ];
     },
-    webpack: (cfg) => {
-      // Enable WebAssembly support
-      cfg.experiments = {
-        asyncWebAssembly: true, // Enable async WebAssembly modules
-        layers: true, // Enable layers experiment
-      }
-    },
+    // webpack: (cfg) => {
+    //   // Enable WebAssembly support
+    //   cfg.experiments = {
+    //     asyncWebAssembly: true, // Enable async WebAssembly modules
+    //     layers: true, // Enable layers experiment
+    //   }
+    // },
 
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
@@ -259,4 +254,4 @@ const nextConfig = async (phase, { defaultConfig }) => {
   });
 };
 
-module.exports = nextConfig;
+export default nextConfig;

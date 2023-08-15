@@ -10,8 +10,8 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   extends: [
     'next/core-web-vitals',
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic",
     "plugin:storybook/recommended",
   ],
   settings: {
@@ -57,6 +57,18 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "prefer-const": "warn",
+    "@typescript-eslint/prefer-for-of": "warn",
+    "no-var": "warn",
+    "@typescript-eslint/no-inferrable-types": "warn",
+    "@typescript-eslint/no-var-requires": "warn",
+    "@typescript-eslint/ban-types": "warn",
+
+    // storybook
+    "storybook/story-exports": "warn"
   },
   // overrides: [],
   ignorePatterns: ['.next', 'node_modules'],

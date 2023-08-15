@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useSearchParams } from 'next/navigation';
 
 const Post = () => {
-    const router = useRouter()
-    const { id } = router.query
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
 
     return (
         <>

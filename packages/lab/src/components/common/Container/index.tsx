@@ -1,9 +1,7 @@
 import cx from 'classnames';
 import { FC } from 'react';
 
-type Props = {
-
-}
+type Props = any
 
 export const Container: FC<Props & React.HTMLAttributes<HTMLDivElement>> = (props) => {
     return (

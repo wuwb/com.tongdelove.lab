@@ -11,21 +11,20 @@ const getPostById = async (postId) => {
     return data;
 };
 
-const getGQLPostById = async (postId) => {
-    const { post } = await request(
-        endpoint,
-        gql`
-  query {
-    post(id: ${postId}) {
-      id
-      title
-      body
-    }
-  }
-  `
-    );
-
-    return post;
+const getGQLPostById = async (postId: string) => {
+//     const { post } = await request(
+//         endpoint,
+//         gql`
+//   query {
+//     post(id: ${postId}) {
+//       id
+//       title
+//       body
+//     }
+//   }
+//   `
+//     );
+//     return post;
 };
 
 export default function usePost(postId) {

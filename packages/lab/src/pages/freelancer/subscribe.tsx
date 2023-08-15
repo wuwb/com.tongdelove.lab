@@ -1,5 +1,5 @@
 import { Container } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { subscribe, testSubscribe } from '@/server/freelancer';
 import { useAppSelector } from '@/store/hooks';
@@ -226,7 +226,7 @@ const HomePage: NextPageWithLayout<Props> = (props: InferGetServerSidePropsType<
 };
 
 HomePage.getLayout = (page: JSX.Element) => {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default HomePage;

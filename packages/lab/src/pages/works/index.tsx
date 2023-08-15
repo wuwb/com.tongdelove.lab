@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { Container, Footer } from '@/components/common';
-import { DefaultLayout } from '@/components/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { useAppSelector } from '@/store/hooks';
 import type { NextPageWithLayout } from '@/types/app';
@@ -22,7 +22,7 @@ const Page: NextPageWithLayout<IndexProps> = props => {
 };
 
 Page.getLayout = function getLayout(page: JSX.Element) {
-    return <DefaultLayout>{page}</DefaultLayout>;
+    return <BaseLayout>{page}</BaseLayout>;
 };
 
 export default Page;
