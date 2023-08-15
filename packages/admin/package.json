@@ -190,6 +190,6 @@
     "not ie <= 10"
   ],
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   }
 }
