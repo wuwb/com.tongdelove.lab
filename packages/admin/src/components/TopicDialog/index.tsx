@@ -2,15 +2,13 @@ import Avatar from '@/components/Avatar';
 import Carousel from '@/components/Carousel';
 import Comments from '@/components/Comments';
 import store from '@/store';
-import { Icon } from 'antd';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Style from './index.scss';
 
-let defaultState = {
+const defaultState = {
   alertStatus: false,
   alertTip: '提示',
-  closeAlert: function () {},
+  closeAlert: function () { },
   userInfo: {
     avatarUrl: '',
     username: null,
@@ -25,8 +23,8 @@ let defaultState = {
     topicLikeCounts: 20,
   },
   discuss: [],
-  addComments: () => {}, // 添加评论
-  topicLikeFn: () => {}, // 点赞
+  addComments: () => { }, // 添加评论
+  topicLikeFn: () => { }, // 点赞
 };
 
 class TopicDialog extends React.Component {
@@ -55,7 +53,7 @@ class TopicDialog extends React.Component {
   };
 
   stopBodyScroll = (isFixed) => {
-    let bodyEl = document.body;
+    const bodyEl = document.body;
     let top = 0;
 
     if (isFixed) {
@@ -72,7 +70,7 @@ class TopicDialog extends React.Component {
 
   // 修改评论，修改上层数据
   addComments = (...params) => {
-    let newDiscuss = [...this.state.discuss, ...params];
+    const newDiscuss = [...this.state.discuss, ...params];
     this.setState({
       discuss: newDiscuss,
     });
@@ -88,18 +86,18 @@ class TopicDialog extends React.Component {
   };
 
   render() {
-    let avatarStyle = {
+    const avatarStyle = {
       width: '40px',
       height: '40px',
     };
-    let { topic, topicIndex } = this.state;
+    const { topic, topicIndex } = this.state;
     return (
       <section
         className={Style['topic-dialog']}
         style={this.state.alertStatus ? { display: 'block' } : { display: 'none' }}
       >
         <div className="container">
-          <Icon type="close" className="close-btn" onClick={this.confirm} />
+          <div type="close" className="close-btn" onClick={this.confirm} ></div>
           <article className="topic">
             <div className="carousel">
               <Carousel imageList={topic.topicImgList} showSlickDot={false} />
@@ -130,9 +128,4 @@ class TopicDialog extends React.Component {
   }
 }
 
-let div = document.createElement('div');
-document.body.appendChild(div);
-
-let Box = ReactDOM.render(React.createElement(TopicDialog), div);
-
-export default Box;
+export default TopicDialog;

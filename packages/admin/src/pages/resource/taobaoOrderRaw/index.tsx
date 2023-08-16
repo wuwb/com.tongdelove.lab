@@ -7,34 +7,6 @@ import { TableListItem } from './data';
 import ImportTabaoCSV from './ImportTaobaoCsv';
 import { queryData, syncById, syncData } from './service';
 
-const onSyncData = async (id: string | null) => {
-  const hide = message.loading('正在清洗');
-
-  try {
-    if (!id) {
-      const { loading, run } = useRequest(syncData());
-
-      await run();
-    } else {
-      const { loading, run } = useRequest(
-        syncById({
-          id,
-        }),
-      );
-
-      await syncById({
-        id,
-      });
-    }
-    hide();
-    message.success('清洗成功，即将刷新');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('清洗失败，请重试');
-    return false;
-  }
-};
 
 const TableList: React.FC = () => {
   const { loading, run } = useRequest(syncData, {
@@ -45,6 +17,27 @@ const TableList: React.FC = () => {
       }
     },
   });
+
+  const onSyncData = async (id: string | null) => {
+    const hide = message.loading('正在清洗');
+
+    try {
+      if (!id) {
+        await run();
+      } else {
+        await syncById({
+          id,
+        });
+      }
+      hide();
+      message.success('清洗成功，即将刷新');
+      return true;
+    } catch (error) {
+      hide();
+      message.error('清洗失败，请重试');
+      return false;
+    }
+  };
 
   const actionRef = useRef<ActionType>();
 

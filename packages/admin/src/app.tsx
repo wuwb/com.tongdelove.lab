@@ -82,13 +82,10 @@ export const layout: RunTimeLayoutConfig = ({
   initialState,
   setInitialState,
 }: {
-  initialState: {
-    settings?: LayoutSettings;
-    currentUser?: any;
-  };
+  initialState: any;
   setInitialState: any;
 }) => {
-  const location = useLocation();
+  const location = '' // useLocation();
 
   return {
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
@@ -141,34 +138,34 @@ export const layout: RunTimeLayoutConfig = ({
     ],
     links: isDev
       ? [
-          // <Link to="/umi/plugin/openapi" target="_blank">
-          //   <LinkOutlined />
-          //   <span>OpenAPI 文档</span>
-          // </Link>,
-          // <Link to="/~docs">
-          //   <BookOutlined />
-          //   <span>业务组件文档</span>
-          // </Link>,
-          // <Link
-          //   target="_blank"
-          //   to="https://pro.ant.design/docs/getting-started"
-          //   rel="noopener noreferrer"
-          // >
-          //   <QuestionOutlined />
-          //   <span>使用文档</span>
-          // </Link>,
-        ]
+        // <Link to="/umi/plugin/openapi" target="_blank">
+        //   <LinkOutlined />
+        //   <span>OpenAPI 文档</span>
+        // </Link>,
+        // <Link to="/~docs">
+        //   <BookOutlined />
+        //   <span>业务组件文档</span>
+        // </Link>,
+        // <Link
+        //   target="_blank"
+        //   to="https://pro.ant.design/docs/getting-started"
+        //   rel="noopener noreferrer"
+        // >
+        //   <QuestionOutlined />
+        //   <span>使用文档</span>
+        // </Link>,
+      ]
       : [
-          <Link
-            target="_blank"
-            to="https://pro.ant.design/docs/getting-started"
-            rel="noopener noreferrer"
-            key="help"
-          >
-            <QuestionOutlined />
-            <span>使用文档</span>
-          </Link>,
-        ],
+        <Link
+          target="_blank"
+          to="https://pro.ant.design/docs/getting-started"
+          rel="noopener noreferrer"
+          key="help"
+        >
+          <QuestionOutlined />
+          <span>使用文档</span>
+        </Link>,
+      ],
     menuHeaderRender: undefined, // () => <div>menu</div>, undefined, false
 
     // 自定义 403 页面

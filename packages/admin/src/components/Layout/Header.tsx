@@ -115,7 +115,7 @@ class Header extends PureComponent {
             />
             {notifications.length ? (
               <div onClick={onAllNotificationsRead} className={styles.clearButton}>
-                <Trans>Clear notifications</Trans>
+                清除消息
               </div>
             ) : null}
           </div>
