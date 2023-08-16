@@ -6,7 +6,7 @@ import { useIntl } from '@umijs/max';
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 
 const NotificationView = (props) => {
-  cost getData = (intl) => {
+  const getData = (intl) => {
     const Action = (
       <Switch
         checkedChildren={intl.formatMessage({ id: 'accountsettings.settings.open' })}
