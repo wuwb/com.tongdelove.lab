@@ -78,7 +78,6 @@
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "bytes": "^3.1.2",
     "cancan": "^3.1.0",
-    "canvas": "^2.11.2",
     "classnames": "^2.3.2",
     "config": "^3.3.9",
     "cors": "^2.8.5",
