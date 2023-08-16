@@ -1,6 +1,5 @@
 import { parse } from 'querystring';
 
-/* eslint no-useless-escape:0 import/prefer-default-export:0 */
 const reg =
   /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
 
@@ -43,7 +42,7 @@ export const getPageQuery = () => {
  * @param tree 树结构数组, 子级数组字段名，如children
  * TODO: 未完成功能
  */
-export const treeTransArray = (tree: any[], parentId: string = ''): any[] => {
+export const treeTransArray = (tree: any[], parentId = ''): any[] => {
   return tree.reduce(
     (arr, { children = [], ...item }) =>
       arr.concat([{ ...item, parentId }], treeTransArray(children as any[], item.id)),
@@ -71,3 +70,7 @@ export const arrayTransTree = (list: any[], key: string) => {
   });
   return tree;
 };
+
+const utils = {}
+
+export default utils
