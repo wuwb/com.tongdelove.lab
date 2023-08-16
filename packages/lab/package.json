@@ -10,6 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "build-stats": "ANALYZE=true npm run build",
     "build-prod": "run-s clean build export",
     "pm2-start": "pm2 start npm --name \"lab\" -- start",
