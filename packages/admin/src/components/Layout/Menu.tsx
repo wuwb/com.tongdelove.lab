@@ -3,7 +3,6 @@ import iconMap from '@/utils/iconMap';
 import { NavLink, withRouter } from '@umijs/max';
 import { Menu } from 'antd';
 import { pathToRegexp } from 'path-to-regexp';
-import PropTypes from 'prop-types';
 import { Fragment, PureComponent } from 'react';
 import store from 'store';
 
@@ -77,8 +76,8 @@ class SiderMenu extends PureComponent {
     const menuProps = collapsed
       ? {}
       : {
-          openKeys: this.state.openKeys,
-        };
+        openKeys: this.state.openKeys,
+      };
 
     return (
       <Menu
@@ -89,8 +88,8 @@ class SiderMenu extends PureComponent {
         onClick={
           isMobile
             ? () => {
-                onCollapseChange(true);
-              }
+              onCollapseChange(true);
+            }
             : undefined
         }
         {...menuProps}
@@ -100,12 +99,5 @@ class SiderMenu extends PureComponent {
     );
   }
 }
-
-SiderMenu.propTypes = {
-  menus: PropTypes.array,
-  theme: PropTypes.string,
-  isMobile: PropTypes.bool,
-  onCollapseChange: PropTypes.func,
-};
 
 export default SiderMenu;

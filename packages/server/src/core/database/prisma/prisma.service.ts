@@ -6,7 +6,6 @@ export class PrismaService extends PrismaClient
     implements OnModuleInit, OnModuleDestroy {
 
     constructor() {
-        // pass PrismaClientOptions e.g. logging levels or error formatting
         super({
             log: ['query', 'info', 'warn', 'error'],
             errorFormat: 'pretty',
@@ -22,7 +21,7 @@ export class PrismaService extends PrismaClient
     }
 
     async enableShutdownHooks(app: INestApplication) {
-        this.$on('beforeExit', async () => {
+        process.on('beforeExit', async () => {
             console.log('Prisma beforeExit hook.');
 
             // PrismaClient still available，记录系统日志

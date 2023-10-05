@@ -2,7 +2,6 @@ import { queryAncestors } from '@/utils';
 import iconMap from '@/utils/iconMap';
 import { Link, withRouter } from '@umijs/max';
 import { Breadcrumb } from 'antd';
-import PropTypes from 'prop-types';
 import { Fragment, PureComponent } from 'react';
 import styles from './Bread.less';
 
@@ -40,19 +39,15 @@ class Bread extends PureComponent {
     const paths = currentRoute
       ? queryAncestors(routeList, currentRoute, 'breadcrumbParentId').reverse()
       : [
-          routeList[0],
-          {
-            id: 404,
-            name: i18n.t`Not Found`,
-          },
-        ];
+        routeList[0],
+        {
+          id: 404,
+          name: i18n.t`Not Found`,
+        },
+      ];
 
     return <Breadcrumb className={styles.bread}>{this.generateBreadcrumbs(paths)}</Breadcrumb>;
   }
 }
-
-Bread.propTypes = {
-  routeList: PropTypes.array,
-};
 
 export default Bread;

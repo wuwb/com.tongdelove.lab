@@ -9,7 +9,6 @@ import {
 import { FormattedMessage } from '@umijs/max';
 import { Avatar, Badge, Layout, List, Menu, Popover } from 'antd';
 import dayjs from 'dayjs';
-import PropTypes from 'prop-types';
 import { Fragment, PureComponent } from 'react';
 
 import { config } from '@/utils/config';
@@ -143,16 +142,5 @@ class Header extends PureComponent {
     );
   }
 }
-
-Header.propTypes = {
-  fixed: PropTypes.bool,
-  user: PropTypes.object,
-  menus: PropTypes.array,
-  collapsed: PropTypes.bool,
-  onSignOut: PropTypes.func,
-  notifications: PropTypes.array,
-  onCollapseChange: PropTypes.func,
-  onAllNotificationsRead: PropTypes.func,
-};
 
 export default Header;

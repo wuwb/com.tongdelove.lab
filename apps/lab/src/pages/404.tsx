@@ -1,0 +1,54 @@
+import { Button } from '@mantine/core'
+import Image from 'next/image';
+import React from 'react';
+import { IconSearch } from '@tabler/icons-react';
+import { useTranslation } from 'next-i18next';
+
+function Status404(): any {
+  const { t }: { t: any } = useTranslation();
+
+  return (
+    <div className="h-full flex flex-1 flex-col">
+      <div className="flex flex-1 w-full align-center justify-center p-6">
+        <div>
+          <div className="text-center">
+            <Image alt="404" height={180} width={180} src="/images/status/404.svg" />
+            <h2>
+              {/* {t("The page you were looking for doesn't exist.")} */}
+            </h2>
+            <h4>
+              {/* {t("It's on us, we moved the content to a different page. The search below should help!")} */}
+            </h4>
+          </div>
+          <div className="bg-white">
+            <div className="text-center mt-3 p-4">
+              <div >
+                <div
+                  className="bg-white"
+                  // placeholder={t('Search terms here...')}
+                  endAdornment={
+                    <div >
+                      <Button variant="contained" size="small">
+                        {/* {t('Search')} */}
+                      </Button>
+                    </div>
+                  }
+                  startAdornment={
+                    <div >
+                      <IconSearch />
+                    </div>
+                  }
+                />
+              </div>
+              <Button>
+                {/* {t('Go to homepage')} */}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Status404;

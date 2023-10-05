@@ -1,9 +1,0 @@
-packages:
-  # all packages in direct subdirs of packages/
-  - 'packages/admin'
-  - 'packages/design'
-  - 'packages/lab'
-  - 'packages/server'
-  # - 'packages/wechat/wechat-gzh'
-  # - 'packages/wechat/wechat-mp'
-  # - 'packages/wechat/wechat-pay'

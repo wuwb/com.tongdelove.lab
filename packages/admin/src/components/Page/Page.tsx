@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import { Component } from 'react';
 import Loader from '../Loader';
 import styles from './Page.less';
@@ -24,10 +23,3 @@ export default class Page extends Component {
     );
   }
 }
-
-Page.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  loading: PropTypes.bool,
-  inner: PropTypes.bool,
-};

@@ -1,7 +1,6 @@
 import { BulbOutlined } from '@ant-design/icons';
 import { FormattedMessage } from '@umijs/max';
 import { Layout, Switch } from 'antd';
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { config } from '@/utils';
@@ -65,14 +64,5 @@ class Sider extends PureComponent {
     );
   }
 }
-
-Sider.propTypes = {
-  menus: PropTypes.array,
-  theme: PropTypes.string,
-  isMobile: PropTypes.bool,
-  collapsed: PropTypes.bool,
-  onThemeChange: PropTypes.func,
-  onCollapseChange: PropTypes.func,
-};
 
 export default Sider;

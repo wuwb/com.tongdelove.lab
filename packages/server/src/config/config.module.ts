@@ -27,7 +27,7 @@ const validationSchema = Joi.object({
 
     // Database
     // POSTGRES_HOST: Joi.string().required(),
-    // POSTGRES_PORT: Joi.number().default(5432),
+    // POSTGRES_PORT: Joi.number().default(54321),
     // POSTGRES_DB: Joi.string().required(),
     // POSTGRES_USER: Joi.string().required(),
     // POSTGRES_PASSWORD: Joi.string().required(),
@@ -89,7 +89,7 @@ const validationSchema = Joi.object({
     exports: [ConfigService],
 })
 export class ConfigModule extends NestConfigModule implements OnApplicationBootstrap, OnApplicationShutdown {
-    async onApplicationBootstrap() {}
+    async onApplicationBootstrap() { }
 
-    async onApplicationShutdown(signal?: string) {}
+    async onApplicationShutdown(signal?: string) { }
 }

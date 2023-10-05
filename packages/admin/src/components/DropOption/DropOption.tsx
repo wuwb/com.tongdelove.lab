@@ -1,6 +1,5 @@
 import { BarsOutlined, DownOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
-import PropTypes from 'prop-types';
 
 const DropOption = ({ onMenuClick, menuOptions = [], buttonStyle, dropdownProps }) => {
   const menu = menuOptions.map((item) => <Menu.Item key={item.key}>{item.name}</Menu.Item>);
@@ -12,13 +11,6 @@ const DropOption = ({ onMenuClick, menuOptions = [], buttonStyle, dropdownProps 
       </Button>
     </Dropdown>
   );
-};
-
-DropOption.propTypes = {
-  onMenuClick: PropTypes.func,
-  menuOptions: PropTypes.array.isRequired,
-  buttonStyle: PropTypes.object,
-  dropdownProps: PropTypes.object,
 };
 
 export default DropOption;

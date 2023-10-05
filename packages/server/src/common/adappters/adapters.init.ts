@@ -42,7 +42,7 @@ export const initView = (app) => {
     nunjucksEnv.addGlobal('jsPath', configService.get('static.jsPath'));
 }
 
-export const initPublic = (app, configService) =>{
+export const initPublic = (app, configService) => {
     if (!configService.get('isDev')) {
         return;
     }
@@ -54,7 +54,7 @@ export const initPublic = (app, configService) =>{
     });
 }
 
-export const initSsr = (app) =>{
+export const initSsr = (app) => {
     app.use(async (req, res) => {
         // 或者从 CDN 上下载到 server 端
         // const serverPath = await downloadServerBundle('http://cdn.com/bar/umi.server.js');
@@ -94,7 +94,7 @@ export const initSsr = (app) =>{
     });
 }
 
-export const initGlobalFilters = (app, configService) =>{
+export const initGlobalFilters = (app, configService) => {
     if (!configService.get('isDev')) {
         return;
     }
@@ -103,7 +103,7 @@ export const initGlobalFilters = (app, configService) =>{
 export const initSentry = (_app: INestApplication) => {
     const configService = _app.get(ConfigService);
     const sentryDsn = configService.get('sentryDsn');
-  
+
     Sentry.init({
         dsn: sentryDsn,
 
@@ -112,28 +112,28 @@ export const initSentry = (_app: INestApplication) => {
         // We recommend adjusting this value in production
         tracesSampleRate: 1.0,
 
-      debug: isDevMode,
-      // would not report errors in dev mode
-      enabled: Boolean(!isDevMode && sentryDsn),
-      environment: process.env.ENV,
-      integrations: [
-        // enable HTTP calls tracing
-        new Sentry.Integrations.Http({ tracing: true }),
-        // enable Express.js middleware tracing
-        // new Tracing.Integrations.Express({ app }),
-        new Tracing.Integrations.Mysql(),
-        new Sentry.Integrations.OnUncaughtException({
-          onFatalError: (err) => {
-            if (err.name === 'SentryError') {
-              console.log(err);
-            } else {
-              (Sentry.getCurrentHub().getClient<Client>() as Client).captureException(err);
-              process.exit(1);
-            }
-          },
-        }),
-        new Sentry.Integrations.OnUnhandledRejection({ mode: 'warn' }),
-      ],
-      ignoreErrors: ['ServerException', 'ApiException'],
+        debug: isDevMode,
+        // would not report errors in dev mode
+        enabled: Boolean(!isDevMode && sentryDsn),
+        environment: process.env.ENV,
+        integrations: [
+            // enable HTTP calls tracing
+            new Sentry.Integrations.Http({ tracing: true }),
+            // enable Express.js middleware tracing
+            // new Tracing.Integrations.Express({ app }),
+            new Tracing.Integrations.Mysql(),
+            new Sentry.Integrations.OnUncaughtException({
+                onFatalError: (err) => {
+                    if (err.name === 'SentryError') {
+                        console.log(err);
+                    } else {
+                        //   (Sentry.getCurrentHub().getClient<Client>() as Client).captureException(err);
+                        process.exit(1);
+                    }
+                },
+            }),
+            new Sentry.Integrations.OnUnhandledRejection({ mode: 'warn' }),
+        ],
+        ignoreErrors: ['ServerException', 'ApiException'],
     });
 };

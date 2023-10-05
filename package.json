@@ -4,24 +4,92 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "author": "WuWenbin <541330190@qq.com>",
+  "author": {
+    "name": "WuWenbin",
+    "email": "541330190@qq.com",
+    "url": "https://github.com/wuwb"
+  },
   "license": "ISC",
+  "homepage": "https://github.com/wuwb",
+  "repository": "wuwb/com.tongdelove.lab",
   "scripts": {
-    "dev": "pnpm --filter @tongdelove/api-server run dev",
-    "build": "pnpm --filter @tongdelove/api-server run build",
-    "start": "pnpm --filter @tongdelove/api-server run start",
+    "preinstall": "china-bin-env",
+    "dev": "pnpm run --parallel dev",
+    "build:server": "pnpm --filter server build",
+    "build:web": "pnpm --filter web build",
+    "start:server": "pnpm --filter server start:prod",
+    "start:web": "pnpm --filter web start",
     "dev:design": "pnpm --filter design run dev",
-    "deploy": "rsync -az --del ./packages/@tongdelove/api-server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
+    "deploy": "rsync -az --del ./packages/server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "build2": "pnpm with-env turbo build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo clean",
+    "db:generate": "pnpm with-env turbo db:generate",
+    "db:push": "pnpm with-env turbo db:push db:generate",
+    "dev2": "pnpm with-env turbo dev --parallel",
+    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
+    "lint": "turbo lint && manypkg check",
+    "lint:fix": "turbo lint:fix && manypkg fix",
+    "type-check": "turbo type-check",
+    "with-env": "dotenv -e .env --",
+    "check:git-pristine": "./scripts/check-git-pristine.sh",
+    "clean:global-cache": "rimraf ./.cache",
+    "clean:turbo": "rimraf --glob '**/.turbo'",
+    "deps:check": "npx npm-check-updates@latest --configFileName ncurc.yml --workspaces --root --mergeConfig",
+    "deps:update": "npx npm-check-updates@latest --configFileName ncurc.yml -u --workspaces --root --mergeConfig",
+    "g:build": "yarn workspaces foreach -A -p --topological-dev -v run build",
+    "g:build-changed": "yarn workspaces foreach --topological-dev --no-private -v --since=origin/main run build",
+    "g:changeset": "changeset",
+    "g:check-dist": "yarn workspaces foreach -A -ptv run check-dist",
+    "g:clean": "yarn clean:global-cache && rimraf ./out && yarn workspaces foreach -A -ptv run clean",
+    "g:codegen": "yarn workspaces foreach -A -ptv run codegen",
+    "g:fix-all-files": "yarn workspaces foreach -A -ptv run fix-all-files",
+    "g:lint": "yarn workspaces foreach -A -tv run lint --color",
+    "g:lint-staged-files": "lint-staged --allow-empty",
+    "g:lint-styles": "yarn workspaces foreach -A -ptv run lint-styles --color",
+    "g:release": "yarn g:build && changeset publish",
+    "g:test-e2e": "yarn workspaces foreach -A -tv run test-e2e",
+    "g:test-unit": "yarn workspaces foreach -A -tv run test-unit",
+    "g:test-unit-jest": "yarn workspaces foreach -A -tv run test-unit-jest",
+    "g:typecheck": "yarn workspaces foreach -A -tv run typecheck",
+    "g:turbo": "turbo",
+    "install:playwright": "playwright install",
+    "nuke:node_modules": "rimraf --glob '**/node_modules'",
+    "postinstall": "is-ci || yarn husky install"
+  },
+  "dependencies": {
+    "inquirer": "^8"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.7",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@changesets/changelog-github": "0.4.8",
+    "@changesets/cli": "2.26.2",
+    "@commitlint/cli": "17.7.2",
+    "@commitlint/config-conventional": "17.7.0",
     "@commitlint/cz-commitlint": "^17.6.7",
+    "@eslint/js": "^8.37.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
+    "@manypkg/cli": "^0.20.0",
+    "@types/inquirer": "^9",
+    "@types/prettier": "2.7.3",
+    "@types/shell-quote": "1.7.2",
     "commitizen": "^4.3.0",
     "conventional-changelog-cli": "^3.0.0",
-    "husky": "^8.0.3"
+    "cross-env": "7.0.3",
+    "dotenv-cli": "^7.1.0",
+    "eslint": "8.50.0",
+    "husky": "^8.0.3",
+    "is-ci": "3.0.1",
+    "lint-staged": "14.0.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.0.3",
+    "prettier-plugin-tailwindcss": "^0.2.4",
+    "rimraf": "5.0.5",
+    "shell-quote": "1.8.1",
+    "syncpack": "11.2.1",
+    "turbo": "1.10.14",
+    "typescript": "5.2.2"
   },
   "config": {
     "commitizen": {
@@ -31,9 +99,20 @@
   "engines": {
     "node": "18.x",
     "pnpm": ">=8.6.3",
-    "yarn": ">=1.13.0"
+    "yarn": ">=1.22.0"
   },
-  "packageManager": "pnpm@8.6.3",
+  "packageManager": "yarn@4.0.0-rc.52",
+  "workspaces": [
+    "apps/*",
+    "packages/prisma"
+  ],
+  "resolutions?": {
+    "eslint-plugin-react-hooks": "https://github.com/vercel/next.js/issues/52365"
+  },
+  "resolutions": {
+    "eslint-plugin-react-hooks": "4.6.0",
+    "bin-wrapper": "npm:bin-wrapper-china"
+  },
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": []

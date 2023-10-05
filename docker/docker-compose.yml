@@ -1,6 +1,17 @@
 version: "3.9"
 
 services:
+    lab:
+        container_name: 'lab'
+        build:
+        context: ../
+        dockerfile: ./docker/Dockerfile
+        restart: always
+        networks:
+            - overlay
+        ports:
+            - 3000:3000
+            
     postgres:
         image: postgres:15-alpine
         container_name: postgres

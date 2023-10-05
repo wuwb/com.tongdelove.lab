@@ -1,0 +1,3 @@
+tasks:
+  - init: corepack enable && yarn install
+    command: yarn workspace lab run dev -p 3000

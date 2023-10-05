@@ -36,10 +36,10 @@ export class TypeormService implements TypeOrmOptionsFactory {
     let options: TypeOrmModuleOptions = {
       type: 'postgres',
       host: 'localhost',
-      port: 5432,
+      port: 54321,
       username: 'postgres',
       password: 'postgres',
-      database: 'postgres',
+      database: 'lab',
       synchronize: true,
       logging: true,
       entities: [

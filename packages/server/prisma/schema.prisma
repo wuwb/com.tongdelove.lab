@@ -1,10 +1,7 @@
 datasource db {
-    // sqlite, postgresql, mysql, sqlserver, mongodb
     provider  = "postgres"
-    url       = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
-    // shadowDatabaseUrl
-    // referentialIntegrity
+    url       = env("LAB_TONGDELOVE_PRISMA_URL") // uses connection pooling
+    directUrl = env("LAB_TONGDELOVE_URL_NON_POOLING") // uses a direct connection
 }
 
 generator client {

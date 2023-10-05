@@ -1,0 +1,55 @@
+{
+  "folders": [
+    {
+      "name": "🌳 root",
+      "path": "."
+    },
+    {
+      "name": "🍂 lab",
+      "path": "apps/lab"
+    },
+    {
+      "name": "🍂 server",
+      "path": "packages/server"
+    },
+    {
+      "name": "🍂 prisma",
+      "path": "packages/prisma"
+    },
+  ],
+  "extensions": {
+    "recommendations": [
+      "folke.vscode-monorepo-workspace",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "ZixuanChen.vitest-explorer",
+      "Orta.vscode-jest"
+    ]
+  },
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    // Disable vscode formatting for js,jsx,ts,tsx files
+    // to allow dbaeumer.vscode-eslint to format them
+    "[javascript]": {
+      "editor.formatOnSave": false
+    },
+    "eslint.alwaysShowStatus": true,
+    // https://github.com/Microsoft/vscode-eslint#mono-repository-setup
+    "eslint.workingDirectories": [
+      "./apps/lab",
+      "./packages/server",
+      "./packages/prisma",
+    ],
+    "jest.disabledWorkspaceFolders": [
+      "🍂 lab",
+      "📦 prisma",
+      "📦 server",
+    ]
+  }
+}

@@ -10,5 +10,8 @@
 	"prisma.fileWatcher": true,
 	"search.exclude": {
 		"package-lock.json": true
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
 	}
 }

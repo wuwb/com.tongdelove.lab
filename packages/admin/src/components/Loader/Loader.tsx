@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import styles from './Loader.less';
 
 const Loader = ({ spinning = false, fullScreen }) => {
@@ -16,11 +15,6 @@ const Loader = ({ spinning = false, fullScreen }) => {
       </div>
     </div>
   );
-};
-
-Loader.propTypes = {
-  spinning: PropTypes.bool,
-  fullScreen: PropTypes.bool,
 };
 
 export default Loader;

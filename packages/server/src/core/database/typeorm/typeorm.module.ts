@@ -6,7 +6,6 @@ import { TypeormConfigService } from './typeorm-config.service';
 
 @Module({
     imports: [
-        /* 连接mysql数据库 */
         BaseTypeOrmModule.forRootAsync({
             useClass: TypeormConfigService,
             inject: [ConfigService],
@@ -15,4 +14,4 @@ import { TypeormConfigService } from './typeorm-config.service';
     providers: [TypeormService],
     exports: [TypeormService],
 })
-export class TypeormModule {}
+export class TypeormModule { }
