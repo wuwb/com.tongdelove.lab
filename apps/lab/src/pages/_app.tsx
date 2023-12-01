@@ -1,3 +1,11 @@
+import type { EmotionCache } from '@emotion/cache';
+import { Analytics } from '@vercel/analytics/react';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
+import nextI18nextConfig from '../../next-i18next.config.mjs';
+import { AppProviders } from '../providers/AppProviders';
+import { trpc } from "@/utils/trpc";
 import { BaseLayout } from '@/components/layouts';
 // import { persistor, store } from '@/stores/index';
 import { type NextPageWithLayout } from '@/types/app';
@@ -10,9 +18,7 @@ import React from 'react';
 // import { PersistGate } from 'redux-persist/integration/react';
 import nextI18NextConfig from '../../next-i18next.config';
 import { appWithTranslation } from 'next-i18next';
-import { theme } from '../theme';
 // import { useState } from 'react';
-import { MantineProvider } from '@mantine/core';
 import { trpc } from "@/utils/trpc";
 import { AppProviders } from '@/providers/AppProviders';
 import Head from 'next/head';
@@ -22,13 +28,18 @@ import '@mantine/nprogress/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/carousel/styles.css';
 import '@/styles/globals.css';
-// import '@/styles/markdown.css';
 
-type MyAppProps = AppProps
+/**
+ * Import global styles, global css or polyfills here
+ * i.e.: import '@/assets/theme/style.scss'
+ */
+import '../styles/global.css';
 
-export type AppPropsWithLayout = MyAppProps & {
-  Component: NextPageWithLayout
-}
+import '@fontsource-variable/inter';
+
+export type MyAppProps = AppProps & {
+  emotionCache?: EmotionCache;
+};
 
 // const helmetContext = {};
 
@@ -45,23 +56,23 @@ export type AppPropsWithLayout = MyAppProps & {
 //   }
 // }
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppPropsWithLayout) => {
+/**
+ * @link https://nextjs.org/docs/advanced-features/custom-app
+ */
+const MyApp = (appProps: MyAppProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { Component, pageProps, emotionCache } = appProps;
   return (
-    <AppProviders>
+    <AppProviders emotionCache={emotionCache}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       {/* <ReduxProvider store={store}> */}
       {/* <PersistGate loading={null} persistor={persistor}> */}
-      <MantineProvider theme={theme}>
-        <BaseLayout>
-          <Component {...pageProps} />
-          {/* <Analytics /> */}
-        </BaseLayout>
-      </MantineProvider>
+      <BaseLayout>
+      <Component {...pageProps} />
+      <Analytics />
+      </BaseLayout>
       {/* </PersistGate> */}
       {/* </ReduxProvider> */}
     </AppProviders>
@@ -75,7 +86,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
 // };
 
 // https://github.com/i18next/next-i18next#unserializable-configs
-export default trpc.withTRPC(appWithTranslation(MyApp, nextI18NextConfig));
+export default trpc.withTRPC(appWithTranslation(MyApp, {
+  ...nextI18NextConfig,
+}));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

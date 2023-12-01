@@ -13,6 +13,9 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import EmailProvider from 'next-auth/providers/email'
+// import { prismaClient } from '@/backend/config/container.config';
+import { prisma } from '@/server/db/prisma';
+import Credentials from "next-auth/providers/credentials";
 // import DiscordProvider from "next-auth/providers/discord";
 // import GoogleProvider from "next-auth/providers/google"
 // import GithubProvider from "next-auth/providers/github"
@@ -20,7 +23,6 @@ import EmailProvider from 'next-auth/providers/email'
 // import TwitterProvider from 'next-auth/providers/twitter'
 
 // import { prisma } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
 import { env } from "@/configs/env.config";
 
 const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
@@ -32,22 +34,20 @@ const oneDayInSeconds = 86400;
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
-// declare module "next-auth" {
-//   interface Session extends DefaultSession {
-//     GetServerSidePropsContext: DefaultSession["user"] & {
-//       id: string;
-//       // ...other properties
-//       // role: UserRole;
-//     };
-//   }
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    GetServerSidePropsContext: DefaultSession["user"] & {
+      id: string;
+      // ...other properties
+      // role: UserRole;
+    };
+  }
 
-//   // interface User {
-//   //   // ...other properties
-//   //   // role: UserRole;
-//   // }
-// }
-
-console.log('auth prisma: ', prisma);
+  // interface User {
+  //   // ...other properties
+  //   // role: UserRole;
+  // }
+}
 
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
@@ -75,19 +75,69 @@ export const authOptions: NextAuthOptions = {
     //   }
     //   return Promise.resolve(session)
     // },
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    /*
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
+    },
+    */
+    async redirect({ url, baseUrl }) {
+      return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl);
+    },
+    async session({ session, user }) {
+      return Promise.resolve({
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+        },
+      })
+    },
+    async jwt({ token, user, trigger }) {
+      if (trigger === 'signUp') {
+        // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
+      }
+      return Promise.resolve(token);
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
     /**
      * @see https://next-auth.js.org/providers/github
      */
+    Credentials({
+      name: "credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "jsmith@gmail.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials, request) => {
+        // todo login
+
+        const user = await prisma.user.findFirst({
+          where: { email: creds.email },
+        });
+
+        if (!user) {
+          return null;
+        }
+
+        const isValidPassword = true // await verify(user.password, creds.password);
+
+        if (!isValidPassword) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+        }
+      },
+    }),
     EmailProvider({
       server: env.EMAIL_SERVER,
       from: env.EMAIL_FROM,
@@ -128,7 +178,13 @@ export const authOptions: NextAuthOptions = {
     // async encode() {},
     // async decode() {},
   },
-
+  // pages: {
+  //   signIn: '/auth/signin',
+  //   signOut: '/auth/signout',
+  //   error: '/auth/error',
+  //   verifyRequest: '/auth/verify-request',
+  //   newUser: '/auth/new-user'
+  // }
 };
 
 /**

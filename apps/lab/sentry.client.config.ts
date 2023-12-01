@@ -5,9 +5,16 @@
 import * as Sentry from '@sentry/nextjs'
 
 Sentry.init({
-  dsn: 'https://59ce18e17b14dd59288bbfa2c2cfbaa6@o4505662743511040.ingest.sentry.io/4505667945037824',
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: process.env.NODE_ENV,
   denyUrls: ['http://localhost:3000'],
+  // Adjust this value in production, or use tracesSampler for greater control
+  // @see https://develop.sentry.dev/sdk/performance/
+  tracesSampleRate: ['false', '0'].includes(
+    process.env.NEXTJS_SENTRY_TRACING ?? ''
+  )
+    ? undefined
+    : 0.05,
 
   // ...
   // Note: if you want to override the automatic release value, do not set a

@@ -1,8 +1,7 @@
-name: nextjs-monorepo-example-db-main-prisma-e2e
-
+name: nextjs-monorepo-example-prisma-e2e
 services:
   e2e-postgres:
-    container_name: db-main-prisma-e2e-postgresql
+    container_name: prisma-e2e-postgresql
     image: postgres:16.0-alpine3.18
     ports:
       - target: 5432
@@ -20,6 +19,5 @@ services:
       retries: 5
     volumes:
       - e2e_postgres:/var/lib/postgresql/data:rw
-      
 volumes:
   e2e_postgres:

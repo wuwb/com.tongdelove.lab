@@ -1,15 +1,21 @@
+import { HttpBadRequest } from '@httpx/exception';
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
+import { demoConfig } from '@/features/demo/demo.config';
+import { DemoPage } from '@/features/demo/pages';
+import { prisma } from "@/server/db/prisma";
+// import { prismaClient as prisma } from '@/backend/config/container.config';
+import { trpc } from "@/utils/trpc";
+import { useEffect } from 'react';
 import { Container } from '@/components/common';
-import { getRencentTasks } from '@/server/task';
-// import { useAppSelector } from '@/stores/hooks';
-// import { useTranslation } from 'next-i18next';
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";
-// import { Footer } from '@/components/layouts/components/BaseLayout/Footer'
 import { type NextPage } from 'next';
 import { ColorSchemeToggle } from '@/components/ui/ColorSchemeToggle';
 import Head from "next/head";
-import { prisma } from '@/lib/prisma';
+// import { prismaClient } from '@/server/config/container.config';
+import { prismaClient } from '@/backend/config/container.config';
 
 const TaskBlock = (props) => {
   return (
@@ -34,6 +40,14 @@ const TaskBlock = (props) => {
   );
 }
 
+
+type Props = {
+  /** Add HomeRoute props here */
+  post: any[]
+};
+
+
+
 const Home: NextPage = (props) => {
   // const { t } = useTranslation();
 
@@ -43,9 +57,6 @@ const Home: NextPage = (props) => {
   const hello = trpc.example.hello.useQuery({ text: "from tRPC test" });
   const getAll = trpc.example.getAll.useQuery();
   const getSecretMessage = trpc.example.getSecretMessage.useQuery();
-
-  console.log('posts: ', props.posts)
-
 
   // const email = user?.email || '';
   // const { tasks } = props;
@@ -73,23 +84,61 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-export async function getServerSideProps() {
-  const posts = await prisma.post.findMany()
+export default function DemoRoute(
+  _props: InferGetStaticPropsType<typeof getStaticProps>
+) {
+
+  const hello = trpc.example.hello.useQuery({ text: "from tRPC test" });
+  const getAll = trpc.example.getAll.useQuery();
+  const getSecretMessage = trpc.example.getSecretMessage.useQuery();
+
+  // const email = user?.email || '';
+  // const { tasks } = props;
+
+
+  useEffect(() => {
+    console.log('post:', _props.post)
+  console.log('hello: ', hello.data, getAll.data, getSecretMessage.data);
+
+  }, [hello, getAll, getSecretMessage])
+
+  return <DemoPage />;
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const { locale } = context;
+  if (locale === undefined) {
+    throw new HttpBadRequest('locale is missing');
+  }
+  const { i18nNamespaces } = demoConfig;
+  const post = await prisma.poem.findMany()
+  
+  return {
+    props: {
+      post,
+      ...(await getServerTranslations(locale, i18nNamespaces)),
+    },
+  };
+};
+
+ export async function getServerSideProps({ query }: any) {
+    const res = await getRencentTasks();
+    console.log('res: ', res);
+   return {
+     props: {
+        tasks: res.data,
+     },
+   };
+
+ console.log('prisma: ', prismaClient)
+
+  const posts = await prismaClient.user.findMany()
+
 
   console.log('posts: ', posts)
 
   return { props: { posts } }
-}
-
-// export async function getServerSideProps({ query }: any) {
-//   // const res = await getRencentTasks();
-//   // console.log('res: ', res);
-//   return {
-//     props: {
-//       // tasks: res.data,
-//     },
-//   };
-// }
+ }
 
 function AuthShowcase() {
   const { data: sessionData } = useSession();

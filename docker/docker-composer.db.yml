@@ -9,8 +9,16 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_INITDB_ARGS: '--locale-provider=icu --icu-locale=en-US --no-sync'
+    healthcheck:
+      test: ['CMD-SHELL', "sh -c 'pg_isready -U postgres -d e2edb'"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:

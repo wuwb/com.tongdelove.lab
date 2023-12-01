@@ -13,7 +13,7 @@ RUN apk add --no-cache libc6-compat git jq && corepack enable
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY --link package.json turbo.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY --link package.json turbo.json pnpm-locl.yaml* package-lock.json* pnpm-lock.yaml* ./
 
 # We can't run turbo without yarn install first, let's install locally and make sure
 # both local and docker are aligned on the package.json version.
@@ -25,7 +25,7 @@ COPY --link . .
 RUN turbo prune --scope=lab --docker --out-dir=./out/lab/
 
 # RUN \
-#   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+#   if [ -f pnpm-locl.yaml ]; then yarn --frozen-lockfile; \
 #   elif [ -f package-lock.json ]; then npm ci; \
 #   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
 #   else echo "Lockfile not found." && exit 1; \
@@ -68,7 +68,7 @@ WORKDIR /app
 # First install the dependencies (as they change less often)
 COPY --link .gitignore ./
 COPY --from=app-builder --link /app/out/lab/json/ .
-COPY --from=app-builder --link /app/out/lab/yarn.lock ./yarn.lock
+COPY --from=app-builder --link /app/out/lab/pnpm-locl.yaml ./pnpm-locl.yaml
 
 RUN yarn install --inline-builds
 

@@ -31,11 +31,11 @@ const config = {
     "plugin:@typescript-eslint/stylistic",
     "plugin:storybook/recommended",
   ],
-  settings: {
-    next: {
-      rootDir: ['@/'],
-    },
-  },
+  // settings: {
+  //   next: {
+  //     rootDir: ['@/'],
+  //   },
+  // },
   env: {
     browser: true,
     es2021: true,

@@ -1,14 +1,40 @@
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
+import { NotFoundPage } from '@/features/system/pages';
+import { systemConfig } from '@/features/system/system.config';
 import { Button } from '@mantine/core'
 import Image from 'next/image';
 import React from 'react';
 import { IconSearch } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 
-function Status404(): any {
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const { locale = 'en' } = context;
+
+  const inlinedTranslation = await getServerTranslations(
+    locale,
+    systemConfig.i18nNamespaces
+  );
+
+  return {
+    props: {
+      locale: locale,
+      ...inlinedTranslation,
+    },
+  };
+};
+
+export default function Custom404(
+  _props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   const { t }: { t: any } = useTranslation();
 
+
   return (
-    <div className="h-full flex flex-1 flex-col">
+  <>
+  <NotFoundPage />;
+      <div className="h-full flex flex-1 flex-col">
       <div className="flex flex-1 w-full align-center justify-center p-6">
         <div>
           <div className="text-center">
@@ -48,7 +74,7 @@ function Status404(): any {
         </div>
       </div>
     </div>
-  );
+  </>
+  
+  )
 }
-
-export default Status404;

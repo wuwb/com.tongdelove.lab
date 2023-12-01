@@ -1,6 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
   // www.typescriptlang.org/tsconfig
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": [
       "dom",
@@ -8,6 +9,7 @@
       "esnext",
       "WebWorker"
     ],
+    "verbatimModuleSyntax": true,
     "module": "esnext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
     "moduleResolution": "bundler", // 指定使用哪种模块解析策略，默认为 Classic, 'bundler'
     "resolveJsonModule": true,
@@ -24,7 +26,7 @@
     "noUnusedParameters": false,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-    "target": "ES5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
+    "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
     // "outDir": "out",
     // "declarationDir": "dist/types", // .d.ts 类型文件的输出目录，默认为 outDir 目录
     "declaration": true,
@@ -40,47 +42,126 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-    "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "baseUrl": "./src",
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": "./src",
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "node", // node, bundler
+    "verbatimModuleSyntax": true,
+    "strict": true, // trpc required
+    "strictNullChecks": true, // trpc required
+    "incremental": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "paths": {
       "@/*": [
-        "src/*"
+        "./*"
+      ],
+      "@/test-utils": [
+        "../config/tests/test-utils"
+      ],
+      "@/config/*": [
+        "./config/*"
+      ],
+      "@/lib/*": [
+        "./lib/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/backend/*": [
+        "./backend/*"
+      ],
+      "@/features/*": [
+        "./features/*"
+      ],
+      "@/layouts/*": [
+        "./layouts/*"
+      ],
+      "@/pages/*": [
+        "./pages/*"
       ],
       "@/public/*": [
-        "./public/*"
+        "../public/*"
       ],
-      "@tongdelove/ui": [
-        "../../../packages/ui/src/index"
+      "@/themes/*": [
+        "./themes/*"
+      ],
+      "@tongdelove/common-i18n": [
+        "../../../packages/common-i18n/src/index"
+      ],
+      "@tongdelove/common-i18n/locales/*": [
+        "../../../packages/common-i18n/src/locales/*"
+      ],
+      "@tongdelove/api-gateway": [
+        "../../../packages/api-gateway/src/index"
+      ],
+      "@tongdelove/ui-lib/*": [
+        "../../../packages/ui-lib/src/*"
+      ],
+      "@tongdelove/ui-lib": [
+        "../../../packages/ui-lib/src/index"
+      ],
+      "@tongdelove/core-lib/*": [
+        "../../../packages/core-lib/src/*"
+      ],
+      "@tongdelove/core-lib": [
+        "../../../packages/core-lib/src/index"
       ],
       "@tongdelove/prisma": [
         "../../../packages/prisma/src/index"
       ],
+      "@tongdelove/ts-utils": [
+        "../../../packages/ts-utils/src/index"
+      ],
+      "@tongdelove/ui": [
+        "../../../packages/ui/src/index"
+      ]
     },
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom/vitest"
+    ],
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "composite": true
+    "composite": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
+  "exclude": [
+    "**/node_modules",
+    "**/.*/*"
+  ],
   "include": [
-    ".eslintrc.cjs",
+    ".eslintrc.*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mts",
+    "**/*.js",
     "**/*.cjs",
     "**/*.mjs",
+    "**/*.jsx",
+    "**/*.json",
     ".next/types/**/*.ts",
     "next-i18next.config.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  ]
 }

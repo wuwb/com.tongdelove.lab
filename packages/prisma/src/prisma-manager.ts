@@ -37,12 +37,18 @@ export class PrismaManager {
       // PrismaClient is attached to the `global` object in development to prevent
       // exhausting your database connection limit.
       if (!global.__PRISMA_INSTANCES__?.[instanceKey]) {
+        const prisma = prismaClientFactory();
+        console.log('prisma: ', prisma)
         global.__PRISMA_INSTANCES__ ??= {};
-        global.__PRISMA_INSTANCES__[instanceKey] = prismaClientFactory();
+        global.__PRISMA_INSTANCES__[instanceKey] = prisma;
+        console.log('global.__PRISMA_INSTANCES__: ', global.__PRISMA_INSTANCES__)
+        console.log('instanceKey: ', instanceKey)
+        console.log('global.__PRISMA_INSTANCES__[instanceKey]: ', global.__PRISMA_INSTANCES__[instanceKey])
         console.debug(
           '[PrismaFactory.createDevSafeInstance]: Dev instance created and preserved globally.'
         );
       }
+      console.log('return old global instances')
       return global.__PRISMA_INSTANCES__[instanceKey]!;
     }
   }

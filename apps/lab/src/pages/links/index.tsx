@@ -1,4 +1,4 @@
-import Daohang from '@/content/Applications/Links/index';
+import Daohang from '@/content/links/Links';
 
 // ## 运营数据
 // https://lunarcrush.com/
@@ -8,12 +8,10 @@ import Daohang from '@/content/Applications/Links/index';
 // 圆圈拉线成图算法
 // https://github.com/jiang1997/image2seq
 
-function DaohangPage(): JSX.Element {
+export default function DaohangPage() {
   return (
     <div>
       <Daohang />
     </div>
   );
 }
-
-export default DaohangPage;

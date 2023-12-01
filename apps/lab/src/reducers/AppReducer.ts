@@ -1,4 +1,3 @@
-
 export type State = {
   displayNavigation: boolean
   themeMode: 'light' | 'dark'
@@ -31,5 +30,4 @@ export function reducer(state: State, action: Action) {
     default:
       return state
   }
-
 }

@@ -1,0 +1,50 @@
+name: CI-monorepo-integrity
+
+on:
+  push:
+    branches: [dev, main]
+    paths:
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - '.github/**'
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - '.github/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/yarn-nm-install
+        with:
+          skip-prisma-postinstall-generate: true
+
+      - name: 👬🏽 Check for duplicate dependencies in lock file
+        run: yarn dedupe --check
+
+      - name: 🦺 Check for yarn constraints.pro
+        run: yarn constraints
+
+      - name: 🦺 Syncpack - apps - lint-semver-ranges
+        run:
+          yarn syncpack lint-semver-ranges --types prod,dev --source "package.json" --source "apps/*/package.json"
+          || yarn syncpack list-semver-ranges --types prod,dev --source "package.json" --source "apps/*/package.json"
+
+      - name: 🦺 Syncpack - packages - lint-semver-ranges
+        run:
+          yarn syncpack lint-semver-ranges --types prod,dev --source "package.json" --source "packages/*/package.json"
+          || yarn syncpack list-semver-ranges --types prod,dev --source "package.json" --source "packages/*/package.json"

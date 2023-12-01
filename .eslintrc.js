@@ -1,7 +1,7 @@
 module.exports = {
   settings: {
     next: {
-      rootDir: ['packages/lab/']
+      rootDir: ['apps/lab/']
     }
   },
   env: {

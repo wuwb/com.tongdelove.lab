@@ -16,8 +16,7 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
-    console.log(ctx)
-    console.log(ctx.prisma)
+    console.log('ctx.prisma: ', ctx.prisma)
     return ctx.prisma.example.findMany();
   }),
 

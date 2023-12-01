@@ -1,6 +1,6 @@
 {
-  "language": "ts",
   "$schema": "https://json.schemastore.org/nest-cli",
+  "language": "ts",
   "collection": "@nestjs/schematics",
   "sourceRoot": "packages/server/src",
   "entryFile": "packages/server/src/main",

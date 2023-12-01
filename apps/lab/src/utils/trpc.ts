@@ -23,48 +23,48 @@ const getBaseUrl = () => {
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const trpc = createTRPCNext<AppRouter>({
   config({ ctx }) {
-    if (typeof window !== "undefined") {
-      // during client requests
-      return {
-        transformer: superjson, // optional - adds superjson serialization
-        links: [
-          loggerLink({
-            enabled: (_) => false,
-          }),
-          splitLink({
-            condition(op) {
-              // check for context property `skipBatch`
-              return op.context.skipBatch === true
-            },
-            // when condition is true, use normal request
-            true: httpLink({
-              url: `${getBaseUrl()}/api/trpc`,
-            }),
-            // when condition is false, use batching
-            false: httpBatchLink({
-              url: `${getBaseUrl()}/api/trpc`,
-            }),
-          }),
-          httpBatchLink({
-            url: "/api/trpc",
-          }),
-        ],
-        /**
-          * Query client configuration
-          * @see https://tanstack.com/query/v4/docs/react/reference/QueryClient
-          */
-        queryClientConfig: {
-          defaultOptions: {
-            queries: {
-              staleTime: 1000 * 60 * 2, // 2 minutes
-              cacheTime: 1000 * 60 * 10, // 10 minutes
-              refetchOnWindowFocus: false,
-              retry: false,
-            },
-          },
-        },
-      };
-    }
+    // if (typeof window !== "undefined") {
+    //   // during client requests
+    //   return {
+    //     transformer: superjson, // optional - adds superjson serialization
+    //     links: [
+    //       loggerLink({
+    //         enabled: (_) => false,
+    //       }),
+    //       splitLink({
+    //         condition(op) {
+    //           // check for context property `skipBatch`
+    //           return op.context.skipBatch === true
+    //         },
+    //         // when condition is true, use normal request
+    //         true: httpLink({
+    //           url: `${getBaseUrl()}/api/trpc`,
+    //         }),
+    //         // when condition is false, use batching
+    //         false: httpBatchLink({
+    //           url: `${getBaseUrl()}/api/trpc`,
+    //         }),
+    //       }),
+    //       httpBatchLink({
+    //         url: "/api/trpc",
+    //       }),
+    //     ],
+    //     /**
+    //       * Query client configuration
+    //       * @see https://tanstack.com/query/v4/docs/react/reference/QueryClient
+    //       */
+    //     queryClientConfig: {
+    //       defaultOptions: {
+    //         queries: {
+    //           staleTime: 1000 * 60 * 2, // 2 minutes
+    //           cacheTime: 1000 * 60 * 10, // 10 minutes
+    //           refetchOnWindowFocus: false,
+    //           retry: false,
+    //         },
+    //       },
+    //     },
+    //   };
+    // }
 
     return {
       /**
@@ -92,27 +92,58 @@ export const trpc = createTRPCNext<AppRouter>({
            * Set custom request headers on every request from tRPC
            * @link https://trpc.io/docs/v10/header
            */
-          headers() {
-            if (ctx?.req) {
-              // To use SSR properly, you need to forward the client's headers to the server
-              // This is so you can pass through things like cookies when we're server-side rendering
+          // headers() {
+          //   if (ctx?.req) {
+          //     // To use SSR properly, you need to forward the client's headers to the server
+          //     // This is so you can pass through things like cookies when we're server-side rendering
 
-              // If you're using Node 18, omit the "connection" header
-              const {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                connection: _connection,
-                ...headers
-              } = ctx.req.headers;
-              return {
-                ...headers,
-                // Optional: inform server that it's an SSR request
-                "x-ssr": "1",
-              };
-            }
-            return {};
+          //     // If you're using Node 18, omit the "connection" header
+          //     const {
+          //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          //       connection: _connection,
+          //       ...headers
+          //     } = ctx.req.headers;
+          //     return {
+          //       ...headers,
+          //       // Optional: inform server that it's an SSR request
+          //       "x-ssr": "1",
+          //     };
+          //   }
+          //   return {};
+          // },
+        }),
+        loggerLink({
+          enabled: (_) => false,
+        }),
+        splitLink({
+          condition(op) {
+            // check for context property `skipBatch`
+            return op.context.skipBatch === true
           },
+          // when condition is true, use normal request
+          true: httpLink({
+            url: `${getBaseUrl()}/api/trpc`,
+          }),
+          // when condition is false, use batching
+          false: httpBatchLink({
+            url: `${getBaseUrl()}/api/trpc`,
+          }),
         }),
       ],
+      /**
+       * Query client configuration
+       * @see https://tanstack.com/query/v4/docs/react/reference/QueryClient
+       */
+      queryClientConfig: {
+        defaultOptions: {
+          queries: {
+            staleTime: 1000 * 60 * 2, // 2 minutes
+            cacheTime: 1000 * 60 * 10, // 10 minutes
+            refetchOnWindowFocus: false,
+            retry: false,
+          },
+        },
+      },
     };
   },
   /**

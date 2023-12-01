@@ -5,8 +5,8 @@ datasource db {
 }
 
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+    provider = "prisma-client-js"
+    // jsonProtocol 已经实现，不用 preview
     // interactiveTransactions 已经实现，不用 preview
     // previewFeatures = ["interactiveTransactions"]
     // output   = "../../../node_modules/.prisma/client"

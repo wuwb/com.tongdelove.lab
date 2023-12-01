@@ -1,0 +1,56 @@
+name: CI-e2e-prisma
+
+on:
+  push:
+    branches: [dev, main]
+    paths:
+      - 'packages/prisma'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - '.github/**'
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'packages/prisma'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - '.github/**'
+
+jobs:
+  e2e:
+    # containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: packages/prisma
+
+    strategy:
+      fail-fast: false
+      matrix:
+        database:
+          - e2e-postgres
+        node-version: [18.X]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/yarn-nm-install
+
+      - name: 🏁 Start postgresql
+        run: docker compose -f docker-compose.e2e.yml up ${{ matrix.database }} --wait --detach
+
+      - name: 🧪 E2E prisma
+        run: yarn test-e2e
+        env:
+          E2E_PRISMA_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/prisma-e2e?schema=public

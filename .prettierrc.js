@@ -1,4 +1,8 @@
-/** @type {import("prettier").Config} */
+// @ts-check
+
+/** 
+ * @type {import("prettier").Config} 
+ */
 module.exports = {
     // printWidth: 120,
     arrowParens: "avoid",

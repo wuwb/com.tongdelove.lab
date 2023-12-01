@@ -13,16 +13,16 @@ WORKDIR /home/node/app
 
 COPY package.json ./
 # COPY package*.json ./
-COPY yarn.lock ./
+COPY pnpm-lock.yaml ./
 COPY prisma ./prisma/
 
-RUN yarn --ignore-engines --frozen-lockfile
+RUN pnpm --ignore-engines --frozen-lockfile
 # RUN npm install
 
 COPY --chown=node:node . .
 
 
-RUN yarn prebuild && yarn build
+RUN pnpm prebuild && pnpm build
 
 
 ####################################################
@@ -36,4 +36,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["yarn", "start:prod"]
+CMD ["pnpm", "start:prod"]

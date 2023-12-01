@@ -11,8 +11,10 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
   // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 0.2,
-
+  // @see https://develop.sentry.dev/sdk/performance/
+  // To turn it off, remove the line
+  // @see https://github.com/getsentry/sentry-javascript/discussions/4503#discussioncomment-2143116
+  tracesSampleRate: 0.05,
   // ...
   // Note: if you want to override the automatic release value, do not set a
   // `release` value here - use the environment variable `SENTRY_RELEASE`, so

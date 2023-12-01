@@ -6,7 +6,8 @@ export const trpc = createTRPCProxyClient<AppRouter>({
     transformer: superjson,
     links: [
         httpBatchLink({
-            url: `${process.env.NEXT_PUBLIC_NESTJS_SERVER}/trpc`,
+            url: `${process.env.NEXTAUTH_URL}/api/trpc`,
+	    // url: `${process.env.NEXT_PUBLIC_NESTJS_SERVER}/trpc`,
         }),
     ],
 });
