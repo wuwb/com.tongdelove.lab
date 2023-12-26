@@ -1,6 +1,6 @@
 packages:
   - 'apps/lab'
-  - 'packages/prisma'
+  - 'prisma'
   - 'packages/ts-utils'
   - 'packages/api-gateway'
   - 'packages/eslint-config-bases'

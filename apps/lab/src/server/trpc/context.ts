@@ -22,7 +22,7 @@ import { prisma } from "@/server/db/prisma";
  */
 
 interface CreateContextOptions {
-  session: Session | null;
+    session: Session | null;
 }
 
 /**
@@ -36,10 +36,10 @@ interface CreateContextOptions {
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
-  return {
-    session: opts.session,
-    prisma: prisma,
-  };
+    return {
+        session: opts.session,
+        prisma: prisma,
+    };
 };
 
 /**
@@ -49,14 +49,14 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+    const { req, res } = opts;
 
-  // Get the session from the server using the getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
+    // Get the session from the server using the getServerSession wrapper function
+    const session = await getServerAuthSession({ req, res });
 
-  return createInnerTRPCContext({
-    session,
-  });
+    return createInnerTRPCContext({
+        session,
+    });
 };
 
 export type Context = inferAsyncReturnType<typeof createTRPCContext>

@@ -1,14 +1,16 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
 import {
-  getServerSession,
-  type DefaultSession,
-  type NextAuthOptions,
+    getServerSession,
+    type DefaultSession,
+    type NextAuthOptions,
 } from "next-auth";
 import EmailProvider from 'next-auth/providers/email'
 import { prisma } from '@/server/db/prisma';
 import Credentials from "next-auth/providers/credentials";
-import { env } from "@/configs/env.config";
+import { env } from "@/env/env.js";
+import { default as CredentialsProvider } from 'next-auth/providers/credentials';
+import { createHttpUnauthorized } from '@/lib/auth/error';
 
 const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
 const oneDayInSeconds = 86400;
@@ -20,18 +22,18 @@ const oneDayInSeconds = 86400;
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 declare module "next-auth" {
-  interface Session extends DefaultSession {
-    GetServerSidePropsContext: DefaultSession["user"] & {
-      id: string;
-      // ...other properties
-      // role: UserRole;
-    };
-  }
+    interface Session extends DefaultSession {
+        GetServerSidePropsContext: DefaultSession["user"] & {
+            id: string;
+            // ...other properties
+            // role: UserRole;
+        };
+    }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+    // interface User {
+    //   // ...other properties
+    //   // role: UserRole;
+    // }
 }
 
 /**
@@ -40,136 +42,163 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    // async session2({ session, token }) {
-    //   if (session.user && token.sub) {
-    //     session.user.id = token.sub
-    //     const jwtClaims = {
-    //       id: session.user?.id?.toString(),
-    //       email: session.user?.email,
-    //       sub: session.user?.id,
-    //       iat: Date.now() / 1000,
-    //       exp: Math.floor(Date.now() / 1000) + JWT_EXPIRY,
-    //     }
-    //     const encodedToken = jwt.sign(
-    //       jwtClaims,
-    //       process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    //       { algorithm: 'RS256' }
-    //     )
-    //     session.user.encodeToken = encodedToken
-    //   }
-    //   return Promise.resolve(session)
-    // },
-    /*
-    async signIn({ user, account, profile, email, credentials }) {
-      return true;
-    },
-    */
-    async redirect({ url, baseUrl }) {
-      return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl);
-    },
-    async session({ session, user }) {
-      return Promise.resolve({
-        ...session,
-        user: {
-          ...session.user,
-          id: user.id,
+    callbacks: {
+        // async session2({ session, token }) {
+        //   if (session.user && token.sub) {
+        //     session.user.id = token.sub
+        //     const jwtClaims = {
+        //       id: session.user?.id?.toString(),
+        //       email: session.user?.email,
+        //       sub: session.user?.id,
+        //       iat: Date.now() / 1000,
+        //       exp: Math.floor(Date.now() / 1000) + JWT_EXPIRY,
+        //     }
+        //     const encodedToken = jwt.sign(
+        //       jwtClaims,
+        //       process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        //       { algorithm: 'RS256' }
+        //     )
+        //     session.user.encodeToken = encodedToken
+        //   }
+        //   return Promise.resolve(session)
+        // },
+        /*
+        async signIn({ user, account, profile, email, credentials }) {
+          return true;
         },
-      })
+        */
+        async redirect({ url, baseUrl }) {
+            return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl);
+        },
+        async session({ session, user }) {
+            return Promise.resolve({
+                ...session,
+                user: {
+                    ...session.user,
+                    id: user.id,
+                },
+            })
+        },
+        async jwt({ token, user, trigger }) {
+            if (trigger === 'signUp') {
+                // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
+            }
+            if (user) {
+                token.role = user.role;
+            }
+            return Promise.resolve(token);
+        },
     },
-    async jwt({ token, user, trigger }) {
-      if (trigger === 'signUp') {
-        // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
-      }
-      return Promise.resolve(token);
-    },
-  },
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    /**
+    adapter: PrismaAdapter(prisma),
+    providers: [
+        /**
+         * @see https://next-auth.js.org/providers/github
+         */
+        Credentials({
+            name: "credentials",
+            credentials: {
+                email: {
+                    label: "Email",
+                    type: "email",
+                    placeholder: "jsmith@gmail.com",
+                },
+                password: { label: "Password", type: "password" },
+            },
+            async authorize(credentials, request) {
+                // todo login
+                if (!credentials) {
+                    throw createHttpUnauthorized('Credentials not provided');
+                }
+                const { email, password } = credentials ?? {};
+
+                const user = await prisma.user.findFirst({
+                    where: {
+                        email,
+                    },
+                });
+
+                if (!user) {
+                    return null;
+                }
+
+                const isValidPassword = true // await verify(user.password, creds.password);
+
+                if (!isValidPassword) {
+                    return null;
+                }
+                if (user && isValidPassword) {
+                    return {
+                        id: user.id,
+                        email: user.email,
+                        username: user.username,
+                    }
+                }
+
+                throw createHttpUnauthorized('Invalid credentials');
+            },
+        }),
+        EmailProvider({
+            server: env.EMAIL_SERVER,
+            from: env.EMAIL_FROM,
+            // maxAge: 24 * 60 * 60, // 设置邮箱链接失效时间，默认24小时
+        }),
+        // GithubProvider({
+        //   clientId: env.GITHUB_CLIENT_ID,
+        //   clientSecret: env.GITHUB_CLIENT_SECRET,
+        // }),
+        // DiscordProvider({
+        //   clientId: env.DISCORD_CLIENT_ID,
+        //   clientSecret: env.DISCORD_CLIENT_SECRET,
+        // }),
+        // TwitterProvider({
+        //   clientId: env.TWITTER_CLIENT_ID,
+        //   clientSecret: env.TWITTER_CLIENT_SECRET,
+        //   version: '2.0',
+        // }),
+        // GoogleProvider({
+        //   clientId: env.GOOGLE_CLIENT_ID!,
+        //   clientSecret: env.GOOGLE_CLIENT_SECRET!
+        // }),
+        // LinkedinProvider({
+        //   clientId: env.LINKEDIN_CLIENT_ID,
+        //   clientSecret: env.LINKEDIN_CLIENT_SECRET,
+        // }),
+        /**
+     * ...add more providers here.
+     *
+     * Most other providers require a bit more work than the Discord provider. For example, the
+     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
+     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
+     *
      * @see https://next-auth.js.org/providers/github
      */
-    Credentials({
-      name: "credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "jsmith@gmail.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
-      authorize: async (credentials, request) => {
-        // todo login
-
-        const user = await prisma.user.findFirst({
-          where: { email: creds.email },
-        });
-
-        if (!user) {
-          return null;
-        }
-
-        const isValidPassword = true // await verify(user.password, creds.password);
-
-        if (!isValidPassword) {
-          return null;
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          username: user.username,
-        }
-      },
-    }),
-    EmailProvider({
-      server: env.EMAIL_SERVER,
-      from: env.EMAIL_FROM,
-      // maxAge: 24 * 60 * 60, // 设置邮箱链接失效时间，默认24小时
-    }),
-    // GithubProvider({
-    //   clientId: env.GITHUB_CLIENT_ID,
-    //   clientSecret: env.GITHUB_CLIENT_SECRET,
-    // }),
-    // DiscordProvider({
-    //   clientId: env.DISCORD_CLIENT_ID,
-    //   clientSecret: env.DISCORD_CLIENT_SECRET,
-    // }),
-    // TwitterProvider({
-    //   clientId: env.TWITTER_CLIENT_ID,
-    //   clientSecret: env.TWITTER_CLIENT_SECRET,
-    //   version: '2.0',
-    // }),
-    // GoogleProvider({
-    //   clientId: env.GOOGLE_CLIENT_ID!,
-    //   clientSecret: env.GOOGLE_CLIENT_SECRET!
-    // }),
-    // LinkedinProvider({
-    //   clientId: env.LINKEDIN_CLIENT_ID,
-    //   clientSecret: env.LINKEDIN_CLIENT_SECRET,
-    // }),
-  ],
-  session: {
-    strategy: 'jwt',
-    maxAge: oneDayInSeconds * 30,
-    updateAge: oneDayInSeconds, // 24 hours
-  },
-  jwt: {
-    // The maximum age of the NextAuth.js issued JWT in seconds.
-    // Defaults to `session.maxAge`.
-    maxAge: oneDayInSeconds * 30,
-    // You can define your own encode/decode functions for signing and encryption
-    // async encode() {},
-    // async decode() {},
-  },
-  // pages: {
-  //   signIn: '/auth/signin',
-  //   signOut: '/auth/signout',
-  //   error: '/auth/error',
-  //   verifyRequest: '/auth/verify-request',
-  //   newUser: '/auth/new-user'
-  // }
+    ],
+    session: {
+        strategy: 'jwt',
+        maxAge: oneDayInSeconds * 30,
+        updateAge: oneDayInSeconds, // 24 hours
+        // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+        // which is used to look up the session in the database.
+        // Seconds - Throttle how frequently to write to database to extend a session.
+        // Use it to limit write operations. Set to 0 to always update the database.
+        // Note: This option is ignored if using JSON Web Tokens
+        // updateAge: 24 * 60 * 60, // 24 hours
+    },
+    jwt: {
+        // The maximum age of the NextAuth.js issued JWT in seconds.
+        // Defaults to `session.maxAge`.
+        maxAge: oneDayInSeconds * 30,
+        // You can define your own encode/decode functions for signing and encryption
+        // async encode() {},
+        // async decode() {},
+    },
+    // pages: {
+    //   signIn: '/auth/signin',
+    //   signOut: '/auth/signout',
+    //   error: '/auth/error', // Error code passed in query string as ?error=
+    //   verifyRequest: '/auth/verify-request',  // (used for check email message)
+    //   newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    // }
 };
 
 /**
@@ -178,10 +207,10 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext["req"];
-  res: GetServerSidePropsContext["res"];
+    req: GetServerSidePropsContext["req"];
+    res: GetServerSidePropsContext["res"];
 }) => {
-  return getServerSession(ctx.req, ctx.res, authOptions);
+    return getServerSession(ctx.req, ctx.res, authOptions);
 };
 
 

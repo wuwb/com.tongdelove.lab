@@ -1,4 +1,4 @@
-const pc = require('picocolors')
+import pc from 'picocolors'
 
 const nextUtilsConfig = () => {
     const trueEnv = ['true', '1', 'yes']
@@ -10,6 +10,6 @@ const nextUtilsConfig = () => {
     }
 }
 
-module.exports = {
+export default {
     loadCustomBuildParams: nextUtilsConfig,
 }

@@ -1,4 +1,4 @@
-import { env } from "@/configs/env.config";
+import { env } from "@/env/env.js";
 import { Redis } from '@upstash/redis';
 
 declare global {

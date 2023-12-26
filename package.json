@@ -13,9 +13,17 @@
   "homepage": "https://github.com/wuwb",
   "repository": "wuwb/com.tongdelove.lab",
   "scripts": {
-    "preinstall": "china-bin-env",
+    "preinstall": "pnpm db:generate",
+    "db:generate": "prisma generate && pnpm run --filter",
     "dev": "pnpm run --parallel dev",
-    "build:server": "pnpm --filter server build",
+    "build:server": "pnpm --filter server build  @wu/schema build",
+    "db:migrate:create": "prisma migrate dev --create-only",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "pnpm lint:prettier && pnpm lint:eslint",
+    "lint:eslint": "eslint . --ext .ts",
+    "lint:prettier": "prettier --check \"src/**/*.ts\"",
+    "db:setup": "snaplet setup",
+    "db:seed": "prisma migrate dev && snaplet snapshot restore --no-reset --no-schema",
     "build:web": "pnpm --filter web build",
     "start:server": "pnpm --filter server start:prod",
     "start:web": "pnpm --filter web start",
@@ -33,7 +41,7 @@
     "install:playwright": "playwright install"
   },
   "prisma": {
-    "schema": "package/prisma/schema.prisma"
+    "schema": "prisma/prisma/schema.prisma"
   },
   "dependencies": {
     "cross-env": "7.0.3",
@@ -62,7 +70,13 @@
     "prettier-plugin-tailwindcss": "^0.2.4",
     "rimraf": "5.0.5",
     "shell-quote": "1.8.1",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "@types/node": "^20.10.4",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "7.28.0",
+    "snaplet": "0.77.2",
+    "zod-prisma": "^0.5.4"
   },
   "config": {
     "commitizen": {
