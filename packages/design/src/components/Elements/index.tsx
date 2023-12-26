@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './index.module.css';
 
 interface Props {
@@ -82,7 +82,7 @@ const Elements = (props: any) => {
     <>
       {/* 旋转控制 */}
       <div
-        className={classnames({
+        className={clsx({
           [styles.hide]: true,
         })}
         style={{
@@ -104,7 +104,7 @@ const Elements = (props: any) => {
       {points.map((item) => (
         <div
           key={item}
-          className={classnames(styles.controlPoint, styles[`point-${item}`])}
+          className={clsx(styles.controlPoint, styles[`point-${item}`])}
           onMouseDown={handleMouseDown.bind(this, item)}
         ></div>
       ))}
@@ -127,7 +127,7 @@ const Elements = (props: any) => {
       onMouseDown={handleMouseDown.bind(this, 'move')}
     >
       <div
-        className={classnames(styles.singleControlWrap, styles.singleControl, {
+        className={clsx(styles.singleControlWrap, styles.singleControl, {
           [styles.selected]: item._selected,
         })}
         style={{
@@ -136,7 +136,7 @@ const Elements = (props: any) => {
       >
         {/* 锁定提示 */}
         <div
-          className={classnames('lock iconfont icon-suo', {
+          className={clsx('lock iconfont icon-suo', {
             [styles.hide]: !item.locked,
           })}
           style={{
@@ -145,7 +145,7 @@ const Elements = (props: any) => {
         ></div>
         {/* 缩放提示 */}
         <div
-          className={classnames(styles.resizeTip, {
+          className={clsx(styles.resizeTip, {
             [styles.hide]: true,
           })}
           style={{
@@ -156,7 +156,7 @@ const Elements = (props: any) => {
         </div>
         {/* 旋转提示 */}
         <div
-          className={classnames(styles.rotateTip, {
+          className={clsx(styles.rotateTip, {
             [styles.hide]: true,
           })}
           style={{
@@ -170,7 +170,7 @@ const Elements = (props: any) => {
       </div>
       {/* 移动提示 */}
       <div
-        className={classnames(styles.moveTip, {
+        className={clsx(styles.moveTip, {
           [styles.hide]: true,
         })}
         style={{

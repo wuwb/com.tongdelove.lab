@@ -5,7 +5,7 @@ import { UserService } from "@/server";
 import { ServerError } from '@/utils/axios';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useMutation } from '@tanstack/react-query';
-import cn from 'classnames';
+import cn from 'clsx';
 import Joi from 'joi';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
@@ -184,7 +184,7 @@ const UserLoginPage = (props) => {
               <div>
                 <div className="flex items-center justify-center space-x-4 mt-3">
                   <button
-                    className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                    className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover: text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ const UserLoginPage = (props) => {
                     Github
                   </button>
                   <button
-                    className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                    className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover: text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

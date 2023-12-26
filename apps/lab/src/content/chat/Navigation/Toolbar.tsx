@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button"
 import { useAppContext } from "@/contexts/AppContext"
 import { ActionType } from "@/reducers/AppReducer"
 import { IconSun, IconMoon } from "@tabler/icons-react"
-import cn from 'classnames'
+import cn from 'clsx'
 
 export default function Toolbar() {
   const {

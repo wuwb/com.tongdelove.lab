@@ -1,4 +1,3 @@
-import { HttpBadRequest } from '@httpx/exception';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { ReactElement } from 'react';
 import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
@@ -17,7 +16,7 @@ AdminRoute.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const { locale } = context;
   if (locale === undefined) {
-    throw new HttpBadRequest('locale is missing');
+    throw new Error('locale is missing');
   }
   const { i18nNamespaces } = adminConfig;
   return {

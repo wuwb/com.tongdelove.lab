@@ -1,6 +1,6 @@
 import { Link } from '@/components/ui/Link';
 import { Box } from '@mantine/core'
-import cx from 'classnames';
+import cx from 'clsx';
 import { useTranslation } from 'next-i18next';
 
 export function Logo(props) {

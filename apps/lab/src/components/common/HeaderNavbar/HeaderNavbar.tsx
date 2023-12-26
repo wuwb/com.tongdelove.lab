@@ -1,7 +1,7 @@
 import { ICompBaseProps } from '@/interfaces';
 import { IconMoon, IconPercentage, IconHistory } from '@tabler/icons-react';
 import { Button } from '@mantine/core'
-import cx from 'classnames';
+import cx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';

@@ -4,16 +4,26 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "ESNext",
-    "lib": ["esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "module": "ES2020",
     "noEmit": false,
     "incremental": true,
-    "paths": {
-      "@tongdelove/core-lib/*": ["../../../packages/core-lib/src/*"],
-      "@tongdelove/core-lib": ["../../../packages/core-lib/src/index"]
-    }
+    "paths": {},
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "composite": true
   },
-  "exclude": ["**/node_modules", "**/.*/*", "dist"],
+  "exclude": [
+    "**/node_modules",
+    "**/.*/*",
+    "dist"
+  ],
   "include": [
     ".eslintrc.*",
     "**/*.ts",

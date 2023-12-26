@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import { Fragment, PureComponent } from 'react';
 
 import { config } from '@/utils/config';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './Header.less';
 
 const { SubMenu } = Menu;
@@ -128,7 +128,7 @@ class Header extends PureComponent {
 
     return (
       <Layout.Header
-        className={classnames(styles.header, {
+        className={clsx(styles.header, {
           [styles.fixed]: fixed,
           [styles.collapsed]: collapsed,
         })}

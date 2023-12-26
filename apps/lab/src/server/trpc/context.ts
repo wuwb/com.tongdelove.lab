@@ -12,7 +12,6 @@ import { type Session } from "next-auth";
 import { getServerAuthSession } from "@/server/auth";
 import { type inferAsyncReturnType } from '@trpc/server'
 import { prisma } from "@/server/db/prisma";
-// import { prismaClient } from '@/backend/config/container.config';
 
 /**
  * 1. CONTEXT

@@ -1,4 +1,3 @@
-import { HttpInternalServerError } from '@httpx/exception';
 import type { PrismaClientDbMain } from '@tongdelove/prisma';
 import type { UnPromisify } from '@tongdelove/ts-utils';
 import type { SearchPoemsParams } from './SearchPoems.types';
@@ -6,7 +5,7 @@ import type { SearchPoemsParams } from './SearchPoems.types';
 type SearchPoems = UnPromisify<ReturnType<SearchPoemsQuery['searchPoems']>>;
 
 export class SearchPoemsQuery {
-  constructor(private readonly prisma: PrismaClientDbMain) {}
+  constructor(private readonly prisma: PrismaClientDbMain) { }
 
   execute = async (params: SearchPoemsParams) => {
     return this.mapToResult(await this.searchPoems(params));
@@ -42,7 +41,7 @@ export class SearchPoemsQuery {
         orderBy: { author: 'desc' },
       })
       .catch((e) => {
-        throw new HttpInternalServerError({
+        throw new Error({
           message: `Poems can't be retrieved`,
           cause: e instanceof Error ? e : undefined,
         });

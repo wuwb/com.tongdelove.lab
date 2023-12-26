@@ -1,5 +1,8 @@
 // @ts-check
-
+/**
+ * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
+ * for Docker builds.
+ */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
@@ -9,13 +12,13 @@ import { createSecureHeaders } from 'next-secure-headers';
 import pc from 'picocolors';
 import nextI18nConfig from './next-i18next.config.mjs';
 import { buildEnv } from './src/config/build-env.config.mjs';
-import { getServerRuntimeEnv } from './src/config/server-runtime-env.config.mjs';
 
 // @ts-ignore
 import { PrismaPlugin } from '@prisma/nextjs-monorepo-workaround-plugin';
 
-// validate server env
-const _serverEnv = getServerRuntimeEnv();
+const isProd = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === 'development';
+
 
 const workspaceRoot = path.resolve(
   path.dirname(url.fileURLToPath(import.meta.url)),
@@ -32,8 +35,6 @@ const packageJson = JSON.parse(
   readFileSync(new URL('./package.json', import.meta.url)).toString('utf-8')
 );
 
-const isProd = process.env.NODE_ENV === 'production';
-
 if (!buildEnv.NEXT_BUILD_ENV_SOURCEMAPS) {
   console.log(
     `- ${pc.green(
@@ -48,49 +49,49 @@ const secureHeaders = createSecureHeaders({
     directives:
       buildEnv.NEXT_BUILD_ENV_CSP === true
         ? {
-            defaultSrc: "'self'",
-            styleSrc: [
-              "'self'",
-              "'unsafe-inline'",
-              'https://unpkg.com/@graphql-yoga/graphiql/dist/style.css',
-              'https://meet.jitsi.si',
-              'https://8x8.vc',
-            ],
-            scriptSrc: [
-              "'self'",
-              "'unsafe-eval'",
-              "'unsafe-inline'",
-              'https://unpkg.com/@graphql-yoga/graphiql',
-              // 'https://meet.jit.si/external_api.js',
-              // 'https://8x8.vc/external_api.js',
-            ],
-            frameSrc: [
-              "'self'",
-              // 'https://meet.jit.si',
-              // 'https://8x8.vc',
-            ],
-            connectSrc: [
-              "'self'",
-              'https://vitals.vercel-insights.com',
-              'https://*.sentry.io',
-              // 'wss://ws.pusherapp.com',
-              // 'wss://ws-eu.pusher.com',
-              // 'https://sockjs.pusher.com',
-              // 'https://sockjs-eu.pusher.com',
-            ],
-            imgSrc: ["'self'", 'https:', 'http:', 'data:'],
-            workerSrc: ['blob:'],
-          }
+          defaultSrc: "'self'",
+          styleSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            'https://unpkg.com/@graphql-yoga/graphiql/dist/style.css',
+            'https://meet.jitsi.si',
+            'https://8x8.vc',
+          ],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-eval'",
+            "'unsafe-inline'",
+            'https://unpkg.com/@graphql-yoga/graphiql',
+            // 'https://meet.jit.si/external_api.js',
+            // 'https://8x8.vc/external_api.js',
+          ],
+          frameSrc: [
+            "'self'",
+            // 'https://meet.jit.si',
+            // 'https://8x8.vc',
+          ],
+          connectSrc: [
+            "'self'",
+            'https://vitals.vercel-insights.com',
+            'https://*.sentry.io',
+            // 'wss://ws.pusherapp.com',
+            // 'wss://ws-eu.pusher.com',
+            // 'https://sockjs.pusher.com',
+            // 'https://sockjs-eu.pusher.com',
+          ],
+          imgSrc: ["'self'", 'https:', 'http:', 'data:'],
+          workerSrc: ['blob:'],
+        }
         : {},
   },
   ...(buildEnv.NEXT_BUILD_ENV_CSP === true &&
-  process.env.NODE_ENV === 'production'
+    process.env.NODE_ENV === 'production'
     ? {
-        forceHTTPSRedirect: [
-          true,
-          { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true },
-        ],
-      }
+      forceHTTPSRedirect: [
+        true,
+        { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true },
+      ],
+    }
     : {}),
   referrerPolicy: 'same-origin',
 });
@@ -98,11 +99,23 @@ const secureHeaders = createSecureHeaders({
 /**
  * @type {import('next').NextConfig}
  */
-const nextConfig = {
+const config = {
   reactStrictMode: true,
+  // basePath: '',
   productionBrowserSourceMaps: buildEnv.NEXT_BUILD_ENV_SOURCEMAPS === true,
+  /**
+   * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
+   * out.
+   *
+   * @see https://github.com/vercel/next.js/issues/41980
+   */
   i18n: nextI18nConfig.i18n,
+
+  // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
+  // trailingSlash: true,
+
   optimizeFonts: true,
+  // poweredByHeader: false,
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
@@ -119,7 +132,15 @@ const nextConfig = {
   swcMinify: true,
 
   compiler: {
+    // Remove console aside from 'error' in production
+    // removeConsole: {
+    //   exclude: ['error'],
+    // },
     // emotion: true,
+    // Remove data-testid used for React Testing Library in production
+    // reactRemoveProperties: {
+    //   properties: ['^data-custom$', '^data-testid$'],
+    // },
   },
 
   sentry: {
@@ -134,7 +155,29 @@ const nextConfig = {
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    domains: [
+      'image-cdn.flowgpt.com',
+      'flow-user-images.s3.us-west-1.amazonaws.com',
+      'flow-prompt-covers.s3.us-west-1.amazonaws.com',
+      'flow-public-assets.s3.us-west-1.amazonaws.com',
+      'lh3.googleusercontent.com',
+      'media.licdn.com',
+      'wallpapers-clan.com',
+      'cdn.discordapp.com',
+      'abs.twimg.com',
+      'pbs.twimg.com',
+      'i.pinimg.com',
+      'pbs.twimg.com',
+      'i.ibb.co',
+      'pbs.twimg.com',
+      'www.gravatar.com',
+      'iph.href.lu',
+      // 加入 wordpress 相关域名
+      'blog.tongdelove.com',
+      '127.0.0.1',
+      'localhost',
+    ],
+    minimumCacheTTL: 432000,
     formats: ['image/webp'],
     loader: 'default',
     dangerouslyAllowSVG: false,
@@ -151,12 +194,11 @@ const nextConfig = {
 
   transpilePackages: isProd
     ? [
-        'ofetch',
-        // i18next is build for modern browsers
-        // 'i18next',
-        // tailwind-merge contains nullish operator ?.
-        // 'tailwind-merge',
-      ]
+      // i18next is build for modern browsers
+      // 'i18next',
+      // tailwind-merge contains nullish operator ?.
+      // 'tailwind-merge',
+    ]
     : [],
 
   // Standalone build
@@ -189,20 +231,29 @@ const nextConfig = {
 
     // Caution if using pnpm you might also need to consider that things are hoisted
     // under node_modules/.pnpm/<something variable>. Depends on version
-    //
-    // outputFileTracingExcludes: {
-    //  '*': [
-    //    '**/node_modules/@swc/core-linux-x64-gnu/**/*',
-    //    '**/node_modules/@swc/core-linux-x64-musl/**/*',
-    //    // If you're nor relying on mdx-remote... drop this
-    //    '**/node_modules/esbuild/linux/**/*',
-    //    '**/node_modules/webpack/**/*',
-    //    '**/node_modules/terser/**/*',
-    //    // If you're not relying on sentry edge or any weird stuff... drop this too
-    //    // https://github.com/getsentry/sentry-javascript/pull/6982
-    //    '**/node_modules/rollup/**/*',
-    //  ],
-    // },
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/canvas',
+        'node_modules/.pnpm/canvas@2.11.2',
+        '**/node_modules/@swc/core-linux-x64-gnu/**/*',
+        '**/node_modules/@swc/core-linux-x64-musl/**/*',
+        // If you're nor relying on mdx-remote... drop this
+        '**/node_modules/esbuild/linux/**/*',
+        '**/node_modules/webpack/**/*',
+        '**/node_modules/terser/**/*',
+        // If you're not relying on sentry edge or any weird stuff... drop this too
+        // https://github.com/getsentry/sentry-javascript/pull/6982
+        '**/node_modules/rollup/**/*',
+      ],
+    },
+    outputFileTracingIgnores: [
+      'node_modules/canvas',
+      'node_modules/.pnpm/canvas@2.11.2',
+    ],
+    webVitalsAttribution: ['CLS', 'LCP'],
+    // https://nextjs.org/docs/app/api-reference/functions/server-actions
+    // serverActions: true,
+    // serverActionsBodySizeLimit: '2mb',
 
     // Prefer loading of ES Modules over CommonJS
     // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
@@ -212,28 +263,80 @@ const nextConfig = {
     // @link {https://github.com/vercel/next.js/pull/22867|Original PR}
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
-    swcPlugins: [
-      [
-        'next-superjson-plugin',
-        {
-          excluded: [],
-        },
-      ],
-    ],
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    // Google fonts
+    // removeConsole: {
+    //   exclude: ['error'],
+    // },
+  },
+
+  serverRuntimeConfig: {
+    // Will only be available on the server side
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
   },
 
   typescript: {
     ignoreBuildErrors: !buildEnv.NEXT_BUILD_ENV_TYPECHECK,
     tsconfigPath: buildEnv.NEXT_BUILD_ENV_TSCONFIG,
+    //   tsconfigPath,
+    //   ignoreBuildErrors: true,
   },
 
   eslint: {
     ignoreDuringBuilds: !buildEnv.NEXT_BUILD_ENV_LINT,
-    // dirs: [`${__dirname}/src`],
+    // dirs: [`${__dirname}/src`], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
 
   async headers() {
     return [
+      {
+        source: '/:all*(svg|jpg|png|wasm|gif)',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2629746, must-revalidate',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, max-age=2629746, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/api/auth/csrf',
+        headers: [
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value:
+              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+          },
+        ],
+      },
+      {
+        source: '/api/auth/session',
+        headers: [
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value:
+              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+          },
+        ],
+      },
       {
         // All page routes, not the api ones
         source: '/:path((?!api).*)*',
@@ -249,13 +352,28 @@ const nextConfig = {
   // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
   async rewrites() {
     return [
-      /*
       {
-        source: `/about-us`,
-        destination: '/about',
+        source: '/mp/lib.min.js',
+        destination: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js',
       },
-      */
-    ];
+      {
+        source: '/mp/lib.js',
+        destination: 'https://cdn.mxpnl.com/libs/mixpanel-2-latest.js',
+      },
+      {
+        source: '/mp/decide',
+        destination: 'https://decide.mixpanel.com/decide',
+      },
+      {
+        source: '/mp/:slug',
+        // use "api-eu.mixpanel.com" if you need to use EU servers
+        destination: 'https://api.mixpanel.com/:slug',
+      },
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:7001/api/:path*',
+      },
+    ]
   },
 
   webpack: (config, { webpack, isServer }) => {
@@ -304,31 +422,67 @@ const nextConfig = {
   },
 };
 
-let config = nextConfig;
+const plugins = [
+  withBundleAnalyzer({
+    enabled: process.env.ANALYZE === 'true',
+  })
+]
 
-if (buildEnv.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {
-  // @ts-ignore cause sentry is not always following nextjs types
-  config = withSentryConfig(config, {
-    // Additional config options for the Sentry Webpack plugin. Keep in mind that
-    // the following options are set automatically, and overriding them is not
-    // recommended:
-    //   release, url, org, project, authToken, configFile, stripPrefix,
-    //   urlPrefix, include, ignore
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options.
-    // silent: isProd, // Suppresses all logs
-    dryRun: buildEnv.NEXT_BUILD_ENV_SENTRY_UPLOAD_DRY_RUN === true,
-    silent: buildEnv.NEXT_BUILD_ENV_SENTRY_DEBUG === false,
-  });
-} else {
-  const { sentry, ...rest } = config;
-  config = rest;
+const nextConfig = () => {
+  let result = config
+
+  if (process.env.CI === 'true' && buildEnv.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {
+    // @ts-ignore cause sentry is not always following nextjs types
+    result = withSentryConfig(
+      config,
+      {
+        // For all available options, see:
+        // https://github.com/getsentry/sentry-webpack-plugin#options
+
+        // Additional config options for the Sentry Webpack plugin. Keep in mind that
+        // the following options are set automatically, and overriding them is not
+        // recommended:
+        //   release, url, org, project, authToken, configFile, stripPrefix,
+        //   urlPrefix, include, ignore
+        // For all available options, see:
+        // https://github.com/getsentry/sentry-webpack-plugin#options.
+        // silent: isProd, // Suppresses all logs
+        dryRun: buildEnv.NEXT_BUILD_ENV_SENTRY_UPLOAD_DRY_RUN === true,
+        silent: buildEnv.NEXT_BUILD_ENV_SENTRY_DEBUG === false,
+
+        // Suppresses source map uploading logs during build
+        silent: true,
+
+        org: 'httpsgithubcomflowgpt',
+        project: 'flow-gpt',
+      },
+      {
+        // For all available options, see:
+        // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+        // Upload a larger set of source maps for prettier stack traces (increases build time)
+        widenClientFileUpload: true,
+
+        // Transpiles SDK to be compatible with IE11 (increases bundle size)
+        transpileClientSDK: true,
+
+        // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+        tunnelRoute: '/monitoring',
+
+        // Hides source maps from generated client bundles
+        hideSourceMaps: true,
+
+        // Automatically tree-shake Sentry logger statements to reduce bundle size
+        disableLogger: true,
+      }
+    )
+  } else {
+    const { sentry, ...rest } = nextConfig;
+    result = rest;
+  }
+
+  return plugins.reduce((acc, next) => next(acc), result)
 }
 
-if (process.env.ANALYZE === 'true') {
-  config = withBundleAnalyzer({
-    enabled: true,
-  })(config);
-}
 
-export default config;
+export default nextConfig

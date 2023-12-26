@@ -1,7 +1,7 @@
 import React, { MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
 import { Popover } from 'antd';
 import Draggable from 'react-draggable';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './index.module.css';
 import FastMenu from '../FastMenu';
 import styled from '@emotion/styled';
@@ -47,14 +47,14 @@ const CanvasControl = (props: CanvasControlProps) => {
         {/* 放大缩小功能 */}
         <Popover placement="bottom" title={null} content={zoomMenu} trigger="hover">
           <span
-            className={classnames(styles.sliderBtn, {
+            className={clsx(styles.sliderBtn, {
               [styles.sliderBtnDisabled]: scaleNum === 3
             })}
             onClick={handleSlider.bind(this, 1)}
           >+</span>
           <span>{Math.floor(scaleNum * 10) * 10}%</span>
           <span
-            className={classnames(styles.sliderBtn, {
+            className={clsx(styles.sliderBtn, {
               [styles.sliderBtnDisabled]: scaleNum === 0.2
             })}
             onClick={handleSlider.bind(this, 0)}

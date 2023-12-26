@@ -20,7 +20,7 @@ export default function ModelSelect() {
     dispatch
   } = useAppContext()
   return (
-    <div className='flex bg-gray-100 dark:bg-gray-900 p-1 rounded-xl'>
+    <div className='flex  dark:bg-gray-900 p-1 rounded-xl'>
       {models.map((item) => {
         const selected = item.id === currentModel
         return (

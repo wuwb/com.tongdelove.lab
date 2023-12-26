@@ -1,13 +1,7 @@
-import { HttpInternalServerError, HttpNotFound } from '@httpx/exception';
 import type { PrismaClientDbMain } from '@tongdelove/prisma';
-import { assertIsPresent, type UnPromisify } from '@tongdelove/ts-utils';
-
-export type GetPosts = UnPromisify<
-  ReturnType<(typeof PostRepositorySsr)['prototype']['getPosts']>
->;
 
 export class PostRepositorySsr {
-  constructor(private prisma: PrismaClientDbMain) {}
+  constructor(private prisma: PrismaClientDbMain) { }
 
   /**
    * @throws Error
@@ -18,13 +12,12 @@ export class PostRepositorySsr {
         where: { id: postId },
         include: { author: true },
       });
-      assertIsPresent(
-        post,
-        () => new HttpNotFound(`Post ${postId} can't be found`)
-      );
+      if (!post) {
+        throw new Error(`Post ${postId} can't be found`)
+      }
       return post;
     } catch (e) {
-      throw new HttpInternalServerError({
+      throw new Error({
         message: `Post ${postId} can't be retrieved`,
         cause: e instanceof Error ? e : undefined,
       });
@@ -57,7 +50,7 @@ export class PostRepositorySsr {
         orderBy: { publishedAt: 'desc' },
       });
     } catch (e) {
-      throw new HttpInternalServerError({
+      throw new Error({
         message: `Posts can't be retrieved`,
         cause: e instanceof Error ? e : undefined,
       });

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import classnames from "classnames";
+import clsx from "clsx";
 import BackgroundPanel from "../components/Panel/BackgroundPanel";
 import FontPanel from "../components/Panel/FontPanel";
 import MaterialPanel from "../components/Panel/MaterialPanel";
@@ -53,7 +53,7 @@ const LeftSide = (props: Props) => {
     }, []);
 
     return (
-        <div className={classnames(styles.leftSideWrap, styles.leftSide, {
+        <div className={clsx(styles.leftSideWrap, styles.leftSide, {
             [styles.leftSideCollapsed]: collapsed,
         })}>
             <Tabs
@@ -75,7 +75,7 @@ const LeftSide = (props: Props) => {
                 <Tab label="上传" className={styles.tabItem} {...a11yProps(7)} />
                 <Tab label="图层" className={styles.tabItem} {...a11yProps(8)} />
             </Tabs>
-            <div className={classnames(styles.panelwrap, {
+            <div className={clsx(styles.panelwrap, {
                 hidden: showTab,
             })}>
                 <PanelItemWrap value={tabIndex} index={0}>

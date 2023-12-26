@@ -1,19 +1,16 @@
 import { PrismaManager, PrismaClientDbMain } from '@tongdelove/prisma';
-import { assertNonEmptyString } from '@tongdelove/ts-utils';
 
 const isDev = process.env?.NODE_ENV === 'development';
 
 export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
   const url = process.env?.PRISMA_DATABASE_URL ?? null;
 
+  if (!url) {
+    throw new Error(
+      `[Error] Cannot create prisma client instance, missing env variable PRISMA_DATABASE_URL.`
+    )
+  }
 
-  assertNonEmptyString(
-    url,
-    () =>
-      new Error(
-        `[Error] Cannot create prisma client instance, missing env variable PRISMA_DATABASE_URL.`
-      )
-  );
   console.log('prisma url: ', url);
 
   const instance = PrismaManager.getDevSafeInstance('db-main', () => {

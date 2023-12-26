@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { ICompBaseProps } from '@/interfaces';
 import styles from './styles.module.scss';
 

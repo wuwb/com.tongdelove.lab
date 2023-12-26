@@ -2,7 +2,6 @@ import { createNextApiHandler } from "@trpc/server/adapters/next";
 import { env } from "@/configs/env.config";
 import { appRouter } from "@/server/trpc/root";
 import { createTRPCContext } from "@/server/trpc/context";
-import { sayHello } from '@tongdelove/core-lib';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // export API handler

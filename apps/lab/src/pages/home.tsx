@@ -1,4 +1,3 @@
-import { HttpBadRequest } from '@httpx/exception';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
 import { homeConfig } from '@/features/home/home.config';
@@ -19,7 +18,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 ) => {
   const { locale } = context;
   if (locale === undefined) {
-    throw new HttpBadRequest('locale is missing');
+    throw new Error('locale is missing');
   }
   const { i18nNamespaces } = homeConfig;
   return {

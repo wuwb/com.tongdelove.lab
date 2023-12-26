@@ -2,7 +2,7 @@ import { LoginParamsType } from '@/services/base/auth';
 import { Outlet } from '@umijs/max';
 import { Form, Tabs } from 'antd';
 import { FormInstance } from 'antd/es/form';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import useMergeValue from 'use-merge-value';
 import styles from './index.less';
@@ -76,7 +76,7 @@ const Login: LoginType = (props) => {
         },
       }}
     >
-      <div className={classNames(className, styles.login)}>
+      <div className={clsx(className, styles.login)}>
         <Form
           form={props.from || form}
           onFinish={(values) => {

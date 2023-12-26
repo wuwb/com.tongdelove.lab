@@ -1,10 +1,3 @@
-// import { store } from '@/stores';
-// import { setAccessToken, setUser } from '@/stores/authSlice';
-// import axios from '@/utils/axios';
-// import { AxiosResponse } from 'axios';
-// import toast from 'react-hot-toast';
-
-// important
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
 import {
@@ -13,16 +6,8 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import EmailProvider from 'next-auth/providers/email'
-// import { prismaClient } from '@/backend/config/container.config';
 import { prisma } from '@/server/db/prisma';
 import Credentials from "next-auth/providers/credentials";
-// import DiscordProvider from "next-auth/providers/discord";
-// import GoogleProvider from "next-auth/providers/google"
-// import GithubProvider from "next-auth/providers/github"
-// import LinkedinProvider from 'next-auth/providers/linkedin'
-// import TwitterProvider from 'next-auth/providers/twitter'
-
-// import { prisma } from "@prisma/client";
 import { env } from "@/configs/env.config";
 
 const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days

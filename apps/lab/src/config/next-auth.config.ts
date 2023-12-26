@@ -1,9 +1,6 @@
 import type { NextAuthOptions } from 'next-auth';
 import { default as CredentialsProvider } from 'next-auth/providers/credentials';
 import { createHttpUnauthorized } from '@/lib/auth/error';
-import { getServerRuntimeEnv } from './server-runtime-env.config.mjs';
-
-const serverRuntimeEnv = getServerRuntimeEnv();
 
 const oneDayInSeconds = 86400;
 
@@ -11,7 +8,7 @@ const oneDayInSeconds = 86400;
  * @todo Remove this once oauth is ready
  */
 const getStaticAllowedDemoAdminUser = (email: string, password: string) => {
-  const enableDemoAdminUser = serverRuntimeEnv.AUTH_ENABLE_DEMO_ADMIN_USER;
+  const enableDemoAdminUser = process.env.AUTH_ENABLE_DEMO_ADMIN_USER;
 
   if (
     enableDemoAdminUser &&

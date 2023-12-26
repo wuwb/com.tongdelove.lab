@@ -1,4 +1,3 @@
-import { HttpBadRequest } from '@httpx/exception';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
 import { authConfig } from '@/features/auth/auth.config';
@@ -17,7 +16,7 @@ export default function LoginRoute(
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const { locale } = context;
   if (locale === undefined) {
-    throw new HttpBadRequest('locale is missing');
+    throw new Error('locale is missing');
   }
   const { i18nNamespaces } = authConfig;
   return {

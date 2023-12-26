@@ -25,7 +25,7 @@ export const HeroBlock: FC<Props> = () => {
             <button className="inline-flex rounded border-0 bg-indigo-500 px-6 py-2 text-lg text-white hover:bg-indigo-600 focus:outline-none">
               Button
             </button>
-            <button className="ml-4 inline-flex rounded border-0 bg-gray-100 px-6 py-2 text-lg text-gray-700 hover:bg-gray-200 focus:outline-none">
+            <button className="ml-4 inline-flex rounded border-0  px-6 py-2 text-lg text-gray-700 hover:bg-gray-200 focus:outline-none">
               Button
             </button>
           </div>

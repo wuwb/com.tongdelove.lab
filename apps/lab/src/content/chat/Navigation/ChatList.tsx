@@ -1,8 +1,8 @@
 import type { Chat } from "@/types/chat"
 import { IconMessageCircle } from "@tabler/icons-react"
 import { useMemo, useState } from "react"
-import cn from 'classnames'
-import { groupByDate } from "@/helpers/chat"
+import cn from 'clsx'
+import { groupByDate } from "@/utils/helpers/chat"
 import ChatItem from "./ChatItem"
 
 export default function ChatList() {

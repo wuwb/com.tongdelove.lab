@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import { useState, type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { Url } from 'next/dist/shared/lib/router/router';
 
 const loginFormSchema = z.object({
   username: z.string().min(2, { message: 'Minimum 2 chars' }).email({
@@ -15,17 +16,13 @@ const loginFormSchema = z.object({
 
 export type LoginFormValues = z.infer<typeof loginFormSchema>;
 
-type Props = {
-  /** in case of success, redirect to this page */
+type LoginFormProps = {
   redirectToPage?: string;
-};
+}
 
-const defaultProps = {
-  redirectToPage: '/',
-} satisfies Props;
-
-export const LoginForm: FC<Props> = (props) => {
-  const { redirectToPage } = { ...defaultProps, ...props };
+export const LoginForm: FC<LoginFormProps> = ({
+  redirectToPage
+}) => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const {
@@ -52,7 +49,7 @@ export const LoginForm: FC<Props> = (props) => {
     } = result ?? {};
 
     if (ok) {
-      await router.push(redirectToPage);
+      await router.push(redirectToPage as Url);
     } else {
       setError(`${status} - ${error}`);
     }

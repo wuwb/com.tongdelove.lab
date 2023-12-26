@@ -1,5 +1,5 @@
 import { Link } from '@umijs/max';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Styles from './Article.less';
 
 const Article = (props) => {
@@ -23,15 +23,15 @@ const Article = (props) => {
             <Link to="">文章内容</Link>
           </div>
           <ul className={Styles.actionList}>
-            <li className={classnames(Styles.item, Styles.view)}>
+            <li className={clsx(Styles.item, Styles.view)}>
               阅读
               <span>100</span>
             </li>
-            <li className={classnames(Styles.item, Styles.like)}>
+            <li className={clsx(Styles.item, Styles.like)}>
               点赞
               <span>100</span>
             </li>
-            <li className={classnames(Styles.item, Styles.comment)}>
+            <li className={clsx(Styles.item, Styles.comment)}>
               评论
               <span>100</span>
             </li>

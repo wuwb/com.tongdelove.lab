@@ -6,7 +6,7 @@ import { parseSourceType } from '@/content/freelancer/interface';
 import { useAppSelector } from '@/stores/hooks';
 import type { NextPageWithLayout } from '@/types/app';
 import axios from '@/utils/axios';
-import cx from 'classnames';
+import cx from 'clsx';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -74,7 +74,7 @@ const TasksPageIdPage: NextPageWithLayout<Props> = (props) => {
     }, []);
 
     return (
-        <div className="bg-gray-100 pt-10 pb-20">
+        <div className=" pt-10 pb-20">
             <Container className="">
                 <div className="grid grid-cols-5 gap-3">
                     <div className="col-span-4">

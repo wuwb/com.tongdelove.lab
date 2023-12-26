@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { uuid } from '@/utils/tool';
 import { Menu, Item, useContextMenu } from 'react-contexify';
-import classnames from 'classnames';
+import clsx from 'clsx';
 // import BackgroundSketetonWrap from '../assets/background-skeleton-wrap.svg';
 import Elements from '../components/Elements';
 import FourAngle from '../components/FourAngle';
@@ -157,7 +157,7 @@ const TargetBox = memo((props) => {
         <>
           <div
             id="svgContainer"
-            className={classnames(styles.canvasBox, styles.zoomAbleCanvasWrap)}
+            className={clsx(styles.canvasBox, styles.zoomAbleCanvasWrap)}
             onContextMenu={handleContextMenu}
             style={{
               width: '572mm',
@@ -174,7 +174,7 @@ const TargetBox = memo((props) => {
 
               {/* 背景图片 */}
               <div
-                className={classnames(styles.backgroundWrap, {
+                className={clsx(styles.backgroundWrap, {
                   [styles.flip]: flip,
                 })}
               ></div>
@@ -228,7 +228,7 @@ const TargetBox = memo((props) => {
               lineGuides.map((item) => (
                 <div
                   key={`${item.x}-${item.y}`}
-                  className={classnames(styles.lineGuideWrap, styles[`type-${item.type}`])}
+                  className={clsx(styles.lineGuideWrap, styles[`type-${item.type}`])}
                   style={{
                     left: `${item.x}mm`,
                     top: `${item.y}mm`,

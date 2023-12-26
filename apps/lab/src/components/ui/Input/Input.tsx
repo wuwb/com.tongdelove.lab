@@ -56,7 +56,7 @@ export const TextArea = (props: any) => (
 );
 
 const styles =
-  'w-full rounded-md text-primary px-4 py-2 text-primary bg-gray-1000 dark:bg-white dark:bg-opacity-5 bg-opacity-5 hover border-gray-200 dark:border-gray-700'
+  'w-full rounded-md text-primary px-4 py-2 text-primary 0 dark:bg-white dark:bg-opacity-5 bg-opacity-5 hover border-gray-200 dark:border-gray-700'
 
 export function SimpleInput(props) {
   return <input className={styles} {...props} />

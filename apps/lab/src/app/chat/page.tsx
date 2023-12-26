@@ -3,7 +3,7 @@
 import Navigation from '@/content/chat/Navigation';
 import Main from '@/content/chat/Main';
 import { useAppContext } from '@/contexts/AppContext';
-import cn from 'classnames'
+import cn from 'clsx'
 
 export default function Chat() {
   const {

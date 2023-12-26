@@ -1,10 +1,10 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import styles from './Loader.less';
 
 const Loader = ({ spinning = false, fullScreen }) => {
   return (
     <div
-      className={classNames(styles.loader, {
+      className={clsx(styles.loader, {
         [styles.hidden]: !spinning,
         [styles.fullScreen]: fullScreen,
       })}

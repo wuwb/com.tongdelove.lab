@@ -2,7 +2,7 @@
 
 import { useAppContext } from "@/contexts/AppContext"
 import MenuBar from "./Menubar"
-import cn from 'classnames'
+import cn from 'clsx'
 import Toolbar from "./Toolbar"
 import ChatList from "./ChatList"
 

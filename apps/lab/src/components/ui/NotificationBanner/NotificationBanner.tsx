@@ -1,5 +1,5 @@
 // import Markdown from 'react-markdown';
-import cx from 'classnames';
+import cx from 'clsx';
 import { IconX } from '@tabler/icons-react';
 
 export const NotificationBanner = ({ data: { text, type }, closeSelf }) => {

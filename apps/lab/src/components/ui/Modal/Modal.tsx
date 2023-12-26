@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import cx from 'classnames';
+import cx from 'clsx';
 import { IconBrandNytimes } from '@tabler/icons-react';
 
 import styles from './Modal.module.scss';

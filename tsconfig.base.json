@@ -2,7 +2,7 @@
   // www.typescriptlang.org/tsconfig
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "verbatimModuleSyntax": false,
+    // "verbatimModuleSyntax": false, // Unknown compiler option
     "useUnknownInCatchVariables": true,
     "noImplicitOverride": true,
     "skipDefaultLibCheck": true,
@@ -13,7 +13,6 @@
     "noLib": false,
     "experimentalDecorators": true,
     "newLine": "lf",
-    "baseUrl": ".",
     "outDir": "./dist",
     "allowUnusedLabels": true,
     "noImplicitUseStrict": false,
@@ -59,7 +58,6 @@
     "incremental": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
-    "paths": {}
   },
   "include": [
     "**/*.ts",

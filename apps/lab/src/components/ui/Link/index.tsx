@@ -1,4 +1,4 @@
-import { default as cn, default as cx } from 'classnames';
+import clsx from 'clsx';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -38,7 +38,7 @@ const Links = React.forwardRef(function Link(props: any, ref) {
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
-  const className = cn(classNameProps, {
+  const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
@@ -73,7 +73,7 @@ function Link({ href, children, ...props }: any) {
   const { className, ...rest } = props;
 
   return (
-    <NextLink href={href} className={cx('no-underline', className)} {...rest}>
+    <NextLink href={href} className={clsx('no-underline', className)} {...rest}>
       {children}
     </NextLink>
   );

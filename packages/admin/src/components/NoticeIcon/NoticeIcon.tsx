@@ -1,6 +1,6 @@
 import { BellOutlined } from '@ant-design/icons';
 import { Badge, Spin, Tabs } from 'antd';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import React from 'react';
 import HeaderDropdown from '../HeaderDropdown';
@@ -89,11 +89,11 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
     value: props.popupVisible,
     onChange: props.onPopupVisibleChange,
   });
-  const noticeButtonClass = classNames(className, styles.noticeButton);
+  const noticeButtonClass = clsx(className, styles.noticeButton);
   const notificationBox = getNotificationBox();
   const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />;
   const trigger = (
-    <span className={classNames(noticeButtonClass, { opened: visible })}>
+    <span className={clsx(noticeButtonClass, { opened: visible })}>
       <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>
         {NoticeBellIcon}
       </Badge>

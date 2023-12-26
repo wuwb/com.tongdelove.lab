@@ -1,5 +1,5 @@
 import { Avatar, List } from 'antd';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import styles from './NoticeList.less';
 
@@ -47,7 +47,7 @@ const NoticeList: React.FC<NoticeIconTabProps> = ({
         className={styles.list}
         dataSource={list}
         renderItem={(item, i) => {
-          const itemCls = classNames(styles.item, {
+          const itemCls = clsx(styles.item, {
             [styles.read]: item.read,
           });
           // eslint-disable-next-line no-nested-ternary

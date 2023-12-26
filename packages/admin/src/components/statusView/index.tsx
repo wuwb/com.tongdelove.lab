@@ -1,5 +1,5 @@
 import { Popover, Tag } from 'antd';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 
 import './index.less';
@@ -21,7 +21,7 @@ class StatusView extends React.Component {
         return (
           <div className="popovers" key={item.key}>
             <div
-              className={classNames(
+              className={clsx(
                 'popoverStatus',
                 item.key === children ? 'status-high' : 'status-default',
               )}
@@ -29,7 +29,7 @@ class StatusView extends React.Component {
               {item.value}
             </div>
             <span
-              className={classNames(
+              className={clsx(
                 'popoverText',
                 index === statusList.length - 1 && 'propoverDisplayNone',
               )}

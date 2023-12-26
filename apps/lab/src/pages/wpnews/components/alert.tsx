@@ -1,5 +1,5 @@
 import Container from './container';
-import cx from 'classnames';
+import cx from 'clsx';
 
 export default function Alert({ preview }) {
   return (

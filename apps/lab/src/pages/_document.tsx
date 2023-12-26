@@ -1,4 +1,3 @@
-import createEmotionServer from '@emotion/server/create-instance';
 import {
   default as Document,
   type DocumentProps,
@@ -7,12 +6,9 @@ import {
   Head,
   NextScript,
 } from 'next/document';
-import { createEmotionCache } from '@/lib/emotion';
-import { defaultLocale } from '../../next-i18next.config.mjs';
-import { Head, Html, Main, NextScript } from 'next/document'
-import type { DocumentProps } from 'next/document'
+import { defaultLocale } from '../../next-i18next.config.mjs'
 import i18nextConfig from '../../next-i18next.config'
-import { ColorSchemeScript } from '@mantine/core';
+import { ColorSchemeScript } from '@mantine/core'
 
 type Props = DocumentProps & {
   // add custom document props
@@ -22,9 +18,9 @@ type Props = DocumentProps & {
 class MyDocument extends Document<Props> {
   override render() {
     const locale = this.props.locale ?? defaultLocale;
-  const currentLocale =
-    props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
-    
+    const currentLocale =
+      props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
+
     return (
       <Html lang={locale}>
         <Head>
@@ -61,19 +57,28 @@ class MyDocument extends Document<Props> {
             content="/images/favicon/browserconfig.xml"
           />
           <meta name="theme-color" content="#ffffff" />
-	  <ColorSchemeScript defaultColorScheme="auto" />
+          <meta
+            name="google-site-verification"
+            content=""
+          />
+          <link
+            rel="alternate"
+            hrefLang="x-default"
+            href={`https://${currentLocale}.vercel.app`}
+          />
+          <ColorSchemeScript defaultColorScheme="auto" />
         </Head>
         <body>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            ></iframe>
+          </noscript>
           <Main />
-          <NextScript />
+          <NextScript data-sprig-preview />
         </body>
       </Html>
     );
@@ -89,32 +94,19 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
   // You can consider sharing the same Emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
-  const cache = createEmotionCache();
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { extractCriticalToChunks } = createEmotionServer(cache);
 
   ctx.renderPage = () =>
     originalRenderPage({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       enhanceApp: (App: any) =>
         function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />;
+          return <App {...props} />;
         },
     });
 
   const initialProps = await Document.getInitialProps(ctx);
-  const emotionStyles = extractCriticalToChunks(initialProps.html);
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
-    <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
-      key={style.key}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: style.css }}
-    />
-  ));
   return {
     ...initialProps,
-    emotionStyleTags,
   };
 };
 

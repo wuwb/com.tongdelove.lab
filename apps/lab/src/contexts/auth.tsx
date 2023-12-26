@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import Router, { useRouter } from 'next/navigation';
 import axios from '@/utils/axios';
 
@@ -11,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function loadUserFromCookies() {
-      const token = Cookies.get('token');
+      const token = 'token';
       if (token) {
         axios.defaults.headers['Authorization'] = `Bearer ${token}`;
         try {

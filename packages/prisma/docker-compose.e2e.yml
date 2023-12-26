@@ -1,4 +1,5 @@
 name: nextjs-monorepo-example-prisma-e2e
+
 services:
   e2e-postgres:
     container_name: prisma-e2e-postgresql
@@ -19,5 +20,6 @@ services:
       retries: 5
     volumes:
       - e2e_postgres:/var/lib/postgresql/data:rw
+      
 volumes:
   e2e_postgres:

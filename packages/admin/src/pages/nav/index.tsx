@@ -7,7 +7,7 @@ const NavPage = ({ data }) => {
   return (
     <DefaultLayout full={true}>
       <div className="flex -mt-10">
-        <div className="w-80 bg-gray-100">
+        <div className="w-80 ">
           <div style={{ marginTop: '50px' }}>
             <Anchor affix={true} showInkInFixed={true}>
               {navs.map((item, index) => {
@@ -30,7 +30,7 @@ const NavPage = ({ data }) => {
                   {item.children.map((item, index) => {
                     return (
                       <div key={item.name}>
-                        <a key={item.name} href={item.path} className="block hover:bg-gray-100">
+                        <a key={item.name} href={item.path} className="block hover:">
                           {item.icon ? (
                             <img
                               className="w-5 float-left rounded"

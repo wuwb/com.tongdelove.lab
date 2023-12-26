@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import { CustomLink } from '../CustomLink';
 
 const ButtonContent = ({ button, appearance, compact }) => {

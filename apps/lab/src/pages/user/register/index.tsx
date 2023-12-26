@@ -103,7 +103,7 @@ function Register() {
               <p className="text-center text-sm font-light text-gray-400">使用三方账号快速注册</p>
               <div>
                 <div className="mt-3 flex items-center justify-center space-x-4">
-                  <button className="flex transform items-center rounded border border-transparent bg-white py-2 px-4 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
+                  <button className="flex transform items-center rounded border border-transparent bg-white py-2 px-4 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover: hover:text-gray-700 hover:shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="mr-3 h-6 w-6">
                       <path
                         fillRule="evenodd"
@@ -112,7 +112,7 @@ function Register() {
                     </svg>
                     Github
                   </button>
-                  <button className="flex transform items-center rounded border border-transparent bg-white py-2 px-4 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
+                  <button className="flex transform items-center rounded border border-transparent bg-white py-2 px-4 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover: hover:text-gray-700 hover:shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-3 h-6 w-6" viewBox="0 0 48 48">
                       <path
                         fill="#fbc02d"

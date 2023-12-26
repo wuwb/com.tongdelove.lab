@@ -1,7 +1,7 @@
 "use client"
 
 import { Link } from "@/components/ui";
-import cx from 'classnames';
+import cx from 'clsx';
 import { useEffect, useRef, useState } from "react";
 import { DropdownMenu } from './DropdownMenu';
 import styles from './MenuItems.module.scss';

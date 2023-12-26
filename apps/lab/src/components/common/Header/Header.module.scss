@@ -22,7 +22,7 @@
 
 // mobile menu
 .mobile-menu {
-  @apply flex
-    bg-white
-    pr-8;
+  display: flex;
+  background-color: #fff;
+  padding-right: 2rem;
 }

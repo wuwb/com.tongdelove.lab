@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { useAppContext } from "@/contexts/AppContext";
 import { ActionType } from "@/reducers/AppReducer";
-import cn from 'classnames'
+import cn from 'clsx'
 
 export default function Menu() {
   const {

@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './RightButtons.module.css';
 import AreaSelector from '../CanvasControl/AreaSelector';
 

@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import DaohangCard from './DaohangCard';
 import navs from './nav';
 import { LinksNav } from './LinksNav';

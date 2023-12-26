@@ -3,7 +3,7 @@ import { JOB_REF, OnQueueActive, Process, Processor } from '@nestjs/bull';
 import { Inject, Logger } from '@nestjs/common';
 import { FreelancerTask } from '@prisma/client';
 import { Job } from 'bull';
-import { format } from 'date-fns';
+import { format } from 'dayjs';
 
 @Processor('remind')
 export class RemindProcessor {

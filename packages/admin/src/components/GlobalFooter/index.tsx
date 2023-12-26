@@ -1,8 +1,8 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import styles from './index.less';
 
 const GlobalFooter = ({ className, links, copyright }) => {
-  const clsString = classNames(styles.globalFooter, className);
+  const clsString = clsx(styles.globalFooter, className);
   return (
     <footer className={clsString}>
       {links && (

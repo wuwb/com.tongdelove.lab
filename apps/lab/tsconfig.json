@@ -9,15 +9,14 @@
       "esnext",
       "WebWorker"
     ],
-    "verbatimModuleSyntax": true,
-    "module": "esnext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
-    "moduleResolution": "bundler", // 指定使用哪种模块解析策略，默认为 Classic, 'bundler'
+    "module": "esnext", // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'
+    "moduleResolution": "node", // node, bundler 指定使用哪种模块解析策略，默认为 Classic, 'bundler'
     "resolveJsonModule": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "strict": true,
+    "strict": true, // trpc required
     "alwaysStrict": false,
-    "strictNullChecks": true, // trpc need to be true
+    "strictNullChecks": true, // trpc required, need to be true
     "noUncheckedIndexedAccess": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
@@ -26,7 +25,6 @@
     "noUnusedParameters": false,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-    "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
     // "outDir": "out",
     // "declarationDir": "dist/types", // .d.ts 类型文件的输出目录，默认为 outDir 目录
     "declaration": true,
@@ -42,95 +40,16 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-    "baseUrl": "./src",
-    "allowJs": true,
+    "baseUrl": ".",
     "checkJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": "./src",
-    "target": "es2017",
-    "module": "esnext",
-    "moduleResolution": "node", // node, bundler
-    "verbatimModuleSyntax": true,
-    "strict": true, // trpc required
-    "strictNullChecks": true, // trpc required
-    "incremental": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
+    "target": "es2017", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
     "paths": {
       "@/*": [
-        "./*"
-      ],
-      "@/test-utils": [
-        "../config/tests/test-utils"
-      ],
-      "@/config/*": [
-        "./config/*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/backend/*": [
-        "./backend/*"
-      ],
-      "@/features/*": [
-        "./features/*"
-      ],
-      "@/layouts/*": [
-        "./layouts/*"
-      ],
-      "@/pages/*": [
-        "./pages/*"
+        "src/*"
       ],
       "@/public/*": [
-        "../public/*"
+        "public/*"
       ],
-      "@/themes/*": [
-        "./themes/*"
-      ],
-      "@tongdelove/common-i18n": [
-        "../../../packages/common-i18n/src/index"
-      ],
-      "@tongdelove/common-i18n/locales/*": [
-        "../../../packages/common-i18n/src/locales/*"
-      ],
-      "@tongdelove/api-gateway": [
-        "../../../packages/api-gateway/src/index"
-      ],
-      "@tongdelove/ui-lib/*": [
-        "../../../packages/ui-lib/src/*"
-      ],
-      "@tongdelove/ui-lib": [
-        "../../../packages/ui-lib/src/index"
-      ],
-      "@tongdelove/core-lib/*": [
-        "../../../packages/core-lib/src/*"
-      ],
-      "@tongdelove/core-lib": [
-        "../../../packages/core-lib/src/index"
-      ],
-      "@tongdelove/prisma": [
-        "../../../packages/prisma/src/index"
-      ],
-      "@tongdelove/ts-utils": [
-        "../../../packages/ts-utils/src/index"
-      ],
-      "@tongdelove/ui": [
-        "../../../packages/ui/src/index"
-      ]
     },
     "types": [
       "vitest/globals",
@@ -144,7 +63,7 @@
       {
         "name": "next"
       }
-    ]
+    ],
   },
   "exclude": [
     "**/node_modules",
@@ -162,6 +81,7 @@
     "**/*.jsx",
     "**/*.json",
     ".next/types/**/*.ts",
-    "next-i18next.config.js"
+    "next-i18next.config.js",
+    "scripts/*.mts"
   ]
 }

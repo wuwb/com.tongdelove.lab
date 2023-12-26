@@ -9,7 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import classnames from "classnames";
+import clsx from "clsx";
 import { ActionCreators } from "redux-undo";
 import HeaderComponent from "../components/Header";
 import CanvasControl from "../components/CanvasControl";
@@ -261,7 +261,7 @@ const Container = (props: Props) => {
         )}
         {/* 右边收缩按钮 */}
         <div
-          className={classnames(styles.btnDrawRight, {
+          className={clsx(styles.btnDrawRight, {
             [styles.btnDrawRightHide]: !rightCollapsed,
           })}
           onClick={(e) => changeRightCollapsed(!rightCollapsed, e)}
@@ -309,7 +309,7 @@ const Container = (props: Props) => {
       {/* 中间 */}
       <section
         id="calibration"
-        className={classnames(styles.editorCenter, {
+        className={clsx(styles.editorCenter, {
           [styles.leftIndent]: !collapsed,
           [styles.rightIndent]: !rightCollapsed,
         })}
@@ -338,7 +338,7 @@ const Container = (props: Props) => {
 
       {/* 底部控制器 */}
       <section
-        className={classnames(styles.bottomBtnWrap, {
+        className={clsx(styles.bottomBtnWrap, {
           [styles.leftIndent]: !collapsed,
           [styles.rightIndent]: !rightCollapsed,
         })}

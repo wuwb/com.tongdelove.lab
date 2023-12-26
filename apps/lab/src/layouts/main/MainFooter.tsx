@@ -1,33 +1,12 @@
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 import FooterWaves from '@/public/images/layout/footer-waves.svg';
 
-const BgWaved = styled(FooterWaves)`
-  //background-size: cover;
-  object-fit: cover;
-  position: absolute;
-  width: 100%;
-  object-position: center;
-  display: block;
-`;
-
-const FooterCtn = styled.footer`
-  display: grid;
-  .content,
-  .bgImage {
-    grid-area: 1 / 1;
-  }
-  .bgImage {
-    z-index: -1;
-  }
-`;
-
 export const MainFooter: FC = () => {
   return (
-    <FooterCtn>
+    <div className="grid">
       <div className={'bgImage'}>
-        <BgWaved />
+        <FooterWaves className="absolute w-full block object-cover" />
       </div>
-    </FooterCtn>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Outlet } from '@umijs/max';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { Component, useState } from 'react';
 import styles from './index.less';
 
@@ -25,7 +25,7 @@ function Subtitle(props: Props) {
   return (
     <div className={styles.subTitleWrap}>
       <div
-        className={classnames(styles.subTitle, {
+        className={clsx(styles.subTitle, {
           arrow: props.arrow,
           unfold: show,
         })}

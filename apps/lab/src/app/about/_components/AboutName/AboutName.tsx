@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'clsx';
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { IconMoon } from '@tabler/icons-react';

@@ -1,6 +1,6 @@
 import 'swiper/css/bundle';
 import Image from 'next/legacy/image';
-import cn from 'classnames';
+import cn from 'clsx';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import React from 'react';

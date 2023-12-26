@@ -2,7 +2,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
 import { AutoComplete, Input } from 'antd';
 import type { AutoCompleteProps } from 'antd/es/auto-complete';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import React, { useRef } from 'react';
 import styles from './index.less';
@@ -43,12 +43,12 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
     onChange: onVisibleChange,
   });
 
-  const inputClass = classNames(styles.input, {
+  const inputClass = clsx(styles.input, {
     [styles.show]: searchMode,
   });
   return (
     <div
-      className={classNames(className, styles.headerSearch)}
+      className={clsx(className, styles.headerSearch)}
       onClick={() => {
         setSearchMode(true);
         if (inputRef.current) {

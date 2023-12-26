@@ -27,7 +27,7 @@ export function Header() {
         <Logo />
         <Navbar />
         <div className="flex items-center justify-end space-x-1 text-sm font-medium text-gray-800">
-          <Link href="/user/login" className="btn rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline">
+          <Link href="/user/login" className="btn rounded bg-white px-3 py-2 transition hover: sm:inline">
             登录
           </Link>
           <Link href="/user/register" className="btn rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">

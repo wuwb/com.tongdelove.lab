@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { Component } from 'react';
 import Loader from '../Loader';
 import styles from './Page.less';
@@ -12,7 +12,7 @@ export default class Page extends Component {
     };
     return (
       <div
-        className={classnames(className, {
+        className={clsx(className, {
           [styles.contentInner]: inner,
         })}
         style={loading ? loadingStyle : null}

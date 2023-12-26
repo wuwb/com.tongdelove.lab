@@ -8,7 +8,7 @@ const ProductsPageIdPage: NextPageWithLayout = (props) => {
     }, []);
 
     return (
-        <div className="bg-gray-100 pt-10 pb-20">
+        <div className=" pt-10 pb-20">
             123
         </div>
     );

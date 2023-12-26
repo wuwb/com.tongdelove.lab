@@ -1,5 +1,5 @@
 import { Tooltip } from 'antd';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { Component } from 'react';
 import styles from './index.less';
 
@@ -186,7 +186,7 @@ export default class Ellipsis extends Component {
     const { children, lines, length, className, tooltip, fullWidthRecognition, ...restProps } =
       this.props;
 
-    const cls = classNames(styles.ellipsis, className, {
+    const cls = clsx(styles.ellipsis, className, {
       [styles.lines]: lines && !isSupportLineClamp,
       [styles.lineClamp]: lines && isSupportLineClamp,
     });
