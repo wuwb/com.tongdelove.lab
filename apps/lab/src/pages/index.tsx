@@ -62,7 +62,7 @@ const AuthShowcase = () => {
 }
 
 const Index = () => {
-    const hello = trpc.example.hello.useQuery({ text: "from tRPC test" });
+    const { data: hello, isLoading } = trpc.example.hello.useQuery({ text: "from tRPC test" });
 
     return (
         <>
@@ -73,7 +73,7 @@ const Index = () => {
             </Head>
             <Container>
                 <p className="text-2xl text-white">
-                    {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+                    {hello ? hello.greeting : "Loading tRPC query..."}
                 </p>
             </Container>
         </>
