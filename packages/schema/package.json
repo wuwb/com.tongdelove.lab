@@ -1,13 +1,12 @@
 {
-  "name": "@reactive-resume/schema",
+  "name": "@wuwenbin/schema",
   "version": "0.0.1",
   "private": true,
-  "type": "commonjs",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w",
+    "dev": "tsc --watch --preserveWatchOutput --sourcemap",
     "lint": "pnpm lint:prettier && pnpm lint:eslint",
     "lint:eslint": "eslint . --ext --fix .ts",
     "lint:prettier": "prettier --check \"src/**/*.ts\"",

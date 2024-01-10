@@ -8,7 +8,7 @@ function Profile() {
             <div className="bg-white p-4">
                 <div>
                     <Image
-                        src="http://iph.href.lu/48x48?text=ezreal"
+                        src="/images/placeholder/48x48?text=ezreal"
                         alt="profile"
                         width="48"
                         height="48" />

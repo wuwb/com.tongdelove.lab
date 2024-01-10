@@ -9,8 +9,8 @@ import undoable from 'redux-undo';
 import authReducer from '@/stores/authSlice';
 
 export const rootReducer = combineReducers({
-  // calendar: calendarReducer,
-  // projectsBoard: projectsBoardReducer,
-  // mailbox: mailboxReducer
-  auth: authReducer,
+    // calendar: calendarReducer,
+    // projectsBoard: projectsBoardReducer,
+    // mailbox: mailboxReducer
+    auth: authReducer,
 });

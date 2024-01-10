@@ -1,15 +1,3 @@
-// learn more about it: https://pris.ly/d/prisma-schema
-generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["metrics", "fullTextSearch"]
-}
-
-// generator pothos {
-//   provider     = "prisma-pothos-types"
-//   clientOutput = "@prisma/client"
-//   output       = "../src/generated/prisma-pothos-types.ts"
-// }
-
 datasource db {
     // sqlite, postgresql, mysql, sqlserver, mongodb
     provider  = "postgresql"
@@ -29,11 +17,27 @@ datasource db {
     // referentialIntegrity
 }
 
-// generator zod {
-//     provider    = "zod-prisma"
-//     modelSuffix = "ModelSchema"
-//     output      = "../packages/schema/src/db"
+// learn more about it: https://pris.ly/d/prisma-schema
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["metrics", "fullTextSearch"]
+}
+
+// generator pothos {
+//   provider     = "prisma-pothos-types"
+//   clientOutput = "@prisma/client"
+//   output       = "../src/generated/prisma-pothos-types.ts"
 // }
+
+generator json {
+    provider = "prisma-json-types-generator"
+}
+
+generator zod {
+    provider    = "zod-prisma"
+    modelSuffix = "ModelSchema"
+    output      = "../../packages/schema/src/db"
+}
 
 model Poem {
     id        Int            @id @default(autoincrement())

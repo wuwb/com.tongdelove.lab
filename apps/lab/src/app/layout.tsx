@@ -1,6 +1,8 @@
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import '@mantine/core/styles.css';
-import './globals.css'
+import '@/styles/globals.css'
+import { cookies } from "next/headers";
+import { TRPCReactProvider } from "@/trpc/react";
 
 
 export default function RootLayout({
@@ -14,7 +16,9 @@ export default function RootLayout({
                 <ColorSchemeScript />
             </head>
             <body>
-                <MantineProvider>{children}</MantineProvider>
+                <TRPCReactProvider cookies={cookies().toString()}>
+                    <MantineProvider>{children}</MantineProvider>
+                </TRPCReactProvider>
             </body>
         </html>
     )

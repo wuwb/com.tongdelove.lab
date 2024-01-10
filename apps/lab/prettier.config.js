@@ -22,4 +22,4 @@ const config = {
     htmlWhitespaceSensitivity: 'css',
 };
 
-module.exports = config;
+export default config;

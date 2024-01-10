@@ -28,7 +28,7 @@ NEXT_BUILD_ENV_TYPECHECK=1
 ```
 
 ```typescript
-// File: ./src/config/build-env.config.mjs
+// File: ./src/configs/build-env.config.mjs
 
 // @ts-check
 
@@ -58,7 +58,7 @@ export const buildEnv = getValidatedBuildEnv(buildEnvSchema);
 
 // @ts-check
 
-import { buildEnv } from "./src/config/build-env.config.mjs";
+import { buildEnv } from "./src/configs/build-env.config.mjs";
 
 /**
  * @type {import('next').NextConfig}

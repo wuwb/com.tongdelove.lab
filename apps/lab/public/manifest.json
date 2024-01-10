@@ -1,12 +1,15 @@
 {
-    "name": "Landy - React Template",
-    "short_name": "Landy",
-    "description": "mkn (Next.js)",
+    "name": "Lab",
+    "short_name": "Lab",
+    "description": "",
     "start_url": ".",
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#000000",
     "background_color": "#ffffff",
+    "id": "/",
+    "scope": "/",
+    "splash_pages": null,
     "icons": [
         {
             "src": "icons/icon-192x192.png",
@@ -39,5 +42,27 @@
             "type": "image/png",
             "sizes": "512x512"
         }
-    ]
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshots/screenshot-1.png",
+            "sizes": "750x1334",
+            "type": "image/png"
+        },
+        {
+            "src": "/screenshots/screenshot-2.png",
+            "sizes": "750x1334",
+            "type": "image/png"
+        },
+        {
+            "src": "/screenshots/screenshot-3.png",
+            "sizes": "750x1334",
+            "type": "image/png"
+        },
+        {
+            "src": "/screenshots/screenshot-4.png",
+            "sizes": "750x1334",
+            "type": "image/png"
+        }
+    ],
 }

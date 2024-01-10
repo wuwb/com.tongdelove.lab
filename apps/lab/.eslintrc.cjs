@@ -35,19 +35,18 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
         "plugin:react/jsx-runtime",
-        "next/core-web-vitals",
+
         "plugin:@typescript-eslint/strict",
-        "plugin:storybook/recommended",
 
         // ct3
         "plugin:@next/next/recommended",
+        "next/core-web-vitals",
         "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:@typescript-eslint/stylistic-type-checked",
 
         // 'mantine',
         // Add specific rules for nextjs
         'plugin:jest/recommended',
-        'next/core-web-vitals',
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/stylistic",
         "plugin:storybook/recommended",

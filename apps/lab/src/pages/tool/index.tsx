@@ -123,7 +123,7 @@ const ToolPage: NextPageWithLayout<IndexProps> = (props) => {
                         index={1}
                         image={(
                             <Image
-                                src="https://iph.href.lu/80x80?text=80x80&fg=666666&bg=cccccc"
+                                src="/images/placeholder/80x80?text=80x80&fg=666666&bg=cccccc"
                                 width="80"
                                 height="80"
                                 alt="节日头像制作"

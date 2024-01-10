@@ -1,0 +1,76 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/config/*": [
+        "./config/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ],
+      "@@/*": [
+        "./src/.umi/*"
+      ],
+      "@@test/*": [
+        "./src/.umi-test/*"
+      ]
+    },
+    "declaration": false,
+    "outDir": "build/dist",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    // "jsx": "react-jsx",
+    // path
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
+    // debug
+    "pretty": true,
+    "removeComments": false,
+    // rules
+    "emitDecoratorMetadata": true,
+    "noEmit": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "useDefineForClassFields": true,
+    "strictPropertyInitialization": false
+  },
+  "include": [
+    "src",
+    "config"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/.umi/*",
+    "typings",
+    "**/__test__",
+    "test",
+    ".babelrc"
+  ]
+}

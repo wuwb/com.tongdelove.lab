@@ -3,7 +3,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./src/env/env.js");
+await import("./src/env.js");
 
 import { withSentryConfig } from '@sentry/nextjs' // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 import { createSecureHeaders } from 'next-secure-headers'
@@ -13,7 +13,6 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 import withBundleAnalyzer from '@next/bundle-analyzer';
-import { PrismaPlugin } from '@prisma/nextjs-monorepo-workaround-plugin'
 import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.js'
 
@@ -158,35 +157,22 @@ const config = {
     images: {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        domains: [
-            'image-cdn.flowgpt.com',
-            'flow-user-images.s3.us-west-1.amazonaws.com',
-            'flow-prompt-covers.s3.us-west-1.amazonaws.com',
-            'flow-public-assets.s3.us-west-1.amazonaws.com',
-            'lh3.googleusercontent.com',
-            'media.licdn.com',
-            'wallpapers-clan.com',
-            'cdn.discordapp.com',
-            'abs.twimg.com',
-            'pbs.twimg.com',
-            'i.pinimg.com',
-            'pbs.twimg.com',
-            'i.ibb.co',
-            'pbs.twimg.com',
-            'www.gravatar.com',
-            'iph.href.lu',
-            // 加入 wordpress 相关域名
-            'blog.tongdelove.com',
-            '127.0.0.1',
-            'localhost',
-        ],
         minimumCacheTTL: 432000,
         formats: ['image/webp'],
         loader: 'default',
         dangerouslyAllowSVG: false,
         disableStaticImages: false,
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+        // @decarated changed to remotePatterns
+        domains: [
+            'www.gravatar.com',
+            // 加入 wordpress 相关域名
+            'blog.tongdelove.com',
+            '127.0.0.1',
+            'localhost',
+        ],
         remotePatterns: [
+
             {
                 protocol: 'https',
                 hostname: 'avatars.githubusercontent.com',
@@ -197,6 +183,7 @@ const config = {
 
     transpilePackages: isProd
         ? [
+            '@wuwenbin'
             // i18next is build for modern browsers
             // 'i18next',
             // tailwind-merge contains nullish operator ?.
@@ -430,56 +417,50 @@ const config = {
     // Hack to make Tailwind darkMode 'class' strategy with CSS Modules
     // Ref: https://github.com/tailwindlabs/tailwindcss/issues/3258#issuecomment-968368156
     webpack: (config, { webpack, isServer }) => {
-        if (!isServer) {
-            // Fixes npm packages that depend on `fs` module
-            // @link https://github.com/vercel/next.js/issues/36514#issuecomment-1112074589
-            config.resolve.fallback = {
-                ...config.resolve.fallback,
-                fs: false,
-                os: false,
-                path: false,
-                net: false,
-                dns: false,
-                child_process: false,
-                tls: false
-            }
-        }
+        // if (!isServer) {
+        //     // Fixes npm packages that depend on `fs` module
+        //     // @link https://github.com/vercel/next.js/issues/36514#issuecomment-1112074589
+        //     config.resolve.fallback = {
+        //         ...config.resolve.fallback,
+        //         fs: 'empty',
+        //         os: false,
+        //         path: false,
+        //         net: false,
+        //         dns: false,
+        //         child_process: false,
+        //         tls: false
+        //     }
+        // }
 
-        // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/tree-shaking/
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                __SENTRY_DEBUG__: process.env.NEXT_BUILD_ENV_SENTRY_DEBUG,
-                __SENTRY_TRACING__: process.env.NEXT_BUILD_ENV_SENTRY_TRACING,
-            })
-        )
+        // // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/tree-shaking/
+        // config.plugins.push(
+        //     new webpack.DefinePlugin({
+        //         __SENTRY_DEBUG__: process.env.NEXT_BUILD_ENV_SENTRY_DEBUG,
+        //         __SENTRY_TRACING__: process.env.NEXT_BUILD_ENV_SENTRY_TRACING,
+        //     })
+        // )
 
-        // Nextjs with Prisma 4.11.0+ (helps standalone build in monorepos)
-        // https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-monorepo
-        if (isServer) {
-            config.plugins = [...config.plugins, new PrismaPlugin()]
-        }
+        // // Enable WebAssembly support
+        // config.experiments = {
+        //     asyncWebAssembly: true,// Enable async WebAssembly modules
+        //     layers: true,// Enable layers experiment
+        // }
 
-        // Enable WebAssembly support
-        config.experiments = {
-            asyncWebAssembly: true,// Enable async WebAssembly modules
-            layers: true,// Enable layers experiment
-        }
-
-        config.module.rules.push({
-            test: /\.svg$/,
-            issuer: /\.(js|ts)x?$/,
-            use: [
-                {
-                    loader: '@svgr/webpack',
-                    // https://react-svgr.com/docs/webpack/#passing-options
-                    options: {
-                        svgo: isProd,
-                        // @link https://github.com/svg/svgo#configuration
-                        // svgoConfig: { }
-                    },
-                },
-            ],
-        })
+        // config.module.rules.push({
+        //     test: /\.svg$/,
+        //     issuer: /\.(js|ts)x?$/,
+        //     use: [
+        //         {
+        //             loader: '@svgr/webpack',
+        //             // https://react-svgr.com/docs/webpack/#passing-options
+        //             options: {
+        //                 svgo: isProd,
+        //                 // @link https://github.com/svg/svgo#configuration
+        //                 // svgoConfig: { }
+        //             },
+        //         },
+        //     ],
+        // })
 
         //   const rules = config.module.rules.find(r => !!r.oneOf);
         //   rules.oneOf.forEach(loaders => {

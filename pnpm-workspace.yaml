@@ -1,5 +1,6 @@
 packages:
   - 'apps/lab'
+  - 'packages/schema'
   - 'prisma'
   - 'packages/ts-utils'
   - 'packages/api-gateway'

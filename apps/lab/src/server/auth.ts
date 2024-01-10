@@ -1,16 +1,21 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { type GetServerSidePropsContext } from "next";
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { type GetServerSidePropsContext } from "next"
 import {
     getServerSession,
     type DefaultSession,
     type NextAuthOptions,
-} from "next-auth";
+} from "next-auth"
 import EmailProvider from 'next-auth/providers/email'
-import { prisma } from '@/server/db/prisma';
-import Credentials from "next-auth/providers/credentials";
-import { env } from "@/env/env.js";
-import { default as CredentialsProvider } from 'next-auth/providers/credentials';
-import { createHttpUnauthorized } from '@/lib/auth/error';
+import { prisma } from '@/server/db/prisma'
+import Credentials from "next-auth/providers/credentials"
+import { env } from "@/env"
+import { default as CredentialsProvider } from 'next-auth/providers/credentials'
+import { createHttpUnauthorized } from '@/lib/auth/error'
+import DiscordProvider from "next-auth/providers/discord"
+import { z } from 'zod'
+import bcrypt from 'bcrypt'
+import jwt from "jsonwebtoken"
+import { customsendVerificationRequest } from "@/pages/api/auth/signinemail"
 
 const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
 const oneDayInSeconds = 86400;
@@ -23,6 +28,11 @@ const oneDayInSeconds = 86400;
  */
 declare module "next-auth" {
     interface Session extends DefaultSession {
+        user: {
+            id: string;
+            // ...other properties
+            // role: UserRole;
+        } & DefaultSession["user"],
         GetServerSidePropsContext: DefaultSession["user"] & {
             id: string;
             // ...other properties
@@ -67,6 +77,8 @@ export const authOptions: NextAuthOptions = {
           return true;
         },
         */
+
+
         async redirect({ url, baseUrl }) {
             return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl);
         },
@@ -94,54 +106,70 @@ export const authOptions: NextAuthOptions = {
         /**
          * @see https://next-auth.js.org/providers/github
          */
-        Credentials({
-            name: "credentials",
-            credentials: {
-                email: {
-                    label: "Email",
-                    type: "email",
-                    placeholder: "jsmith@gmail.com",
-                },
-                password: { label: "Password", type: "password" },
-            },
-            async authorize(credentials, request) {
-                // todo login
-                if (!credentials) {
-                    throw createHttpUnauthorized('Credentials not provided');
-                }
-                const { email, password } = credentials ?? {};
+        // Credentials({
+        //     name: "credentials",
+        //     credentials: {
+        //         email: {
+        //             label: "Email",
+        //             type: "email",
+        //             placeholder: "jsmith@gmail.com",
+        //         },
+        //         password: { label: "Password", type: "password" },
+        //     },
+        //     authorize(credentials, request) {
+        //         if (!credentials) {
+        //             throw createHttpUnauthorized('Credentials not provided');
+        //         }
 
-                const user = await prisma.user.findFirst({
-                    where: {
-                        email,
-                    },
-                });
+        //         const parsedCredentials = z
+        //             .object({ email: z.string().email(), password: z.string().min(6) })
+        //             .safeParse(credentials)
 
-                if (!user) {
-                    return null;
-                }
+        //         if (parsedCredentials.success) {
+        //             const { email, password } = parsedCredentials.data;
 
-                const isValidPassword = true // await verify(user.password, creds.password);
+        //             const user = await prisma.user.findFirst({
+        //                 where: {
+        //                     email,
+        //                 },
+        //             });
 
-                if (!isValidPassword) {
-                    return null;
-                }
-                if (user && isValidPassword) {
-                    return {
-                        id: user.id,
-                        email: user.email,
-                        username: user.username,
-                    }
-                }
+        //             if (!user) {
+        //                 return null;
+        //             }
 
-                throw createHttpUnauthorized('Invalid credentials');
-            },
-        }),
+        //             const isValidPassword = true // await verify(user.password, creds.password);
+        //             const passwordsMatch = await bcrypt.compare(password, user.password);
+
+        //             if (!isValidPassword) {
+        //                 return null;
+        //             }
+        //             if (user && isValidPassword) {
+        //                 return {
+        //                     id: user.id,
+        //                     email: user.email,
+        //                     username: user.username,
+        //                 }
+        //             }
+
+        //             throw createHttpUnauthorized('Invalid credentials');
+        //         }
+        //         console.log('Invalid credentials');
+        //         return null
+        //     },
+        // }),
         EmailProvider({
             server: env.EMAIL_SERVER,
             from: env.EMAIL_FROM,
+            sendVerificationRequest: async ({ identifier, url, provider, theme }) => {
+                await customsendVerificationRequest({ identifier, url, provider, theme })
+            },
             // maxAge: 24 * 60 * 60, // 设置邮箱链接失效时间，默认24小时
         }),
+        // DiscordProvider({
+        //     clientId: env.DISCORD_CLIENT_ID,
+        //     clientSecret: env.DISCORD_CLIENT_SECRET,
+        //   }),
         // GithubProvider({
         //   clientId: env.GITHUB_CLIENT_ID,
         //   clientSecret: env.GITHUB_CLIENT_SECRET,
@@ -189,17 +217,29 @@ export const authOptions: NextAuthOptions = {
         // Defaults to `session.maxAge`.
         maxAge: oneDayInSeconds * 30,
         // You can define your own encode/decode functions for signing and encryption
-        // async encode() {},
-        // async decode() {},
+        async encode({ secret, token }) {
+            return jwt.sign(token, secret)
+        },
+        async decode({ secret, token }) {
+            return jwt.verify(token, secret)
+        },
     },
-    // pages: {
-    //   signIn: '/auth/signin',
-    //   signOut: '/auth/signout',
-    //   error: '/auth/error', // Error code passed in query string as ?error=
-    //   verifyRequest: '/auth/verify-request',  // (used for check email message)
-    //   newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-    // }
-};
+    pages: {
+        signIn: '/user/login',
+        //   signIn: '/auth/signin',
+        //   signOut: '/auth/signout',
+        //   error: '/auth/error', // Error code passed in query string as ?error=
+        //   verifyRequest: '/auth/verify-request',  // (used for check email message)
+        //   newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    },
+}
+
+
+// Use it in server contexts
+export function auth(...args: [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]] | [NextApiRequest, NextApiResponse] | []) {
+    return getServerSession(...args, authOptions)
+}
+
 
 /**
  * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
@@ -211,7 +251,7 @@ export const getServerAuthSession = (ctx: {
     res: GetServerSidePropsContext["res"];
 }) => {
     return getServerSession(ctx.req, ctx.res, authOptions);
-};
+}
 
 
 

@@ -94,7 +94,7 @@ function Solutions() {
                         ))}
                     </ul>
                 </div>
-                <Image src="http://iph.href.lu/200x200" alt="" />
+                <Image src="/images/placeholder/200x200" alt="" />
             </div>
         </div>
     );

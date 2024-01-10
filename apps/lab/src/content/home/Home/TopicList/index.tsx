@@ -8,13 +8,13 @@ function TopicList() {
         {
             id: 1,
             title: '1',
-            image: 'http://iph.href.lu/48x48?text=1',
+            image: '/images/placeholder/48x48?text=1',
             author: '1',
         },
         {
             id: 2,
             title: '2',
-            image: 'http://iph.href.lu/48x48?text=2',
+            image: '/images/placeholder/48x48?text=2',
             author: '2',
         },
     ];

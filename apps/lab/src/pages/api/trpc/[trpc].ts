@@ -1,8 +1,11 @@
 import { createNextApiHandler } from "@trpc/server/adapters/next";
-import { env } from "@/env/env.js";
 import { appRouter } from "@/server/trpc/root";
 import { createTRPCContext } from "@/server/trpc/context";
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { type NextRequest } from "next/server";
+import { env } from "@/env";
+
 
 // export API handler
 const nextApiHandler = createNextApiHandler({

@@ -9,12 +9,12 @@ function NewNodes() {
         {
             title: '今日推荐',
             link: '/1',
-            image: 'https://iph.href.lu/24x24',
+            image: '/images/placeholder/24x24',
         },
         {
             title: '今日推荐2',
             link: '/2',
-            image: 'https://iph.href.lu/24x24',
+            image: '/images/placeholder/24x24',
         }
     ]
     return (
