@@ -3,7 +3,7 @@ import { CompleteUser, RelatedUserModelSchema } from "./index"
 
 export const AccountModelSchema = z.object({
   id: z.string(),
-  userId: z.number().int(),
+  userId: z.string(),
   type: z.string(),
   provider: z.string(),
   providerAccountId: z.string(),
@@ -14,6 +14,7 @@ export const AccountModelSchema = z.object({
   scope: z.string().nullish(),
   id_token: z.string().nullish(),
   session_state: z.string().nullish(),
+  refresh_token_expires_in: z.number().int().nullish(),
 })
 
 export interface CompleteAccount extends z.infer<typeof AccountModelSchema> {

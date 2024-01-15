@@ -10,14 +10,14 @@ export const pathString = (
     hash = '',
     search = '',
   }: {
-    hash?: string;
-    search?: string;
-  } = {},
+    hash?: string
+    search?: string
+  } = {}
 ) => {
-  const tempBase = 'https://a.com';
-  const url = new URL(path, tempBase);
+  const tempBase = 'https://a.com'
+  const url = new URL(path, tempBase)
 
-  if (hash) url.hash = hash;
-  if (search) url.search = search;
-  return url.toString().replace(tempBase, '');
-};
+  if (hash) url.hash = hash
+  if (search) url.search = search
+  return url.toString().replace(tempBase, '')
+}

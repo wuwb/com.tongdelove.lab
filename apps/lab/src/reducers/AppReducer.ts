@@ -4,7 +4,7 @@ export type State = {
 }
 
 export enum ActionType {
-  UPDATE = 'UPDATE'
+  UPDATE = 'UPDATE',
 }
 
 type UpdateAction = {
@@ -17,7 +17,7 @@ export type Action = UpdateAction
 
 export const initState: State = {
   displayNavigation: true,
-  themeMode: 'light'
+  themeMode: 'light',
 }
 
 export function reducer(state: State, action: Action) {
@@ -25,7 +25,7 @@ export function reducer(state: State, action: Action) {
     case ActionType.UPDATE:
       return {
         ...state,
-        [action.field]: action.value
+        [action.field]: action.value,
       }
     default:
       return state

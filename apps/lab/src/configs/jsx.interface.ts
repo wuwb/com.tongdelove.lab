@@ -1,26 +1,26 @@
-import React from 'react';
-import { Router } from 'next/router';
+import React from 'react'
+import { Router } from 'next/router'
 
-export type ILayout = 'master' | 'test';
+export type ILayout = 'master' | 'test'
 
 export interface ICompBaseProps {
-    className?: string;
-    style?: React.CSSProperties;
-    alwaysDarkMode?: boolean;
+  className?: string
+  style?: React.CSSProperties
+  alwaysDarkMode?: boolean
 }
 
 export interface IPageBaseProps extends ICompBaseProps {
-    routeProps: Router;
-    pageProps?: {
-        layout: ILayout;
-        name?: string;
-    };
+  routeProps: Router
+  pageProps?: {
+    layout: ILayout
+    name?: string
+  }
 }
 
 export interface ILayoutBaseProps {
-    mainComp: any;
-    routeProps: Router;
-    pageProps?: any;
+  mainComp: any
+  routeProps: Router
+  pageProps?: any
 }
 
-export interface IGetStaticPropsCtx { }
+export interface IGetStaticPropsCtx {}

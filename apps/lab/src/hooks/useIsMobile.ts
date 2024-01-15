@@ -1,7 +1,7 @@
-import { useResponsive } from 'antd-style';
+import { useResponsive } from 'antd-style'
 
 export const useIsMobile = (): boolean => {
-  const { mobile } = useResponsive();
+  const { mobile } = useResponsive()
 
-  return !!mobile;
-};
+  return !!mobile
+}

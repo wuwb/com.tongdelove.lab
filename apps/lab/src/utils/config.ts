@@ -1,6 +1,6 @@
-import { notification } from 'antd';
+import { notification } from 'antd'
 
-import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations';
+import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
 import {
   ConfigFile,
   ConfigFileAgents,
@@ -10,63 +10,60 @@ import {
   ConfigFileSingleSession,
   ConfigModelMap,
   ExportType,
-} from '@/types/exportConfig';
+} from '@/types/exportConfig'
 
 export const exportConfigFile = (config: object, fileName?: string) => {
-  const file = `LobeChat-${fileName || '-config'}-v${CURRENT_CONFIG_VERSION}.json`;
+  const file = `LobeChat-${fileName || '-config'}-v${CURRENT_CONFIG_VERSION}.json`
 
   // 创建一个 Blob 对象
-  const blob = new Blob([JSON.stringify(config)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(config)], { type: 'application/json' })
 
   // 创建一个 URL 对象，用于下载
-  const url = URL.createObjectURL(blob);
+  const url = URL.createObjectURL(blob)
 
   // 创建一个 <a> 元素，设置下载链接和文件名
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = file;
+  const a = document.createElement('a')
+  a.href = url
+  a.download = file
 
   // 触发 <a> 元素的点击事件，开始下载
-  document.body.append(a);
-  a.click();
+  document.body.append(a)
+  a.click()
 
   // 下载完成后，清除 URL 对象
-  URL.revokeObjectURL(url);
-  a.remove();
-};
+  URL.revokeObjectURL(url)
+  a.remove()
+}
 
 export const importConfigFile = (file: File, onConfigImport: (config: ConfigFile) => void) => {
-  file.text().then((text) => {
+  file.text().then(text => {
     try {
-      const config = JSON.parse(text);
-      const { state } = Migration.migrate(config);
+      const config = JSON.parse(text)
+      const { state } = Migration.migrate(config)
 
-      onConfigImport({ ...config, state });
+      onConfigImport({ ...config, state })
     } catch (error) {
-      console.error(error);
+      console.error(error)
       notification.error({
         description: `出错原因: ${(error as Error).message}`,
         message: '导入失败',
-      });
+      })
     }
-  });
-};
+  })
+}
 
-type CreateConfigFileState<T extends ExportType> = ConfigModelMap[T]['state'];
+type CreateConfigFileState<T extends ExportType> = ConfigModelMap[T]['state']
 
-type CreateConfigFile<T extends ExportType> = ConfigModelMap[T]['file'];
+type CreateConfigFile<T extends ExportType> = ConfigModelMap[T]['file']
 
-export const createConfigFile = <T extends ExportType>(
-  type: T,
-  state: CreateConfigFileState<T>,
-): CreateConfigFile<T> => {
+export const createConfigFile = <T extends ExportType>(type: T, state: CreateConfigFileState<T>): CreateConfigFile<T> => {
   switch (type) {
     case 'agents': {
       return {
         exportType: 'agents',
         state,
         version: Migration.targetVersion,
-      } as ConfigFileAgents;
+      } as ConfigFileAgents
     }
 
     case 'sessions': {
@@ -74,7 +71,7 @@ export const createConfigFile = <T extends ExportType>(
         exportType: 'sessions',
         state,
         version: Migration.targetVersion,
-      } as ConfigFileSessions;
+      } as ConfigFileSessions
     }
 
     case 'settings': {
@@ -82,7 +79,7 @@ export const createConfigFile = <T extends ExportType>(
         exportType: 'settings',
         state,
         version: Migration.targetVersion,
-      } as ConfigFileSettings;
+      } as ConfigFileSettings
     }
 
     case 'singleSession': {
@@ -90,7 +87,7 @@ export const createConfigFile = <T extends ExportType>(
         exportType: 'sessions',
         state,
         version: Migration.targetVersion,
-      } as ConfigFileSingleSession;
+      } as ConfigFileSingleSession
     }
 
     case 'all': {
@@ -98,9 +95,9 @@ export const createConfigFile = <T extends ExportType>(
         exportType: 'all',
         state,
         version: Migration.targetVersion,
-      } as ConfigFileAll;
+      } as ConfigFileAll
     }
   }
 
-  throw new Error('缺少正确的导出类型，请检查实现...');
-};
+  throw new Error('缺少正确的导出类型，请检查实现...')
+}

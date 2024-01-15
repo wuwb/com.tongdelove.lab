@@ -30,6 +30,11 @@ module.exports = {
         "jest-extended"
     ],
     extends: [
+        // ct3
+        "next/core-web-vitals",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+
         // flow
         "eslint:recommended",
         "plugin:react/recommended",
@@ -40,9 +45,7 @@ module.exports = {
 
         // ct3
         "plugin:@next/next/recommended",
-        "next/core-web-vitals",
-        "plugin:@typescript-eslint/recommended-type-checked",
-        "plugin:@typescript-eslint/stylistic-type-checked",
+
 
         // 'mantine',
         // Add specific rules for nextjs

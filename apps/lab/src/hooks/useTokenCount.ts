@@ -1,9 +1,9 @@
-import { startTransition, useEffect, useState } from 'react';
+import { startTransition, useEffect, useState } from 'react'
 
-import { encodeAsync } from '@/utils/tokenizer';
+import { encodeAsync } from '@/utils/tokenizer'
 
 export const useTokenCount = (input: string = '') => {
-  const [value, setNum] = useState(0);
+  const [value, setNum] = useState(0)
 
   useEffect(() => {
     startTransition(() => {
@@ -11,10 +11,10 @@ export const useTokenCount = (input: string = '') => {
         .then(setNum)
         .catch(() => {
           // 兜底采用字符数
-          setNum(input.length);
-        });
-    });
-  }, [input]);
+          setNum(input.length)
+        })
+    })
+  }, [input])
 
-  return value;
-};
+  return value
+}

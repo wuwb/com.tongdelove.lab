@@ -1,8 +1,8 @@
-const baseConfig = require('../../prettier.config.cjs')
+// import baseConfig from '../../prettier.config.mjs'
 
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
 const config = {
-    ...baseConfig,
+    // ...baseConfig,
     printWidth: 150,
     arrowParens: 'avoid', // always
     semi: false, // 是否使用分号

@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 const useScrollTop = (): null => {
-  const location = useRouter();
+  const location = useRouter()
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);
   // }, [location.pathname]);
 
-  return null;
-};
+  return null
+}
 
-export default useScrollTop;
+export default useScrollTop

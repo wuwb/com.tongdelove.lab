@@ -37,7 +37,8 @@ import {
   IconX,
   IconChevronRight,
 } from '@tabler/icons-react';
-
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 import classes from './HeaderMegaMenu.module.css';
 
 const mockdata = [
@@ -62,6 +63,7 @@ export function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
+  const { data: session } = useSession();
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
@@ -188,10 +190,30 @@ export function HeaderMegaMenu() {
 
           <Divider my="sm" />
 
-          <Group justify="center" grow pb="xl" px="md">
+  {session? (
+    <div className="flex items-center space-x-3">
+        <img
+          className="w-12 h-12 rounded-full"
+          src={session.user.image}
+          alt="avator"
+        />
+        <Link href="/me">
+          <a className="text-blue-600 font-medium">{session.user.name}</a>
+        </Link>
+        <button
+          className="px-3 py-2 bg-blue-500 text-white rounded"
+          onClick={() => signOut()}
+        >
+          登出
+        </button>
+      </div>
+  ): (
+<Group justify="center" grow pb="xl" px="md">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
           </Group>
+  )}
+
         </ScrollArea>
       </Drawer>
     </Box>

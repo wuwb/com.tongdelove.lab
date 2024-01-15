@@ -4,11 +4,11 @@
  * you can opt out by commenting the following code.
  * @link https://react.i18next.com/latest/typescript
  */
-import type { I18nResources } from '@tongdelove/common-i18n';
+import type { I18nResources } from '@tongdelove/common-i18n'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'common';
-    resources: I18nResources;
+    defaultNS: 'common'
+    resources: I18nResources
   }
 }

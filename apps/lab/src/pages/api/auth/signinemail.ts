@@ -2,7 +2,7 @@ import { Theme } from 'next-auth'
 import { SendVerificationRequestParams } from 'next-auth/providers'
 import { createTransport } from 'nodemailer'
 
-export async function customsendVerificationRequest(
+export async function customSendVerificationRequest(
     params: Omit<SendVerificationRequestParams, 'expires' | 'token'>
 ) {
     const { identifier, url, provider, theme } = params
@@ -28,11 +28,14 @@ function html(params: {
     theme: Theme
     identifier: string
 }) {
-    const { url, identifier: userEmail } = params
+    const { url, host, identifier: userEmail } = params
 
+      //由于使用
+    const escapedHost = host.replace(/\./g, "&#8203;.");
     const currentYear = new Date().getFullYear()
     const brandName = 'FlowGPT'
     const magicBtnLabel = `sign in to ${brandName}`
+
 
     return `<html>
 <head>

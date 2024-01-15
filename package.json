@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "private": true,
+  "type": "module",
   "author": {
     "name": "WuWenbin",
     "email": "541330190@qq.com",

@@ -4,7 +4,7 @@
         /* Base Options: */
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "target": "es2017",
+        "target": "es2022",
         "allowJs": true,
         "resolveJsonModule": true,
         "moduleDetection": "force",
@@ -17,11 +17,11 @@
         "lib": [
             "dom",
             "dom.iterable",
+            "es2022",
             "esnext",
             "WebWorker",
             "es6",
-            "scripthost",
-            "es2017"
+            "scripthost"
         ],
         "noEmit": true,
         "module": "esnext",
@@ -81,7 +81,7 @@
         ".next/types/**/*.ts",
         "next-i18next.config.js",
         "scripts/*.mts",
-        "../../prettier.config.cjs"
+        "../../prettier.config.js"
     ],
     "exclude": [
         "node_modules"

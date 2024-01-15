@@ -8,7 +8,7 @@ export const PostModelSchema = z.object({
   content: z.string(),
   link: z.string().nullish(),
   image: z.string().nullish(),
-  authorId: z.number().int().nullish(),
+  authorId: z.string().nullish(),
   publishedAt: z.date().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),

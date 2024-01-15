@@ -1,15 +1,6 @@
-"use client"
+'use client'
 
-import {
-  Dispatch,
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useReducer,
-  useState
-} from "react"
+import { Dispatch, ReactNode, createContext, useCallback, useContext, useMemo, useReducer, useState } from 'react'
 
 export type EventListener = (data?: any) => void
 
@@ -25,14 +16,8 @@ export function useEventBusContext() {
   return useContext(EventBusContext)
 }
 
-export default function EventBusContextProvider({
-  children
-}: {
-  children: ReactNode
-}) {
-  const [listeners, setListeners] = useState<Record<string, EventListener[]>>(
-    {}
-  )
+export default function EventBusContextProvider({ children }: { children: ReactNode }) {
+  const [listeners, setListeners] = useState<Record<string, EventListener[]>>({})
 
   const subscribe = useCallback(
     (event: string, callback: EventListener) => {
@@ -48,9 +33,7 @@ export default function EventBusContextProvider({
   const unsubscribe = useCallback(
     (event: string, callback: EventListener) => {
       if (listeners[event]) {
-        listeners[event] = listeners[event].filter(
-          (cb) => cb !== callback
-        )
+        listeners[event] = listeners[event].filter(cb => cb !== callback)
         setListeners({ ...listeners })
       }
     },
@@ -60,7 +43,7 @@ export default function EventBusContextProvider({
   const publish = useCallback(
     (event: string, data?: any) => {
       if (listeners[event]) {
-        listeners[event].forEach((callback) => callback(data))
+        listeners[event].forEach(callback => callback(data))
       }
     },
     [listeners]
@@ -70,9 +53,5 @@ export default function EventBusContextProvider({
     return { subscribe, unsubscribe, publish }
   }, [subscribe, unsubscribe, publish])
 
-  return (
-    <EventBusContext.Provider value={contextValue}>
-      {children}
-    </EventBusContext.Provider>
-  )
+  return <EventBusContext.Provider value={contextValue}>{children}</EventBusContext.Provider>
 }

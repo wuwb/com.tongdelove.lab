@@ -4,7 +4,7 @@ import { CompleteUser, RelatedUserModelSchema } from "./index"
 export const SessionModelSchema = z.object({
   id: z.string(),
   sessionToken: z.string(),
-  userId: z.number().int(),
+  userId: z.string(),
   expires: z.date(),
 })
 

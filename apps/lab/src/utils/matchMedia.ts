@@ -3,8 +3,8 @@
  */
 export const isInStandaloneMode = () => {
   if (typeof window === 'undefined') {
-    return false;
+    return false
   }
 
-  return window.matchMedia('(display-mode: standalone)').matches;
-};
+  return window.matchMedia('(display-mode: standalone)').matches
+}

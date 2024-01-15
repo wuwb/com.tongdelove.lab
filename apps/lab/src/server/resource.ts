@@ -1,42 +1,42 @@
-import { suggestFunds } from './service';
+import { suggestFunds } from './service'
 
 function wrapPromise(promise: Promise<any>) {
-  let status = 'pending';
-  let result: any;
+  let status = 'pending'
+  let result: any
   let suspender = promise.then(
-    (r) => {
-      status = 'success';
-      result = r;
+    r => {
+      status = 'success'
+      result = r
     },
-    (e) => {
-      status = 'error';
-      result = e;
+    e => {
+      status = 'error'
+      result = e
     }
-  );
+  )
   return {
     read() {
       if (status === 'pending') {
-        throw suspender;
+        throw suspender
       } else if (status === 'error') {
-        throw result;
+        throw result
       } else if (status === 'success') {
-        return result;
+        return result
       }
-    }
-  };
+    },
+  }
 }
 
 export function fetchFundData(key: string) {
-  let fundsPromise = suggestFunds(key);
+  let fundsPromise = suggestFunds(key)
   return {
-    funds: wrapPromise(fundsPromise)
-  };
+    funds: wrapPromise(fundsPromise),
+  }
 }
 
 type ResourceItem<T> = {
-  read: () => T;
-};
+  read: () => T
+}
 
 export type Resource<T> = {
-  funds: ResourceItem<T>;
-};
+  funds: ResourceItem<T>
+}

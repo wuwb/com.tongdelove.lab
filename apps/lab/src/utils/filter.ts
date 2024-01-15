@@ -1,29 +1,27 @@
-import { BaseDataModel } from '@/types/meta';
+import { BaseDataModel } from '@/types/meta'
 
 export const filterWithKeywords = <T extends BaseDataModel>(
   map: Record<string, T>,
   keywords: string,
-  extraSearchStr?: (item: T) => string | string[],
+  extraSearchStr?: (item: T) => string | string[]
 ) => {
-  if (!keywords) return map;
+  if (!keywords) return map
 
   return Object.fromEntries(
     Object.entries(map).filter(([, item]) => {
-      const meta = item.meta;
+      const meta = item.meta
 
-      const keyList = [meta.title, meta.description, meta.tags?.join('')].filter(
-        Boolean,
-      ) as string[];
+      const keyList = [meta.title, meta.description, meta.tags?.join('')].filter(Boolean) as string[]
 
-      const defaultSearchKey = keyList.join('');
+      const defaultSearchKey = keyList.join('')
 
-      let extraSearchKey: string = '';
+      let extraSearchKey: string = ''
       if (extraSearchStr) {
-        const searchStr = extraSearchStr(item);
-        extraSearchKey = Array.isArray(searchStr) ? searchStr.join('') : searchStr;
+        const searchStr = extraSearchStr(item)
+        extraSearchKey = Array.isArray(searchStr) ? searchStr.join('') : searchStr
       }
 
-      return `${defaultSearchKey}${extraSearchKey}`.toLowerCase().includes(keywords.toLowerCase());
-    }),
-  );
-};
+      return `${defaultSearchKey}${extraSearchKey}`.toLowerCase().includes(keywords.toLowerCase())
+    })
+  )
+}

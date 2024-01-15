@@ -85,7 +85,7 @@ model Post {
     link        String?   @db.VarChar(300)
     image       String?   @db.VarChar(300)
     author      User?     @relation(fields: [authorId], references: [id])
-    authorId    Int?      @map(name: "author_id")
+    authorId    String?      @map(name: "author_id")
     publishedAt DateTime? @map(name: "published_at")
     createdAt   DateTime  @default(now()) @map(name: "created_at")
     updatedAt   DateTime  @updatedAt @map(name: "updated_at")
@@ -99,19 +99,24 @@ enum UserPermissionRole {
 }
 
 model User {
-    id            Int                @id @default(autoincrement())
-    username      String             @unique @db.Text
-    firstName     String?            @db.Text
-    lastName      String?            @db.Text
-    email         String             @unique @db.Text
+    id            String             @id @default(cuid())
+    name          String?
+    email         String?             @unique @db.Text
     emailVerified DateTime?
-    role          UserPermissionRole @default(USER)
-    password      String?            @db.Text
-    avatarUrl     String?            @db.Text
-    createdAt     DateTime           @default(now())
-    updatedAt     DateTime           @updatedAt
+    image         String?
     accounts      Account[]
     sessions      Session[]
+
+
+    avatar        String?            @db.Text
+    username      String?            @db.Text
+    firstName     String?            @db.Text
+    lastName      String?            @db.Text
+    role          UserPermissionRole @default(USER)
+    password      String?            @db.Text
+
+    createdAt     DateTime           @default(now())
+    updatedAt     DateTime           @updatedAt
 
     Post Post[]
 
@@ -124,7 +129,7 @@ model User {
 // @see https://next-auth.js.org/schemas/models
 model Account {
     id                String  @id @default(cuid())
-    userId            Int
+    userId            String
     type              String
     provider          String
     providerAccountId String
@@ -135,6 +140,8 @@ model Account {
     scope             String?
     id_token          String? @db.Text
     session_state     String?
+    // for github @see https://next-auth.js.org/providers/github
+    refresh_token_expires_in Int?
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -145,7 +152,7 @@ model Account {
 model Session {
     id           String   @id @default(cuid())
     sessionToken String   @unique @db.Text
-    userId       Int
+    userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 

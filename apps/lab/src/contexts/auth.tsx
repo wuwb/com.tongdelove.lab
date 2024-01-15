@@ -1,72 +1,67 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import Router, { useRouter } from 'next/navigation';
-import axios from '@/utils/axios';
+import React, { createContext, useState, useContext, useEffect } from 'react'
+import Router, { useRouter } from 'next/navigation'
+import axios from '@/utils/axios'
 
-const AuthContext = createContext({} as any);
+const AuthContext = createContext({} as any)
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadUserFromCookies() {
-      const token = 'token';
+      const token = 'token'
       if (token) {
-        axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers['Authorization'] = `Bearer ${token}`
         try {
-          const { data: user } = await axios.get('user/profile');
+          const { data: user } = await axios.get('user/profile')
           if (user) {
-            setUser(user);
+            setUser(user)
           }
         } catch (err) {
-          console.log('未登陆');
+          console.log('未登陆')
         }
       }
-      setLoading(false);
+      setLoading(false)
     }
-    loadUserFromCookies();
-  }, []);
+    loadUserFromCookies()
+  }, [])
 
   const login = async (username, password) => {
     const { data: token } = await axios.post('auth/login', { username, password })
     if (token) {
-      Cookies.set('token', token.token, { expires: 60 });
-      axios.defaults.headers['Authorization'] = `Bearer ${token.token}`;
-      const { data: user } = await axios.get('user/profile');
-      setUser(user);
-      return user;
+      Cookies.set('token', token.token, { expires: 60 })
+      axios.defaults.headers['Authorization'] = `Bearer ${token.token}`
+      const { data: user } = await axios.get('user/profile')
+      setUser(user)
+      return user
     }
   }
 
   const logout = (username, password) => {
-    Cookies.remove('token');
-    setUser(null);
-    delete axios.defaults.headers['Authorization'];
-    window.location.pathname = '/login';
+    Cookies.remove('token')
+    setUser(null)
+    delete axios.defaults.headers['Authorization']
+    window.location.pathname = '/login'
   }
 
-
-  return (
-    <AuthContext.Provider value={{ isAuthenticated: !!user, user, login, loading, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ isAuthenticated: !!user, user, login, loading, logout }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
 
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider')
   }
 
-  return context;
+  return context
 }
 
 export const ProtectRoute = ({ children }) => {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth()
   if (isLoading || (!isAuthenticated && window.location.pathname !== '/login')) {
-    return <div>loading</div>;
+    return <div>loading</div>
   }
-  return children;
-};
+  return children
+}

@@ -1,10 +1,7 @@
-import { useEffect, useRef, DependencyList, EffectCallback } from 'react';
+import { useEffect, useRef, DependencyList, EffectCallback } from 'react'
 
-const useUpdateEffect: typeof useEffect = (
-  effect: EffectCallback,
-  deps: DependencyList = []
-) => {
-  const isMounted = useRef(false);
+const useUpdateEffect: typeof useEffect = (effect: EffectCallback, deps: DependencyList = []) => {
+  const isMounted = useRef(false)
 
   // useEffect(() => {
   //   if (!isMounted.current) {
@@ -13,6 +10,6 @@ const useUpdateEffect: typeof useEffect = (
   //     return effect();
   //   }
   // }, [effect, isMounted]);
-};
+}
 
-export default useUpdateEffect;
+export default useUpdateEffect

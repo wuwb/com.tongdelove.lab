@@ -9,10 +9,7 @@ export function getAllRegexMatch(regex: RegExp, str: string) {
   return ids
 }
 
-export function returnRegexFirstMatch(
-  regex: RegExp,
-  str: string
-): string | null {
+export function returnRegexFirstMatch(regex: RegExp, str: string): string | null {
   const matches = str.matchAll(regex)
   for (const match of matches) {
     if (match[1]) {
@@ -38,10 +35,7 @@ export const truncate = (str: string, n: number) => {
   return str.length > n ? str.slice(0, n - 1) + '...' : str
 }
 
-export function checkStringContains(
-  stringList: string[],
-  targetString: string
-) {
+export function checkStringContains(stringList: string[], targetString: string) {
   const regex = new RegExp(stringList.join('|'))
   return regex.test(targetString)
 }

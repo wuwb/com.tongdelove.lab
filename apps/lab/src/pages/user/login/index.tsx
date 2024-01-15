@@ -6,8 +6,9 @@ import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import { Image } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { getCsrfToken } from "next-auth/react"
 
-const UserLoginPage: FC = () => {
+const UserLoginPage = ({ csrfToken }) => {
     const router = useRouter();
     const auth = useAuth();
     const [persist, setPersist] = useState(false)
@@ -43,6 +44,16 @@ const UserLoginPage: FC = () => {
     }
 
     return (
+        <>
+         <form method="post" action="/api/auth/signin/email">
+      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+      <label>
+        Email address
+        <input type="email" id="email" name="email" />
+      </label>
+      <button type="submit">Sign in with Email</button>
+    </form>
+
         <div className="container px-6 py-12">
             <div className="flex justify-center items-center flex-wrap g-6 text-gray-800">
                 <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
@@ -188,7 +199,16 @@ const UserLoginPage: FC = () => {
                 </div>
             </div>
         </div>
-    );
+        </>
+    )
 };
+
+export async function getServerSideProps(context) {
+    const csrfToken = await getCsrfToken(context)
+    return {
+      props: { csrfToken },
+    }
+  }
+
 
 export default UserLoginPage;

@@ -3,15 +3,17 @@ import { UserPermissionRole } from "@prisma/client"
 import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompletePost, RelatedPostModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
-  id: z.number().int(),
-  username: z.string(),
+  id: z.string(),
+  name: z.string().nullish(),
+  email: z.string().nullish(),
+  emailVerified: z.date().nullish(),
+  image: z.string().nullish(),
+  avatar: z.string().nullish(),
+  username: z.string().nullish(),
   firstName: z.string().nullish(),
   lastName: z.string().nullish(),
-  email: z.string(),
-  emailVerified: z.date().nullish(),
   role: z.nativeEnum(UserPermissionRole),
   password: z.string().nullish(),
-  avatarUrl: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
 })

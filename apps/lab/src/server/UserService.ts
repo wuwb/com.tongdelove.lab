@@ -1,5 +1,5 @@
 import Router from 'next/navigation'
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 // const [accessToken, setAccessToken] = useLocalStorage('access_token');
 // if (accessToken) {
@@ -12,49 +12,50 @@ class UserService {
   }
   static async getUserById() {
     try {
-      const response = await axios.get("/users/user");
-      return response.data;
+      const response = await axios.get('/users/user')
+      return response.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
   static async login(username, password) {
     try {
       // const [accessToken, setAccessToken] = useLocalStorage('access_token');
-      const response = await axios.post("/user/login", {
+      const response = await axios.post('/user/login', {
         username,
         password,
-      });
-      return response.data;
+      })
+      return response.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
   static async logout() {
-    localStorage.removeItem('user');
-    Router.push('/login');
+    localStorage.removeItem('user')
+    Router.push('/login')
   }
   static async getAll() {
-    return [];
+    return []
   }
-};
+}
 
 function login(username, password) {
   return axios.post('/api/auth/login', {
-    username, password
-  });
+    username,
+    password,
+  })
 }
 
 function logout() {
-  return axios.post('/api/auth/logout');
+  return axios.post('/api/auth/logout')
 }
 
-function register(user) { }
+function register(user) {}
 
-function getById(id) { }
+function getById(id) {}
 
-function getAll() { }
+function getAll() {}
 
-function update(id, params) { }
+function update(id, params) {}
 
-export default UserService;
+export default UserService

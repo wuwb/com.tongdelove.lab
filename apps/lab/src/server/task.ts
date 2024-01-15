@@ -1,7 +1,7 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 export async function getRencentTasks() {
-    let { data } = await axios.get('/freelancer/tasks');
+  let { data } = await axios.get('/freelancer/tasks')
 
-    return data.data;
+  return data.data
 }

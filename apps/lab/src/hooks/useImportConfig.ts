@@ -1,26 +1,26 @@
-import { useMemo } from 'react';
+import { useMemo } from 'react'
 
-import { ImportResults, configService } from '@/services/config';
-import { useChatStore } from '@/store/chat';
-import { useSessionStore } from '@/store/session';
-import { importConfigFile } from '@/utils/config';
+import { ImportResults, configService } from '@/services/config'
+import { useChatStore } from '@/store/chat'
+import { useSessionStore } from '@/store/session'
+import { importConfigFile } from '@/utils/config'
 
 export const useImportConfig = () => {
-  const refreshSessions = useSessionStore((s) => s.refreshSessions);
-  const [refreshMessages, refreshTopics] = useChatStore((s) => [s.refreshMessages, s.refreshTopic]);
+  const refreshSessions = useSessionStore(s => s.refreshSessions)
+  const [refreshMessages, refreshTopics] = useChatStore(s => [s.refreshMessages, s.refreshTopic])
 
   const importConfig = async (file: File) =>
-    new Promise<ImportResults | undefined>((resolve) => {
-      importConfigFile(file, async (config) => {
-        const data = await configService.importConfigState(config);
+    new Promise<ImportResults | undefined>(resolve => {
+      importConfigFile(file, async config => {
+        const data = await configService.importConfigState(config)
 
-        await refreshSessions();
-        await refreshMessages();
-        await refreshTopics();
+        await refreshSessions()
+        await refreshMessages()
+        await refreshTopics()
 
-        resolve(data);
-      });
-    });
+        resolve(data)
+      })
+    })
 
-  return useMemo(() => ({ importConfig }), []);
-};
+  return useMemo(() => ({ importConfig }), [])
+}

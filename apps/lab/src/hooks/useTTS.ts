@@ -6,33 +6,33 @@ import {
   useEdgeSpeech,
   useMicrosoftSpeech,
   useOpenAITTS,
-} from '@lobehub/tts/react';
-import isEqual from 'fast-deep-equal';
+} from '@lobehub/tts/react'
+import isEqual from 'fast-deep-equal'
 
-import { createHeaderWithOpenAI } from '@/services/_header';
-import { OPENAI_URLS, TTS_URL } from '@/services/_url';
-import { useGlobalStore } from '@/store/global';
-import { settingsSelectors } from '@/store/global/selectors';
-import { useSessionStore } from '@/store/session';
-import { agentSelectors } from '@/store/session/selectors';
-import { TTSServer } from '@/types/agent';
+import { createHeaderWithOpenAI } from '@/services/_header'
+import { OPENAI_URLS, TTS_URL } from '@/services/_url'
+import { useGlobalStore } from '@/store/global'
+import { settingsSelectors } from '@/store/global/selectors'
+import { useSessionStore } from '@/store/session'
+import { agentSelectors } from '@/store/session/selectors'
+import { TTSServer } from '@/types/agent'
 
 interface TTSConfig extends TTSOptions {
-  onUpload?: (currentVoice: string, arraybuffers: ArrayBuffer[]) => void;
-  server?: TTSServer;
-  voice?: string;
+  onUpload?: (currentVoice: string, arraybuffers: ArrayBuffer[]) => void
+  server?: TTSServer
+  voice?: string
 }
 
 export const useTTS = (content: string, config?: TTSConfig) => {
-  const ttsSettings = useGlobalStore(settingsSelectors.currentTTS, isEqual);
-  const ttsAgentSettings = useSessionStore(agentSelectors.currentAgentTTS, isEqual);
-  const lang = useGlobalStore(settingsSelectors.currentLanguage);
-  const voice = useSessionStore(agentSelectors.currentAgentTTSVoice(lang));
-  let useSelectedTTS;
-  let options: any = {};
+  const ttsSettings = useGlobalStore(settingsSelectors.currentTTS, isEqual)
+  const ttsAgentSettings = useSessionStore(agentSelectors.currentAgentTTS, isEqual)
+  const lang = useGlobalStore(settingsSelectors.currentLanguage)
+  const voice = useSessionStore(agentSelectors.currentAgentTTSVoice(lang))
+  let useSelectedTTS
+  let options: any = {}
   switch (config?.server || ttsAgentSettings.ttsService) {
     case 'openai': {
-      useSelectedTTS = useOpenAITTS;
+      useSelectedTTS = useOpenAITTS
       options = {
         api: {
           headers: createHeaderWithOpenAI(),
@@ -42,11 +42,11 @@ export const useTTS = (content: string, config?: TTSConfig) => {
           model: ttsSettings.openAI.ttsModel,
           voice: config?.voice || voice,
         },
-      } as OpenAITTSOptions;
-      break;
+      } as OpenAITTSOptions
+      break
     }
     case 'edge': {
-      useSelectedTTS = useEdgeSpeech;
+      useSelectedTTS = useEdgeSpeech
       options = {
         api: {
           /**
@@ -57,11 +57,11 @@ export const useTTS = (content: string, config?: TTSConfig) => {
         options: {
           voice: config?.voice || voice,
         },
-      } as EdgeSpeechOptions;
-      break;
+      } as EdgeSpeechOptions
+      break
     }
     case 'microsoft': {
-      useSelectedTTS = useMicrosoftSpeech;
+      useSelectedTTS = useMicrosoftSpeech
       options = {
         api: {
           serviceUrl: TTS_URL.microsoft,
@@ -69,16 +69,16 @@ export const useTTS = (content: string, config?: TTSConfig) => {
         options: {
           voice: config?.voice || voice,
         },
-      } as MicrosoftSpeechOptions;
-      break;
+      } as MicrosoftSpeechOptions
+      break
     }
   }
 
   return useSelectedTTS(content, {
     ...config,
     ...options,
-    onFinish: (arraybuffers) => {
-      config?.onUpload?.(options.voice || 'alloy', arraybuffers);
+    onFinish: arraybuffers => {
+      config?.onUpload?.(options.voice || 'alloy', arraybuffers)
     },
-  });
-};
+  })
+}

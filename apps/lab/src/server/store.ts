@@ -1,17 +1,17 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react'
 
 export type State = {
   // 价格
-  price: number;
+  price: number
   // 每份金额
-  amount: number;
+  amount: number
   // 留存利润
-  numberOfRetainedProfits: number;
+  numberOfRetainedProfits: number
   // 逐格加码
-  increasePercentPerGrid: number;
-  hasMiddleGrid: boolean;
-  hasBigGrid: boolean;
-};
+  increasePercentPerGrid: number
+  hasMiddleGrid: boolean
+  hasBigGrid: boolean
+}
 
 export const initialState = {
   // 价格
@@ -25,61 +25,61 @@ export const initialState = {
   // 中网
   hasMiddleGrid: true,
   // 大网
-  hasBigGrid: true
-};
+  hasBigGrid: true,
+}
 
-type Keys = keyof State;
+type Keys = keyof State
 type Payload = {
-  value: typeof initialState[Keys];
-};
+  value: (typeof initialState)[Keys]
+}
 
 type Action = {
-  type: 'changeSetting';
-  key: Keys;
-  payload: Payload;
-};
+  type: 'changeSetting'
+  key: Keys
+  payload: Payload
+}
 
 export function reducer(state: State, action: Action): State {
-  console.log('%cPrevious State:', 'color: #9E9E9E; font-weight: 700;', state);
-  console.log('%cAction:', 'color: #00A7F7; font-weight: 700;', action);
-  const { type } = action;
-  const { key, payload } = action;
+  console.log('%cPrevious State:', 'color: #9E9E9E; font-weight: 700;', state)
+  console.log('%cAction:', 'color: #00A7F7; font-weight: 700;', action)
+  const { type } = action
+  const { key, payload } = action
   switch (type) {
     case 'changeSetting':
       state = {
         ...state,
-        [key]: payload.value
-      };
-      break;
+        [key]: payload.value,
+      }
+      break
     default:
-      break;
+      break
   }
-  console.log('%cNext State:', 'color: #47B04B; font-weight: 700;', state);
-  return state;
+  console.log('%cNext State:', 'color: #47B04B; font-weight: 700;', state)
+  return state
 }
 
 type IAppContext = {
-  state: State;
-  dispatch: React.Dispatch<Action>;
-};
+  state: State
+  dispatch: React.Dispatch<Action>
+}
 
-export const AppContext = createContext<IAppContext>({} as IAppContext);
+export const AppContext = createContext<IAppContext>({} as IAppContext)
 
 export function useDispatch() {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext)
 
   return (key: Keys, value: Payload['value']) => {
     dispatch({
       type: 'changeSetting',
       key,
       payload: {
-        value
-      }
-    });
-  };
+        value,
+      },
+    })
+  }
 }
 
 export function useAppState() {
-  const { state } = useContext(AppContext);
-  return state;
+  const { state } = useContext(AppContext)
+  return state
 }

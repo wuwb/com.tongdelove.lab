@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 export const useHasReadWelcome = () => {
-  const [read, setRead] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [read, setRead] = useState(false)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    if (localStorage.getItem("hasReadAD") === "yes") {
-      setRead(true);
+    if (localStorage.getItem('hasReadAD') === 'yes') {
+      setRead(true)
     } else {
-      setRead(false);
+      setRead(false)
     }
-    setLoading(false);
-  });
+    setLoading(false)
+  })
 
-  return { read, loading };
-};
+  return { read, loading }
+}

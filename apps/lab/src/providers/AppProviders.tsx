@@ -1,35 +1,33 @@
-import type { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
-import type { FC, PropsWithChildren } from 'react';
-import AppContextProvider from '@/contexts/AppContext';
-import { MantineProvider } from '@mantine/core';
-import { theme } from '../theme';
+import type { Session } from 'next-auth'
+import { SessionProvider } from 'next-auth/react'
+import type { FC, PropsWithChildren } from 'react'
+import AppContextProvider from '@/contexts/AppContext'
+import { MantineProvider } from '@mantine/core'
+import { theme } from '../theme'
 
 type Props = PropsWithChildren<{
   /**
    * next-auth session
    */
-  session?: Session | null;
-}>;
+  session?: Session | null
+}>
 
 // Client-side cache, shared for the whole session of the user in the browser.
 
-export const AppProviders: FC<Props> = (props) => {
-  const { children, session } = props;
+export const AppProviders: FC<Props> = props => {
+  const { children, session } = props
   return (
     <SessionProvider session={session} refetchInterval={0}>
       {/* <SessionProvider session={session} refetchInterval={0}> */}
       {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
       {/* <ReactQueryClientProvider> */}
       <MantineProvider theme={theme}>
-        <AppContextProvider>
-          {children}
-        </AppContextProvider>
+        <AppContextProvider>{children}</AppContextProvider>
       </MantineProvider>
 
       {/* </ReactQueryClientProvider> */}
       {/* </PlausibleProvider> */}
       {/* </SessionProvider> */}
     </SessionProvider>
-  );
-};
+  )
+}

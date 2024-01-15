@@ -1,9 +1,6 @@
 import { getContext } from '@/middlewares/context'
 
-export async function timedPromise<T>(
-  promise: Promise<T>,
-  promiseName: string
-): Promise<T> {
+export async function timedPromise<T>(promise: Promise<T>, promiseName: string): Promise<T> {
   const { logger } = getContext()
   const startTime = Date.now()
   return await promise.then((result: any) => {

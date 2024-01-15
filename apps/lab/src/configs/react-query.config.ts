@@ -1,4 +1,4 @@
-import type { QueryClientConfig } from '@tanstack/react-query';
+import type { QueryClientConfig } from '@tanstack/react-query'
 
 export const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -6,4 +6,4 @@ export const queryClientConfig: QueryClientConfig = {
       refetchOnWindowFocus: false,
     },
   },
-};
+}

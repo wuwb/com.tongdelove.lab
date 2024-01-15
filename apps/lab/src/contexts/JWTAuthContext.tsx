@@ -1,57 +1,57 @@
-import type { User } from '@/models/user';
-import AuthService from '@/server/AuthService';
-import { createContext, FC, ReactNode, useEffect, useReducer } from 'react';
+import type { User } from '@/models/user'
+import AuthService from '@/server/AuthService'
+import { createContext, FC, ReactNode, useEffect, useReducer } from 'react'
 
 interface AuthState {
-  isInitialized: boolean;
-  isAuthenticated: boolean;
-  user: User | null;
+  isInitialized: boolean
+  isAuthenticated: boolean
+  user: User | null
 }
 
 interface AuthContextValue extends AuthState {
-  method: 'JWT';
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => Promise<void>;
-  register: (email: string, name: string, password: string) => Promise<void>;
+  method: 'JWT'
+  login: (email: string, password: string) => Promise<void>
+  logout: () => Promise<void>
+  register: (email: string, name: string, password: string) => Promise<void>
 }
 
 interface AuthProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 type InitializeAction = {
-  type: 'INITIALIZE';
+  type: 'INITIALIZE'
   payload: {
-    isAuthenticated: boolean;
-    user: User | null;
-  };
-};
+    isAuthenticated: boolean
+    user: User | null
+  }
+}
 
 type LoginAction = {
-  type: 'LOGIN';
+  type: 'LOGIN'
   payload: {
-    user: User;
-  };
-};
+    user: User
+  }
+}
 
 type LogoutAction = {
-  type: 'LOGOUT';
-};
+  type: 'LOGOUT'
+}
 
 type RegisterAction = {
-  type: 'REGISTER';
+  type: 'REGISTER'
   payload: {
-    user: User;
-  };
-};
+    user: User
+  }
+}
 
-type Action = InitializeAction | LoginAction | LogoutAction | RegisterAction;
+type Action = InitializeAction | LoginAction | LogoutAction | RegisterAction
 
 const initialAuthState: AuthState = {
   isAuthenticated: false,
   isInitialized: false,
   user: null,
-};
+}
 
 // const handlers: Record<string, (state: AuthState, action: Action) => AuthState> = {
 //   INITIALIZE: (state: AuthState, action: InitializeAction): AuthState => {
@@ -98,7 +98,7 @@ export const AuthContext = createContext<AuthContextValue>({
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
   register: () => Promise.resolve(),
-});
+})
 
 export const AuthProvider: FC<AuthProviderProps> = props => {
   // const { children } = props;
@@ -190,9 +190,7 @@ export const AuthProvider: FC<AuthProviderProps> = props => {
   //   </AuthContext.Provider>
   // );
 
-  return (
-    <div>123</div>
-  )
-};
+  return <div>123</div>
+}
 
-export const AuthConsumer = AuthContext.Consumer;
+export const AuthConsumer = AuthContext.Consumer
