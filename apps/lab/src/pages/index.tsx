@@ -22,37 +22,17 @@ const TaskBlock = props => {
   )
 }
 
-const DemoRoute = props => {
-  const hello = trpc.example.hello.useQuery({ text: 'from tRPC test' })
-  const getAll = trpc.example.getAll.useQuery()
-  const getSecretMessage = trpc.example.getSecretMessage.useQuery()
+const Index = props => {
+  const { data: session } = useSession()
 
-  useEffect(() => {
-    console.log('post:', props.post)
-    console.log('hello: ', hello.data, getAll.data, getSecretMessage.data)
-  }, [hello, getAll, getSecretMessage])
+  console.log('session: ', session)
 
-  return <DemoPage />
-}
-
-const AuthShowcase = () => {
-  const { data: sessionData } = useSession()
-
+  const { data: hello, isLoading } = trpc.example.hello.useQuery({ text: 'from tRPC test' })
   const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
 
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-white text-center text-2xl">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button onClick={sessionData ? () => void signOut() : () => void signIn()}>{sessionData ? 'Sign out' : 'Sign in'}</button>
-    </div>
-  )
-}
-
-const Index = () => {
-  const { data: hello, isLoading } = trpc.example.hello.useQuery({ text: 'from tRPC test' })
+  useEffect(() => {
+    console.log('hello: ', hello)
+  }, [hello])
 
   return (
     <>
@@ -62,8 +42,7 @@ const Index = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <AuthShowcase />
-
+        <button onClick={() => signIn('github')}>Github 登录</button>
         <button
           onClick={() =>
             signIn('credentials', {
@@ -72,23 +51,20 @@ const Index = () => {
             })
           }
         >
-          登录
+          账号登录
         </button>
-
         <p className="text-white text-2xl">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <DemoPage />
+          <p className="text-white text-center text-2xl">
+            {session && <span>Logged in as {session.user?.name}</span>}
+            {secretMessage && <span> - {secretMessage}</span>}
+          </p>
+          <button onClick={session ? () => void signOut() : () => void signIn()}>{session ? 'Sign out' : 'Sign in'}</button>
+        </div>
       </Container>
     </>
   )
 }
 
 export default Index
-
-export async function getServerSideProps({ query }: any) {
-  const post = await prisma.poem.findMany()
-
-  return {
-    props: {
-      post,
-    },
-  }
-}

@@ -20,8 +20,8 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     ignorePatterns: [
-        ...getDefaultIgnorePatterns(), '.next', '.out'],
-
+        ...getDefaultIgnorePatterns(), '.next', '.out'
+    ],
     plugins: [
         '@typescript-eslint',
         'prettier',
@@ -65,11 +65,11 @@ module.exports = {
         // Apply prettier and disable incompatible rules
         '@tongdelove/eslint-config-bases/prettier-plugin',
     ],
-    // settings: {
-    //   next: {
-    //     rootDir: ['@/'],
-    //   },
-    // },
+    settings: {
+        next: {
+            rootDir: ['@/'],
+        },
+    },
     env: {
         browser: true,
         es2021: true,
@@ -126,7 +126,6 @@ module.exports = {
 
         '@typescript-eslint/naming-convention': 'off',
         // https://github.com/vercel/next.js/discussions/16832
-        '@next/next/no-img-element': 'off',
         // For the sake of example
         // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md
         'jsx-a11y/anchor-is-valid': 'off',
@@ -136,23 +135,6 @@ module.exports = {
         'react/no-unescaped-entities': 'off',
         'unused-imports/no-unused-imports': 'off',
         'max-len': [1, { "code": 160 }],
-        'no-unused-vars': 'off',
-
-        "react-hooks/exhaustive-deps": "off",
-        "prettier/prettier": "off",
-        "@typescript-eslint/no-extra-semi": "warn",
-
-        // These opinionated rules are enabled in stylistic-type-checked above.
-        // Feel free to reconfigure them to your own preference.
-        "@typescript-eslint/array-type": "off",
-        "@typescript-eslint/consistent-type-definitions": "off",
-        "@typescript-eslint/consistent-type-imports": [
-            "warn",
-            {
-                prefer: "type-imports",
-                fixStyle: "inline-type-imports",
-            },
-        ],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-empty-function": "off",

@@ -1,11 +1,10 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { type GetServerSidePropsContext } from 'next'
-import { getServerSession, type DefaultSession, type NextAuthOptions } from 'next-auth'
+import { getServerSession, type DefaultSession, type NextAuthOptions, User, Session } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import { prisma } from '@/server/db/prisma'
-import Credentials from 'next-auth/providers/credentials'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import { env } from '@/env'
-import { default as CredentialsProvider } from 'next-auth/providers/credentials'
 import { createHttpUnauthorized } from '@/lib/auth/error'
 import DiscordProvider from 'next-auth/providers/discord'
 import GithubProvider from 'next-auth/providers/github'
@@ -13,6 +12,7 @@ import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { customSendVerificationRequest } from '@/pages/api/auth/signinemail'
+import { JWT } from 'next-auth/jwt'
 
 const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
 const oneDayInSeconds = 86400
@@ -23,69 +23,15 @@ const oneDayInSeconds = 86400
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    /*
-        async signIn({ user, account, profile, email, credentials }) {
-          return true;
-        },
-        */
-    redirect: async ({ url, baseUrl }) => {
-      return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
-    },
-    session: async ({ session, user, token }) => {
-      console.log('======================================')
-      console.log('session: ', session)
-      console.log('user: ', user)
-      console.log('token: ', token)
-      console.log('======================================')
-      if (session?.user && token) {
-        session.user.id = token.id as string
-        // const jwtClaims = {
-        //     id: session.user?.id?.toString(),
-        //     email: session.user?.email,
-        //     sub: session.user?.id,
-        //     iat: Date.now() / 1000,
-        //     exp: Math.floor(Date.now() / 1000) + JWT_EXPIRY,
-        // }
-        // const encodedToken = jwt.sign(
-        //     jwtClaims,
-        //     env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'),
-        //     { algorithm: 'RS256' }
-        // )
-        // session.user.encodeToken = encodedToken
-      }
-      return session
-      // return Promise.resolve({
-      //     ...session,
-      //     user: {
-      //         ...session.user,
-      //         id: user.id,
-      //     },
-      // })
-    },
-    jwt: async ({ token, user, account, profile, isNewUser, trigger }) => {
-      // if (trigger === 'signUp') {
-      //     // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
-      // }
-      if (user) {
-        token.id = user.id
-        // token.role = user.role
-      }
-      return Promise.resolve(token)
-    },
-  },
   adapter: PrismaAdapter(prisma),
   providers: [
-    /**
-     * @see https://next-auth.js.org/providers/github
-     */
-    Credentials({
+    CredentialsProvider({
       name: 'credentials',
       credentials: {
         email: {
           label: 'Email',
           type: 'email',
-          placeholder: 'jsmith@gmail.com',
+          placeholder: 'xxx@xxx.com',
         },
         password: {
           label: 'Password',
@@ -94,12 +40,13 @@ export const authOptions: NextAuthOptions = {
         },
       },
       authorize: async (credentials, request) => {
-        console.log(credentials)
+        console.log(credentials, request)
         // TODO
-        // const maybeUser= await prisma.user.findFirst({where:{
-        //   email: credentials.email,
-        //  }})
-
+        // const maybeUser = await prisma.user.findFirst({
+        //     where: {
+        //         email: credentials.email,
+        //     }
+        // })
         if (!credentials) {
           throw createHttpUnauthorized('Credentials not provided')
         }
@@ -111,46 +58,68 @@ export const authOptions: NextAuthOptions = {
           })
           .safeParse(credentials)
 
-        if (parsedCredentials.success) {
-          const { email, password } = parsedCredentials.data
+        if (!parsedCredentials.success) {
+          return null
+          // throw createHttpUnauthorized('ParsedCredentials failed.')
+        }
 
-          const user = await prisma.user.findFirst({
+        const { email, password } = parsedCredentials.data
+
+        console.log('===================================')
+        console.log('email, password: ', email, password)
+        console.log('===================================')
+
+        const user = await prisma.user.findFirst({
+          where: {
+            email,
+          },
+        })
+
+        console.log('===================================')
+        console.log('find user: ', user)
+        console.log('===================================')
+
+        if (!user) {
+          // 如果返回 null，则会显示一个错误，建议用户检查其详细信息。
+          console.log('===================================')
+          console.log('create user')
+          console.log('===================================')
+          const user = await prisma.user.create({
             where: {
               email,
             },
           })
 
-          if (!user) {
-            // 如果返回null，则会显示一个错误，建议用户检查其详细信息。
-            return null
-            // 跳转到错误页面，并且携带错误信息 http://localhost:3000/api/auth/error?error=用户名或密码错误
-            //throw new Error("用户名或密码错误");
-          }
+          console.log('user: ', user)
 
-          const isValidPassword = true // await verify(user.password, creds.password);
-          const passwordsMatch = await bcrypt.compare(password, user.password)
-
-          if (!isValidPassword) {
-            return null
-            // throw createHttpUnauthorized('Invalid credentials');
-          }
-          if (user && isValidPassword) {
-            // 返回的对象将保存才JWT 的用户属性中
-            return user
-          }
+          return null
+          // 跳转到错误页面，并且携带错误信息 http://localhost:3000/api/auth/error?error=用户名或密码错误
+          // throw new Error("用户名或密码错误")
         }
-        return null
+
+        const isValidPassword = true // await verify(user.password, creds.password)
+        // const passwordsMatch = await bcrypt.compare(password, user.password)
+
+        if (!isValidPassword) {
+          return null
+          // throw createHttpUnauthorized('Invalid credentials')
+        }
+
+        // 返回的对象将保存在 JWT 的用户属性中
+        console.log('===================================')
+        console.log('return user: ', user)
+        console.log('===================================')
+        return user
       },
     }),
     EmailProvider({
       server: env.EMAIL_SERVER,
       from: env.EMAIL_FROM,
-      sendVerificationRequest: async ({ identifier, url, provider, theme }) => {
-        await customSendVerificationRequest({ identifier, url, provider, theme })
-      },
+      sendVerificationRequest: customSendVerificationRequest,
       maxAge: 24 * 60 * 60, // 设置邮箱链接失效时间，默认24小时
     }),
     // @see https://github.com/settings/applications/2443205
+    // @see https://next-auth.js.org/providers/github
     GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
@@ -208,6 +177,74 @@ export const authOptions: NextAuthOptions = {
       return jwt.verify(token, secret)
     },
   },
+  callbacks: {
+    jwt: async ({ token, user, account, profile, isNewUser, trigger }) => {
+      console.log('jwt ======================================')
+      console.log('token: ', token)
+      console.log('user: ', user)
+      console.log('account: ', account)
+      console.log('profile: ', profile)
+      console.log('isNewUser: ', isNewUser)
+      console.log('trigger: ', trigger)
+      console.log('jwt ======================================')
+      if (trigger === 'signUp') {
+        // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
+      }
+      if (user) {
+        token.id = user.id
+        // token.role = user.role
+      }
+      return Promise.resolve({
+        ...token,
+        ...user,
+      })
+    },
+    // adapter 适配后，返回 user 数据，直接赋值给 session
+    session: async ({ session, token, user }) => {
+      console.log('session ======================================')
+      console.log('session: ', session)
+      console.log('token: ', token)
+      console.log('user: ', user)
+      console.log('session ======================================')
+      if (session?.user && token) {
+        session.user.id = token.id as string
+        // session.user.id = token.sub
+        // session.user.accessToken = token.accessToken;
+        // session.user.refreshToken = token.refreshToken;
+        // session.error = token.error; // 用于处理token 失效
+        // const jwtClaims = {
+        //     id: session.user?.id?.toString(),
+        //     email: session.user?.email,
+        //     sub: session.user?.id,
+        //     iat: Date.now() / 1000,
+        //     exp: Math.floor(Date.now() / 1000) + JWT_EXPIRY,
+        // }
+        // const encodedToken = jwt.sign(
+        //     jwtClaims,
+        //     env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        //     { algorithm: 'RS256' }
+        // )
+        // session.user.encodeToken = encodedToken
+      }
+      return session
+      // return Promise.resolve({
+      //     ...session,
+      //     user: {
+      //         ...session.user,
+      //         id: user.id,
+      //     },
+      // })
+    },
+
+    /*
+        async signIn({ user, account, profile, email, credentials }) {
+            return true;
+        },
+        */
+    redirect: async ({ url, baseUrl }) => {
+      return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
+    },
+  },
   pages: {
     // signIn: '/user/login',
     // signIn: '/auth/signin',
@@ -216,7 +253,7 @@ export const authOptions: NextAuthOptions = {
     // verifyRequest: '/auth/verify-request',  // (used for check email message)
     // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-  debug: true,
+  debug: process.env.NODE_ENV === 'development',
 }
 
 // Use it in server contexts
