@@ -1,0 +1,27 @@
+import * as z from "zod"
+
+export const CouponModelSchema = z.object({
+  id: z.string(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date(),
+  isDeleted: z.boolean(),
+  title: z.string(),
+  description: z.string(),
+  code: z.string(),
+  discount: z.number(),
+  type: z.number().int(),
+  limit: z.number().int(),
+  min: z.number(),
+  condition: z.number().int(),
+  goodsType: z.number().int(),
+  goodsValue: z.string(),
+  total: z.number().int(),
+  usedCount: z.number().int(),
+  timeType: z.number().int(),
+  status: z.number().int(),
+  expiration: z.date(),
+  days: z.number().int(),
+  startAt: z.date(),
+  endAt: z.date(),
+  tag: z.string(),
+})

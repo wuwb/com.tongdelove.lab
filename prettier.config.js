@@ -6,10 +6,16 @@ export default {
     singleQuote: true,
     endOfLine: 'auto',
 
-    // printWidth: 120,
+    printWidth: 120,
     arrowParens: "avoid",
     useTabs: false,
     plugins: [
         require('prettier-plugin-tailwindcss')
     ],
+
+    'editor.formatOnSave': true,
+    proseWrap: "always",
+    requireConfig: false,
+    bracketSpacing: true,
+    jsxBracketSameLine: false,
 }

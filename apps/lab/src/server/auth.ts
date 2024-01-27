@@ -237,10 +237,10 @@ export const authOptions: NextAuthOptions = {
     },
 
     /*
-        async signIn({ user, account, profile, email, credentials }) {
-            return true;
-        },
-        */
+    async signIn({ user, account, profile, email, credentials }) {
+        return true;
+    },
+    */
     redirect: async ({ url, baseUrl }) => {
       return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
     },

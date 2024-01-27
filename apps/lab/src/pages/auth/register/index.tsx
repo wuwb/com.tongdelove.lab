@@ -1,5 +1,4 @@
 import { Link } from '@/components/ui/Link';
-import { RegisterParams, register as registerUser } from '@/server/auth';
 import { ServerError } from '@/utils/axios';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useMutation } from '@tanstack/react-query';
@@ -8,7 +7,7 @@ import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
-function Register() {
+const Register = () => {
     const router = useRouter();
 
     const schema = Joi.object({
@@ -25,7 +24,6 @@ function Register() {
     const { register, handleSubmit, formState } = useForm(formOptions);
     const { errors } = formState;
 
-    const { mutateAsync, isLoading } = useMutation<void, ServerError, RegisterParams>(registerUser);
 
     const onSubmit = async data => {
         // return userService.register(user)
@@ -35,7 +33,7 @@ function Register() {
         //     })
         //     .catch(alertService.error);
         console.log('data: ', data);
-        await mutateAsync(data);
+        // await mutateAsync(data);
 
         router.push('/');
     };

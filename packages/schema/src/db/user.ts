@@ -1,27 +1,76 @@
 import * as z from "zod"
-import { UserPermissionRole } from "@prisma/client"
-import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompletePost, RelatedPostModelSchema } from "./index"
+import { UserLanguageCode, UserPermissionRole } from "@prisma/client"
+import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteWebsite, RelatedWebsiteModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
   id: z.string(),
   name: z.string().nullish(),
   email: z.string().nullish(),
   emailVerified: z.date().nullish(),
+  about: z.string().nullish(),
+  interests: z.string().nullish(),
+  isPublic: z.boolean(),
+  tagline: z.string().nullish(),
+  location: z.string().nullish(),
+  subscription: z.string().nullish(),
+  credit: z.number(),
+  subscriptionStart: z.date().nullish(),
+  stripeCustomerId: z.string().nullish(),
+  subscriptionId: z.string().nullish(),
+  language: z.nativeEnum(UserLanguageCode).nullish(),
   image: z.string().nullish(),
-  avatar: z.string().nullish(),
-  username: z.string().nullish(),
+  username: z.string(),
+  gender: z.number().int(),
+  birthday: z.date().nullish(),
+  last_login_time: z.date().nullish(),
+  last_login_ip: z.string(),
+  level: z.number().int(),
+  login: z.string(),
+  pass: z.string(),
+  password: z.string().nullish(),
+  nicename: z.string(),
+  url: z.string(),
+  registered: z.date(),
+  activationKey: z.string(),
+  status: z.number().int(),
+  displayName: z.string(),
+  resetKey: z.string().nullish(),
+  phone: z.string().nullish(),
+  spam: z.number().int(),
   firstName: z.string().nullish(),
   lastName: z.string().nullish(),
-  role: z.nativeEnum(UserPermissionRole),
-  password: z.string().nullish(),
-  createdAt: z.date(),
+  age: z.number().int().nullish(),
+  platform: z.number().int().nullish(),
+  isSuper: z.number().int(),
+  avatar: z.string().nullish(),
+  isDeleted: z.boolean(),
+  createdAt: z.date().nullish(),
   updatedAt: z.date(),
+  role: z.nativeEnum(UserPermissionRole),
+  deptId: z.string().nullish(),
+  weixin_openid: z.string(),
+  session_key: z.string(),
 })
 
 export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   accounts: CompleteAccount[]
   sessions: CompleteSession[]
-  Post: CompletePost[]
+  roles: CompleteRole[]
+  website: CompleteWebsite[]
+  dept?: CompleteDept | null
+  post: CompletePost[]
+  order: CompleteOrder[]
+  payMehod: CompletePayMehod[]
+  telephone?: CompleteTelephone | null
+  cart: CompleteCart[]
+  book: CompleteBook[]
+  bookChapter: CompleteBookChapter[]
+  bookStar: CompleteBookStar[]
+  handbook: CompleteHandBook[]
+  handbookChapter: CompleteHandBookChapter[]
+  article: CompleteArticle[]
+  comment: CompleteComment[]
+  CreditTransaction: CompleteCreditTransaction[]
 }
 
 /**
@@ -32,5 +81,20 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
 export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => UserModelSchema.extend({
   accounts: RelatedAccountModelSchema.array(),
   sessions: RelatedSessionModelSchema.array(),
-  Post: RelatedPostModelSchema.array(),
+  roles: RelatedRoleModelSchema.array(),
+  website: RelatedWebsiteModelSchema.array(),
+  dept: RelatedDeptModelSchema.nullish(),
+  post: RelatedPostModelSchema.array(),
+  order: RelatedOrderModelSchema.array(),
+  payMehod: RelatedPayMehodModelSchema.array(),
+  telephone: RelatedTelephoneModelSchema.nullish(),
+  cart: RelatedCartModelSchema.array(),
+  book: RelatedBookModelSchema.array(),
+  bookChapter: RelatedBookChapterModelSchema.array(),
+  bookStar: RelatedBookStarModelSchema.array(),
+  handbook: RelatedHandBookModelSchema.array(),
+  handbookChapter: RelatedHandBookChapterModelSchema.array(),
+  article: RelatedArticleModelSchema.array(),
+  comment: RelatedCommentModelSchema.array(),
+  CreditTransaction: RelatedCreditTransactionModelSchema.array(),
 }))

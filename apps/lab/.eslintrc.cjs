@@ -20,14 +20,16 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     ignorePatterns: [
-        ...getDefaultIgnorePatterns(), '.next', '.out'
+        ...getDefaultIgnorePatterns(),
+        '.next',
+        '.out',
     ],
     plugins: [
         '@typescript-eslint',
         'prettier',
-        'testing-library',
+        // 'testing-library',
         // 'jest'
-        "jest-extended"
+        // "jest-extended"
     ],
     extends: [
         // ct3
@@ -46,13 +48,12 @@ module.exports = {
         // ct3
         "plugin:@next/next/recommended",
 
-
         // 'mantine',
         // Add specific rules for nextjs
-        'plugin:jest/recommended',
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/stylistic",
-        "plugin:storybook/recommended",
+        // "plugin:storybook/recommended",
+        // 'plugin:jest/recommended',
 
         // custom
         '@tongdelove/eslint-config-bases/typescript',

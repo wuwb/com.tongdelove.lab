@@ -4,7 +4,7 @@ import { CompletePoem, RelatedPoemModelSchema, CompleteKeyword, RelatedKeywordMo
 export const PoemKeywordsModelSchema = z.object({
   id: z.number().int(),
   poemId: z.number().int(),
-  keywordId: z.number().int(),
+  keywordId: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
 })

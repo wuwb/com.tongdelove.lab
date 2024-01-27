@@ -3,21 +3,20 @@ import { CompleteLinkCategory, RelatedLinkCategoryModelSchema, CompleteLinkSubCa
 
 export const LinkModelSchema = z.object({
   id: z.string(),
-  icon: z.string(),
+  icon: z.string().nullish(),
   url: z.string(),
   title: z.string(),
-  description: z.string(),
+  description: z.string().nullish(),
   public: z.boolean(),
   status: z.number().int(),
   createdAt: z.date(),
   updatedAt: z.date(),
-  catagoryId: z.number().int(),
-  subCategoryId: z.number().int(),
-  subcategoryId: z.string().nullish(),
+  catagoryId: z.number().int().nullish(),
+  subCategoryId: z.number().int().nullish(),
 })
 
 export interface CompleteLink extends z.infer<typeof LinkModelSchema> {
-  catagory: CompleteLinkCategory
+  catagory?: CompleteLinkCategory | null
   subCategory?: CompleteLinkSubCategory | null
 }
 
@@ -27,6 +26,6 @@ export interface CompleteLink extends z.infer<typeof LinkModelSchema> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedLinkModelSchema: z.ZodSchema<CompleteLink> = z.lazy(() => LinkModelSchema.extend({
-  catagory: RelatedLinkCategoryModelSchema,
+  catagory: RelatedLinkCategoryModelSchema.nullish(),
   subCategory: RelatedLinkSubCategoryModelSchema.nullish(),
 }))

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import { Image } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { getCsrfToken } from "next-auth/react"
+import { getCsrfToken, signIn } from "next-auth/react"
 
 const UserLoginPage = ({ csrfToken }) => {
     const router = useRouter();
@@ -46,6 +46,14 @@ const UserLoginPage = ({ csrfToken }) => {
             console.log('Success:', values);
             router.push('/');
         })
+    }
+
+    const handleGithubLogin = () => {
+        signIn('github')
+    }
+
+    const handleGoogleLogin = () => {
+        signIn('google')
     }
 
     return (
@@ -161,6 +169,7 @@ const UserLoginPage = ({ csrfToken }) => {
                                 <div className="flex items-center justify-center space-x-4 mt-3">
                                     <button
                                         className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover: text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                                        onClick={handleGithubLogin}
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -176,6 +185,7 @@ const UserLoginPage = ({ csrfToken }) => {
                                     </button>
                                     <button
                                         className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover: text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                                        onClick={handleGoogleLogin}
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -214,8 +224,8 @@ const UserLoginPage = ({ csrfToken }) => {
 export async function getServerSideProps(context) {
     const csrfToken = await getCsrfToken(context)
     return {
-      props: {
-        csrfToken
+        props: {
+            csrfToken
         },
     }
 }
