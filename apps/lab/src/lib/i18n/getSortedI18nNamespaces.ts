@@ -10,7 +10,11 @@ import type { I18nActiveNamespaces } from '@/lib/i18n/I18nNamespace.types';
 export const getSortedI18nNamespaces = <T extends I18nActiveNamespaces>(
   ns: T
 ) => {
-  if ([...ns].sort((a, b) => a.localeCompare(b)).toString() !== ns.toString()) {
+  if (
+    [...ns].sort(
+      (a, b) => a.localeCompare(b)
+    ).toString() !== ns.toString()
+  ) {
     throw new Error(
       `Config error: i18nNamespaces should be sorted for best performance ${JSON.stringify(
         ns

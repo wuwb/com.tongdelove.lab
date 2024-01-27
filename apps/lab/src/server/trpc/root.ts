@@ -1,8 +1,9 @@
 import { createTRPCRouter, publicProcedure } from "./index";
 import { z } from 'zod';
-import { exampleRouter } from "./routers/example";
-import { authRouter } from "./routers/auth";
-import { postRouter } from "./routers/post";
+import { exampleRouter } from "@/server/routers/example";
+import { authRouter } from "@/server/routers/auth";
+import { postRouter } from "@/server/routers/post";
+import { linkRouter } from "@/server/routers/link";
 
 /**
  * This is the primary router for your server.
@@ -24,6 +25,7 @@ export const appRouter = createTRPCRouter({
   auth: authRouter,
   post: postRouter,
   example: exampleRouter,
+  link: linkRouter,
 });
 
 // export type definition of API

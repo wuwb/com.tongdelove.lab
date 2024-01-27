@@ -11,9 +11,11 @@ const titles = [
 
 export const Jumbotron: FC = () => {
   const [count, setCount] = useState(0);
+
   useIntervalWhen(() => {
+    console.log('interval');
     setCount((count) => (count >= titles.length - 1 ? 0 : count + 1));
-  }, 3500);
+  }, 1000);
 
   return (
     <div>
@@ -24,11 +26,13 @@ export const Jumbotron: FC = () => {
         const curr = idx === count;
         return (
           <div
-            className={curr ? 'fadeIn' : 'fadeOut'}
             key={grad}
-            bg={grad}
+            className={curr ? 'fadeIn' : 'fadeOut'}
+            style={{
+              background: grad
+            }}
           >
-            {label}
+            {label} - {grad} - {curr} - {count} - {idx}
           </div>
         );
       })}

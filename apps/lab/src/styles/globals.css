@@ -1,4 +1,32 @@
-@tailwind base;
+@layer tailwind {
+  @tailwind base;
+}
+
+/* @import "@mantine/core/styles.layer.css"; */
+@import '@mantine/core/styles.css';
+
+/* Mantine foundational components */
+@import '@mantine/core/styles/ScrollArea.css';
+@import '@mantine/core/styles/UnstyledButton.css';
+@import '@mantine/core/styles/VisuallyHidden.css';
+@import '@mantine/core/styles/Paper.css';
+@import '@mantine/core/styles/Popover.css';
+@import '@mantine/core/styles/CloseButton.css';
+@import '@mantine/core/styles/Group.css';
+@import '@mantine/core/styles/Loader.css';
+@import '@mantine/core/styles/Overlay.css';
+@import '@mantine/core/styles/ModalBase.css';
+@import '@mantine/core/styles/Input.css';
+@import '@mantine/core/styles/Flex.css';
+
+/* Mantine components */
+@import '@mantine/core/styles/Button.css';
+
+@import '@mantine/dates/styles.css';
+@import '@mantine/notifications/styles.css';
+@import '@mantine/carousel/styles.css';
+
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
@@ -17,7 +45,6 @@
 }
 
 @layer base {
-
   ul,
   ol {
     list-style: revert;
@@ -31,8 +58,7 @@
 @layer base {
   :root {
     /* 通用 */
-    --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC',
-      'MicrosoftYaHei', 'WenQuanYi Micro Hei', sans-serif;
+    --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'MicrosoftYaHei', 'WenQuanYi Micro Hei', sans-serif;
 
     /* 简书 */
     /* --font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "MicrosoftYaHei", "WenQuanYi Micro Hei", sans-serif; */
@@ -54,8 +80,7 @@
     --border-radius-base: ;
     --border-radius-sm: ;
 
-    --code-font: 'Consolas', 'Panic Sans', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei',
-      monospace;
+    --code-font: 'Consolas', 'Panic Sans', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei', monospace;
     --box-background-color: #fff;
     --box-background-alt-color: #f9f9f9;
     --box-background-hover-color: #fafafa;
@@ -149,13 +174,15 @@
   }
 
   body {
-    font-family: var(--font-family)
+    font-family: var(--font-family);
   }
 }
 
 @layer base {
   body {
-    font-feature-settings: 'rlig' 1, 'calt' 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
   .max-screen {
@@ -163,7 +190,7 @@
   }
 
   .absolute-center {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2;
   }
 }
 

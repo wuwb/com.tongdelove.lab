@@ -14,7 +14,7 @@ AdminRoute.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const { locale } = context;
+  const { locale = 'en' } = context;
   if (locale === undefined) {
     throw new Error('locale is missing');
   }

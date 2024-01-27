@@ -84,13 +84,13 @@ export function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          Logo
+          Lab
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <a href="/" className={classes.link}>
               Home
             </a>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -137,12 +137,6 @@ export function HeaderMegaMenu() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
           </Group>
 
           <Group visibleFrom="sm">
@@ -181,38 +175,32 @@ export function HeaderMegaMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
-            Learn
-          </a>
-          <a href="#" className={classes.link}>
-            Academy
-          </a>
 
           <Divider my="sm" />
 
-  {session? (
-    <div className="flex items-center space-x-3">
-        <img
-          className="w-12 h-12 rounded-full"
-          src={session.user.image}
-          alt="avator"
-        />
-        <Link href="/me">
-          <a className="text-blue-600 font-medium">{session.user.name}</a>
-        </Link>
-        <button
-          className="px-3 py-2 bg-blue-500 text-white rounded"
-          onClick={() => signOut()}
-        >
-          登出
-        </button>
-      </div>
-  ): (
-<Group justify="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
-          </Group>
-  )}
+          {session ? (
+            <div className="flex items-center space-x-3">
+              <img
+                className="w-12 h-12 rounded-full"
+                src={session.user?.image!}
+                alt="avator"
+              />
+              <Link href="/me">
+                <a className="text-blue-600 font-medium">{session.user?.name}</a>
+              </Link>
+              <button
+                className="px-3 py-2 bg-blue-500 text-white rounded"
+                onClick={() => signOut()}
+              >
+                登出
+              </button>
+            </div>
+          ) : (
+            <Group justify="center" grow pb="xl" px="md">
+              <Button variant="default">Log in</Button>
+              <Button>Sign up</Button>
+            </Group>
+          )}
 
         </ScrollArea>
       </Drawer>
@@ -222,7 +210,6 @@ export function HeaderMegaMenu() {
 
 export default function WithSubnavigation() {
   const [isOpen, { toggle, open }] = useDisclosure(false);
-
 
   return (
     <Box>

@@ -6,9 +6,7 @@ import { BaseLayout } from '@/components/layouts'
 import React from 'react'
 import nextI18NextConfig from '../../next-i18next.config'
 import { AppProviders } from '@/providers/AppProviders'
-import '@mantine/core/styles.css'
-import '@mantine/notifications/styles.css'
-import '@mantine/carousel/styles.css'
+
 import '@/styles/globals.css'
 import { type Session } from 'next-auth'
 import Head from 'next/head'
@@ -16,7 +14,7 @@ import { SessionProvider } from 'next-auth/react'
 
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect (and its warnings) when not running in a browser
-  React.useLayoutEffect = () => {}
+  React.useLayoutEffect = () => { }
 }
 
 /**

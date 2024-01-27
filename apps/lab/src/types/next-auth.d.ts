@@ -20,6 +20,20 @@ declare module 'next-auth' {
     user?: User
   }
 
+  /**
+   * Usually contains information about the provider being used
+   * and also extends `TokenSet`, which is different tokens returned by OAuth Providers.
+   */
+  // interface Account {}
+  /**
+   * The OAuth profile returned from your provider
+   */
+  // interface Profile {}
+
+  /**
+   * The shape of the user object returned by the OAuth providers' `profile` callback,
+   * or the second parameter of the `session` callback, when using a database.
+   */
   interface User {
     firstName?: string
     lastName?: string
@@ -43,3 +57,4 @@ declare module 'next-auth/jwt' {
     jti?: string
   }
 }
+

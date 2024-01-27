@@ -7,6 +7,7 @@ import { LoginForm } from '@/features/auth/components/LoginForm';
 export const LoginPage: FC = () => {
   const { t } = useTranslation(authConfig.i18nNamespaces);
   const redirectToPage = '/admin';
+
   return (
     <>
       <NextSeo title={t('auth:page.title')} />
