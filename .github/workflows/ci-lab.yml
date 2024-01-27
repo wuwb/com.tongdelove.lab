@@ -1,0 +1,90 @@
+name: CI-lab
+
+on:
+  push:
+    branches: [main]
+    # Only consider those paths to trigger the action
+    paths:
+      - 'apps/lab/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+    # Only consider those paths to trigger the action
+    paths:
+      - 'apps/lab/**'
+      - 'packages/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+
+jobs:
+  CI-lab:
+    name: CI-lab
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/lab
+    strategy:
+      matrix:
+        node-version: [18.x]
+    env:
+      TURBO_API: 'http://127.0.0.1:9080'
+      TURBO_TEAM: 'nextjs-monorepo-example'
+      TURBO_TOKEN: 'local_server_turbo_relaxed_token'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8.14.3
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Copy env
+        run: cp .env.example .env
+        working-directory: ./apps/lab
+
+      - name: Download deps
+        run: pnpm install
+        working-directory: ./apps/lab
+
+      - name: Type check
+        run: pnpm lint
+        working-directory: ./apps/lab
+
+      - name: Run unit test
+        run: pnpm test:unit
+        working-directory: ./apps/lab
+
+      - name: Run translation scanner
+        run: pnpm translation:scan
+        working-directory: ./apps/lab
