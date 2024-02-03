@@ -1,9 +1,8 @@
-name: CI-lab
+name: CI-web
 
 on:
   push:
     branches: [main]
-    # Only consider those paths to trigger the action
     paths:
       - 'apps/lab/**'
       - 'package.json'
@@ -15,7 +14,6 @@ on:
 
   pull_request:
     types: [opened, synchronize, reopened]
-    # Only consider those paths to trigger the action
     paths:
       - 'apps/lab/**'
       - 'packages/**'
@@ -25,10 +23,11 @@ on:
       - 'tsconfig.base.json'
       - '.prettier*'
       - '.github/**'
+  workflow_dispatch:
 
 jobs:
-  CI-lab:
-    name: CI-lab
+  CI-web:
+    name: CI-web
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -45,7 +44,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
