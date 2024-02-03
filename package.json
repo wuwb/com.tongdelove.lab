@@ -63,7 +63,7 @@
     "@manypkg/cli": "^0.20.0",
     "@types/inquirer": "^9",
     "@types/prettier": "2.7.3",
-    "@types/shell-quote": "1.7.2",
+    "@types/shell-quote": "1.7.5",
     "commitizen": "^4.3.0",
     "conventional-changelog-cli": "^4.1.0",
     "husky": "^8.0.3",

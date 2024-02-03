@@ -57,8 +57,8 @@ importers:
         specifier: 2.7.3
         version: 2.7.3
       '@types/shell-quote':
-        specifier: 1.7.2
-        version: 1.7.2
+        specifier: 1.7.5
+        version: 1.7.5
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.33.0
         version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@7.28.0)(typescript@5.2.2)
@@ -4074,7 +4074,7 @@ packages:
       tsconfig-paths: 4.2.0
       tslib: 2.6.2
       typescript: 5.2.2
-      uWebSockets.js: github.com/uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1
+      uWebSockets.js: git/github.com+uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -9208,8 +9208,8 @@ packages:
       '@types/node': 20.4.2
     dev: true
 
-  /@types/shell-quote@1.7.2:
-    resolution: {integrity: sha512-p3SZxGp6LXB6RPdMpJmquKjaxQlN/ijyBLTKGPg9IJK6J2g2sJsMmtXP9kNR+Axxi6MDKN2e/76HCOUmvkIpcw==}
+  /@types/shell-quote@1.7.5:
+    resolution: {integrity: sha512-+UE8GAGRPbJVQDdxi16dgadcBfQ+KG2vgZhV1+3A1XmHbmwcdwhCUwIdy+d3pAGrbvgRoVSjeI9vOWyq376Yzw==}
     dev: true
 
   /@types/sinonjs__fake-timers@8.1.1:
@@ -26449,8 +26449,8 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  github.com/uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1}
+  git/github.com+uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1:
+    resolution: {commit: 105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1, repo: git@github.com:uNetworking/uWebSockets.js.git, type: git}
     name: uWebSockets.js
     version: 20.41.0
     dev: false
