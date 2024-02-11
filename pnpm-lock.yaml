@@ -120,8 +120,8 @@ importers:
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.49.3)
       '@mantine/carousel':
-        specifier: 7.1.0
-        version: 7.1.0(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(embla-carousel-react@7.1.0)(react@18.2.0)
+        specifier: 7.5.2
+        version: 7.5.2(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(embla-carousel-react@7.1.0)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/core':
         specifier: 7.1.0
         version: 7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
@@ -4074,7 +4074,7 @@ packages:
       tsconfig-paths: 4.2.0
       tslib: 2.6.2
       typescript: 5.2.2
-      uWebSockets.js: github.com/uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1
+      uWebSockets.js: git@github.com+uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -5289,18 +5289,20 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@mantine/carousel@7.1.0(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(embla-carousel-react@7.1.0)(react@18.2.0):
-    resolution: {integrity: sha512-3WHi0nVjXFfgUwoeJCEglX9PPOsP0Dsiauq31DDy2Cugn5LyxFluaiL7c21nHbs3Fd0If/sjgiBEEa+ZmVStiQ==}
+  /@mantine/carousel@7.5.2(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(embla-carousel-react@7.1.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-9LBnsETBcT3Wr5jGPUpTBirYMD/EyFvYaBolSSUDJKxXxcmSAnjZWT7mvhTC5oU0mOrUlgLoo2IBJGwL0OY0DQ==}
     peerDependencies:
-      '@mantine/core': 7.1.0
-      '@mantine/hooks': 7.1.0
-      embla-carousel-react: ^7.0.0
+      '@mantine/core': 7.5.2
+      '@mantine/hooks': 7.5.2
+      embla-carousel-react: '>=7.0.0'
       react: ^18.2.0
+      react-dom: ^18.2.0
     dependencies:
       '@mantine/core': 7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks': 7.1.0(react@18.2.0)
       embla-carousel-react: 7.1.0(react@18.2.0)
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@mantine/core@7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
@@ -26449,8 +26451,8 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  github.com/uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1}
+  git@github.com+uNetworking/uWebSockets.js/105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1:
+    resolution: {commit: 105d9ec47126cb82e4a6f3a08aa2ac78b4bb14f1, repo: git@github.com:uNetworking/uWebSockets.js.git, type: git}
     name: uWebSockets.js
     version: 20.41.0
     dev: false
