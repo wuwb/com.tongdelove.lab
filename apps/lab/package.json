@@ -146,7 +146,7 @@
     "@next/bundle-analyzer": "^13.4.19",
     "@next/env": "^13.5.3",
     "@next/eslint-plugin-next": "^14.0.3",
-    "@playwright/test": "1.38.1",
+    "@playwright/test": "1.41.2",
     "@size-limit/file": "9.0.0",
     "@soluble/dsn-parser": "^1.9.2",
     "@storybook/addon-essentials": "^7.6.7",
