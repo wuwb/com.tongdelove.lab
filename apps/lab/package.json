@@ -64,7 +64,7 @@
   "dependencies": {
     "@axiomhq/winston": "^1.0.0-rc.1",
     "@hookform/resolvers": "^3.3.4",
-    "@mantine/carousel": "7.1.0",
+    "@mantine/carousel": "7.6.1",
     "@mantine/core": "7.1.0",
     "@mantine/dates": "7.5.0",
     "@mantine/form": "^7.4.1",
