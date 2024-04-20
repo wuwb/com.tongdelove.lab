@@ -205,7 +205,7 @@
     "@storybook/blocks": "^7.6.12",
     "@storybook/components": "^7.6.12",
     "@storybook/nextjs": "^7.6.12",
-    "@storybook/react": "^7.6.12",
+    "@storybook/react": "^8.0.8",
     "@storybook/testing-library": "^0.2.0",
     "@storybook/theming": "^7.6.12",
     "@svgr/webpack": "8.1.0",
