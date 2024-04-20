@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui/Link';
+import { Link } from '@/components/ui2/Link';
 import { ReactNode } from 'react';
 import { FooterCopyright } from './FooterCopyright';
 import { FooterIconList } from './FooterIconList';

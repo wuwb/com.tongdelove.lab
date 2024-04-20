@@ -1,43 +1,22 @@
+/* eslint-env node */
 /**
  * Specific eslint rules for this app/package, extends the base rules
  * @see https://github.com/belgattitude/nextjs-monorepo-example/blob/main/docs/about-linters.md
  */
 
-// Workaround for https://github.com/eslint/eslint/issues/3458 (re-export of @rushstack/eslint-patch)
-require('@tongdelove/eslint-config-bases/patch/modern-module-resolution')
-
-const {
-  getDefaultIgnorePatterns,
-} = require('@tongdelove/eslint-config-bases/helpers')
-
-console.log('getDefaultIgnorePatterns: ', getDefaultIgnorePatterns)
-
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: true,
-    // ecmaVersion: 12,
-    // sourceType: 'module',
-    tsconfigRootDir: __dirname,
-  },
-  ignorePatterns: [
-    ...getDefaultIgnorePatterns(),
-    '.next',
-    '.out',
-  ],
-  plugins: [
-    '@typescript-eslint',
-    'prettier',
-    // 'testing-library',
-    // 'jest'
-    // "jest-extended"
-  ],
+  root: true,
   extends: [
     // ct3
     "next/core-web-vitals",
+    // 'mantine',
+    // Add specific rules for nextjs
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    // ct3
+    "plugin:@next/next/recommended",
+    'prettier',
 
     // flow
     "eslint:recommended",
@@ -47,26 +26,35 @@ module.exports = {
 
     "plugin:@typescript-eslint/strict",
 
-    // ct3
-    "plugin:@next/next/recommended",
-
     // 'mantine',
     // Add specific rules for nextjs
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/stylistic",
     // "plugin:storybook/recommended",
     // 'plugin:jest/recommended',
 
     // custom
-    '@tongdelove/eslint-config-bases/typescript',
-    '@tongdelove/eslint-config-bases/sonar',
-    '@tongdelove/eslint-config-bases/regexp',
-    '@tongdelove/eslint-config-bases/jest',
-    '@tongdelove/eslint-config-bases/react',
-    '@tongdelove/eslint-config-bases/tailwind',
-    '@tongdelove/eslint-config-bases/rtl',
-    // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-bases/prettier-plugin',
+    // '@tongdelove/eslint-config-bases/typescript',
+    // '@tongdelove/eslint-config-bases/sonar',
+    // '@tongdelove/eslint-config-bases/regexp',
+    // '@tongdelove/eslint-config-bases/jest',
+    // '@tongdelove/eslint-config-bases/react',
+    // '@tongdelove/eslint-config-bases/tailwind',
+    // '@tongdelove/eslint-config-bases/rtl',
+    // // Apply prettier and disable incompatible rules
+    // '@tongdelove/eslint-config-bases/prettier-plugin',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: true,
+    // ecmaVersion: 12,
+    // sourceType: 'module',
+    tsconfigRootDir: __dirname,
+  },
+  plugins: [
+    '@typescript-eslint',
+    'prettier',
+    // 'testing-library',
+    // 'jest'
+    // "jest-extended"
   ],
   settings: {
     next: {
@@ -88,7 +76,7 @@ module.exports = {
     "@typescript-eslint/consistent-type-definitions": "off",
 
     "@typescript-eslint/consistent-type-imports": [
-      "warn",
+      "off",
       {
         prefer: "type-imports",
         fixStyle: "inline-type-imports",
@@ -188,5 +176,9 @@ module.exports = {
       "files": ["**/test/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
       "extends": ["plugin:testing-library/react"]
     }
+  ],
+  ignorePatterns: [
+    '.next',
+    '.out',
   ],
 }

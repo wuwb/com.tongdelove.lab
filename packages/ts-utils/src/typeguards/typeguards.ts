@@ -1,4 +1,4 @@
-import type { NonEmptyArray } from '../types';
+import type { NonEmptyArray } from '@tongdelove/utils';
 
 export type IsoDateString = string;
 export const isIsoDateString = (dateStr: unknown): dateStr is IsoDateString => {

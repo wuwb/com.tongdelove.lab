@@ -1,6 +1,6 @@
-import { expressAdaptor } from '@builder.io/qwik-city/adaptors/express/vite';
-import { extendConfig } from '@builder.io/qwik-city/vite';
-import baseConfig from '../../vite.config';
+import { expressAdaptor } from '@builder.io/qwik-city/adaptors/express/vite'
+import { extendConfig } from '@builder.io/qwik-city/vite'
+import baseConfig from '../../vite.config.ts'
 
 export default extendConfig(baseConfig, () => {
   return {
@@ -15,5 +15,5 @@ export default extendConfig(baseConfig, () => {
         staticGenerate: true,
       }),
     ],
-  };
-});
+  }
+})

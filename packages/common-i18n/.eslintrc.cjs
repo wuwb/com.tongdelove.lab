@@ -3,10 +3,6 @@
  * @see https://github.com/belgattitude/nextjs-monorepo-example/blob/main/docs/about-linters.md
  */
 
-const {
-  getDefaultIgnorePatterns,
-} = require('@tongdelove/eslint-config-bases/helpers');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -14,11 +10,10 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: [...getDefaultIgnorePatterns()],
   extends: [
-    '@tongdelove/eslint-config-bases/typescript',
+    // '@tongdelove/eslint-config-bases/typescript',
     // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-bases/prettier-plugin',
+    // '@tongdelove/eslint-config-bases/prettier-plugin',
   ],
   rules: {
     // optional overrides per project

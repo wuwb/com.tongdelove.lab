@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PostRepositorySsr } from '@/backend/api/rest/post-repository.ssr';
+import { PostRepositorySsr } from '@/server/backend/api/rest/post-repository.ssr';
 import { prisma } from "@/server/db/prisma";
 
 export default async function handleGetPost(

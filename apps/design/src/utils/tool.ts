@@ -1,8 +1,8 @@
-import { RefObject, useEffect, useLayoutEffect, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 import { RGBColor } from 'react-color';
 
 // 宽度适配器
-export function _gaw (w: number) {
+export function _gaw(w: number) {
   const vw = window.innerWidth > 800 ? 375 : window.innerWidth;
   return (vw / 375) * w;
 }
@@ -55,16 +55,16 @@ export function useGetRect() {
   return rect;
 }
 
-export function useGetScrollBarWidth(ref: RefObject<HTMLElement>) {
-  const [width, setWidth] = useState(0);
-  useLayoutEffect(() => {
-    if (ref.current) {
-      const diff = ref.current.offsetWidth - ref.current.clientWidth;
-      setWidth(diff);
-    }
-  }, [ref]);
-  return width;
-}
+// export function useGetScrollBarWidth(ref: RefObject<HTMLElement>) {
+//   const [width, setWidth] = useState(0);
+//   React.useLayoutEffect(() => {
+//     if (ref.current) {
+//       const diff = ref.current.offsetWidth - ref.current.clientWidth;
+//       setWidth(diff);
+//     }
+//   }, [ref]);
+//   return width;
+// }
 
 export function useAnimation(state: boolean, delay: number) {
   const [display, setDisplay] = useState(false);

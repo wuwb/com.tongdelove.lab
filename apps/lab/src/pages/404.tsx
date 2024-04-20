@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import { getServerTranslations } from '@/backend/i18n/getServerTranslations'
+import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
 import { NotFoundPage } from '@/features/system/pages'
 import { systemConfig } from '@/features/system/system.config'
 import { Button } from '@mantine/core'

@@ -1,6 +1,6 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { ReactElement } from 'react';
-import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
+import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations';
 import { adminConfig } from '@/features/admin/admin.config';
 import { AdminLayout } from '@/features/admin/layouts';
 import { AdminMainPage } from '@/features/admin/pages';

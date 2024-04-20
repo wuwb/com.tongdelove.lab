@@ -1,11 +1,11 @@
-import { Link } from '@/components/ui';
+import { Link } from '@/components/ui2';
 import { Logo } from '../Logo';
 import styles from './Header.module.scss';
 import { Navbar } from './Navbar';
 
 function MenuIcon() {
   const handleMobileMenu = () => {
-    // 
+    //
   }
   return (
     <div className={styles['menu-icon']} onClick={handleMobileMenu}>

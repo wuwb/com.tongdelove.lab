@@ -1,5 +1,5 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getServerTranslations } from '@/backend/i18n/getServerTranslations';
+import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations';
 import { authConfig } from '@/features/auth/auth.config';
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 

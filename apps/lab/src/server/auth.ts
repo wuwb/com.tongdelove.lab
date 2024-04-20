@@ -18,6 +18,27 @@ const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
 const oneDayInSeconds = 86400
 
 /**
+ * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
+ * object and keep type safety.
+ *
+ * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
+ */
+declare module 'next-auth' {
+  interface Session extends DefaultSession {
+    user: DefaultSession['user'] & {
+      id: string
+      // ...other properties
+      // role: UserRole;
+    }
+  }
+
+  // interface User {
+  //   // ...other properties
+  //   // role: UserRole;
+  // }
+}
+
+/**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
  *
  * @see https://next-auth.js.org/configuration/options

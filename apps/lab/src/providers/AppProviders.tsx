@@ -4,6 +4,7 @@ import type { FC, PropsWithChildren } from 'react'
 import AppContextProvider from '@/contexts/AppContext'
 import { MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 type Props = PropsWithChildren<{
   /**
@@ -21,9 +22,11 @@ export const AppProviders: FC<Props> = props => {
       {/* <SessionProvider session={session} refetchInterval={0}> */}
       {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
       {/* <ReactQueryClientProvider> */}
-      <MantineProvider theme={theme}>
-        <AppContextProvider>{children}</AppContextProvider>
-      </MantineProvider>
+      <TooltipProvider>
+        <MantineProvider theme={theme}>
+          <AppContextProvider>{children}</AppContextProvider>
+        </MantineProvider>
+      </TooltipProvider>
 
       {/* </ReactQueryClientProvider> */}
       {/* </PlausibleProvider> */}

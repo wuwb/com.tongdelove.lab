@@ -85,6 +85,12 @@ export const trpc = createTRPCNext<AppRouter>({
           enabled: opts => process.env.NODE_ENV === 'development' || (opts.direction === 'down' && opts.result instanceof Error),
         }),
         httpBatchLink({
+          /**
+           * Transformer used for data de-serialization from the server.
+           *
+           * @see https://trpc.io/docs/data-transformers
+           */
+          transformer: superjson,
           // The server needs to know your app's full url
           url: `${getBaseUrl()}/api/trpc`,
           /**
@@ -151,6 +157,7 @@ export const trpc = createTRPCNext<AppRouter>({
    * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
    */
   ssr: false,
+  transformer: superjson,
 })
 
 /**

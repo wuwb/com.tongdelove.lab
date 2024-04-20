@@ -67,17 +67,6 @@ export default function ChatInput() {
             onClick={send}
           />
         </div>
-        <footer className='text-center text-sm text-gray-700 dark:text-gray-300 px-4 pb-6'>
-          ©️{new Date().getFullYear()}&nbsp;{" "}
-          <a
-            className='font-medium py-[1px] border-b border-dotted border-black/60 hover:border-black/0 dark:border-gray-200 dark:hover:border-gray-200/0 animated-underline'
-            href='https://x.zhixing.co'
-            target='_blank'
-          >
-            知行小课
-          </a>
-          .&nbsp;基于第三方提供的接口
-        </footer>
       </div>
     </div>
   )

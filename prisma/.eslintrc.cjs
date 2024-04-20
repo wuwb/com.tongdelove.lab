@@ -3,13 +3,6 @@
  * @link https://github.com/belgattitude/perso/tree/main/packages/eslint-config-bases
  */
 
-// Workaround for https://github.com/eslint/eslint/issues/3458
-require('@tongdelove/eslint-config-bases/patch/modern-module-resolution');
-
-const {
-  getDefaultIgnorePatterns,
-} = require('@tongdelove/eslint-config-bases/helpers');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -17,7 +10,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: [...getDefaultIgnorePatterns(), 'src/generated'],
+  ignorePatterns: ['src/generated'],
   extends: [
     '@tongdelove/eslint-config-bases/typescript',
     '@tongdelove/eslint-config-bases/sonar',

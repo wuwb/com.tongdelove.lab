@@ -186,11 +186,11 @@
   }
 
   .max-screen {
-    @apply mx-auto max-w-screen-lg px-4 px-8 xl:px-0 2xl:max-w-screen-xl 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl;
+    @apply 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl mx-auto max-w-screen-lg px-4 px-8 xl:px-0 2xl:max-w-screen-xl;
   }
 
   .absolute-center {
-    @apply absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2;
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
   }
 }
 

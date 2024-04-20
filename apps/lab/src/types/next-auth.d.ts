@@ -57,4 +57,3 @@ declare module 'next-auth/jwt' {
     jti?: string
   }
 }
-

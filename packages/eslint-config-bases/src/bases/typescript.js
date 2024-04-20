@@ -25,9 +25,9 @@ module.exports = {
     sourceType: 'module',
   },
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.mts'],
-    },
+    // 'import/parsers': {
+    //   '@typescript-eslint/parser': ['.ts', '.tsx', '.mts'],
+    // },
     'import/resolver': {
       typescript: {},
     },
@@ -36,8 +36,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
+    // 'plugin:@typescript-eslint/recommended-type-checked',
+    // 'plugin:@typescript-eslint/stylistic-type-checked',
   ],
   rules: {
     // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md

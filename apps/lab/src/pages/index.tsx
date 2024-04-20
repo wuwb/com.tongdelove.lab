@@ -7,10 +7,10 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Head from 'next/head'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getServerTranslations } from '@/backend/i18n/getServerTranslations'
+import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
 import { homeConfig } from '@/features/home/home.config'
 import { HomePage } from '@/features/home/pages'
-import { Button, rem } from '@mantine/core';
+import { Button } from '@/components/ui/button'
 
 type Props = {
   /** Add HomeRoute props here */
@@ -20,8 +20,6 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
   const { data: session } = useSession()
 
   console.log('session: ', session)
-  const gradient =
-    'linear-gradient(45deg, var(--mantine-color-pink-filled) 0%, var(--mantine-color-orange-filled) 50%, var(--mantine-color-yellow-filled) 100%)';
 
   const { data: hello, isLoading } = trpc.example.hello.useQuery({
     text: 'from tRPC',
@@ -29,7 +27,6 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
   const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
 
   const { data: links = [] } = trpc.link.getLinks.useQuery()
-
 
   useEffect(() => {
     console.log('hello: ', hello)
@@ -53,15 +50,15 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
 
       {/* <HomePage /> */}
 
-      <Container className="flex flex-col mt-10">
+      <Container className="mt-10 flex flex-col">
         <div>
-          {
-            links.map((link, index) => {
-              return (
-                <Link key={link.id} href={link.url}>{link.id}</Link>
-              )
-            })
-          }
+          {links.map((link, index) => {
+            return (
+              <Link key={link.id} href={link.url}>
+                {link.id}
+              </Link>
+            )
+          })}
         </div>
         <div className="flex flex-col">
           <button onClick={() => signIn('github')}>Github 登录</button>
@@ -75,41 +72,13 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
           >
             账号登录
           </button>
-          <button onClick={handleClick}>
-            {session ? 'Sign out' : 'Sign in'}
-          </button>
-          <Button
-            radius="md"
-            styles={{
-              root: {
-                padding: rem(2),
-                border: 0,
-                backgroundImage: gradient,
-              },
-              inner: {
-                background: 'var(--mantine-color-body)',
-                color: 'var(--mantine-color-text)',
-                borderRadius: 'calc(var(--button-radius) - 2px)',
-                paddingLeft: 'var(--mantine-spacing-md)',
-                paddingRight: 'var(--mantine-spacing-md)',
-              },
-              label: {
-                backgroundImage: gradient,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              },
-            }}
-          >
-            Gradient button
-          </Button>
+          <button onClick={handleClick}>{session ? 'Sign out' : 'Sign in'}</button>
 
-          <p className="text-white text-center text-2xl">
+          <p className="text-center text-2xl text-white">
             {session && <span>Logged in as {session.user?.name}</span>}
             {secretMessage && <span> - {secretMessage}</span>}
           </p>
-          <p className="text-white text-2xl">
-            {hello ? hello.greeting : 'Loading tRPC query...'}
-          </p>
+          <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
         </div>
         {/* <DemoPage /> */}
       </Container>

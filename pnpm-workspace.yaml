@@ -2,6 +2,7 @@ packages:
   - 'apps/lab'
   - 'packages/schema'
   - 'prisma'
+  - 'packages/utils'
   - 'packages/ts-utils'
   - 'packages/api-gateway'
   - 'packages/eslint-config-bases'

@@ -3,10 +3,6 @@
  * @link https://github.com/belgattitude/nextjs-monorepo-example/tree/main/packages/eslint-config-bases
  */
 
-const {
-  getDefaultIgnorePatterns,
-} = require('@tongdelove/eslint-config-bases/helpers');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -14,7 +10,6 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: [...getDefaultIgnorePatterns()],
   extends: [
     '@tongdelove/eslint-config-bases/typescript',
     '@tongdelove/eslint-config-bases/sonar',

@@ -1,19 +1,12 @@
 {
   "name": "@tongdelove/prisma",
+  "description": "",
   "version": "2.14.1",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
-  "author": {
-    "name": "Vanvelthem Sébastien",
-    "url": "https://github.com/belgattitude"
-  },
-  "description": "",
-  "keywords": [],
-  "license": "ISC",
-  "homepage": "https://github.com/belgattitude/nextjs-monorepo-example",
   "repository": {
     "type": "git",
     "url": "https://github.com/belgattitude/nextjs-monorepo-example",
@@ -40,7 +33,7 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.8.0"
+    "@prisma/client": "^5.9.1"
   },
   "devDependencies": {
     "@soluble/dsn-parser": "1.9.2",
@@ -48,14 +41,14 @@
     "@types/node": "20.6.3",
     "@vitest/coverage-v8": "1.2.2",
     "cross-env": "7.0.3",
-    "eslint": "8.50.0",
+    "eslint": "^8.56.0",
     "graphql": "16.8.1",
     "is-port-reachable": "4.0.0",
     "keyword-extractor": "0.0.27",
     "npm-run-all": "4.1.5",
     "picocolors": "1.0.0",
     "prettier": "3.0.3",
-    "prisma": "^5.8.0",
+    "prisma": "^5.9.1",
     "rimraf": "5.0.5",
     "transliteration": "2.3.5",
     "tsup": "7.2.0",

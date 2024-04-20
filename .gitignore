@@ -26,3 +26,5 @@ packages/dtos/
 packages/forum/
 packages/myapp/
 packages/spider/
+services/lucky-knives-lead/
+tasks/jobs/spider/src/sites/xueqiu

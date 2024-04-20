@@ -135,3 +135,39 @@ Error
 - https://lhammer.cn/You-need-to-know-css/#/zh-cn/interesting-usage?id=nescss
 - https://github.com/raxjs/universal-api
 - https://github.com/ayungavis/turborepo-nextjs-tailwind-trpc
+
+
+- https://github.com/refinedev/refine
+
+
+# App Architecture
+
+- Monorepo
+- Bun
+- React
+- TypeScript
+- Nextjs
+- Supabase
+- Shadcn
+- ToDesktop
+- Expo
+- TailwindCSS
+
+### Hosting
+
+- Supabase (database, storage, realtime, auth)
+- Vercel (Website, edge-config, analytics and metrics)
+- Upstash (redis)
+
+### Services
+
+- Trigger.dev (background jobs)
+- Resend (email)
+- Novu (notifications)
+- Github Actions (CI/CD)
+- GoCardLess (Bank connection EU)
+- Plaid (Bank connection in Canada and US)
+- Teller (Bank connection in the US)
+- Loops (Marketing email)
+- LogSnag (Events)
+- Dub (Short URLs)

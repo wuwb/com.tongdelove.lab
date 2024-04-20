@@ -1,4 +1,4 @@
-import type { SearchPoems } from '@/backend/features/poem/SearchPoems';
+import type { SearchPoems } from '@/server/backend/features/poem/SearchPoems';
 
 export const fetchPoems = async (): Promise<SearchPoems> => {
   return fetch('/api/rest/poem').then(

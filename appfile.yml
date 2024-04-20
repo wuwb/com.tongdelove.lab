@@ -1,0 +1,13 @@
+version: "3.9"
+
+apps:
+  cmmands:
+    start:
+    stop:
+    restart:
+    deps:
+      - name: git
+        install: brew install git
+        deps:
+          - name: brew
+            install: xxxxx
