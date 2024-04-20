@@ -8,3 +8,4 @@ export const MainPageWrapper = ({ children }) => {
         </div>
     );
 }
+

@@ -17,7 +17,7 @@ function Accordion({
 }
 
 export function Item({ children, className, label, id }) {
-    //
+    // 
 }
 
 Accordion.Item = Item;

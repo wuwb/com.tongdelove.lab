@@ -12,7 +12,7 @@ const LayoutProvider = ({ children }) => {
     })
 
     const setLayout = () => {
-        //
+        // 
     };
     const value = {
         classes,
