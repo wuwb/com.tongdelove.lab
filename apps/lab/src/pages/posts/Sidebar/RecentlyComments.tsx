@@ -1,9 +1,6 @@
-
 // react blog recently post widget
 function RecentlyComments() {
-    return (
-        <div></div>
-    );
+  return <div></div>
 }
 
-export default RecentlyComments;
+export default RecentlyComments

@@ -1,5 +1,5 @@
-import { type Config } from "tailwindcss";
-import defaultTheme, { fontFamily } from "tailwindcss/defaultTheme";
+import { type Config } from 'tailwindcss'
+import defaultTheme, { fontFamily } from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 const tailwindConfig = {
@@ -59,7 +59,7 @@ const tailwindConfig = {
       center: true,
       padding: '2rem',
       screens: {
-        "2xl": "1400px",
+        '2xl': '1400px',
       },
     },
     extend: {
@@ -102,20 +102,16 @@ const tailwindConfig = {
           700: 'rgb(var(--color-base-red-700) / <alpha-value>)',
         },
         fgPurpleGradient: {
-          default:
-            'var(--purple-gradient, linear-gradient(235deg, #57E4FF 0%, #8B95F2 26.03%, #8B72EE 44.83%, #8556EA 60.47%, #4138E5 100%))',
+          default: 'var(--purple-gradient, linear-gradient(235deg, #57E4FF 0%, #8B95F2 26.03%, #8B72EE 44.83%, #8556EA 60.47%, #4138E5 100%))',
         },
         fgGold: {
-          default:
-            'var(--Gold, linear-gradient(148deg, #FFE092 12.55%, #E3A302 86.73%))',
+          default: 'var(--Gold, linear-gradient(148deg, #FFE092 12.55%, #E3A302 86.73%))',
         },
         fgSilver: {
-          default:
-            'var(--Silver, linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%))',
+          default: 'var(--Silver, linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%))',
         },
         fgBronze: {
-          default:
-            'var(--Bronze, linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%))',
+          default: 'var(--Bronze, linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%))',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -223,63 +219,63 @@ const tailwindConfig = {
       },
 
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
+    require('tailwindcss-animate'),
     require('tailwind-scrollbar-hide'),
     require('tailwind-scrollbar')({ nocompatible: true }),
     // tailwindcss 3.3 include by default
@@ -292,7 +288,7 @@ const tailwindConfig = {
       }
 
       function matchUtility(cssProps) {
-        return (value) => {
+        return value => {
           const result = {}
           for (const cssProp of cssProps) {
             result[cssProp] = value
@@ -300,10 +296,7 @@ const tailwindConfig = {
           return result
         }
       }
-      matchUtilities(
-        { inset: matchUtility(['top', 'right', 'bottom', 'left']) },
-        config
-      )
+      matchUtilities({ inset: matchUtility(['top', 'right', 'bottom', 'left']) }, config)
       matchUtilities(
         {
           'inset-x': matchUtility(['left', 'right']),
@@ -335,4 +328,4 @@ const tailwindConfig = {
   },
 } satisfies Config
 
-export default tailwindConfig;
+export default tailwindConfig

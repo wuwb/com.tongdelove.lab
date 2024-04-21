@@ -12,15 +12,15 @@ module.exports = {
   },
   ignorePatterns: ['/storybook-static'],
   extends: [
-    '@tongdelove/eslint-config-bases/typescript',
-    '@tongdelove/eslint-config-bases/regexp',
-    '@tongdelove/eslint-config-bases/sonar',
-    '@tongdelove/eslint-config-bases/jest',
-    '@tongdelove/eslint-config-bases/rtl',
-    '@tongdelove/eslint-config-bases/storybook',
-    '@tongdelove/eslint-config-bases/react',
+    '@tongdelove/eslint-config-base/typescript',
+    '@tongdelove/eslint-config-base/regexp',
+    '@tongdelove/eslint-config-base/sonar',
+    '@tongdelove/eslint-config-base/jest',
+    '@tongdelove/eslint-config-base/rtl',
+    '@tongdelove/eslint-config-base/storybook',
+    '@tongdelove/eslint-config-base/react',
     // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-bases/prettier-plugin',
+    '@tongdelove/eslint-config-base/prettier-plugin',
   ],
   rules: {
     // optional overrides per project

@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import type { FC } from 'react';
+import Image from 'next/image'
+import type { FC } from 'react'
 
 type Props = {
-  children?: never;
-};
+  children?: never
+}
 
 export const HeroBlock: FC<Props> = () => {
   return (
@@ -16,31 +16,18 @@ export const HeroBlock: FC<Props> = () => {
             readymade gluten
           </h1>
           <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
+            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken
+            authentic tumeric truffaut hexagon try-hard chambray.
           </p>
           <div className="flex justify-center">
-            <button className="inline-flex rounded border-0 bg-indigo-500 px-6 py-2 text-lg text-white hover:bg-indigo-600 focus:outline-none">
-              Button
-            </button>
-            <button className="ml-4 inline-flex rounded border-0  px-6 py-2 text-lg text-gray-700 hover:bg-gray-200 focus:outline-none">
-              Button
-            </button>
+            <button className="inline-flex rounded border-0 bg-indigo-500 px-6 py-2 text-lg text-white hover:bg-indigo-600 focus:outline-none">Button</button>
+            <button className="ml-4 inline-flex rounded border-0  px-6 py-2 text-lg text-gray-700 hover:bg-gray-200 focus:outline-none">Button</button>
           </div>
         </div>
         <div className="w-5/6 md:w-1/2 lg:w-full lg:max-w-lg">
-          <Image
-            width={720}
-            height={600}
-            loading={'eager'}
-            src={'/assets/annie-spratt-unsplash.jpg'}
-            alt={'tailwind-ui-logo'}
-            className="rounded object-cover object-center"
-          />
+          <Image width={720} height={600} loading="eager" src="/assets/annie-spratt-unsplash.jpg" alt="tailwind-ui-logo" className="rounded object-cover object-center" />
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

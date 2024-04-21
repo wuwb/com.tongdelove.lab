@@ -1,9 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 function Ads() {
-    return (
-        <div></div>
-    )
+  return <div></div>
 }
 
-export default Ads;
+export default Ads

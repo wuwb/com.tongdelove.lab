@@ -1,5 +1,4 @@
-/* eslint-disable no-plusplus */
-class Wave {
+export class Wave {
   private waveLength: number[]
 
   private color: string
@@ -28,5 +27,3 @@ class Wave {
     context.closePath()
   }
 }
-
-export default Wave

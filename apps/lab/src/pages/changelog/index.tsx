@@ -1,9 +1,7 @@
-import * as React from 'react';
+import * as React from 'react'
 
 function TimelinePage() {
-    return (
-        <div>changelog</div>
-    )
+  return <div>changelog</div>
 }
 
-export default TimelinePage;
+export default TimelinePage

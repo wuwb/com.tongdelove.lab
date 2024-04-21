@@ -1,8 +1,7 @@
 export function LogoSign() {
-
   return (
-      <div>
-        {/* <Badge
+    <div>
+      {/* <Badge
           sx={{
             '.MuiBadge-badge': {
               fontSize: theme.typography.pxToRem(11),
@@ -14,10 +13,8 @@ export function LogoSign() {
           color="success"
           badgeContent="3.0"
         > */}
-        <div className="">
-          鹿游社区
-        </div>
-        {/* </Badge> */}
-      </div>
-  );
+      <div className="">鹿游社区</div>
+      {/* </Badge> */}
+    </div>
+  )
 }

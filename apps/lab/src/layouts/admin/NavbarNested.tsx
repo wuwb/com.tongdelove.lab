@@ -1,17 +1,9 @@
-import { Group, Code, ScrollArea, rem } from '@mantine/core';
-import {
-  IconNotes,
-  IconCalendarStats,
-  IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
-} from '@tabler/icons-react';
+import { Group, Code, ScrollArea, rem } from '@mantine/core'
+import { IconNotes, IconCalendarStats, IconGauge, IconPresentationAnalytics, IconFileAnalytics, IconAdjustments, IconLock } from '@tabler/icons-react'
 // import { UserButton } from '../UserButton/UserButton';
-import { LinksGroup } from './components/NavbarLinksGroup/NavbarLinksGroup';
-import { Logo } from './Logo';
-import classes from './NavbarNested.module.css';
+import { LinksGroup } from './components/NavbarLinksGroup/NavbarLinksGroup'
+import { Logo } from './Logo'
+import classes from './NavbarNested.module.css'
 
 const mockdata = [
   { label: 'Dashboard', icon: IconGauge },
@@ -47,10 +39,10 @@ const mockdata = [
       { label: 'Recovery codes', link: '/' },
     ],
   },
-];
+]
 
 export function NavbarNested() {
-  const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
+  const links = mockdata.map(item => <LinksGroup {...item} key={item.label} />)
 
   return (
     <nav className={classes.navbar}>
@@ -58,9 +50,7 @@ export function NavbarNested() {
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      <div className={classes.footer}>
-        {/* <UserButton /> */}
-      </div>
+      <div className={classes.footer}>{/* <UserButton /> */}</div>
     </nav>
-  );
+  )
 }

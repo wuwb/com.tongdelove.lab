@@ -1,6 +1,3 @@
-
-export const Scrollbar = (props) => {
-    return (
-        <div>{props.children}</div>
-    )
+export const Scrollbar = props => {
+  return <div>{props.children}</div>
 }

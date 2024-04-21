@@ -1,7 +1,7 @@
 /**
  * @crated 2014-08-11 19:41:54
  */
-import develop from './develop';
+import develop from './develop'
 
 let navs = [
   {
@@ -403,8 +403,7 @@ let navs = [
       {
         name: 'styled-components',
         path: 'https://styled-components.com/',
-        comment:
-          '曾经最被认可和接受的 CSS-in-JS 库，使用 ECMAScript 6 的标签模板字符串（Tagged template literals）提供的解析函数功能来实现兼容 CSS 的书写语法，学习曲线较为平滑。',
+        comment: '曾经最被认可和接受的 CSS-in-JS 库，使用 ECMAScript 6 的标签模板字符串（Tagged template literals）提供的解析函数功能来实现兼容 CSS 的书写语法，学习曲线较为平滑。',
       },
       {
         name: 'emotion',
@@ -450,8 +449,7 @@ let navs = [
         name: 'radium',
         path: 'https://formidable.com/open-source/radium/',
         status: 'unmaintained',
-        comment:
-          '最早的 CSS-in-JS 方案之一，实现原理是把 CSS 动态转换为标签内联样式（Inline Styles），即通过 Style 属性传入内联样式，完全规避选择器全局作用域的问题。',
+        comment: '最早的 CSS-in-JS 方案之一，实现原理是把 CSS 动态转换为标签内联样式（Inline Styles），即通过 Style 属性传入内联样式，完全规避选择器全局作用域的问题。',
       },
     ],
   },
@@ -494,8 +492,8 @@ let navs = [
       },
     ],
   },
-];
+]
 
-navs = navs.concat(develop);
+navs = navs.concat(develop)
 
-export default navs;
+export default navs

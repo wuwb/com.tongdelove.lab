@@ -1,9 +1,9 @@
-import { createTRPCRouter, publicProcedure, createCallerFactory } from "./index";
-import { z } from 'zod';
-import { exampleRouter } from "@/server/routers/example";
-import { authRouter } from "@/server/routers/auth";
-import { postRouter } from "@/server/routers/post";
-import { linkRouter } from "@/server/routers/link";
+import { createTRPCRouter, publicProcedure, createCallerFactory } from './index'
+import { z } from 'zod'
+import { exampleRouter } from '@/server/routers/example'
+import { authRouter } from '@/server/routers/auth'
+import { postRouter } from '@/server/routers/post'
+import { linkRouter } from '@/server/routers/link'
 
 /**
  * This is the primary router for your server.
@@ -15,21 +15,21 @@ export const appRouter = createTRPCRouter({
     .input(
       z.object({
         text: z.string(),
-      }),
+      })
     )
-    .query((opts) => {
+    .query(opts => {
       return {
         greeting: `hello ${opts.input.text}`,
-      };
+      }
     }),
   auth: authRouter,
   post: postRouter,
   example: exampleRouter,
   link: linkRouter,
-});
+})
 
 // export type definition of API
-export type AppRouter = typeof appRouter;
+export type AppRouter = typeof appRouter
 
 /**
  * Create a server-side caller for the tRPC API.
@@ -38,4 +38,4 @@ export type AppRouter = typeof appRouter;
  * const res = await trpc.post.all();
  *       ^? Post[]
  */
-export const createCaller = createCallerFactory(appRouter);
+export const createCaller = createCallerFactory(appRouter)

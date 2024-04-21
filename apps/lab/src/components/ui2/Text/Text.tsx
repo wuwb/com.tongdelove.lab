@@ -1,6 +1,3 @@
-
-export const Text = (props) => {
-    return (
-        <div>{props.children}</div>
-    )
+export const Text = props => {
+  return <div>{props.children}</div>
 }

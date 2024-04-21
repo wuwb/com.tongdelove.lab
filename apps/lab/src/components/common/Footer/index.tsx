@@ -1,22 +1,20 @@
-import { Link } from '@/components/ui2/Link';
-import { ReactNode } from 'react';
-import { FooterCopyright } from './FooterCopyright';
-import { FooterIconList } from './FooterIconList';
+import { Link } from '@/components/ui2/Link'
+import { ReactNode } from 'react'
+import { FooterCopyright } from './FooterCopyright'
+import { FooterIconList } from './FooterIconList'
 
 export function Copyright(props: any) {
   return (
-    <div className="text-center items-center justify-center flex" {...props}>
+    <div className="flex items-center justify-center text-center" {...props}>
       <p className="mb-0 text-base">
         <a href="https://beian.miit.gov.cn/">浙ICP备00000000号-1</a>
         {'Copyright © '}
         {new Date().getFullYear()}
-        <Link href="https://lab.tongdelove.com/">
-          海维包装实验室
-        </Link>
+        <Link href="https://lab.tongdelove.com/">海维包装实验室</Link>
         <span>版权所有。</span>
       </p>
     </div>
-  );
+  )
 }
 
 export function Footer(props): any {
@@ -37,41 +35,37 @@ export function Footer(props): any {
       title: 'Legal',
       description: ['Privacy policy', 'Terms of use'],
     },
-  ];
+  ]
   return (
-    <div className="section text-white flex relative pb-4 overflow-hidden bg-primary">
+    <div className="section relative flex overflow-hidden bg-primary pb-4 text-white">
       <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+        <div className="grid grid-cols-2 gap-1 md:grid-cols-4">
           {footers.map(footer => (
             <div className="" key={footer.title}>
-              <div>
-                {footer.title}
-              </div>
-              <ul className="list-none m-0 p-0">
+              <div>{footer.title}</div>
+              <ul className="m-0 list-none p-0">
                 {footer.description.map(item => (
                   <li key={item}>
-                    <Link href="#">
-                      {item}
-                    </Link>
+                    <Link href="#">{item}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <hr className="lg:my-12 border-t border-solid border-gray-800" />
+        <hr className="border-t border-solid border-gray-800 lg:my-12" />
         <Copyright />
         {/* <SwitchLang></SwitchLang> */}
       </div>
     </div>
-  );
+  )
 }
 
 type ICenteredFooterProps = {
-  logo: ReactNode;
-  iconList: ReactNode;
-  children: ReactNode;
-};
+  logo: ReactNode
+  iconList: ReactNode
+  children: ReactNode
+}
 
 export function CenteredFooter(props: ICenteredFooterProps) {
   return (
@@ -79,9 +73,7 @@ export function CenteredFooter(props: ICenteredFooterProps) {
       {props.logo}
 
       <nav>
-        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">
-          {props.children}
-        </ul>
+        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">{props.children}</ul>
       </nav>
 
       <div className="mt-8 flex justify-center">
@@ -92,6 +84,5 @@ export function CenteredFooter(props: ICenteredFooterProps) {
         <FooterCopyright />
       </div>
     </div>
-  );
+  )
 }
-

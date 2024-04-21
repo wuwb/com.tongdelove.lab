@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui';
+import { Link } from '@/components/ui'
 import { Table } from '@mantine/core'
 
 const Home = () => {
@@ -11,8 +11,7 @@ const Home = () => {
   const data = [
     {
       name: 'GeekPlux',
-      description:
-        'Data Visualization & Full-stack programmer @ finance firm, Blogger, Cat lover, Lifelong learner.',
+      description: 'Data Visualization & Full-stack programmer @ finance firm, Blogger, Cat lover, Lifelong learner.',
       site: '',
       siteName: 'GeekPlux',
       link: 'https://geekplux.com/',
@@ -29,15 +28,15 @@ const Home = () => {
       siteName: 'Geekhmer',
       link: 'http://geekhmer.github.io/',
     },
-  ];
+  ]
 
   data.forEach((item: any) => {
     item.site = (
       <Link href={item.link} icon color>
         {item.siteName}
       </Link>
-    );
-  });
+    )
+  })
 
   const columns = [
     {
@@ -55,9 +54,9 @@ const Home = () => {
       dataIndex: 'site',
       key: 'site',
     },
-  ];
+  ]
 
-  return <Table />;
-};
+  return <Table />
+}
 
-export default Home;
+export default Home

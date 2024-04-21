@@ -1,23 +1,23 @@
-import { useGrids, GearType, toFixedString } from '@/hooks/useGrids';
-import LazyDownload from './Download';
+import { useGrids, GearType, toFixedString } from '@/hooks/useGrids'
+import LazyDownload from './Download'
 
 import { Title, Table, TableTr, TableThead, TableTbody, TableTfoot } from '@mantine/core'
 
 export function Grids() {
-  const grids = useGrids();
+  const grids = useGrids()
   const total = grids.reduce(
     (prev, grid) => {
       return {
         buyAmount: prev.buyAmount + grid.buyAmount,
         profits: prev.profits + grid.profits,
-        retainedProfits: prev.retainedProfits + grid.retainedProfits
-      };
+        retainedProfits: prev.retainedProfits + grid.retainedProfits,
+      }
     },
     { buyAmount: 0, profits: 0, retainedProfits: 0 }
-  );
+  )
 
-  const totalBuyAmount = total.buyAmount;
-  const totalProfits = total.profits + total.retainedProfits;
+  const totalBuyAmount = total.buyAmount
+  const totalProfits = total.profits + total.retainedProfits
 
   return (
     <div>
@@ -69,7 +69,7 @@ export function Grids() {
                 <TableTbody>{toFixedSTableTring(grid.retainedProfits, 0)}</TableTbody>
                 <TableTbody>{toFixedSTableTring(grid.retainedCount, 0)}</TableTbody>
               </div>
-            );
+            )
           })}
         </tbody>
         <tfoot>
@@ -84,9 +84,7 @@ export function Grids() {
             <TableTfoot />
             <TableTfoot />
             <TableTfoot>{toFixedSTableTring(totalProfits, 0)}</TableTfoot>
-            <TableTfoot>
-              {toFixedSTableTring((totalProfits / totalBuyAmount) * 100, 2)}%
-            </TableTfoot>
+            <TableTfoot>{toFixedSTableTring((totalProfits / totalBuyAmount) * 100, 2)}%</TableTfoot>
             <TableTfoot />
             <TableTfoot />
           </TableTr>
@@ -95,17 +93,11 @@ export function Grids() {
       <div>
         <p>说明：</p>
         <ol>
-          <li>
-            1. 本表格统一设定最大跌幅为60%。
-          </li>
-          <li>
-            2. 场内基金必须按100份整数委托，因此买卖金额按实际委托份数进行修正。
-          </li>
-          <li>
-            3.https://github.com/hushicai/ETF
-          </li>
+          <li>1. 本表格统一设定最大跌幅为60%。</li>
+          <li>2. 场内基金必须按100份整数委托，因此买卖金额按实际委托份数进行修正。</li>
+          <li>3.https://github.com/hushicai/ETF</li>
         </ol>
       </div>
     </div>
-  );
+  )
 }

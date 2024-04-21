@@ -1,54 +1,45 @@
-import React from "react";
-import {
-  TableTbody,
-  TableThead,
-  TableTd,
-  TableTr,
-  Chip,
-  Text,
-  Box,
-  Table,
-} from '@mantine/core'
-import BaseCard from "@/components/module/baseCard/BaseCard";
+import React from 'react'
+import { TableTbody, TableThead, TableTd, TableTr, Chip, Text, Box, Table } from '@mantine/core'
+import BaseCard from '@/components/module/baseCard/BaseCard'
 
 const products = [
   {
-    id: "1",
-    name: "Sunil Joshi",
-    post: "Web Designer",
-    pname: "Elite Admin",
-    priority: "Low",
-    pbg: "primary.main",
-    budget: "3.9",
+    id: '1',
+    name: 'Sunil Joshi',
+    post: 'Web Designer',
+    pname: 'Elite Admin',
+    priority: 'Low',
+    pbg: 'primary.main',
+    budget: '3.9',
   },
   {
-    id: "2",
-    name: "Andrew McDownland",
-    post: "Project Manager",
-    pname: "Real Homes WP Theme",
-    priority: "Medium",
-    pbg: "secondary.main",
-    budget: "24.5",
+    id: '2',
+    name: 'Andrew McDownland',
+    post: 'Project Manager',
+    pname: 'Real Homes WP Theme',
+    priority: 'Medium',
+    pbg: 'secondary.main',
+    budget: '24.5',
   },
   {
-    id: "3",
-    name: "Christopher Jamil",
-    post: "Project Manager",
-    pname: "MedicalPro WP Theme",
-    priority: "High",
-    pbg: "error.main",
-    budget: "12.8",
+    id: '3',
+    name: 'Christopher Jamil',
+    post: 'Project Manager',
+    pname: 'MedicalPro WP Theme',
+    priority: 'High',
+    pbg: 'error.main',
+    budget: '12.8',
   },
   {
-    id: "4",
-    name: "Nirav Joshi",
-    post: "Frontend Engineer",
-    pname: "Hosting Press HTML",
-    priority: "Critical",
-    pbg: "success.main",
-    budget: "2.4",
+    id: '4',
+    name: 'Nirav Joshi',
+    post: 'Frontend Engineer',
+    pname: 'Hosting Press HTML',
+    priority: 'Critical',
+    pbg: 'success.main',
+    budget: '2.4',
   },
-];
+]
 
 const ProductPerfomance = () => {
   return (
@@ -57,7 +48,7 @@ const ProductPerfomance = () => {
         aria-label="simple table"
         sx={{
           mt: 3,
-          whiteSpace: "nowrap",
+          whiteSpace: 'nowrap',
         }}
       >
         <TableThead>
@@ -90,13 +81,13 @@ const ProductPerfomance = () => {
           </TableTr>
         </TableThead>
         <TableTBody>
-          {products.map((product) => (
+          {products.map(product => (
             <TableTr key={product.name}>
               <TableTd>
                 <Text
                   sx={{
-                    fontSize: "15px",
-                    fontWeight: "500",
+                    fontSize: '15px',
+                    fontWeight: '500',
                   }}
                 >
                   {product.id}
@@ -105,15 +96,15 @@ const ProductPerfomance = () => {
               <TableTd>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Box>
                     <Text
                       variant="h6"
                       sx={{
-                        fontWeight: "600",
+                        fontWeight: '600',
                       }}
                     >
                       {product.name}
@@ -121,7 +112,7 @@ const ProductPerfomance = () => {
                     <Text
                       color="textSecondary"
                       sx={{
-                        fontSize: "13px",
+                        fontSize: '13px',
                       }}
                     >
                       {product.post}
@@ -137,10 +128,10 @@ const ProductPerfomance = () => {
               <TableTd>
                 <Chip
                   sx={{
-                    pl: "4px",
-                    pr: "4px",
+                    pl: '4px',
+                    pr: '4px',
                     backgroundColor: product.pbg,
-                    color: "#fff",
+                    color: '#fff',
                   }}
                   size="small"
                   label={product.priority}
@@ -154,7 +145,7 @@ const ProductPerfomance = () => {
         </TableTBody>
       </Table>
     </BaseCard>
-  );
-};
+  )
+}
 
-export default ProductPerfomance;
+export default ProductPerfomance

@@ -1,11 +1,11 @@
-import React from "react";
-import BaseCard from "@/components/module/baseCard/BaseCard";
+import React from 'react'
+import BaseCard from '@/components/module/baseCard/BaseCard'
 
 const SalesOverview = () => {
   const optionssalesoverview = {
     grid: {
       show: true,
-      borderColor: "transparent",
+      borderColor: 'transparent',
       strokeDashArray: 2,
       padding: {
         left: 0,
@@ -16,15 +16,15 @@ const SalesOverview = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "42%",
-        endingShape: "rounded",
+        columnWidth: '42%',
+        endingShape: 'rounded',
         borderRadius: 5,
       },
     },
 
-    colors: ["#fb9678", "#03c9d7"],
+    colors: ['#fb9678', '#03c9d7'],
     fill: {
-      type: "solid",
+      type: 'solid',
       opacity: 1,
     },
     chart: {
@@ -32,7 +32,7 @@ const SalesOverview = () => {
       toolbar: {
         show: false,
       },
-      foreColor: "#adb0bb",
+      foreColor: '#adb0bb',
       fontFamily: "'DM Sans',sans-serif",
       sparkline: {
         enabled: false,
@@ -48,24 +48,11 @@ const SalesOverview = () => {
       show: false,
     },
     xaxis: {
-      type: "category",
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "July",
-        "Aug",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      type: 'category',
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
       labels: {
         style: {
-          cssClass: "grey--text lighten-2--text fill-color",
+          cssClass: 'grey--text lighten-2--text fill-color',
         },
       },
     },
@@ -76,34 +63,31 @@ const SalesOverview = () => {
       tickAmount: 3,
       labels: {
         style: {
-          cssClass: "grey--text lighten-2--text fill-color",
+          cssClass: 'grey--text lighten-2--text fill-color',
         },
       },
     },
     stroke: {
       show: true,
       width: 5,
-      lineCap: "butt",
-      colors: ["transparent"],
+      lineCap: 'butt',
+      colors: ['transparent'],
     },
     tooltip: {
-      theme: "dark",
+      theme: 'dark',
     },
-  };
+  }
   const seriessalesoverview = [
     {
-      name: "Ample Admin",
+      name: 'Ample Admin',
       data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
     },
     {
-      name: "Pixel Admin",
+      name: 'Pixel Admin',
       data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
     },
-  ];
-  return (
-    <BaseCard title="Sales Overview">
-    </BaseCard>
-  );
-};
+  ]
+  return <BaseCard title="Sales Overview"></BaseCard>
+}
 
-export default SalesOverview;
+export default SalesOverview

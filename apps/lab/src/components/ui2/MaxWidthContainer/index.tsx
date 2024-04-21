@@ -1,1 +1,1 @@
-export * from "./MaxWidthContainer";
+export * from './MaxWidthContainer'

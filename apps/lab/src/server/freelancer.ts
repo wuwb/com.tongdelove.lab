@@ -12,14 +12,15 @@ export type SubscribeParama = {
   pushdeerWebhook: string
   email: string
 }
+
 export async function subscribe(params: SubscribeParama) {
-  const data = await axios.post<void, AxiosResponse<void>, SubscribeParama>('/freelancer/subscribe', params)
+  const data = await axios.post('/freelancer/subscribe', params)
 
   toast.success('订阅成功')
 }
 
 export async function testSubscribe(params: SubscribeParama) {
-  await axios.post<void, AxiosResponse<void>, SubscribeParama>('/freelancer/subscribe-test', params)
+  await axios.post('/freelancer/subscribe-test', params)
 
   toast.success('订阅测试已发送')
 }

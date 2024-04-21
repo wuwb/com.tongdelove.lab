@@ -1,7 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-
 import { ErrorResponse, ErrorType } from '@/types/fetch'
-
 import { fetchAIFactory, fetchSSE, getMessageError } from './fetch'
 
 // 模拟 i18next
@@ -10,14 +8,11 @@ vi.mock('i18next', () => ({
 }))
 
 // 模拟 Response
-const createMockResponse = (body: any, ok: boolean, status: number = 200) => ({
+const createMockResponse = (body: any, ok: boolean, status = 200) => ({
   ok,
   status,
   json: vi.fn(async () => body),
-  clone: vi.fn(function () {
-    // @ts-ignore
-    return this
-  }),
+  clone: vi.fn(function () {}),
   text: vi.fn(async () => JSON.stringify(body)),
   body: {
     getReader: () => {

@@ -1,17 +1,15 @@
-import { Link } from '@/components/ui/Link';
+import { Link } from '@/components/ui/Link'
 import { Box } from '@mantine/core'
-import cx from 'clsx';
-import { useTranslation } from 'next-i18next';
+import cx from 'clsx'
+import { useTranslation } from 'next-i18next'
 
 export function Logo(props) {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
-    <div className={cx(props.className, 'flex items-center flex-1 md:flex-initial')} href="/">
-      <div className="bg-red-400 text-white rounded-full w-10 h-10 text-center leading-10">HAI</div>
-      <div>
-        海维包装实验室
-      </div>
+    <div className={cx(props.className, 'flex flex-1 items-center md:flex-initial')} href="/">
+      <div className="h-10 w-10 rounded-full bg-red-400 text-center leading-10 text-white">HAI</div>
+      <div>海维包装实验室</div>
     </div>
-  );
+  )
 }

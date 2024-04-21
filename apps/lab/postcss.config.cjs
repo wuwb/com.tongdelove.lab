@@ -5,7 +5,7 @@
 // https://tailwindcss.com/docs/installation/using-postcss
 // https://tailwindcss.com/docs/using-with-preprocessors#nesting
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   // purge: [
@@ -31,12 +31,12 @@ module.exports = {
     },
     ...(isProd
       ? {
-        'postcss-preset-env': {
-          // https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env#stability-and-portability
-          stage: 3,
-          autoprefixer: { grid: true },
-        },
-      }
+          'postcss-preset-env': {
+            // https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env#stability-and-portability
+            stage: 3,
+            autoprefixer: { grid: true },
+          },
+        }
       : {}),
   },
 }

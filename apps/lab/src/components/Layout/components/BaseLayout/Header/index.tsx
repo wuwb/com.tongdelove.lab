@@ -17,91 +17,18 @@ import {
   rem,
   useMantineTheme,
   ActionIcon,
-} from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {
-  IconCode,
-  IconBook,
-  IconCoin,
-  IconChevronDown,
-  IconBrandMcdonalds,
-  IconX,
-  IconChevronRight,
-} from '@tabler/icons-react';
-import { useSession, signIn, signOut } from "next-auth/react";
-
-import Link from "next/link";
-import classes from './HeaderMegaMenu.module.css';
-import Image from "next/image"
-import {
-  ChevronLeft,
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PanelLeft,
-  PlusCircle,
-  Search,
-  Settings,
-  ShoppingCart,
-  Upload,
-  Users2,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Textarea } from "@/components/ui/textarea"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-
+} from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
+import { IconCode, IconBook, IconCoin, IconChevronDown, IconBrandMcdonalds, IconX, IconChevronRight } from '@tabler/icons-react'
+import { useSession, signOut } from 'next-auth/react'
+import Link from 'next/link'
+import classes from './HeaderMegaMenu.module.css'
+import Image from 'next/image'
+import { Home, LineChart, Package, Package2, PanelLeft, ShoppingCart, Users2 } from 'lucide-react'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 const mockdata = [
   {
@@ -119,15 +46,15 @@ const mockdata = [
     title: 'Documentation',
     description: 'Yanma is capable of seeing 360 degrees without',
   },
-];
+]
 
 export function HeaderMegaMenu() {
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const theme = useMantineTheme();
-  const { data: session } = useSession();
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
+  const theme = useMantineTheme()
+  const { data: session } = useSession()
 
-  const links = mockdata.map((item) => (
+  const links = mockdata.map(item => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
@@ -143,7 +70,7 @@ export function HeaderMegaMenu() {
         </div>
       </Group>
     </UnstyledButton>
-  ));
+  ))
 
   return (
     <Box>
@@ -164,45 +91,30 @@ export function HeaderMegaMenu() {
                 <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                 <span className="sr-only">Acme Inc</span>
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <Home className="h-5 w-5" />
                 Dashboard
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <ShoppingCart className="h-5 w-5" />
                 Orders
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-foreground"
-              >
+              <Link href="#" className="flex items-center gap-4 px-2.5 text-foreground">
                 <Package className="h-5 w-5" />
                 Products
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <Users2 className="h-5 w-5" />
                 Customers
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <LineChart className="h-5 w-5" />
                 Settings
               </Link>
             </nav>
           </SheetContent>
         </Sheet>
-        <div className="flex justify-between w-full">
+        <div className="flex w-full justify-between">
           <Breadcrumb className="hidden md:flex">
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -226,18 +138,8 @@ export function HeaderMegaMenu() {
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full"
-                >
-                  <Image
-                    src="/"
-                    width={36}
-                    height={36}
-                    alt="Avatar"
-                    className="overflow-hidden rounded-full"
-                  />
+                <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
+                  <Image src="/" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -258,15 +160,7 @@ export function HeaderMegaMenu() {
         </div>
         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
       </header>
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Navigation"
-        hiddenFrom="sm"
-        zIndex={1000000}
-      >
+      <Drawer opened={drawerOpened} onClose={closeDrawer} size="100%" padding="md" title="Navigation" hiddenFrom="sm" zIndex={1000000}>
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
@@ -276,18 +170,11 @@ export function HeaderMegaMenu() {
 
           {session ? (
             <div className="flex items-center space-x-3">
-              <img
-                className="w-12 h-12 rounded-full"
-                src={session.user?.image!}
-                alt="avator"
-              />
+              <img className="h-12 w-12 rounded-full" src={session.user?.image!} alt="avator" />
               <Link href="/me">
-                <a className="text-blue-600 font-medium">{session.user?.name}</a>
+                <a className="font-medium text-blue-600">{session.user?.name}</a>
               </Link>
-              <button
-                className="px-3 py-2 bg-blue-500 text-white rounded"
-                onClick={() => signOut()}
-              >
+              <button className="rounded bg-blue-500 px-3 py-2 text-white" onClick={() => signOut()}>
                 登出
               </button>
             </div>
@@ -297,79 +184,56 @@ export function HeaderMegaMenu() {
               <Button>Sign up</Button>
             </Group>
           )}
-
         </ScrollArea>
       </Drawer>
     </Box>
-  );
+  )
 }
 
 export default function WithSubnavigation() {
-  const [isOpen, { toggle, open }] = useDisclosure(false);
+  const [isOpen, { toggle, open }] = useDisclosure(false)
 
   return (
     <Box>
-      <Flex
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        align={'center'}>
-        <Flex
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
-          <ActionIcon variant="filled" aria-label="Settings"
-            onClick={toggle}
-            ariaLabel={'Toggle Navigation'}
-          >
+      <Flex py={{ base: 2 }} px={{ base: 4 }} align="center">
+        <Flex ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
+          <ActionIcon variant="filled" aria-label="Settings" onClick={toggle} ariaLabel="Toggle Navigation">
             {open ? <IconX /> : <IconBrandMcdonalds />}
           </ActionIcon>
         </Flex>
         <Flex justify={{ base: 'center', md: 'start' }}>
-          <Text>
-            Logo
-          </Text>
+          <Text>Logo</Text>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
 
-        <Stack
-          justify={'flex-end'}>
-          <Button variant={'link'}>
-            Sign In
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            color={'white'}
-            bg={'pink.400'}
-          >
+        <Stack justify="flex-end">
+          <Button variant="link">Sign In</Button>
+          <Button display={{ base: 'none', md: 'inline-flex' }} color="white" bg="pink.400">
             Sign Up
           </Button>
         </Stack>
       </Flex>
-    </Box >
+    </Box>
   )
 }
 
 const DesktopNav = () => {
   return (
-    <Stack >
-      {NAV_ITEMS.map((navItem) => (
+    <Stack>
+      {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover>
             <PopoverTarget>
-              <Box
-                p={2}
-              >
-                {navItem.label}
-              </Box>
+              <Box p={2}>{navItem.label}</Box>
             </PopoverTarget>
 
             {navItem.children && (
-              <PopoverDropdown
-                p={4}>
+              <PopoverDropdown p={4}>
                 <Stack>
-                  {navItem.children.map((child) => (
+                  {navItem.children.map(child => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
                 </Stack>
@@ -384,24 +248,13 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Box
-      role={'group'}
-      display={'block'}
-      p={2}>
-      <Stack align={'center'}>
+    <Box role="group" display="block" p={2}>
+      <Stack align="center">
         <Box>
-          <Text>
-            {label}
-          </Text>
+          <Text>{label}</Text>
           <Text>{subLabel}</Text>
         </Box>
-        <Flex
-          transform={'translateX(-10px)'}
-          opacity={0}
-          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify={'flex-end'}
-          align={'center'}
-          flex={1}>
+        <Flex transform="translateX(-10px)" opacity={0} _groupHover={{ opacity: '100%', transform: 'translateX(0)' }} justify="flex-end" align="center" flex={1}>
           <IconChevronRight />
         </Flex>
       </Stack>
@@ -412,7 +265,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack p={4} display={{ md: 'none' }}>
-      {NAV_ITEMS.map((navItem) => (
+      {NAV_ITEMS.map(navItem => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
@@ -420,27 +273,19 @@ const MobileNav = () => {
 }
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
-  const [isOpen, { toggle, open, close }] = useDisclosure(false);
+  const [isOpen, { toggle, open, close }] = useDisclosure(false)
 
   return (
     <Stack onClick={children && toggle}>
-      <Box
-        py={2}
-      >
-        <Text>
-          {label}
-        </Text>
-        {children && (
-          <IconChevronDown />
-        )}
+      <Box py={2}>
+        <Text>{label}</Text>
+        {children && <IconChevronDown />}
       </Box>
 
       <Collapse animateOpacity style={{ marginTop: '0!important' }}>
-        <Stack
-          mt={2}
-          pl={4}>
+        <Stack mt={2} pl={4}>
           {children &&
-            children.map((child) => (
+            children.map(child => (
               <Box key={child.label} py={2}>
                 {child.label}
               </Box>

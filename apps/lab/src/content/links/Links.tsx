@@ -1,14 +1,14 @@
-import cx from 'clsx';
-import DaohangCard from './DaohangCard';
-import navs from './nav';
-import { LinksNav } from './LinksNav';
-import styles from './Daohang.module.scss';
+import cx from 'clsx'
+import DaohangCard from './DaohangCard'
+import navs from './nav'
+import { LinksNav } from './LinksNav'
+import styles from './Daohang.module.scss'
 
 function renderSidebar() {
   const scrollToLinkSection = (item: string) => {
-    const section = document.querySelector(`#${item}`);
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+    const section = document.querySelector(`#${item}`)
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <div>
@@ -18,16 +18,16 @@ function renderSidebar() {
             <div
               className={cx(styles.sidebarcateTitle)}
               onClick={() => {
-                scrollToLinkSection(list.name);
+                scrollToLinkSection(list.name)
               }}
             >
               {list.name}
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 function renderNav() {
@@ -37,12 +37,12 @@ function renderNav() {
         <h3 className={cx(styles.cateTitle)}>{list.name}</h3>
         <div className="grid grid-cols-6 gap-4">
           {list.children.map(item => {
-            return <DaohangCard key={item.name} item={item} />;
+            return <DaohangCard key={item.name} item={item} />
           })}
         </div>
       </div>
-    );
-  });
+    )
+  })
 }
 
 export default function Daohang() {
@@ -57,5 +57,5 @@ export default function Daohang() {
         <p>如需添加站点，请发邮件联系：541330190@qq.com</p>
       </div>
     </div>
-  );
+  )
 }

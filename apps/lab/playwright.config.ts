@@ -1,11 +1,11 @@
 // @ts-check
 
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import { devices, type PlaywrightTestConfig } from '@playwright/test'
 
-const isCI = ['true', '1'].includes(process.env?.CI ?? '');
+const isCI = ['true', '1'].includes(process.env?.CI ?? '')
 
-const outputDir = new URL('./e2e/.out', import.meta.url).pathname;
-const testDir = new URL('e2e', import.meta.url).pathname;
+const outputDir = new URL('./e2e/.out', import.meta.url).pathname
+const testDir = new URL('e2e', import.meta.url).pathname
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -73,5 +73,5 @@ const config: PlaywrightTestConfig = {
     //  use: devices['iPhone 12'],
     // },
   ],
-};
-export default config;
+}
+export default config

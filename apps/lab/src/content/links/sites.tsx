@@ -8,12 +8,11 @@ const HomeSites = () => {
     },
     {
       name: 'gridsome',
-      description:
-        'Gridsome makes it easy for developers to build static generated websites & apps that are fast by default',
+      description: 'Gridsome makes it easy for developers to build static generated websites & apps that are fast by default',
       link: 'https://gridsome.org/',
       source: 'https://github.com/gridsome/gridsome',
     },
-  ];
+  ]
 }
 
 // - [Firekylin](https://firekylin.org/)

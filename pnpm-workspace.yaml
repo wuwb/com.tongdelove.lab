@@ -5,5 +5,5 @@ packages:
   - 'packages/utils'
   - 'packages/ts-utils'
   - 'packages/api-gateway'
-  - 'packages/eslint-config-bases'
+  - 'packages/eslint-config-base'
 

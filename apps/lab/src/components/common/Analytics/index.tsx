@@ -1,35 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
-import { useRouter } from 'next/router';
-import Script from 'next/script';
+import { useRouter } from 'next/router'
+import Script from 'next/script'
 
-import { GA_ADS_ID } from '@/lib/googleAds';
-import * as gtag from '@/lib/gtag';
+import { GA_ADS_ID } from '@/lib/googleAds'
+import * as gtag from '@/lib/gtag'
 
 const Analytics = () => {
-    const router = useRouter();
-    useEffect(() => {
-        const handleRouteChange = (url: string) => {
-            gtag.pageview(url);
-        };
-        router.events.on('routeChangeComplete', handleRouteChange);
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange);
-        };
-    }, [router.events]);
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
-    return (
-        <>
-            {/* Global Site Tag (gtag.js) - Google Analytics */}
-            <Script
-                strategy="afterInteractive"
-                src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-            />
-            <Script
-                id="gtag-init"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
+  return (
+    <>
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -37,11 +34,11 @@ const Analytics = () => {
               page_path: window.location.pathname,
             });
           `,
-                }}
-            />
-            <Script async src={GA_ADS_ID} crossOrigin="anonymous" />
-        </>
-    );
-};
+        }}
+      />
+      <Script async src={GA_ADS_ID} crossOrigin="anonymous" />
+    </>
+  )
+}
 
-export default Analytics;
+export default Analytics

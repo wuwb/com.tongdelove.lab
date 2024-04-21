@@ -33,7 +33,7 @@
     "@graphql-mesh/runtime": "^0.97.4"
   },
   "devDependencies": {
-    "@tongdelove/eslint-config-bases": "workspace:^",
+    "@tongdelove/eslint-config-base": "workspace:^",
     "@types/node": "20.6.3",
     "cross-env": "7.0.3",
     "eslint": "^8.56.0",

@@ -1,21 +1,20 @@
 // @ts-check
 
-import path from 'path';
-import { loadEnvConfig } from '@next/env';
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
-import pc from 'picocolors';
+import path from 'path'
+import { loadEnvConfig } from '@next/env'
+import { devices, type PlaywrightTestConfig } from '@playwright/test'
+import pc from 'picocolors'
 
-const webServerModes = ['DEV', 'START', 'BUILD_AND_START'] as const;
-type WebServerMode = (typeof webServerModes)[number];
+const webServerModes = ['DEV', 'START', 'BUILD_AND_START'] as const
+type WebServerMode = (typeof webServerModes)[number]
 
-const isCI = ['true', '1'].includes(process.env?.CI ?? '');
-const webServerMode =
-  (process.env?.E2E_WEBSERVER_MODE as WebServerMode) ?? 'NOT_SET';
+const isCI = ['true', '1'].includes(process.env?.CI ?? '')
+const webServerMode = (process.env?.E2E_WEBSERVER_MODE as WebServerMode) ?? 'NOT_SET'
 
-const webServerPort = 3000;
-const outputDir = path.join(__dirname, 'e2e/.out');
+const webServerPort = 3000
+const outputDir = path.join(__dirname, 'e2e/.out')
 
-type WebServerConfig = { cmd: string; timeout: number; retries: number };
+type WebServerConfig = { cmd: string; timeout: number; retries: number }
 const webServerConfigs: Record<WebServerMode, WebServerConfig> = {
   START: {
     cmd: `pnpm start -p ${webServerPort}`,
@@ -32,35 +31,27 @@ const webServerConfigs: Record<WebServerMode, WebServerConfig> = {
     timeout: isCI ? 180_000 : 120_000,
     retries: isCI ? 3 : 1,
   },
-};
-
-if (typeof webServerConfigs?.[webServerMode] !== 'object') {
-  console.error(
-    `${pc.red(
-      'error'
-    )} - E2E_WEBSERVER_MODE must be one of '${webServerModes.join(', ')}'`
-  );
-  process.exit(1);
-} else {
-  console.log(
-    `${pc.green('notice')} - Using E2E_WEBSERVER_MODE: '${webServerMode}'`
-  );
 }
 
-const webServerConfig = webServerConfigs[webServerMode];
+if (typeof webServerConfigs?.[webServerMode] !== 'object') {
+  console.error(`${pc.red('error')} - E2E_WEBSERVER_MODE must be one of '${webServerModes.join(', ')}'`)
+  process.exit(1)
+} else {
+  console.log(`${pc.green('notice')} - Using E2E_WEBSERVER_MODE: '${webServerMode}'`)
+}
+
+const webServerConfig = webServerConfigs[webServerMode]
 
 function getNextJsEnv(): Record<string, string> {
-  const { combinedEnv, loadedEnvFiles } = loadEnvConfig(__dirname);
-  loadedEnvFiles.forEach((file) => {
-    console.log(
-      `${pc.green('notice')}- Loaded nextjs environment file: './${file.path}'`
-    );
-  });
+  const { combinedEnv, loadedEnvFiles } = loadEnvConfig(__dirname)
+  loadedEnvFiles.forEach(file => {
+    console.log(`${pc.green('notice')}- Loaded nextjs environment file: './${file.path}'`)
+  })
   return Object.keys(combinedEnv).reduce<Record<string, string>>((acc, key) => {
-    const v = combinedEnv[key];
-    if (v !== undefined) acc[key] = v;
-    return acc;
-  }, {});
+    const v = combinedEnv[key]
+    if (v !== undefined) acc[key] = v
+    return acc
+  }, {})
 }
 
 // Reference: https://playwright.dev/docs/test-configuration
@@ -140,5 +131,5 @@ const config: PlaywrightTestConfig = {
     //  use: devices['iPhone 12'],
     // },
   ],
-};
-export default config;
+}
+export default config

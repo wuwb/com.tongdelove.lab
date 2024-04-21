@@ -1,22 +1,15 @@
-import * as React from 'react';
-import {
-  Table,
-  TableTr,
-  TableTd,
-  TableTh,
-  TableThead,
-  TableTbody
-} from '@mantine/core';
+import * as React from 'react'
+import { Table, TableTr, TableTd, TableTh, TableThead, TableTbody } from '@mantine/core'
 
-import { data } from './data';
+import { data } from './data'
 
 // https://danjuanapp.com/djapi/fund/order/
 export default function DenseTable() {
-  let Items = data.map(item => {
+  const Items = data.map(item => {
     if (item.status_desc === '交易失败') {
-      return false;
+      return false
     }
-    return item;
+    return item
   })
 
   return (
@@ -44,9 +37,7 @@ export default function DenseTable() {
         </TableThead>
         <TableTbody>
           {Items.map((row: any) => (
-            <TableTr
-              key={row.order_id}
-            >
+            <TableTr key={row.order_id}>
               <TableTh>{row.name}</TableTh>
               <TableTh>{row.code}</TableTh>
               <TableTh>{row.plan_code}</TableTh>
@@ -68,5 +59,5 @@ export default function DenseTable() {
         </TableTbody>
       </Table>
     </div>
-  );
+  )
 }

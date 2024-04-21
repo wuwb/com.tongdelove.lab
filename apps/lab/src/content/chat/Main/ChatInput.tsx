@@ -1,28 +1,28 @@
-import { Button } from "@mantine/core"
-import { MdRefresh } from "react-icons/md"
-import { PiLightningFill } from "react-icons/pi"
-import { FiSend } from "react-icons/fi"
-import TextareaAutoSize from "react-textarea-autosize"
-import { useState } from "react"
+import { Button } from '@mantine/core'
+import { MdRefresh } from 'react-icons/md'
+import { PiLightningFill } from 'react-icons/pi'
+import { FiSend } from 'react-icons/fi'
+import TextareaAutoSize from 'react-textarea-autosize'
+import { useState } from 'react'
 
 export default function ChatInput() {
-  const [messageText, setMessageText] = useState("")
+  const [messageText, setMessageText] = useState('')
 
   async function send() {
     const body = JSON.stringify({ messageText })
-    const response = await fetch("/api/chat", {
-      method: "POST",
+    const response = await fetch('/api/chat', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      body
+      body,
     })
     if (!response.ok) {
       console.log(response.statusText)
       return
     }
     if (!response.body) {
-      console.log("body error")
+      console.log('body error')
       return
     }
     const reader = response.body.getReader()
@@ -34,38 +34,29 @@ export default function ChatInput() {
       const chunk = decoder.decode(result.value)
       console.log(chunk)
     }
-    setMessageText("")
+    setMessageText('')
   }
 
   return (
-    <div className='absolute bottom-0 inset-x-0 bg-gradient-to-b from-[rgba(255,255,255,0)] from-[13.94%] to-[#fff] to-[54.73%] pt-10 dark:from-[rgba(53,55,64,0)] dark:to-[#353740] dark:to-[58.85%]'>
-      <div className='w-full max-w-4xl mx-auto flex flex-col items-center px-4 space-y-4'>
-        <Button
-          icon={MdRefresh}
-          variant='primary'
-          className='font-medium'
-        >
+    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-[rgba(255,255,255,0)] from-[13.94%] to-[#fff] to-[54.73%] pt-10 dark:from-[rgba(53,55,64,0)] dark:to-[#353740] dark:to-[58.85%]">
+      <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-4 px-4">
+        <Button icon={MdRefresh} variant="primary" className="font-medium">
           重新生成
         </Button>
-        <div className='flex items-end w-full border border-black/10 dark:border-gray-800/50 bg-white dark:bg-gray-700 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.1)] py-4'>
-          <div className='mx-3 mb-2.5 text-primary-500'>
+        <div className="flex w-full items-end rounded-lg border border-black/10 bg-white py-4 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:border-gray-800/50 dark:bg-gray-700">
+          <div className="text-primary-500 mx-3 mb-2.5">
             <PiLightningFill />
           </div>
           <TextareaAutoSize
-            className='outline-none flex-1 max-h-64 mb-1.5 bg-transparent text-black dark:text-white resize-none border-0'
-            placeholder='输入一条消息...'
+            className="mb-1.5 max-h-64 flex-1 resize-none border-0 bg-transparent text-black outline-none dark:text-white"
+            placeholder="输入一条消息..."
             rows={1}
             value={messageText}
-            onChange={(e) => {
+            onChange={e => {
               setMessageText(e.target.value)
             }}
           />
-          <Button
-            className='mx-3 !rounded-lg'
-            icon={FiSend}
-            variant='primary'
-            onClick={send}
-          />
+          <Button className="mx-3 !rounded-lg" icon={FiSend} variant="primary" onClick={send} />
         </div>
       </div>
     </div>

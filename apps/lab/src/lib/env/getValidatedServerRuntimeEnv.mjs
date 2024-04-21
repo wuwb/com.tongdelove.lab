@@ -11,11 +11,11 @@
  * See in the future how it evolves
  */
 
-import { isParsableDsn } from '@soluble/dsn-parser';
-import { z } from 'zod';
-import { exitOrThrowError, zConvertTruthyStrToBool } from './utils.mjs';
+import { isParsableDsn } from '@soluble/dsn-parser'
+import { z } from 'zod'
+import { exitOrThrowError, zConvertTruthyStrToBool } from './utils.mjs'
 
-const dsnSchema = z.custom((dsn) => isParsableDsn(dsn), 'Invalid DSN format.');
+const dsnSchema = z.custom(dsn => isParsableDsn(dsn), 'Invalid DSN format.')
 
 export const serverRuntimeEnvSchema = z.object({
   APP_CACHE_DSN: z.union([dsnSchema, z.literal('')]),
@@ -28,7 +28,7 @@ export const serverRuntimeEnvSchema = z.object({
 
   NEXTAUTH_URL: z.string().url(),
   NEXTAUTH_SECRET: z.string().min(15),
-});
+})
 
 /**
  * Return a validated / transformed environment object from a zodSchema. This is to be used to tune
@@ -46,10 +46,10 @@ export const serverRuntimeEnvSchema = z.object({
  * @returns { import('zod').infer<T> }
  */
 export const getValidatedServerRuntimeEnv = (zodSchema, options = {}) => {
-  const { env = process.env } = options ?? {};
-  const parsedEnv = zodSchema.safeParse(env);
+  const { env = process.env } = options ?? {}
+  const parsedEnv = zodSchema.safeParse(env)
   if (parsedEnv.success) {
-    return parsedEnv.data;
+    return parsedEnv.data
   }
-  exitOrThrowError(parsedEnv);
-};
+  exitOrThrowError(parsedEnv)
+}

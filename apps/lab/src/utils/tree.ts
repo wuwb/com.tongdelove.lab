@@ -14,11 +14,11 @@ export const parseTree = (nodes, options) => {
   options = options || { titleKey: 'title' }
   options.titleKey = options.titleKey || 'title'
   let rootID = 0
-  if (typeof options.noParent !== '') {
+  if (options.noParent !== '') {
     rootID = options.noParent
   }
-  let copyList = nodes.slice()
-  let root = {
+  const copyList = nodes.slice()
+  const root = {
     id: rootID,
     title: '无',
     depth: 0,
@@ -28,14 +28,14 @@ export const parseTree = (nodes, options) => {
   if (options.withParentRef) {
     root.parent = null
   }
-  let stores = []
+  const stores = []
   stores.push(root)
   while (stores.length) {
-    let tree = stores[0]
+    const tree = stores[0]
     for (let i = copyList.length - 1; i >= 0; i--) {
       copyList[i].parentID = copyList[i].parentID || rootID
       if (copyList[i].parentID === tree.id) {
-        let node = {
+        const node = {
           id: copyList[i].id,
           title: copyList[i][options.titleKey],
           depth: tree.depth + 1,
@@ -47,7 +47,7 @@ export const parseTree = (nodes, options) => {
         }
         if (options.dataKeys) {
           for (let j = 0; j < options.dataKeys.length; j++) {
-            let key = options.dataKeys[j]
+            const key = options.dataKeys[j]
             node[key] = copyList[i][key]
           }
         }
@@ -74,7 +74,7 @@ export const tree2Array = (root, options) => {
   if (Object.prototype.toString.call(root) == '[object Array]') {
     tempArr = root.slice(0)
   }
-  let traverseArr = []
+  const traverseArr = []
   while (tempArr.length) {
     const node = tempArr.splice(0, 1)[0]
     traverseArr.push(node)
@@ -88,9 +88,9 @@ export const tree2Array = (root, options) => {
 export const getTreeNode = (id, treeData) => {
   let nodes = treeData.slice(0)
   while (nodes.length) {
-    let node = nodes[0]
+    const node = nodes[0]
     if (node.id !== id) {
-      let children = node.children
+      const children = node.children
       if (children && children.length > 0) {
         nodes = nodes.concat(children)
       }
@@ -116,22 +116,22 @@ export const getLastLeafChild = node => {
 }
 
 export const getPrevNode = (node, treeData) => {
-  let parent = getTreeNode(node.parentID, treeData)
+  const parent = getTreeNode(node.parentID, treeData)
   if (parent) {
-    let index = parent.children.indexOf(node)
+    const index = parent.children.indexOf(node)
     if (index > 0) {
-      let theNode = parent.children[index - 1]
-      let lastLeafChild = getLastLeafChild(theNode)
+      const theNode = parent.children[index - 1]
+      const lastLeafChild = getLastLeafChild(theNode)
       return lastLeafChild || theNode
     }
     return parent
   } else {
-    let index = treeData.indexOf(node)
-    let theNode = treeData[index - 1]
+    const index = treeData.indexOf(node)
+    const theNode = treeData[index - 1]
     if (!theNode) {
       return null
     }
-    let lastLeafChild = getLastLeafChild(theNode)
+    const lastLeafChild = getLastLeafChild(theNode)
     return lastLeafChild || theNode
   }
 }
@@ -139,14 +139,14 @@ export const getPrevNode = (node, treeData) => {
 export const getFirstParentBrother = (node, treeData) => {
   let parent = getTreeNode(node.parentID, treeData)
   while (parent) {
-    let index = parent.children.indexOf(node)
+    const index = parent.children.indexOf(node)
     if (parent.children[index + 1]) {
       return parent.children[index + 1]
     }
     node = parent
     parent = getTreeNode(node.parentID, treeData)
   }
-  let index = treeData.indexOf(node)
+  const index = treeData.indexOf(node)
   return treeData[index + 1] || null
 }
 
@@ -154,15 +154,15 @@ export const getNextNode = (node, treeData) => {
   if (node.children && node.children.length > 0) {
     return node.children[0]
   }
-  let parent = getTreeNode(node.parentID, treeData)
+  const parent = getTreeNode(node.parentID, treeData)
   if (parent) {
-    let index = parent.children.indexOf(node)
+    const index = parent.children.indexOf(node)
     if (parent.children[index + 1]) {
       return parent.children[index + 1]
     }
     return getFirstParentBrother(parent, treeData)
   } else {
-    let index = treeData.indexOf(node)
+    const index = treeData.indexOf(node)
     return treeData[index + 1] || null
   }
 }

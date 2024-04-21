@@ -1,5 +1,5 @@
-import Container from './container';
-import cx from 'clsx';
+import Container from './container'
+import cx from 'clsx'
 
 export default function Alert({ preview }) {
   return (
@@ -20,13 +20,10 @@ export default function Alert({ preview }) {
               to exit preview mode.
             </>
           ) : (
-            <>
-              The source code for this blog is{' '}
-              .
-            </>
+            <>The source code for this blog is .</>
           )}
         </div>
       </Container>
     </div>
-  );
+  )
 }

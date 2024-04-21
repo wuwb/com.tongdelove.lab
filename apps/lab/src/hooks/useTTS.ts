@@ -1,12 +1,4 @@
-import {
-  EdgeSpeechOptions,
-  MicrosoftSpeechOptions,
-  OpenAITTSOptions,
-  TTSOptions,
-  useEdgeSpeech,
-  useMicrosoftSpeech,
-  useOpenAITTS,
-} from '@lobehub/tts/react'
+import { EdgeSpeechOptions, MicrosoftSpeechOptions, OpenAITTSOptions, TTSOptions, useEdgeSpeech, useMicrosoftSpeech, useOpenAITTS } from '@lobehub/tts/react'
 import isEqual from 'fast-deep-equal'
 
 import { createHeaderWithOpenAI } from '@/services/_header'

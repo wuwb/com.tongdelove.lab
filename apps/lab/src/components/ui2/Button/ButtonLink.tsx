@@ -1,5 +1,5 @@
-import cx from 'clsx';
-import { CustomLink } from '../CustomLink';
+import cx from 'clsx'
+import { CustomLink } from '../CustomLink'
 
 const ButtonContent = ({ button, appearance, compact }) => {
   return (
@@ -25,7 +25,7 @@ const ButtonContent = ({ button, appearance, compact }) => {
         },
         // Specific to when the button is fully white
         {
-          'border-white bg-white text-primary-600': appearance === 'white',
+          'text-primary-600 border-white bg-white': appearance === 'white',
         },
         // Specific to when the button is white outlines
         {
@@ -35,15 +35,15 @@ const ButtonContent = ({ button, appearance, compact }) => {
     >
       {button.text}
     </div>
-  );
-};
+  )
+}
 
 const ButtonLink = ({ button, appearance, compact = false }) => {
   return (
     <CustomLink link={button}>
       <ButtonContent button={button} appearance={appearance} compact={compact} />
     </CustomLink>
-  );
-};
+  )
+}
 
-export default ButtonLink;
+export default ButtonLink

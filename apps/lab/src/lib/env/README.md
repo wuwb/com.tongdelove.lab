@@ -32,25 +32,19 @@ NEXT_BUILD_ENV_TYPECHECK=1
 
 // @ts-check
 
-import { z } from "zod";
-import {
-  getValidatedBuildEnv,
-  zConvertTruthyStrToBool,
-} from "../lib/env/index.mjs";
+import { z } from 'zod'
+import { getValidatedBuildEnv, zConvertTruthyStrToBool } from '../lib/env/index.mjs'
 
 export const buildEnvSchema = z.object({
-  NEXT_BUILD_ENABLE_TYPECHECK: zConvertTruthyStrToBool().default(
-    process.env.NODE_ENV === "development"
-  ),
+  NEXT_BUILD_ENABLE_TYPECHECK: zConvertTruthyStrToBool().default(process.env.NODE_ENV === 'development'),
   NEXT_BUILD_ENV_OUTPUT: z
-    .enum(["standalone", "classic"], {
-      description:
-        "For standalone mode: https://nextjs.org/docs/pages/api-reference/next-config-js/output",
+    .enum(['standalone', 'classic'], {
+      description: 'For standalone mode: https://nextjs.org/docs/pages/api-reference/next-config-js/output',
     })
-    .default("classic"),
-});
+    .default('classic'),
+})
 
-export const buildEnv = getValidatedBuildEnv(buildEnvSchema);
+export const buildEnv = getValidatedBuildEnv(buildEnvSchema)
 ```
 
 ```typescript
@@ -58,7 +52,7 @@ export const buildEnv = getValidatedBuildEnv(buildEnvSchema);
 
 // @ts-check
 
-import { buildEnv } from "./src/configs/build-env.config.mjs";
+import { buildEnv } from './src/configs/build-env.config.mjs'
 
 /**
  * @type {import('next').NextConfig}
@@ -70,8 +64,8 @@ const nextConfig = {
   experimental: {
     output: buildEnv.NEXT_BUILD_ENV_OUTPUT,
   },
-};
-export default config;
+}
+export default config
 ```
 
 ### Example output
@@ -107,13 +101,13 @@ $ pnpm build
 
 ```json5
 {
-  "$schema": "https://turbo.build/schema.json",
-  "extends": ["//"],
-  "pipeline": {
-    "build": {
+  $schema: 'https://turbo.build/schema.json',
+  extends: ['//'],
+  pipeline: {
+    build: {
       /** EASY TO INVALIDATE CACHE BY WILDCARD */
-      "env": ["NEXT_BUILD_ENV_*", "NEXT_PUBLIC_*"],
-      "outputs": [".next/**", "!.next/cache/**"],
+      env: ['NEXT_BUILD_ENV_*', 'NEXT_PUBLIC_*'],
+      outputs: ['.next/**', '!.next/cache/**'],
     },
   },
 }

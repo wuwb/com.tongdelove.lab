@@ -1,32 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { serialize } from 'superjson';
-import { SearchPoemsQuery } from '@/server/backend/features/poem/SearchPoems';
-import { prisma } from "@/server/db/prisma";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { serialize } from 'superjson'
+import { SearchPoemsQuery } from '@/server/backend/features/poem/SearchPoems'
+import { prisma } from '@/server/db/prisma'
 
-const searchPoem = new SearchPoemsQuery(prisma);
+const searchPoem = new SearchPoemsQuery(prisma)
 
-export default async function handleListPoems(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handleListPoems(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
       const { json: serializableData, meta } = serialize(
         await searchPoem.execute({
           limit: 100,
         })
-      );
-      return res.json(serializableData);
+      )
+      return res.json(serializableData)
     } catch (e) {
-      return res
-        .status(500)
-        .json(new Error(e));
+      return res.status(500).json(new Error(e))
     }
   } else {
-    return res
-      .status(500)
-      .json(
-        new Error(`The HTTP ${req.method} method is not supported at this route.`)
-      );
+    return res.status(500).json(new Error(`The HTTP ${req.method} method is not supported at this route.`))
   }
 }

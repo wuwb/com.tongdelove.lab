@@ -1,23 +1,21 @@
 .container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .sidebar {
-    width: 30%;
+  width: 30%;
 }
 .content {
-    width: 70%;
+  width: 70%;
 }
 .sidebarcateTitle {
-    padding: 2px 5px;
-    &:hover {
-        border-radius: 5px;
-        color: #fff;
-        background: #ff5a00;
-    }
+  padding: 2px 5px;
+  &:hover {
+    border-radius: 5px;
+    color: #fff;
+    background: #ff5a00;
+  }
 }
 .cateTitle {
-    padding: 10px 0;
+  padding: 10px 0;
 }
-
-

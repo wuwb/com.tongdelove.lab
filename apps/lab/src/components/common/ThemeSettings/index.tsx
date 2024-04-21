@@ -1,57 +1,45 @@
-"use client"
+'use client'
 
-import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react';
-import {
-  Box,
-  Stack,
-  Button,
-  Popover,
-  Text,
-  Divider,
-  MenuItem,
-  Menu,
-  Tooltip,
-  ActionIcon,
-} from '@mantine/core'
+import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react'
+import { Box, Stack, Button, Popover, Text, Divider, MenuItem, Menu, Tooltip, ActionIcon } from '@mantine/core'
 
-import { IconChecks, IconCubeUnfolded } from '@tabler/icons-react';
-import { useTranslation } from 'next-i18next';
-import { Link } from '@/components/ui/Link';
+import { IconChecks, IconCubeUnfolded } from '@tabler/icons-react'
+import { useTranslation } from 'next-i18next'
+import { Link } from '@/components/ui/Link'
 
 const ThemeSettings: FC = () => {
-  const { t }: { t: any } = useTranslation();
+  const { t }: { t: any } = useTranslation()
 
-  const ref = useRef<any>(null);
-  const [isOpen, setOpen] = useState<boolean>(false);
+  const ref = useRef<any>(null)
+  const [isOpen, setOpen] = useState<boolean>(false)
 
   const handleOpen = (): void => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = (): void => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   useEffect(() => {
-    const curThemeName =
-      window.localStorage.getItem('appTheme') || 'PureLightTheme';
-    setTheme(curThemeName);
-  }, []);
+    const curThemeName = window.localStorage.getItem('appTheme') || 'PureLightTheme'
+    setTheme(curThemeName)
+  }, [])
 
-  const [theme, setTheme] = useState('PureLightTheme');
+  const [theme, setTheme] = useState('PureLightTheme')
 
   const changeTheme = (theme): void => {
-    setTheme(theme);
-  };
+    setTheme(theme)
+  }
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
   const openMenu = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const closeMenu = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -68,11 +56,11 @@ const ThemeSettings: FC = () => {
           open={isOpen}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'left'
+            horizontal: 'left',
           }}
           transformOrigin={{
             vertical: 'bottom',
-            horizontal: 'right'
+            horizontal: 'right',
           }}
         >
           <Box p={2}>
@@ -81,7 +69,7 @@ const ThemeSettings: FC = () => {
                 mb: 2,
                 textAlign: 'center',
                 fontWeight: 'bold',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
               }}
               variant="body1"
             >
@@ -106,69 +94,38 @@ const ThemeSettings: FC = () => {
               onClose={closeMenu}
               anchorOrigin={{
                 vertical: 'center',
-                horizontal: 'center'
+                horizontal: 'center',
               }}
               transformOrigin={{
                 vertical: 'center',
-                horizontal: 'center'
+                horizontal: 'center',
               }}
             >
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/dashboards/reports">
                 Extended Sidebar
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/accent-header/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/accent-header/dashboards/reports">
                 Accent Header
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/accent-sidebar/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/accent-sidebar/dashboards/reports">
                 Accent Sidebar
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/boxed-sidebar/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/boxed-sidebar/dashboards/reports">
                 Boxed Sidebar
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/collapsed-sidebar/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/collapsed-sidebar/dashboards/reports">
                 Collapsed Sidebar
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/bottom-navigation/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/bottom-navigation/dashboards/reports">
                 Bottom Navigation
               </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/top-navigation/dashboards/reports"
-              >
+              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/top-navigation/dashboards/reports">
                 Top Navigation
               </MenuItem>
             </Menu>
           </Box>
           <Divider />
-          <Stack
-            direction="row"
-            divider={<Divider orientation="vertical" flexItem />}
-          >
+          <Stack direction="row" divider={<Divider orientation="vertical" flexItem />}>
             <Box>
               <Text
                 sx={{
@@ -176,7 +133,7 @@ const ThemeSettings: FC = () => {
                   mb: 3,
                   textAlign: 'center',
                   fontWeight: 'bold',
-                  textTransform: 'uppercase'
+                  textTransform: 'uppercase',
                 }}
                 variant="body1"
               >
@@ -188,7 +145,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'TestTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('TestTheme');
+                      changeTheme('TestTheme')
                     }}
                   >
                     {theme === 'TestTheme' && (
@@ -207,7 +164,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'PureLightTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('PureLightTheme');
+                      changeTheme('PureLightTheme')
                     }}
                   >
                     {theme === 'PureLightTheme' && (
@@ -225,7 +182,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'GreyGooseTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('GreyGooseTheme');
+                      changeTheme('GreyGooseTheme')
                     }}
                   >
                     {theme === 'GreyGooseTheme' && (
@@ -243,7 +200,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'PurpleFlowTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('PurpleFlowTheme');
+                      changeTheme('PurpleFlowTheme')
                     }}
                   >
                     {theme === 'PurpleFlowTheme' && (
@@ -266,7 +223,7 @@ const ThemeSettings: FC = () => {
                   mb: 3,
                   textAlign: 'center',
                   fontWeight: 'bold',
-                  textTransform: 'uppercase'
+                  textTransform: 'uppercase',
                 }}
                 variant="body1"
               >
@@ -277,7 +234,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'NebulaFighterTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('NebulaFighterTheme');
+                      changeTheme('NebulaFighterTheme')
                     }}
                   >
                     {theme === 'NebulaFighterTheme' && (
@@ -295,7 +252,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'GreenFieldsTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('GreenFieldsTheme');
+                      changeTheme('GreenFieldsTheme')
                     }}
                   >
                     {theme === 'GreenFieldsTheme' && (
@@ -313,7 +270,7 @@ const ThemeSettings: FC = () => {
                   <Box
                     className={theme === 'DarkSpacesTheme' ? 'active' : ''}
                     onClick={() => {
-                      changeTheme('DarkSpacesTheme');
+                      changeTheme('DarkSpacesTheme')
                     }}
                   >
                     {theme === 'DarkSpacesTheme' && (
@@ -333,7 +290,7 @@ const ThemeSettings: FC = () => {
         </Popover>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default ThemeSettings;
+export default ThemeSettings

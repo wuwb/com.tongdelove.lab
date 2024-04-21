@@ -1,6 +1,6 @@
 // @ts-check
 
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import { devices, type PlaywrightTestConfig } from '@playwright/test'
 
 // Reference: https://playwright.dev/docs/test-configuration
 /**
@@ -70,5 +70,5 @@ const config: PlaywrightTestConfig = {
     //  use: devices['iPhone 12'],
     // },
   ],
-};
-export default config;
+}
+export default config

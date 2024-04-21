@@ -1,8 +1,6 @@
 ## 模板
 
-
-
-### eslint 
+### eslint
 
 eslint-config-prettier 关闭 eslint 中与 prettier 冲突规则
 eslint-plugin-prettier 允许 eslint 使用 prettier 格式化代码
@@ -18,7 +16,6 @@ https://github.com/creativetimofficial/notus-nextjs
 https://github.com/mschwarzmueller/nextjs-course-code
 
 https://mantine.dev/core/action-icon/
-
 
 ## 参考
 

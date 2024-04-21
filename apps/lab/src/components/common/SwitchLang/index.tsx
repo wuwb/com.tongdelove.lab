@@ -1,9 +1,9 @@
-import { IconWorld, IconChevronDown } from '@tabler/icons-react';
-import { Menu, MenuItem, Button, Text, rem } from '@mantine/core';
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { setCookie } from 'cookies-next';
+import { IconWorld, IconChevronDown } from '@tabler/icons-react'
+import { Menu, MenuItem, Button, Text, rem } from '@mantine/core'
+import React from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { setCookie } from 'cookies-next'
 
 // https://headlessui.dev/react/menu#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
@@ -11,35 +11,35 @@ const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
     <Link href={href} as={as} locale={locale} {...props}>
       {children}
     </Link>
-  );
-};
+  )
+}
 
 const localeText = (locale: string): string => {
   switch (locale) {
     case 'en':
-      return '🇬🇧 English';
+      return '🇬🇧 English'
     case 'zh-CN':
-      return '🇨🇳 简体中文';
+      return '🇨🇳 简体中文'
     default:
-      return '🇬🇧 English';
+      return '🇬🇧 English'
   }
-};
+}
 
 const SwitchLang = () => {
-  const { locales, pathname, query, asPath } = useRouter();
-  console.log('locales: ', locales);
+  const { locales, pathname, query, asPath } = useRouter()
+  console.log('locales: ', locales)
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const handleAddLanguage = () => window.open('/', '_blank');
+  const handleAddLanguage = () => window.open('/', '_blank')
 
   const handleMenuItemClick = () => {
     // Cookies.set('NEXT_LOCALE', locale, { path: '/' })
@@ -70,13 +70,7 @@ const SwitchLang = () => {
       >
         {locales!.map(locale => (
           <MenuItem key={locale} onClick={handleClose}>
-            <CustomLink
-              key={locale}
-              href={{ pathname, query }}
-              as={asPath}
-              locale={locale}
-              onClick={handleMenuItemClick}
-            >
+            <CustomLink key={locale} href={{ pathname, query }} as={asPath} locale={locale} onClick={handleMenuItemClick}>
               <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
                 {localeText(locale)}
               </div>
@@ -90,7 +84,7 @@ const SwitchLang = () => {
         </MenuItem>
       </Menu>
     </div>
-  );
+  )
 }
 
-export default SwitchLang;
+export default SwitchLang

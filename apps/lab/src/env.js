@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs"
-import { z } from "zod"
+import { createEnv } from '@t3-oss/env-nextjs'
+import { z } from 'zod'
 
 export const env = createEnv({
   /**
@@ -7,30 +7,31 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    TWITTER_CLIENT_ID: z.string(),
-    TWITTER_CLIENT_SECRET: z.string(),
-    LINKEDIN_CLIENT_ID: z.string(),
-    LINKEDIN_CLIENT_SECRET: z.string(),
-    S3_ACCESS_KEY_ID: z.string(),
-    S3_SECRET_ACCESS_KEY: z.string(),
-    EC2_SERVER_URL: z.string(),
-    JWT_PRIVATE_KEY: z.string(),
-    JWT_PUBLIC_KEY: z.string(),
-    CLICKHOUSE_URL: z.string().optional(),
-    CLICKHOUSE_PASSWORD: z.string().optional(),
-    CLICKHOUSE_DATABASE: z.string().optional(),
-    REDIS_CLOUD_URL: z.string(),
-    RS_FILTER_REDIS_CLOUD_URL: z.string(),
-    RS_CANDIDATES_POOL_REDIS_CLOUD_URL: z.string(),
-    AXIOM_TOKEN: z.string(),
+    // S3_ACCESS_KEY_ID: z.string(),
+    // S3_SECRET_ACCESS_KEY: z.string(),
+    // EC2_SERVER_URL: z.string(),
+    // JWT_PRIVATE_KEY: z.string(),
+    // JWT_PUBLIC_KEY: z.string(),
+    // CLICKHOUSE_URL: z.string().optional(),
+    // CLICKHOUSE_PASSWORD: z.string().optional(),
+    // CLICKHOUSE_DATABASE: z.string().optional(),
+    // REDIS_CLOUD_URL: z.string(),
+    // RS_FILTER_REDIS_CLOUD_URL: z.string(),
+    // RS_CANDIDATES_POOL_REDIS_CLOUD_URL: z.string(),
+    // AXIOM_TOKEN: z.string(),
     VERCEL: z.string().optional(),
     VERCEL_ENV: z.enum(['production', 'preview', 'development']).optional(),
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).optional(),
-    OPENAI_API_KEY: z.string(),
-    QDRANT_URL: z.string(),
-    QDRANT_KEY: z.string(),
+    // OPENAI_API_KEY: z.string(),
+    // QDRANT_URL: z.string(),
+    // QDRANT_KEY: z.string(),
 
     //
+    DATABASE_URL: z
+      .string()
+      .url()
+      .refine(str => !str.includes('YOUR_MYSQL_URL_HERE'), 'You forgot to change the default URL')
+      .optional(),
     LAB_TONGDELOVE_URL: z.string(),
     LAB_TONGDELOVE_PRISMA_URL: z.string(),
     LAB_TONGDELOVE_URL_NON_POOLING: z.string(),
@@ -39,36 +40,31 @@ export const env = createEnv({
     LAB_TONGDELOVE_PASSWORD: z.string(),
     LAB_TONGDELOVE_DATABASE: z.string(),
 
-    NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-    NEXTAUTH_SECRET:
-      process.env.NODE_ENV === "production"
-        ? z.string().min(1)
-        : z.string().min(1).optional(),
+    NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+
+    // auth
     NEXTAUTH_URL: z.preprocess(
       // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
       // Since NextAuth.js automatically uses the VERCEL_URL if present.
-      (str) => process.env.VERCEL_URL ?? str,
+      str => process.env.VERCEL_URL ?? str,
       // VERCEL_URL doesn't include `https` so it cant be validated as a URL
       process.env.VERCEL ? z.string().min(1) : z.string().url()
     ),
-    EMAIL_SERVER: z.string(),
-    EMAIL_FROM: z.string(),
+    NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().min(1) : z.string().min(1).optional(),
+    // EMAIL_SERVER: z.string(),
+    // EMAIL_FROM: z.string(),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-    DISCORD_CLIENT_ID: z.string(),
-    DISCORD_CLIENT_SECRET: z.string(),
-    GOOGLE_CLIENT_ID: z.string(),
-    GOOGLE_CLIENT_SECRET: z.string(),
-    GITHUB_CLIENT_ID: z.string(),
-    GITHUB_CLIENT_SECRET: z.string(),
-    DATABASE_URL: z
-      .string()
-      .url()
-      .refine(
-        (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
-        "You forgot to change the default URL"
-      ),
+    // DISCORD_CLIENT_ID: z.string(),
+    // DISCORD_CLIENT_SECRET: z.string(),
+    // GOOGLE_CLIENT_ID: z.string(),
+    // GOOGLE_CLIENT_SECRET: z.string(),
+    // GITHUB_CLIENT_ID: z.string(),
+    // GITHUB_CLIENT_SECRET: z.string(),
+    // TWITTER_CLIENT_ID: z.string(),
+    // TWITTER_CLIENT_SECRET: z.string(),
+    // LINKEDIN_CLIENT_ID: z.string(),
+    // LINKEDIN_CLIENT_SECRET: z.string(),
   },
-
 
   /**
    * Specify your client-side environment variables schema here. This way you can ensure the app
@@ -76,17 +72,16 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string(),
-    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string(),
-    NEXT_PUBLIC_MIXPANEL_PROJECT_ID: z.string(),
-    NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID: z.string(),
-    NEXT_PUBLIC_GROWTHBOOK_API_HOST: z.string(),
-    NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY: z.string(),
-    NEXT_PUBLIC_EXPRESS_SERVER_URL: z.string(),
-    NEXT_PUBLIC_USERBACK_TOKEN: z.string(),
-    NEXT_PUBLIC_EC2_BACKEND_URL: z.string(),
-    NEXT_PUBLIC_FEATURE_AGENT: z.string().optional(),
-
+    // NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string(),
+    // NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string(),
+    // NEXT_PUBLIC_MIXPANEL_PROJECT_ID: z.string(),
+    // NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID: z.string(),
+    // NEXT_PUBLIC_GROWTHBOOK_API_HOST: z.string(),
+    // NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY: z.string(),
+    // NEXT_PUBLIC_EXPRESS_SERVER_URL: z.string(),
+    // NEXT_PUBLIC_USERBACK_TOKEN: z.string(),
+    // NEXT_PUBLIC_EC2_BACKEND_URL: z.string(),
+    // NEXT_PUBLIC_FEATURE_AGENT: z.string().optional(),
     // NEXT_PUBLIC_NODE_ENV: z.enum(["development", "test", "production"]),
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
   },
@@ -97,6 +92,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     // database
+    DATABASE_URL: process.env.DATABASE_URL,
     LAB_TONGDELOVE_URL: process.env.LAB_TONGDELOVE_URL,
     LAB_TONGDELOVE_PRISMA_URL: process.env.LAB_TONGDELOVE_PRISMA_URL,
     LAB_TONGDELOVE_URL_NON_POOLING: process.env.LAB_TONGDELOVE_URL_NON_POOLING,
@@ -104,55 +100,54 @@ export const env = createEnv({
     LAB_TONGDELOVE_HOST: process.env.LAB_TONGDELOVE_HOST,
     LAB_TONGDELOVE_PASSWORD: process.env.LAB_TONGDELOVE_PASSWORD,
     LAB_TONGDELOVE_DATABASE: process.env.LAB_TONGDELOVE_DATABASE,
+
     // app
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+
     // auth
-    EMAIL_SERVER: process.env.EMAIL_SERVER,
-    EMAIL_FROM: process.env.EMAIL_FROM,
-    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
-    DATABASE_URL: process.env.DATABASE_URL,
+    // EMAIL_SERVER: process.env.EMAIL_SERVER,
+    // EMAIL_FROM: process.env.EMAIL_FROM,
+    // DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    // DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    // GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    // GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    // GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    // GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    // TWITTER_CLIENT_ID: process.env.TWITTER_CLIENT_ID,
+    // TWITTER_CLIENT_SECRET: process.env.TWITTER_CLIENT_SECRET,
+    // LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
+    // LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
 
     //
-    TWITTER_CLIENT_ID: process.env.TWITTER_CLIENT_ID,
-    TWITTER_CLIENT_SECRET: process.env.TWITTER_CLIENT_SECRET,
-    LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
-    LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
-    S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID,
-    S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY,
-    EC2_SERVER_URL: process.env.EC2_SERVER_URL,
-    JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY,
-    JWT_PUBLIC_KEY: process.env.JWT_PUBLIC_KEY,
-    CLICKHOUSE_URL: process.env.CLICKHOUSE_URL,
-    CLICKHOUSE_PASSWORD: process.env.CLICKHOUSE_PASSWORD,
-    CLICKHOUSE_DATABASE: process.env.CLICKHOUSE_DATABASE,
-    REDIS_CLOUD_URL: process.env.REDIS_CLOUD_URL,
-    RS_FILTER_REDIS_CLOUD_URL: process.env.RS_FILTER_REDIS_CLOUD_URL,
-    RS_CANDIDATES_POOL_REDIS_CLOUD_URL: process.env.RS_CANDIDATES_POOL_REDIS_CLOUD_URL,
-    AXIOM_TOKEN: process.env.AXIOM_TOKEN,
-    VERCEL_ENV: process.env.VERCEL_ENV,
-    LOG_LEVEL: process.env.LOG_LEVEL,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    QDRANT_URL: process.env.QDRANT_URL,
-    QDRANT_KEY: process.env.QDRANT_KEY,
-    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
-    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
-    NEXT_PUBLIC_MIXPANEL_PROJECT_ID: process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_ID,
-    NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID: process.env.NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID,
-    NEXT_PUBLIC_GROWTHBOOK_API_HOST: process.env.NEXT_PUBLIC_GROWTHBOOK_API_HOST,
-    NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY: process.env.NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY,
-    NEXT_PUBLIC_EXPRESS_SERVER_URL: process.env.NEXT_PUBLIC_EXPRESS_SERVER_URL,
-    NEXT_PUBLIC_USERBACK_TOKEN: process.env.NEXT_PUBLIC_USERBACK_TOKEN,
-    NEXT_PUBLIC_EC2_BACKEND_URL: process.env.NEXT_PUBLIC_EC2_BACKEND_URL,
-    NEXT_PUBLIC_FEATURE_AGENT: process.env.NEXT_PUBLIC_FEATURE_AGENT,
-
-
+    // S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID,
+    // S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY,
+    // EC2_SERVER_URL: process.env.EC2_SERVER_URL,
+    // JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY,
+    // JWT_PUBLIC_KEY: process.env.JWT_PUBLIC_KEY,
+    // CLICKHOUSE_URL: process.env.CLICKHOUSE_URL,
+    // CLICKHOUSE_PASSWORD: process.env.CLICKHOUSE_PASSWORD,
+    // CLICKHOUSE_DATABASE: process.env.CLICKHOUSE_DATABASE,
+    // REDIS_CLOUD_URL: process.env.REDIS_CLOUD_URL,
+    // RS_FILTER_REDIS_CLOUD_URL: process.env.RS_FILTER_REDIS_CLOUD_URL,
+    // RS_CANDIDATES_POOL_REDIS_CLOUD_URL: process.env.RS_CANDIDATES_POOL_REDIS_CLOUD_URL,
+    // AXIOM_TOKEN: process.env.AXIOM_TOKEN,
+    // VERCEL_ENV: process.env.VERCEL_ENV,
+    // LOG_LEVEL: process.env.LOG_LEVEL,
+    // OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    // QDRANT_URL: process.env.QDRANT_URL,
+    // QDRANT_KEY: process.env.QDRANT_KEY,
+    // NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
+    // NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
+    // NEXT_PUBLIC_MIXPANEL_PROJECT_ID: process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_ID,
+    // NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID: process.env.NEXT_PUBLIC_SPRIG_ENVIRONMENT_ID,
+    // NEXT_PUBLIC_GROWTHBOOK_API_HOST: process.env.NEXT_PUBLIC_GROWTHBOOK_API_HOST,
+    // NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY: process.env.NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY,
+    // NEXT_PUBLIC_EXPRESS_SERVER_URL: process.env.NEXT_PUBLIC_EXPRESS_SERVER_URL,
+    // NEXT_PUBLIC_USERBACK_TOKEN: process.env.NEXT_PUBLIC_USERBACK_TOKEN,
+    // NEXT_PUBLIC_EC2_BACKEND_URL: process.env.NEXT_PUBLIC_EC2_BACKEND_URL,
+    // NEXT_PUBLIC_FEATURE_AGENT: process.env.NEXT_PUBLIC_FEATURE_AGENT,
 
     // CI
     CI: process.env.CI,

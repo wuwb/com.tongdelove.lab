@@ -1,15 +1,13 @@
 // Just a basic example for size limit with simple file preset
 // @link https://github.com/ai/size-limit
 
-let manifest;
+let manifest
 try {
-  manifest = require('./.next/build-manifest.json');
+  manifest = require('./.next/build-manifest.json')
 } catch (e) {
-  throw new Error(
-    'Cannot find a NextJs build folder, did you forget to build ?'
-  );
+  throw new Error('Cannot find a NextJs build folder, did you forget to build ?')
 }
-const pages = manifest.pages;
+const pages = manifest.pages
 
 const limitCfg = {
   defaultSize: '105kb',
@@ -25,18 +23,18 @@ const limitCfg = {
     '/auth/login': '130kb',
     '/home': '122kb',
   },
-};
+}
 const getPageLimits = () => {
-  let pageLimits = [];
+  let pageLimits = []
   for (const [uri, paths] of Object.entries(pages)) {
     pageLimits.push({
       name: `Page '${uri}'`,
       limit: limitCfg.pages?.[uri] ?? limitCfg.defaultSize,
-      path: paths.map((p) => `.next/${p}`),
-    });
+      path: paths.map(p => `.next/${p}`),
+    })
   }
-  return pageLimits;
-};
+  return pageLimits
+}
 
 module.exports = [
   ...getPageLimits(),
@@ -45,4 +43,4 @@ module.exports = [
     path: ['.next/static/css/**/*.css'],
     limit: '15 kB',
   },
-];
+]

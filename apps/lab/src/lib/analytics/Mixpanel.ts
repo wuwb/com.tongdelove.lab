@@ -4,9 +4,7 @@ mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_ID, {
   api_host: 'https://flowgpt.com/mp',
 })
 
-const TRACKING_ACTIVE =
-  process.env.NODE_ENV === 'production' &&
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+const TRACKING_ACTIVE = process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
 
 const mixpanelInProduction = {
   identify: (id: string) => {
@@ -34,10 +32,10 @@ const actions = {
   start: (
     user:
       | ({ id: string } & {
-        name?: string | null | undefined
-        email?: string | null | undefined
-        image?: string | null | undefined
-      })
+          name?: string | null | undefined
+          email?: string | null | undefined
+          image?: string | null | undefined
+        })
       | undefined
   ) => {
     if (TRACKING_ACTIVE) {
@@ -52,12 +50,7 @@ const actions = {
     }
   },
 
-  trackSignIn: (
-    method: 'Google' | 'Discord' | 'Twitter' | 'Linkedin',
-    total_followers: number,
-    total_follow: number,
-    total_prompts: number
-  ) => {
+  trackSignIn: (method: 'Google' | 'Discord' | 'Twitter' | 'Linkedin', total_followers: number, total_follow: number, total_prompts: number) => {
     mixpanelInProduction.track('Sign In', {
       method,
       total_followers,

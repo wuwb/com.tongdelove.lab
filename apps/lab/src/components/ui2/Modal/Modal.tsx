@@ -1,16 +1,16 @@
-import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react';
-import { createPortal } from 'react-dom';
-import cx from 'clsx';
-import { IconBrandNytimes } from '@tabler/icons-react';
+import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react'
+import { createPortal } from 'react-dom'
+import cx from 'clsx'
+import { IconBrandNytimes } from '@tabler/icons-react'
 
-import styles from './Modal.module.scss';
+import styles from './Modal.module.scss'
 
-const modalElement = document.getElementById('modal-root');
+const modalElement = document.getElementById('modal-root')
 
 export function Modal({ children, fade = false, defaultOpened = false }, ref) {
-  const [isOpen, setIsOpen] = useState(defaultOpened);
+  const [isOpen, setIsOpen] = useState(defaultOpened)
 
-  const close = useCallback(() => setIsOpen(false), []);
+  const close = useCallback(() => setIsOpen(false), [])
 
   useImperativeHandle(
     ref,
@@ -19,21 +19,21 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
       close,
     }),
     [close]
-  );
+  )
 
   const handleEscape = useCallback(
     event => {
-      if (event.keyCode === 27) close();
+      if (event.keyCode === 27) close()
     },
     [close]
-  );
+  )
 
   useEffect(() => {
-    if (isOpen) document.addEventListener('keydown', handleEscape, false);
+    if (isOpen) document.addEventListener('keydown', handleEscape, false)
     return () => {
-      document.removeEventListener('keydown', handleEscape, false);
-    };
-  }, [handleEscape, isOpen]);
+      document.removeEventListener('keydown', handleEscape, false)
+    }
+  }, [handleEscape, isOpen])
 
   return createPortal(
     isOpen ? (
@@ -50,7 +50,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
       </div>
     ) : null,
     modalElement
-  );
+  )
 }
 
-export default forwardRef(Modal);
+export default forwardRef(Modal)

@@ -1,6 +1,6 @@
 // @ts-check
 
-import { exitOrThrowError, printValidatedEnv } from './utils.mjs';
+import { exitOrThrowError, printValidatedEnv } from './utils.mjs'
 
 /**
  * Return a validated / transformed environment object from a zodSchema. This is to be used to tune
@@ -18,13 +18,13 @@ import { exitOrThrowError, printValidatedEnv } from './utils.mjs';
  * @returns { import('zod').infer<T> }
  */
 export const getValidatedBuildEnv = (zodSchema, options = {}) => {
-  const { env = process.env, displayConsole = true } = options ?? {};
-  const parsedEnv = zodSchema.safeParse(env);
+  const { env = process.env, displayConsole = true } = options ?? {}
+  const parsedEnv = zodSchema.safeParse(env)
   if (parsedEnv.success) {
     if (displayConsole) {
-      printValidatedEnv('Build env(s)', parsedEnv);
+      printValidatedEnv('Build env(s)', parsedEnv)
     }
-    return parsedEnv.data;
+    return parsedEnv.data
   }
-  exitOrThrowError(parsedEnv);
-};
+  exitOrThrowError(parsedEnv)
+}

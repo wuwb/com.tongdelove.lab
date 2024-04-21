@@ -7,16 +7,13 @@
  * {@link https://github.com/belgattitude/nextjs-monorepo-example/blob/main/docs/about-lint-staged.md}
  */
 
-const {
-  concatFilesForPrettier,
-  getEslintFixCmd,
-} = require('../../lint-staged.common.cjs');
+const { concatFilesForPrettier, getEslintFixCmd } = require('../../lint-staged.common.cjs')
 
 /**
  * @type {Record<string, (filenames: string[]) => string | string[] | Promise<string | string[]>>}
  */
 const rules = {
-  '**/*.{js,jsx,ts,tsx,mjs,cjs}': (filenames) => {
+  '**/*.{js,jsx,ts,tsx,mjs,cjs}': filenames => {
     return getEslintFixCmd({
       cwd: __dirname,
       fix: true,
@@ -26,11 +23,11 @@ const rules = {
       rules: ['react-hooks/exhaustive-deps: off'],
       maxWarnings: 25,
       files: filenames,
-    });
+    })
   },
-  '**/*.{json,md,mdx,css,html,yml,yaml,scss}': (filenames) => {
-    return [`prettier --write ${concatFilesForPrettier(filenames)}`];
+  '**/*.{json,md,mdx,css,html,yml,yaml,scss}': filenames => {
+    return [`prettier --write ${concatFilesForPrettier(filenames)}`]
   },
-};
+}
 
-module.exports = rules;
+module.exports = rules

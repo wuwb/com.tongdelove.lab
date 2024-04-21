@@ -1,8 +1,6 @@
-import Link from 'next/link';
-import React from 'react';
-import {
-  Text
-} from '@mantine/core'
+import Link from 'next/link'
+import React from 'react'
+import { Text } from '@mantine/core'
 
 export default function Copyright() {
   return (
@@ -11,8 +9,7 @@ export default function Copyright() {
       <Link href="/" passHref>
         My Website
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()}.
     </Text>
-  );
+  )
 }

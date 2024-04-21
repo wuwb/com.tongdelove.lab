@@ -1,9 +1,9 @@
-import type { UnPromisify } from '@tongdelove/ts-utils';
-import type { SearchPoemsQuery } from './SearchPoemsQuery';
+import type { UnPromisify } from '@tongdelove/ts-utils'
+import type { SearchPoemsQuery } from './SearchPoemsQuery'
 
 export interface SearchPoemsParams {
-  limit?: number;
-  offset?: number;
+  limit?: number
+  offset?: number
 }
 
-export type SearchPoems = UnPromisify<ReturnType<SearchPoemsQuery['execute']>>;
+export type SearchPoems = UnPromisify<ReturnType<SearchPoemsQuery['execute']>>

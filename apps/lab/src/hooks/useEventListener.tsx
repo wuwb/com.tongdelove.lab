@@ -4,10 +4,7 @@ export interface UseEventListenerOptions extends AddEventListenerOptions {}
 
 type EventMap<T> = T extends HTMLElement ? HTMLElementEventMap : T extends Document ? DocumentEventMap : T extends Window ? WindowEventMap : never
 
-export const useEventListener = <
-  Target extends RefObject<HTMLElement | Document | Window | null>,
-  EventType extends keyof EventMap<Target['current']>,
->(
+export const useEventListener = <Target extends RefObject<HTMLElement | Document | Window | null>, EventType extends keyof EventMap<Target['current']>>(
   target: Target,
   eventType: EventType,
   listener: (this: Target, event: EventMap<Target['current']>[EventType]) => any,

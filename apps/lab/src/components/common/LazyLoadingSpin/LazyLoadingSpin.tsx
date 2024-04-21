@@ -1,17 +1,17 @@
-import React from 'react';
-import cx from 'clsx';
-import styles from './styles.module.scss';
+import React from 'react'
+import cx from 'clsx'
+import styles from './styles.module.scss'
 
 interface IProps {
-  fullscreen?: boolean;
-  delay?: number;
+  fullscreen?: boolean
+  delay?: number
   //
-  className?: string;
-  style?: React.CSSProperties;
-  alwaysDarkMode?: boolean;
+  className?: string
+  style?: React.CSSProperties
+  alwaysDarkMode?: boolean
 }
 
-export const LazyLoadingSpin: React.FC<IProps> = (props) => {
+export const LazyLoadingSpin: React.FC<IProps> = props => {
   // const dom = (
   //   <Spin
   //     className={cx(
@@ -37,11 +37,11 @@ export const LazyLoadingSpin: React.FC<IProps> = (props) => {
           [styles['comp-wrapper--fullscreen']]: !!props.fullscreen,
         },
         `g-comp--${LazyLoadingSpin.displayName}`,
-        props.className,
+        props.className
       )}
       style={props.style}
     />
-  );
+  )
 
-  return dom;
-};
+  return dom
+}

@@ -1,4 +1,4 @@
-const data = require('./danjuan2');
+const data = require('./danjuan2')
 
 // data.forEach(item => {
 //     fetch(`https://danjuanapp.com/djapi/fund/order/${item.order_id}`)
@@ -14,8 +14,6 @@ const data = require('./danjuan2');
 // });
 
 const page = () => {
-    return (
-        <div></div>
-    )
+  return <div></div>
 }
-export default page;
+export default page

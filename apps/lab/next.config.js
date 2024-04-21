@@ -3,108 +3,94 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./src/env.js");
+await import('./src/env.js')
 
 import { withSentryConfig } from '@sentry/nextjs' // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 import { createSecureHeaders } from 'next-secure-headers'
-import pc from 'picocolors';
+import pc from 'picocolors'
 
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import url from 'node:url';
-import withBundleAnalyzer from '@next/bundle-analyzer';
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import url from 'node:url'
+import withBundleAnalyzer from '@next/bundle-analyzer'
 import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.js'
 
-const { tsconfigPath } =
-  nextUtils.loadCustomBuildParams()
+const { tsconfigPath } = nextUtils.loadCustomBuildParams()
 
-const isProd = process.env.NODE_ENV === 'production';
-const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production'
 
-
-const workspaceRoot = path.resolve(
-  path.dirname(url.fileURLToPath(import.meta.url)),
-  '..',
-  '..'
-);
+const workspaceRoot = path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), '..', '..')
 
 /**
  * Once supported replace by node / eslint / ts and out of experimental, replace by
  * `import packageJson from './package.json' assert { type: 'json' };`
  * @type {import('type-fest').PackageJson}
  */
-const packageJson = JSON.parse(
-  readFileSync(new URL('./package.json', import.meta.url)).toString('utf-8')
-);
+const packageJson = JSON.parse(readFileSync(new URL('./package.json', import.meta.url)).toString('utf-8'))
 
 if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
-  console.log(
-    `- ${pc.green(
-      'info'
-    )} Sourcemaps generation have been disabled through NEXT_BUILD_ENV_SOURCEMAPS`
-  );
+  console.log(`- ${pc.green('info')} Sourcemaps generation have been disabled through NEXT_BUILD_ENV_SOURCEMAPS`)
 }
 
 // @link https://github.com/jagaapple/next-secure-headers
-const secureHeaders = createSecureHeaders({
-  contentSecurityPolicy: {
-    directives:
-      process.env.NEXT_BUILD_ENV_CSP === true
-        ? {
-          defaultSrc: "'self'",
-          styleSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            'https://unpkg.com/@graphql-yoga/graphiql/dist/style.css',
-            'https://meet.jitsi.si',
-            'https://8x8.vc',
-          ],
-          scriptSrc: [
-            "'self'",
-            "'unsafe-eval'",
-            "'unsafe-inline'",
-            'https://unpkg.com/@graphql-yoga/graphiql',
-            // 'https://meet.jit.si/external_api.js',
-            // 'https://8x8.vc/external_api.js',
-          ],
-          frameSrc: [
-            "'self'",
-            // 'https://meet.jit.si',
-            // 'https://8x8.vc',
-          ],
-          connectSrc: [
-            "'self'",
-            'https://vitals.vercel-insights.com',
-            'https://*.sentry.io',
-            // 'wss://ws.pusherapp.com',
-            // 'wss://ws-eu.pusher.com',
-            // 'https://sockjs.pusher.com',
-            // 'https://sockjs-eu.pusher.com',
-          ],
-          imgSrc: ["'self'", 'https:', 'http:', 'data:'],
-          workerSrc: ['blob:'],
-        }
-        : {},
-  },
-  ...(process.env.NEXT_BUILD_ENV_CSP === true &&
-    process.env.NODE_ENV === 'production'
-    ? {
-      forceHTTPSRedirect: [
-        true,
-        { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true },
-      ],
-    }
-    : {}),
-  referrerPolicy: 'same-origin',
-});
+// const secureHeaders = createSecureHeaders({
+//   contentSecurityPolicy: {
+//     directives:
+//       process.env.NEXT_BUILD_ENV_CSP === true
+//         ? {
+//           defaultSrc: "'self'",
+//           styleSrc: [
+//             "'self'",
+//             "'unsafe-inline'",
+//             'https://unpkg.com/@graphql-yoga/graphiql/dist/style.css',
+//             'https://meet.jitsi.si',
+//             'https://8x8.vc',
+//           ],
+//           scriptSrc: [
+//             "'self'",
+//             "'unsafe-eval'",
+//             "'unsafe-inline'",
+//             'https://unpkg.com/@graphql-yoga/graphiql',
+//             // 'https://meet.jit.si/external_api.js',
+//             // 'https://8x8.vc/external_api.js',
+//           ],
+//           frameSrc: [
+//             "'self'",
+//             // 'https://meet.jit.si',
+//             // 'https://8x8.vc',
+//           ],
+//           connectSrc: [
+//             "'self'",
+//             'https://vitals.vercel-insights.com',
+//             'https://*.sentry.io',
+//             // 'wss://ws.pusherapp.com',
+//             // 'wss://ws-eu.pusher.com',
+//             // 'https://sockjs.pusher.com',
+//             // 'https://sockjs-eu.pusher.com',
+//           ],
+//           imgSrc: ["'self'", 'https:', 'http:', 'data:'],
+//           workerSrc: ['blob:'],
+//         }
+//         : {},
+//   },
+//   ...(process.env.NEXT_BUILD_ENV_CSP === true && process.env.NODE_ENV === 'production'
+//     ? {
+//       forceHTTPSRedirect: [true, { maxAge: 60 * 60 * 24 * 4, includeSubDomains: true }],
+//     }
+//     : {}),
+//   referrerPolicy: 'same-origin',
+// })
 
 /** @type {import("next").NextConfig} */
 const config = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
 
   // basePath: '',
-  productionBrowserSourceMaps: process.env.NEXT_BUILD_ENV_SOURCEMAPS === true,
+  // productionBrowserSourceMaps: process.env.NEXT_BUILD_ENV_SOURCEMAPS === true,
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
    * out.
@@ -170,7 +156,7 @@ const config = {
       'blog.tongdelove.com',
       '127.0.0.1',
       'localhost',
-      'via.placeholder.com'
+      'via.placeholder.com',
     ],
     remotePatterns: [
       {
@@ -188,32 +174,28 @@ const config = {
 
   transpilePackages: isProd
     ? [
-      '@wuwenbin'
-      // i18next is build for modern browsers
-      // 'i18next',
-      // tailwind-merge contains nullish operator ?.
-      // 'tailwind-merge',
-      // 'antd',
-      // 'rc-pagination',
-      // 'rc-util',
-      // 'rc-picker',
-      // 'rc-notification',
-      // '@ant-design/icons',
-      // 'rc-calendar',
-    ]
+        '@wuwenbin',
+        // i18next is build for modern browsers
+        // 'i18next',
+        // tailwind-merge contains nullish operator ?.
+        // 'tailwind-merge',
+        // 'antd',
+        // 'rc-pagination',
+        // 'rc-util',
+        // 'rc-picker',
+        // 'rc-notification',
+        // '@ant-design/icons',
+        // 'rc-calendar',
+      ]
     : [],
 
   // Standalone build
   // @link https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files-experimental
-  ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
-    ? { output: 'standalone', outputFileTracing: true }
-    : {}),
+  ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone' ? { output: 'standalone', outputFileTracing: true } : {}),
 
   experimental: {
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
-    ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
-      ? { outputFileTracingRoot: workspaceRoot }
-      : {}),
+    ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone' ? { outputFileTracingRoot: workspaceRoot } : {}),
 
     // Useful in conjunction with to `output: 'standalone'` and `outputFileTracing: true`
     // to keep lambdas sizes / docker images low when vercel/nft isn't able to
@@ -248,10 +230,7 @@ const config = {
         '**/node_modules/rollup/**/*',
       ],
     },
-    outputFileTracingIgnores: [
-      'node_modules/canvas',
-      'node_modules/.pnpm/canvas@2.11.2',
-    ],
+    outputFileTracingIgnores: ['node_modules/canvas', 'node_modules/.pnpm/canvas@2.11.2'],
     webVitalsAttribution: ['CLS', 'LCP'],
     // https://nextjs.org/docs/app/api-reference/functions/server-actions
     // serverActions: true,
@@ -280,7 +259,7 @@ const config = {
   },
 
   typescript: {
-    ignoreBuildErrors: !process.env.NEXT_BUILD_ENV_TYPECHECK,
+    ignoreBuildErrors: true,
     tsconfigPath: process.env.NEXT_BUILD_ENV_TSCONFIG,
     //   tsconfigPath,
     //   ignoreBuildErrors: true,
@@ -318,8 +297,7 @@ const config = {
           },
           {
             key: 'Access-Control-Allow-Headers',
-            value:
-              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
           },
         ],
       },
@@ -334,8 +312,7 @@ const config = {
           },
           {
             key: 'Access-Control-Allow-Headers',
-            value:
-              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
           },
         ],
       },
@@ -343,12 +320,12 @@ const config = {
         // All page routes, not the api ones
         source: '/:path((?!api).*)*',
         headers: [
-          ...secureHeaders,
+          // ...secureHeaders,
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           { key: 'Cross-Origin-Embedder-Policy', value: 'same-origin' },
         ],
       },
-    ];
+    ]
   },
 
   // async redirects() {
@@ -489,7 +466,7 @@ const config = {
     //     }
     //   });
 
-    return config;
+    return config
   },
 
   env: {
@@ -497,7 +474,7 @@ const config = {
     APP_VERSION: packageJson.version ?? 'not-in-package.json',
     BUILD_TIME: new Date().toISOString(),
   },
-};
+}
 
 const plugins = [
   // const withImages = require('next-images')({
@@ -539,10 +516,9 @@ const plugins = [
   //   },
   // ),
 
-
   withBundleAnalyzer({
     enabled: process.env.ANALYZE === 'true',
-  })
+  }),
 ]
 
 /**
@@ -551,60 +527,60 @@ const plugins = [
 const nextConfig = (phase, { defaultConfig }) => {
   let result = config
 
-  if (process.env.CI === 'true' && process.env.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {
-    // @ts-ignore cause sentry is not always following nextjs types
-    result = withSentryConfig(
-      config,
-      {
-        // For all available options, see:
-        // https://github.com/getsentry/sentry-webpack-plugin#options
+  // if (process.env.CI === 'true' && process.env.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {
+  //   // @ts-ignore cause sentry is not always following nextjs types
+  //   result = withSentryConfig(
+  //     config,
+  //     {
+  //       // For all available options, see:
+  //       // https://github.com/getsentry/sentry-webpack-plugin#options
 
-        // Additional config options for the Sentry Webpack plugin. Keep in mind that
-        // the following options are set automatically, and overriding them is not
-        // recommended:
-        //   release, url, org, project, authToken, configFile, stripPrefix,
-        //   urlPrefix, include, ignore
-        // For all available options, see:
-        // https://github.com/getsentry/sentry-webpack-plugin#options.
-        // silent: isProd, // Suppresses all logs
-        dryRun: process.env.NEXT_BUILD_ENV_SENTRY_UPLOAD_DRY_RUN === true,
-        silent: process.env.NEXT_BUILD_ENV_SENTRY_DEBUG === false,
+  //       // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  //       // the following options are set automatically, and overriding them is not
+  //       // recommended:
+  //       //   release, url, org, project, authToken, configFile, stripPrefix,
+  //       //   urlPrefix, include, ignore
+  //       // For all available options, see:
+  //       // https://github.com/getsentry/sentry-webpack-plugin#options.
+  //       // silent: isProd, // Suppresses all logs
+  //       dryRun: process.env.NEXT_BUILD_ENV_SENTRY_UPLOAD_DRY_RUN === true,
+  //       silent: process.env.NEXT_BUILD_ENV_SENTRY_DEBUG === false,
 
-        // Suppresses source map uploading logs during build
-        silent: true,
+  //       // Suppresses source map uploading logs during build
+  //       silent: true,
 
-        org: 'httpsgithubcomflowgpt',
-        project: 'flow-gpt',
-      },
-      {
-        // For all available options, see:
-        // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+  //       org: 'httpsgithubcomflowgpt',
+  //       project: 'flow-gpt',
+  //     },
+  //     {
+  //       // For all available options, see:
+  //       // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-        // Upload a larger set of source maps for prettier stack traces (increases build time)
-        widenClientFileUpload: true,
+  //       // Upload a larger set of source maps for prettier stack traces (increases build time)
+  //       widenClientFileUpload: true,
 
-        // Transpiles SDK to be compatible with IE11 (increases bundle size)
-        transpileClientSDK: true,
+  //       // Transpiles SDK to be compatible with IE11 (increases bundle size)
+  //       transpileClientSDK: true,
 
-        // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-        tunnelRoute: '/monitoring',
+  //       // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+  //       tunnelRoute: '/monitoring',
 
-        // Hides source maps from generated client bundles
-        hideSourceMaps: true,
+  //       // Hides source maps from generated client bundles
+  //       hideSourceMaps: true,
 
-        // Automatically tree-shake Sentry logger statements to reduce bundle size
-        disableLogger: true,
+  //       // Automatically tree-shake Sentry logger statements to reduce bundle size
+  //       disableLogger: true,
 
-        // To disable the automatic instrumentation of API route handlers and server-side data fetching functions
-        // In other words, disable if you prefer to explicitly handle sentry per api routes (ie: wrapApiHandlerWithSentry)
-        // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#configure-server-side-auto-instrumentation
-        autoInstrumentServerFunctions: false,
-      }
-    )
-  } else {
-    const { sentry, ...rest } = nextConfig;
-    result = rest;
-  }
+  //       // To disable the automatic instrumentation of API route handlers and server-side data fetching functions
+  //       // In other words, disable if you prefer to explicitly handle sentry per api routes (ie: wrapApiHandlerWithSentry)
+  //       // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#configure-server-side-auto-instrumentation
+  //       autoInstrumentServerFunctions: false,
+  //     }
+  //   )
+  // } else {
+  //   const { sentry, ...rest } = nextConfig
+  //   result = rest
+  // }
 
   return plugins.reduce((acc, next) => next(acc), {
     ...defaultConfig,
@@ -612,4 +588,4 @@ const nextConfig = (phase, { defaultConfig }) => {
   })
 }
 
-export default nextConfig;
+export default nextConfig

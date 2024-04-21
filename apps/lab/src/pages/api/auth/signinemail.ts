@@ -2,42 +2,34 @@ import { Theme } from 'next-auth'
 import { SendVerificationRequestParams } from 'next-auth/providers'
 import { createTransport } from 'nodemailer'
 
-export async function customSendVerificationRequest(
-    params: Omit<SendVerificationRequestParams, 'expires' | 'token'>
-) {
-    const { identifier, url, provider, theme } = params
-    const { host } = new URL(url)
-    // NOTE: You are not required to use `nodemailer`, use whatever you want.
-    const transport = createTransport(provider.server)
-    const result = await transport.sendMail({
-        to: identifier,
-        from: provider.from,
-        subject: `Sign in to ${host}`,
-        text: text({ url, host }),
-        html: html({ url, host, theme, identifier }),
-    })
-    const failed = result.rejected.concat(result.pending).filter(Boolean)
-    if (failed.length) {
-        throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`)
-    }
+export async function customSendVerificationRequest(params: Omit<SendVerificationRequestParams, 'expires' | 'token'>) {
+  const { identifier, url, provider, theme } = params
+  const { host } = new URL(url)
+  // NOTE: You are not required to use `nodemailer`, use whatever you want.
+  const transport = createTransport(provider.server)
+  const result = await transport.sendMail({
+    to: identifier,
+    from: provider.from,
+    subject: `Sign in to ${host}`,
+    text: text({ url, host }),
+    html: html({ url, host, theme, identifier }),
+  })
+  const failed = result.rejected.concat(result.pending).filter(Boolean)
+  if (failed.length) {
+    throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`)
+  }
 }
 
-function html(params: {
-    url: string
-    host: string
-    theme: Theme
-    identifier: string
-}) {
-    const { url, host, identifier: userEmail } = params
+function html(params: { url: string; host: string; theme: Theme; identifier: string }) {
+  const { url, host, identifier: userEmail } = params
 
-      //由于使用
-    const escapedHost = host.replace(/\./g, "&#8203;.");
-    const currentYear = new Date().getFullYear()
-    const brandName = 'FlowGPT'
-    const magicBtnLabel = `sign in to ${brandName}`
+  //由于使用
+  const escapedHost = host.replace(/\./g, '&#8203;.')
+  const currentYear = new Date().getFullYear()
+  const brandName = 'FlowGPT'
+  const magicBtnLabel = `sign in to ${brandName}`
 
-
-    return `<html>
+  return `<html>
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -388,5 +380,5 @@ function html(params: {
 
 // Email Text body (fallback for email clients that don't render HTML)
 function text({ url, host }: { url: string; host: string }) {
-    return `Sign in to ${host}\n${url}\n\n`
+  return `Sign in to ${host}\n${url}\n\n`
 }

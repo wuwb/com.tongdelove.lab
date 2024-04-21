@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/Button"
-import { useAppContext } from "@/contexts/AppContext"
-import { ActionType } from "@/reducers/AppReducer"
-import { IconSun, IconMoon } from "@tabler/icons-react"
+import { Button } from '@/components/ui/Button'
+import { useAppContext } from '@/contexts/AppContext'
+import { ActionType } from '@/reducers/AppReducer'
+import { IconSun, IconMoon } from '@tabler/icons-react'
 import cn from 'clsx'
 
 export default function Toolbar() {
@@ -11,31 +11,25 @@ export default function Toolbar() {
   } = useAppContext()
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 flex p-2 justify-between">
+    <div className="absolute bottom-0 left-0 right-0 flex justify-between p-2">
       <Button
-        variant='text'
+        variant="text"
         className={cn({
-          'light': themeMode === 'light',
-          'dark': themeMode === 'dark',
+          light: themeMode === 'light',
+          dark: themeMode === 'dark',
         })}
         onClick={() => {
           dispatch({
             type: ActionType.UPDATE,
             field: 'themeMode',
-            value: themeMode === 'light' ? 'dark' : 'light'
+            value: themeMode === 'light' ? 'dark' : 'light',
           })
         }}
-      >{
-          themeMode === 'light' ? <IconSun /> : null
-        }
-        {
-          themeMode === 'dark' ? <IconMoon /> : null
-        }
+      >
+        {themeMode === 'light' ? <IconSun /> : null}
+        {themeMode === 'dark' ? <IconMoon /> : null}
       </Button>
-      <Button variant='outline' >
-        切换
-      </Button>
-
+      <Button variant="outline">切换</Button>
     </div>
   )
 }

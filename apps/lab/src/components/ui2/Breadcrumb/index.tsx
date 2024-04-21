@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { IconHome, IconChevronRight } from '@tabler/icons-react';
+import { IconHome, IconChevronRight } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
 const HomeCrumb = () => {
@@ -9,7 +9,7 @@ const HomeCrumb = () => {
     <Link href="/" className="flex items-center">
       <IconHome className="h-3 w-3" />
       <span className="ml-2 font-medium">{t('Home')}</span>
-    </Link >
+    </Link>
   )
 }
 

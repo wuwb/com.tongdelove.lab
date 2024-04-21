@@ -1,6 +1,6 @@
 // 图片加载方法
 function LoadImage(url, callback) {
-  var img = new Image() //创建一个Image对象，实现图片的预下载
+  const img = new Image() //创建一个Image对象，实现图片的预下载
   img.src = url
   if (img.complete) {
     // 如果图片已经存在于浏览器缓存，直接调用回调函数

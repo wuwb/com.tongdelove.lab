@@ -1,43 +1,36 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/legacy/image';
-import cx from 'clsx';
-import SidebarBlock from '@/components/common/SidebarBlock';
+import React from 'react'
+import Link from 'next/link'
+import Image from 'next/legacy/image'
+import cx from 'clsx'
+import SidebarBlock from '@/components/common/SidebarBlock'
 
 function NewNodes() {
-    const data = [
-        {
-            title: '今日推荐',
-            link: '/1',
-            image: '/images/placeholder/24x24',
-        },
-        {
-            title: '今日推荐2',
-            link: '/2',
-            image: '/images/placeholder/24x24',
-        }
-    ]
-    return (
-        <SidebarBlock className="mb-4" title="最近新增节点">
-            {
-                data.map((item, index) => {
-                    return (
-                        <div key={index} className="divide-y divide-slate-800">
-                            <Link href={item.link}>
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    width={24}
-                                    height={24}
-                                />
-                                <div>{item.title}</div>
-                            </Link>
-                        </div>
-                    )
-                })
-            }
-        </SidebarBlock>
-    )
+  const data = [
+    {
+      title: '今日推荐',
+      link: '/1',
+      image: '/images/placeholder/24x24',
+    },
+    {
+      title: '今日推荐2',
+      link: '/2',
+      image: '/images/placeholder/24x24',
+    },
+  ]
+  return (
+    <SidebarBlock className="mb-4" title="最近新增节点">
+      {data.map((item, index) => {
+        return (
+          <div key={index} className="divide-y divide-slate-800">
+            <Link href={item.link}>
+              <Image src={item.image} alt={item.title} width={24} height={24} />
+              <div>{item.title}</div>
+            </Link>
+          </div>
+        )
+      })}
+    </SidebarBlock>
+  )
 }
 
-export default NewNodes;
+export default NewNodes

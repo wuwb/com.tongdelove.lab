@@ -1,10 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default function handleApiHelloRoute(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  res.send({
-
-  });
+export default function handleApiHelloRoute(req: NextApiRequest, res: NextApiResponse) {
+  res.send({})
 }

@@ -1,14 +1,14 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { Button, Input } from '@mantine/core'
 
 const ChangePassword = () => {
-  const onSubmit = (data) => {
-    console.log('data: ', data);
+  const onSubmit = data => {
+    console.log('data: ', data)
   }
 
-  const { register, handleSubmit, reset, control, formState } = useForm();
+  const { register, handleSubmit, reset, control, formState } = useForm()
 
   return (
     <section className="m-10">
@@ -30,7 +30,7 @@ const ChangePassword = () => {
         </Button>
       </form>
     </section>
-  );
+  )
 }
 
-export default ChangePassword;
+export default ChangePassword

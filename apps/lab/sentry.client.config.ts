@@ -10,11 +10,7 @@ Sentry.init({
   denyUrls: ['http://localhost:3000'],
   // Adjust this value in production, or use tracesSampler for greater control
   // @see https://develop.sentry.dev/sdk/performance/
-  tracesSampleRate: ['false', '0'].includes(
-    process.env.NEXTJS_SENTRY_TRACING ?? ''
-  )
-    ? undefined
-    : 0.05,
+  tracesSampleRate: ['false', '0'].includes(process.env.NEXTJS_SENTRY_TRACING ?? '') ? undefined : 0.05,
 
   // ...
   // Note: if you want to override the automatic release value, do not set a
@@ -22,10 +18,10 @@ Sentry.init({
   // that it will also get attached to your source maps
   beforeSend: async (event, hint) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('Sentry event', event);
-      console.log('Sentry hint', hint);
+      console.log('Sentry event', event)
+      console.log('Sentry hint', hint)
     }
-    return Promise.resolve(event);
+    return Promise.resolve(event)
   },
   ignoreErrors: [
     'UNAUTHORIZED',

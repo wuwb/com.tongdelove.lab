@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const Logout = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
-    window.localStorage.setItem('logout', Date.now().toString());
-    router.push('/login');
-  }, [router]);
+    window.localStorage.setItem('logout', Date.now().toString())
+    router.push('/login')
+  }, [router])
 
-  return (<></>);
-};
+  return <></>
+}
 
-export default Logout;
+export default Logout

@@ -1,9 +1,6 @@
-
 // react blog recently post widget
 function Search() {
-    return (
-        <div></div>
-    );
+  return <div></div>
 }
 
-export default Search;
+export default Search

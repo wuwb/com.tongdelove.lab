@@ -1,20 +1,18 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
 type IHeroOneButtonProps = {
-    title: ReactNode;
-    description: string;
-    button: ReactNode;
-};
+  title: ReactNode
+  description: string
+  button: ReactNode
+}
 
 const HeroOneButton = (props: IHeroOneButtonProps) => (
-    <header className="text-center">
-        <h1 className="text-5xl text-gray-900 font-bold whitespace-pre-line leading-hero">
-            {props.title}
-        </h1>
-        <div className="text-2xl mt-4 mb-16">{props.description}</div>
+  <header className="text-center">
+    <h1 className="leading-hero whitespace-pre-line text-5xl font-bold text-gray-900">{props.title}</h1>
+    <div className="mb-16 mt-4 text-2xl">{props.description}</div>
 
-        {props.button}
-    </header>
-);
+    {props.button}
+  </header>
+)
 
-export { HeroOneButton };
+export { HeroOneButton }

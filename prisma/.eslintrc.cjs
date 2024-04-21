@@ -1,6 +1,6 @@
 /**
  * Specific eslint rules for this workspace, learn how to compose
- * @link https://github.com/belgattitude/perso/tree/main/packages/eslint-config-bases
+ * @link https://github.com/belgattitude/perso/tree/main/packages/eslint-config-base
  */
 
 module.exports = {
@@ -12,11 +12,11 @@ module.exports = {
   },
   ignorePatterns: ['src/generated'],
   extends: [
-    '@tongdelove/eslint-config-bases/typescript',
-    '@tongdelove/eslint-config-bases/sonar',
-    '@tongdelove/eslint-config-bases/regexp',
+    '@tongdelove/eslint-config-base/typescript',
+    '@tongdelove/eslint-config-base/sonar',
+    '@tongdelove/eslint-config-base/regexp',
     // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-bases/prettier-plugin',
+    '@tongdelove/eslint-config-base/prettier-plugin',
   ],
   overrides: [
     // optional overrides per project file match

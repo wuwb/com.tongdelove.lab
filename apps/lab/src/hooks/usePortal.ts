@@ -2,7 +2,7 @@ import { useState, useEffect, ReactPortal, useMemo } from 'react'
 import useUpdateEffect from './useUpdateEffect'
 import { createPortal } from 'react-dom'
 
-let Prefix = 'portal'
+const Prefix = 'portal'
 let count = 0
 
 export default function usePortal(node: React.ReactNode) {

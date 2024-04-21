@@ -1,34 +1,26 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next';
-import type { ReactElement } from 'react';
-import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations';
-import { adminConfig } from '@/features/admin/admin.config';
-import { AdminLayout } from '@/features/admin/layouts';
-import { AdminMainPage } from '@/features/admin/pages';
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
+import { adminConfig } from '@/features/admin/admin.config'
+import { AdminMainPage } from '@/features/admin/pages'
 
 type Props = {
   /** Add props here */
-};
+}
 
-AdminRoute.getLayout = function getLayout(page: ReactElement) {
-  return <AdminLayout>{page}</AdminLayout>;
-};
-
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const { locale = 'en' } = context;
+export const getStaticProps: GetStaticProps<Props> = async context => {
+  const { locale = 'en' } = context
   if (locale === undefined) {
-    throw new Error('locale is missing');
+    throw new Error('locale is missing')
   }
-  const { i18nNamespaces } = adminConfig;
+  const { i18nNamespaces } = adminConfig
   return {
     props: {
       ...(await getServerTranslations(locale, i18nNamespaces)),
     },
     // revalidate: 60,
-  };
-};
+  }
+}
 
-export default function AdminRoute(
-  _props: InferGetStaticPropsType<typeof getStaticProps>
-) {
-  return <AdminMainPage />;
+export default function AdminRoute(_props: InferGetStaticPropsType<typeof getStaticProps>) {
+  return <AdminMainPage />
 }

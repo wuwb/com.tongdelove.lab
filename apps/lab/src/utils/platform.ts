@@ -1,7 +1,7 @@
 import UAParser from 'ua-parser-js'
 
 const getPaser = () => {
-  let ua = navigator.userAgent
+  const ua = navigator.userAgent
   return new UAParser(ua)
 }
 

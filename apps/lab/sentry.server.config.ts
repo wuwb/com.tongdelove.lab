@@ -21,10 +21,10 @@ Sentry.init({
   // that it will also get attached to your source maps
   beforeSend: async (event, hint) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('Sentry event', event);
-      console.log('Sentry hint', hint);
+      console.log('Sentry event', event)
+      console.log('Sentry hint', hint)
     }
-    return Promise.resolve(event);
+    return Promise.resolve(event)
   },
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.

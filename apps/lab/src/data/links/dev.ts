@@ -1,9 +1,10 @@
-
 export function Dev() {
-    return [{
-        name: 'senlief',
-        link: 'https://senlief.xyz/',
-    }]
+  return [
+    {
+      name: 'senlief',
+      link: 'https://senlief.xyz/',
+    },
+  ]
 }
 
 // 台湾转运

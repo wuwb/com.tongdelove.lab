@@ -1,16 +1,7 @@
 import { notification } from 'antd'
 
 import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
-import {
-  ConfigFile,
-  ConfigFileAgents,
-  ConfigFileAll,
-  ConfigFileSessions,
-  ConfigFileSettings,
-  ConfigFileSingleSession,
-  ConfigModelMap,
-  ExportType,
-} from '@/types/exportConfig'
+import { ConfigFile, ConfigFileAgents, ConfigFileAll, ConfigFileSessions, ConfigFileSettings, ConfigFileSingleSession, ConfigModelMap, ExportType } from '@/types/exportConfig'
 
 export const exportConfigFile = (config: object, fileName?: string) => {
   const file = `LobeChat-${fileName || '-config'}-v${CURRENT_CONFIG_VERSION}.json`

@@ -1,27 +1,20 @@
 /* eslint-disable no-irregular-whitespace */
-import { CheckBox } from '@/components/ui/Checkbox/Checkbox';
-import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input';
-import { Suggestion } from '@/components/ui/Suggestion/Suggestion';
-import { FundDataItem } from '@/server/service';
-import { useAppState, useDispatch } from '@/server/store';
-import noop from 'lodash/noop';
-import { useCallback, useState } from 'react';
+import { CheckBox } from '@/components/ui2/Checkbox/Checkbox'
+import { NumberInput, PercentInput, TextInput } from '@/components/ui2/Input/Input'
+import { Suggestion } from '@/components/ui2/Suggestion/Suggestion'
+import { FundDataItem } from '@/server/service'
+import { useAppState, useDispatch } from '@/server/store'
+import { noop } from 'lodash'
+import { useCallback, useState } from 'react'
 
 export function Settings() {
-  const state = useAppState();
-  const dispatch = useDispatch();
-  const {
-    price,
-    amount,
-    increasePercentPerGrid,
-    numberOfRetainedProfits,
-    hasMiddleGrid,
-    hasBigGrid
-  } = state;
+  const state = useAppState()
+  const dispatch = useDispatch()
+  const { price, amount, increasePercentPerGrid, numberOfRetainedProfits, hasMiddleGrid, hasBigGrid } = state
   return (
     <form>
       <div>
-        <div className="block w-full mb-1 py-1">基本设置</div>
+        <div className="mb-1 block w-full py-1">基本设置</div>
         <Fund />
         <div>
           <div>价　　格</div>
@@ -30,7 +23,7 @@ export function Settings() {
               value={price}
               onChange={(value: number) => {
                 if (value) {
-                  dispatch('price', value);
+                  dispatch('price', value)
                 }
               }}
             />
@@ -44,7 +37,7 @@ export function Settings() {
               value={amount}
               onChange={(value: number) => {
                 if (value) {
-                  dispatch('amount', value);
+                  dispatch('amount', value)
                 }
               }}
             />
@@ -60,7 +53,7 @@ export function Settings() {
             <NumberInput
               value={numberOfRetainedProfits}
               onChange={(value: number) => {
-                dispatch('numberOfRetainedProfits', value);
+                dispatch('numberOfRetainedProfits', value)
               }}
             />
             <div>份</div>
@@ -75,7 +68,7 @@ export function Settings() {
             <PercentInput
               value={increasePercentPerGrid}
               onChange={(value: number) => {
-                dispatch('increasePercentPerGrid', value);
+                dispatch('increasePercentPerGrid', value)
               }}
             />
             <div>%</div>
@@ -90,7 +83,7 @@ export function Settings() {
             <CheckBox
               checked={hasMiddleGrid}
               onChange={(value: boolean) => {
-                dispatch('hasMiddleGrid', value);
+                dispatch('hasMiddleGrid', value)
               }}
             />
           </div>
@@ -101,42 +94,39 @@ export function Settings() {
             <CheckBox
               checked={hasBigGrid}
               onChange={(value: boolean) => {
-                dispatch('hasBigGrid', value);
+                dispatch('hasBigGrid', value)
               }}
             />
           </div>
         </div>
       </div>
     </form>
-  );
+  )
 }
 
 function Fund() {
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const dispatch = useDispatch()
+  const [name, setName] = useState('')
   const onSelectCallback = useCallback(
     (item: FundDataItem) => {
-      const { FundBaseInfo } = item;
+      const { FundBaseInfo } = item
       // 单位净值
-      const { DWJZ } = FundBaseInfo || {};
+      const { DWJZ } = FundBaseInfo || {}
 
       if (DWJZ) {
-        dispatch('price', DWJZ);
+        dispatch('price', DWJZ)
       }
 
-      setName(item.NAME);
+      setName(item.NAME)
     },
     [dispatch]
-  );
+  )
 
   return (
     <>
       <div>
         <div>基　　金</div>
-        <Suggestion
-          inputProps={{ placeholder: '请输入基金代码、拼音或者简称' }}
-          onSelect={onSelectCallback}
-        />
+        <Suggestion inputProps={{ placeholder: '请输入基金代码、拼音或者简称' }} onSelect={onSelectCallback} />
       </div>
       {name && (
         <div>
@@ -147,5 +137,5 @@ function Fund() {
         </div>
       )}
     </>
-  );
+  )
 }

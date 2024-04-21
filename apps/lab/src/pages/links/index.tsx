@@ -1,4 +1,4 @@
-import Daohang from '@/content/links/Links';
+import Daohang from '@/content/links/Links'
 
 // ## 运营数据
 // https://lunarcrush.com/
@@ -13,5 +13,5 @@ export default function DaohangPage() {
     <div>
       <Daohang />
     </div>
-  );
+  )
 }

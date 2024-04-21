@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   const logout = (username, password) => {
     Cookies.remove('token')
     setUser(null)
-    delete axios.defaults.headers['Authorization']
+    delete axios.defaults.headers.Authorization
     window.location.pathname = '/login'
   }
 

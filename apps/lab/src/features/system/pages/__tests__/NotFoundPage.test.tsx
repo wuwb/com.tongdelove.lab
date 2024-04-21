@@ -1,11 +1,9 @@
-import { NotFoundPage } from '@/features/system/pages';
-import { render, screen } from '@/test-utils';
+import { NotFoundPage } from '@/features/system/pages'
+import { render, screen } from '@/test-utils'
 
 describe('notFoundPage test', () => {
   it('should contain passed title', () => {
-    render(<NotFoundPage title={'404 - Not found'} />);
-    expect(screen.getByTestId('not-found-title')).toHaveTextContent(
-      '404 - Not found'
-    );
-  });
-});
+    render(<NotFoundPage title="404 - Not found" />)
+    expect(screen.getByTestId('not-found-title')).toHaveTextContent('404 - Not found')
+  })
+})

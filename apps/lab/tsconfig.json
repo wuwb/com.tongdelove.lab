@@ -1,89 +1,75 @@
 {
-    "extends": "../../tsconfig.base.json",
-    "compilerOptions": {
-        /* Base Options: */
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "target": "es2022",
-        "allowJs": true,
-        "resolveJsonModule": true,
-        "moduleDetection": "force",
-        "isolatedModules": true,
-        /* Strictness */
-        "strict": true, // trpc required
-        "noUncheckedIndexedAccess": true,
-        "checkJs": true,
-        /* Bundled projects */
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "es2022",
-            "esnext",
-            "WebWorker",
-            "es6",
-            "scripthost"
-        ],
-        "noEmit": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "jsx": "preserve", // "react-jsx",
-        "importHelpers": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        /* Path Aliases */
-        "baseUrl": ".",
-        "paths": {
-            "@/*": [
-                "src/*"
-            ],
-            "@/public/*": [
-                "public/*"
-            ]
-        },
-        "strictNullChecks": true, // trpc required, need to be true
-        "forceConsistentCasingInFileNames": true,
-        "incremental": true,
-        // custom
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "alwaysStrict": false,
-        "noImplicitAny": false,
-        "noImplicitReturns": false,
-        "noImplicitThis": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "allowUnreachableCode": false,
-        "noFallthroughCasesInSwitch": true,
-        "declaration": true,
-        "declarationMap": true,
-        "preserveSymlinks": true,
-        "sourceMap": true,
-        "allowSyntheticDefaultImports": true,
-        "strictPropertyInitialization": false,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "composite": true,
-    },
-    "include": [
-        ".eslintrc.*",
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.js",
-        "**/*.cjs",
-        "**/*.mjs",
-        "**/*.jsx",
-        "**/*.json",
-        ".next/types/**/*.ts",
-        "next-i18next.config.js",
-        "scripts/*.mts",
-        "../../prettier.config.js"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    /* Strictness */
+    "strict": true, // trpc required
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
+    /* Bundled projects */
+    "lib": ["dom", "dom.iterable", "es2022", "esnext", "WebWorker", "es6", "scripthost"],
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve", // "react-jsx",
+    "importHelpers": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    /* Path Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/public/*": ["public/*"]
+    },
+    "strictNullChecks": true, // trpc required, need to be true
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    // custom
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "alwaysStrict": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "declaration": true,
+    "declarationMap": true,
+    "preserveSymlinks": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "composite": true
+  },
+  "include": [
+    ".eslintrc.*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.jsx",
+    "**/*.json",
+    ".next/types/**/*.ts",
+    "next-i18next.config.js",
+    "scripts/*.mts",
+    "../../prettier.config.js"
+  ],
+  "exclude": ["node_modules"]
 }

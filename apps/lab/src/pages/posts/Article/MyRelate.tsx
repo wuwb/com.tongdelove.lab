@@ -1,9 +1,5 @@
-
-
 function MyRelate() {
-    return (
-        <div></div>
-    );
+  return <div></div>
 }
 
-export default MyRelate;
+export default MyRelate

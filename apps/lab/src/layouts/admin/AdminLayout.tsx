@@ -1,12 +1,10 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react'
 // import { AdminSidebar } from '@/layouts/admin/AdminSidebar';
-import { NavbarNested } from '@/layouts/admin/NavbarNested';
-import { DoubleNavbar } from '@/layouts/admin/DoubleNavbar';
+import { NavbarNested } from '@/layouts/admin/NavbarNested'
+import { DoubleNavbar } from '@/layouts/admin/DoubleNavbar'
 
-
-
-export const AdminLayout: FC<{ children: ReactNode }> = (props) => {
-  const { children } = props;
+export const AdminLayout: FC<{ children: ReactNode }> = props => {
+  const { children } = props
   return (
     <div className="flex flex-row">
       {/* <AdminSidebar /> */}
@@ -14,5 +12,5 @@ export const AdminLayout: FC<{ children: ReactNode }> = (props) => {
       {/* <NavbarNested /> */}
       <main>{children}</main>
     </div>
-  );
-};
+  )
+}

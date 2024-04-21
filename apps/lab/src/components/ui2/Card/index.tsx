@@ -1,9 +1,5 @@
-import { FC } from 'react';
+import { FC } from 'react'
 
-export const Card: FC = (props) => {
-    return (
-        <div>
-            {/* {props.children} */}
-        </div>
-    )
+export const Card: FC = props => {
+  return <div>{/* {props.children} */}</div>
 }

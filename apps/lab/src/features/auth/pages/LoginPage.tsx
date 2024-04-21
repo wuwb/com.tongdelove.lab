@@ -1,12 +1,12 @@
-import { useTranslation } from 'next-i18next';
-import { NextSeo } from 'next-seo';
-import type { FC } from 'react';
-import { authConfig } from '@/features/auth/auth.config';
-import { LoginForm } from '@/features/auth/components/LoginForm';
+import { useTranslation } from 'next-i18next'
+import { NextSeo } from 'next-seo'
+import type { FC } from 'react'
+import { authConfig } from '@/features/auth/auth.config'
+import { LoginForm } from '@/features/auth/components/LoginForm'
 
 export const LoginPage: FC = () => {
-  const { t } = useTranslation(authConfig.i18nNamespaces);
-  const redirectToPage = '/admin';
+  const { t } = useTranslation(authConfig.i18nNamespaces)
+  const redirectToPage = '/admin'
 
   return (
     <>
@@ -15,5 +15,5 @@ export const LoginPage: FC = () => {
         <LoginForm redirectToPage={redirectToPage} />
       </div>
     </>
-  );
-};
+  )
+}

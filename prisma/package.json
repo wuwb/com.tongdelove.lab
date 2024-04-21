@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@soluble/dsn-parser": "1.9.2",
-    "@tongdelove/eslint-config-bases": "workspace:^",
+    "@tongdelove/eslint-config-base": "workspace:^",
     "@types/node": "20.6.3",
     "@vitest/coverage-v8": "1.2.2",
     "cross-env": "7.0.3",

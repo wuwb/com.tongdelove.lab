@@ -120,7 +120,7 @@ export const isContentEmpty = function (content, editorType) {
 export const elementScrollToTop = function (el, dt) {
   el.scrollIntoView()
   if (hasScroller()) {
-    let top = document.documentElement.scrollTop - dt
+    const top = document.documentElement.scrollTop - dt
     document.documentElement.scrollTop = top >= 0 ? top : 0
   }
 }
@@ -128,7 +128,7 @@ export const elementScrollToTop = function (el, dt) {
 let isFullscreen = false
 
 export const toggleFullScreen = () => {
-  let element = document.documentElement
+  const element = document.documentElement
   // 判断是否已经是全屏
   // 如果是全屏，退出
   if (isFullscreen) {

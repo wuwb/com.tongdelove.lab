@@ -3,7 +3,7 @@ import { suggestFunds } from './service'
 function wrapPromise(promise: Promise<any>) {
   let status = 'pending'
   let result: any
-  let suspender = promise.then(
+  const suspender = promise.then(
     r => {
       status = 'success'
       result = r
@@ -27,7 +27,7 @@ function wrapPromise(promise: Promise<any>) {
 }
 
 export function fetchFundData(key: string) {
-  let fundsPromise = suggestFunds(key)
+  const fundsPromise = suggestFunds(key)
   return {
     funds: wrapPromise(fundsPromise),
   }

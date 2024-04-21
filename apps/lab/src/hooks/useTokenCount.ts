@@ -2,7 +2,7 @@ import { startTransition, useEffect, useState } from 'react'
 
 import { encodeAsync } from '@/utils/tokenizer'
 
-export const useTokenCount = (input: string = '') => {
+export const useTokenCount = (input = '') => {
   const [value, setNum] = useState(0)
 
   useEffect(() => {

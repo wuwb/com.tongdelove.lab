@@ -1,2 +1,2 @@
-export * from './PricingCard';
-export * from './PricingCardGroup';
+export * from './PricingCard'
+export * from './PricingCardGroup'
