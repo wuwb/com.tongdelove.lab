@@ -1,4 +1,4 @@
-import cx from 'clsx'
+import clsx from 'clsx'
 import styles from './Badge.module.scss'
 
 type Props = {
@@ -25,7 +25,7 @@ const variantClasses = {
 export const Badge = (props: Props) => {
   const { color, variant, size, className, ...rest } = props
   return (
-    <span className={cx(styles.badge, className, [sizesClasses[size], variantClasses[variant]])} {...rest}>
+    <span className={clsx(styles.badge, className, [sizesClasses[size], variantClasses[variant]])} {...rest}>
       {props.children}
     </span>
   )

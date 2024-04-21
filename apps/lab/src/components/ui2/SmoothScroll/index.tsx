@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 
 type Props = {
   children: Element
@@ -53,7 +53,7 @@ const SmoothScroll = ({ className, children, to, duration, onLinkClick, ...props
     })
   }
 
-  const classes = cx(className)
+  const classes = clsx(className)
 
   return (
     <a {...props} className={classes} href={'#' + to} onClick={smoothScroll}>

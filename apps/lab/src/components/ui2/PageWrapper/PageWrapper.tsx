@@ -1,16 +1,15 @@
-import cx from 'clsx'
-import React from 'react'
-import { ICompBaseProps } from '@/interfaces'
-import styles from './styles.module.scss'
+import clsx from 'clsx'
+import React, { PropsWithChildren, FC } from 'react'
 
-interface IProps extends ICompBaseProps {
-  children: React.ReactNode
+interface PageWrapperProps extends PropsWithChildren {
+  className: string
+  style: string
 }
 
-export const PageWrapper: React.FC<IProps> = props => {
+export const PageWrapper: FC<PageWrapperProps> = ({ className, style, children }) => {
   return (
-    <div className={cx(styles['page-wrapper'], props.className)} style={props.style}>
-      {props.children}
+    <div className={clsx('relative', className)} style={style}>
+      {children}
     </div>
   )
 }

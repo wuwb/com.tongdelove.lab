@@ -1,11 +1,10 @@
-import * as React from 'react'
-import cx from 'clsx'
+import React from 'react'
+import clsx from 'clsx'
 import { Loader } from '../Loader'
 import { Spinner } from '../Spinner'
 import styles from './styles.module.scss'
 import { type Icon } from '@tabler/icons-react'
 
-// eslint-disable-next-line react/display-name
 export const SpinnerButton = React.forwardRef(ref => {
   return (
     <button ref={() => ref}>
@@ -31,7 +30,7 @@ export const AppearanceButton = props => {
   return (
     <button onClick={handleClick} type={type}>
       <div
-        className={cx(
+        className={clsx(
           className,
           // Common classes
           'flex w-full justify-center rounded-md border-2 text-center text-base font-semibold uppercase tracking-wide md:text-sm lg:w-auto',
@@ -74,7 +73,7 @@ type IButtonProps = {
 }
 
 export function Button2(props: IButtonProps) {
-  const btnClass = cx({
+  const btnClass = clsx({
     btn: true,
     'btn-xl': props.xl,
     'btn-base': !props.xl,
@@ -92,7 +91,7 @@ type ButtonProps = {
 export const Button = ({ children, className = '', icon: Icon, variant = 'default', ...props }: ButtonProps) => {
   return (
     <div
-      className={cx(className, 'bg-transparent text-black hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700', className, {
+      className={clsx(className, 'bg-transparent text-black hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700', className, {
         'bg-gray-50 text-black hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-900': variant === 'default',
         'border border-gray-300 bg-gray-50 text-black hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700': variant === 'outline',
       })}

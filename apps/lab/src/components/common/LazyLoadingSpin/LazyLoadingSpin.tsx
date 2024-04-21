@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 import styles from './styles.module.scss'
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
 export const LazyLoadingSpin: React.FC<IProps> = props => {
   // const dom = (
   //   <Spin
-  //     className={cx(
+  //     className={clsx(
   //       styles['comp-wrapper'],
   //       {
   //         [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode,
@@ -30,7 +30,7 @@ export const LazyLoadingSpin: React.FC<IProps> = props => {
 
   const dom = (
     <div
-      className={cx(
+      className={clsx(
         styles['comp-wrapper'],
         {
           [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode,

@@ -1,10 +1,10 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 import SectionHeader from '../SectionHeader'
 import Image from 'next/legacy/image'
 
 const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivider, bottomDivider, hasBgColor, invertColor, pushLeft, ...props }: any) => {
-  const outerClasses = cx(
+  const outerClasses = clsx(
     'features-tiles section',
     topOuterDivider && 'has-top-divider',
     bottomOuterDivider && 'has-bottom-divider',
@@ -13,9 +13,9 @@ const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivi
     className
   )
 
-  const innerClasses = cx('features-tiles-inner section-inner pt-0', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
+  const innerClasses = clsx('features-tiles-inner section-inner pt-0', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
 
-  const tilesClasses = cx('tiles-wrap center-content', pushLeft && 'push-left')
+  const tilesClasses = clsx('tiles-wrap center-content', pushLeft && 'push-left')
 
   const sectionHeader = {
     title: 'Build up the whole picture',

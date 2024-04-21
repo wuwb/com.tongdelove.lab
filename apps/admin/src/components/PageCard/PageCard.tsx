@@ -1,6 +1,6 @@
 import { Outlet } from '@umijs/max';
 import { Spin } from 'antd';
-import cx from 'clsx';
+import clsx from 'clsx';
 import React from 'react';
 
 import style from './style.less';
@@ -14,7 +14,7 @@ interface IProps {
 }
 
 export const PageCard = (props: IProps) => (
-  <div className={cx(style['wrapper'], props.className)}>
+  <div className={clsx(style['wrapper'], props.className)}>
     <Spin
       spinning={typeof props.loading !== 'undefined' ? props.loading : false}
       className={style['spin']}

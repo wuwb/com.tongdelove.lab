@@ -1,4 +1,4 @@
-import cx from 'clsx'
+import clsx from 'clsx'
 import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 
@@ -11,7 +11,7 @@ type IVerticalFeatureRowProps = {
 }
 
 const VerticalFeatureRow = (props: IVerticalFeatureRowProps) => {
-  const verticalFeatureClass = cx('mt-20', 'flex', 'flex-wrap', 'items-center', {
+  const verticalFeatureClass = clsx('mt-20', 'flex', 'flex-wrap', 'items-center', {
     'flex-row-reverse': props.reverse,
   })
 

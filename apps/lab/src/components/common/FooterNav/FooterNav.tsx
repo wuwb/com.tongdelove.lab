@@ -1,21 +1,18 @@
 import React from 'react'
-import cx from 'clsx'
-import { ICompBaseProps } from '@/interfaces'
+import clsx from 'clsx'
 import styles from './styles.module.scss'
 
-interface IProps extends ICompBaseProps {}
-
 const fmtVer = (v: string) => v.replace('^', '').replace('~', '')
-// const deps = [
-//   { k: 'react', v: fmtVer(pkg?.dependencies.react) },
-//   // { k: 'antd', v: fmtVer(pkg?.dependencies.antd) },
-//   { k: 'next', v: fmtVer(pkg?.dependencies.next) },
-// ]
 
-export const FooterNav: React.FC<IProps> = props => {
+export const FooterNav = (props: {
+  className: string
+  alwaysDarkMode: string
+  displayName: string
+  style: string
+}) => {
   return (
     <div
-      className={cx(styles['comp-wrapper'], { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode }, `g-comp--${FooterNav.displayName}`, props.className)}
+      className={clsx(styles['comp-wrapper'], { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode }, `g-comp--${props.displayName}`, props.className)}
       style={props.style}
     >
       <div className={styles['copyright']}>

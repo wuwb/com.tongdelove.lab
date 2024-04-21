@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 import SectionHeader from '../SectionHeader'
 import Image from 'next/legacy/image'
 
@@ -17,7 +17,7 @@ const FeaturesSplit = ({
   imageFill,
   ...props
 }: any) => {
-  const outerClasses = cx(
+  const outerClasses = clsx(
     'features-split section',
     topOuterDivider && 'has-top-divider',
     bottomOuterDivider && 'has-bottom-divider',
@@ -26,9 +26,9 @@ const FeaturesSplit = ({
     className
   )
 
-  const innerClasses = cx('features-split-inner section-inner', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
+  const innerClasses = clsx('features-split-inner section-inner', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
 
-  const splitClasses = cx('split-wrap', invertMobile && 'invert-mobile', invertDesktop && 'invert-desktop', alignTop && 'align-top')
+  const splitClasses = clsx('split-wrap', invertMobile && 'invert-mobile', invertDesktop && 'invert-desktop', alignTop && 'align-top')
 
   const sectionHeader = {
     title: 'Workflow that just works',
@@ -51,7 +51,7 @@ const FeaturesSplit = ({
                   exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={cx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
+              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
                 <Image src={require('./../../assets/images/features-split-image-01.png')} alt="Features split 01" width={528} height={396} />
               </div>
             </div>
@@ -65,7 +65,7 @@ const FeaturesSplit = ({
                   exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={cx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
+              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
                 <Image src={require('./../../assets/images/features-split-image-02.png')} alt="Features split 02" width={528} height={396} />
               </div>
             </div>
@@ -79,7 +79,7 @@ const FeaturesSplit = ({
                   exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={cx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
+              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
                 <Image src={require('./../../assets/images/features-split-image-03.png')} alt="Features split 03" width={528} height={396} />
               </div>
             </div>

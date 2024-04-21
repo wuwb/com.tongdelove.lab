@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import cx from 'clsx'
+import clsx from 'clsx'
 import { IconBrandNytimes } from '@tabler/icons-react'
 
 import styles from './Modal.module.scss'
@@ -37,7 +37,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
 
   return createPortal(
     isOpen ? (
-      <div className={cx(styles.Modal, fade ? styles.fade : '')}>
+      <div className={clsx(styles.Modal, fade ? styles.fade : '')}>
         <div className={styles.overlay} onClick={close} />
         <div className={styles.body}>
           <div className={styles.bar__top}>

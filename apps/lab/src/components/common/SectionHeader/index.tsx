@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 
 type Props = {
   data: {
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const SectionHeader = ({ className, data, children, tag, ...props }: Props) => {
-  const classes = cx('section-header', className)
+  const classes = clsx('section-header', className)
   const Component = tag
 
   return (
@@ -21,7 +21,7 @@ const SectionHeader = ({ className, data, children, tag, ...props }: Props) => {
         <div {...props} className={classes}>
           <div className="container-xs">
             {children}
-            {data.title && <Component className={cx('mt-0', data.paragraph ? 'mb-16' : 'mb-0')}>{data.title}</Component>}
+            {data.title && <Component className={clsx('mt-0', data.paragraph ? 'mb-16' : 'mb-0')}>{data.title}</Component>}
             {data.paragraph && <p className="m-0">{data.paragraph}</p>}
           </div>
         </div>

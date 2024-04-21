@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui2/Button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 import { IconSun, IconMoon } from '@tabler/icons-react'
-import cn from 'clsx'
+import clsx from 'clsx'
 
 export default function Toolbar() {
   const {
@@ -13,8 +13,7 @@ export default function Toolbar() {
   return (
     <div className="absolute bottom-0 left-0 right-0 flex justify-between p-2">
       <Button
-        variant="text"
-        className={cn({
+        className={clsx({
           light: themeMode === 'light',
           dark: themeMode === 'dark',
         })}

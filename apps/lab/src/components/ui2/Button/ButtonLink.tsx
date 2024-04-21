@@ -1,10 +1,10 @@
-import cx from 'clsx'
+import clsx from 'clsx'
 import { CustomLink } from '../CustomLink'
 
 const ButtonContent = ({ button, appearance, compact }) => {
   return (
     <div
-      className={cx(
+      className={clsx(
         // Common classes
         'block w-full rounded-md border-2 text-center text-base font-semibold uppercase tracking-wide md:text-sm lg:w-auto',
         // Full-size button

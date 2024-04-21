@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 import { getScroll } from '@/utils/getWindow'
 import styles from './ScrollToTop.module.scss'
 
@@ -37,7 +37,7 @@ const ScrollToTop = () => {
 
   return (
     <div
-      className={cx(styles.container, {
+      className={clsx(styles.container, {
         hidden: !showScroll,
       })}
       onClick={scrollUp}

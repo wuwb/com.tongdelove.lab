@@ -1,15 +1,12 @@
-import { ICompBaseProps } from '@/interfaces'
 import { IconMoon, IconPercentage, IconHistory } from '@tabler/icons-react'
 import { Button } from '@mantine/core'
-import cx from 'clsx'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styles from './styles.module.scss'
 
-type IProps = ICompBaseProps
-
-export const HeaderNavbar: React.FC<IProps> = props => {
+export const HeaderNavbar = props => {
   const { pathname, route, query } = useRouter()
 
   const navs = [
@@ -25,14 +22,14 @@ export const HeaderNavbar: React.FC<IProps> = props => {
 
   return (
     <div
-      className={cx(styles['comp-wrapper'], { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode }, `g-comp--${HeaderNavbar.displayName}`, props.className)}
+      className={clsx(styles['comp-wrapper'], { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode }, `g-comp--${HeaderNavbar.displayName}`, props.className)}
       style={props.style}
     >
       {navs.map(nav => (
         <Link
           href={nav.to}
           key={nav.to}
-          className={cx(styles['nav-link'], {
+          className={clsx(styles['nav-link'], {
             [styles['nav-link--active']]: pathname === nav.active || pathname === nav.to,
           })}
         >

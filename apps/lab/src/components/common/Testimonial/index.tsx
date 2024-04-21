@@ -1,9 +1,9 @@
 import React from 'react'
-import cx from 'clsx'
+import clsx from 'clsx'
 import SectionHeader from '../SectionHeader'
 
 const Testimonial = ({ className, topOuterDivider, bottomOuterDivider, topDivider, bottomDivider, hasBgColor, invertColor, pushLeft, ...props }) => {
-  const outerClasses = cx(
+  const outerClasses = clsx(
     'testimonial section',
     topOuterDivider && 'has-top-divider',
     bottomOuterDivider && 'has-bottom-divider',
@@ -12,9 +12,9 @@ const Testimonial = ({ className, topOuterDivider, bottomOuterDivider, topDivide
     className
   )
 
-  const innerClasses = cx('testimonial-inner section-inner', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
+  const innerClasses = clsx('testimonial-inner section-inner', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
 
-  const tilesClasses = cx('tiles-wrap', pushLeft && 'push-left')
+  const tilesClasses = clsx('tiles-wrap', pushLeft && 'push-left')
 
   const sectionHeader = {
     title: 'Customer testimonials',
