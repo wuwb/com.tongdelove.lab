@@ -121,7 +121,7 @@ importers:
     dependencies:
       '@auth/prisma-adapter':
         specifier: ^1.4.0
-        version: 1.6.0(@prisma/client@5.12.1)(nodemailer@6.9.9)
+        version: 1.6.0(@prisma/client@5.12.1)(nodemailer@6.9.13)
       '@axiomhq/winston':
         specifier: ^1.0.0-rc.1
         version: 1.0.0-rc.1
@@ -130,7 +130,7 @@ importers:
         version: 3.3.4(react-hook-form@7.50.0)
       '@mantine/carousel':
         specifier: 7.5.1
-        version: 7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.1)(react-dom@18.2.0)(react@18.2.0)
+        version: 7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/core':
         specifier: 7.5.1
         version: 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
@@ -253,7 +253,7 @@ importers:
         version: 7.99.0(react@18.2.0)
       '@t3-oss/env-nextjs':
         specifier: ^0.9.2
-        version: 0.9.2(typescript@5.4.5)(zod@3.22.4)
+        version: 0.9.2(typescript@5.4.5)(zod@3.22.5)
       '@tabler/icons-react':
         specifier: ^2.47.0
         version: 2.47.0(react@18.2.0)
@@ -288,8 +288,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/schema
       axios:
-        specifier: ^1.6.7
-        version: 1.6.7
+        specifier: ^1.6.8
+        version: 1.6.8
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -312,8 +312,8 @@ importers:
         specifier: ^1.11.9
         version: 1.11.10
       embla-carousel-react:
-        specifier: ^8.0.1
-        version: 8.0.1(react@18.2.0)
+        specifier: ^8.0.2
+        version: 8.0.2(react@18.2.0)
       framer-motion:
         specifier: ^10.15.2
         version: 10.17.12(react-dom@18.2.0)(react@18.2.0)
@@ -349,7 +349,7 @@ importers:
         version: 14.2.2(@babel/core@7.23.7)(@playwright/test@1.41.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       next-auth:
         specifier: ^4.24.6
-        version: 4.24.7(next@14.2.2)(nodemailer@6.9.9)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.24.7(next@14.2.2)(nodemailer@6.9.13)(react-dom@18.2.0)(react@18.2.0)
       next-i18next:
         specifier: ^13.3.0
         version: 13.3.0(i18next@22.5.1)(next@14.2.2)(react-i18next@12.3.1)(react@18.2.0)
@@ -369,8 +369,8 @@ importers:
         specifier: ^0.0.16
         version: 0.0.16(next@14.2.2)(react@18.2.0)
       nodemailer:
-        specifier: ^6.9.9
-        version: 6.9.9
+        specifier: ^6.9.13
+        version: 6.9.13
       picocolors:
         specifier: 1.0.0
         version: 1.0.0
@@ -384,8 +384,8 @@ importers:
         specifier: 18.2.0
         version: 18.2.0
       react-day-picker:
-        specifier: ^8.10.0
-        version: 8.10.0(date-fns@3.6.0)(react@18.2.0)
+        specifier: ^8.10.1
+        version: 8.10.1(date-fns@3.6.0)(react@18.2.0)
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
@@ -411,8 +411,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(react-dom@18.2.0)(react@18.2.0)
       react-resizable-panels:
-        specifier: ^2.0.16
-        version: 2.0.16(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.0.18
+        version: 2.0.18(react-dom@18.2.0)(react@18.2.0)
       react-select:
         specifier: ^5.7.4
         version: 5.8.0(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
@@ -483,11 +483,11 @@ importers:
         specifier: ^3.10.0
         version: 3.11.0
       zod:
-        specifier: ^3.22.4
-        version: 3.22.4
+        specifier: ^3.22.5
+        version: 3.22.5
       zustand:
-        specifier: ^4.5.0
-        version: 4.5.0(@types/react@18.2.79)(react@18.2.0)
+        specifier: ^4.5.2
+        version: 4.5.2(@types/react@18.2.79)(react@18.2.0)
     devDependencies:
       '@babel/eslint-parser':
         specifier: ^7.24.1
@@ -699,9 +699,6 @@ importers:
       jest-extended:
         specifier: ^4.0.2
         version: 4.0.2(jest@29.7.0)
-      joi:
-        specifier: 17.12.1
-        version: 17.12.1
       next-router-mock:
         specifier: ^0.9.10
         version: 0.9.11(next@14.2.2)(react@18.2.0)
@@ -1138,7 +1135,7 @@ packages:
       - encoding
     dev: true
 
-  /@auth/core@0.29.0(nodemailer@6.9.9):
+  /@auth/core@0.29.0(nodemailer@6.9.13):
     resolution: {integrity: sha512-MdfEjU6WRjUnPG1+XeBWrTIlAsLZU6V0imCIqVDDDPxLI6UZWldXVqAA2EsDazGofV78jqiCLHaN85mJITDqdg==}
     peerDependencies:
       '@simplewebauthn/browser': ^9.0.1
@@ -1156,18 +1153,18 @@ packages:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       jose: 5.2.4
-      nodemailer: 6.9.9
+      nodemailer: 6.9.13
       oauth4webapi: 2.10.4
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
-  /@auth/prisma-adapter@1.6.0(@prisma/client@5.12.1)(nodemailer@6.9.9):
+  /@auth/prisma-adapter@1.6.0(@prisma/client@5.12.1)(nodemailer@6.9.13):
     resolution: {integrity: sha512-PQU8/Oi5gfjzb0MkhMGVX0Dg877phPzsQdK54+C7ubukCeZPjyvuSAx1vVtWEYVWp2oQvjgG/C6QiDoeC7S10A==}
     peerDependencies:
       '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5'
     dependencies:
-      '@auth/core': 0.29.0(nodemailer@6.9.9)
+      '@auth/core': 0.29.0(nodemailer@6.9.13)
       '@prisma/client': 5.12.1(prisma@5.12.1)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
@@ -5430,16 +5427,6 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@hapi/hoek@9.3.0:
-    resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
-    dev: true
-
-  /@hapi/topo@5.1.0:
-    resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-    dependencies:
-      '@hapi/hoek': 9.3.0
-    dev: true
-
   /@hookform/resolvers@3.3.4(react-hook-form@7.50.0):
     resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
     peerDependencies:
@@ -6020,7 +6007,7 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@mantine/carousel@7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.1)(react-dom@18.2.0)(react@18.2.0):
+  /@mantine/carousel@7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ddCPdikpeZv5vB+QUaGfTjiAPWbVQIZ8q0pGh3UWrylvDRbwnbb7B84qcyjYLDexlwuFVTUGURhRZYrf51LjjQ==}
     peerDependencies:
       '@mantine/core': 7.5.1
@@ -6031,7 +6018,7 @@ packages:
     dependencies:
       '@mantine/core': 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks': 7.5.1(react@18.2.0)
-      embla-carousel-react: 8.0.1(react@18.2.0)
+      embla-carousel-react: 8.0.2(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -6309,7 +6296,7 @@ packages:
       next-auth: ^4
     dependencies:
       '@prisma/client': 5.12.1(prisma@5.12.1)
-      next-auth: 4.24.7(next@14.2.2)(nodemailer@6.9.9)(react-dom@18.2.0)(react@18.2.0)
+      next-auth: 4.24.7(next@14.2.2)(nodemailer@6.9.13)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@next/bundle-analyzer@14.1.0:
@@ -8881,20 +8868,6 @@ packages:
     resolution: {integrity: sha512-ARhyoYDnY1LES3vYI0fiG6e9esWfTNcXcO6+MPJJXcnyMV3bim4lnFt45VXouV7y82F4x3YH8nOQ6VztuvUiWg==}
     dev: false
 
-  /@sideway/address@4.1.5:
-    resolution: {integrity: sha512-IqO/DUQHUkPeixNQ8n0JA6102hT9CmaljNTPmQ1u8MEhBo/R4Q8eKLN/vGZxuebwOroDB4cbpjheD4+/sKFK4Q==}
-    dependencies:
-      '@hapi/hoek': 9.3.0
-    dev: true
-
-  /@sideway/formula@3.0.1:
-    resolution: {integrity: sha512-/poHZJJVjx3L+zVD6g9KgHfYnb443oi7wLu/XKojDviHy6HOEOA6z1Trk5aR1dGcmPenJEgb2sK2I80LeS3MIg==}
-    dev: true
-
-  /@sideway/pinpoint@2.0.0:
-    resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
-    dev: true
-
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
@@ -10131,7 +10104,7 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@t3-oss/env-core@0.9.2(typescript@5.4.5)(zod@3.22.4):
+  /@t3-oss/env-core@0.9.2(typescript@5.4.5)(zod@3.22.5):
     resolution: {integrity: sha512-KgWXljUTHgO3o7GMZQPAD5+P+HqpauMNNHowlm7V2b9IeMitSUpNKwG6xQrup/xARWHTdxRVIl0mSI4wCevQhQ==}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -10141,10 +10114,10 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.5
-      zod: 3.22.4
+      zod: 3.22.5
     dev: false
 
-  /@t3-oss/env-nextjs@0.9.2(typescript@5.4.5)(zod@3.22.4):
+  /@t3-oss/env-nextjs@0.9.2(typescript@5.4.5)(zod@3.22.5):
     resolution: {integrity: sha512-dklHrgKLESStNVB67Jdbu6osxDYA+xNKaPBRerlnkEvzbCccSKMvZENx6EZebJuR4snqB3/yRykNMn/bdIAyiQ==}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -10153,9 +10126,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@t3-oss/env-core': 0.9.2(typescript@5.4.5)(zod@3.22.4)
+      '@t3-oss/env-core': 0.9.2(typescript@5.4.5)(zod@3.22.5)
       typescript: 5.4.5
-      zod: 3.22.4
+      zod: 3.22.5
     dev: false
 
   /@tabler/icons-react@2.47.0(react@18.2.0):
@@ -12478,10 +12451,10 @@ packages:
       - debug
     dev: true
 
-  /axios@1.6.7:
-    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
+  /axios@1.6.8:
+    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
     dependencies:
-      follow-redirects: 1.15.4(debug@4.3.4)
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -15219,26 +15192,26 @@ packages:
       minimalistic-crypto-utils: 1.0.1
     dev: true
 
-  /embla-carousel-react@8.0.1(react@18.2.0):
-    resolution: {integrity: sha512-cpFQ/HwCsjBjzpu9Z9IHmZ9DaCSf/wo4q+qUTcRW3SsNv+1Q8IY7Y8J2QIyTmz0vOWY7tliu3uE2gqRH7ZDwOQ==}
+  /embla-carousel-react@8.0.2(react@18.2.0):
+    resolution: {integrity: sha512-RHe1GKLulOW8EDN+cJgbFbVVfRXcaLT2/89dyVw3ONGgVpZjD19wB87I1LUZ1aCzOSrTccx0PFSQanK4OOfGPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0
     dependencies:
-      embla-carousel: 8.0.1
-      embla-carousel-reactive-utils: 8.0.1(embla-carousel@8.0.1)
+      embla-carousel: 8.0.2
+      embla-carousel-reactive-utils: 8.0.2(embla-carousel@8.0.2)
       react: 18.2.0
     dev: false
 
-  /embla-carousel-reactive-utils@8.0.1(embla-carousel@8.0.1):
-    resolution: {integrity: sha512-KBSkz2h9LwVFkOrwzIJKgXbmEDlIShkreeOHnV8Cph09AdBMzb412nRkcctbeDcuG9x3CVsqLzJrSXnZeYhFPQ==}
+  /embla-carousel-reactive-utils@8.0.2(embla-carousel@8.0.2):
+    resolution: {integrity: sha512-nLZqDkQdO0hvOP49/dUwjkkepMnUXgIzhyRuDjwGqswpB4Ibnc5M+w7rSQQAM+uMj0cPaXnYOTlv8XD7I/zVNw==}
     peerDependencies:
-      embla-carousel: 8.0.1
+      embla-carousel: 8.0.2
     dependencies:
-      embla-carousel: 8.0.1
+      embla-carousel: 8.0.2
     dev: false
 
-  /embla-carousel@8.0.1:
-    resolution: {integrity: sha512-RsaMRyBCd144N95gb3XoI+H9zj3RI4y0qcfvKYEh2tIAIEenL9CW9vwzltCeoYkWYipGdkvup+HGT9ewG1YTEw==}
+  /embla-carousel@8.0.2:
+    resolution: {integrity: sha512-bogsDO8xosuh/l3PxIvA5AMl3+BnRVAse9sDW/60amzj4MbGS5re4WH5eVEXiuH8G1/3G7QUAX2QNr3Yx8z5rA==}
     dev: false
 
   /emittery@0.13.1:
@@ -17159,6 +17132,17 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
+    dev: true
+
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -19742,16 +19726,6 @@ packages:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
     dev: true
 
-  /joi@17.12.1:
-    resolution: {integrity: sha512-vtxmq+Lsc5SlfqotnfVjlViWfOL9nt/avKNbKYizwf6gsCfq9NYY/ceYRMFD8XDdrjJ9abJyScWmhmIiy+XRtQ==}
-    dependencies:
-      '@hapi/hoek': 9.3.0
-      '@hapi/topo': 5.1.0
-      '@sideway/address': 4.1.5
-      '@sideway/formula': 3.0.1
-      '@sideway/pinpoint': 2.0.0
-    dev: true
-
   /jose@4.15.5:
     resolution: {integrity: sha512-jc7BFxgKPKi94uOvEmzlSWFFe2+vASyXaKUpdQKatWAESU2MWjDfFf0fdfc83CDKcA5QecabZeNLyfhe3yKNkg==}
     dev: false
@@ -21732,7 +21706,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /next-auth@4.24.7(next@14.2.2)(nodemailer@6.9.9)(react-dom@18.2.0)(react@18.2.0):
+  /next-auth@4.24.7(next@14.2.2)(nodemailer@6.9.13)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-iChjE8ov/1K/z98gdKbn2Jw+2vLgJtVV39X+rCP5SGnVQuco7QOr19FRNGMIrD8d3LYhHWV9j9sKLzq1aDWWQQ==}
     peerDependencies:
       next: ^12.2.5 || ^13 || ^14
@@ -21748,7 +21722,7 @@ packages:
       cookie: 0.5.0
       jose: 4.15.5
       next: 14.2.2(@babel/core@7.23.7)(@playwright/test@1.41.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
-      nodemailer: 6.9.9
+      nodemailer: 6.9.13
       oauth: 0.9.15
       openid-client: 5.6.4
       preact: 10.19.3
@@ -22045,8 +22019,8 @@ packages:
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
-  /nodemailer@6.9.9:
-    resolution: {integrity: sha512-dexTll8zqQoVJEZPwQAKzxxtFn0qTnjdQTchoU6Re9BUUGBJiOy3YMn/0ShTW6J5M0dfQ1NeDeRTTl4oIWgQMA==}
+  /nodemailer@6.9.13:
+    resolution: {integrity: sha512-7o38Yogx6krdoBf3jCAqnIN4oSQFx+fMa0I7dK1D+me9kBxx12D+/33wSb+fhOCtIxvYJ+4x4IMEhmhCKfAiOA==}
     engines: {node: '>=6.0.0'}
     dev: false
 
@@ -24407,8 +24381,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /react-day-picker@8.10.0(date-fns@3.6.0)(react@18.2.0):
-    resolution: {integrity: sha512-mz+qeyrOM7++1NCb1ARXmkjMkzWVh2GL9YiPbRjKe0zHccvekk4HE+0MPOZOrosn8r8zTHIIeOUXTmXRqmkRmg==}
+  /react-day-picker@8.10.1(date-fns@3.6.0)(react@18.2.0):
+    resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
     peerDependencies:
       date-fns: ^2.28.0 || ^3.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -24670,8 +24644,8 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.2.79)(react@18.2.0)
     dev: false
 
-  /react-resizable-panels@2.0.16(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-UrnxmTZaTnbCl/xIOX38ig35RicqGfLuqt2x5fytpNlQvCRuxyXZwIBEhmF+pmrEGxfajyXFBoCplNxLvhF0CQ==}
+  /react-resizable-panels@2.0.18(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-rKagCW6C8tTjWRq5jNsASsi4TB2a+IixL9++0G1+kPgAgvULPVf7kE0VbHysC3wdvcGYMa70O46C9YpG7CCkeA==}
     peerDependencies:
       react: ^16.14.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
@@ -29194,8 +29168,12 @@ packages:
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
-  /zustand@4.5.0(@types/react@18.2.79)(react@18.2.0):
-    resolution: {integrity: sha512-zlVFqS5TQ21nwijjhJlx4f9iGrXSL0o/+Dpy4txAP22miJ8Ti6c1Ol1RLNN98BMib83lmDH/2KmLwaNXpjrO1A==}
+  /zod@3.22.5:
+    resolution: {integrity: sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==}
+    dev: false
+
+  /zustand@4.5.2(@types/react@18.2.79)(react@18.2.0):
+    resolution: {integrity: sha512-2cN1tPkDVkwCy5ickKrI7vijSjPksFRfqS6237NzT0vqSsztTNnQdHw9mmN7uBdk3gceVXU0a+21jFzFzAc9+g==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'
