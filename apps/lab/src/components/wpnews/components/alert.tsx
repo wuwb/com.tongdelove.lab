@@ -1,10 +1,10 @@
-import Container from './container'
-import cx from 'clsx'
+import { Container } from './container'
+import clsx from 'clsx'
 
-export default function Alert({ preview }) {
+export const Alert = ({ preview }) => {
   return (
     <div
-      className={cx('border-b', {
+      className={clsx('border-b', {
         'bg-accent-7 border-accent-7 text-white': preview,
         'bg-accent-1 border-accent-2': !preview,
       })}

@@ -1,33 +1,34 @@
-import { GetStaticProps } from 'next'
-import Container from './components/container'
-import MoreStories from './components/more-stories'
-import HeroPost from './components/hero-post'
-import Intro from './components/intro'
-import Layout from './components/layout'
-import { getAllPostsForHome } from '@/lib/wordpress/api'
+// import { Container } from '@/components/wpnews/components/container'
+// import { MoreStories } from '@/components/wpnews/components/more-stories'
+// import { HeroPost } from '@/components/wpnews/components/hero-post'
+// import { Intro } from '@/components/wpnews/components/intro'
+// import { Layout } from '@/components/wpnews/components/layout'
 
-export default function Index({ allPosts: { edges }, preview }) {
-  const heroPost = edges[0]?.node
-  const morePosts = edges.slice(1)
+const WpNews = () => {
+  // const heroPost = {
+  //   title: '',
+  //   featuredImage: '',
+  //   date: '',
+  //   author: '',
+  //   slug: '',
+  //   excerpt: '',
+  // }
+  // const morePosts = [
+  //   heroPost,
+  // ]
 
   return (
-    <Layout preview={preview}>
-      <Container>
-        <Intro />
-        {heroPost && (
-          <HeroPost title={heroPost.title} coverImage={heroPost.featuredImage} date={heroPost.date} author={heroPost.author} slug={heroPost.slug} excerpt={heroPost.excerpt} />
-        )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Container>
-    </Layout>
+    // <Layout preview={preview}>
+    //   <Container>
+    //     <Intro />
+    //     {heroPost && (
+    //       <HeroPost title={heroPost.title} coverImage={heroPost.featuredImage} date={heroPost.date} author={heroPost.author} slug={heroPost.slug} excerpt={heroPost.excerpt} />
+    //     )}
+    //     {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+    //   </Container>
+    // </Layout>
+    <div>123</div>
   )
 }
 
-// export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-//     const allPosts = await getAllPostsForHome(preview)
-
-//     return {
-//         props: { allPosts, preview },
-//         revalidate: 10,
-//     }
-// }
+export default WpNews

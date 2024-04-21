@@ -46,7 +46,7 @@ const ProductPerfomance = () => {
     <BaseCard title="Product Perfomance">
       <Table
         aria-label="simple table"
-        sx={{
+        style={{
           mt: 3,
           whiteSpace: 'nowrap',
         }}
@@ -80,7 +80,7 @@ const ProductPerfomance = () => {
             </TableTd>
           </TableTr>
         </TableThead>
-        <TableTBody>
+        <TableTbody>
           {products.map(product => (
             <TableTr key={product.name}>
               <TableTd>
@@ -103,15 +103,13 @@ const ProductPerfomance = () => {
                   <Box>
                     <Text
                       variant="h6"
-                      sx={{
-                        fontWeight: '600',
-                      }}
+                      className="font-bold"
                     >
                       {product.name}
                     </Text>
                     <Text
-                      color="textSecondary"
-                      sx={{
+                      className=""
+                      style={{
                         fontSize: '13px',
                       }}
                     >
@@ -121,28 +119,19 @@ const ProductPerfomance = () => {
                 </Box>
               </TableTd>
               <TableTd>
-                <Text color="textSecondary" variant="h6">
+                <Text variant="h6">
                   {product.pname}
                 </Text>
               </TableTd>
               <TableTd>
-                <Chip
-                  sx={{
-                    pl: '4px',
-                    pr: '4px',
-                    backgroundColor: product.pbg,
-                    color: '#fff',
-                  }}
-                  size="small"
-                  label={product.priority}
-                ></Chip>
+                {product.priority}
               </TableTd>
               <TableTd align="right">
                 <Text variant="h6">${product.budget}k</Text>
               </TableTd>
             </TableTr>
           ))}
-        </TableTBody>
+        </TableTbody>
       </Table>
     </BaseCard>
   )

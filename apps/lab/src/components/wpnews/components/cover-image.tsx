@@ -1,4 +1,4 @@
-import cx from 'clsx'
+import clsx from 'clsx'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 
@@ -12,14 +12,14 @@ interface Props {
   slug?: string
 }
 
-export default function CoverImage({ title, coverImage, slug }: Props) {
+export const CoverImage = ({ title, coverImage, slug }: Props) => {
   const image = (
     <Image
       width={2000}
       height={1000}
       alt={`Cover Image for ${title}`}
       src={coverImage?.node.sourceUrl}
-      className={cx('shadow-small', {
+      className={clsx('shadow-small', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
     />

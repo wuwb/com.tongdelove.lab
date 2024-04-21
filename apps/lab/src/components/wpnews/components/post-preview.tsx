@@ -1,9 +1,9 @@
-import Avatar from './avatar'
+import { Avatar } from './avatar'
 // import Date from './date'
-import CoverImage from './cover-image'
+import { CoverImage } from './cover-image'
 import Link from 'next/link'
 
-export default function PostPreview({ title, coverImage, date, excerpt, author, slug }) {
+export const PostPreview = ({ title, coverImage, date, excerpt, author, slug }) => {
   return (
     <div>
       <div className="mb-5">{coverImage && <CoverImage title={title} coverImage={coverImage} slug={slug} />}</div>

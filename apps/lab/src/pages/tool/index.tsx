@@ -80,10 +80,9 @@ const ToolPage = props => {
   return (
     <Container>
       <div
-        sx={{
+        className="pt-3"
+        style={{
           width: '100%',
-          padding: '12px',
-          '&:hover': {},
         }}
       >
         <div

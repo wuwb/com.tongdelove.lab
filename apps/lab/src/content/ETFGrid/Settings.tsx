@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import { CheckBox } from '@/components/ui2/Checkbox/Checkbox'
 import { NumberInput, PercentInput, TextInput } from '@/components/ui2/Input/Input'
 import { Suggestion } from '@/components/ui2/Suggestion/Suggestion'
@@ -17,7 +16,7 @@ export function Settings() {
         <div className="mb-1 block w-full py-1">基本设置</div>
         <Fund />
         <div>
-          <div>价　　格</div>
+          <div>价格</div>
           <div>
             <NumberInput
               value={price}
@@ -30,7 +29,7 @@ export function Settings() {
             <div>元</div>
           </div>
         </div>
-        <div last>
+        <div>
           <div>每份金额</div>
           <div>
             <NumberInput
@@ -47,7 +46,7 @@ export function Settings() {
       </div>
       <div>
         <div>留利润</div>
-        <div last>
+        <div>
           <div>留存份数</div>
           <div>
             <NumberInput
@@ -62,7 +61,7 @@ export function Settings() {
       </div>
       <div>
         <div>逐格加码</div>
-        <div last>
+        <div>
           <div>加码幅度</div>
           <div>
             <PercentInput
@@ -75,10 +74,10 @@ export function Settings() {
           </div>
         </div>
       </div>
-      <div last>
+      <div>
         <div>一网打尽</div>
         <div>
-          <div>中　　网</div>
+          <div>中网</div>
           <div>
             <CheckBox
               checked={hasMiddleGrid}
@@ -88,8 +87,8 @@ export function Settings() {
             />
           </div>
         </div>
-        <div last>
-          <div>大　　网</div>
+        <div>
+          <div>大网</div>
           <div>
             <CheckBox
               checked={hasBigGrid}
@@ -125,7 +124,7 @@ function Fund() {
   return (
     <>
       <div>
-        <div>基　　金</div>
+        <div>基金</div>
         <Suggestion inputProps={{ placeholder: '请输入基金代码、拼音或者简称' }} onSelect={onSelectCallback} />
       </div>
       {name && (

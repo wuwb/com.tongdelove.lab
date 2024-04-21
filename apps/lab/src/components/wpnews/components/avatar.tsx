@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image'
 
-export default function Avatar({ author }) {
+export const Avatar = ({ author }) => {
   const isAuthorHaveFullName = author?.node?.firstName && author?.node?.lastName
   const name = isAuthorHaveFullName ? `${author.node.firstName} ${author.node.lastName}` : author.node.name || null
 

@@ -1,6 +1,5 @@
-// react blog recently post widget
 function Tags() {
-  return <div></div>
+  return <div>tags</div>
 }
 
 export default Tags

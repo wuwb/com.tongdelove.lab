@@ -3,8 +3,7 @@ import { Link } from '@/components/ui2'
 import { Pagination } from '@/components/ui2/Pagination'
 import { parseSourceType } from '@/content/freelancer/interface'
 import axios from '@/utils/axios'
-import cx from 'clsx'
-import { useTranslation } from 'next-i18next'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './index.module.scss'
@@ -16,7 +15,6 @@ interface Props {
 
 const TasksPageIdPage = (props: Props) => {
   const router = useRouter()
-  const { t } = useTranslation()
   const [data, setData] = useState<any>([])
   const [count, setCount] = useState(0)
 
@@ -76,7 +74,7 @@ const TasksPageIdPage = (props: Props) => {
             </div>
             <div className="bg-white lg:rounded-lg">
               {data.map(item => (
-                <div key={item.id} className={cx(styles['task-item'], 'lg:h-120px relative cursor-pointer border-gray-200 hover:bg-gray-50')}>
+                <div key={item.id} className={clsx(styles['task-item'], 'lg:h-120px relative cursor-pointer border-gray-200 hover:bg-gray-50')}>
                   <Link className="lg:p-20px pr-18 lg:pr-104px group flex flex-col p-3" href={item.url}>
                     <div className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">
                       <span className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">{item.title}</span>

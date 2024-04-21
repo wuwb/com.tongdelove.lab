@@ -1,4 +1,4 @@
-export default function Tags({ tags }) {
+export const Tags = ({ tags }) => {
   return (
     <div className="mx-auto max-w-2xl">
       <p className="mt-8 text-lg font-bold">

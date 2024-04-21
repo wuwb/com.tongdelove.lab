@@ -54,20 +54,20 @@ export function Grids() {
         <tbody>
           {grids.map((grid, index) => {
             return (
-              <div key={index} last={index === grids.length - 1 ? TableTrue : false}>
+              <div key={index}>
                 <TableTbody>{index + 1}</TableTbody>
                 <TableTbody>{grid.type}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.gear)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.buyPrice)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.buyCount, 0)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.buyAmount, 0)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.sellPrice)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.sellCount, 0)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.sellAmount, 0)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.profits, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.gear)}</TableTbody>
+                <TableTbody>{toFixedString(grid.buyPrice)}</TableTbody>
+                <TableTbody>{toFixedString(grid.buyCount, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.buyAmount, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.sellPrice)}</TableTbody>
+                <TableTbody>{toFixedString(grid.sellCount, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.sellAmount, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.profits, 0)}</TableTbody>
                 <TableTbody>{grid.returnRate}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.retainedProfits, 0)}</TableTbody>
-                <TableTbody>{toFixedSTableTring(grid.retainedCount, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.retainedProfits, 0)}</TableTbody>
+                <TableTbody>{toFixedString(grid.retainedCount, 0)}</TableTbody>
               </div>
             )
           })}
@@ -79,12 +79,12 @@ export function Grids() {
             <TableTfoot />
             <TableTfoot />
             <TableTfoot />
-            <TableTfoot>{toFixedSTableTring(totalBuyAmount, 0)}</TableTfoot>
+            <TableTfoot>{toFixedString(totalBuyAmount, 0)}</TableTfoot>
             <TableTfoot />
             <TableTfoot />
             <TableTfoot />
-            <TableTfoot>{toFixedSTableTring(totalProfits, 0)}</TableTfoot>
-            <TableTfoot>{toFixedSTableTring((totalProfits / totalBuyAmount) * 100, 2)}%</TableTfoot>
+            <TableTfoot>{toFixedString(totalProfits, 0)}</TableTfoot>
+            <TableTfoot>{toFixedString((totalProfits / totalBuyAmount) * 100, 2)}%</TableTfoot>
             <TableTfoot />
             <TableTfoot />
           </TableTr>

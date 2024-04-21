@@ -13,7 +13,7 @@ export function identifyIdFormat(id: string) {
   }
 }
 
-export function noop() {}
+export function noop() { }
 
 export function sleep(time: number) {
   return new Promise(resolve =>

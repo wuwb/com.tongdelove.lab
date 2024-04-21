@@ -5,7 +5,6 @@ import { systemConfig } from '@/features/system/system.config'
 import { Button } from '@mantine/core'
 import Image from 'next/image'
 import React from 'react'
-import { IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
@@ -38,22 +37,9 @@ export default function Custom404(_props: InferGetStaticPropsType<typeof getStat
             <div className="bg-white">
               <div className="mt-3 p-4 text-center">
                 <div>
-                  <div
-                    className="bg-white"
-                    // placeholder={t('Search terms here...')}
-                    endAdornment={
-                      <div>
-                        <Button variant="contained" size="small">
-                          {/* {t('Search')} */}
-                        </Button>
-                      </div>
-                    }
-                    startAdornment={
-                      <div>
-                        <IconSearch />
-                      </div>
-                    }
-                  />
+                  <Button variant="contained" size="small">
+                    {t('Search')}
+                  </Button>
                 </div>
                 <Button>{/* {t('Go to homepage')} */}</Button>
               </div>

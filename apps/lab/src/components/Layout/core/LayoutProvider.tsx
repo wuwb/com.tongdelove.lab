@@ -6,7 +6,9 @@ const LayoutContext = createContext({
   },
 })
 
-const LayoutProvider = ({ children }) => {
+const LayoutProvider = ({ children }: {
+  children: React.ReactNode
+}) => {
   const [classes, setClasses] = useState({
     footerContainer: [],
   })

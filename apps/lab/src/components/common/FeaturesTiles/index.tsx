@@ -3,7 +3,7 @@ import cx from 'clsx'
 import SectionHeader from '../SectionHeader'
 import Image from 'next/legacy/image'
 
-const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivider, bottomDivider, hasBgColor, invertColor, pushLeft, ...props }) => {
+const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivider, bottomDivider, hasBgColor, invertColor, pushLeft, ...props }: any) => {
   const outerClasses = cx(
     'features-tiles section',
     topOuterDivider && 'has-top-divider',

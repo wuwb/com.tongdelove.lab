@@ -1,3 +1,3 @@
-export default function SectionSeparator() {
+export const SectionSeparator = () => {
   return <hr className="border-accent-2 mb-24 mt-28" />
 }

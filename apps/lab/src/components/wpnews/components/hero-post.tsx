@@ -1,9 +1,9 @@
-import Avatar from './avatar'
+import { Avatar } from './avatar'
 // import Date from './date'
-import CoverImage from './cover-image'
+import { CoverImage } from './cover-image'
 import Link from 'next/link'
 
-export default function HeroPost({ title, coverImage, date, excerpt, author, slug }) {
+export const HeroPost = ({ title, coverImage, date, excerpt, author, slug }) => {
   return (
     <section>
       <div className="mb-8 md:mb-16">{coverImage && <CoverImage title={title} coverImage={coverImage} slug={slug} />}</div>

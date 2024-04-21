@@ -16,7 +16,7 @@ const FeaturesSplit = ({
   alignTop,
   imageFill,
   ...props
-}) => {
+}: any) => {
   const outerClasses = cx(
     'features-split section',
     topOuterDivider && 'has-top-divider',

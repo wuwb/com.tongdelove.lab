@@ -2,7 +2,6 @@ import Image from 'next/legacy/image'
 import { Container } from '@/components/common'
 import { SyntheticEvent, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Text, Breadcrumbs, Tabs, TabsTab } from '@mantine/core'
 
 const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000
 const KILO_BYTES_PER_BYTE = 1000
@@ -15,7 +14,7 @@ const ToolAvatarPage = props => {
   const fileInputField = useRef(null)
   const [files, setFiles] = useState(null)
   const multiple = true
-  const drop = useRef(null)
+  const drop = useRef<HTMLDivElement>(null)
   const drag = useRef(null)
   const avatarRef = useRef(null)
   const [dragging, setDragging] = useState(false)
@@ -78,7 +77,7 @@ const ToolAvatarPage = props => {
   }
 
   const removeFile = fileName => {
-    delete files[fileName]
+    // delete files[fileName]
     setFiles({ ...files })
     callUpdateFilesCb({ ...files })
   }
@@ -150,7 +149,7 @@ const ToolAvatarPage = props => {
     // setItem('http://localhost:3000/images/avatars/1.jpg')
   }
 
-  const handleTabPanelAddItem = e => {
+  const handledivAddItem = e => {
     console.log('e:', e)
     const imageUrl = e.target['data-loaded-src']
     console.log('imageUrl', imageUrl)
@@ -159,19 +158,19 @@ const ToolAvatarPage = props => {
 
   return (
     <Container>
-      <Breadcrumbs aria-label="breadcrumb" className="mt-5">
+      <div aria-label="breadcrumb" className="mt-5">
         <Link color="inherit" href="/">
           工具
         </Link>
         <Link color="inherit" href="/material-ui/getting-started/installation/">
           图像类
         </Link>
-        <Text color="text.primary">节日头像制作</Text>
-      </Breadcrumbs>
+        <div color="text.primary">节日头像制作</div>
+      </div>
 
-      <Text className="mt-5" variant="h5">
+      <h5 className="mt-5">
         节日头像制作
-      </Text>
+      </h5>
 
       {/* 选择器 */}
       <div className="my-10 flex items-center justify-center gap-2">
@@ -213,31 +212,31 @@ const ToolAvatarPage = props => {
               </span>
             </div>
           )}
-          <input type="file" ref={fileInputField} onChange={handleNewFileUpload} title="" value="" />
+          <input type="file" ref={fileInputField} onChange={handleNewFileUpload} title="" value="" alt="" />
         </div>
       </div>
 
-      <Text className="mt-5" variant="h5" sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+      <h5 className="mt-5">
         文件预览
-      </Text>
+      </h5>
 
       <div className="flex space-x-5">
-        {Object.keys(files).map((fileName, index) => {
-          const file = files[fileName]
+        {Object.keys([]).map((fileName, index) => {
+          const file = files[fileName]!
           const isImageFile = file.type.split('/')[0] === 'image'
           return (
             <div key={fileName}>
               {isImageFile && (
                 <>
-                  {/* <Image
-                                        src={URL.createObjectURL(file)}
-                                        alt={`file preview ${index}`}
-                                        width="200"
-                                        height="200"
-                                    /> */}
-                  {/* <Avatar cRef={avatarRef}
-                                        url={URL.createObjectURL(file)}
-                                        item={item} /> */}
+                  <Image
+                    src={URL.createObjectURL(file)}
+                    alt={`file preview ${index}`}
+                    width="200"
+                    height="200"
+                  />
+                  <image ref={avatarRef}
+                    src={URL.createObjectURL(file) ?? ''}
+                    alt="" />
                 </>
               )}
               <div>
@@ -254,28 +253,28 @@ const ToolAvatarPage = props => {
         })}
       </div>
 
-      <Tabs value={value}>
-        <TabList onChange={handleChange} aria-label="lab API tabs example">
-          <TabsTab value="1">Item One</TabsTab>
-          <TabsTab value="2">Item Two</TabsTab>
-          <TabsTab value="3">Item Three</TabsTab>
-        </TabList>
-        <TabPanel value="1" onClick={handleTabPanelAddItem}>
+      <div>
+        <div aria-label="lab API div example">
+          <div>Item One</div>
+          <div>Item Two</div>
+          <div>Item Three</div>
+        </div>
+        <div onClick={handledivAddItem}>
           <div className="space-x-2">
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/1.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/2.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/3.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/4.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/5.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/6.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/7.jpg" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/8.jpg" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/1.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/2.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/3.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/4.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/5.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/6.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/7.jpg" alt="" />
+            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/8.jpg" alt="" />
           </div>
           <button onClick={handleAddItem}>添加元素</button>
-        </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-      </Tabs>
+        </div>
+        <div>Item Two</div>
+        <div >Item Three</div>
+      </div>
     </Container>
   )
 }

@@ -1,18 +1,18 @@
 'use client'
 
 import { Link } from '@/components/ui2'
-import cx from 'clsx'
+import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { DropdownMenu } from './DropdownMenu'
 import styles from './MenuItems.module.scss'
 
-export function MenuItems({ items, depthLevel }) {
+export function MenuItems({ items, depthLevel }: any) {
   const [dropdown, setDropdown] = useState(false)
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handler = (event: MouseEvent | TouchEvent) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         setDropdown(false)
       }
     }
@@ -40,7 +40,7 @@ export function MenuItems({ items, depthLevel }) {
             {items.icon ? <div className="">icon</div> : null}
             {items.description ? (
               <div
-                className={cx({
+                className={clsx({
                   'ml-3': items.icon,
                 })}
               >

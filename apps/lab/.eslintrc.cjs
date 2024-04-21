@@ -115,7 +115,7 @@ const config = {
     'import/extensions': 'off',
     'react/no-unescaped-entities': 'off',
     'unused-imports/no-unused-imports': 'off',
-    'max-len': [1, { code: 160 }],
+    'max-len': [0, { code: 180 }],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-empty-function': 'off',
@@ -138,6 +138,10 @@ const config = {
         children: 'never',
       },
     ],
+
+    // let typescript check prop types
+    "react/prop-types": [0, { "ignore": ["className"] }],
+
   },
   overrides: [
     {
@@ -175,6 +179,16 @@ const config = {
     {
       files: ['**/test/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:testing-library/react'],
+    },
+
+    {
+      files: ['**/components/ui/*.tsx'],
+      rules: {
+        // let typescript check prop types
+        'react/prop-types': [0, { ignore: ['className'] }],
+        'react-refresh/only-export-components': 'off',
+        "react/no-unknown-property": ["error", { ignore: ["cmdk-input-wrapper"] }],
+      },
     },
   ],
   // The ".eslintignore" file is no longer supported.

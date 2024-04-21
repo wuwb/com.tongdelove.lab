@@ -170,7 +170,7 @@ export function HeaderMegaMenu() {
 
           {session ? (
             <div className="flex items-center space-x-3">
-              <img className="h-12 w-12 rounded-full" src={session.user?.image!} alt="avator" />
+              <img className="h-12 w-12 rounded-full" src={session.user?.image ?? ''} alt="avator" />
               <Link href="/me">
                 <a className="font-medium text-blue-600">{session.user?.name}</a>
               </Link>

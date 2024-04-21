@@ -1,8 +1,8 @@
-import Alert from './alert'
-import Footer from './footer'
-import Meta from './meta'
+import { Alert } from './alert'
+import { Footer } from './footer'
+import { Meta } from './meta'
 
-export default function Layout({ preview, children }) {
+export const Layout = ({ preview, children }) => {
   return (
     <>
       <Meta />

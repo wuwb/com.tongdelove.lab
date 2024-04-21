@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Meta() {
+export const Meta = () => {
   return (
     <Head>
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />

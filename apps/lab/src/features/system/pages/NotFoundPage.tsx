@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import type { FC } from 'react'
+import Link from 'next/link'
 
 import { systemConfig } from '@/features/system/system.config'
 
@@ -22,7 +23,7 @@ export const NotFoundPage: FC<Props> = props => {
           {title}
         </h1>
         <p className="mt-5 text-center text-xl no-underline hover:underline">
-          <a href="/">{t('system:links.backToHome')}</a>
+          <Link href="/">{t('system:links.backToHome')}</Link>
         </p>
       </div>
     </>
