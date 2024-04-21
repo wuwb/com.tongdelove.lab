@@ -49,7 +49,7 @@ export const env = createEnv({
       str => process.env.VERCEL_URL ?? str,
       // VERCEL_URL doesn't include `https` so it cant be validated as a URL
       process.env.VERCEL ? z.string().min(1) : z.string().url()
-    ),
+    ).optional(),
     NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().min(1) : z.string().min(1).optional(),
     // EMAIL_SERVER: z.string(),
     // EMAIL_FROM: z.string(),
