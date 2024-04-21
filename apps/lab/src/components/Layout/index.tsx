@@ -41,7 +41,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
 
   const asPath = decodeURIComponent(router.asPath)
 
-  if (asPath.startsWith('/dashboard')) {
+  if (asPath.startsWith('/dashboard') || asPath.startsWith('/auth')) {
     return <>{children}</>
   } else {
     return <BaseLayout>{children}</BaseLayout>

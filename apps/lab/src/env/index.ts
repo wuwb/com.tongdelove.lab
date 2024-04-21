@@ -19,7 +19,7 @@ export const env = createEnv({
     // RS_FILTER_REDIS_CLOUD_URL: z.string(),
     // RS_CANDIDATES_POOL_REDIS_CLOUD_URL: z.string(),
     // AXIOM_TOKEN: z.string(),
-    VERCEL: z.string().optional(),
+    // VERCEL: z.string().optional(),
     VERCEL_ENV: z.enum(['production', 'preview', 'development']).optional(),
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).optional(),
     // OPENAI_API_KEY: z.string(),
@@ -43,13 +43,15 @@ export const env = createEnv({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 
     // auth
-    NEXTAUTH_URL: z.preprocess(
-      // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
-      // Since NextAuth.js automatically uses the VERCEL_URL if present.
-      str => process.env.VERCEL_URL ?? str,
-      // VERCEL_URL doesn't include `https` so it cant be validated as a URL
-      process.env.VERCEL ? z.string().min(1) : z.string().url()
-    ).optional(),
+    NEXTAUTH_URL: z
+      .preprocess(
+        // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
+        // Since NextAuth.js automatically uses the VERCEL_URL if present.
+        str => process.env.VERCEL_URL ?? str,
+        // VERCEL_URL doesn't include `https` so it cant be validated as a URL
+        process.env.VERCEL ? z.string().min(1) : z.string().url()
+      )
+      .optional(),
     // NEXTAUTH_SECRET: process.env.NODE_ENV === 'production' ? z.string().optional() : z.string().optional(),
     // EMAIL_SERVER: z.string(),
     // EMAIL_FROM: z.string(),

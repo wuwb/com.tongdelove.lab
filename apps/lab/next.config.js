@@ -3,18 +3,24 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import('./src/env.js')
-
+import createJiti from 'jiti'
+import { fileURLToPath } from 'node:url'
 import { withSentryConfig } from '@sentry/nextjs' // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 import { createSecureHeaders } from 'next-secure-headers'
 import pc from 'picocolors'
-
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import url from 'node:url'
 import withBundleAnalyzer from '@next/bundle-analyzer'
 import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.js'
+
+const jiti = createJiti(fileURLToPath(import.meta.url))
+
+// Import env to validate during build. Using jiti we can import .ts files
+jiti('./src/env/index')
+jiti('./src/env/client')
+jiti('./src/env/server')
 
 const { tsconfigPath } = nextUtils.loadCustomBuildParams()
 
@@ -230,7 +236,7 @@ const config = {
         '**/node_modules/rollup/**/*',
       ],
     },
-    outputFileTracingIgnores: ['node_modules/canvas', 'node_modules/.pnpm/canvas@2.11.2'],
+
     webVitalsAttribution: ['CLS', 'LCP'],
     // https://nextjs.org/docs/app/api-reference/functions/server-actions
     // serverActions: true,

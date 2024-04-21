@@ -4,12 +4,7 @@ import styles from './styles.module.scss'
 
 const fmtVer = (v: string) => v.replace('^', '').replace('~', '')
 
-export const FooterNav = (props: {
-  className: string
-  alwaysDarkMode: string
-  displayName: string
-  style: string
-}) => {
+export const FooterNav = (props: { className: string; alwaysDarkMode: string; displayName: string; style: string }) => {
   return (
     <div
       className={clsx(styles['comp-wrapper'], { [styles['comp-wrapper--alwaysDarkMode']]: props.alwaysDarkMode }, `g-comp--${props.displayName}`, props.className)}

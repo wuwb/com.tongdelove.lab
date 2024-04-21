@@ -28,18 +28,6 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
 
   const { data: links = [] } = trpc.link.getLinks.useQuery()
 
-  useEffect(() => {
-    console.log('hello: ', hello)
-  }, [hello])
-
-  const handleClick = () => {
-    if (session) {
-      signOut()
-    } else {
-      signIn()
-    }
-  }
-
   return (
     <>
       <Head>
@@ -61,23 +49,11 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
           })}
         </div>
         <div className="flex flex-col">
-          <button onClick={() => signIn('github')}>Github 登录</button>
-          <button
-            onClick={() =>
-              signIn('credentials', {
-                email: 'bin2302@gmail.com',
-                password: '123456',
-              })
-            }
-          >
-            账号登录
-          </button>
-          <button onClick={handleClick}>{session ? 'Sign out' : 'Sign in'}</button>
-
           <p className="text-center text-2xl text-white">
             {session && <span>Logged in as {session.user?.name}</span>}
             {secretMessage && <span> - {secretMessage}</span>}
           </p>
+
           <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
         </div>
         {/* <DemoPage /> */}

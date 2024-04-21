@@ -7,6 +7,7 @@ const About = props => {
   //     var point = new BMapGL.Point(116.404, 39.913);
   //     map.centerAndZoom(point, 15);
   // }, []);
+
   // {/* <script src="//https://api.map.baidu.com/getscript?type=webgl&v=1.0&ak=3nK45EVwE07POcQtPNFFOf0jtV6ImDuo&services=&t=20220914213950" defer></script> */}
 
   return (

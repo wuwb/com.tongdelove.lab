@@ -18,27 +18,6 @@ const JWT_EXPIRY = 7 * 24 * 60 * 60 // 7 days
 const oneDayInSeconds = 86400
 
 /**
- * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
- * object and keep type safety.
- *
- * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
- */
-declare module 'next-auth' {
-  interface Session extends DefaultSession {
-    user: DefaultSession['user'] & {
-      id: string
-      // ...other properties
-      // role: UserRole;
-    }
-  }
-
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
-}
-
-/**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
  *
  * @see https://next-auth.js.org/configuration/options
@@ -199,27 +178,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
   callbacks: {
-    jwt: async ({ token, user, account, profile, isNewUser, trigger }) => {
-      console.log('jwt ======================================')
-      console.log('token: ', token)
-      console.log('user: ', user)
-      console.log('account: ', account)
-      console.log('profile: ', profile)
-      console.log('isNewUser: ', isNewUser)
-      console.log('trigger: ', trigger)
-      console.log('jwt ======================================')
-      if (trigger === 'signUp') {
-        // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
-      }
-      if (user) {
-        token.id = user.id
-        // token.role = user.role
-      }
-      return Promise.resolve({
-        ...token,
-        ...user,
-      })
-    },
     // adapter 适配后，返回 user 数据，直接赋值给 session
     session: async ({ session, token, user }) => {
       console.log('session ======================================')
@@ -229,6 +187,10 @@ export const authOptions: NextAuthOptions = {
       console.log('session ======================================')
       if (session?.user && token) {
         session.user.id = token.id as string
+        // session.user.name = token.name;
+        // session.user.email = token.email;
+        // session.user.image = token.picture;
+        // session.user.isAdmin = token.isAdmin as boolean;
         // session.user.id = token.sub
         // session.user.accessToken = token.accessToken;
         // session.user.refreshToken = token.refreshToken;
@@ -255,6 +217,28 @@ export const authOptions: NextAuthOptions = {
       //         id: user.id,
       //     },
       // })
+    },
+    jwt: async ({ token, user, account, profile, isNewUser, trigger }) => {
+      console.log('jwt ======================================')
+      console.log('token: ', token)
+      console.log('user: ', user)
+      console.log('account: ', account)
+      console.log('profile: ', profile)
+      console.log('isNewUser: ', isNewUser)
+      console.log('trigger: ', trigger)
+      console.log('jwt ======================================')
+      // query user
+      if (trigger === 'signUp') {
+        // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
+      }
+      if (user) {
+        token.id = user.id
+        // token.role = user.role
+      }
+      return Promise.resolve({
+        ...token,
+        ...user,
+      })
     },
 
     /*

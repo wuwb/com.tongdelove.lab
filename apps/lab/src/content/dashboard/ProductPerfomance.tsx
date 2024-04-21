@@ -101,10 +101,7 @@ const ProductPerfomance = () => {
                   }}
                 >
                   <Box>
-                    <Text
-                      variant="h6"
-                      className="font-bold"
-                    >
+                    <Text variant="h6" className="font-bold">
                       {product.name}
                     </Text>
                     <Text
@@ -119,13 +116,9 @@ const ProductPerfomance = () => {
                 </Box>
               </TableTd>
               <TableTd>
-                <Text variant="h6">
-                  {product.pname}
-                </Text>
+                <Text variant="h6">{product.pname}</Text>
               </TableTd>
-              <TableTd>
-                {product.priority}
-              </TableTd>
+              <TableTd>{product.priority}</TableTd>
               <TableTd align="right">
                 <Text variant="h6">${product.budget}k</Text>
               </TableTd>

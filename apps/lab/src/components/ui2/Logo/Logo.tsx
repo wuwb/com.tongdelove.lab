@@ -6,8 +6,7 @@ export function Logo({ siteTitle }) {
   return (
     <div className={styles.logo}>
       <Link to="/">
-        <span>
-        </span>
+        <span></span>
         <p>{siteTitle}</p>
       </Link>
     </div>

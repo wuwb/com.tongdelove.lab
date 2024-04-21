@@ -24,15 +24,11 @@ const ForgotPassword = () => {
                 />
                 <p>24 小时内，至多可以重新设置密码 2 次。</p>
               </div>
-
               <div>
                 <p>你是机器人么？</p>
                 <p>请输入上图中的验证码</p>
               </div>
-
-              <button
-                className="inline-block w-full rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-              >
+              <button className="inline-block w-full rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">
                 发送重置密码邮件
               </button>
               登录

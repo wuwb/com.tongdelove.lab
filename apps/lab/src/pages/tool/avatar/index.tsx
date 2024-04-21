@@ -168,9 +168,7 @@ const ToolAvatarPage = props => {
         <div color="text.primary">节日头像制作</div>
       </div>
 
-      <h5 className="mt-5">
-        节日头像制作
-      </h5>
+      <h5 className="mt-5">节日头像制作</h5>
 
       {/* 选择器 */}
       <div className="my-10 flex items-center justify-center gap-2">
@@ -216,9 +214,7 @@ const ToolAvatarPage = props => {
         </div>
       </div>
 
-      <h5 className="mt-5">
-        文件预览
-      </h5>
+      <h5 className="mt-5">文件预览</h5>
 
       <div className="flex space-x-5">
         {Object.keys([]).map((fileName, index) => {
@@ -228,15 +224,8 @@ const ToolAvatarPage = props => {
             <div key={fileName}>
               {isImageFile && (
                 <>
-                  <Image
-                    src={URL.createObjectURL(file)}
-                    alt={`file preview ${index}`}
-                    width="200"
-                    height="200"
-                  />
-                  <image ref={avatarRef}
-                    src={URL.createObjectURL(file) ?? ''}
-                    alt="" />
+                  <Image src={URL.createObjectURL(file)} alt={`file preview ${index}`} width="200" height="200" />
+                  <image ref={avatarRef} src={URL.createObjectURL(file) ?? ''} alt="" />
                 </>
               )}
               <div>
@@ -273,7 +262,7 @@ const ToolAvatarPage = props => {
           <button onClick={handleAddItem}>添加元素</button>
         </div>
         <div>Item Two</div>
-        <div >Item Three</div>
+        <div>Item Three</div>
       </div>
     </Container>
   )

@@ -20,7 +20,7 @@ import {
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconCode, IconBook, IconCoin, IconChevronDown, IconBrandMcdonalds, IconX, IconChevronRight } from '@tabler/icons-react'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession, signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import classes from './HeaderMegaMenu.module.css'
 import Image from 'next/image'
@@ -54,6 +54,14 @@ export function HeaderMegaMenu() {
   const theme = useMantineTheme()
   const { data: session } = useSession()
 
+  const handleClick = () => {
+    if (session) {
+      signOut()
+    } else {
+      signIn()
+    }
+  }
+
   const links = mockdata.map(item => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
@@ -77,7 +85,7 @@ export function HeaderMegaMenu() {
       <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" variant="outline" className="sm:hidden">
+            <Button size="icon" variant="outline" className="shrink-0 sm:hidden">
               <PanelLeft className="h-5 w-5" />
               <span className="sr-only">Toggle Menu</span>
             </Button>
@@ -89,11 +97,11 @@ export function HeaderMegaMenu() {
                 className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
               >
                 <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                <span className="sr-only">Acme Inc</span>
+                <span className="sr-only">Tongdelove Inc</span>
               </Link>
               <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <Home className="h-5 w-5" />
-                Dashboard
+                Home
               </Link>
               <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                 <ShoppingCart className="h-5 w-5" />
@@ -114,32 +122,12 @@ export function HeaderMegaMenu() {
             </nav>
           </SheetContent>
         </Sheet>
-        <div className="flex w-full justify-between">
-          <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Dashboard</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Products</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Edit Product</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
+        <div className="flex w-full justify-end">
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
-                  <Image src="/" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
+                  <Image src="/images/avatars/3.jpg" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -152,10 +140,41 @@ export function HeaderMegaMenu() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Group visibleFrom="sm">
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
+                  <Image src="/images/avatars/8.jpg" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Test Actions</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Button variant="default">Log in</Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Button>Sign up</Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <button onClick={() => signIn('github')}>Github 登录</button>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <button
+                    onClick={() =>
+                      signIn('credentials', {
+                        email: 'bin2302@gmail.com',
+                        password: '123456',
+                      })
+                    }
+                  >
+                    账号登录
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <button onClick={handleClick}>{session ? 'Sign out' : 'Sign in'}</button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
         </div>
         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
@@ -163,11 +182,9 @@ export function HeaderMegaMenu() {
       <Drawer opened={drawerOpened} onClose={closeDrawer} size="100%" padding="md" title="Navigation" hiddenFrom="sm" zIndex={1000000}>
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
-
           <Collapse in={linksOpened}>{links}</Collapse>
-
+          123
           <Divider my="sm" />
-
           {session ? (
             <div className="flex items-center space-x-3">
               <img className="h-12 w-12 rounded-full" src={session.user?.image ?? ''} alt="avator" />

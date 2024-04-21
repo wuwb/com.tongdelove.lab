@@ -140,8 +140,7 @@ const config = {
     ],
 
     // let typescript check prop types
-    "react/prop-types": [0, { "ignore": ["className"] }],
-
+    'react/prop-types': [0, { ignore: ['className'] }],
   },
   overrides: [
     {
@@ -187,7 +186,7 @@ const config = {
         // let typescript check prop types
         'react/prop-types': [0, { ignore: ['className'] }],
         'react-refresh/only-export-components': 'off',
-        "react/no-unknown-property": ["error", { ignore: ["cmdk-input-wrapper"] }],
+        'react/no-unknown-property': ['error', { ignore: ['cmdk-input-wrapper'] }],
       },
     },
   ],
