@@ -9,8 +9,6 @@ import Head from 'next/head'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
 import { homeConfig } from '@/features/home/home.config'
-import { HomePage } from '@/features/home/pages'
-import { Button } from '@/components/ui/button'
 
 type Props = {
   /** Add HomeRoute props here */
@@ -56,7 +54,6 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
 
           <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
         </div>
-        {/* <DemoPage /> */}
       </Container>
     </>
   )

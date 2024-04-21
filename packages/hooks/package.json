@@ -1,0 +1,29 @@
+{
+  "name": "@tongdelove/hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput --sourcemap",
+    "prepare": "tsc",
+    "lint": "pnpm lint:prettier && pnpm lint:eslint",
+    "lint:eslint": "eslint . --ext .ts",
+    "lint:prettier": "prettier --check \"src/**/*.ts\"",
+    "prettier": "prettier --write --cache .",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.2.53",
+    "react": "18.2.0",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.53",
+    "react": "18.2.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
