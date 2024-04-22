@@ -129,8 +129,8 @@ importers:
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.50.0)
       '@mantine/carousel':
-        specifier: 7.5.1
-        version: 7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.8.0
+        version: 7.8.0(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/core':
         specifier: 7.5.1
         version: 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
@@ -6031,11 +6031,11 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@mantine/carousel@7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ddCPdikpeZv5vB+QUaGfTjiAPWbVQIZ8q0pGh3UWrylvDRbwnbb7B84qcyjYLDexlwuFVTUGURhRZYrf51LjjQ==}
+  /@mantine/carousel@7.8.0(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-nxuLtZ4N4KJaayab5KuaffYhiVi4UaIjywkgQiNfTxABlgFdERNfo5if9sSMyisL0r3RUPJBfLkyi8A4fEC8GQ==}
     peerDependencies:
-      '@mantine/core': 7.5.1
-      '@mantine/hooks': 7.5.1
+      '@mantine/core': 7.8.0
+      '@mantine/hooks': 7.8.0
       embla-carousel-react: '>=7.0.0'
       react: ^18.2.0
       react-dom: ^18.2.0
