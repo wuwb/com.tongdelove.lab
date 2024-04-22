@@ -395,10 +395,10 @@ const config = {
         // use "api-eu.mixpanel.com" if you need to use EU servers
         destination: 'https://api.mixpanel.com/:slug',
       },
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:7001/api/:path*',
-      },
+      // {
+      //   source: '/api/:path*',
+      //   destination: 'http://localhost:7001/api/:path*',
+      // },
     ]
   },
 

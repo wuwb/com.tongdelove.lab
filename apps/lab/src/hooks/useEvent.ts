@@ -4,17 +4,12 @@ import { useMemo, useRef, useState } from 'react'
 
 type Noop = (this: any, ...args: any[]) => any
 
-type PickFunction<T extends Noop> = (
-  this: ThisParameterType<T>,
-  ...args: Parameters<T>
-) => ReturnType<T>
+type PickFunction<T extends Noop> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
 export function useEvent<T extends Noop>(fn: T) {
   if (process.env.NODE_ENV === 'development') {
     if (typeof fn !== 'function') {
-      console.error(
-        `useEvent expected parameter is a function, got ${typeof fn}`
-      )
+      console.error(`useEvent expected parameter is a function, got ${typeof fn}`)
     }
   }
 
@@ -37,9 +32,7 @@ export function useEvent<T extends Noop>(fn: T) {
 /**
  * Same with useEvent but return loading state
  */
-export function useEventWithLoading<T extends (...args: any[]) => Promise<any>>(
-  fn: T
-): [T, boolean] {
+export function useEventWithLoading<T extends (...args: any[]) => Promise<any>>(fn: T): [T, boolean] {
   const [isLoading, setIsLoading] = useState(false)
 
   const _fn = useEvent(async (...args: Parameters<T>) => {

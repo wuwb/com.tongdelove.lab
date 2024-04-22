@@ -43,7 +43,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useTranslation } from '@/i18n'
-import { RiHome2Line } from "react-icons/ri"
+import { RiHome2Line } from 'react-icons/ri'
 import { IconType } from 'react-icons'
 
 const NavItem = ({
@@ -68,7 +68,7 @@ const NavItem = ({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8 bg-accent">
+        <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
           <Icon className="h-5 w-5" />
           <span className="sr-only">{title}</span>
         </Link>
@@ -77,7 +77,6 @@ const NavItem = ({
     </Tooltip>
   )
 }
-
 
 export const Sidebar = () => {
   let { pathname } = useRouter()
@@ -94,15 +93,7 @@ export const Sidebar = () => {
           <span className="sr-only">Tongdelove Inc</span>
         </Link>
 
-        <NavItem
-          isCollapsed={false}
-          icon={RiHome2Line}
-          activeIcon={RiHome2Line}
-          active={pathname === '/'}
-          title={t('Home')}
-          href="/"
-        ></NavItem>
-
+        <NavItem isCollapsed={false} icon={RiHome2Line} activeIcon={RiHome2Line} active={pathname === '/'} title={t('Home')} href="/"></NavItem>
 
         <Tooltip>
           <TooltipTrigger asChild>
@@ -152,6 +143,6 @@ export const Sidebar = () => {
           <TooltipContent side="right">Settings</TooltipContent>
         </Tooltip>
       </nav>
-    </aside >
+    </aside>
   )
 }

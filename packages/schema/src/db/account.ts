@@ -3,6 +3,7 @@ import { CompleteUser, RelatedUserModelSchema } from "./index"
 
 export const AccountModelSchema = z.object({
   id: z.string(),
+  userId: z.string(),
   type: z.string(),
   provider: z.string(),
   providerAccountId: z.string(),
@@ -13,7 +14,6 @@ export const AccountModelSchema = z.object({
   scope: z.string().nullish(),
   idToken: z.string().nullish(),
   sessionState: z.string().nullish(),
-  userId: z.string(),
   createdAt: z.date().nullish(),
   updatedAt: z.date(),
   isDeleted: z.boolean(),
