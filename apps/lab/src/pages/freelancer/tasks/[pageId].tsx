@@ -1,7 +1,7 @@
 import { Container } from '@/components/common'
 import { Link } from '@/components/ui2'
 import { Pagination } from '@/components/ui2/Pagination'
-import { parseSourceType } from '@/content/freelancer/interface'
+import { parseSourceType } from '@/features/freelancer/interface'
 import axios from '@/utils/axios'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'

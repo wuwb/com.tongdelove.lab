@@ -1,5 +1,3 @@
-'use client'
-
 import { Box, Flex, Button, Text, Container, Title, Image, Input, Textarea, Stack } from '@mantine/core'
 
 export default function SplitScreen() {

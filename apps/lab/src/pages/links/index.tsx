@@ -1,4 +1,4 @@
-import Daohang from '@/content/links/Links'
+import Daohang from '@/features/links/Links'
 
 // ## 运营数据
 // https://lunarcrush.com/

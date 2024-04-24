@@ -1,5 +1,3 @@
-'use client'
-
 import { Dispatch, ReactNode, createContext, useCallback, useContext, useMemo, useReducer, useState } from 'react'
 
 export type EventListener = (data?: any) => void

@@ -1,5 +1,3 @@
-'use client'
-
 import { initState, type Action, type State, reducer } from '@/reducers/AppReducer'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import { createContext, useContext, useMemo, useReducer, useState } from 'react'

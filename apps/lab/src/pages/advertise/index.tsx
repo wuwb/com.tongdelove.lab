@@ -1,5 +1,3 @@
-'use client'
-
 import { Divider, Box, Flex, Button, Text, Container, Input, Textarea, Stack, List, ListItem, Title, ThemeIcon } from '@mantine/core'
 
 import { IconCircleCheck } from '@tabler/icons-react'

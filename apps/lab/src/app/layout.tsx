@@ -1,19 +1,23 @@
-import { MantineProvider, ColorSchemeScript } from '@mantine/core'
-import '@mantine/core/styles.css'
-import '@/styles/globals.css'
+import { MantineProvider } from '@mantine/core'
 import { cookies } from 'next/headers'
-import { TRPCReactProvider } from '@/trpc/react'
+// import { TRPCReactProvider } from '@/trpc/react'
+// import AppContextProvider from '@/contexts/AppContext'
+import { Layout } from '@/components/Layout'
+import '@/styles/globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <ColorSchemeScript />
-      </head>
       <body>
-        <TRPCReactProvider cookies={cookies().toString()}>
-          <MantineProvider>{children}</MantineProvider>
-        </TRPCReactProvider>
+        {/* <AppContextProvider> */}
+        {/* <TRPCReactProvider cookies={cookies().toString()}> */}
+        <MantineProvider>
+          {/* <Layout> */}
+          {children}
+          {/* </Layout> */}
+        </MantineProvider>
+        {/* </TRPCReactProvider> */}
+        {/* </AppContextProvider> */}
       </body>
     </html>
   )

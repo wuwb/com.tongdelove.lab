@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useCallback } from 'react'
 import { toPng } from 'html-to-image'
 import { Button, LoadingOverlay } from '@mantine/core'

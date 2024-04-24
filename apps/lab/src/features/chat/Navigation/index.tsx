@@ -1,5 +1,3 @@
-'use client'
-
 import { useAppContext } from '@/contexts/AppContext'
 import MenuBar from './Menubar'
 import cn from 'clsx'

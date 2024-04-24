@@ -1,7 +1,7 @@
 'use client'
 
-import Navigation from '@/content/chat/Navigation'
-import Main from '@/content/chat/Main'
+import Navigation from '@/features/chat/Navigation'
+import Main from '@/features/chat/Main'
 import { useAppContext } from '@/contexts/AppContext'
 import cn from 'clsx'
 

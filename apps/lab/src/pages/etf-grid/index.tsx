@@ -1,5 +1,5 @@
-import { Grids } from '@/content/ETFGrid/Grids'
-import { Settings } from '@/content/ETFGrid/Settings'
+import { Grids } from '@/features/ETFGrid/Grids'
+import { Settings } from '@/features/ETFGrid/Settings'
 import { AppContext, initialState, reducer } from '@/server/store'
 import * as React from 'react'
 

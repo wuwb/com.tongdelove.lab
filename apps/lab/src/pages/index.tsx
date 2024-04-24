@@ -1,18 +1,14 @@
-import { DemoPage } from '@/features/demo/pages'
-import { prisma } from '@/server/db/prisma'
 import { trpc } from '@/utils/trpc'
-import { useEffect } from 'react'
 import { Container } from '@/components/common'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Head from 'next/head'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
-import { homeConfig } from '@/features/home/home.config'
+import { homeConfig } from '@/features/HomePage/home.config'
+import { HomePage } from '@/features/HomePage/pages'
 
-type Props = {
-  /** Add HomeRoute props here */
-}
+type Props = {}
 
 const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: session } = useSession()
@@ -34,7 +30,7 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <HomePage /> */}
+      <HomePage />
 
       <Container className="mt-10 flex flex-col">
         <div>

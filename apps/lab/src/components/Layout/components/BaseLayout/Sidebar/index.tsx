@@ -45,6 +45,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { useTranslation } from '@/i18n'
 import { RiHome2Line } from 'react-icons/ri'
 import { IconType } from 'react-icons'
+import { TbTools } from 'react-icons/tb'
 
 const NavItem = ({
   isCollapsed,
@@ -68,10 +69,20 @@ const NavItem = ({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-          <Icon className="h-5 w-5" />
-          <span className="sr-only">{title}</span>
-        </Link>
+        {href ? (
+          <Link href={href} className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+            <Icon className="h-5 w-5" />
+            <span className="sr-only">{title}</span>
+          </Link>
+        ) : (
+          <div
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+            onClick={onClick}
+          >
+            <Icon className="h-5 w-5" />
+            <span className="sr-only">{title}</span>
+          </div>
+        )}
       </TooltipTrigger>
       <TooltipContent side="right">{title}</TooltipContent>
     </Tooltip>
@@ -131,6 +142,8 @@ export const Sidebar = () => {
           </TooltipTrigger>
           <TooltipContent side="right">Analytics</TooltipContent>
         </Tooltip>
+
+        <NavItem isCollapsed={false} icon={TbTools} activeIcon={TbTools} active={pathname === '/tools'} title={t('Tools')} href="/tools"></NavItem>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
         <Tooltip>

@@ -2,7 +2,6 @@ import { useTranslation } from 'next-i18next'
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
 import { Banner } from '@/components/banner/Banner'
-import { MainLayout } from '@/layouts/main'
 import { CtaBlock, FeaturesBlock, HeroBlock } from '../blocks'
 import { homeConfig } from '../home.config'
 
@@ -12,12 +11,10 @@ export const HomePage: FC = () => {
   return (
     <>
       <NextSeo title={t('home:page.title')} description="See https://github.com/belgattitude/nextjs-monorepo-example" />
-      <MainLayout>
-        <Banner />
-        <HeroBlock />
-        <FeaturesBlock />
-        <CtaBlock />
-      </MainLayout>
+      <Banner />
+      <HeroBlock />
+      <FeaturesBlock />
+      <CtaBlock />
     </>
   )
 }

@@ -1,36 +1,19 @@
-// 头部
-// export * from './components/DefaultLayout';
-
-// 侧边
-// export * from './components/FullLayout';
-
-// 头部+侧边，标准
-// export * from './components/AccentHeaderLayout';
-
-// 侧边+头部
-// export * from './components/AccentSidebarLayout';
-
-// 侧边+小头部，盒型
-// export * from './components/BoxedSidebarLayout';
-
-// 底部
-// export * from './components/BottomNavigationLayout';
-
-// 小侧边+头部
-// export * from './components/CollapsedSidebarLayout';
-
-// 头部+文档侧边
-// export * from './components/DocsLayout';
-
-// ?
-// export * from './components/ExtendedSidebarLayout';
-
-// 全包大头部
-// export * from './components/TopNavigationLayout';
-
 import { FC } from 'react'
-import { BaseLayout } from './components/BaseLayout'
 import { useRouter } from 'next/router'
+import { LayoutProvider } from './core/LayoutProvider'
+import { BaseLayout } from './components/BaseLayout'
+import { FullLayout } from './components/FullLayout'
+
+// import {} './components/DefaultLayout' // 头部
+// import {} './components/FullLayout' // 侧边
+// import {} './components/AccentHeaderLayout' // 头部+侧边，标准
+// import {} './components/AccentSidebarLayout' // 侧边+头部
+// import {} './components/BoxedSidebarLayout' // 侧边+小头部，盒型
+// import {} './components/BottomNavigationLayout' // 底部
+// import {} './components/CollapsedSidebarLayout' // 小侧边+头部
+// import {} './components/DocsLayout' // 头部+文档侧边
+// import {} './components/ExtendedSidebarLayout' // ?
+// import {} './components/TopNavigationLayout' // 全包大头部
 
 type LayoutProps = {
   children: React.ReactNode
@@ -41,9 +24,15 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
 
   const asPath = decodeURIComponent(router.asPath)
 
+  let layout: React.ReactNode
+
   if (asPath.startsWith('/dashboard') || asPath.startsWith('/auth')) {
-    return <>{children}</>
+    layout = <>{children}</>
+  } else if (asPath.startsWith('/fullscreen')) {
+    layout = <FullLayout>{children}</FullLayout>
   } else {
-    return <BaseLayout>{children}</BaseLayout>
+    layout = <BaseLayout>{children}</BaseLayout>
   }
+
+  return <LayoutProvider>{layout}</LayoutProvider>
 }
