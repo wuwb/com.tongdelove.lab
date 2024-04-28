@@ -71,7 +71,7 @@
     "@axiomhq/winston": "^1.0.0-rc.1",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.3.4",
-    "@mantine/carousel": "7.5.1",
+    "@mantine/carousel": "7.8.1",
     "@mantine/core": "7.5.1",
     "@mantine/dates": "7.5.1",
     "@mantine/form": "^7.5.1",

@@ -140,8 +140,8 @@ importers:
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.51.3)
       '@mantine/carousel':
-        specifier: 7.5.1
-        version: 7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 7.8.1
+        version: 7.8.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/core':
         specifier: 7.5.1
         version: 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.3.1)(react-dom@18.2.0)(react@18.2.0)
@@ -6038,7 +6038,7 @@ packages:
       tsconfig-paths: 4.2.0
       tslib: 2.6.2
       typescript: 5.4.5
-      uWebSockets.js: github.com/uNetworking/uWebSockets.js/1977b5039938ad863d42fc4958d48c17e5a1fa06
+      uWebSockets.js: git@github.com+uNetworking/uWebSockets.js/1977b5039938ad863d42fc4958d48c17e5a1fa06
       yargs: 17.7.2
     optionalDependencies:
       node-libcurl: 3.0.1-0
@@ -7600,11 +7600,11 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /@mantine/carousel@7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ddCPdikpeZv5vB+QUaGfTjiAPWbVQIZ8q0pGh3UWrylvDRbwnbb7B84qcyjYLDexlwuFVTUGURhRZYrf51LjjQ==}
+  /@mantine/carousel@7.8.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(embla-carousel-react@8.0.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-l+DOvh7ofb7yc+ZkSICujSw0/CukEWP09j4axI+7k3egKbHLc1fBNHSrTLurfsqXKsfhS6GNe6VLGxKizbkJRw==}
     peerDependencies:
-      '@mantine/core': 7.5.1
-      '@mantine/hooks': 7.5.1
+      '@mantine/core': 7.8.1
+      '@mantine/hooks': 7.8.1
       embla-carousel-react: '>=7.0.0'
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -32181,8 +32181,8 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  github.com/uNetworking/uWebSockets.js/1977b5039938ad863d42fc4958d48c17e5a1fa06:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06}
+  git@github.com+uNetworking/uWebSockets.js/1977b5039938ad863d42fc4958d48c17e5a1fa06:
+    resolution: {commit: 1977b5039938ad863d42fc4958d48c17e5a1fa06, repo: git@github.com:uNetworking/uWebSockets.js.git, type: git}
     name: uWebSockets.js
     version: 20.43.0
     dev: false
