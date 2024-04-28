@@ -1,15 +1,26 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
     branches:
       - '**'
-
-  # Allows you to run this workflow manually from the Actions tab
+  push:
+    branches: 
+      - main
+  merge_group:
+  # Allows run manually in Actions
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+# You can leverage Vercel Remote Caching with Turbo to speed up your builds
+# @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
+env:
+  FORCE_COLOR: 3
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
 jobs:
   ci:
@@ -72,7 +83,7 @@ jobs:
         working-directory: ./packages/server
         run: pnpm run build
 
-  linter:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -87,9 +98,9 @@ jobs:
         working-directory: ./packages/server
         run: npm ci
 
-      - name: npm lint
+      - name: lint
         working-directory: ./packages/server
-        run: npm run lint
+        run: pnpm lint
 
   tests:
     needs: linter

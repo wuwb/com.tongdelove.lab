@@ -1,20 +1,55 @@
 {
-    "editor.formatOnSave": true,
-    "prettier.requireConfig": true,
-    "prettier.tabWidth": 2,
-    "prettier.useTabs": false,
-    "editor.detectIndentation": false,
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[markdown]": {
-        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.rules.customizations": [
+    {
+      "rule": "*",
+      "severity": "warn"
+    }
+  ],
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    {
+      "pattern": "apps/*/"
     },
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "prisma.fileWatcher": true,
-    "search.exclude": {
-        "package-lock.json": true
+    {
+      "pattern": "packages/*/"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
+    {
+      "pattern": "tooling/*/"
+    }
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "cva\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cx\\(([^)]*)\\)",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
+  ],
+  "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "next/router.d.ts",
+    "next/dist/client/router.d.ts"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "prettier.requireConfig": true,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "editor.detectIndentation": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "prisma.fileWatcher": true,
+  "search.exclude": {
+    "package-lock.json": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
 }

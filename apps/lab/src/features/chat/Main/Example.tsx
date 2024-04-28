@@ -1,6 +1,6 @@
 import { MdOutlineTipsAndUpdates } from 'react-icons/md'
 import examples from '@/data/examples.json'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@tongdelove/ui/Button'
 import { useMemo, useState } from 'react'
 
 export default function Example() {

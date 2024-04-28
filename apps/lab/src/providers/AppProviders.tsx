@@ -4,7 +4,7 @@ import type { FC, PropsWithChildren } from 'react'
 import AppContextProvider from '@/contexts/AppContext'
 import { MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
-import { TooltipProvider } from '@/components/ui/tooltip'
+import { TooltipProvider } from '@tongdelove/ui/tooltip'
 
 type Props = PropsWithChildren<{
   /**

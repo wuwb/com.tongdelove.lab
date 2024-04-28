@@ -1,6 +1,7 @@
-import { createTRPCRouter, protectedProcedure, publicProcedure } from '@/server/trpc'
+import { createTRPCRouter, protectedProcedure, publicProcedure } from '@/server/trpc/trpc'
+import type { TRPCRouterRecord } from "@trpc/server";
 
-export const authRouter = createTRPCRouter({
+export const authRouter = {
   getSession: publicProcedure.query(({ ctx }) => {
     return ctx.session
   }),
@@ -8,4 +9,4 @@ export const authRouter = createTRPCRouter({
     // testing type validation of overridden next-auth Session in @myapp/auth package
     return 'you can see this secret message!'
   }),
-})
+} satisfies TRPCRouterRecord;

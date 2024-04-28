@@ -1,4 +1,7 @@
 export * from "./poem"
+export * from "./poemcard"
+export * from "./poemauthor"
+export * from "./poemtag"
 export * from "./poemkeywords"
 export * from "./keyword"
 export * from "./session"

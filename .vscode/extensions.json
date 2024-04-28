@@ -1,12 +1,14 @@
 {
     "recommendations": [
       "dbaeumer.vscode-eslint",
+      "expo.vscode-expo-tools",
       "esbenp.prettier-vscode",
+      "yoavbls.pretty-ts-errors",
+      "bradlc.vscode-tailwindcss",
       "mikestead.dotenv",
       "csstools.postcss",
       "blanu.vscode-styled-jsx",
       "msjsdiag.debugger-for-chrome",
-      "bradlc.vscode-tailwindcss",
       "stylelint.vscode-stylelint",
       "wangzy.sneak-mark",
       "graphql.vscode-graphql",

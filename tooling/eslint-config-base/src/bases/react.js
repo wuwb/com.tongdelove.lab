@@ -2,6 +2,8 @@
  * Opinionated config base for projects using react.
  * @see https://github.com/belgattitude/nextjs-monorepo-example/tree/main/packages/eslint-config-base
  */
+import reactPlugin from "eslint-plugin-react";
+import hooksPlugin from "eslint-plugin-react-hooks";
 
 const reactPatterns = {
   files: ['*.{jsx,tsx}'],
@@ -15,8 +17,22 @@ const stylesPatterns = {
  * Fine-tune naming convention react typescript jsx (function components)
  * @link https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md
  */
-
+/** @type {Awaited<import('typescript-eslint').Config>} */
 module.exports = {
+  files: ["**/*.ts", "**/*.tsx"],
+  plugins: {
+    react: reactPlugin,
+    "react-hooks": hooksPlugin,
+  },
+  rules: {
+    ...reactPlugin.configs["jsx-runtime"].rules,
+    ...hooksPlugin.configs.recommended.rules,
+  },
+  languageOptions: {
+    globals: {
+      React: "writable",
+    },
+  },
   env: {
     browser: true,
     es6: true,

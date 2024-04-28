@@ -2,9 +2,9 @@
 
 import { ChangeEvent, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Button } from '@tongdelove/ui/button'
+import { Input } from '@tongdelove/ui/input'
+import { Label } from '@tongdelove/ui/label'
 import { Loader2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import { useTranslation } from '@/i18n'

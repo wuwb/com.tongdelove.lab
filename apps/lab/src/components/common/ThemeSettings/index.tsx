@@ -5,7 +5,7 @@ import { Box, Stack, Button, Popover, Text, Divider, MenuItem, Menu, Tooltip, Ac
 
 import { IconChecks, IconCubeUnfolded } from '@tabler/icons-react'
 import { useTranslation } from 'next-i18next'
-import { Link } from '@/components/ui/Link'
+import { Link } from '@tongdelove/ui/Link'
 
 const ThemeSettings: FC = () => {
   const { t }: { t: any } = useTranslation()

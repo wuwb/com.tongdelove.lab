@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/legacy/image'
-import { Link } from '@/components/ui2'
+import { Link } from '@/components/ui/'
 
 function Profile() {
   return (

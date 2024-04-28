@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageWrapper } from '@/components/ui2/PageWrapper/PageWrapper'
+import { PageWrapper } from '@/components/ui/PageWrapper/PageWrapper'
 import TopicList from './TopicList'
 import Sidebar from './Sidebar'
 

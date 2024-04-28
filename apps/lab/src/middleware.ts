@@ -1,19 +1,13 @@
 // @link https://nextjs.org/docs/app/building-your-application/routing/middleware
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
 import { withAuth } from 'next-auth/middleware'
 import NextAuth from 'next-auth'
 import { authOptions } from '@/server/auth'
+import { match } from '@formatjs/intl-localematcher'
+import Negotiator from 'negotiator'
+import { type NextRequest, NextResponse } from 'next/server'
+import { locales, defaultLocale } from './i18n/config'
 
 type MiddlewareEnabledRouteMatchers = (typeof config.matcher)[number]
-
-export const config = {
-  matcher: [
-    '/admin/:path*',
-    '/((?!api|_next/static|_next/image|.*\\.png$).*)',
-    // '/profile/:path*'
-  ],
-}
 
 const adminAuthRoutes: MiddlewareEnabledRouteMatchers[] = ['/admin/:path*']
 
@@ -27,6 +21,14 @@ const isAdminRoute = (pathName: string, adminRoutes: MiddlewareEnabledRouteMatch
   })
 }
 
+// Get the preferred locale, similar to the above or using a library
+function getLocale(request) {
+  const headers = { 'accept-language': defaultLocale }
+  const languages = new Negotiator({ headers }).languages()
+
+  return match(languages, locales, defaultLocale) // -> 'en-US'
+}
+
 export function middleware(request: NextRequest) {
   console.log('request path: ', request.nextUrl.href)
 
@@ -37,5 +39,26 @@ export function middleware(request: NextRequest) {
   //     return NextResponse.rewrite(url)
   // }
 
+  const { pathname } = request.nextUrl
+  const pathnameHasLocale = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+
+  if (pathnameHasLocale) return
+
+  // Redirect if there is no locale
+  const locale = getLocale(request)
+  request.nextUrl.pathname = `/${locale}${pathname}`
+  // return NextResponse.redirect(request.nextUrl)
+
   return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    // Skip all internal paths (_next)
+    '/((?!_next).*)',
+
+    '/admin/:path*',
+    '/((?!api|_next/static|_next/image|.*\\.png$).*)',
+    // '/profile/:path*'
+  ],
 }

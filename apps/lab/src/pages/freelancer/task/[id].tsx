@@ -1,5 +1,5 @@
 import { Container } from '@/components/common'
-import { Link } from '@/components/ui2'
+import { Link } from '@/components/ui/'
 import axios from '@/utils/axios'
 import { InferGetServerSidePropsType } from 'next'
 

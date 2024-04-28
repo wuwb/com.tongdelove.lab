@@ -17,7 +17,7 @@ import nextUtils from './next-utils.config.js'
 
 const jiti = createJiti(fileURLToPath(import.meta.url))
 
-// Import env to validate during build. Using jiti we can import .ts files
+// validate during build
 jiti('./src/env/index')
 jiti('./src/env/client')
 jiti('./src/env/server')
@@ -90,9 +90,7 @@ if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
 
 /** @type {import("next").NextConfig} */
 const config = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+
   reactStrictMode: true,
 
   // basePath: '',
@@ -178,22 +176,13 @@ const config = {
     unoptimized: false,
   },
 
-  transpilePackages: isProd
-    ? [
-        '@wuwenbin',
-        // i18next is build for modern browsers
-        // 'i18next',
-        // tailwind-merge contains nullish operator ?.
-        // 'tailwind-merge',
-        // 'antd',
-        // 'rc-pagination',
-        // 'rc-util',
-        // 'rc-picker',
-        // 'rc-notification',
-        // '@ant-design/icons',
-        // 'rc-calendar',
-      ]
-    : [],
+  transpilePackages: [
+    '@tongdelove/api',
+    '@tongdelove/auth',
+    '@tongdelove/db',
+    '@tongdelove/ui',
+    '@tongdelove/validators',
+  ],
 
   // Standalone build
   // @link https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files-experimental
@@ -264,16 +253,16 @@ const config = {
     // Will be available on both server and client
   },
 
+  eslint: {
+    ignoreDuringBuilds: true,
+    // dirs: [`${__dirname}/src`], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+  },
+
   typescript: {
     ignoreBuildErrors: true,
     tsconfigPath: process.env.NEXT_BUILD_ENV_TSCONFIG,
     //   tsconfigPath,
     //   ignoreBuildErrors: true,
-  },
-
-  eslint: {
-    ignoreDuringBuilds: !process.env.NEXT_BUILD_ENV_LINT,
-    // dirs: [`${__dirname}/src`], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
   },
 
   async headers() {

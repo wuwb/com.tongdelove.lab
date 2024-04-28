@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui2'
+import { Link } from '@/components/ui/'
 import styles from './Links.module.scss'
 
 export function LinksNav() {

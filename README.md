@@ -171,3 +171,14 @@ Error
 - Loops (Marketing email)
 - LogSnag (Events)
 - Dub (Short URLs)
+
+
+https://github.com/t3-oss/create-t3-turbo
+https://github.com/trpc/examples-next-prisma-starter
+https://github.com/trpc/examples-next-prisma-websockets-starter
+https://github.com/trpc/examples-next-prisma-todomvc
+https://github.com/trpc/trpc/tree/next/examples/minimal/src/server
+https://github.com/trpc/trpc/tree/next/examples/standalone-server
+https://github.com/trpc/trpc/tree/next/examples/express-server
+https://github.com/trpc/trpc/tree/next/examples/fastify-server
+https://github.com/icflorescu/trpc-sveltekit-example

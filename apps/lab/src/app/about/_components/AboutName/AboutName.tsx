@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
 import { IconMoon } from '@tabler/icons-react'
-import { useDarkMode } from '@/hooks'
-import { PageWrapper } from '@/components/ui2'
+// import { useDarkMode } from '@/hooks'
+import { PageWrapper } from '@/components/ui/'
 
 import type { AnyAaaaRecord } from 'dns'
 
 export const AboutName: React.FC<AnyAaaaRecord> = props => {
-  useDarkMode()
+  // useDarkMode()
   const searchParams = useSearchParams()
   const name = searchParams?.get('name')
 

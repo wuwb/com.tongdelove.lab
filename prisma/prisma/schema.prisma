@@ -88,20 +88,93 @@ generator zod {
 //     theme    = "neutral"
 // }
 
+// 诗词
 model Poem {
   id        Int            @id @default(autoincrement())
   slug      String         @unique
-  title     String         @db.VarChar(255)
-  content   String         @db.Text
-  locale    String?        @db.VarChar(5)
+  // 标题
+  title     String         
+  titlePinYin String?
+  title_zh_Hant String?
+  // 内容
+  content   String      
+  conetntPinYin   String?
+  content_zh_Hant String?
+  // 介绍
+  introduce           String?
+  introduce_zh_Hant   String?
+  // 译文
+  translation         String?
+  translation_zh_Hant String?
+  translation_en      String?
+  // 注解 JSON 字符串 {文字: 解释}
+  annotation          String?
+  annotation_zh_Hant  String?
+
+  locale    String?        
   keywords  PoemKeywords[]
-  author    String         @db.VarChar(120)
-  link      String?        @db.VarChar(255)
-  image     String?        @db.VarChar(255)
+  author    PoemAuthor @relation(fields: [authorId], references: [id])     
+  authorId Int    
+  // 内容分类：叙事诗、抒情诗、送别诗、边塞诗、山水田园诗、咏史诗、咏物诗、悼亡诗、讽喻诗
+  classify            String?
+  // 体裁分类：诗、词、曲、赋、骈文
+  genre               String?
+  tags                PoemTag[]
+  views               Int       @default(0)
+  cards               PoemCard[]
+
+  link      String?        
+  image     String?        
   createdAt DateTime       @default(now()) @map(name: "created_at")
   updatedAt DateTime       @updatedAt @map(name: "updated_at")
 
   @@map(name: "poem")
+}
+
+model PoemCard {
+    id        Int       @id @default(autoincrement())
+    url       String    @unique
+    createdAt DateTime? @default(now())
+    updatedAt DateTime? @updatedAt
+    content   String?
+    poem      Poem      @relation(fields: [poemId], references: [id])
+    poemId    Int
+
+    @@map("poem_card")
+}
+
+model PoemAuthor {
+    id           Int       @id @default(autoincrement())
+    name         String
+    name_zh_Hant String?
+    namePinYin   String?
+    // 介绍，可使用 HTML
+    introduce    String?
+    // 出生日期
+    birthDate    Int?
+    // 死亡日期
+    deathDate    Int?
+    // 朝代
+    dynasty      String?
+    poems        Poem[]
+    createdAt    DateTime? @default(now())
+    updatedAt    DateTime? @updatedAt
+    @@map("poem_author")
+}
+
+model PoemTag {
+    id                Int       @id @default(autoincrement())
+    name              String    @unique
+    name_zh_Hant      String?
+    poems             Poem[]
+    // 1: 词牌名 2: 曲牌名
+    type              String?
+    type_zh_Hant      String?
+    introduce         String?
+    introduce_zh_Hant String?
+    createdAt         DateTime? @default(now())
+    updatedAt         DateTime? @updatedAt
+    @@map("poem_tag")
 }
 
 model PoemKeywords {

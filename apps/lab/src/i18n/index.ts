@@ -1,4 +1,4 @@
-import { useEvent } from '@/hooks'
+import { useEvent } from '@/hooks/useEvent'
 import { crc32 } from 'crc'
 import { Trans, appWithTranslation, useTranslation as _useTranslation, TFunction } from 'next-i18next'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Link } from '@/components/ui2'
+import { Link } from '@/components/ui/'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { DropdownMenu } from './DropdownMenu'

@@ -1,5 +1,5 @@
 import { Container, Footer } from '@/components/common'
-import { PricingCardGroup } from '@/components/ui2/Pricing'
+import { PricingCardGroup } from '@/components/ui/Pricing'
 import { getRencentTasks } from '@/server/task'
 
 const HomePage = props => {

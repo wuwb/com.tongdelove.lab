@@ -21,10 +21,10 @@ import {
   Users2,
 } from 'lucide-react'
 import { useRouter } from 'next/router'
-import { Badge } from '@/components/ui/badge'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@tongdelove/ui/badge'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@tongdelove/ui/breadcrumb'
+import { Button } from '@tongdelove/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@tongdelove/ui/card'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -33,15 +33,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
-import { Pagination, PaginationContent, PaginationItem } from '@/components/ui/pagination'
-import { Progress } from '@/components/ui/progress'
-import { Separator } from '@/components/ui/separator'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+} from '@tongdelove/ui/dropdown-menu'
+import { Input } from '@tongdelove/ui/input'
+import { Pagination, PaginationContent, PaginationItem } from '@tongdelove/ui/pagination'
+import { Progress } from '@tongdelove/ui/progress'
+import { Separator } from '@tongdelove/ui/separator'
+import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@tongdelove/ui/table'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tongdelove/ui/tabs'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@tongdelove/ui/tooltip'
 import { useTranslation } from '@/i18n'
 import { RiHome2Line } from 'react-icons/ri'
 import { IconType } from 'react-icons'

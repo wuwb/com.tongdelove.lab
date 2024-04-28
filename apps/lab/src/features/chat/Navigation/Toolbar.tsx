@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui2/Button'
+import { Button } from '@/components/ui/Button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 import { IconSun, IconMoon } from '@tabler/icons-react'

@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui2/Link'
+import { Link } from '@/components/ui/Link'
 import Image from 'next/image'
 
 const ForgotPassword = () => {

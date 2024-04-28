@@ -1,6 +1,6 @@
 import { Container } from '@/components/common'
-import { Link } from '@/components/ui2'
-import { Pagination } from '@/components/ui2/Pagination'
+import { Link } from '@/components/ui/'
+import { Pagination } from '@/components/ui/Pagination'
 import { parseSourceType } from '@/features/freelancer/interface'
 import axios from '@/utils/axios'
 import clsx from 'clsx'

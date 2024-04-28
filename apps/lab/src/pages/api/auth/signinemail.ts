@@ -272,14 +272,6 @@ function html(params: { url: string; host: string; theme: Theme; identifier: str
 							<td class="order-container">
 								<table border="0" cellpadding="0" cellspacing="0" role="“presentation”" width="100%">
 									<tr>
-										<td align="center" class="image-container">
-
-                                              <img src="https://44707939.fs1.hubspotusercontent-na1.net/hubfs/44707939/flowgpt_logo.png" alt="logo" width="300px" height="47.92px" style="display: block; border: 0px; margin: 0px auto;" >
-
-										</td>
-									</tr>
-
-									<tr>
 										<td align="center" class="greetings-container">
 											<span class="greeting">Let's log you in</span>
 										</td>
