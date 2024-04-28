@@ -75,19 +75,18 @@
     "@manypkg/cli": "^0.21.2",
     "@types/node": "^20.11.20",
     "@types/shell-quote": "1.7.5",
-    "@typescript-eslint/eslint-plugin": "^6.20.0",
-    "@typescript-eslint/parser": "^6.20.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
     "commitizen": "^4.3.0",
     "conventional-changelog-cli": "^4.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
-    "eslint-config-standard-with-typescript": "^43.0.1",
     "globals": "^13.24.0",
     "husky": "^9.0.10",
     "is-ci": "3.0.1",
     "lint-staged": "15.2.1",
     "prettier-plugin-packagejson": "^2.4.10",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.5.13",
     "prisma": "5.13.0",
     "prisma-json-types-generator": "^3.0.3",
     "rimraf": "5.0.5",
@@ -108,11 +107,8 @@
     "pnpm": ">=8.6.3",
     "yarn": ">=1.22.0"
   },
-  "resolutions?": {
-    "eslint-plugin-react-hooks": "https://github.com/vercel/next.js/issues/52365"
-  },
   "resolutions": {
-    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "bin-wrapper": "npm:bin-wrapper-china"
   },
   "pnpm": {

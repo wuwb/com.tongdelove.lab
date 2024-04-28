@@ -36,13 +36,13 @@
     "@tongdelove/eslint-config-base": "workspace:^",
     "@types/node": "^20.11.20",
     "cross-env": "7.0.3",
-    "eslint": "^8.56.0",
+    "eslint": "^9.0.0",
     "graphql": "16.8.1",
     "npm-run-all": "4.1.5",
-    "prettier": "3.0.3",
+    "prettier": "^3.2.5",
     "rimraf": "5.0.5",
     "tsup": "7.2.0",
-    "typescript": "5.2.2"
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "graphql": "^16.6.0"
