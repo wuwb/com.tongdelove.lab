@@ -3,7 +3,7 @@ import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core'
 import { IconHome2, IconGauge, IconDeviceDesktopAnalytics, IconFingerprint, IconCalendarStats, IconUser, IconSettings } from '@tabler/icons-react'
 // import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './DoubleNavbar.module.css'
-import { NavbarNested } from '@/layouts/admin/NavbarNested'
+import { NavbarNested } from './NavbarNested'
 import clsx from 'clsx'
 
 const mainLinksMockdata = [

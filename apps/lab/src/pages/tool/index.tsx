@@ -69,9 +69,7 @@ const ToolCard: React.FC<{
       >
         {desc}
       </div>
-      <a href={href} target="_blank" rel="noreferrer">
-        了解更多 {'>'}
-      </a>
+      <a href={href}>了解更多 {'>'}</a>
     </div>
   )
 }
@@ -79,34 +77,9 @@ const ToolCard: React.FC<{
 const ToolPage = props => {
   return (
     <Container>
-      <div
-        className="pt-3"
-        style={{
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            fontSize: '20px',
-            color: '#1A1A1A',
-          }}
-        >
-          欢迎使用 Ant Design Pro
-        </div>
-        <p
-          style={{
-            fontSize: '14px',
-            color: 'rgba(0,0,0,0.65)',
-            lineHeight: '22px',
-            marginTop: 16,
-            marginBottom: 32,
-            width: '65%',
-          }}
-        >
-          Ant Design Pro 是一个整合了 umi，Ant Design 和 ProComponents
-          的脚手架方案。致力于在设计规范和基础组件的基础上，继续向上构建，提炼出典型模板/业务组件/配套设计资源，进一步提升企业级中后台产品设计研发过程中的『用户』和『设计者』的体验。
-        </p>
-        <div style={{ display: 'flex', gap: 16 }}>
+      <div className="w-full pt-3">
+        <div className="flex gap-4">
+          <ToolCard index={2} href="/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
           <ToolCard
             index={1}
             image={<Image src="/images/placeholder/80x80?text=80x80&fg=666666&bg=cccccc" width="80" height="80" alt="节日头像制作" />}
@@ -114,22 +87,8 @@ const ToolPage = props => {
             title="节日头像制作"
             desc="节日头像制作，国庆节、圣诞节、春节头像"
           />
-          <ToolCard index={1} href="https://umijs.org/docs/introduce/introduce" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
-          <ToolCard
-            index={1}
-            href="https://umijs.org/docs/introduce/introduce"
-            title="了解 umi"
-            desc="umi 是一个可扩展的企业级前端应用框架,umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。"
-          />
-          <ToolCard
-            index={1}
-            href="https://umijs.org/docs/introduce/introduce"
-            title="了解 umi"
-            desc="umi 是一个可扩展的企业级前端应用框架,umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。"
-          />
         </div>
       </div>
-      <div>广告</div>
     </Container>
   )
 }

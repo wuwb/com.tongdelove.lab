@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
-// import { AdminSidebar } from '@/layouts/admin/AdminSidebar';
-import { NavbarNested } from '@/layouts/admin/NavbarNested'
-import { DoubleNavbar } from '@/layouts/admin/DoubleNavbar'
+// import { AdminSidebar } from './AdminSidebar';
+import { NavbarNested } from './NavbarNested'
+import { DoubleNavbar } from './DoubleNavbar'
 
 export const AdminLayout: FC<{ children: ReactNode }> = props => {
   const { children } = props

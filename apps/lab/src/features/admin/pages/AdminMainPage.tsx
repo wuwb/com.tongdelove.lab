@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
 import { adminConfig } from '@/features/admin/admin.config'
-import { AdminLayout } from '@/layouts/admin'
+import { AdminLayout } from '@/components/Layout/components/AdminLayout'
 
 export const AdminMainPage: FC = () => {
   const { t } = useTranslation(adminConfig.i18nNamespaces)

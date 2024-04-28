@@ -46,6 +46,9 @@ import { useTranslation } from '@/i18n'
 import { RiHome2Line } from 'react-icons/ri'
 import { IconType } from 'react-icons'
 import { TbTools } from 'react-icons/tb'
+import clsx from 'clsx'
+import { RiChat3Line, RiChat3Fill } from 'react-icons/ri'
+import { ImLab } from 'react-icons/im'
 
 const NavItem = ({
   isCollapsed,
@@ -70,7 +73,13 @@ const NavItem = ({
     <Tooltip>
       <TooltipTrigger asChild>
         {href ? (
-          <Link href={href} className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+          <Link
+            href={href}
+            className={clsx('flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8', {
+              'bg-accent text-foreground': active,
+              'text-muted-foreground': !active,
+            })}
+          >
             <Icon className="h-5 w-5" />
             <span className="sr-only">{title}</span>
           </Link>
@@ -100,13 +109,15 @@ export const Sidebar = () => {
           href="/"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
+          <ImLab className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className="sr-only">Tongdelove Inc</span>
         </Link>
 
         <NavItem isCollapsed={false} icon={RiHome2Line} activeIcon={RiHome2Line} active={pathname === '/'} title={t('Home')} href="/"></NavItem>
 
-        <Tooltip>
+        <NavItem isCollapsed={false} icon={RiChat3Line} activeIcon={RiChat3Fill} active={pathname === '/chat'} title={t('对话')} href="/chat"></NavItem>
+
+        {/* <Tooltip>
           <TooltipTrigger asChild>
             <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
               <ShoppingCart className="h-5 w-5" />
@@ -132,20 +143,12 @@ export const Sidebar = () => {
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right">Customers</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-              <LineChart className="h-5 w-5" />
-              <span className="sr-only">Analytics</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Analytics</TooltipContent>
-        </Tooltip>
+        </Tooltip> */}
 
-        <NavItem isCollapsed={false} icon={TbTools} activeIcon={TbTools} active={pathname === '/tools'} title={t('Tools')} href="/tools"></NavItem>
+        {/* <NavItem isCollapsed={false} icon={LineChart} activeIcon={LineChart} active={pathname === '/analytics'} title={t('Analytics')} href="/analytics"></NavItem> */}
+        <NavItem isCollapsed={false} icon={TbTools} activeIcon={TbTools} active={pathname === '/tool'} title={t('Tool')} href="/tool"></NavItem>
       </nav>
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+      {/* <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
         <Tooltip>
           <TooltipTrigger asChild>
             <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
@@ -155,7 +158,7 @@ export const Sidebar = () => {
           </TooltipTrigger>
           <TooltipContent side="right">Settings</TooltipContent>
         </Tooltip>
-      </nav>
+      </nav> */}
     </aside>
   )
 }
