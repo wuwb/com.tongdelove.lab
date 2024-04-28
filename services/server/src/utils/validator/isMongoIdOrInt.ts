@@ -8,7 +8,7 @@
  */
 import { ValidationOptions } from 'class-validator'
 import { isInt, isMongoId } from 'class-validator'
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 
 import { validatorFactory } from './simpleValidatorFactory'
 

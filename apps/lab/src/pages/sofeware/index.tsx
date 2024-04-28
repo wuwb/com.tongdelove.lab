@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Metadata } from 'next'

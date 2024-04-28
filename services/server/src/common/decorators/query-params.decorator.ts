@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import lodash from 'lodash-es';
 import { createParamDecorator } from '@nestjs/common';
 import { HttpForbiddenError } from '@/common/errors/forbidden.error';
 import { HttpBadRequestError } from '@/common/errors/bad-request.error';

@@ -51,7 +51,7 @@
     "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
     "lint2": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:ws": "pnpm dlx sherif@latest",
+    "lint:ws": "pnpm dlx sherif@latest --fix",
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add"
@@ -59,12 +59,10 @@
   "prisma": {
     "schema": "prisma/prisma/schema.prisma"
   },
-  "dependencies": {
+  "devDependencies": {
     "@prisma/client": "^5.13.0",
     "cross-env": "7.0.3",
-    "inquirer": "^8"
-  },
-  "devDependencies": {
+    "inquirer": "^8",
     "@tongdelove/prettier-config": "workspace:*",
     "@turbo/gen": "^1.13.2",
     "@changesets/changelog-github": "0.5.0",
@@ -75,7 +73,7 @@
     "@eslint/js": "^8.56.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@manypkg/cli": "^0.21.2",
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.11.20",
     "@types/shell-quote": "1.7.5",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",

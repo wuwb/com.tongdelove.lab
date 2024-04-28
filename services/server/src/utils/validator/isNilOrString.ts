@@ -6,7 +6,7 @@ import {
   isString,
   registerDecorator,
 } from 'class-validator'
-import { isNil } from 'lodash'
+import { isNil } from 'lodash-es'
 
 @ValidatorConstraint({ async: true })
 class IsNilOrStringConstraint implements ValidatorConstraintInterface {

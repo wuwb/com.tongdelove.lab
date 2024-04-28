@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import { CreatePost } from '@/app/_components/create-post'
-import { trpc } from "@/trpc/server";
+import { trpc } from '@/trpc/server'
 
 export default async function Home() {
-
   console.log('trpc: ', trpc)
 
   return (

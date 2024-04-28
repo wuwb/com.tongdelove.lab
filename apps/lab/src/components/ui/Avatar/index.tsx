@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import * as React from 'react'
+import React from 'react'
 
 export function Avatar({ user, src, ...props }) {
   const fallbackUrl = '/static/img/fallback-avatar.png'

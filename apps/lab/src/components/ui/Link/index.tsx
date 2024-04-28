@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import * as React from 'react'
+import React from 'react'
 
 const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
   const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props

@@ -1,7 +1,7 @@
 import { formatError, formatHttpRequest, formatHttpResponse, stringify, version } from '@elastic/ecs-helpers';
 import { trace } from '@opentelemetry/api';
 import fecha from 'fecha';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash-es';
 import { FormatWrap, TransformableInfo } from 'logform';
 import { MESSAGE } from 'triple-beam';
 import { format } from 'winston';

@@ -6,7 +6,7 @@ import { User, Prisma } from '@prisma/client';
 import { PrismaService } from '@/core/database/prisma/prisma.service';
 import { UserEntity } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash-es';
 import { ApiException } from '@/common/exceptions/api.exception';
 import { QQService } from '@/shared/services/qq.service';
 import { generateRandomValue } from '@/utils/base/string.util';

@@ -12,6 +12,5 @@ export default async function Page({ params, searchParams }: Props) {
     lang: params.lang,
   })
 
-
   return <div>{poem}</div>
 }

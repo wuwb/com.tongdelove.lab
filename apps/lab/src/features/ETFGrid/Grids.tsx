@@ -1,7 +1,7 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids'
 import LazyDownload from './Download'
 
-import { Title, Table, TableTr, TableThead, TableTbody, TableTfoot } from '@mantine/core'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableFooter, TableRow } from '@tongdelove/ui/table'
 
 export function Grids() {
   const grids = useGrids()
@@ -21,74 +21,72 @@ export function Grids() {
 
   return (
     <div>
-      <Title>
-        <span>操作示意表</span>
-        <LazyDownload />
-      </Title>
+      <LazyDownload />
       <Table id="table-list">
-        <thead>
-          <TableTr>
-            <TableThead>序号</TableThead>
-            <TableThead>种类</TableThead>
-            <TableThead>档位</TableThead>
-            <TableThead>买入价格</TableThead>
-            <TableThead>买入数量</TableThead>
-            <TableThead>买入金额</TableThead>
-            <TableThead>卖出价格</TableThead>
-            <TableThead>卖出数量</TableThead>
-            <TableThead>卖出金额</TableThead>
-            <TableThead>盈利金额</TableThead>
-            <TableThead>盈利比例</TableThead>
-            <TableThead>
+        <TableCaption>操作示意表</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>序号</TableHead>
+            <TableHead>种类</TableHead>
+            <TableHead>档位</TableHead>
+            <TableHead>买入价格</TableHead>
+            <TableHead>买入数量</TableHead>
+            <TableHead>买入金额</TableHead>
+            <TableHead>卖出价格</TableHead>
+            <TableHead>卖出数量</TableHead>
+            <TableHead>卖出金额</TableHead>
+            <TableHead>盈利金额</TableHead>
+            <TableHead>盈利比例</TableHead>
+            <TableHead>
               本期
               <br />
               留存利润
-            </TableThead>
-            <TableThead>
+            </TableHead>
+            <TableHead>
               本期
               <br />
               留存数量
-            </TableThead>
-          </TableTr>
-        </thead>
-        <tbody>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {grids.map((grid, index) => {
             return (
-              <div key={index}>
-                <TableTbody>{index + 1}</TableTbody>
-                <TableTbody>{grid.type}</TableTbody>
-                <TableTbody>{toFixedString(grid.gear)}</TableTbody>
-                <TableTbody>{toFixedString(grid.buyPrice)}</TableTbody>
-                <TableTbody>{toFixedString(grid.buyCount, 0)}</TableTbody>
-                <TableTbody>{toFixedString(grid.buyAmount, 0)}</TableTbody>
-                <TableTbody>{toFixedString(grid.sellPrice)}</TableTbody>
-                <TableTbody>{toFixedString(grid.sellCount, 0)}</TableTbody>
-                <TableTbody>{toFixedString(grid.sellAmount, 0)}</TableTbody>
-                <TableTbody>{toFixedString(grid.profits, 0)}</TableTbody>
-                <TableTbody>{grid.returnRate}</TableTbody>
-                <TableTbody>{toFixedString(grid.retainedProfits, 0)}</TableTbody>
-                <TableTbody>{toFixedString(grid.retainedCount, 0)}</TableTbody>
-              </div>
+              <TableRow key={index}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{grid.type}</TableCell>
+                <TableCell>{toFixedString(grid.gear)}</TableCell>
+                <TableCell>{toFixedString(grid.buyPrice)}</TableCell>
+                <TableCell>{toFixedString(grid.buyCount, 0)}</TableCell>
+                <TableCell>{toFixedString(grid.buyAmount, 0)}</TableCell>
+                <TableCell>{toFixedString(grid.sellPrice)}</TableCell>
+                <TableCell>{toFixedString(grid.sellCount, 0)}</TableCell>
+                <TableCell>{toFixedString(grid.sellAmount, 0)}</TableCell>
+                <TableCell>{toFixedString(grid.profits, 0)}</TableCell>
+                <TableCell>{grid.returnRate}</TableCell>
+                <TableCell>{toFixedString(grid.retainedProfits, 0)}</TableCell>
+                <TableCell>{toFixedString(grid.retainedCount, 0)}</TableCell>
+              </TableRow>
             )
           })}
-        </tbody>
-        <tfoot>
-          <TableTr>
-            <TableTfoot>总计</TableTfoot>
-            <TableTfoot />
-            <TableTfoot />
-            <TableTfoot />
-            <TableTfoot />
-            <TableTfoot>{toFixedString(totalBuyAmount, 0)}</TableTfoot>
-            <TableTfoot />
-            <TableTfoot />
-            <TableTfoot />
-            <TableTfoot>{toFixedString(totalProfits, 0)}</TableTfoot>
-            <TableTfoot>{toFixedString((totalProfits / totalBuyAmount) * 100, 2)}%</TableTfoot>
-            <TableTfoot />
-            <TableTfoot />
-          </TableTr>
-        </tfoot>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell>总计</TableCell>
+            <TableCell />
+            <TableCell />
+            <TableCell />
+            <TableCell />
+            <TableCell>{toFixedString(totalBuyAmount, 0)}</TableCell>
+            <TableCell />
+            <TableCell />
+            <TableCell />
+            <TableCell>{toFixedString(totalProfits, 0)}</TableCell>
+            <TableCell>{toFixedString((totalProfits / totalBuyAmount) * 100, 2)}%</TableCell>
+            <TableCell />
+            <TableCell />
+          </TableRow>
+        </TableFooter>
       </Table>
       <div>
         <p>说明：</p>

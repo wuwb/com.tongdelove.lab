@@ -90,7 +90,6 @@ if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
 
 /** @type {import("next").NextConfig} */
 const config = {
-
   reactStrictMode: true,
 
   // basePath: '',
@@ -176,13 +175,7 @@ const config = {
     unoptimized: false,
   },
 
-  transpilePackages: [
-    '@tongdelove/api',
-    '@tongdelove/auth',
-    '@tongdelove/db',
-    '@tongdelove/ui',
-    '@tongdelove/validators',
-  ],
+  transpilePackages: ['@tongdelove/api', '@tongdelove/auth', '@tongdelove/db', '@tongdelove/ui', '@tongdelove/validators'],
 
   // Standalone build
   // @link https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files-experimental

@@ -1,7 +1,7 @@
 import { SetMetadata } from '@nestjs/common';
 import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import * as META from '@/common/constants/meta.constant';
-import lodash from 'lodash';
+import lodash from 'lodash-es';
 
 // 缓存器配置
 interface ICacheOption {

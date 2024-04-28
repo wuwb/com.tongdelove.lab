@@ -3,21 +3,23 @@ import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Inpu
 import { Suggestion } from '@/components/ui/Suggestion/Suggestion'
 import { FundDataItem } from '@/server/service'
 import { useAppState, useDispatch } from '@/server/store'
-import { noop } from 'lodash'
+import { noop } from 'lodash-es'
 import { useCallback, useState } from 'react'
 
 export function Settings() {
   const state = useAppState()
   const dispatch = useDispatch()
+
   const { price, amount, increasePercentPerGrid, numberOfRetainedProfits, hasMiddleGrid, hasBigGrid } = state
+
   return (
     <form>
-      <div>
+      <div class="flex flex-col">
         <div className="mb-1 block w-full py-1">基本设置</div>
         <Fund />
-        <div>
+        <div className="flex">
           <div>价格</div>
-          <div>
+          <div className="flex">
             <NumberInput
               value={price}
               onChange={(value: number) => {
@@ -29,9 +31,9 @@ export function Settings() {
             <div>元</div>
           </div>
         </div>
-        <div>
+        <div className="flex">
           <div>每份金额</div>
-          <div>
+          <div className="flex">
             <NumberInput
               value={amount}
               onChange={(value: number) => {
@@ -44,11 +46,11 @@ export function Settings() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col">
         <div>留利润</div>
-        <div>
+        <div className="flex">
           <div>留存份数</div>
-          <div>
+          <div className="flex">
             <NumberInput
               value={numberOfRetainedProfits}
               onChange={(value: number) => {
@@ -74,9 +76,9 @@ export function Settings() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col">
         <div>一网打尽</div>
-        <div>
+        <div className="flex">
           <div>中网</div>
           <div>
             <CheckBox
@@ -87,7 +89,7 @@ export function Settings() {
             />
           </div>
         </div>
-        <div>
+        <div className="flex">
           <div>大网</div>
           <div>
             <CheckBox
@@ -106,6 +108,7 @@ export function Settings() {
 function Fund() {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
+
   const onSelectCallback = useCallback(
     (item: FundDataItem) => {
       const { FundBaseInfo } = item

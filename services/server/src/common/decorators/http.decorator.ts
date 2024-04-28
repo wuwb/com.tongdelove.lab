@@ -2,7 +2,7 @@ import { SetMetadata, HttpStatus } from '@nestjs/common';
 import { ResponseMessage } from '@/shared/interfaces/http.interface';
 import * as META from '@/common/constants/meta.constant';
 import * as TEXT from '@/common/constants/text.constant';
-import lodash from 'lodash';
+import lodash from 'lodash-es';
 
 // 构造器参数
 interface DecoratorBuilderOption {

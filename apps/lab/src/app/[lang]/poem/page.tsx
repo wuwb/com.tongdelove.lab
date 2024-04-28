@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
-import { trpc } from "@/trpc/server";
+import { trpc } from '@/trpc/server'
 
 export default async function Page() {
-  console.log('trpc: ', )
+  console.log('trpc: ')
 
   const data = await trpc.poem.count()
   // const data2 = await trpc.auth.getSecretMessage()

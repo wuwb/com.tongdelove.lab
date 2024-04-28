@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Table, TableTr, TableTd, TableTh, TableThead, TableTbody } from '@mantine/core'
 
 import { data } from './data'

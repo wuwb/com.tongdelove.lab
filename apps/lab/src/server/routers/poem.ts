@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'
 import { splitChineseSymbol } from '@/utils'
-import type { TRPCRouterRecord } from "@trpc/server";
+import type { TRPCRouterRecord } from '@trpc/server'
 
 let token: {
   access_token: string
@@ -253,30 +253,30 @@ export const poemRouter = {
 
       const [data, total, tag] = await ctx.prisma.$transaction([
         ctx.prisma.poem.findMany({
-          where: { 
-            tags: { 
-              some: { 
-                id: intId
-              } 
-            } 
+          where: {
+            tags: {
+              some: {
+                id: intId,
+              },
+            },
           },
           include: { author: true },
           skip: (page - 1) * pageSize,
           take: pageSize,
         }),
         ctx.prisma.poem.count({
-          where: { 
-            tags: { 
-              some: { 
-                id: intId
-              } 
-            } 
+          where: {
+            tags: {
+              some: {
+                id: intId,
+              },
+            },
           },
         }),
-        ctx.prisma.tag.findUnique({ 
-          where: { 
-            id: intId
-          } 
+        ctx.prisma.tag.findUnique({
+          where: {
+            id: intId,
+          },
         }),
       ])
 
@@ -535,4 +535,4 @@ export const poemRouter = {
         data: json,
       })
     }),
-} satisfies TRPCRouterRecord;
+} satisfies TRPCRouterRecord

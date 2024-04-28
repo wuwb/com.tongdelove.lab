@@ -13,7 +13,6 @@
     "prettier": "prettier --write --cache .",
     "clean": "rm -rf dist"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.2.53",
     "react": "18.2.0",

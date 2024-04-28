@@ -1,4 +1,4 @@
-import { sample } from 'lodash'
+import { sample } from 'lodash-es'
 import { NotFoundException as NotFoundExceptionBase } from '@nestjs/common'
 import { ApiProperty } from '@nestjs/swagger';
 

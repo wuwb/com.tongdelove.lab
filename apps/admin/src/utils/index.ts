@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import * as fs from 'fs';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import * as path from 'path';
 import pathToRegexp from 'path-to-regexp';
 import store from 'store';

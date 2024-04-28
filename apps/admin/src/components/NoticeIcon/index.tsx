@@ -2,7 +2,7 @@ import { getNotices } from '@/services/ant-design-pro/api';
 import { useModel, useRequest } from '@umijs/max';
 import { message, Tag } from 'antd';
 import dayjs from 'dayjs';
-import { groupBy } from 'lodash';
+import { groupBy } from 'lodash-es';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
 import NoticeIcon from './NoticeIcon';
