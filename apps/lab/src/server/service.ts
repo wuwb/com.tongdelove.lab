@@ -7,8 +7,11 @@ export type FundDataItem = {
   }
 }
 
-export const suggestFunds = (key: string): Promise<FundDataItem[]> => {
+export const suggestFunds = (key: string) => {
   if (!key) {
-    return Promise.resolve([])
+    return Promise.resolve([] as FundDataItem[])
+  } else {
+    // TODO: implement suggest funds logic
+    return Promise.resolve([] as FundDataItem[])
   }
 }

@@ -48,7 +48,7 @@
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
     "declarationMap": true,
-    "preserveSymlinks": true, // set false or shadcn-ui broken
+    "preserveSymlinks": false, // set false or shadcn-ui broken
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
