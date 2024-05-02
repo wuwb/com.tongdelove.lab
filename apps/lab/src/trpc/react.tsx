@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { type AppRouter } from '@/server/trpc/root'
 import { getUrl, transformer } from './shared'
 import SuperJSON from 'superjson'
-import { env } from '@/env'
+import { env } from '@/env/server'
 
 const createQueryClient = () =>
   new QueryClient({

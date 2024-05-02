@@ -18,7 +18,6 @@ import nextUtils from './next-utils.config.js'
 const jiti = createJiti(fileURLToPath(import.meta.url))
 
 // validate during build
-jiti('./src/env/index')
 jiti('./src/env/client')
 jiti('./src/env/server')
 

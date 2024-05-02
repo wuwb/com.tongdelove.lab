@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
 
 import { createCaller } from '@/server/trpc'
-import { auth } from '@/server/auth'
+import { auth } from '@/auth'
 
 import { createTRPCProxyClient, loggerLink, TRPCClientError } from '@trpc/client'
 import { callProcedure } from '@trpc/server'

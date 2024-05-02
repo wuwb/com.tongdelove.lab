@@ -182,3 +182,5 @@ https://github.com/trpc/trpc/tree/next/examples/standalone-server
 https://github.com/trpc/trpc/tree/next/examples/express-server
 https://github.com/trpc/trpc/tree/next/examples/fastify-server
 https://github.com/icflorescu/trpc-sveltekit-example
+https://aistickergenerator.net/
+https://github.com/lzzzzl/my-sticker-ai-app
