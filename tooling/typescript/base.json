@@ -1,12 +1,20 @@
 {
+  // www.typescriptlang.org/tsconfig
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     /** Base Options */
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "allowJs": true,
+    "esModuleInterop": true, // 通过为导入内容创建命名空间，实现 CommonJS 和 ES 模块之间的互操作性 /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "skipLibCheck": true, // 跳过导入第三方 lib 声明文件的类型检查，默认为 true
+    "target": "ES2020", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
+    "lib": [
+      "ES2022",
+      "dom",
+      "esnext.array",
+      "dom.iterable",
+      "esnext",
+      "WebWorker"
+    ], /* Specify library files to be included in the compilation. */
+    "allowJs": false,
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
@@ -16,14 +24,94 @@
     "disableSourceOfProjectReferenceRedirect": true,
 
     /** Strictness */
-    "strict": true,
+    "strict": true, /* Enable all strict type-checking options. */
     "noUncheckedIndexedAccess": true,
-    "checkJs": true,
+    // "checkJs": true, /* Report errors in .js files. */
 
     /** Transpile using Bundler (not tsc) */
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "noEmit": true
+    "module": "commonjs", // "Preserve",
+    // "moduleResolution": "Bundler", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */ // 指定使用哪种模块解析策略，默认为 Classic,// node, bundler 指定使用哪种模块解析策略，默认为 Classic, 'bundler'
+    "noEmit": true,
+    /* Basic Options */
+    // https://node.green/
+    // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    "declaration": true, /* Generates corresponding '.d.ts' file. */
+    "declarationMap": true, /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
+    // "outFile": "./",                       /* Concatenate and emit output to single file. */
+    // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // "composite": true,                     /* Enable project compilation */
+    // "removeComments": true,                /* Do not emit comments to output. */
+    // "noEmit": true,                        /* Do not emit outputs. */
+    "importHelpers": false, /* Import emit helpers from 'tslib'. */
+    // "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+    /* Strict Type-Checking Options */
+    // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    // "strictNullChecks": true,              /* Enable strict null checks. */
+    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
+    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+    /* Additional Checks */
+    "noUnusedLocals": true, /* Report errors on unused locals. */
+    "noUnusedParameters": true, /* Report errors on unused parameters. */
+    "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+    // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
+    /* Module Resolution Options */
+    // "moduleResolution": "node",           
+    // "baseUrl": ".",                        /* Base directory to resolve non-absolute module names. */
+    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
+    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    // "types": [],                           /* Type declaration files to be included in compilation. */
+    // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "preserveSymlinks": true, /* Do not resolve the real path of symlinks. */
+    /* Source Map Options */
+    // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    // "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
+    // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
+    // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+    /* Experimental Options */
+    // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    // "verbatimModuleSyntax": false, // Unknown compiler option
+    "useUnknownInCatchVariables": true,
+    "noImplicitOverride": true,
+    "skipDefaultLibCheck": true,
+    "noEmitHelpers": true,
+    "pretty": true,
+    "noEmitOnError": false,
+    "noLib": false,
+    "newLine": "lf",
+    "outDir": "./dist",
+    "allowUnusedLabels": true,
+    "noImplicitUseStrict": false,
+    "strictFunctionTypes": true,
+    "jsx": "react-jsx",
+    // module resolution options
+    "removeComments": true,
+    "preserveConstEnums": true,
+    // experimental options
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    // type checking options
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "strictBindCallApply": true,
+    // "declarationDir": "dist/types", // .d.ts 类型文件的输出目录，默认为 outDir 目录
+    // "declaration": true,
+    // "composite": false,
+    // source map options
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写，默认为 true
+    "strictPropertyInitialization": false,
   },
   "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
 }

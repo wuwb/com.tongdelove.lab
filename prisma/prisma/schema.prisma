@@ -1054,12 +1054,12 @@ model Account {
   type              String
   provider          String    @db.VarChar(63) // email、google
   providerAccountId String    @unique @map(name: "provider_account_id")
-  refreshToken      String?   @map(name: "refresh_token") @db.Text
-  accessToken       String?   @map(name: "access_token") @db.Text
+  refreshToken      String?   @map(name: "refresh_token") 
+  accessToken       String?   @map(name: "access_token") 
   expiresAt         Int?      @map(name: "expires_at")
   tokenType         String?   @map(name: "token_type")
   scope             String?
-  idToken           String?   @map(name: "id_token") @db.Text
+  idToken           String?   @map(name: "id_token") 
   sessionState      String?   @map(name: "session_state")
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt         DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)

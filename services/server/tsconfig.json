@@ -1,83 +1,83 @@
 {
-    "extends": "../../tsconfig.json",
-    "ts-node": {
-        // Do not forget to `npm i -D tsconfig-paths`
-        "require": [
-            "tsconfig-paths/register"
+  "extends": "@tongdelove/tsconfig/base.json",
+  "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  },
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipDefaultLibCheck": true,
+    "module": "commonjs",
+      "declaration": true,
+      "strictPropertyInitialization": false,
+      "sourceMap": false,
+      "pretty": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "es2022", //
+      "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+      "noLib": false,
+      "rootDir": ".",
+      "baseUrl": ".",
+      "types": [
+        "node",
+        "reflect-metadata",
+        "jest",
+        "Multer"
+      ],
+      // https://stackoverflow.com/questions/61687679/nest-js-build-does-does-not-generate-the-dist-folder
+      "noEmit": false,
+      "noEmitOnError": false,
+      "noEmitHelpers": true,
+      "incremental": false, // 避免打包失败
+      "skipLibCheck": true,
+      "lib": [
+        "ES2020",
+        "esnext.array",
+        "esnext.asynciterable",
+        "dom.iterable",
+        "esnext",
+        "dom"
+      ],
+      "jsx": "react-jsx",
+      "resolveJsonModule": true,
+      "allowUnusedLabels": true,
+      "noImplicitUseStrict": false,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "moduleResolution": "node",
+      "noUnusedParameters": false,
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": false,
+      "noUnusedLocals": false,
+      "allowJs": true,
+      "strict": true,
+      "paths": {
+        "@/scripts/*": [
+          "scripts/*"
+        ],
+        "@/*": [
+          "src/*"
         ]
-    },
-    "compilerOptions": {
-        "allowUnreachableCode": false,
-        "noFallthroughCasesInSwitch": true,
-        "skipDefaultLibCheck": true,
-        "module": "commonjs",
-        "declaration": false, // ?
-        "strictPropertyInitialization": false,
-        "sourceMap": false,
-        "pretty": true,
-        "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "target": "es2022", //
-        "outDir": "./dist" /* Specify an output folder for all emitted files. */,
-        "noLib": false,
-        "rootDir": ".",
-        "baseUrl": ".",
-        "types": [
-            "node",
-            "reflect-metadata",
-            "jest",
-            "Multer"
-        ],
-        // https://stackoverflow.com/questions/61687679/nest-js-build-does-does-not-generate-the-dist-folder
-        "noEmit": false,
-        "noEmitOnError": false,
-        "noEmitHelpers": true,
-        "incremental": false, // 避免打包失败
-        "skipLibCheck": true,
-        "lib": [
-            "ES2020",
-            "esnext.array",
-            "esnext.asynciterable",
-            "dom.iterable",
-            "esnext",
-            "dom"
-        ],
-        "jsx": "react-jsx",
-        "resolveJsonModule": true,
-        "allowUnusedLabels": true,
-        "noImplicitUseStrict": false,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
-        "moduleResolution": "node",
-        "noUnusedParameters": false,
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitReturns": false,
-        "noUnusedLocals": false,
-        "allowJs": true,
-        "strict": true,
-        "paths": {
-            "@/scripts/*": [
-                "scripts/*"
-            ],
-            "@/*": [
-                "src/*"
-            ]
-        }
+      }
     },
     "include": [
-        "**/*",
-        "jest.config.js",
-        "src/**/*",
-        "tests/**/*",
-        "scripts/**/*"
+      "**/*",
+      "jest.config.js",
+      "src/**/*",
+      "tests/**/*",
+      "scripts/**/*"
     ],
     "exclude": [
-        "node_modules"
+      "node_modules"
     ]
 }

@@ -15,12 +15,14 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
 
   console.log('session: ', session)
 
-  const { data: hello, isLoading } = trpc.example.hello.useQuery({
-    text: 'from tRPC',
-  })
-  const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
+  // const { data: hello, isLoading } = trpc.example.hello.useQuery({
+  //   text: 'from tRPC',
+  // })
+  // const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
 
-  const { data: links = [] } = trpc.link.getLinks.useQuery()
+  // const { data: links = [] } = trpc.link.getLinks.useQuery()
+
+  // console.log('links: ', links)
 
   return (
     <>
@@ -33,22 +35,13 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
       <HomePage />
 
       <Container className="mt-10 flex flex-col">
-        <div>
-          {links.map((link, index) => {
-            return (
-              <Link key={link.id} href={link.url}>
-                {link.id}
-              </Link>
-            )
-          })}
-        </div>
         <div className="flex flex-col">
           <p className="text-center text-2xl text-white">
             {session && <span>Logged in as {session.user?.name}</span>}
-            {secretMessage && <span> - {secretMessage}</span>}
+            {/* {secretMessage && <span> - {secretMessage}</span>} */}
           </p>
 
-          <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
+          {/* <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p> */}
         </div>
       </Container>
     </>

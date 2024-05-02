@@ -1,13 +1,7 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tongdelove/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": "./src",
-    "target": "ESNext",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
     "module": "ES2020",
     "noEmit": false,
     "incremental": true,
@@ -19,11 +13,6 @@
     "moduleResolution": "node",
     "composite": true
   },
-  "exclude": [
-    "**/node_modules",
-    "**/.*/*",
-    "dist"
-  ],
   "include": [
     ".eslintrc.*",
     "**/*.ts",
@@ -34,5 +23,10 @@
     "**/*.mjs",
     "**/*.jsx",
     "**/*.json"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/.*/*",
+    "dist"
   ]
 }

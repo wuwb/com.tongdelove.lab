@@ -21,7 +21,7 @@ export const authConfig = {
   }),
   providers: [Discord],
   callbacks: {
-    session: (opts) => {
+    session: (opts: any) => {
       if (!("user" in opts)) throw "unreachable with session strategy";
 
       return {

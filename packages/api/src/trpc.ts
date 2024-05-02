@@ -36,7 +36,7 @@ export const createTRPCContext = (opts: {
 
   return {
     session,
-    db,
+    drizzle: db,
   };
 };
 

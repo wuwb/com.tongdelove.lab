@@ -9,7 +9,7 @@
       "default": "./src/index.ts"
     }
   },
-  "license": "MIT",
+  "license": "UNLICENSE",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

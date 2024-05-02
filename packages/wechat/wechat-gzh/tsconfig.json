@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.json",
+  "extends": "@tongdelove/tsconfig/internal-package.json",
     "compilerOptions": {
         "module": "commonjs",
         "declaration": true,

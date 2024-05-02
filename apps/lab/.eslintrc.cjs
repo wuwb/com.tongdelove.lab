@@ -14,13 +14,7 @@ const config = {
   //   // sourceType: 'module',
   //   tsconfigRootDir: __dirname,
   // },
-  plugins: [
-    '@typescript-eslint',
-    'prettier',
-    'testing-library',
-    // 'jest'
-    // "jest-extended"
-  ],
+  plugins: ['@typescript-eslint', 'prettier', 'testing-library'],
   extends: [
     // ct3
     'next/core-web-vitals',

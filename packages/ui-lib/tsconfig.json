@@ -1,6 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tongdelove/tsconfig/internal-package.json",
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "esnext",
@@ -10,9 +9,6 @@
     "jsxImportSource": "@emotion/react",
     "noEmit": false,
     "incremental": true,
-    "paths": {
-      "@tongdelove/ts-utils": ["../../../packages/ts-utils/src/index"]
-    },
     "types": ["@testing-library/jest-dom/vitest"]
   },
   "exclude": ["**/node_modules", "**/.*/*", "dist"],

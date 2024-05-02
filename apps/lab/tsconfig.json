@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tongdelove/tsconfig/base.json",
   "compilerOptions": {
     /* Base Options: */
     "esModuleInterop": true,
@@ -31,6 +31,7 @@
       "@/*": ["src/*"],
       "@/public/*": ["public/*"]
     },
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "strictNullChecks": true, // trpc required, need to be true
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -69,7 +70,8 @@
     ".next/types/**/*.ts",
     "next-i18next.config.js",
     "scripts/*.mts",
-    "../../prettier.config.js"
+    "../../prettier.config.js",
+    "."
   ],
   "exclude": ["node_modules"]
 }

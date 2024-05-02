@@ -1,9 +1,8 @@
 {
-  "name": "@wuwenbin/schema",
+  "name": "@tondelove/schema",
   "version": "0.0.1",
   "private": true,
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch --preserveWatchOutput --sourcemap",
@@ -13,10 +12,12 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "zod": "^3.23.4"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@tongdelove/tsconfig": "workspace:*"
   }
 }

@@ -1,6 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tongdelove/tsconfig/internal-package.json",
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "ESNext",
@@ -10,8 +9,9 @@
     "noEmit": false,
     "incremental": true,
     "paths": {
-      "@/test-utils": ["../config/test/test-utils"],
-      "@tongdelove/ts-utils": ["../../../packages/ts-utils/src/index"]
+      "@/test-utils": [
+        "../config/test/test-utils"
+      ]
     },
     "types": ["jest", "vitest/globals"]
   },

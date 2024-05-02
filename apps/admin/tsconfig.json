@@ -29,7 +29,7 @@
         "./src/.umi-test/*"
       ]
     },
-    "declaration": false,
+    "declaration": true,
     "outDir": "build/dist",
     "lib": [
       "dom",

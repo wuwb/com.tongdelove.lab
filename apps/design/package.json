@@ -43,11 +43,9 @@
   "devDependencies": {
     "@tailwindcss/line-clamp": "0.4.2",
     "@testing-library/dom": "^8.13.0",
-    "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "latest",
     "@types/downloadjs": "^1.4.2",
-    "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.155",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.2",
@@ -67,7 +65,6 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-standard": "^4.0.1",
-    "jest": "^29.7.0",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^9.1.0",
     "postcss": "^8.4.38",
@@ -96,5 +93,5 @@
   "installConfig": {
     "hoistingLimits": "none"
   },
-  "license": "ISC"
+  "license": "UNLICENSE"
 }

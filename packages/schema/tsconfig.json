@@ -1,11 +1,10 @@
 {
-    "extends": "../../tsconfig.base.json",
+  "extends": "@tongdelove/tsconfig/internal-package.json",
     "compilerOptions": {
         "outDir": "dist",
     },
-    "importHelpers": false,
     "include": [
-        "src/**/*"
+        "src"
     ],
     "exclude": [
         "node_modules",
