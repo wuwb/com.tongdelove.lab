@@ -30,6 +30,11 @@
     "test-unit": "echo \"No unit tests yet\"",
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
+  "dependencies": {
+    "prisma": "^5.13.0",
+    "prisma-erd-generator": "^1.11.1",
+    "@prisma/client": "^5.13.0"
+  },
   "devDependencies": {
     "@soluble/dsn-parser": "^1.9.2",
     "@tongdelove/eslint-config-base": "workspace:^",
@@ -44,8 +49,6 @@
     "npm-run-all": "4.1.5",
     "picocolors": "1.0.0",
     "prettier": "^3.2.5",
-    "prisma": "^5.13.0",
-    "prisma-erd-generator": "^1.11.1",
     "rimraf": "5.0.5",
     "transliteration": "2.3.5",
     "tsup": "7.2.0",
@@ -60,8 +63,5 @@
   },
   "prisma": {
     "seed": "tsx ./prisma/seed.ts"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.13.0"
   }
 }

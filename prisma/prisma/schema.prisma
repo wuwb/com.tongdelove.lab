@@ -2097,6 +2097,12 @@ model Analyze {
   @@map(name: "analyze")
 }
 
+model AppleGuide {
+  id Int @id @default(autoincrement())
+  data String
+  createdAt DateTime?       @default(now()) @map(name: "created_at")
+}
+
 enum TransactionType {
   CHAT_CHATGPT
   CHAT_GPT_4

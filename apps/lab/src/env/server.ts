@@ -47,7 +47,6 @@ export const env = createEnv({
     LINKEDIN_CLIENT_ID: z.string().optional(),
     LINKEDIN_CLIENT_SECRET: z.string().optional(),
 
-
     // dev
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).optional(),
@@ -64,9 +63,7 @@ export const env = createEnv({
   runtimeEnv: process.env,
   isServer: typeof window === 'undefined',
   // Extend the Vercel preset.
-  extends: [
-    vercel()
-  ],
+  extends: [vercel()],
 
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

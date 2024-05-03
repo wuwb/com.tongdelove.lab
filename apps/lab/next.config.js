@@ -175,8 +175,8 @@ const config = {
   },
 
   transpilePackages: [
-    // '@tongdelove/api', 
-    // '@tongdelove/auth', 
+    // '@tongdelove/api',
+    // '@tongdelove/auth',
     // '@tongdelove/db',
     '@tongdelove/ui',
     '@tongdelove/validators',

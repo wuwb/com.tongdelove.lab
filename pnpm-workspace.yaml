@@ -10,6 +10,7 @@ packages:
   # - 'packages/db'
   - 'packages/ui'
   - 'packages/validators'
+  - 'tasks/jobs/apple-guide-spider'
   - 'tooling/eslint-config-base'
   - 'tooling/eslint'
   - 'tooling/github'

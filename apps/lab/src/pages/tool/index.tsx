@@ -80,6 +80,7 @@ const ToolPage = props => {
       <div className="w-full pt-3">
         <div className="flex gap-4">
           <ToolCard index={2} href="/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
+          <ToolCard index={2} href="/tool/apple-guide" title="苹果购买指南" desc="" />
           <ToolCard
             index={1}
             image={<Image src="/images/placeholder/80x80?text=80x80&fg=666666&bg=cccccc" width="80" height="80" alt="节日头像制作" />}

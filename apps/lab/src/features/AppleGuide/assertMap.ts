@@ -1,0 +1,27 @@
+export const assets = {
+  'iPhone 15 Pro': require('@/public/images/apple-guide/iPhone-15-Pro.svg'),
+  'iPhone 15': require('@/public/images/apple-guide/iPhone-15.svg'),
+  'iPhone SE': require('@/public/images/apple-guide/iPhone_SE.svg'),
+  '12.9" iPad Pro': require('@/public/images/apple-guide/12-9-iPad-Pro.svg'),
+  '11" iPad Pro': require('@/public/images/apple-guide/11-iPad-Pro.svg'),
+  'iPad Air': require('@/public/images/apple-guide/iPad-Air.svg'),
+  'iPad Mini': require('@/public/images/apple-guide/iPad_Mini.svg'),
+  iPad: require('@/public/images/apple-guide/iPad.svg'),
+  '13" MacBook Air': require('@/public/images/apple-guide/MacBook_Air.svg'),
+  '15" MacBook Air': require('@/public/images/apple-guide/15-MacBook-Air.svg'),
+  '13" MacBook Pro': require('@/public/images/apple-guide/MacBook_Pro_13.svg'),
+  '14" & 16" MacBook Pro': require('@/public/images/apple-guide/MacBook_Pro_16.svg'),
+  iMac: require('@/public/images/apple-guide/imac.svg'),
+  'Mac Mini': require('@/public/images/apple-guide/Mac_Mini.svg'),
+  'Mac Studio': require('@/public/images/apple-guide/Mac_Studio.svg'),
+  'Mac Pro': require('@/public/images/apple-guide/Mac_Pro.svg'),
+  HomePod: require('@/public/images/apple-guide/homepod.svg'),
+  AirPods: require('@/public/images/apple-guide/airpods.svg'),
+  'AirPods Pro': require('@/public/images/apple-guide/airpods_pro.svg'),
+  'AirPods Max': require('@/public/images/apple-guide/airpods_max.svg'),
+  'Apple Watch': require('@/public/images/apple-guide/apple_watch.svg'),
+  'Apple Watch SE': require('@/public/images/apple-guide/apple_watch_SE.svg'),
+  'Apple Watch Ultra': require('@/public/images/apple-guide/apple_watch_ultra.svg'),
+}
+
+export const holder = require('@/public/images/apple-guide/holder.svg')
