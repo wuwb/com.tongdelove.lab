@@ -1,16 +1,18 @@
-import Image from 'next/legacy/image'
 import { Container } from '@/components/common'
-import { ReactNode } from 'react'
+import { RiAppleFill, RiStockLine } from "react-icons/ri"
+import { IconType } from 'react-icons'
+import { RxAvatar } from "react-icons/rx"
 
 const ToolCard: React.FC<{
   title: string
-  image?: ReactNode
+  Icon?: IconType
   index: number
   desc: string
   href: string
-}> = ({ title, image, href, index, desc }) => {
+}> = ({ title, href, index, desc, Icon }) => {
   return (
     <div
+      className="border"
       style={{
         backgroundColor: '#FFFFFF',
         boxShadow: '0 2px 4px 0 rgba(35,49,128,0.02), 0 4px 8px 0 rgba(49,69,179,0.02)',
@@ -21,38 +23,21 @@ const ToolCard: React.FC<{
         lineHeight: ' 22px',
         padding: '16px 19px',
         flex: 1,
-        '&:hover': {
-          opacity: [0.9, 0.8, 0.7],
-        },
       }}
     >
       <div
-        style={{
-          display: 'flex',
-          gap: '4px',
-          alignItems: 'center',
-        }}
+        className="flex items-center gap-1"
       >
         <div
-          style={{
-            width: 48,
-            height: 48,
-            lineHeight: '22px',
-            backgroundSize: '100%',
-            textAlign: 'center',
-            padding: '8px 16px 16px 12px',
-            color: '#FFF',
-            fontWeight: 'bold',
-            backgroundImage: "url('https://gw.alipayobjects.com/zos/bmw-prod/daaf8d50-8e6d-4251-905d-676a24ddfa12.svg')",
-          }}
+          className="text-center pt-2 px-4 pb-3 text-black h-12 w-12 font-bold"
         >
-          {index ? image : index}
+          {Icon && <Icon size={30} />}
         </div>
         <div
+          className="pb-2"
           style={{
             fontSize: '16px',
             color: 'rgba(0, 0, 0, 0.85)',
-            paddingBottom: 8,
           }}
         >
           {title}
@@ -79,11 +64,15 @@ const ToolPage = props => {
     <Container>
       <div className="w-full pt-3">
         <div className="flex gap-4">
-          <ToolCard index={2} href="/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
-          <ToolCard index={2} href="/tool/apple-guide" title="苹果购买指南" desc="" />
+          <ToolCard
+            Icon={RiStockLine}
+            index={2} href="/tool/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
+          <ToolCard
+            Icon={RiAppleFill}
+            index={2} href="/tool/apple-guide" title="苹果设备购买指南" desc="精准推荐，全面分析，帮你挑选最适合的iPhone或其他苹果设备，决策无忧。" />
           <ToolCard
             index={1}
-            image={<Image src="/images/placeholder/80x80?text=80x80&fg=666666&bg=cccccc" width="80" height="80" alt="节日头像制作" />}
+            Icon={RxAvatar}
             href="https://umijs.org/docs/introduce/introduce"
             title="节日头像制作"
             desc="节日头像制作，国庆节、圣诞节、春节头像"

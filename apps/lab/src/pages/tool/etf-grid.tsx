@@ -47,7 +47,7 @@ const App = () => {
           <aside className="w-2/7 grow">
             <div className="ml-4 space-y-3">
               <div>
-                <Input type="text" value="https://lab.tongdelove.com/etf-grid" disabled />
+                <Input type="text" value="https://lab.printlake.com/tool/etf-grid" disabled />
               </div>
             </div>
           </aside>
