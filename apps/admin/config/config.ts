@@ -13,7 +13,6 @@ const mapToken = defaultAlgorithm(defaultSeed);
 const v4Token = convertLegacyToken(mapToken);
 
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-// https://umijs.org/zh-CN/docs
 const { REACT_APP_ENV = 'dev' } = process.env;
 
 export default defineConfig({

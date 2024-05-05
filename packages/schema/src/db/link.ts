@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteLinkCategory, RelatedLinkCategoryModelSchema, CompleteLinkSubCategory, RelatedLinkSubCategoryModelSchema } from "./index"
+import { CompleteLinkCategory, RelatedLinkCategoryModelSchema, CompleteLinkSubCategory, RelatedLinkSubCategoryModelSchema, CompleteCategory, RelatedCategoryModelSchema, CompleteUser, RelatedUserModelSchema } from "./index"
 
 export const LinkModelSchema = z.object({
   id: z.string(),
@@ -13,11 +13,15 @@ export const LinkModelSchema = z.object({
   updatedAt: z.date(),
   catagoryId: z.number().int().nullish(),
   subCategoryId: z.number().int().nullish(),
+  categoryId: z.string(),
+  userId: z.string(),
 })
 
 export interface CompleteLink extends z.infer<typeof LinkModelSchema> {
   catagory?: CompleteLinkCategory | null
   subCategory?: CompleteLinkSubCategory | null
+  category: CompleteCategory
+  user: CompleteUser
 }
 
 /**
@@ -28,4 +32,6 @@ export interface CompleteLink extends z.infer<typeof LinkModelSchema> {
 export const RelatedLinkModelSchema: z.ZodSchema<CompleteLink> = z.lazy(() => LinkModelSchema.extend({
   catagory: RelatedLinkCategoryModelSchema.nullish(),
   subCategory: RelatedLinkSubCategoryModelSchema.nullish(),
+  category: RelatedCategoryModelSchema,
+  user: RelatedUserModelSchema,
 }))

@@ -255,9 +255,9 @@ model LinkSubCategory {
 model Link {
   id            String           @id @default(cuid())
   icon          String?
-  url           String
-  title         String
-  description   String?
+  url           String @unique // 链接
+  title         String  @unique // 标题
+  description   String? // 描述
   public        Boolean          @default(true)
   status        Int              @default(1)
   createdAt     DateTime         @default(now()) @map(name: "created_at")
@@ -266,6 +266,15 @@ model Link {
   catagory      LinkCategory?    @relation(fields: [catagoryId], references: [id])
   subCategoryId Int?
   subCategory   LinkSubCategory? @relation(fields: [subCategoryId], references: [id])
+
+  categoryId  String   @map(name: "category_id")
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  userId      String   @map(name: "user_id")
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map(name: "link")
+
 }
 
 // 开始
@@ -1120,20 +1129,20 @@ model Category {
   createdAt   DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
   updatedAt   DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
   isDeleted   Boolean   @default(false) @map(name: "is_deleted") // 是否删除
-  title       String    @default("") @db.VarChar(255) // 类目名称
+  title       String    @default("")  // 类目名称
   type        Int       @default(0) // 类目类型，0:表示普通类目，1:表示系统类目
   status      String    @default("")
-  description String    @default("") @db.VarChar(255) // 类目广告语介绍
-  slug        String    @db.VarChar(255)
-  keywords    String    @default("") @db.VarChar(1023) // 类目关键字，以JSON数组格式
-  pid         Int       @default(0) @db.SmallInt
-  icon_url    String    @default("") @db.VarChar(255) // 类目图标
-  pic_url     String    @default("") @db.VarChar(255) // 类目图片
-  level       String    @default("L1") @db.VarChar(255) // 类目级别
+  description String    @default("")  // 类目广告语介绍
+  slug        String    
+  keywords    String    @default("") // 类目关键字，以JSON数组格式
+  pid         Int       @default(0)
+  icon_url    String    @default("")  // 类目图标
+  pic_url     String    @default("")  // 类目图片
+  level       String    @default("L1")  // 类目级别
   sort        Int       @default(50)
   Article     Article?  @relation(fields: [articleId], references: [id])
   articleId   String?
-  Website     Website[]
+  Link     Link[]
 
   @@map(name: "category")
 }
@@ -1348,7 +1357,7 @@ model User {
 
   roles             Role[]
   role              UserPermissionRole  @default(USER)
-  website           Website[]
+  link           Link[]
   dept              Dept?               @relation(fields: [deptId], references: [id])
   deptId            String?
   post              Post[]
@@ -1744,18 +1753,7 @@ model HeatingBag {
   @@map(name: "heating_bag")
 }
 
-model Website {
-  id          String   @id @default(cuid())
-  title       String   @unique @db.VarChar(255) // 标题
-  description String   @map(name: "description") @db.VarChar(255) // 描述
-  url         String   @unique @db.VarChar(255) // 链接
-  userId      String   @map(name: "user_id")
-  user        User     @relation(fields: [userId], references: [id])
-  categoryId  String   @map(name: "category_id")
-  category    Category @relation(fields: [categoryId], references: [id])
 
-  @@map(name: "website")
-}
 
 ///////////////////////////////////////////////////////////
 

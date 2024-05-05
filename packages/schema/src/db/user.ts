@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { UserLanguageCode, UserPermissionRole } from "@prisma/client"
-import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteWebsite, RelatedWebsiteModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema } from "./index"
+import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
   id: z.string(),
@@ -55,7 +55,7 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   accounts: CompleteAccount[]
   sessions: CompleteSession[]
   roles: CompleteRole[]
-  website: CompleteWebsite[]
+  link: CompleteLink[]
   dept?: CompleteDept | null
   post: CompletePost[]
   order: CompleteOrder[]
@@ -81,7 +81,7 @@ export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => Us
   accounts: RelatedAccountModelSchema.array(),
   sessions: RelatedSessionModelSchema.array(),
   roles: RelatedRoleModelSchema.array(),
-  website: RelatedWebsiteModelSchema.array(),
+  link: RelatedLinkModelSchema.array(),
   dept: RelatedDeptModelSchema.nullish(),
   post: RelatedPostModelSchema.array(),
   order: RelatedOrderModelSchema.array(),

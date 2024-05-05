@@ -38,11 +38,11 @@
   "devDependencies": {
     "@soluble/dsn-parser": "^1.9.2",
     "@tongdelove/eslint-config-base": "workspace:^",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.12.8",
     "@vegardit/prisma-generator-nestjs-dto": "^1.5.1",
     "@vitest/coverage-v8": "1.2.2",
     "cross-env": "7.0.3",
-    "eslint": "^9.0.0",
+    "eslint": "^8.56.0",
     "graphql": "16.8.1",
     "is-port-reachable": "4.0.0",
     "keyword-extractor": "0.0.27",

@@ -496,4 +496,6 @@ let navs = [
 
 navs = navs.concat(develop)
 
-export default navs
+export {
+  navs
+}

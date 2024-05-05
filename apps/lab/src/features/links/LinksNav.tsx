@@ -1,11 +1,10 @@
 import { Link } from '@/components/ui/'
-import styles from './Links.module.scss'
 
 export function LinksNav() {
   return (
-    <div className={styles.LinksNavBar}>
-      <Link href="/">前端导航</Link> | <Link href="/">设计导航</Link> | <Link href="/">独立开发导航</Link> |<Link href="/">后端导航</Link> | <Link href="/">包装导航</Link> |
-      <Link href="/">外包导航</Link> |
+    <div className="bg-white px-5 py-3">
+      <Link className="hover:text-[#ff5a00]" href="/">前端导航</Link> | <Link className="hover:text-[#ff5a00]" href="/">设计导航</Link> | <Link className="hover:text-[#ff5a00]" href="/">独立开发导航</Link> |<Link className="hover:text-[#ff5a00]" href="/">后端导航</Link> | <Link className="hover:text-[#ff5a00]" href="/">包装导航</Link> |
+      <Link className="hover:text-[#ff5a00]" href="/">外包导航</Link> |
     </div>
   )
 }

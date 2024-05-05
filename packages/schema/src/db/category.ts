@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteArticle, RelatedArticleModelSchema, CompleteWebsite, RelatedWebsiteModelSchema } from "./index"
+import { CompleteArticle, RelatedArticleModelSchema, CompleteLink, RelatedLinkModelSchema } from "./index"
 
 export const CategoryModelSchema = z.object({
   id: z.string(),
@@ -22,7 +22,7 @@ export const CategoryModelSchema = z.object({
 
 export interface CompleteCategory extends z.infer<typeof CategoryModelSchema> {
   Article?: CompleteArticle | null
-  Website: CompleteWebsite[]
+  Link: CompleteLink[]
 }
 
 /**
@@ -32,5 +32,5 @@ export interface CompleteCategory extends z.infer<typeof CategoryModelSchema> {
  */
 export const RelatedCategoryModelSchema: z.ZodSchema<CompleteCategory> = z.lazy(() => CategoryModelSchema.extend({
   Article: RelatedArticleModelSchema.nullish(),
-  Website: RelatedWebsiteModelSchema.array(),
+  Link: RelatedLinkModelSchema.array(),
 }))

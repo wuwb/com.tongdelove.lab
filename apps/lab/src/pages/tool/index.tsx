@@ -2,6 +2,7 @@ import { Container } from '@/components/common'
 import { RiAppleFill, RiStockLine } from "react-icons/ri"
 import { IconType } from 'react-icons'
 import { RxAvatar } from "react-icons/rx"
+import { RiLinksLine } from "react-icons/ri"
 
 const ToolCard: React.FC<{
   title: string
@@ -12,17 +13,13 @@ const ToolCard: React.FC<{
 }> = ({ title, href, index, desc, Icon }) => {
   return (
     <div
-      className="border"
+      className="border bg-white rounded-md px-5 py-4 flex-1"
       style={{
-        backgroundColor: '#FFFFFF',
         boxShadow: '0 2px 4px 0 rgba(35,49,128,0.02), 0 4px 8px 0 rgba(49,69,179,0.02)',
-        borderRadius: '8px',
         fontSize: '14px',
         color: 'rgba(0,0,0,0.65)',
         textAlign: 'justify',
         lineHeight: ' 22px',
-        padding: '16px 19px',
-        flex: 1,
       }}
     >
       <div
@@ -66,17 +63,25 @@ const ToolPage = props => {
         <div className="flex gap-4">
           <ToolCard
             Icon={RiStockLine}
-            index={2} href="/tool/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具" />
+            index={2} href="/tool/etf-grid" title="ETF 网格" desc="ETF 网格是一个用来辅助基金投资决策的工具。" />
           <ToolCard
             Icon={RiAppleFill}
             index={2} href="/tool/apple-guide" title="苹果设备购买指南" desc="精准推荐，全面分析，帮你挑选最适合的iPhone或其他苹果设备，决策无忧。" />
           <ToolCard
             index={1}
             Icon={RxAvatar}
+            href="/links"
+            title="网址导航"
+            desc="简洁导航，一键直达热门网站，省时省心，轻松畅游互联网世界。"
+          />
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
             href="https://umijs.org/docs/introduce/introduce"
             title="节日头像制作"
-            desc="节日头像制作，国庆节、圣诞节、春节头像"
+            desc="节日头像制作，国庆节、圣诞节、春节头像。"
           />
+
         </div>
       </div>
     </Container>
