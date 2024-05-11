@@ -159,26 +159,6 @@ const route = [
     ],
   },
 
-  {
-    name: '内部',
-    path: '/internal',
-    icon: 'crown',
-    layout: false,
-    routes: [
-      {
-        name: '简历',
-        path: '/internal/resume',
-        component: '@/pages/Resume',
-      },
-      {
-        name: '简历lite',
-        icon: 'crown',
-        path: '/internal/resume-lite',
-        component: '@/pages/Resume/lite',
-      },
-    ],
-  },
-
   // web
   {
     name: 'web',
@@ -475,19 +455,6 @@ const route = [
     icon: 'crown',
     // access: 'canAdmin',
     routes: [
-      {
-        name: 'crud-demo',
-        path: '/system/crud',
-        component: './System/crud',
-        // component: './Welcome',
-      },
-      {
-        path: '/system/demo',
-        name: 'demo',
-        icon: 'TeamOutlined',
-        component: './System/crud',
-        // access: 'canAdmin',
-      },
       {
         path: '/system/user',
         name: 'user',

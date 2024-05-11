@@ -1,4 +1,5 @@
 {
+  "git.autofetch": "all",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },

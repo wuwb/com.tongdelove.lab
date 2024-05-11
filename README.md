@@ -188,3 +188,21 @@ Error
 - https://aistickergenerator.net/
 - https://github.com/lzzzzl/my-sticker-ai-app
 - https://github.com/birobirobiro/awesome-shadcn-ui?tab=readme-ov-file
+
+- https://www.serverless-devs.com/#/home
+- Documentation
+- https://github.com/devsapp
+- GitHub
+
+## 参考
+https://github.com/simoneb/axios-hooks
+https://tailwindtemplates.io/
+https://www.antpkg.com/packaging-vave-services
+
+## 不好的例子
+https://github.com/imranhsayed/nextjs-woocommerce-restapi
+https://github.com/strapi/strapi-starter-next-corporate
+https://github.com/ElliotReed/developmanager_client
+https://github.com/sebadlf/challenge-project
+https://github.com/kingsleydon/heybox-wfa
+https://github.com/KelvinMitaki/Apollo-Stack.git
