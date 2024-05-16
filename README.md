@@ -1,14 +1,6 @@
 # README
 
-- 简单简历
-- 小公举
-  - 节日头像制作
-  - 和明星合影
-- 学习资料印刷
 
-todo
-
-@fortawesome/react-fontawesome 换成 @mui/icons-material
 
 ## 描述
 
@@ -25,7 +17,6 @@ todo
 
 ### 功能
 
-- 基于 MUI v5
 - 100% React hooks
 - ESLint & Prettier
 - 2 Dashboards
@@ -150,6 +141,7 @@ Error
 - React
 - TypeScript
 - Nextjs
+  - react-icons
 - Supabase
 - Shadcn
 - ToDesktop
@@ -175,6 +167,26 @@ Error
 - LogSnag (Events)
 - Dub (Short URLs)
 
+### 项目
+
+- apps
+  - admin 管理后台
+  - lab 实验室网站
+    - 简单简历
+    - 小公举
+      - 节日头像制作
+      - 和明星合影
+    - 学习资料印刷
+  - design 包装品设计网站
+  - web 包装品网站
+  - mobile 移动端应用
+  - desktop 桌面端应用
+- services
+  - node-api express 后端
+  - server nestjs 后端
+- packages
+
+### 参考
 
 - https://github.com/t3-oss/create-t3-turbo
 - https://github.com/trpc/examples-next-prisma-starter
@@ -188,21 +200,19 @@ Error
 - https://aistickergenerator.net/
 - https://github.com/lzzzzl/my-sticker-ai-app
 - https://github.com/birobirobiro/awesome-shadcn-ui?tab=readme-ov-file
-
 - https://www.serverless-devs.com/#/home
-- Documentation
 - https://github.com/devsapp
-- GitHub
 
 ## 参考
-https://github.com/simoneb/axios-hooks
-https://tailwindtemplates.io/
-https://www.antpkg.com/packaging-vave-services
+- https://github.com/simoneb/axios-hooks
+- https://tailwindtemplates.io/
+- https://www.antpkg.com/packaging-vave-services
 
 ## 不好的例子
-https://github.com/imranhsayed/nextjs-woocommerce-restapi
-https://github.com/strapi/strapi-starter-next-corporate
-https://github.com/ElliotReed/developmanager_client
-https://github.com/sebadlf/challenge-project
-https://github.com/kingsleydon/heybox-wfa
-https://github.com/KelvinMitaki/Apollo-Stack.git
+- https://github.com/imranhsayed/nextjs-woocommerce-restapi
+- https://github.com/strapi/strapi-starter-next-corporate
+- https://github.com/ElliotReed/developmanager_client
+- https://github.com/sebadlf/challenge-project
+- https://github.com/kingsleydon/heybox-wfa
+- https://github.com/KelvinMitaki/Apollo-Stack.git
+- https://github.com/taozhi1010/nest-admin

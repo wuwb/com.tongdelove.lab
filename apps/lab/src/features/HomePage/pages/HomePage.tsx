@@ -10,7 +10,9 @@ export const HomePage: FC = () => {
 
   return (
     <>
-      <NextSeo title={t('home:page.title')} description="See https://github.com/belgattitude/nextjs-monorepo-example" />
+      <NextSeo
+        title={t('home:page.title')}
+        description="See https://github.com/belgattitude/nextjs-monorepo-example" />
       <Banner />
       <HeroBlock />
       <FeaturesBlock />

@@ -1,8 +1,7 @@
 import React, { useRef, memo, useState, useEffect } from 'react';
 import { Input, Modal, Tooltip } from 'antd';
 import Badge from '@mui/material/Badge';
-import RedoIcon from '@mui/icons-material/Redo';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { BiRedo, BiChevronLeft } from "react-icons/bi";
 import QRCode from 'qrcode.react';
 import req from '@/utils/req';
 import { uuid } from '@/utils/tool';
@@ -15,13 +14,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 
 const { confirm } = Modal;
 const isDev = process.env.NODE_ENV === 'development';
@@ -174,7 +167,7 @@ const HeaderComponent = memo((props) => {
             edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}
             onClick={toBack}
           >
-            <ChevronLeftIcon />
+            <BiChevronLeft />
           </IconButton>
           <Typography variant="h6" component="div" color="inherit">
             海维设计
@@ -231,7 +224,7 @@ const HeaderComponent = memo((props) => {
         visible={showModalIframe}
         footer={null}
         width={414}
-        closeIcon={<RedoIcon />}
+        closeIcon={<BiRedo />}
         destroyOnClose={true}
         onCancel={handleReloadPage}
         maskClosable={false}

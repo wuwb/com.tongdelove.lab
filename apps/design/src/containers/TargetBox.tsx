@@ -14,7 +14,7 @@ import {
   selectState
 } from '@/models/workSlice';
 import { useAppSelector } from '@/context/hooks';
-import styles from '../../pages/design.module.css';
+import styles from '../pages/design.module.css';
 
 const TargetBox = memo((props) => {
   const state = useAppSelector(selectState);

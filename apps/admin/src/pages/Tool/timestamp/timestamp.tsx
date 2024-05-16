@@ -1,7 +1,6 @@
 import { getAllLocales, getLocale } from '@umijs/max';
 import { Collapse, Layout, Table } from 'antd';
 import { useEffect, useState } from 'react';
-import Styles from './index.less';
 
 const { Panel } = Collapse;
 
@@ -449,7 +448,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
 
   return (
     <Layout.Content>
-      <div className={Styles.content}>
+      <div className="container">
         <div>当前时间：{currentTimestamp} 毫秒</div>
         <div>当前时间：{parseInt(currentTimestamp / 1000, 10)} 秒</div>
         <div>当前时间：{Math.floor(currentTimestamp / 1000)} 秒</div>

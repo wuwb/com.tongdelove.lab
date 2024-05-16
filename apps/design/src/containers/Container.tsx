@@ -5,10 +5,6 @@ import React, {
   useCallback,
   useRef,
 } from "react";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import clsx from "clsx";
 import { ActionCreators } from "redux-undo";
 import HeaderComponent from "../components/Header";
@@ -17,24 +13,21 @@ import RightButtons from "../components/RightButtons";
 import TargetBox from "./TargetBox";
 import {
   toggleFlip,
-  addFontDesignData,
   selectState
 } from '@/models/workSlice';
 import { useAppSelector } from '@/context/hooks';
-import BtnDrawLeft from "../assets/btn-draw-left.svg";
-import BtnDrawRight from "../assets/btn-draw-right.svg";
 import { throttle } from "@/utils/tool";
 import LeftSide from './LeftSide';
 import styles from './Container.module.css';
 
-interface Props {
+interface ContainerProps {
   history?: any;
   location?: any;
   dispatch?: any;
   designModal: any;
 }
 
-const Container = (props: Props) => {
+const Container = (props: ContainerProps) => {
   const { dispatch, designModal } = props;
   const state = useAppSelector(selectState);
   const {
@@ -71,7 +64,7 @@ const Container = (props: Props) => {
 
   // 右边收起
   const changeRightCollapsed = useMemo(() => {
-    return (c: boolean, e) => {
+    return (c: boolean, e: Event) => {
       e.stopPropagation();
       setRightCollapsed(c);
     };
@@ -152,9 +145,6 @@ const Container = (props: Props) => {
       toggleFlip(type);
     };
   }, []);
-
-
-
 
   // 设置移动状态
   useEffect(() => {
@@ -280,7 +270,6 @@ const Container = (props: Props) => {
     changeRightCollapsed,
     rightCollapsed,
   ]);
-
 
   const handleTabChange = (newTabIndex: number) => {
     if (tabIndex !== newTabIndex) {

@@ -10,10 +10,7 @@ import {
 import BaseCard from "@/components/module/baseCard/BaseCard";
 import { FullLayout } from "@/components/layouts";
 import { AccentSidebarLayout } from '@/components/layouts';
-
-import HomeIcon from '@mui/icons-material/Home';
-import DeleteIcon from '@mui/icons-material/Delete';
-import PersonIcon from '@mui/icons-material/Person';
+import { RiHomeSmileLine, RiChatDeleteLine, RiAccountBoxLine } from "react-icons/ri";
 
 const Buttons = () => {
   return (
@@ -98,13 +95,13 @@ const Buttons = () => {
           <BaseCard title="Icon Buttons">
             <Stack spacing={2} direction="row">
               <IconButton aria-label="delete" color="success">
-                <HomeIcon width="20" height="20" />
+                <RiHomeSmileLine width="20" height="20" />
               </IconButton>
               <IconButton aria-label="delete" color="error">
-                <DeleteIcon width="20" height="20" />
+                <RiChatDeleteLine width="20" height="20" />
               </IconButton>
               <IconButton aria-label="user" color="warning">
-                <PersonIcon width="20" height="20" />
+                <RiAccountBoxLine width="20" height="20" />
               </IconButton>
             </Stack>
           </BaseCard>
@@ -114,13 +111,13 @@ const Buttons = () => {
           <BaseCard title="Fab Buttons">
             <Stack spacing={2} direction="row">
               <Fab color="primary" aria-label="add">
-                <HomeIcon width="20" height="20" />
+                <RiHomeSmileLine width="20" height="20" />
               </Fab>
               <Fab color="secondary" aria-label="add">
-                <DeleteIcon width="20" height="20" />
+                <RiChatDeleteLine width="20" height="20" />
               </Fab>
               <Fab color="secondary" disabled aria-label="add">
-                <PersonIcon width="20" height="20" />
+                <RiAccountBoxLine width="20" height="20" />
               </Fab>
             </Stack>
           </BaseCard>

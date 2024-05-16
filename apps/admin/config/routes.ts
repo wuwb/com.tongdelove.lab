@@ -278,11 +278,6 @@ const route = [
         path: '/tools/transform',
         routes: [
           {
-            name: 'paper-price-transform',
-            path: '/tools/transform/paper-price-transform',
-            component: './Tool/PaperPriceTransform',
-          },
-          {
             name: 'book-thickness',
             path: '/tools/transform/book-thickness',
             component: './Tool/BookThickness',
@@ -299,11 +294,6 @@ const route = [
             component: './Tool/Physics/PunctureResistance',
           },
         ],
-      },
-      {
-        name: 'common-platemaking-size',
-        path: '/tools/common-platemaking-size',
-        component: './Tool/CommonPlatemakingSize',
       },
       {
         name: 'printed-size',
@@ -559,7 +549,7 @@ const route = [
           {
             name: '时间工具',
             path: '/tools/timestamp',
-            component: '@/pages/Tool/timestamp',
+            component: '@/pages/Tool/timestamp/timestamp',
           },
           {
             name: '血缘关系',

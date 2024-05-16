@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import theme from '../src/theme/theme';
 
 export default class MyDocument extends Document {
   render() {
@@ -8,8 +7,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
 
-          {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
           <meta
             name="Description"
             content="an example of NextJS app with 100% accessible lighthouse score"
