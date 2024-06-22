@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "license": "UNLICENSE",
-  "type": "module",
   "scripts": {
     "build": "pnpm -r --filter lab... build && pnpm run build:repo",
     "build:repo": "next build && if [ \"$VERCEL_ENV\" = 'production' ]; then prisma migrate deploy; fi",
@@ -73,6 +72,7 @@
     "@axiomhq/winston": "^1.0.0-rc.1",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.4.0",
+    "@langchain/google-genai": "^0.0.2",
     "@mantine/carousel": "7.9.1",
     "@mantine/core": "7.9.1",
     "@mantine/dates": "7.9.1",
@@ -81,7 +81,8 @@
     "@mantine/modals": "7.9.1",
     "@mantine/next": "^6.0.21",
     "@mantine/notifications": "7.9.1",
-    "@prisma/client": "^5.13.0",
+    "@mantinex/mantine-logo": "^1.0.1",
+    "@prisma/client": "^5.14.0",
     "@qdrant/js-client-rest": "^1.9.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -110,6 +111,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@radix-ui/themes": "^3.0.5",
     "@reduxjs/toolkit": "1.9.5",
     "@sentry/nextjs": "^7.112.2",
     "@sentry/react": "^7.112.2",
@@ -146,6 +148,7 @@
     "ioredis": "^5.4.1",
     "jiti": "^1.21.0",
     "jsonwebtoken": "^9.0.2",
+    "langchain": "0.0.207",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.378.0",
     "mixpanel-browser": "^2.49.0",
@@ -275,7 +278,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.3",
     "prettier-plugin-tailwindcss": "^0.5.13",
-    "prisma": "^5.13.0",
+    "prisma": "^5.14.0",
     "rimraf": "5.0.5",
     "size-limit": "11.1.2",
     "storybook": "^7.6.12",
@@ -325,5 +328,10 @@
   "ct3aMetadata": {
     "initVersion": "7.30.2"
   },
-  "packageManager": "pnpm@8.15.5"
+  "packageManager": "pnpm@8.15.5",
+  "pnpm": {
+    "overrides": {
+      "@langchain/core": "0.1.5"
+    }
+  }
 }

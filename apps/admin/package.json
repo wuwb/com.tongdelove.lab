@@ -2,7 +2,6 @@
   "name": "admin",
   "description": "An out-of-box UI solution for enterprise applications",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "analyze": "ANALYZE=1 max build",
     "build": "max build",

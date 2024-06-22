@@ -1,13 +1,11 @@
 {
   "name": "@tongdelove/ui",
-  "private": true,
   "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.tsx"
   },
-  "license": "UNLICENSE",
   "scripts": {
     "add": "pnpm dlx shadcn-ui add",
     "clean": "rm -rf .turbo node_modules",

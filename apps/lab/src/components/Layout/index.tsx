@@ -26,7 +26,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
 
   let layout: React.ReactNode
 
-  if (asPath.startsWith('/dashboard') || asPath.startsWith('/auth')) {
+  if (asPath.startsWith('/auth')) {
     layout = <>{children}</>
   } else if (asPath.startsWith('/fullscreen')) {
     layout = <FullLayout>{children}</FullLayout>

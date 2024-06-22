@@ -222,59 +222,22 @@ model Session {
   @@map(name: "session")
 }
 
-model LinkCategory {
-  id              Int               @id @default(autoincrement())
-  icon            String
-  title           String
-  description     String
-  order           Int
-  rank            Int?
-  createdAt       DateTime          @default(now()) @map(name: "created_at")
-  updatedAt       DateTime          @default(now()) @map(name: "updated_at")
-  links           Link[]
-  LinkSubCategory LinkSubCategory[]
-
-  parentId        Int?           @map("parent_id")
-  parentCategory  LinkCategory?  @relation("ChildCategories", fields: [parentId], references: [id])
-  childCategories LinkCategory[] @relation("ChildCategories")
-}
-
-model LinkSubCategory {
-  id          Int          @id @default(autoincrement())
-  icon        String
-  title       String
-  description String
-  order       Int
-  createdAt   DateTime     @default(now()) @map(name: "created_at")
-  updatedAt   DateTime     @default(now()) @map(name: "updated_at")
-  links       Link[]
-  categoryId  Int
-  category    LinkCategory @relation(fields: [categoryId], references: [id])
-}
-
 model Link {
   id            String           @id @default(cuid())
-  icon          String?
-  url           String @unique // 链接
+  url           String  @unique // 链接
   title         String  @unique // 标题
   description   String? // 描述
+  icon          String?
   public        Boolean          @default(true)
   status        Int              @default(1)
-  createdAt     DateTime         @default(now()) @map(name: "created_at")
-  updatedAt     DateTime         @map(name: "updated_at")
-  catagoryId    Int?
-  catagory      LinkCategory?    @relation(fields: [catagoryId], references: [id])
-  subCategoryId Int?
-  subCategory   LinkSubCategory? @relation(fields: [subCategoryId], references: [id])
-
   categoryId  String   @map(name: "category_id")
   category    Category @relation(fields: [categoryId], references: [id])
-
   userId      String   @map(name: "user_id")
   user        User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime         @default(now()) @map(name: "created_at")
+  updatedAt     DateTime         @map(name: "updated_at")
 
   @@map(name: "link")
-
 }
 
 // 开始

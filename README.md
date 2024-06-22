@@ -143,7 +143,7 @@ Error
 - Nextjs
   - react-icons
 - Supabase
-- Shadcn
+
 - ToDesktop
 - Expo
 - TailwindCSS

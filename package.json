@@ -52,7 +52,6 @@
     "lint2": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:ws": "pnpm dlx sherif@latest",
-    "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add"
   },
@@ -60,7 +59,7 @@
     "schema": "prisma/prisma/schema.prisma"
   },
   "devDependencies": {
-    "@prisma/client": "^5.13.0",
+    "@prisma/client": "^5.14.0",
     "cross-env": "7.0.3",
     "inquirer": "^8",
     "@tongdelove/prettier-config": "workspace:*",
@@ -87,7 +86,7 @@
     "lint-staged": "15.2.1",
     "prettier-plugin-packagejson": "^2.4.10",
     "prettier-plugin-tailwindcss": "^0.5.13",
-    "prisma": "^5.13.0",
+    "prisma": "^5.14.0",
     "prisma-json-types-generator": "^3.0.3",
     "rimraf": "5.0.5",
     "shell-quote": "1.8.1",

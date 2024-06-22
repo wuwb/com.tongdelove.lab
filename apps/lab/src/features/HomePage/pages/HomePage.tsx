@@ -1,22 +1,28 @@
-import { useTranslation } from 'next-i18next'
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
-import { Banner } from '@/components/banner/Banner'
 import { CtaBlock, FeaturesBlock, HeroBlock } from '../blocks'
-import { homeConfig } from '../home.config'
+import { trpc } from '@/utils/trpc'
 
 export const HomePage: FC = () => {
-  const { t } = useTranslation(homeConfig.i18nNamespaces)
+  const { data } = trpc.link.getLinks.useQuery()
 
   return (
     <>
       <NextSeo
-        title={t('home:page.title')}
-        description="See https://github.com/belgattitude/nextjs-monorepo-example" />
-      <Banner />
-      <HeroBlock />
-      <FeaturesBlock />
-      <CtaBlock />
+        title="home:page.title"
+        description="See https://github.com/belgattitude/nextjs-monorepo-example"
+      />
+      {/* <Banner /> */}
+      {
+        data?.map((item) => {
+          return (
+            <div>{item.id}</div>
+          )
+        })
+      }
+      {/* <HeroBlock /> */}
+      {/* <FeaturesBlock /> */}
+      {/* <CtaBlock /> */}
     </>
   )
 }

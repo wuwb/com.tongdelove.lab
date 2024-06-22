@@ -9,18 +9,8 @@ export const env = createEnv({
    */
   server: {
     // database
-    DATABASE_URL: z
-      .string()
-      .url()
-      .refine(str => !str.includes('YOUR_MYSQL_URL_HERE'), 'You forgot to change the default URL')
-      .optional(),
-    LAB_TONGDELOVE_URL: z.string(),
     LAB_TONGDELOVE_PRISMA_URL: z.string(),
     LAB_TONGDELOVE_URL_NON_POOLING: z.string(),
-    LAB_TONGDELOVE_USER: z.string(),
-    LAB_TONGDELOVE_HOST: z.string(),
-    LAB_TONGDELOVE_PASSWORD: z.string(),
-    LAB_TONGDELOVE_DATABASE: z.string(),
 
     // nextjs auth
     NEXTAUTH_URL: z

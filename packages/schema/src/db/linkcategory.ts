@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteLink, RelatedLinkModelSchema, CompleteLinkSubCategory, RelatedLinkSubCategoryModelSchema } from "./index"
+import { CompleteLink, RelatedLinkModelSchema } from "./index"
 
 export const LinkCategoryModelSchema = z.object({
   id: z.number().int(),
@@ -15,7 +15,6 @@ export const LinkCategoryModelSchema = z.object({
 
 export interface CompleteLinkCategory extends z.infer<typeof LinkCategoryModelSchema> {
   links: CompleteLink[]
-  LinkSubCategory: CompleteLinkSubCategory[]
   parentCategory?: CompleteLinkCategory | null
   childCategories: CompleteLinkCategory[]
 }
@@ -27,7 +26,6 @@ export interface CompleteLinkCategory extends z.infer<typeof LinkCategoryModelSc
  */
 export const RelatedLinkCategoryModelSchema: z.ZodSchema<CompleteLinkCategory> = z.lazy(() => LinkCategoryModelSchema.extend({
   links: RelatedLinkModelSchema.array(),
-  LinkSubCategory: RelatedLinkSubCategoryModelSchema.array(),
   parentCategory: RelatedLinkCategoryModelSchema.nullish(),
   childCategories: RelatedLinkCategoryModelSchema.array(),
 }))

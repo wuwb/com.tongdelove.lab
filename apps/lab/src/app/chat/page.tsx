@@ -1,9 +1,10 @@
 'use client'
 
-import Navigation from '@/features/chat/Navigation'
-import Main from '@/features/chat/Main'
+import Navigation from './Navigation'
+import Main from './Main'
 import { useAppContext } from '@/contexts/AppContext'
-import cn from 'clsx'
+import { Navbar } from './Navbar/Navbar'
+import clsx from 'clsx'
 
 export default function Chat() {
   const {
@@ -14,8 +15,8 @@ export default function Chat() {
   console.log('Chat page rendererd')
 
   return (
-    <div className={cn('flex h-full', themeMode)}>
-      <Navigation />
+    <div className={clsx('flex h-full', themeMode)}>
+      <Navbar />
       <Main />
     </div>
   )

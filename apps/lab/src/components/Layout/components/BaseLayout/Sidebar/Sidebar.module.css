@@ -1,0 +1,11 @@
+
+
+
+.aside {
+  flex: 0 0 rem(60px);
+  background-color: var(--mantine-color-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+}
