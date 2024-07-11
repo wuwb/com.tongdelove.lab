@@ -44,6 +44,18 @@ class MyDocument extends Document {
               `,
               }}
             />
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                var _hmt = _hmt || [];
+                (function() {
+                  var hm = document.createElement("script");
+                  hm.src = "https://hm.baidu.com/hm.js?9af1de4a8ba999c41ffc6667bf8b1012";
+                  var s = document.getElementsByTagName("script")[0]; 
+                  s.parentNode.insertBefore(hm, s);
+                })();
+              `,
+            }}
+            />
           </Head>
           <body>
             <Main />

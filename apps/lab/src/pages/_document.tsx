@@ -30,6 +30,18 @@ export default function MyDocument(props) {
         <meta name="google-site-verification" content="" />
         <link rel="alternate" hrefLang="x-default" href={`https://${currentLocale}.vercel.app`} />
         <ColorSchemeScript defaultColorScheme="auto" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?4f4cd00ad9a4344b61ec0e69523ea883";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+          `}} />
       </Head>
       <body>
         <noscript>
