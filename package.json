@@ -114,6 +114,7 @@
       "ignoreMissing": []
     },
     "overrides": {
+      "@langchain/core": "0.1.5",
       "canvas": "2.11.2"
     }
   },

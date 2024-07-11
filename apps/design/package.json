@@ -82,7 +82,6 @@
     "typescript": "^5.4.5",
     "webpack": "4"
   },
-  "packageManager": "pnpm@7.11.0",
   "browserslist": {
     "production": [
       ">0.2%",
