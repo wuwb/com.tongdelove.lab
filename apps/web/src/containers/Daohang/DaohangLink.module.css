@@ -1,0 +1,50 @@
+.item a {
+  display: block;
+  width: 100%;
+  padding: 14px 8%;
+  box-sizing: border-box;
+  transition: none;
+  border-radius: 6px;
+}
+
+.item a img {
+  float: left;
+  width: 26px;
+  height: 26px;
+  border-radius: 100%;
+}
+
+.item a h3 {
+  margin-left: 32px;
+  color: #3c3c3c;
+  font-size: 14px;
+  white-space: nowrap;
+  height: 21px;
+  line-height: 21px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.item a p {
+  margin-left: 32px;
+  color: #8f8f8f;
+  font-size: 12px;
+  height: 3em;
+  line-height: 1.5em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.item a:hover h3 {
+  color: #ee521c;
+  text-decoration: underline;
+}
+
+.item a:hover p {
+  color: #525252;
+}

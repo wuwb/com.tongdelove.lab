@@ -1,0 +1,22 @@
+.services {
+  width: 1040px;
+  margin: 0 auto;
+  .banner {
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+  .more-service {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      flex: 1;
+      padding: 30px 2rem;
+    }
+    .list {
+      flex: 1;
+      width: 300px;
+      padding: 0 2rem;
+      font-size: 18px;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+  <script src="http://dev.qwrap.com/resource/js/_docs/_jk/js/apps/core_dom_youa.js"></script>
+</HEAD>
+<body>
+  <div id="div1">hello1</div>
+  <input type=button value="change" onclick="Div1.sethtml();"/>
+  <script>
+    QW.ObjectH.aopEvent=function(obj,methodName){
+      var events='before,after'.split(',').map(function(el){return el+methodName.toLowerCase();});//先固定只支持这两个吧
+      CustEvent.createEvents(obj,events);
+      var method=obj[methodName];
+      obj[methodName]=function(){
+        if(!this.fire('before'+methodName.toLowerCase())) return;
+        var ret=method.apply(this,arguments);
+        this.fire('after'+methodName.toLowerCase());
+        return ret;
+      }
+    };
+    var Div1={
+      sethtml:function(){
+        W('#div1').html(Math.random()+'');
+      }
+    };
+    QW.ObjectH.aopEvent(Div1,'sethtml');//aop转化
+    Div1.on('beforesethtml',function (e){if(!confirm('change?')) e.preventDefault();});
+    Div1.on('aftersethtml',function (){alert('值改变啦');});
+  </script>
+</body>
+</HTML>

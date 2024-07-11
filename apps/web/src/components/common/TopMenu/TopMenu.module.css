@@ -1,0 +1,58 @@
+.headerMenu {
+  margin-bottom: 0;
+  font-size: 16px;
+  background: none;
+  border-bottom: none;
+  display: none;
+  @media screen(lg) {
+    display: flex;
+  }
+}
+
+.menuItem {
+  position: relative;
+  padding: 0 0.5rem;
+  height: 59px;
+  transition-duration: 0.5s;
+  display: flex;
+  align-items: center;
+}
+.menuItem:hover,
+.menuItem:focus-within {
+  background: #ddd;
+  cursor: pointer;
+}
+.menuItem .subMenu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  left: 0;
+  top: 59px;
+  min-width: 200px;
+  background: #eee;
+  display: none;
+}
+/* This compound selector will still work in IE 11 because :focus-within isn't mixed in */
+.menuItem:hover > .subMenu,
+.menuItem .subMenu:hover
+.menuItem .subMenu:focus
+{
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+/* IE 11 won't get this, but at least the top-level menus will work */
+.menuItem:focus-within > .subMenu {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+.menuItem .subMenu .subMenuItem {
+  padding: 10px;
+}
+
+.menuItem .subMenu .subMenuItem:hover,
+.menuItem .subMenu .subMenuItem:focus-within{
+  background: #ddd;
+}

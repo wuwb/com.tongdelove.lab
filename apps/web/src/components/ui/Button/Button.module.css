@@ -1,0 +1,25 @@
+.button {
+  margin: var(--margin);
+  outline: none;
+}
+
+.button:hover:enabled {
+  cursor: pointer;
+}
+
+.button:disabled {
+  color: var(--color-accent);
+  cursor: not-allowed;
+}
+
+.button:focus {
+  outline: 1px solid invert(var(--primary));
+}
+
+.button:active {
+  transition: all 0.15s;
+  transform: scale(0.9, 0.9);
+}
+
+.button.primary {
+}

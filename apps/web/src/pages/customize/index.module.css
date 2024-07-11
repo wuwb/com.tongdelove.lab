@@ -1,0 +1,53 @@
+.container-wrap {
+  padding: 56px 0;
+  background: #f7f7f7;
+}
+.Container {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 352px 510px 280px;
+  width: 1168px;
+  height: auto;
+  margin: 0 auto 0;
+}
+
+.Pallette {
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+}
+.cover-selector {
+}
+.outer,
+.inner {
+  font-weight: 700;
+}
+.types {
+  display: flex;
+}
+
+.selectors {
+  background: #fff;
+}
+
+.Panel {
+  background: #fff;
+  border-radius: 10px;
+ 
+}
+
+.Panel .ant-tabs {
+    height: 100%;
+  }
+  .Panel .panel-title {
+    padding: 20px 24px 8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .Panel .panel-item {
+    border-bottom: 1px solid #f7f7f7;
+  }
+  .Panel .panel-submit {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }

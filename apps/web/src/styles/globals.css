@@ -1,0 +1,430 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+:root {
+  --primary: #ffffff;
+  --primary-2: #f1f3f5;
+  --secondary: #000000;
+  --secondary-2: #111;
+  --selection: var(--cyan);
+
+  --text-base: #000000;
+  --text-primary: #000000;
+  --text-secondary: white;
+
+  --header-height: 60px;
+
+  --hover: rgba(0, 0, 0, 0.075);
+  --hover-1: rgba(0, 0, 0, 0.15);
+  --hover-2: rgba(0, 0, 0, 0.25);
+  --cyan: #22b8cf;
+  --green: #37b679;
+  --red: #da3c3c;
+  --purple: #f81ce5;
+  --blue: #0070f3;
+
+  --pink: #ff0080;
+  --pink-light: #ff379c;
+
+  --magenta: #eb367f;
+
+  --violet: #7928ca;
+  --violet-dark: #4c2889;
+
+  --accent-0: #fff;
+  --accent-1: #fafafa;
+  --accent-2: #eaeaea;
+  --accent-3: #999999;
+  --accent-4: #888888;
+  --accent-5: #666666;
+  --accent-6: #444444;
+  --accent-7: #333333;
+  --accent-8: #111111;
+  --accent-9: #000;
+
+  --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
+  'Helvetica', sans-serif;
+
+  color-scheme: light dark;
+  --font-stack: 'Messina Sans Lumi',-apple-system,BlinkMacSystemFont,Roboto,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --font-stack-system: -apple-system,BlinkMacSystemFont,Roboto,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --font-stack-serif: Georgia,serif;
+  --font-normal: 100%;
+  --font-small: 96%;
+  --font-smaller: 90%;
+  --font-smallest: 82%;
+  --stroke-thin: 1px;
+  --stroke: 2px;
+  --radius: 5px;
+  --radius-big: 8px;
+  --radius-l: 12px;
+  --radius-xl: 20px;
+  --radius-xxl: 30px;
+  --margin: 24px;
+  --margin-mobile: 16px;
+  --height-menu: 56px;
+  --height-menu-mobile: 52px;
+  --wrap-xl-max: 96%;
+  --wrap-l-max: 90%;
+  --wrap-m-max: 90%;
+  --wrap-xl-width: 100%;
+  --wrap-l-width: 1100px;
+  --wrap-m-width: 800px;
+  --wrap-s-width: 590px;
+  --wrap-xs-width: 400px;
+  --golden-major: 61.8%;
+  --golden-minor: 38.2%;
+  --color-primary-background: #fff;
+  --color-background: #f7f6f5;
+  --color-background-rgba-0: rgba(247,246,245,0);
+  --color-background-alt1: #222;
+  --color-background-alt2: #fff;
+  --color-input: #fff;
+  --color-text: #373634;
+  --color-emphasis: #403f3a;
+  --color-disabled: #B3B3AF;
+  --color-reverse: #fff;
+  --color-outline: #e6e5e3;
+  --color-outline-hover: #cbcac7;
+  --color-outline-active: #b6b6b3;
+  --color-outline-dark: #403f3a;
+  --color-outline-light: #e6e5e3;
+  --color-primary: #000;
+  --color-primary-hover: #403f3a;
+  --color-primary-active: #000;
+  --color-tonal-muted: rgba(0,0,0,0.5);
+  --color-tonal-emphasis: rgba(0,0,0,0.8);
+  --color-tonal-faint: rgba(0,0,0,0.2);
+  --color-muted-dark: #656561;
+  --color-muted: #898884;
+  --color-muted-light: #B3B3AF;
+  --color-blue: #0F9BFF;
+  --color-blue-tint: #DDF3FF;
+  --color-blue-pale: #AAE0FF;
+  --color-blue-hover: #0078CE;
+  --color-blue-dark: #073454;
+  --color-blue-dark-tint: #122029;
+  --color-green: #0DCE71;
+  --color-green-tint: #DFF9E8;
+  --color-green-pale: #AFF1C6;
+  --color-green-hover: #00AE5A;
+  --color-green-dark: #04402E;
+  --color-green-dark-tint: #0c3326;
+  --color-yellow: #FFCC33;
+  --color-yellow-tint: #FFF7DF;
+  --color-yellow-pale: #FEEAAF;
+  --color-yellow-hover: #D09600;
+  --color-yellow-dark: #96651A;
+  --color-yellow-dark-tint: #36280C;
+  --color-red: #FF4F00;
+  --color-red-tint: #FFECE4;
+  --color-red-pale: #FFCFBB;
+  --color-red-hover: #E43700;
+  --color-red-dark: #E43700;
+  --color-red-dark-tint: #2E1C13;
+  --color-purple: #8F4FF9;
+  --color-purple-tint: #EDE3FD;
+  --color-purple-pale: #D2B9FA;
+  --color-purple-hover: #6520D8;
+  --color-purple-dark: #480E92;
+  --color-purple-dark-tint: #281342;
+  --color-brown: #B78052;
+  --color-brown-tint: #F8EEE5;
+  --color-brown-pale: #EED3BD;
+  --color-brown-hover: #B78052;
+  --color-brown-dark: #4B321D;
+  --color-brown-dark-tint: #201912;
+  --color-action: #0044e4;
+  --color-action-tint: #d9e3fb;
+  --color-action-pale: #a6bef6;
+  --color-action-hover: #003CCB;
+  --color-action-active: #00288F;
+  --color-action-background: #fafcfe;
+  --color-accent: var(--color-brown);
+  --color-accent-hover: var(--color-brown-hover);
+  --color-confirm: var(--color-green);
+  --color-confirm-hover: var(--color-green-hover);
+  --color-mask-white: #fff;
+  --color-mask-white-rgba: rgba(255,255,255,0.95);
+  --color-mask-background: #f7f6f5;
+  --color-mask-background-rgba: rgba(247,246,245,0.95);
+  --color-mask-background-80: #f7f6f5;
+  --color-mask-background-80-rgba: rgba(247,246,245,0.8);
+  --color-mask-light: #222;
+  --color-mask-light-rgba: rgba(34,34,34,0.85);
+  --color-mask-private: #FFEDEB;
+  --color-mask-private-rgba: rgba(255,237,235,0.95);
+  --color-mask-deleted: #FFF4EB;
+  --color-mask-deleted-rgba: rgba(255,244,235,0.95);
+  --color-mask-muted: #898884;
+  --color-mask-muted-rgba: rgba(137,136,132,0.85);
+  --color-mask-dark: #4d4d4a;
+  --color-mask-dark-rgba: rgba(77,77,74,0.95);
+  --color-mask-primary: #222;
+  --color-mask-primary-rgba: rgba(34,34,34,0.95);
+  --color-mask-action: #ff3b2c;
+  --color-mask-action-rgba: rgba(255,55,44,0.9);
+  --color-error-bg: var(--color-red-tint);
+  --color-error-border: var(--color-red-hover);
+  --color-error: var(--color-red-hover);
+  --color-danger-bg: var(--color-red-tint);
+  --color-danger-border: var(--color-red-hover);
+  --color-danger: var(--color-red-hover);
+  --color-warning-bg: var(--color-yellow-tint);
+  --color-warning-border: var(--color-yellow-hover);
+  --color-warning: var(--color-yellow-hover);
+  --color-active-border: #c7efbe;
+  --color-active: #00c512;
+  --color-finished-border: #b1e4f7;
+  --color-finished: #0b8be4;
+  --color-success-bg: var(--color-green-tint);
+  --color-success-border: var(--color-green-hover);
+  --color-success: var(--color-green-hover);
+  --hover-shadow: 0 0 0 1px rgba(50,50,50,.01),0 7px 14px 0 rgba(50,50,50,.1),0 3px 6px 0 rgba(0,0,0,.02);
+  --btn-shadow: 0 2px 2px rgba(0, 0, 0, 0.02),0 1px 1px rgba(0, 0, 0, 0.02);
+  --btn-shadow-hover: 0 3px 4px rgba(0, 0, 0, 0.06),0 1px 1px rgba(0, 0, 0, 0.02)
+
+  /* 参考 */
+  --aa-search-input-height: 44px;
+  --aa-input-icon-size: 20px;
+  --aa-base-unit: 16;
+  --aa-spacing-factor: 1;
+  --aa-spacing: calc(var(--aa-base-unit) * var(--aa-spacing-factor) * 1px);
+  --aa-spacing-half: calc(var(--aa-spacing) / 2);
+  --aa-panel-max-height: 650px;
+  --aa-base-z-index: 9999;
+  --aa-font-size: calc(var(--aa-base-unit) * 1px);
+  --aa-font-family: inherit;
+  --aa-font-weight-medium: 500;
+  --aa-font-weight-semibold: 600;
+  --aa-font-weight-bold: 700;
+  --aa-icon-size: 20px;
+  --aa-icon-stroke-width: 1.6;
+  --aa-icon-color-rgb: 119,119,163;
+  --aa-icon-color-alpha: 1;
+  --aa-action-icon-size: 20px;
+  --aa-text-color-rgb: 38,38,39;
+  --aa-text-color-alpha: 1;
+  --aa-primary-color-rgb: 62,52,211;
+  --aa-primary-color-alpha: 0.2;
+  --aa-muted-color-rgb: 128,126,163;
+  --aa-muted-color-alpha: 0.6;
+  --aa-panel-border-color-rgb: 128,126,163;
+  --aa-panel-border-color-alpha: 0.3;
+  --aa-input-border-color-rgb: 128,126,163;
+  --aa-input-border-color-alpha: 0.8;
+  --aa-background-color-rgb: 255,255,255;
+  --aa-background-color-alpha: 1;
+  --aa-input-background-color-rgb: 255,255,255;
+  --aa-input-background-color-alpha: 1;
+  --aa-selected-color-rgb: 179,173,214;
+  --aa-selected-color-alpha: 0.205;
+  --aa-description-highlight-background-color-rgb: 245,223,77;
+  --aa-description-highlight-background-color-alpha: 0.5;
+  --aa-detached-media-query: (max-width: 860px);
+  --aa-detached-modal-media-query: (min-width: 860px);
+  --aa-detached-modal-max-width: 680px;
+  --aa-detached-modal-max-height: 500px;
+  --aa-overlay-color-rgb: 115,114,129;
+  --aa-overlay-color-alpha: 0.4;
+  --aa-panel-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.1);
+  --aa-scrollbar-width: 13px;
+  --aa-scrollbar-track-background-color-rgb: 234,234,234;
+  --aa-scrollbar-track-background-color-alpha: 1;
+  --aa-scrollbar-thumb-background-color-rgb: var(--aa-background-color-rgb);
+  --aa-scrollbar-thumb-background-color-alpha: 1
+}
+
+[data-theme='dark'] {
+  --primary: #000000;
+  --primary-2: #111;
+  --secondary: #ffffff;
+  --secondary-2: #f1f3f5;
+  --hover: rgba(255, 255, 255, 0.075);
+  --hover-1: rgba(255, 255, 255, 0.15);
+  --hover-2: rgba(255, 255, 255, 0.25);
+  --selection: var(--purple);
+
+  --text-base: white;
+  --text-primary: white;
+  --text-secondary: black;
+
+  --accent-9: #fff;
+  --accent-8: #fafafa;
+  --accent-7: #eaeaea;
+  --accent-6: #999999;
+  --accent-5: #888888;
+  --accent-4: #666666;
+  --accent-3: #444444;
+  --accent-2: #333333;
+  --accent-1: #111111;
+  --accent-0: #000;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  /*font-family: var(--font-sans);*/
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary);
+  /*color: var(--text-primary);*/
+  overscroll-behavior-x: none;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+}
+/**
+ * Chrome has a bug with transitions on load since 2012!
+ *
+ * To prevent a "pop" of content, you have to disable all transitions until
+ * the page is done loading.
+ *
+ * https://lab.laukstein.com/bug/input
+ * https://twitter.com/timer150/status/1345217126680899584
+ */
+ body.loading * {
+  transition: none !important;
+}
+.fit {
+  min-height: calc(100vh - 88px);
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(0.99);
+  }
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+@layer components {
+  .wwb-btn-primary {
+    @apply py-2 px-4 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75;
+  }
+}
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+}
+
+/* global */
+.sub-nav ul {
+  float: left;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sub-nav ul li {
+  float: left;
+  font-size: 16px;
+  margin-right: 24px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  padding-top: 3px;
+  position: relative;
+}
+
+
+.row-banner .dropdown-menu {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.row-banner .dropdown-menu > li > a:hover {
+  background-image: none;
+  color: white;
+  background-color: rgb(0, 129, 194);
+  background-color: rgba(0, 129, 194, 0.5);
+}
+.row-banner .dropdown-menu > li > a.maintainHover {
+  color: white;
+  background-color: #0081c2;
+}
+.process-step {
+  text-align: center;
+}
+.product-block {
+  width: 1370px;
+  margin: 0 auto;
+}
+.product-head .product-title {
+  font-size: 22px;
+  margin-top: 40px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.sub-section {
+  font-size: 16px;
+}

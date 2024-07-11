@@ -1,0 +1,13 @@
+.FootNav li {
+  color: #898884;
+}
+.FootNav li.title {
+  font-weight: 700;
+  color: #403f3a;
+}
+.FootNav li:hover {
+  color: #403f3a;
+}
+.FootNav li::before {
+  display: none;
+}

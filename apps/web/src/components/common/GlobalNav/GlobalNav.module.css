@@ -1,0 +1,34 @@
+.globalNav {
+  background-color: rgba(0, 0, 0, 0.02);
+  height: 28px;
+  padding: 0 20px;
+  overflow: hidden;
+}
+.globalNavItems ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.globalNavItems ul li {
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+.globalNavItems ul li a {
+  font-size: 12px;
+}
+.globalNavItems ul li::before {
+  display: none;
+}
+.topNavInfo {
+  float: right;
+}
+.globalNavItems a,
+.topNavInfo a {
+  font-size: 12px;
+  padding: 0 12px;
+  line-height: 28px;
+  display: inline-block;
+  color: #999;
+  text-decoration: none;
+}

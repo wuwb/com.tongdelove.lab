@@ -1,0 +1,19 @@
+.sub-nav {
+  text-align: center;
+  border-bottom: 1px solid #e6e5e3;
+}
+.sub-nav a {
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+  padding: 14px 2px 15px 2px;
+  margin: 0 20px -1px 0;
+  color: #898884;
+  text-decoration: none;
+}
+.sub-nav a.active {
+  color: #000;
+  border-bottom: 1px solid #000;
+}
+.sub-nav a:hover {
+  color: #000;
+}

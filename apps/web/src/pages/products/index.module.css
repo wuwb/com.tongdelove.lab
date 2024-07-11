@@ -1,0 +1,35 @@
+.leftSidebar {
+  width: calc(49vw - 550px);
+  min-width: 220px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  @apply pt-1 hidden sm:block;
+}
+.sidebarPanel {
+  padding: 0 .5vw 2rem 1vw;
+  max-width: 300px;
+}
+.mainPanel {
+  flex: 1;
+  padding: 0 2vw 0 1vw;
+  overflow: scroll;
+}
+.mainTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  @apply text-4xl font-extrabold tracking-tight text-gray-900;
+}
+.mainContent {
+  @apply pt-0 pb-4;
+  padding-top: 1rem;
+  border-top: var(--stroke-thin) solid var(--color-outline);
+}
+.productGrid {
+  @apply grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  --grid-tc: repeat(4, 1fr);
+  grid-template-columns: var(--grid-tc);
+  --grid-cs: 1;
+  --grid-ce: -1;
+}

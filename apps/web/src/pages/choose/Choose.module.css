@@ -1,0 +1,9 @@
+.content {
+  padding: 80px 40px;
+  background-color: #f7f6f5;
+  transition: all .1s linear;
+}
+
+.content:hover {
+  background-color: #DDF3FF;
+}

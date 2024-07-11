@@ -1,0 +1,15 @@
+.part {
+  background: #fff;
+  margin-bottom: 24px;
+  border-radius: 10px;
+}
+
+.part h2 {
+  padding: 13px 36px;
+  border-bottom: 1px solid #f1f4f9;
+  line-height: 16px;
+}
+
+.part .items {
+  padding: 22px 15px;
+}
