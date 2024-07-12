@@ -187,6 +187,8 @@ const config = {
   ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone' ? { output: 'standalone', outputFileTracing: true } : {}),
 
   experimental: {
+    forceSwcTransforms: true,
+
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone' ? { outputFileTracingRoot: workspaceRoot } : {}),
 

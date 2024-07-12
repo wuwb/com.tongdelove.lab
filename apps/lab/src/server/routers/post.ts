@@ -1,6 +1,5 @@
 import { z } from 'zod'
-import { createTRPCRouter, publicProcedure, protectedProcedure } from '@/server/trpc/trpc'
-import type { TRPCRouterRecord } from '@trpc/server'
+import { publicProcedure } from '@/server/trpc/trpc'
 
 export const postRouter = {
   all: publicProcedure.query(({ ctx }) => {
@@ -28,4 +27,4 @@ export const postRouter = {
   delete: publicProcedure.input(z.number()).mutation(({ ctx, input }) => {
     return ctx.prisma.post.delete({ where: { id: input } })
   }),
-} satisfies TRPCRouterRecord
+}

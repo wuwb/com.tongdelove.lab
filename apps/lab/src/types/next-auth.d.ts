@@ -36,7 +36,7 @@ declare module 'next-auth' {
    * The shape of the user object returned by the OAuth providers' `profile` callback,
    * or the second parameter of the `session` callback, when using a database.
    */
-  interface User extends DefaultSession['user'] {
+  interface User extends DefaultSession {
     id?: string
     encodeToken?: string
   }

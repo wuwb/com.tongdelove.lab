@@ -1,9 +1,8 @@
-import { type PoemAuthor, type Poem } from '@prisma/client'
+import { type Poem } from '@prisma/client'
 import { z } from 'zod'
-import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
+import { publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'
 import { splitChineseSymbol } from '@/utils'
-import type { TRPCRouterRecord } from '@trpc/server'
 
 let token: {
   access_token: string
@@ -535,4 +534,4 @@ export const poemRouter = {
         data: json,
       })
     }),
-} satisfies TRPCRouterRecord
+}
