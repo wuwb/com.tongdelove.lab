@@ -13,6 +13,7 @@ const Home = () => {
                   width={120}
                   height={90}
                   src="https://via.placeholder.com/120x90"
+                  alt=""
                 />
               </div>
               <div className="detail">
@@ -26,6 +27,7 @@ const Home = () => {
                   width={120}
                   height={90}
                   src="https://via.placeholder.com/120x90"
+                  alt=""
                 />
               </div>
               <div className="detail">
@@ -39,6 +41,7 @@ const Home = () => {
                   width={120}
                   height={90}
                   src="https://via.placeholder.com/120x90"
+                  alt=""
                 />
               </div>
               <div className="detail">
@@ -52,6 +55,7 @@ const Home = () => {
                   width={120}
                   height={90}
                   src="https://via.placeholder.com/120x90"
+                  alt=""
                 />
               </div>
               <div className="detail">

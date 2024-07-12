@@ -51,13 +51,20 @@ instance.interceptors.response.use(function (response: AxiosResponse) {
   // Any status code that lie within the range of 2xx cause this function to trigger
   // Do something with response data
   return response.data;
-}, function (error: AxiosError) {
+}, (error: AxiosError) => {
   // Any status codes that falls outside the range of 2xx cause this function to trigger
   // Do something with response error
-  if (!axios.isCancel(error)) {
-    console.log(error.message);
-    // return Promise.reject(error);
+  if (error.response) {
+    return Promise.reject(error);
+  } else if (error.request) {
+    if (!axios.isCancel(error)) {
+      console.error(error);
+    }
+    return Promise.reject(error);
+  } else {
+    return Promise.reject(error);
   }
+
 });
 
 export const useAxios = makeUseAxios({

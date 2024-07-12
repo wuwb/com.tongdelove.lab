@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
-import { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva';
+import React, { Component, useState, memo } from 'react';
+import ReactKonva, { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva';
 import Konva from 'konva';
 import { Pa, PMain, PSide } from '../../Slice';
 
-const Normal = () => {
+export const Normal = memo(() => {
   const [state, setState] = useState({
     dashStyle: [ 3, 3 ],
 
@@ -70,18 +70,18 @@ const Normal = () => {
   ];
 
   return (
-      <Group
-          x={paddingLeft}
-          y={paddingTop}
-      >
-          <Pa options={state}></Pa>
-          <PMain options={state}></PMain>
-          <PSide options={state}></PSide>
-          <Transformer>
-              <Pa options={state}></Pa>
-          </Transformer>
-      </Group>
+    <Group
+      x={paddingLeft}
+      y={paddingTop}
+    >
+      <Pa options={state}></Pa>
+      <PMain options={state}></PMain>
+      <PSide options={state}></PSide>
+      <Transformer>
+        <Pa options={state}></Pa>
+      </Transformer>
+    </Group>
   );
-}
+})
 
-export default Normal;
+Normal.displayName = 'Normal'

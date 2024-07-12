@@ -2,9 +2,8 @@ import {useEffect, useState, useRef} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import { CaretDownOutlined } from '@ant-design/icons';
 import WorldIcon from "../Icons/svgs/world";
-
+import { RiArrowDownSLine } from "react-icons/ri"
 import {useOnClickOutside} from "@/utils/hooks";
 
 const LocaleSwitch = ({pageContext}) => {
@@ -65,7 +64,7 @@ const LocaleSwitch = ({pageContext}) => {
       >
         <WorldIcon/>
         <span className="capitalize">{locale}</span>
-        <CaretDownOutlined className="ml-1 text-primary-600"/>
+        <RiArrowDownSLine className="ml-1 text-primary-600" />
       </button>
       <div
         className={`w-full bg-white p-1 mt-1 shadow-lg rounded-md ${

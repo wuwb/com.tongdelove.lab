@@ -224,6 +224,7 @@ const Page = () => {
                     <Link href="/">
                       <a href="" className="action-hover">
                         <Image
+                          alt=""
                           width={540}
                           height={540}
                           src="/assets/products/standrad/1.jpg"
@@ -245,6 +246,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/2.jpg"
@@ -265,6 +267,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/3.jpg"
@@ -285,6 +288,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/4.jpg"
@@ -305,6 +309,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/5.jpg"
@@ -326,6 +331,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/6.jpg"
@@ -346,6 +352,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/7.jpg"
@@ -366,6 +373,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/8.jpg"
@@ -386,6 +394,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -406,6 +415,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -427,6 +437,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -447,6 +458,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -467,6 +479,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -487,6 +500,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -507,6 +521,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -534,6 +549,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -554,6 +570,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -574,6 +591,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -594,6 +612,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -614,6 +633,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
@@ -641,6 +661,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/c1.jpg"
@@ -661,6 +682,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/c2.jpg"
@@ -681,6 +703,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/c3.jpg"
@@ -701,6 +724,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="/assets/products/standrad/c4.jpg"
@@ -721,6 +745,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width={540}
                         height={540}
                         src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"

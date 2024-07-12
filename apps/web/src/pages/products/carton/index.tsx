@@ -219,7 +219,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/1.jpg" />
+                          <Image alt="" src="/assets/products/1.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -231,7 +231,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/2.jpg" />
+                          <Image alt="" src="/assets/products/2.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -243,7 +243,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/3.jpg" />
+                          <Image alt="" src="/assets/products/3.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -255,7 +255,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/4.jpg" />
+                          <Image alt="" src="/assets/products/4.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -267,7 +267,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/5.jpg" />
+                          <Image alt="" src="/assets/products/5.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -280,7 +280,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/6.jpg" />
+                          <Image alt="" src="/assets/products/6.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -292,7 +292,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/7.jpg" />
+                          <Image alt="" src="/assets/products/7.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -304,7 +304,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/8.jpg" />
+                          <Image alt="" src="/assets/products/8.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -316,7 +316,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -328,7 +328,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -341,7 +341,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -353,7 +353,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -365,7 +365,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -377,7 +377,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -389,7 +389,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -408,7 +408,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -420,7 +420,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -432,7 +432,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -444,7 +444,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -456,7 +456,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -475,7 +475,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/c1.jpg" />
+                          <Image alt="" src="/assets/products/c1.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -487,7 +487,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/c2.jpg" />
+                          <Image alt="" src="/assets/products/c2.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -499,7 +499,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/c3.jpg" />
+                          <Image alt="" src="/assets/products/c3.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -511,7 +511,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="/assets/products/c4.jpg" />
+                          <Image alt="" src="/assets/products/c4.jpg" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">
@@ -523,7 +523,7 @@ class Page extends Component {
                                 <div className="product-wrap">
                                     <div className="product">
                                         <Link href=""><a href="" className="action-hover">
-                                            <Image src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                          <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
                                         </a></Link>
                                     </div>
                                     <div className="product-detail">

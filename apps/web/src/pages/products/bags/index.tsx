@@ -219,7 +219,7 @@ const ProductsBagsPage = () => {
                                 <div className="product">
                                     <Link href="">
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/1.jpg" />
+                        <Image alt="" src="/assets/products/bags/1.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -235,7 +235,7 @@ const ProductsBagsPage = () => {
                                 <div className="product">
                                 <Link href="">
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/2.jpg" />
+                        <Image alt="" src="/assets/products/bags/2.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -253,7 +253,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/3.jpg" />
+                        <Image alt="" src="/assets/products/bags/3.jpg" />
                                     </a>
                                     </Link>
 
@@ -273,7 +273,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/4.jpg" />
+                        <Image alt="" src="/assets/products/bags/4.jpg" />
                                     </a>
                                     </Link>
 
@@ -293,7 +293,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/5.jpg" />
+                        <Image alt="" src="/assets/products/bags/5.jpg" />
                                     </a>
                                     </Link>
 
@@ -314,7 +314,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/6.jpg" />
+                        <Image alt="" src="/assets/products/bags/6.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -332,7 +332,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/7.jpg" />
+                        <Image alt="" src="/assets/products/bags/7.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -350,7 +350,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/8.jpg" />
+                        <Image alt="" src="/assets/products/bags/8.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -368,7 +368,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/9.jpg" />
+                        <Image alt="" src="/assets/products/bags/9.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -386,7 +386,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/10.jpg" />
+                        <Image alt="" src="/assets/products/bags/10.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -405,7 +405,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/11.jpg" />
+                        <Image alt="" src="/assets/products/bags/11.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -422,7 +422,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/12.jpg" />
+                        <Image alt="" src="/assets/products/bags/12.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -440,7 +440,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/13.jpg" />
+                        <Image alt="" src="/assets/products/bags/13.jpg" />
                                     </a>
                                     </Link>
                                 </div>
@@ -458,7 +458,7 @@ const ProductsBagsPage = () => {
                                 <Link href="">
 
                                     <a href="" className="action-hover">
-                                        <Image src="/assets/products/bags/14.jpg" />
+                        <Image alt="" src="/assets/products/bags/14.jpg" />
                                     </a>
                                     </Link>
                                 </div>

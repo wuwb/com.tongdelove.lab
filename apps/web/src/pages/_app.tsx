@@ -11,7 +11,7 @@ import NextNProgress from "nextjs-progressbar";
 import nextI18NextConfig from '../../next-i18next.config';
 import '@/styles/globals.css';
 
-const Noop: FC = ({ children }) => <>{children}</>
+const Noop = ({ children }) => <>{children}</>
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

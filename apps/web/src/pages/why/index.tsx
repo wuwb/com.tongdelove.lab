@@ -29,7 +29,7 @@ const Page = () => {
           <div className="col-span-8">
             <div className="webshot-wrap max-w-full clearfix">
               <div className="webshot">
-                <Image width={640} height={442} src="/assets/why/Items.png" />
+                <Image alt="" width={640} height={442} src="/assets/why/Items.png" />
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
-                <Image width={640} height={442} src="/assets/why/Cart.png" />
+                <Image alt="" width={640} height={442} src="/assets/why/Cart.png" />
               </div>
             </div>
           </Col>
@@ -63,7 +63,7 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
-                <Image width={640} height={442} src="/assets/why/Proof.png" />
+                <Image alt="" width={640} height={442} src="/assets/why/Proof.png" />
               </div>
             </div>
           </Col>
@@ -73,7 +73,7 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
-                <Image width={640} height={442} src="/assets/why/Checkout.png" />
+                <Image alt="" width={640} height={442} src="/assets/why/Checkout.png" />
               </div>
             </div>
           </Col>

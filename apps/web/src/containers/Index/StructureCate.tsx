@@ -1,5 +1,6 @@
 import { Row, Col } from 'antd';
 import Image from 'next/image';
+import Link from 'next/link'
 
 const Home = () => {
   return (
@@ -14,90 +15,90 @@ const Home = () => {
         <Row gutter={16} className="justify-center">
           <Col className="product-wrap">
             <div className="product">
-              <a href="" className="action-hover">
-                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" />
-              </a>
+              <Link href="" className="action-hover">
+                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" alt="" />
+              </Link>
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <a
+                <Link
                   href="/products/corrugated-mailer-boxes"
                   className="action-hover"
                 >
                   咖啡管式盒
-                </a>
+                </Link>
               </h4>
             </div>
           </Col>
           <Col className="product-wrap">
             <div className="product">
-              <a href="" className="action-hover">
-                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" />
-              </a>
+              <Link href="" className="action-hover">
+                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" alt="" />
+              </Link>
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <a
+                <Link
                   href="/products/corrugated-mailer-boxes"
                   className="action-hover"
                 >
                   咖啡管式盒
                   <br />
-                </a>
+                </Link>
               </h4>
             </div>
           </Col>
           <Col className="product-wrap">
             <div className="product">
-              <a href="" className="action-hover">
-                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" />
-              </a>
+              <Link href="" className="action-hover">
+                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" alt="" />
+              </Link>
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <a
+                <Link
                   href="/products/corrugated-mailer-boxes"
                   className="action-hover"
                 >
                   咖啡管式盒
                   <br />
-                </a>
+                </Link>
               </h4>
             </div>
           </Col>
           <Col className="product-wrap">
             <div className="product">
-              <a href="" className="action-hover">
-                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" />
-              </a>
+              <Link href="" className="action-hover">
+                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" alt="" />
+              </Link>
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <a
+                <Link
                   href="/products/corrugated-mailer-boxes"
                   className="action-hover"
                 >
                   咖啡管式盒
                   <br />
-                </a>
+                </Link>
               </h4>
             </div>
           </Col>
           <Col className="product-wrap">
             <div className="product">
-              <a href="" className="action-hover">
-                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" />
-              </a>
+              <Link href="" className="action-hover">
+                <Image width={260} height={260} src="https://via.placeholder.com/500x500/eee" alt="" />
+              </Link>
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <a
+                <Link
                   href="/products/corrugated-mailer-boxes"
                   className="action-hover"
                 >
                   咖啡管式盒
                   <br />
-                </a>
+                </Link>
               </h4>
             </div>
           </Col>

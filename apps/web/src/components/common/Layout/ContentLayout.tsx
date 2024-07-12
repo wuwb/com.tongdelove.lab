@@ -1,13 +1,9 @@
-import * as React from 'react';
-
+import { PropsWithChildren, FC } from 'react';
 import { Head } from '../Head';
 
-type ContentLayoutProps = {
-  children: React.ReactNode;
-  title: string;
-};
+type ContentLayoutProps = PropsWithChildren<{ title: string }>;
 
-export const ContentLayout = ({ children, title }: ContentLayoutProps) => {
+export const ContentLayout: FC<ContentLayoutProps> = ({ children, title }) => {
   return (
     <>
       <Head />

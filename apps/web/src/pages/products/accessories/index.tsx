@@ -218,6 +218,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover relative">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/1.jpg"
@@ -237,6 +238,7 @@ const Page = () => {
                     <Link href="/" passHref>
                       <a href="" className="action-hover">
                         <Image
+                          alt=""
                           width="100"
                           height="100"
                           src="/assets/products/accessories/2.jpg"
@@ -258,6 +260,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/3.jpg"
@@ -278,6 +281,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/4.jpg"
@@ -298,6 +302,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/5.jpg"
@@ -319,6 +324,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/6.jpg"
@@ -339,6 +345,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/7.jpg"
@@ -359,6 +366,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/8.jpg"
@@ -379,6 +387,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/9.jpg"
@@ -399,6 +408,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/10.jpg"
@@ -420,6 +430,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/11.jpg"
@@ -440,6 +451,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/12.jpg"
@@ -460,6 +472,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/13.jpg"
@@ -480,6 +493,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/14.jpg"
@@ -500,6 +514,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/15.jpg"
@@ -520,6 +535,7 @@ const Page = () => {
                   <div className="product">
                     <a href="" className="action-hover">
                       <Image
+                        alt=""
                         width="100"
                         height="100"
                         src="/assets/products/accessories/16.jpg"

@@ -48,7 +48,7 @@ const PostsPage = () => {
       <article className="mb-32">
         {heroUrl ? (
           <div className={`hero flex items-center post-type-${post.post_type}`}>
-            <Image width={100} height={100} className="w-100" src={heroUrl} />
+            <Image alt="" width={100} height={100} className="w-100" src={heroUrl} />
           </div>
         ) : (
           ''

@@ -36,13 +36,13 @@ const Home = () => {
               </div>
             </div>
             <div className="col-span-7 relative">
-              <Image layout="fill" src="/assets/features/collaborate.png" />
+              <Image layout="fill" src="/assets/features/collaborate.png" alt="" />
             </div>
           </div>
 
           <Row justify="center" className="py-10">
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/quote.png" />
+              <Image layout="fill" src="/assets/features/quote.png" alt="" />
             </Col>
             <Col md={11}>
               <div className="py-36 px-20">
@@ -71,13 +71,13 @@ const Home = () => {
               </div>
             </Col>
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/order.png" />
+              <Image alt="" layout="fill" src="/assets/features/order.png" />
             </Col>
           </Row>
 
           <Row justify="center" className="py-10">
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/proof.png" />
+              <Image alt="" layout="fill" src="/assets/features/proof.png" />
             </Col>
             <Col md={11}>
               <div className="py-36 px-20">
@@ -105,13 +105,13 @@ const Home = () => {
               </div>
             </Col>
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/production.png" />
+              <Image alt="" layout="fill" src="/assets/features/production.png" />
             </Col>
           </Row>
 
           <Row justify="center" className="py-10">
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/analyze.png" />
+              <Image alt="" layout="fill" src="/assets/features/analyze.png" />
             </Col>
             <Col md={11}>
               <div className="py-36 px-20">
@@ -142,7 +142,7 @@ const Home = () => {
               </div>
             </Col>
             <Col md={13}>
-              <Image layout="fill" src="/assets/features/manage-items.png" />
+              <Image alt="" layout="fill" src="/assets/features/manage-items.png" />
             </Col>
           </Row>
         </div>

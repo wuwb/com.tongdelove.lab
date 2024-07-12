@@ -28,7 +28,7 @@ function Content1(props) {
     <div {...tagProps} {...dataSource.wrapper}>
       <Row>
           <span {...dataSource.img}>
-            <Image src={dataSource.img.children} width="100%" alt="img" />
+          <Image src={dataSource.img.children} className="w-full" width="100" alt="img" />
           </span>
         <div
           key="text"

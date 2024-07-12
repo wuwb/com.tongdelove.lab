@@ -199,7 +199,7 @@ const Page = () => {
                 <div className="wrap-l pn2">
                   <div className="ui-frame">
                     <div className="ui-frame-screen">
-                      <Image width={300} height={300} src="/assets/introduce/Items.png" />
+                      <Image alt="" width={300} height={300} src="/assets/introduce/Items.png" />
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ const Page = () => {
                     <div className="bg-gray-light mb-8 mt-2">
                       <div className="row row-no-padding flex justify-center">
                         <div className="col-6 mr-2">
-                          <Image width={300} height={300} src="/assets/introduce/parchute-unboxing.jpg" />
+                          <Image alt="" width={300} height={300} src="/assets/introduce/parchute-unboxing.jpg" />
                         </div>
                         <div className="col-4">
                           <div className="ppa ssl ssr">
@@ -264,7 +264,7 @@ const Page = () => {
                     <div className="bg mt-2">
                       <div className="row row-no-padding flex justify-center">
                         <div className="col-6 mr-2">
-                          <Image width={300} height={300} src="/assets/introduce/meundie-pink-spring.jpg" />
+                          <Image alt="" width={300} height={300} src="/assets/introduce/meundie-pink-spring.jpg" />
                         </div>
                         <div className="col-4">
                           <div className="ppa ssl ssr">

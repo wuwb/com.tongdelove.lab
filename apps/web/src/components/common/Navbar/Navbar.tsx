@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import Link from 'next/link';
 import s from './Navbar.module.css';
 import NavbarRoot from './NavbarRoot';
@@ -9,7 +9,7 @@ interface Link {
   href: string;
   label: string;
 }
-interface NavbarProps {
+interface NavbarProps extends PropsWithChildren {
   links?: Link[];
 }
 

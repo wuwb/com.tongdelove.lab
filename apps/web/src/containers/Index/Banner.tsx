@@ -12,10 +12,10 @@ const Banner = () => {
   return (
     <Carousel afterChange={onChange} dotPosition="right" autoplay autoplaySpeed={7000}>
       <div>
-        <Image src={Banner1} />
+        <Image src={Banner1} alt="" />
       </div>
       <div>
-        <Image src={Banner2} />
+        <Image src={Banner2} alt="" />
       </div>
     </Carousel>
   )

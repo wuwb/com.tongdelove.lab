@@ -33,7 +33,7 @@ const ProductCard = ({
             variant === 'default' && (
               <div className="product-wrap">
                 <Product className="text-left overflow-hidden">
-                  <Image width="800" height="800" src="/assets/products/accessories/1.jpg" />
+                  <Image width="800" height="800" src="/assets/products/accessories/1.jpg" alt="" />
                 </Product>
                 <ProductDetail>
                   <h4 className="box-title text-center">

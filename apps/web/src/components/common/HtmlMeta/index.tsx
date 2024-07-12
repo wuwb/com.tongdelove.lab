@@ -1,8 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 
-// import { useStore } from '@leaa/www/src/stores';
-
 interface IProps {
     title: React.ReactNode;
     description?: string;
@@ -47,13 +45,12 @@ export const HtmlMeta = (props: IProps) => {
     }
 
     return (
-        <Head>
-            <title>
-                {props.title}
-                {siteName}
-            </title>
-            <meta name="description" content={description || storeSiteName} />
-            <meta name="keywords" content={props.keywords || storeSiteName} />
-        </Head>
+      <Head>
+        <title>
+          {siteName}
+        </title>
+        <meta name="description" content={description || storeSiteName} />
+        <meta name="keywords" content={props.keywords || storeSiteName} />
+      </Head>
     );
 };

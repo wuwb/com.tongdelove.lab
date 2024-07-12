@@ -22,7 +22,7 @@ class Banner extends React.PureComponent<any, any> {
           <div key="title" {...dataSource.title}>
             {typeof dataSource.title.children === 'string' &&
             dataSource.title.children.match(isImg) ? (
-              <Image src={dataSource.title.children} width="100%" alt="img" />
+                <Image src={dataSource.title.children} className="w-full" width="100" alt="img" />
             ) : (
               dataSource.title.children
             )}

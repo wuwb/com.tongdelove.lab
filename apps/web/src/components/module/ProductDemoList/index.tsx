@@ -18,6 +18,7 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[0].image}
+                  alt=""
               />
             </a>
             </Link>
@@ -42,6 +43,8 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[1].image}
+                  alt=""
+
               />
             </a>
             </Link>
@@ -67,6 +70,8 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[2].image}
+                  alt=""
+
               />
             </a>
             </Link>
@@ -91,6 +96,8 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[3].image}
+                  alt=""
+
               />
               
             </a>
@@ -116,6 +123,8 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[4].image}
+                  alt=""
+
               />
             </a>
             </Link>
@@ -140,6 +149,8 @@ const ProductDemoList = (props) => {
                 width={240}
                 height={240}
                 src={props.products[5].image}
+                  alt=""
+
               />
             </a>
             </Link>

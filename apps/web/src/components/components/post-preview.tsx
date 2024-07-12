@@ -20,6 +20,7 @@ export default function PostPreview({
           <Image
             width={435} height={200}
             src="https://zeit.co/docs/static/docs/git-integrations/github-comment.png"
+            alt=""
           />
         </Card>
       </div>

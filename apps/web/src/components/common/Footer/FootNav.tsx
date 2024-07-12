@@ -11,17 +11,19 @@ interface Props {
 const Home = ({ title, navs, children }: Props) => {
   return (
     <ul className={s.footNav}>
-      <li className="title">{title}</li>
-      {navs.map((item) => {
-        return (
-          <li key={item.href}>
-            <Link href={item.href}>
-              <a className="item">{item.name}</a>
-            </Link>
-          </li>
-        );
-      })}
-      {children}
+      <>
+        <li className="title">{title}</li>
+        {navs.map((item) => {
+          return (
+            <li key={item.href}>
+              <Link href={item.href}>
+                <a className="item">{item.name}</a>
+              </Link>
+            </li>
+          );
+        })}
+        {children}
+      </>
     </ul>
   );
 };
