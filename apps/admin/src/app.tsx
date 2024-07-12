@@ -1,18 +1,28 @@
-import RightContent, { Question, SelectLang } from '@/components/RightContent';
-import { queryCurrentUser } from '@/services/base/user';
-import { QuestionOutlined } from '@ant-design/icons';
-import type { MenuDataItem, Settings as LayoutSettings } from '@ant-design/pro-components';
-import { SettingDrawer } from '@ant-design/pro-components';
-import type { RequestConfig, RuntimeAntdConfig, RunTimeLayoutConfig } from '@umijs/max';
-import { getLocale, history, Link, useLocation } from '@umijs/max';
-import { message, theme } from 'antd';
-import { createLogger } from 'redux-logger';
-import { defaultSettings } from '../config/defaultSettings';
-import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
-import { errorConfig } from './requestErrorConfig';
+import RightContent, { Question, SelectLang } from '@/components/RightContent'
+import { queryCurrentUser } from '@/services/base/user'
+import { QuestionOutlined } from '@ant-design/icons'
+import type {
+  Settings as LayoutSettings,
+  MenuDataItem,
+} from '@ant-design/pro-components'
+import { SettingDrawer } from '@ant-design/pro-components'
+import type {
+  RequestConfig,
+  RunTimeLayoutConfig,
+  RuntimeAntdConfig,
+} from '@umijs/max'
+import { Link, getLocale, history } from '@umijs/max'
+import { message, theme } from 'antd'
+import { createLogger } from 'redux-logger'
+import { defaultSettings } from '../config/defaultSettings'
+import {
+  AvatarDropdown,
+  AvatarName,
+} from './components/RightContent/AvatarDropdown'
+import { errorConfig } from './requestErrorConfig'
 
-const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login';
+const isDev = process.env.NODE_ENV === 'development'
+const loginPath = '/user/login'
 
 /**
  * 用户名、头像信息可以通过配置全局初始化信息来提供数据。
@@ -20,40 +30,40 @@ const loginPath = '/user/login';
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  */
 export async function getInitialState(): Promise<{
-  settings?: Partial<LayoutSettings>;
-  currentUser?: API.CurrentUser;
-  loading?: boolean;
-  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
-  currentMenu?: MenuDataItem[];
-  fetchMenu?: () => Promise<MenuDataItem[] | undefined>;
+  settings?: Partial<LayoutSettings>
+  currentUser?: API.CurrentUser
+  loading?: boolean
+  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>
+  currentMenu?: MenuDataItem[]
+  fetchMenu?: () => Promise<MenuDataItem[] | undefined>
 }> {
   const fetchUserInfo = async () => {
     try {
       const msg = await queryCurrentUser({
         skipErrorHandler: true,
-      });
-      return msg.data;
+      })
+      return msg.data
     } catch (error) {
-      console.log('err: ', error);
+      console.log('err: ', error)
       // history.push(loginPath);
     }
-    return undefined;
-  };
+    return undefined
+  }
   const fetchMenu = async () => {
     try {
-      const currentMenu = await queryCurrentMenu();
-      return currentMenu;
+      const currentMenu = await queryCurrentMenu()
+      return currentMenu
     } catch (error) {
       // message.error('Get menu data failed.', 10);
-      return [];
+      return []
     }
-  };
+  }
   // 如果是登录页面，不执行
-  const { location } = history;
+  const { location } = history
 
   if (location.pathname !== loginPath && location.pathname !== '/api') {
-    const currentUser = await fetchUserInfo();
-    const currentMenu: any = [];
+    const currentUser = await fetchUserInfo()
+    const currentMenu: any = []
     // try {
     //   currentMenu = await fetchMenu();
     // } catch (err) {
@@ -65,13 +75,13 @@ export async function getInitialState(): Promise<{
       // fetchMenu,
       currentMenu,
       settings: defaultSettings as Partial<LayoutSettings>,
-    };
+    }
   }
   return {
     fetchUserInfo,
     // fetchMenu,
     settings: defaultSettings as Partial<LayoutSettings>,
-  };
+  }
 }
 
 // export const layoutActionRef = createRef<{ reload: () => void }>();
@@ -82,18 +92,21 @@ export const layout: RunTimeLayoutConfig = ({
   initialState,
   setInitialState,
 }: {
-  initialState: any;
-  setInitialState: any;
+  initialState: any
+  setInitialState: any
 }) => {
   const location = '' // useLocation();
 
   return {
-    actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
+    actionsRender: () => [
+      <Question key="doc" />,
+      <SelectLang key="SelectLang" />,
+    ],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
       title: <AvatarName />,
       render: (_, avatarChildren) => {
-        return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
+        return <AvatarDropdown>{avatarChildren}</AvatarDropdown>
       },
     },
     rightContentRender: () => <RightContent />,
@@ -104,7 +117,7 @@ export const layout: RunTimeLayoutConfig = ({
     // 页脚信息
     footerRender: () => null, // <Footer />
     onPageChange: (route) => {
-      const { location } = history;
+      const { location } = history
 
       // 如果没有登录，重定向到 login
       if (
@@ -138,34 +151,34 @@ export const layout: RunTimeLayoutConfig = ({
     ],
     links: isDev
       ? [
-        // <Link to="/umi/plugin/openapi" target="_blank">
-        //   <LinkOutlined />
-        //   <span>OpenAPI 文档</span>
-        // </Link>,
-        // <Link to="/~docs">
-        //   <BookOutlined />
-        //   <span>业务组件文档</span>
-        // </Link>,
-        // <Link
-        //   target="_blank"
-        //   to="https://pro.ant.design/docs/getting-started"
-        //   rel="noopener noreferrer"
-        // >
-        //   <QuestionOutlined />
-        //   <span>使用文档</span>
-        // </Link>,
-      ]
+          // <Link to="/umi/plugin/openapi" target="_blank">
+          //   <LinkOutlined />
+          //   <span>OpenAPI 文档</span>
+          // </Link>,
+          // <Link to="/~docs">
+          //   <BookOutlined />
+          //   <span>业务组件文档</span>
+          // </Link>,
+          // <Link
+          //   target="_blank"
+          //   to="https://pro.ant.design/docs/getting-started"
+          //   rel="noopener noreferrer"
+          // >
+          //   <QuestionOutlined />
+          //   <span>使用文档</span>
+          // </Link>,
+        ]
       : [
-        <Link
-          target="_blank"
-          to="https://pro.ant.design/docs/getting-started"
-          rel="noopener noreferrer"
-          key="help"
-        >
-          <QuestionOutlined />
-          <span>使用文档</span>
-        </Link>,
-      ],
+          <Link
+            target="_blank"
+            to="https://pro.ant.design/docs/getting-started"
+            rel="noopener noreferrer"
+            key="help"
+          >
+            <QuestionOutlined />
+            <span>使用文档</span>
+          </Link>,
+        ],
     menuHeaderRender: undefined, // () => <div>menu</div>, undefined, false
 
     // 自定义 403 页面
@@ -185,12 +198,12 @@ export const layout: RunTimeLayoutConfig = ({
                 setInitialState((preInitialState) => ({
                   ...preInitialState,
                   settings,
-                }));
+                }))
               }}
             />
           )}
         </>
-      );
+      )
     },
     ...initialState?.settings,
 
@@ -211,7 +224,7 @@ export const layout: RunTimeLayoutConfig = ({
           breadcrumbName: getLocale() === 'zh-CN' ? '主页' : 'Home',
         },
         ...routers,
-      ];
+      ]
     },
     // hash 路由跳转
     // itemRender: (route, params, routes, paths) => {
@@ -253,30 +266,30 @@ export const layout: RunTimeLayoutConfig = ({
         // initialState.currentUser 中包含了所有用户信息
         // const menuData = await fetchMenuData();
         // return menuData;
-        return initialState?.menuData;
+        return initialState?.menuData
       },
     },
-  };
-};
+  }
+}
 
 type CodeMsg = {
-  [key: number]: string;
-};
+  [key: number]: string
+}
 
 export const dva = {
   config: {
     onAction: createLogger(),
     onError(e: Error) {
-      message.error(e.message, 3);
+      message.error(e.message, 3)
     },
   },
-};
+}
 
 export const antd: RuntimeAntdConfig = (memo: any) => {
-  memo.theme ||= {};
-  memo.theme.algorithm = theme.compactAlgorithm;
-  return memo;
-};
+  memo.theme ||= {}
+  memo.theme.algorithm = theme.compactAlgorithm
+  return memo
+}
 
 const codeMessage: CodeMsg = {
   200: '服务器成功返回请求的数据。',
@@ -295,7 +308,7 @@ const codeMessage: CodeMsg = {
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
-};
+}
 
 /**
  * @name request 配置，可以配置错误处理,运行时配置
@@ -308,7 +321,7 @@ export const request: RequestConfig = {
 
   // 当后端接口不满足该规范的时候你需要通过该配置把后端接口数据转换为该格式
   ...errorConfig,
-};
+}
 
 // export const ssr = {
 //   modifyGetInitialPropsCtx: async (ctx) => {

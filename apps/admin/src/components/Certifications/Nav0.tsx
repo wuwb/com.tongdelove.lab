@@ -1,58 +1,65 @@
-import { Menu } from 'antd';
-import TweenOne from 'rc-tween-one';
-import React from 'react';
-import { getChildrenToRender } from './utils';
+import { Menu } from 'antd'
+import TweenOne from 'rc-tween-one'
+import React from 'react'
+import { getChildrenToRender } from './utils'
 
-const { Item, SubMenu } = Menu;
+const { Item, SubMenu } = Menu
 
 class Header extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       phoneOpen: undefined,
-    };
+    }
   }
 
   phoneClick = () => {
-    const phoneOpen = !this.state.phoneOpen;
+    const phoneOpen = !this.state.phoneOpen
     this.setState({
       phoneOpen,
-    });
-  };
+    })
+  }
 
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
-    const { phoneOpen } = this.state;
-    const navData = dataSource.Menu.children;
+    const { dataSource, isMobile, ...props } = this.props
+    const { phoneOpen } = this.state
+    const navData = dataSource.Menu.children
     const navChildren = navData.map((item) => {
-      const { children: a, subItem, ...itemProps } = item;
+      const { children: a, subItem, ...itemProps } = item
       if (subItem) {
         return (
           <SubMenu
             key={item.name}
             {...itemProps}
             title={
-              <div {...a} className={`header0-item-block ${a.className}`.trim()}>
+              <div
+                {...a}
+                className={`header0-item-block ${a.className}`.trim()}
+              >
                 {a.children.map(getChildrenToRender)}
               </div>
             }
             popupClassName="header0-item-child"
           >
             {subItem.map(($item, ii) => {
-              const { children: childItem } = $item;
+              const { children: childItem } = $item
               const child = childItem.href ? (
-                <a {...childItem}>{childItem.children.map(getChildrenToRender)}</a>
+                <a {...childItem}>
+                  {childItem.children.map(getChildrenToRender)}
+                </a>
               ) : (
-                <div {...childItem}>{childItem.children.map(getChildrenToRender)}</div>
-              );
+                <div {...childItem}>
+                  {childItem.children.map(getChildrenToRender)}
+                </div>
+              )
               return (
                 <Item key={$item.name || ii.toString()} {...$item}>
                   {child}
                 </Item>
-              );
+              )
             })}
           </SubMenu>
-        );
+        )
       }
       return (
         <Item key={item.name} {...itemProps}>
@@ -60,9 +67,9 @@ class Header extends React.Component {
             {a.children.map(getChildrenToRender)}
           </a>
         </Item>
-      );
-    });
-    const moment = phoneOpen === undefined ? 300 : null;
+      )
+    })
+    const moment = phoneOpen === undefined ? 300 : null
     return (
       <TweenOne
         component="header"
@@ -74,14 +81,17 @@ class Header extends React.Component {
           {...dataSource.page}
           className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
         >
-          <TweenOne animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }} {...dataSource.logo}>
+          <TweenOne
+            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            {...dataSource.logo}
+          >
             <img width="100%" src={dataSource.logo.children} alt="img" />
           </TweenOne>
           {isMobile && (
             <div
               {...dataSource.mobileMenu}
               onClick={() => {
-                this.phoneClick();
+                this.phoneClick()
               }}
             >
               <em />
@@ -98,7 +108,7 @@ class Header extends React.Component {
                     duration: 300,
                     onComplete: (e) => {
                       if (this.state.phoneOpen) {
-                        e.target.style.height = 'auto';
+                        e.target.style.height = 'auto'
                       }
                     },
                     ease: 'easeInOutQuad',
@@ -118,8 +128,8 @@ class Header extends React.Component {
           </TweenOne>
         </div>
       </TweenOne>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

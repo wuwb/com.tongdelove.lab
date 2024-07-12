@@ -1,6 +1,6 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { Card } from 'antd';
-import React from 'react';
+import { PageContainer } from '@ant-design/pro-components'
+import { Card } from 'antd'
+import React from 'react'
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -8,16 +8,17 @@ import React from 'react';
  * @returns
  */
 const InfoCard: React.FC<{
-  title: string;
-  index: number;
-  desc: string;
-  href: string;
+  title: string
+  index: number
+  desc: string
+  href: string
 }> = ({ title, href, index, desc }) => {
   return (
     <div
       style={{
         backgroundColor: '#FFFFFF',
-        boxShadow: '0 2px 4px 0 rgba(35,49,128,0.02), 0 4px 8px 0 rgba(49,69,179,0.02)',
+        boxShadow:
+          '0 2px 4px 0 rgba(35,49,128,0.02), 0 4px 8px 0 rgba(49,69,179,0.02)',
         borderRadius: '8px',
         fontSize: '14px',
         color: 'rgba(0,0,0,0.65)',
@@ -75,8 +76,8 @@ const InfoCard: React.FC<{
         了解更多 {'>'}
       </a>
     </div>
-  );
-};
+  )
+}
 
 const Welcome: React.FC = () => {
   return (
@@ -148,7 +149,7 @@ const Welcome: React.FC = () => {
         </div>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default Welcome;
+export default Welcome

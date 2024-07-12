@@ -1,4 +1,4 @@
-import { styled } from '@umijs/max';
+import { styled } from '@umijs/max'
 
 const Wrapper = styled.div`
   padding: 0;
@@ -8,6 +8,6 @@ const Wrapper = styled.div`
   border: 1px solid #ccc;
   border-radius: 3px;
   overflow: hidden;
-`;
+`
 
-export default Wrapper;
+export default Wrapper

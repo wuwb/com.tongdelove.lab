@@ -1,1 +1,1 @@
-export { PageCard } from './PageCard';
+export { PageCard } from './PageCard'

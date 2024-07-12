@@ -62,7 +62,7 @@ function Blood() {
         </tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default Blood;
+export default Blood

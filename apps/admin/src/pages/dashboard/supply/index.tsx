@@ -1,8 +1,8 @@
-import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
-import { PageContainer } from '@ant-design/pro-components';
-import { Outlet } from '@umijs/max';
-import { Alert, Card, Typography } from 'antd';
-import React from 'react';
+import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons'
+import { PageContainer } from '@ant-design/pro-components'
+import { Outlet } from '@umijs/max'
+import { Alert, Card, Typography } from 'antd'
+import React from 'react'
 
 const Supply = (props): React.ReactNode => (
   <PageContainer content=" 这个页面只有 admin 权限才能查看">
@@ -22,7 +22,11 @@ const Supply = (props): React.ReactNode => (
       </Typography.Title>
       <p style={{ textAlign: 'center', marginTop: 24 }}>
         Want to add more pages? Please refer to{' '}
-        <a href="https://pro.ant.design/docs/block-cn" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://pro.ant.design/docs/block-cn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           use block
         </a>
         。
@@ -30,6 +34,6 @@ const Supply = (props): React.ReactNode => (
     </Card>
     <Outlet />
   </PageContainer>
-);
+)
 
 export default Supply

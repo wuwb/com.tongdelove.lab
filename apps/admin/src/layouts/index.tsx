@@ -1,8 +1,8 @@
-import { Outlet } from '@umijs/max';
+import { Outlet } from '@umijs/max'
 
 const Layouts = () => {
-  return <Outlet />;
-};
+  return <Outlet />
+}
 
 export default Layouts
 

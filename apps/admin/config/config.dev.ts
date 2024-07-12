@@ -1,5 +1,5 @@
 // https://umijs.org/config/
-import { defineConfig } from '@umijs/max';
+import { defineConfig } from '@umijs/max'
 
 export default defineConfig({
   // devtool: false,
@@ -33,4 +33,4 @@ export default defineConfig({
   //     }
   //   });
   // },
-});
+})

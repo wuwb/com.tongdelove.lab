@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons'
 import ProForm, {
   DrawerForm,
   ProFormDatePicker,
@@ -7,21 +7,21 @@ import ProForm, {
   ProFormRadio,
   ProFormSelect,
   ProFormText,
-} from '@ant-design/pro-form';
-import { Button, message } from 'antd';
-import { useRef } from 'react';
-import { create } from '../service';
+} from '@ant-design/pro-form'
+import { Button, message } from 'antd'
+import { useRef } from 'react'
+import { create } from '../service'
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
-};
+      resolve(true)
+    }, time)
+  })
+}
 
 export default (props) => {
-  const formRef = useRef<ProFormInstance>();
+  const formRef = useRef<ProFormInstance>()
 
   return (
     <DrawerForm<any>
@@ -38,15 +38,15 @@ export default (props) => {
         destroyOnClose: true,
       }}
       onFinish={async (values) => {
-        values.type = 1;
-        console.log(values);
+        values.type = 1
+        console.log(values)
 
-        const result = await create(values);
-        props.onCreated(values);
+        const result = await create(values)
+        props.onCreated(values)
 
-        message.success('提交成功');
+        message.success('提交成功')
         // 不返回不会关闭弹框
-        return true;
+        return true
       }}
     >
       <ProForm.Group>
@@ -58,20 +58,50 @@ export default (props) => {
           placeholder=""
         />
         <ProFormText width="sm" name="enName" label="英文名" placeholder="" />
-        <ProFormText width="sm" name="formerName" label="曾用名" placeholder="" />
+        <ProFormText
+          width="sm"
+          name="formerName"
+          label="曾用名"
+          placeholder=""
+        />
       </ProForm.Group>
       <ProForm.Group>
-        <ProFormText width="md" name="legalEntity" label="注册法人" placeholder="" />
+        <ProFormText
+          width="md"
+          name="legalEntity"
+          label="注册法人"
+          placeholder=""
+        />
         <ProFormDatePicker name="registryAt" label="注册日期" />
-        <ProFormText width="sm" name="registryAddress" label="注册地点" placeholder="" />
+        <ProFormText
+          width="sm"
+          name="registryAddress"
+          label="注册地点"
+          placeholder=""
+        />
       </ProForm.Group>
 
       <ProForm.Group>
         <ProFormText width="md" name="location" label="地址" placeholder="" />
-        <ProFormText width="md" name="address" label="详细地址" placeholder="" />
-        <ProFormText width="sm" name="registryAddress" label="注册地点" placeholder="" />
+        <ProFormText
+          width="md"
+          name="address"
+          label="详细地址"
+          placeholder=""
+        />
+        <ProFormText
+          width="sm"
+          name="registryAddress"
+          label="注册地点"
+          placeholder=""
+        />
       </ProForm.Group>
-      <ProFormText width="sm" name="identifier" label="注册编号" placeholder="" />
+      <ProFormText
+        width="sm"
+        name="identifier"
+        label="注册编号"
+        placeholder=""
+      />
       {/* <ProFormText width="sm" name="chairman" label="主席" placeholder="" /> */}
       <ProFormRadio.Group
         name="hasBranch"
@@ -87,8 +117,20 @@ export default (props) => {
           },
         ]}
       />
-      <ProFormDigit width="sm" name="staffSize" label="员工数量" min={1} max={999999} />
-      <ProFormDigit width="sm" name="registeredCapital" label="注册资本" min={1} max={999999} />
+      <ProFormDigit
+        width="sm"
+        name="staffSize"
+        label="员工数量"
+        min={1}
+        max={999999}
+      />
+      <ProFormDigit
+        width="sm"
+        name="registeredCapital"
+        label="注册资本"
+        min={1}
+        max={999999}
+      />
       <ProForm.Group>
         <ProFormText width="sm" name="website" label="网站" placeholder="" />
         <ProFormText width="sm" name="email" label="邮箱" placeholder="" />
@@ -106,5 +148,5 @@ export default (props) => {
         label="分类"
       />
     </DrawerForm>
-  );
-};
+  )
+}

@@ -1,32 +1,32 @@
-import { Col, Row } from 'antd';
-import QueueAnim from 'rc-queue-anim';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import TweenOne from 'rc-tween-one';
-import React from 'react';
-import { getChildrenToRender } from './utils';
+import { Col, Row } from 'antd'
+import QueueAnim from 'rc-queue-anim'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import TweenOne from 'rc-tween-one'
+import React from 'react'
+import { getChildrenToRender } from './utils'
 
 class Content3 extends React.PureComponent<any, any> {
-  getDelay = (e, b) => (e % b) * 100 + Math.floor(e / b) * 100 + b * 100;
+  getDelay = (e, b) => (e % b) * 100 + Math.floor(e / b) * 100 + b * 100
 
   render() {
-    const { ...props } = this.props;
-    const { dataSource, isMobile } = props;
+    const { ...props } = this.props
+    const { dataSource, isMobile } = props
     // delete props.dataSource;
     // delete props.isMobile;
 
-    let clearFloatNum = 0;
+    let clearFloatNum = 0
     const children = dataSource.block.children.map((item, i) => {
-      const childObj = item.children;
-      const delay = isMobile ? i * 50 : this.getDelay(i, 24 / item.md);
+      const childObj = item.children
+      const delay = isMobile ? i * 50 : this.getDelay(i, 24 / item.md)
       const liAnim = {
         opacity: 0,
         type: 'from',
         ease: 'easeOutQuad',
         delay,
-      };
-      const childrenAnim = { ...liAnim, x: '+=10', delay: delay + 100 };
-      clearFloatNum += item.md;
-      clearFloatNum = clearFloatNum > 24 ? 0 : clearFloatNum;
+      }
+      const childrenAnim = { ...liAnim, x: '+=10', delay: delay + 100 }
+      clearFloatNum += item.md
+      clearFloatNum = clearFloatNum > 24 ? 0 : clearFloatNum
       return (
         <TweenOne
           component={Col}
@@ -34,7 +34,11 @@ class Content3 extends React.PureComponent<any, any> {
           key={item.name}
           {...item}
           componentProps={{ md: item.md, xs: item.xs }}
-          className={!clearFloatNum ? `${item.className || ''} clear-both`.trim() : item.className}
+          className={
+            !clearFloatNum
+              ? `${item.className || ''} clear-both`.trim()
+              : item.className
+          }
         >
           <TweenOne
             animation={{
@@ -49,7 +53,12 @@ class Content3 extends React.PureComponent<any, any> {
             <img src={childObj.icon.children} width="100%" alt="img" />
           </TweenOne>
           <div {...childObj.textWrapper}>
-            <TweenOne key="h2" animation={childrenAnim} component="h2" {...childObj.title}>
+            <TweenOne
+              key="h2"
+              animation={childrenAnim}
+              component="h2"
+              {...childObj.title}
+            >
               {childObj.title.children}
             </TweenOne>
             <TweenOne
@@ -62,8 +71,8 @@ class Content3 extends React.PureComponent<any, any> {
             </TweenOne>
           </div>
         </TweenOne>
-      );
-    });
+      )
+    })
     return (
       <div {...props} {...dataSource.wrapper}>
         <div {...dataSource.page}>
@@ -79,8 +88,8 @@ class Content3 extends React.PureComponent<any, any> {
           </OverPack>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Content3;
+export default Content3

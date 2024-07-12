@@ -1,9 +1,9 @@
-import { Col, Row } from 'antd';
-import React from 'react';
+import { Col, Row } from 'antd'
+import React from 'react'
 
 class PicWrapper extends React.Component {
   render() {
-    const { children, url } = this.props;
+    const { children, url } = this.props
     return (
       <Row>
         <Col span={12}>{children}</Col>
@@ -18,8 +18,8 @@ class PicWrapper extends React.Component {
           <img src={url} height="100%" />
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default PicWrapper;
+export default PicWrapper

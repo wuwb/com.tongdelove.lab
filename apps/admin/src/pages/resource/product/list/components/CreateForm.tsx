@@ -1,13 +1,18 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { DrawerForm, ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
-import { useIntl } from '@umijs/max';
-import { Button, message } from 'antd';
-import { useEffect, useRef } from 'react';
-import { createProduct } from '../service';
+import { PlusOutlined } from '@ant-design/icons'
+import {
+  DrawerForm,
+  ProFormSelect,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-form'
+import { useIntl } from '@umijs/max'
+import { Button, message } from 'antd'
+import { useEffect, useRef } from 'react'
+import { createProduct } from '../service'
 
 export default () => {
-  const formRef = useRef();
-  const intl = useIntl();
+  const formRef = useRef()
+  const intl = useIntl()
 
   // const { data, error, loading } = useRequest(queryCreateMetadata);
 
@@ -15,13 +20,13 @@ export default () => {
 
   useEffect(() => {
     // 获取初始化数据
-    return () => {};
-  });
+    return () => {}
+  })
 
   return (
     <DrawerForm<{
-      name: string;
-      company: string;
+      name: string
+      company: string
     }>
       title={intl.formatMessage({
         id: 'resource.product.createForm',
@@ -42,13 +47,13 @@ export default () => {
         destroyOnClose: true,
       }}
       onFinish={async (values) => {
-        console.log(values);
-        const data = await createProduct(values);
-        console.log('data, error, loading : ', data);
+        console.log(values)
+        const data = await createProduct(values)
+        console.log('data, error, loading : ', data)
 
-        message.success('创建成功');
+        message.success('创建成功')
         // 不返回不会关闭弹框
-        return true;
+        return true
       }}
     >
       <ProFormText name="title" width="md" label="title" />
@@ -119,5 +124,5 @@ export default () => {
         }}
       />
     </DrawerForm>
-  );
-};
+  )
+}

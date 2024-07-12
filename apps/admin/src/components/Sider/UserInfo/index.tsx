@@ -1,4 +1,4 @@
-import { SiderBox } from '@/components/Sider';
+import { SiderBox } from '@/components/Sider'
 
 const UserInfo = () => {
   return (
@@ -11,7 +11,7 @@ const UserInfo = () => {
         </div>
       </div>
     </SiderBox>
-  );
-};
+  )
+}
 
-export default UserInfo;
+export default UserInfo

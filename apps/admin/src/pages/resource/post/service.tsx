@@ -1,10 +1,10 @@
-import { BaseService } from '@/services/base';
-import { request } from '@umijs/max';
-import { TableListItem, TableListParams } from './data.d';
+import { BaseService } from '@/services/base'
+import { request } from '@umijs/max'
+import { TableListItem, TableListParams } from './data.d'
 
 export class SupplyCompanyService extends BaseService {
   constructor() {
-    super('companies/supplies');
+    super('companies/supplies')
   }
 
   public static async create(params: TableListItem) {
@@ -14,7 +14,7 @@ export class SupplyCompanyService extends BaseService {
         ...params,
         method: 'post',
       },
-    });
+    })
   }
 
   public static async remove(params) {
@@ -23,7 +23,7 @@ export class SupplyCompanyService extends BaseService {
       data: {
         id: params,
       },
-    });
+    })
   }
 
   public static async update(params: TableListParams) {
@@ -33,19 +33,19 @@ export class SupplyCompanyService extends BaseService {
         ...params,
         method: 'update',
       },
-    });
+    })
   }
 
   public static async list(params?: TableListParams) {
     return request('/api/companies/supplies', {
       params,
-    });
+    })
   }
 
   public static async get(params?: TableListParams) {
     return request('/api/post', {
       params,
-    });
+    })
   }
 }
 
@@ -56,7 +56,7 @@ export async function create(params: TableListItem) {
       ...params,
       postStatus: 'publish',
     },
-  });
+  })
 }
 
 export async function remove(params) {
@@ -65,7 +65,7 @@ export async function remove(params) {
     data: {
       id: params,
     },
-  });
+  })
 }
 
 export async function update(params: TableListParams) {
@@ -75,17 +75,17 @@ export async function update(params: TableListParams) {
       ...params,
       method: 'update',
     },
-  });
+  })
 }
 
 export async function list(params?: TableListParams) {
   return request('/api/post', {
     params,
-  });
+  })
 }
 
 export async function get(params?: TableListParams) {
-  return request(`/api/post/${params.id}`);
+  return request(`/api/post/${params.id}`)
 }
 
 export async function order(params: any) {
@@ -94,5 +94,5 @@ export async function order(params: any) {
     data: {
       ...params,
     },
-  });
+  })
 }

@@ -1,18 +1,18 @@
-import { ProColumns } from '@ant-design/pro-table/lib/Table.d';
-import { Drawer, Form, Input } from 'antd';
-import React from 'react';
+import { ProColumns } from '@ant-design/pro-table/lib/Table.d'
+import { Drawer, Form, Input } from 'antd'
+import React from 'react'
 
-import { TableListItem } from '@/services/base/user.d';
+import { TableListItem } from '@/services/base/user.d'
 
 interface ShowFormProps {
-  showDrawerVisible: boolean;
-  onClose: () => void;
-  values: Partial<TableListItem>;
-  columns: ProColumns<TableListItem>[];
+  showDrawerVisible: boolean
+  onClose: () => void
+  values: Partial<TableListItem>
+  columns: ProColumns<TableListItem>[]
 }
 
 const ShowForm: React.FC<ShowFormProps> = (props) => {
-  const { showDrawerVisible, onClose, values, columns } = props;
+  const { showDrawerVisible, onClose, values, columns } = props
   return (
     <Drawer
       destroyOnClose
@@ -22,7 +22,11 @@ const ShowForm: React.FC<ShowFormProps> = (props) => {
       footer={null}
     >
       {values}
-      <Form labelCol={{ span: 5 }} wrapperCol={{ span: 19 }} initialValues={values}>
+      <Form
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 19 }}
+        initialValues={values}
+      >
         {columns.map(
           (item, index) =>
             item.dataIndex !== 'option' && (
@@ -34,7 +38,7 @@ const ShowForm: React.FC<ShowFormProps> = (props) => {
         )}
       </Form>
     </Drawer>
-  );
-};
+  )
+}
 
-export default ShowForm;
+export default ShowForm

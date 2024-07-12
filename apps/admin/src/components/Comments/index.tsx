@@ -1,7 +1,7 @@
-import { notification } from 'antd';
-import React, { useRef, useState } from 'react';
-import API from '@/services/api';
-import Style from './index.less';
+import API from '@/services/api'
+import { notification } from 'antd'
+import { useRef, useState } from 'react'
+import Style from './index.less'
 
 const Comments = (props) => {
   const textInput = useRef()
@@ -16,7 +16,7 @@ const Comments = (props) => {
   }
 
   const handelChange = (event) => {
-    setReplyContent(event.target.value);
+    setReplyContent(event.target.value)
   }
 
   const __showMoreComments = () => {
@@ -25,7 +25,7 @@ const Comments = (props) => {
 
   // 聚焦
   const focus = () => {
-    textInput.current.focus();
+    textInput.current.focus()
   }
 
   // 点赞
@@ -33,21 +33,21 @@ const Comments = (props) => {
     let response = await API.topicLike({
       topicId: props.topicId,
       status: props.topicLike ? 0 : 1,
-    });
+    })
 
     // 确定点赞数，status: 1点赞，0取消
-    let dotCounts;
+    let dotCounts
     if (response.data.status) {
-      dotCounts = props.dotCounts + 1;
+      dotCounts = props.dotCounts + 1
     } else {
-      dotCounts = props.dotCounts - 1 >= 0 ? props.dotCounts - 1 : 0;
+      dotCounts = props.dotCounts - 1 >= 0 ? props.dotCounts - 1 : 0
     }
     // 更新点赞状态
     props.topicLikeFn({
       topicLikeCounts: dotCounts,
       topicLike: response.data.status === 1,
       index: props.topicIndex,
-    });
+    })
   }
 
   // 添加评论
@@ -56,24 +56,24 @@ const Comments = (props) => {
       if (!replyContent) {
         notification['error']({
           message: '请输入评论内容',
-        });
-        return;
+        })
+        return
       }
 
       let response = await API.addDiscuss({
         topicId: props.topicId,
         replyContent: replyContent,
-      });
+      })
       notification['success']({
         message: response.message,
-      });
+      })
 
       // 添加评论
       props.addComments({
         replyContent: replyContent,
         replyName: userInfo.username,
         index: props.topicIndex,
-      });
+      })
 
       // 清空评论
       setReplyContent('')
@@ -84,20 +84,20 @@ const Comments = (props) => {
   const _handlerCommentTime = () => {
     if (props.createdAt) {
       // 距离现在过去了多少秒
-      let date = (new Date() - new Date(props.createdAt)) / 1000;
+      let date = (new Date() - new Date(props.createdAt)) / 1000
 
       // 过去了多少天
-      let days = Math.floor(date / (60 * 60 * 24));
-      let hours = Math.floor(date / (60 * 60));
-      let minutes = Math.floor(date / 60);
-      let second = Math.floor(date);
+      let days = Math.floor(date / (60 * 60 * 24))
+      let hours = Math.floor(date / (60 * 60))
+      let minutes = Math.floor(date / 60)
+      let second = Math.floor(date)
 
-      if (days) return days + '天前';
-      if (hours) return hours + '小时前';
-      if (minutes) return minutes + '分钟前';
-      if (second) return second + '秒前';
+      if (days) return days + '天前'
+      if (hours) return hours + '小时前'
+      if (minutes) return minutes + '分钟前'
+      if (second) return second + '秒前'
     }
-    return '';
+    return ''
   }
 
   const CommentsList = () => {
@@ -113,26 +113,32 @@ const Comments = (props) => {
           if (props.dialog || index !== 3) {
             return (
               <li
-                className={`content ${index > 3 && !props.dialog && 'hidden'} ${showMoreComments && 'no-hidden'
-                  }`}
+                className={`content ${index > 3 && !props.dialog && 'hidden'} ${
+                  showMoreComments && 'no-hidden'
+                }`}
                 key={index}
               >
                 <span className="username  u-f-black">{item.replyName}</span>
-                <span className="replay-content u-f-black-blod">{item.replyContent}</span>
+                <span className="replay-content u-f-black-blod">
+                  {item.replyContent}
+                </span>
               </li>
-            );
+            )
           } else {
             // 显示所有部分内容
             return (
               <div key={index}>
                 <li className={`content ${showMoreComments && 'no-hidden'}`}>
                   <span className="username  u-f-black">{item.replyName}</span>
-                  <span className="replay-content u-f-black-blod">{item.replyContent}</span>
+                  <span className="replay-content u-f-black-blod">
+                    {item.replyContent}
+                  </span>
                 </li>
                 {props.discuss.length > 4 ? (
                   <li
-                    className={`content show-more u-f-lightblack2 ${showMoreComments && 'hidden'
-                      }`}
+                    className={`content show-more u-f-lightblack2 ${
+                      showMoreComments && 'hidden'
+                    }`}
                   >
                     <span onClick={__showMoreComments}>显示所有</span>
                   </li>
@@ -140,17 +146,17 @@ const Comments = (props) => {
                   ''
                 )}
               </div>
-            );
+            )
           }
         })}
       </ul>
-    );
-  };
+    )
+  }
 
   return (
-    <div className={Style['comments-section']} >
+    <div className={Style['comments-section']}>
       {props.dialog ? <CommentsList /> : ''}
-      < div className="opetions" >
+      <div className="opetions">
         <div className="fl-left">
           <span
             className={`favorite  ${props.topicLike && 'active'}`}
@@ -159,17 +165,17 @@ const Comments = (props) => {
           <span className="comments" onClick={focus}></span>
         </div>
         <span className="fl-right collect"></span>
-      </div >
-      {
-        props.dotCounts ? (
-          <div className="dot-counts u-f-black">{props.dotCounts}次赞</div>
-        ) : (
-          <div className="dot-counts u-f-black">抢先 点赞</div>
-        )
-      }
+      </div>
+      {props.dotCounts ? (
+        <div className="dot-counts u-f-black">{props.dotCounts}次赞</div>
+      ) : (
+        <div className="dot-counts u-f-black">抢先 点赞</div>
+      )}
       {/* 弹窗类型、与列表类型，评论列表位置不同 */}
       {!props.dialog ? <CommentsList /> : ''}
-      <div className="release-time u-f-lightblack2">{_handlerCommentTime()}</div>
+      <div className="release-time u-f-lightblack2">
+        {_handlerCommentTime()}
+      </div>
       <div className="add-comments">
         <input
           type="text"
@@ -182,8 +188,8 @@ const Comments = (props) => {
         />
         <span className="more"></span>
       </div>
-    </div >
+    </div>
   )
 }
 
-export default Comments;
+export default Comments

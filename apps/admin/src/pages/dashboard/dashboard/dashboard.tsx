@@ -1,16 +1,13 @@
-import React from "react";
-import { AccentSidebarLayout } from '@/components/layouts';
+import { AccentSidebarLayout } from '@/components/layouts'
 
 function Dashboard() {
-  return (
-    <div>dashboard</div>
-  );
+  return <div>dashboard</div>
 }
 
 Dashboard.getLayout = (page) => (
   // <Authenticated>
   <AccentSidebarLayout>{page}</AccentSidebarLayout>
   // </Authenticated>
-);
+)
 
-export default Dashboard;
+export default Dashboard

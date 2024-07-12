@@ -1,13 +1,13 @@
-import { Link } from '@umijs/max';
-import { Grid, Menu } from 'antd';
+import { Link } from '@umijs/max'
+import { Grid, Menu } from 'antd'
 
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const SubMenu = Menu.SubMenu
+const MenuItemGroup = Menu.ItemGroup
 
-const { useBreakpoint } = Grid;
+const { useBreakpoint } = Grid
 
 const RightMenu = () => {
-  const { md } = useBreakpoint();
+  const { md } = useBreakpoint()
   return (
     <Menu mode={md ? 'horizontal' : 'inline'} theme="dark">
       <Menu.Item key="mail">
@@ -17,7 +17,7 @@ const RightMenu = () => {
         <Link to="/user/register">Signup</Link>
       </Menu.Item>
     </Menu>
-  );
-};
+  )
+}
 
-export default RightMenu;
+export default RightMenu

@@ -25,7 +25,8 @@ export const Nav00DataSource = {
                 {
                   name: 'image0',
                   className: 'item-image',
-                  children: 'https://gw.alipayobjects.com/zos/rmsportal/ruHbkzzMKShUpDYMEmHM.svg',
+                  children:
+                    'https://gw.alipayobjects.com/zos/rmsportal/ruHbkzzMKShUpDYMEmHM.svg',
                 },
                 {
                   name: 'title',
@@ -49,7 +50,8 @@ export const Nav00DataSource = {
                 {
                   name: 'image0',
                   className: 'item-image',
-                  children: 'https://gw.alipayobjects.com/zos/rmsportal/ruHbkzzMKShUpDYMEmHM.svg',
+                  children:
+                    'https://gw.alipayobjects.com/zos/rmsportal/ruHbkzzMKShUpDYMEmHM.svg',
                 },
                 {
                   name: 'title',
@@ -93,7 +95,7 @@ export const Nav00DataSource = {
     ],
   },
   mobileMenu: { className: 'header0-mobile-menu' },
-};
+}
 
 export const Banner00DataSource = {
   wrapper: { className: 'banner0' },
@@ -107,7 +109,7 @@ export const Banner00DataSource = {
     children: '一个高效的页面动画解决方案',
   },
   button: { className: 'banner0-button', children: 'Learn More' },
-};
+}
 
 export const Content00DataSource = {
   wrapper: { className: 'home-page-wrapper content0-wrapper' },
@@ -131,7 +133,8 @@ export const Content00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children: 'https://zos.alipayobjects.com/rmsportal/WBnVOjtIlGWbzyQivuyq.png',
+              children:
+                'https://zos.alipayobjects.com/rmsportal/WBnVOjtIlGWbzyQivuyq.png',
             },
             {
               name: 'title',
@@ -153,7 +156,8 @@ export const Content00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children: 'https://zos.alipayobjects.com/rmsportal/YPMsLQuCEXtuEkmXTTdk.png',
+              children:
+                'https://zos.alipayobjects.com/rmsportal/YPMsLQuCEXtuEkmXTTdk.png',
             },
             {
               name: 'title',
@@ -178,7 +182,8 @@ export const Content00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children: 'https://zos.alipayobjects.com/rmsportal/EkXWVvAaFJKCzhMmQYiX.png',
+              children:
+                'https://zos.alipayobjects.com/rmsportal/EkXWVvAaFJKCzhMmQYiX.png',
             },
             {
               name: 'title',
@@ -194,7 +199,7 @@ export const Content00DataSource = {
       },
     ],
   },
-};
+}
 
 export const Content10DataSource = {
   wrapper: { className: 'home-page-wrapper content1-wrapper' },
@@ -210,7 +215,7 @@ export const Content10DataSource = {
     children:
       '云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。',
   },
-};
+}
 export const Content30DataSource = {
   wrapper: { className: 'home-page-wrapper content3-wrapper' },
   page: { className: 'home-page content3' },
@@ -241,13 +246,15 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/ScHBSdwpTkAHZkJ.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/ScHBSdwpTkAHZkJ.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '企业资源管理' },
           content: {
             className: 'content3-content',
-            children: '云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。',
+            children:
+              '云资源集中编排、弹性伸缩、持续发布和部署，高可用及容灾。',
           },
         },
       },
@@ -259,13 +266,15 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/NKBELAOuuKbofDD.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/NKBELAOuuKbofDD.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '云安全' },
           content: {
             className: 'content3-content',
-            children: '按金融企业安全要求打造的完整云上安全体系，全方位保障金融应用及数据安全。',
+            children:
+              '按金融企业安全要求打造的完整云上安全体系，全方位保障金融应用及数据安全。',
           },
         },
       },
@@ -277,13 +286,15 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/xMSBjgxBhKfyMWX.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/xMSBjgxBhKfyMWX.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '云监控' },
           content: {
             className: 'content3-content',
-            children: '分布式云环境集中监控，统一资源及应用状态视图，智能分析及故障定位。',
+            children:
+              '分布式云环境集中监控，统一资源及应用状态视图，智能分析及故障定位。',
           },
         },
       },
@@ -295,13 +306,15 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/MNdlBNhmDBLuzqp.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/MNdlBNhmDBLuzqp.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '移动' },
           content: {
             className: 'content3-content',
-            children: '一站式移动金融APP开发及全面监控；丰富可用组件，动态发布和故障热修复。',
+            children:
+              '一站式移动金融APP开发及全面监控；丰富可用组件，动态发布和故障热修复。',
           },
         },
       },
@@ -313,7 +326,8 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/UsUmoBRyLvkIQeO.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/UsUmoBRyLvkIQeO.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '分布式中间件' },
@@ -332,19 +346,21 @@ export const Content30DataSource = {
         children: {
           icon: {
             className: 'content3-icon',
-            children: 'https://zos.alipayobjects.com/rmsportal/ipwaQLBLflRfUrg.png',
+            children:
+              'https://zos.alipayobjects.com/rmsportal/ipwaQLBLflRfUrg.png',
           },
           textWrapper: { className: 'content3-text' },
           title: { className: 'content3-title', children: '大数据' },
           content: {
             className: 'content3-content',
-            children: '一站式、全周期大数据协同工作平台，PB级数据处理、毫秒级数据分析工具。',
+            children:
+              '一站式、全周期大数据协同工作平台，PB级数据处理、毫秒级数据分析工具。',
           },
         },
       },
     ],
   },
-};
+}
 export const Footer00DataSource = {
   wrapper: { className: 'home-page-wrapper footer0-wrapper' },
   OverPack: { className: 'home-page footer0', playScale: 0.05 },
@@ -352,8 +368,9 @@ export const Footer00DataSource = {
     className: 'copyright',
     children: (
       <span>
-        ©2018 <a href="https://motion.ant.design">Ant Motion</a> All Rights Reserved
+        ©2018 <a href="https://motion.ant.design">Ant Motion</a> All Rights
+        Reserved
       </span>
     ),
   },
-};
+}

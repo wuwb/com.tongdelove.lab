@@ -9,12 +9,12 @@
 //   login,
 // };
 
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export async function queryProvince() {
-  return request('/api/geographic/province');
+  return request('/api/geographic/province')
 }
 
 export async function queryCity(province: string) {
-  return request(`/api/geographic/city/${province}`);
+  return request(`/api/geographic/city/${province}`)
 }

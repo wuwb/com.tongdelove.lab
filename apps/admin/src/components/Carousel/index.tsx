@@ -1,42 +1,49 @@
-import React from 'react';
-import Style from './index.less';
+import React from 'react'
+import Style from './index.less'
 
 class Carousel extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isActived: 0,
-    };
+    }
   }
 
   slickNext() {
     let target =
-      this.state.isActived + 1 >= this.props.imageList.length ? 0 : this.state.isActived + 1;
+      this.state.isActived + 1 >= this.props.imageList.length
+        ? 0
+        : this.state.isActived + 1
     this.setState({
       isActived: target,
-    });
+    })
   }
 
   slickPre() {
     let target =
-      this.state.isActived - 1 < 0 ? this.props.imageList.length - 1 : this.state.isActived - 1;
+      this.state.isActived - 1 < 0
+        ? this.props.imageList.length - 1
+        : this.state.isActived - 1
     this.setState({
       isActived: target,
-    });
+    })
   }
 
   changeSlick(number) {
     this.setState({
       isActived: number,
-    });
+    })
   }
 
   delectPhoto(index) {
-    this.props.delectPhoto(index);
-    if (index === this.props.imageList.length - 1 && this.props.imageList.length > 1) {
+    this.props.delectPhoto(index)
+    if (
+      index === this.props.imageList.length - 1 &&
+      this.props.imageList.length > 1
+    ) {
       this.setState({
         isActived: this.state.isActived - 1,
-      });
+      })
     }
   }
 
@@ -49,13 +56,13 @@ class Carousel extends React.Component {
               <li
                 className={this.state.isActived === index ? 'acitve' : ''}
                 key={index}
-              // onClick={this.changeSlick.bind(this, index)}
+                // onClick={this.changeSlick.bind(this, index)}
               ></li>
-            );
+            )
           })}
         </ul>
-      ) : null;
-    };
+      ) : null
+    }
 
     return (
       <div className={Style['carousel']}>
@@ -64,9 +71,10 @@ class Carousel extends React.Component {
           {this.props.imageList.map((item, index) => {
             return (
               <li
-                className={['carousel-item', this.state.isActived === index ? 'actived' : ''].join(
-                  ' ',
-                )}
+                className={[
+                  'carousel-item',
+                  this.state.isActived === index ? 'actived' : '',
+                ].join(' ')}
                 key={index}
               >
                 {/* 是否展示删除图片按钮 */}
@@ -81,7 +89,7 @@ class Carousel extends React.Component {
 
                 <img src={item} height="100%" width="100%" />
               </li>
-            );
+            )
           })}
           {/* 左右切换icon */}
           {this.props.imageList.length > 1 ? (
@@ -100,13 +108,13 @@ class Carousel extends React.Component {
           <SlickDot />
         </ul>
       </div>
-    );
+    )
   }
 }
 
 Carousel.defaultProps = {
   showCloseBtn: false,
   showSlickDot: true,
-};
+}
 
-export default Carousel;
+export default Carousel

@@ -1,11 +1,11 @@
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export async function getPost(id) {
-  return request(`/api/posts/${id}`);
+  return request(`/api/posts/${id}`)
 }
 
 export async function listPosts() {
-  return request(`/api/posts`);
+  return request(`/api/posts`)
 }
 
 export async function createPost(params, options?: { [key: string]: any }) {
@@ -13,5 +13,5 @@ export async function createPost(params, options?: { [key: string]: any }) {
     method: 'POST',
     data: params,
     ...(options || {}),
-  });
+  })
 }

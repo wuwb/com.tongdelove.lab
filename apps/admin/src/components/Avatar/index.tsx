@@ -1,5 +1,5 @@
-import { history } from 'umi';
-import Style from './index.less';
+import { history } from 'umi'
+import Style from './index.less'
 
 // Avatar.defaultProps = {
 //   userInfo: {
@@ -22,26 +22,29 @@ import Style from './index.less';
 
 export function Avatar(props) {
   const goAbout = () => {
-    let userId = props.userInfo.userId;
+    let userId = props.userInfo.userId
     try {
       let path = {
         pathname: `/about/${userId}`,
         // params: data
-      };
-      history.push(path);
+      }
+      history.push(path)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
-  const { userInfo } = props;
+  const { userInfo } = props
 
   return (
     <div className={Style['avatar-content']}>
       <div
         className="avatar"
         onClick={this.goAbout}
-        style={{ ...this.props.avatarStyle, backgroundImage: `url(${userInfo.avatarUrl}` }}
+        style={{
+          ...this.props.avatarStyle,
+          backgroundImage: `url(${userInfo.avatarUrl}`,
+        }}
       ></div>
       <div className="user-abstract">
         <div
@@ -55,14 +58,17 @@ export function Avatar(props) {
           className={`abstract ${userInfo.username && 'clear-bg'}`}
           style={{
             ...this.props.abstractStyle,
-            display: userInfo.abstract === false || userInfo.abstract ? 'inline-block' : 'none',
+            display:
+              userInfo.abstract === false || userInfo.abstract
+                ? 'inline-block'
+                : 'none',
           }}
         >
           {userInfo.abstract}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Avatar;
+export default Avatar

@@ -1,8 +1,8 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import ProTable from '@ant-design/pro-table';
-import { Button, Drawer, Space } from 'antd';
-import React, { useState } from 'react';
+import { PlusOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import ProTable from '@ant-design/pro-table'
+import { Button, Drawer, Space } from 'antd'
+import React, { useState } from 'react'
 
 const columns = [
   {
@@ -58,7 +58,7 @@ const columns = [
       </Space>
     ),
   },
-];
+]
 
 const tableData = [
   {
@@ -82,11 +82,11 @@ const tableData = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-];
+]
 
 export default (props): React.ReactNode => {
-  const [showNew, setShowNew] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
+  const [showNew, setShowNew] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
   // const { data, error, loading } = useRequest(queryMenu);
 
   // console.log('data, error, loading: ', data, error, loading);
@@ -112,7 +112,10 @@ export default (props): React.ReactNode => {
         bodyStyle={{ paddingBottom: 80 }}
         footer={
           <div style={{ textAlign: 'right' }}>
-            <Button onClick={() => setShowNew(false)} rootStyle={{ marginRight: 8 }}>
+            <Button
+              onClick={() => setShowNew(false)}
+              rootStyle={{ marginRight: 8 }}
+            >
               Cancel
             </Button>
             <Button onClick={() => setShowNew(false)} type="primary">
@@ -124,5 +127,5 @@ export default (props): React.ReactNode => {
         new data
       </Drawer>
     </PageHeader>
-  );
-};
+  )
+}

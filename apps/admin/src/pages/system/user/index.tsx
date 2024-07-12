@@ -1,7 +1,7 @@
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
-import { useRequest } from '@umijs/max';
+import { DownOutlined, PlusOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table'
+import { useRequest } from '@umijs/max'
 import {
   Button,
   Divider,
@@ -9,114 +9,120 @@ import {
   // Upload,
   Input,
   Menu,
-  message,
   Popconfirm,
   Select,
   Tag,
-} from 'antd';
-import { FormInstance } from 'antd/es/form';
-import { SorterResult } from 'antd/es/table/interface';
-import { useRef, useState } from 'react';
+  message,
+} from 'antd'
+import { FormInstance } from 'antd/es/form'
+import { SorterResult } from 'antd/es/table/interface'
+import { useRef, useState } from 'react'
 // import ImgCrop from 'antd-img-crop';
-import { UploadFile } from 'antd/lib/upload/interface';
+import { UploadFile } from 'antd/lib/upload/interface'
 
-import { queryPermission } from '@/services/base/permission';
-import { queryRole } from '@/services/base/role';
-import { createUser, queryUser, removeUser, showUser, updateUser } from '@/services/base/user';
-import { TableListItem } from '@/services/base/user.d';
-import CreateForm from './components/CreateForm';
-import ShowForm from './components/ShowForm';
-import UpdateForm from './components/UpdateForm';
+import { queryPermission } from '@/services/base/permission'
+import { queryRole } from '@/services/base/role'
+import {
+  createUser,
+  queryUser,
+  removeUser,
+  showUser,
+  updateUser,
+} from '@/services/base/user'
+import { TableListItem } from '@/services/base/user.d'
+import CreateForm from './components/CreateForm'
+import ShowForm from './components/ShowForm'
+import UpdateForm from './components/UpdateForm'
 
-import styles from './index.less';
+import styles from './index.less'
 
 /**
  * 添加
  * @param fields
  */
 const handleCreate = async (fields: TableListItem) => {
-  const hide = message.loading('正在添加');
-  const avatar = (fields.avatar as unknown as UploadFile[]) || [];
+  const hide = message.loading('正在添加')
+  const avatar = (fields.avatar as unknown as UploadFile[]) || []
   try {
-    await createUser({ ...fields, avatar: avatar[0]?.response?.url });
-    hide();
-    message.success('添加成功');
-    return true;
+    await createUser({ ...fields, avatar: avatar[0]?.response?.url })
+    hide()
+    message.success('添加成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('添加失败请重试！');
-    return false;
+    hide()
+    message.error('添加失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 更新
  * @param fields
  */
 const handleUpdate = async (fields: TableListItem) => {
-  const hide = message.loading('正在更新');
+  const hide = message.loading('正在更新')
   try {
     await updateUser({
       ...fields,
-    });
-    hide();
-    message.success('更新成功');
-    return true;
+    })
+    hide()
+    message.success('更新成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('更新失败请重试！');
-    return false;
+    hide()
+    message.error('更新失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 查看
  * @param record
  */
 const handleShow = async (record: TableListItem) => {
-  const hide = message.loading('正在加载数据');
+  const hide = message.loading('正在加载数据')
   try {
-    const { data } = await showUser({ id: record.id });
-    hide();
-    message.success('加载成功');
-    return data;
+    const { data } = await showUser({ id: record.id })
+    hide()
+    message.success('加载成功')
+    return data
   } catch (error) {
-    hide();
-    message.error('加载失败请重试！');
-    return false;
+    hide()
+    message.error('加载失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 删除
  * @param selectedRows
  */
 const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  const hide = message.loading('正在删除')
+  if (!selectedRows) return true
   try {
     await removeUser({
       id: selectedRows.map((row) => row.id),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
+    })
+    hide()
+    message.success('删除成功，即将刷新')
+    return true
   } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
+    hide()
+    message.error('删除失败，请重试')
+    return false
   }
-};
+}
 
 export default () => {
-  const [sorter, setSorter] = useState<string>();
-  const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
-  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
-  const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
-  const [currentFormValues, setCurrentFormValues] = useState({});
-  const actionRef = useRef<ActionType>();
-  const creatFormRef = useRef<FormInstance>();
-  const updateFormRef = useRef<FormInstance>();
+  const [sorter, setSorter] = useState<string>()
+  const [createModalVisible, setCreateModalVisible] = useState<boolean>(false)
+  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false)
+  const [showModalVisible, setShowModalVisible] = useState<boolean>(false)
+  const [currentFormValues, setCurrentFormValues] = useState({})
+  const actionRef = useRef<ActionType>()
+  const creatFormRef = useRef<FormInstance>()
+  const updateFormRef = useRef<FormInstance>()
 
   // 预先加载权限选择器数据
   const {
@@ -124,8 +130,8 @@ export default () => {
     loading: permissionLoading,
     error: permissionError,
   } = useRequest(() => {
-    return queryPermission({ pageSize: 1000 });
-  });
+    return queryPermission({ pageSize: 1000 })
+  })
 
   // 预先加载角色选择器数据
   const {
@@ -133,8 +139,8 @@ export default () => {
     loading: roleLoading,
     error: roleError,
   } = useRequest(() => {
-    return queryRole({ pageSize: 1000 });
-  });
+    return queryRole({ pageSize: 1000 })
+  })
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -235,7 +241,7 @@ export default () => {
         ],
       },
       renderFormItem: (item, { defaultRender, ...rest }) => {
-        return <Input {...rest} type="password" placeholder="请输入" />;
+        return <Input {...rest} type="password" placeholder="请输入" />
       },
     },
     {
@@ -244,7 +250,7 @@ export default () => {
       hideInSearch: true,
       hideInTable: true,
       renderFormItem: (item, { defaultRender, ...rest }) => {
-        return <Input {...rest} type="password" placeholder="请确认密码" />;
+        return <Input {...rest} type="password" placeholder="请确认密码" />
       },
       formItemProps: {
         validateFirst: true,
@@ -256,12 +262,14 @@ export default () => {
           {
             validator: (rules, value, callback) => {
               const password =
-                (createModalVisible && creatFormRef.current?.getFieldValue('password')) ||
-                (updateModalVisible && updateFormRef.current?.getFieldValue('password'));
+                (createModalVisible &&
+                  creatFormRef.current?.getFieldValue('password')) ||
+                (updateModalVisible &&
+                  updateFormRef.current?.getFieldValue('password'))
               if (password !== value) {
-                callback('两次密码输入不一致');
+                callback('两次密码输入不一致')
               } else {
-                callback();
+                callback()
               }
             },
           },
@@ -275,10 +283,10 @@ export default () => {
       renderFormItem: () => {
         // 过滤默认选择的数据格式
         if (permissionError) {
-          return <div>failed to load</div>;
+          return <div>failed to load</div>
         }
         if (permissionLoading) {
-          return <div>loading...</div>;
+          return <div>loading...</div>
         }
         return (
           <Select
@@ -288,14 +296,14 @@ export default () => {
             filterOption={(inputValue, option) => {
               return (option?.label as string)
                 .toLocaleLowerCase()
-                .includes(inputValue.toLocaleLowerCase());
+                .includes(inputValue.toLocaleLowerCase())
             }}
             options={permissionData?.list.map((item) => ({
               label: item.name,
               value: item.id,
             }))}
           />
-        );
+        )
       },
       render: (_, record: TableListItem) =>
         record.permissions?.map((item, index) => (
@@ -310,10 +318,10 @@ export default () => {
       hideInSearch: true,
       renderFormItem: () => {
         if (roleError) {
-          return <div>failed to load</div>;
+          return <div>failed to load</div>
         }
         if (roleLoading) {
-          return <div>loading...</div>;
+          return <div>loading...</div>
         }
         return (
           <Select
@@ -323,14 +331,14 @@ export default () => {
             filterOption={(inputValue, option) => {
               return (option?.label as string)
                 .toLocaleLowerCase()
-                .includes(inputValue.toLocaleLowerCase());
+                .includes(inputValue.toLocaleLowerCase())
             }}
             options={roleData?.list.map((item) => ({
               label: item.name,
               value: item.id,
             }))}
           />
-        );
+        )
       },
       render: (_, record: TableListItem) =>
         record.roles?.map((item, index) => (
@@ -367,10 +375,10 @@ export default () => {
           <a
             onClick={async () => {
               // 编辑前去服务端获取最新的数据
-              const success = await handleShow(record);
+              const success = await handleShow(record)
               if (success) {
-                setUpdateModalVisible(true);
-                setCurrentFormValues(Object.assign(record, success));
+                setUpdateModalVisible(true)
+                setCurrentFormValues(Object.assign(record, success))
               }
             }}
           >
@@ -380,10 +388,10 @@ export default () => {
           <a
             onClick={async () => {
               // 查看前去服务端获取最新的数据
-              const success = await handleShow(record);
+              const success = await handleShow(record)
               if (success) {
-                setShowModalVisible(true);
-                setCurrentFormValues(Object.assign(record, success));
+                setShowModalVisible(true)
+                setCurrentFormValues(Object.assign(record, success))
               }
             }}
           >
@@ -395,8 +403,8 @@ export default () => {
             placement="left"
             onConfirm={async () => {
               // 不论是否删除成功，都重新加载列表数据
-              await handleRemove([record]);
-              actionRef?.current?.reload();
+              await handleRemove([record])
+              actionRef?.current?.reload()
             }}
             style={{ width: 220 }}
             okText="确定"
@@ -407,7 +415,7 @@ export default () => {
         </>
       ),
     },
-  ];
+  ]
 
   return (
     <PageHeader content="" className={styles.main}>
@@ -417,9 +425,9 @@ export default () => {
         actionRef={actionRef}
         rowKey="id"
         onChange={(_, _filter, _sorter) => {
-          const sorterResult = _sorter as SorterResult<TableListItem>;
+          const sorterResult = _sorter as SorterResult<TableListItem>
           if (sorterResult.field) {
-            setSorter(`${sorterResult.field}_${sorterResult.order}`);
+            setSorter(`${sorterResult.field}_${sorterResult.order}`)
           } else {
           }
         }}
@@ -436,8 +444,8 @@ export default () => {
                 <Menu
                   onClick={async (e) => {
                     if (e.key === 'remove') {
-                      await handleRemove(selectedRows);
-                      action.reload();
+                      await handleRemove(selectedRows)
+                      action.reload()
                     }
                   }}
                   selectedKeys={[]}
@@ -454,12 +462,13 @@ export default () => {
         ]}
         tableAlertRender={({ selectedRowKeys }) => (
           <div>
-            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
+            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{' '}
+            项&nbsp;&nbsp;
           </div>
         )}
         request={async (params) => {
-          const { list, total } = (await queryUser(params)).data;
-          return { data: list, total, success: true };
+          const { list, total } = (await queryUser(params)).data
+          return { data: list, total, success: true }
         }}
         columns={columns}
         rowSelection={{}}
@@ -475,10 +484,10 @@ export default () => {
           <ProTable<TableListItem, TableListItem>
             formRef={creatFormRef}
             onSubmit={async (values) => {
-              const success = await handleCreate(values);
+              const success = await handleCreate(values)
               if (success) {
-                setCreateModalVisible(false);
-                actionRef.current?.reload();
+                setCreateModalVisible(false)
+                actionRef.current?.reload()
               }
             }}
             rowKey="id"
@@ -498,8 +507,8 @@ export default () => {
       {updateModalVisible && Object.keys(currentFormValues).length ? (
         <UpdateForm
           onCancel={() => {
-            setUpdateModalVisible(false);
-            setCurrentFormValues({});
+            setUpdateModalVisible(false)
+            setCurrentFormValues({})
           }}
           updateModalVisible={updateModalVisible}
         >
@@ -509,11 +518,11 @@ export default () => {
               const success = await handleUpdate({
                 ...values,
                 id: (currentFormValues as TableListItem).id,
-              });
+              })
               if (success) {
-                setUpdateModalVisible(false);
-                setCurrentFormValues({});
-                actionRef.current?.reload();
+                setUpdateModalVisible(false)
+                setCurrentFormValues({})
+                actionRef.current?.reload()
               }
             }}
             rowKey="id"
@@ -524,8 +533,12 @@ export default () => {
               wrapperCol: { span: 19 },
               initialValues: {
                 ...currentFormValues,
-                permissions: (currentFormValues as TableListItem).permissions?.map((row) => row.id),
-                roles: (currentFormValues as TableListItem).roles?.map((row) => row.id),
+                permissions: (
+                  currentFormValues as TableListItem
+                ).permissions?.map((row) => row.id),
+                roles: (currentFormValues as TableListItem).roles?.map(
+                  (row) => row.id,
+                ),
               },
             }}
             columns={columns}
@@ -538,8 +551,8 @@ export default () => {
       {currentFormValues && Object.keys(currentFormValues).length ? (
         <ShowForm
           onCancel={() => {
-            setShowModalVisible(false);
-            setCurrentFormValues({});
+            setShowModalVisible(false)
+            setCurrentFormValues({})
           }}
           showModalVisible={showModalVisible}
           values={currentFormValues}
@@ -547,5 +560,5 @@ export default () => {
         />
       ) : null}
     </PageHeader>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 /** 查询角色列表 查询角色 GET /api/system/role */
 export async function findRoles(
@@ -19,11 +19,14 @@ export async function findRoles(
       ...params,
     },
     ...(options || {}),
-  });
+  })
 }
 
 /** 创建角色 创建角色 POST /api/system/role */
-export async function createRole(body: API.CreateRoleDto, options?: { [key: string]: any }) {
+export async function createRole(
+  body: API.CreateRoleDto,
+  options?: { [key: string]: any },
+) {
   return request<string>('/api/system/role', {
     method: 'POST',
     headers: {
@@ -31,7 +34,7 @@ export async function createRole(body: API.CreateRoleDto, options?: { [key: stri
     },
     data: body,
     ...(options || {}),
-  });
+  })
 }
 
 /** 查询角色 根据角色id查询角色 GET /api/system/role/${param0} */
@@ -40,12 +43,12 @@ export async function roleById(
   params: API.roleByIdParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<API.RoleResDto>(`/api/system/role/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
-  });
+  })
 }
 
 /** 删除角色 根据角色id删除角色 DELETE /api/system/role/${param0} */
@@ -54,12 +57,12 @@ export async function destroyRoleById(
   params: API.destroyRoleByIdParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<string>(`/api/system/role/${param0}`, {
     method: 'DELETE',
     params: { ...queryParams },
     ...(options || {}),
-  });
+  })
 }
 
 /** 修改角色 根据角色id修改角色 PATCH /api/system/role/${param0} */
@@ -69,7 +72,7 @@ export async function modifyRoleById(
   body: API.UpdateRoleDto,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<string>(`/api/system/role/${param0}`, {
     method: 'PATCH',
     headers: {
@@ -78,5 +81,5 @@ export async function modifyRoleById(
     params: { ...queryParams },
     data: body,
     ...(options || {}),
-  });
+  })
 }

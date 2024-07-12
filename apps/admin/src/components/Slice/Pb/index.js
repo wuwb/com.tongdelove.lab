@@ -1,13 +1,13 @@
-import { Component } from 'react';
-import { Shape } from 'react-konva';
+import { Component } from 'react'
+import { Shape } from 'react-konva'
 
 class Pb extends Component {
   static defaultProps = {
     origin: [0, 0],
-  };
+  }
 
   render() {
-    let { origin, options } = this.props;
+    let { origin, options } = this.props
     let {
       pThickness,
 
@@ -35,56 +35,56 @@ class Pb extends Component {
       pdLength,
 
       dashStyle,
-    } = options;
+    } = options
 
-    let startPoint = [];
-    startPoint[0] = 0;
-    startPoint[1] = pWidth + pcHeight + pcRadius + pThickness - paHeight;
+    let startPoint = []
+    startPoint[0] = 0
+    startPoint[1] = pWidth + pcHeight + pcRadius + pThickness - paHeight
 
-    let SecondPoint = [];
-    SecondPoint[0] = startPoint[0] + paWidth;
-    SecondPoint[1] = startPoint[1];
+    let SecondPoint = []
+    SecondPoint[0] = startPoint[0] + paWidth
+    SecondPoint[1] = startPoint[1]
 
-    let ThirdPoint = [];
-    ThirdPoint[0] = startPoint[0] + pWidth;
-    ThirdPoint[1] = startPoint[1] + paHeight;
+    let ThirdPoint = []
+    ThirdPoint[0] = startPoint[0] + pWidth
+    ThirdPoint[1] = startPoint[1] + paHeight
 
-    let FourthPoint = [];
-    FourthPoint[0] = startPoint[0];
-    FourthPoint[1] = ThirdPoint[1];
+    let FourthPoint = []
+    FourthPoint[0] = startPoint[0]
+    FourthPoint[1] = ThirdPoint[1]
 
     return (
       <Shape
         sceneFunc={(ctx, shape) => {
-          ctx.beginPath();
+          ctx.beginPath()
 
-          ctx.beginPath();
-          ctx.moveTo(...startPoint);
-          ctx.lineTo(...SecondPoint);
-          ctx.lineTo(...ThirdPoint);
-          ctx.stroke();
-          ctx.closePath();
+          ctx.beginPath()
+          ctx.moveTo(...startPoint)
+          ctx.lineTo(...SecondPoint)
+          ctx.lineTo(...ThirdPoint)
+          ctx.stroke()
+          ctx.closePath()
 
-          ctx.beginPath();
-          ctx.setLineDash(dashStyle);
-          ctx.moveTo(...ThirdPoint);
-          ctx.lineTo(...FourthPoint);
-          ctx.stroke();
-          ctx.closePath();
+          ctx.beginPath()
+          ctx.setLineDash(dashStyle)
+          ctx.moveTo(...ThirdPoint)
+          ctx.lineTo(...FourthPoint)
+          ctx.stroke()
+          ctx.closePath()
 
-          ctx.beginPath();
-          ctx.setLineDash([]);
-          ctx.moveTo(...FourthPoint);
-          ctx.lineTo(...startPoint);
-          ctx.stroke();
-          ctx.closePath();
+          ctx.beginPath()
+          ctx.setLineDash([])
+          ctx.moveTo(...FourthPoint)
+          ctx.lineTo(...startPoint)
+          ctx.stroke()
+          ctx.closePath()
 
           // (!) Konva specific method, it is very important
-          ctx.fillStrokeShape(shape);
+          ctx.fillStrokeShape(shape)
         }}
       />
-    );
+    )
   }
 }
 
-export default Pb;
+export default Pb

@@ -1,6 +1,6 @@
-import { Link } from '@umijs/max';
-import clsx from 'clsx';
-import Styles from './Article.less';
+import { Link } from '@umijs/max'
+import clsx from 'clsx'
+import Styles from './Article.less'
 
 const Article = (props) => {
   return (
@@ -39,6 +39,6 @@ const Article = (props) => {
         </div>
       </div>
     </div>
-  );
-};
-export default Article;
+  )
+}
+export default Article

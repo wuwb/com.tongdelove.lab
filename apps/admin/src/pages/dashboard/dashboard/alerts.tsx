@@ -1,6 +1,6 @@
-import { Grid, Alert, Stack, AlertTitle } from "@mui/material";
-import BaseCard from "@/components/module/baseCard/BaseCard";
-import { FullLayout } from "@/components/layouts";
+import { FullLayout } from '@/components/layouts'
+import BaseCard from '@/components/module/baseCard/BaseCard'
+import { Alert, AlertTitle, Grid, Stack } from '@mui/material'
 
 const AlertsPage = () => {
   return (
@@ -15,7 +15,9 @@ const AlertsPage = () => {
               <Alert severity="warning">
                 This is a warning alert — check it out!
               </Alert>
-              <Alert severity="info">This is an info alert — check it out!</Alert>
+              <Alert severity="info">
+                This is an info alert — check it out!
+              </Alert>
               <Alert severity="success">
                 This is a success alert — check it out!
               </Alert>
@@ -64,13 +66,13 @@ const AlertsPage = () => {
         </Grid>
       </Grid>
     </FullLayout>
-  );
-};
+  )
+}
 
 AlertsPage.getLayout = (page) => (
   // <Authenticated>
   <FullLayout>{page}</FullLayout>
   // </Authenticated>
-);
+)
 
-export default AlertsPage;
+export default AlertsPage

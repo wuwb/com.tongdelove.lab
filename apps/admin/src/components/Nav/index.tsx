@@ -1,18 +1,18 @@
-import { searchTopic, signout } from '@/service/user';
-import { Link } from '@umijs/max';
-import { Dropdown, Menu, notification } from 'antd';
-import React from 'react';
-import { history } from 'umi';
-import Style from './index.less';
+import { searchTopic, signout } from '@/service/user'
+import { Link } from '@umijs/max'
+import { Dropdown, Menu, notification } from 'antd'
+import React from 'react'
+import { history } from 'umi'
+import Style from './index.less'
 
 export class Nav extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       toggle: true,
       focusStatus: false,
       search: '',
-    };
+    }
   }
 
   render() {
@@ -21,11 +21,14 @@ export class Nav extends React.Component {
         <Menu.Item>关于我</Menu.Item>
         <Menu.Item onClick={this.signOut.bind(this)}>退出登录</Menu.Item>
       </Menu>
-    );
+    )
 
     return (
       <nav className={Style['page-header']}>
-        <div ref="header" className={`header ${this.state.toggle ? '' : 'toggle'}`}>
+        <div
+          ref="header"
+          className={`header ${this.state.toggle ? '' : 'toggle'}`}
+        >
           <div className="logo-space">
             {this.state.toggle ? (
               <Link className="instagram" to={'/'} />
@@ -49,7 +52,10 @@ export class Nav extends React.Component {
                 {/* <span className="close active"></span> */}
               </div>
             ) : (
-              <div className="search-block" onClick={this.focusSearchInput.bind(this)}>
+              <div
+                className="search-block"
+                onClick={this.focusSearchInput.bind(this)}
+              >
                 <span className="block-icon"></span>
                 <span className="block-text">搜索</span>
               </div>
@@ -64,50 +70,50 @@ export class Nav extends React.Component {
           </div>
         </div>
       </nav>
-    );
+    )
   }
 
   focusSearchInput() {
-    this.setState({ focusStatus: !this.state.focusStatus });
+    this.setState({ focusStatus: !this.state.focusStatus })
   }
 
   onScroll = (event) => {
     if (!event.srcElement.scrollingElement) {
-      return;
+      return
     }
-    let scroll_Y = event.srcElement.scrollingElement.scrollTop;
+    let scroll_Y = event.srcElement.scrollingElement.scrollTop
     this.setState({
       toggle: !(scroll_Y > 58),
-    });
-  };
+    })
+  }
 
   searchContent = async (event) => {
     if (event.key === 'Enter') {
-      let search = this.state.search;
+      let search = this.state.search
       // 获取用户帖子列表
       let response = await searchTopic({
         params: { search },
-      });
-      this.props.addSearchInfo(response.data);
+      })
+      this.props.addSearchInfo(response.data)
 
       let path = {
         pathname: `/search/${search}`,
         // params: data
-      };
-      this.context.router.history.push(path);
+      }
+      this.context.router.history.push(path)
     }
-  };
+  }
 
   handelChange(event) {
-    this.setState({ search: event.target.value });
+    this.setState({ search: event.target.value })
   }
 
   async signOut() {
-    let response = await signout();
+    let response = await signout()
     notification['success']({
       message: response.message,
-    });
-    history.push('/login');
+    })
+    history.push('/login')
   }
 
   componentDidMount() {
@@ -117,10 +123,10 @@ export class Nav extends React.Component {
     //         this.props.addUserInfo(response.data)
     //     })
     // }
-    window.addEventListener('scroll', this.onScroll);
+    window.addEventListener('scroll', this.onScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('scroll', this.onScroll)
   }
 }

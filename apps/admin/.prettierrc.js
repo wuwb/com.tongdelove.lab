@@ -4,8 +4,8 @@ module.exports = {
 
   singleQuote: true,
   semi: false,
-  trailingComma: 'es5',
-  printWidth: 100,
+  trailingComma: 'all',
+  printWidth: 80,
   proseWrap: 'never',
   endOfLine: 'auto',
   overrides: [
@@ -22,8 +22,5 @@ module.exports = {
       },
     },
   ],
-  plugins: [
-    'prettier-plugin-organize-imports',
-    'prettier-plugin-packagejson'
-  ],
-};
+  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-packagejson'],
+}

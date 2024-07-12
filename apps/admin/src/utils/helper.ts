@@ -3,7 +3,7 @@
  * @param promise 待检测的值
  */
 export function isPromise(promise: any): promise is PromiseLike<any> {
-  return !!promise && promise instanceof Promise;
+  return !!promise && promise instanceof Promise
 }
 /**
  * 检测当前函数是否为异步函数
@@ -12,8 +12,8 @@ export function isPromise(promise: any): promise is PromiseLike<any> {
 export function isAsyncFn<R, A extends Array<any>>(
   callback: (...asgs: A) => Promise<R> | R,
 ): callback is (...asgs: A) => Promise<R> {
-  const AsyncFunction = (async () => {}).constructor;
-  return callback instanceof AsyncFunction === true;
+  const AsyncFunction = (async () => {}).constructor
+  return callback instanceof AsyncFunction === true
 }
 
 /**
@@ -22,12 +22,12 @@ export function isAsyncFn<R, A extends Array<any>>(
  */
 export const isUrl = (path: string): boolean => {
   if (!path.startsWith('http')) {
-    return false;
+    return false
   }
   try {
-    const url = new URL(path);
-    return !!url;
+    const url = new URL(path)
+    return !!url
   } catch (error) {
-    return false;
+    return false
   }
-};
+}

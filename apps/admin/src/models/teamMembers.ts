@@ -1,5 +1,5 @@
 export interface TeamMembersModelState {
-  name: string;
+  name: string
 }
 
 const teamMembersModel = {
@@ -41,10 +41,10 @@ const teamMembersModel = {
   },
   reducers: {
     delete(state, { payload: id }) {
-      return state.filter((item) => item.id !== id);
+      return state.filter((item) => item.id !== id)
     },
     get(state, { payload: id }) {
-      return state;
+      return state
     },
   },
   subscriptions: {
@@ -53,11 +53,11 @@ const teamMembersModel = {
         if (pathname === '/') {
           dispatch({
             type: 'query',
-          });
+          })
         }
-      });
+      })
     },
   },
-};
+}
 
-export default teamMembersModel;
+export default teamMembersModel

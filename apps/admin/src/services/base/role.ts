@@ -1,16 +1,19 @@
-import { TableListItem, TableListParams } from '@/services/base/role.d';
-import { request } from '@umijs/max';
+import { TableListItem, TableListParams } from '@/services/base/role.d'
+import { request } from '@umijs/max'
 
 export async function queryRole(params?: TableListParams) {
-  return request<API.Response<API.PagingData<TableListItem>>>('/api/base/role/query', {
-    params,
-  });
+  return request<API.Response<API.PagingData<TableListItem>>>(
+    '/api/base/role/query',
+    {
+      params,
+    },
+  )
 }
 
 export async function showRole(params?: TableListParams) {
   return request<API.Response<TableListItem>>('/api/base/role/show', {
     params,
-  });
+  })
 }
 
 export async function removeRole(params: { id: string[] }) {
@@ -19,7 +22,7 @@ export async function removeRole(params: { id: string[] }) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function createRole(params: TableListItem) {
@@ -28,7 +31,7 @@ export async function createRole(params: TableListItem) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function updateRole(params: TableListItem) {
@@ -37,5 +40,5 @@ export async function updateRole(params: TableListItem) {
     data: {
       ...params,
     },
-  });
+  })
 }

@@ -1,5 +1,5 @@
-import { DefaultLayout as Layout } from '@/components/Layout/DefaultLayout';
-import { createStyles } from 'antd-style';
+import { DefaultLayout as Layout } from '@/components/Layout/DefaultLayout'
+import { createStyles } from 'antd-style'
 
 {
   /* <script src="https://cdn.jsdelivr.net/gh/iMuFeng/bmdb@3.0.0/dist/bmdb.js" /> */
@@ -21,10 +21,10 @@ const useStyles = createStyles(({ token, css }) => ({
     height: 100px;
     border: 1px solid #ddd;
   `,
-}));
+}))
 
 const Page = () => {
-  const { styles, cx, theme } = useStyles();
+  const { styles, cx, theme } = useStyles()
 
   const data = [
     {
@@ -47,7 +47,7 @@ const Page = () => {
         // <p>代码分享 https://jsfiddle.net/</p>
       ],
     },
-  ];
+  ]
   const renderItem = function (data) {
     return (
       <div>
@@ -57,11 +57,11 @@ const Page = () => {
               <p>{item.name}</p>
               <p>{item.link}</p>
             </div>
-          );
+          )
         })}
       </div>
-    );
-  };
+    )
+  }
   return (
     <Layout title="Daohang">
       {data.map((item) => {
@@ -70,7 +70,7 @@ const Page = () => {
             <h3>{item.cate}</h3>
             {renderItem(item.data)}
           </div>
-        );
+        )
       })}
       {/*
             <div>
@@ -136,7 +136,7 @@ const Page = () => {
             </div>
             */}
     </Layout>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

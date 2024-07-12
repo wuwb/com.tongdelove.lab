@@ -1,37 +1,45 @@
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-components'
 import ProForm, {
   ProFormFieldSet,
   ProFormRadio,
   ProFormSelect,
   ProFormSwitch,
   ProFormText,
-} from '@ant-design/pro-form';
-import { ActionType } from '@ant-design/pro-table';
-import { Card, Collapse, Descriptions, Divider, message, Typography } from 'antd';
-import React, { useRef, useState } from 'react';
-import { TableListItem } from './data.d';
-const { Title, Paragraph, Text, Link } = Typography;
-const { Panel } = Collapse;
+} from '@ant-design/pro-form'
+import { ActionType } from '@ant-design/pro-table'
+import {
+  Card,
+  Collapse,
+  Descriptions,
+  Divider,
+  Typography,
+  message,
+} from 'antd'
+import React, { useRef, useState } from 'react'
+import { TableListItem } from './data.d'
+const { Title, Paragraph, Text, Link } = Typography
+const { Panel } = Collapse
 
 const TableList: React.FC<{}> = () => {
-  const [createModalVisible, handleModalVisible] = useState<boolean>(false);
-  const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
-  const [stepFormValues, setStepFormValues] = useState({});
-  const actionRef = useRef<ActionType>();
-  const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([]);
+  const [createModalVisible, handleModalVisible] = useState<boolean>(false)
+  const [updateModalVisible, handleUpdateModalVisible] =
+    useState<boolean>(false)
+  const [stepFormValues, setStepFormValues] = useState({})
+  const actionRef = useRef<ActionType>()
+  const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([])
 
   // queryRule 获取数据
   return (
     <PageContainer>
       <Card>
         <ProForm<{
-          name: string;
-          company: string;
+          name: string
+          company: string
         }>
           onFinish={async (values) => {
-            await waitTime(2000);
-            console.log(values);
-            message.success('提交成功');
+            await waitTime(2000)
+            console.log(values)
+            message.success('提交成功')
           }}
           initialValues={{
             name: '蚂蚁设计有限公司',
@@ -102,19 +110,50 @@ const TableList: React.FC<{}> = () => {
             <ProFormFieldSet
               name="list"
               label="折叠大小"
-              transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+              transform={(value: any) => ({
+                startTime: value[0],
+                endTime: value[1],
+              })}
             >
-              <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-              <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-              <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+              <ProFormText
+                width="xs"
+                name="x"
+                label="长"
+                placeholder="输长度"
+              />
+              <ProFormText
+                width="xs"
+                name="y"
+                label="宽"
+                placeholder="输宽度"
+              />
+              <ProFormText
+                width="xs"
+                name="z"
+                label="高"
+                placeholder="输高度"
+              />
             </ProFormFieldSet>
             <ProFormFieldSet
               name="list"
               label="展开大小"
-              transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+              transform={(value: any) => ({
+                startTime: value[0],
+                endTime: value[1],
+              })}
             >
-              <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-              <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+              <ProFormText
+                width="xs"
+                name="y"
+                label="宽"
+                placeholder="输宽度"
+              />
+              <ProFormText
+                width="xs"
+                name="z"
+                label="高"
+                placeholder="输高度"
+              />
             </ProFormFieldSet>
           </ProForm.Group>
           <ProForm.Group>
@@ -277,11 +316,29 @@ const TableList: React.FC<{}> = () => {
               <ProFormFieldSet
                 name="list"
                 label="大小"
-                transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                transform={(value: any) => ({
+                  startTime: value[0],
+                  endTime: value[1],
+                })}
               >
-                <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                <ProFormText
+                  width="xs"
+                  name="x"
+                  label="长"
+                  placeholder="输长度"
+                />
+                <ProFormText
+                  width="xs"
+                  name="y"
+                  label="宽"
+                  placeholder="输宽度"
+                />
+                <ProFormText
+                  width="xs"
+                  name="z"
+                  label="高"
+                  placeholder="输高度"
+                />
               </ProFormFieldSet>
             </Descriptions.Item>
 
@@ -342,11 +399,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -354,11 +429,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -366,27 +459,67 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
             </Descriptions.Item>
 
             <Descriptions.Item label="UV" span={3}>
-              <ProFormSwitch className="" name="switch" style={{ width: '100%' }} />
+              <ProFormSwitch
+                className=""
+                name="switch"
+                style={{ width: '100%' }}
+              />
               <ProForm.Group>
                 <ProFormSwitch name="switch" label="单面局部UV" />
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -394,11 +527,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -406,11 +557,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -418,11 +587,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -430,11 +617,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
               <ProForm.Group>
@@ -442,11 +647,29 @@ const TableList: React.FC<{}> = () => {
                 <ProFormFieldSet
                   name="list"
                   label="大小"
-                  transform={(value: any) => ({ startTime: value[0], endTime: value[1] })}
+                  transform={(value: any) => ({
+                    startTime: value[0],
+                    endTime: value[1],
+                  })}
                 >
-                  <ProFormText width="xs" name="x" label="长" placeholder="输长度" />
-                  <ProFormText width="xs" name="y" label="宽" placeholder="输宽度" />
-                  <ProFormText width="xs" name="z" label="高" placeholder="输高度" />
+                  <ProFormText
+                    width="xs"
+                    name="x"
+                    label="长"
+                    placeholder="输长度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="y"
+                    label="宽"
+                    placeholder="输宽度"
+                  />
+                  <ProFormText
+                    width="xs"
+                    name="z"
+                    label="高"
+                    placeholder="输高度"
+                  />
                 </ProFormFieldSet>
               </ProForm.Group>
             </Descriptions.Item>
@@ -468,7 +691,7 @@ const TableList: React.FC<{}> = () => {
         </ProForm>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default TableList;
+export default TableList

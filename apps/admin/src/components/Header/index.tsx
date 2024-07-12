@@ -1,22 +1,22 @@
-import { Link } from '@umijs/max';
-import { Button, Drawer, Grid, Layout } from 'antd';
-import { useState } from 'react';
-import Styles from './index.less';
-import LeftMenu from './LeftMenu';
-import RightMenu from './RightMenu';
+import { Link } from '@umijs/max'
+import { Button, Drawer, Grid, Layout } from 'antd'
+import { useState } from 'react'
+import LeftMenu from './LeftMenu'
+import RightMenu from './RightMenu'
+import Styles from './index.less'
 
-const { useBreakpoint } = Grid;
+const { useBreakpoint } = Grid
 
 const Header = (props) => {
-  const [session] = useState(true);
-  const [visible, setVisible] = useState(false);
+  const [session] = useState(true)
+  const [visible, setVisible] = useState(false)
   const showDrawer = () => {
-    setVisible(true);
-  };
+    setVisible(true)
+  }
   const onClose = () => {
-    setVisible(false);
-  };
-  const { md } = useBreakpoint();
+    setVisible(false)
+  }
+  const { md } = useBreakpoint()
 
   return (
     <Layout.Header
@@ -48,7 +48,7 @@ const Header = (props) => {
         </Drawer>
       </div>
     </Layout.Header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

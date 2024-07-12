@@ -1,4 +1,4 @@
-import { SiderBox } from '@/components/Sider';
+import { SiderBox } from '@/components/Sider'
 
 const SiteStatus = () => {
   return (
@@ -9,7 +9,7 @@ const SiteStatus = () => {
         <div>回复: 1</div>
       </div>
     </SiderBox>
-  );
-};
+  )
+}
 
-export default SiteStatus;
+export default SiteStatus

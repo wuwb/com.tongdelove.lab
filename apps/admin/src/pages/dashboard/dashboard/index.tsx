@@ -1,15 +1,14 @@
-import { FC } from 'react';
-import { NextPage, GetStaticProps } from 'next';
-import { NextPageWithLayout } from '@/types/app';
+import { NextPageWithLayout } from '@/types/app'
+import { FC } from 'react'
 
-import { AccentSidebarLayout } from '@/components/layouts';
+import { AccentSidebarLayout } from '@/components/layouts'
 
 const DashboardPage: FC = () => {
   return (
     <>
       <div>123</div>
     </>
-  );
+  )
 }
 
 const DashboardWrapper: NextPageWithLayout = () => {
@@ -17,11 +16,11 @@ const DashboardWrapper: NextPageWithLayout = () => {
     <>
       <DashboardPage />
     </>
-  );
+  )
 }
 
 DashboardWrapper.getLayout = function getLayout(page: JSX.Element) {
-  return <AccentSidebarLayout>{page}</AccentSidebarLayout>;
-};
+  return <AccentSidebarLayout>{page}</AccentSidebarLayout>
+}
 
-export default DashboardWrapper;
+export default DashboardWrapper

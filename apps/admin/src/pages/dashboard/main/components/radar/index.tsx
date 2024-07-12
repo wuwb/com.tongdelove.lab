@@ -1,5 +1,5 @@
-import { request } from '@umijs/max';
-import React from 'react';
+import { request } from '@umijs/max'
+import React from 'react'
 
 export default class Radar extends React.Component {
   state = {
@@ -59,7 +59,7 @@ export default class Radar extends React.Component {
         ],
       },
     },
-  };
+  }
 
   componentDidMount() {
     request('/api/charts/radar.json', {}).then((data) => {
@@ -69,9 +69,9 @@ export default class Radar extends React.Component {
           legend: {
             ...this.state.option.legend,
             formatter: (name) => {
-              const { value } = data.find((v) => v.name === name);
-              const average = value.reduce((a, b) => a + b, 0) / value.length;
-              return `{title|${name}}{value|${average.toFixed(2)}}{unit|分}`;
+              const { value } = data.find((v) => v.name === name)
+              const average = value.reduce((a, b) => a + b, 0) / value.length
+              return `{title|${name}}{value|${average.toFixed(2)}}{unit|分}`
             },
           },
           series: [
@@ -81,12 +81,12 @@ export default class Radar extends React.Component {
             },
           ],
         },
-      });
-    });
+      })
+    })
   }
 
   render() {
-    const { option } = this.state;
-    return <div style={{ background: '#fff' }}></div>;
+    const { option } = this.state
+    return <div style={{ background: '#fff' }}></div>
   }
 }

@@ -1,6 +1,6 @@
-import { getAllLocales, getLocale } from '@umijs/max';
-import { Layout, Space, Table, Tag } from 'antd';
-import { createStyles } from 'antd-style';
+import { getAllLocales, getLocale } from '@umijs/max'
+import { Layout, Space, Table, Tag } from 'antd'
+import { createStyles } from 'antd-style'
 
 const useStyles = createStyles(({ token, css }) => ({
   content: css`
@@ -8,7 +8,7 @@ const useStyles = createStyles(({ token, css }) => ({
     width: 1260px;
     margin: 20px auto;
   `,
-}));
+}))
 
 const columns = [
   {
@@ -34,15 +34,15 @@ const columns = [
     render: (tags) => (
       <>
         {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
+          let color = tag.length > 5 ? 'geekblue' : 'green'
           if (tag === 'loser') {
-            color = 'volcano';
+            color = 'volcano'
           }
           return (
             <Tag color={color} key={tag}>
               {tag.toUpperCase()}
             </Tag>
-          );
+          )
         })}
       </>
     ),
@@ -54,15 +54,15 @@ const columns = [
     render: (tags) => (
       <>
         {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
+          let color = tag.length > 5 ? 'geekblue' : 'green'
           if (tag === 'loser') {
-            color = 'volcano';
+            color = 'volcano'
           }
           return (
             <Tag color={color} key={tag}>
               {tag.toUpperCase()}
             </Tag>
-          );
+          )
         })}
       </>
     ),
@@ -76,7 +76,7 @@ const columns = [
       </Space>
     ),
   },
-];
+]
 
 const data = [
   {
@@ -174,13 +174,13 @@ const data = [
     enName: 'TDI',
     relate: ['沧州大化（002246）', '航锦科技（002246）', '北化股份（002246）'],
   },
-];
+]
 
 const FinanceMaterialsPage = (props) => {
-  const { styles, cx, theme } = useStyles();
+  const { styles, cx, theme } = useStyles()
 
-  console.log('getAllLocales: ', getAllLocales()); // en-US,zh-CN
-  console.log('getLocale: ', getLocale()); // en-US | zh-CN
+  console.log('getAllLocales: ', getAllLocales()) // en-US,zh-CN
+  console.log('getLocale: ', getLocale()) // en-US | zh-CN
 
   return (
     <Layout.Content>
@@ -188,7 +188,7 @@ const FinanceMaterialsPage = (props) => {
         <Table columns={columns} dataSource={data} />
       </div>
     </Layout.Content>
-  );
-};
+  )
+}
 
-export default FinanceMaterialsPage;
+export default FinanceMaterialsPage

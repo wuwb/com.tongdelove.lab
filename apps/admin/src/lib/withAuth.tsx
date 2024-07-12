@@ -1,23 +1,23 @@
 // utils/withAuth.js - a HOC for protected pages
-import { Component } from 'react';
-import AuthService from './auth';
+import { Component } from 'react'
+import AuthService from './auth'
 
 export default function withAuth(AuthComponent) {
-  const Auth = new AuthService('http://localhost:5000');
+  const Auth = new AuthService('http://localhost:5000')
 
   return class Authenticated extends Component {
     constructor(props) {
-      super(props);
+      super(props)
       this.state = {
         isLoading: true,
-      };
+      }
     }
 
     componentDidMount() {
       if (!Auth.loggedIn()) {
-        this.props.url.replaceTo('/');
+        this.props.url.replaceTo('/')
       }
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false })
     }
 
     render() {
@@ -29,7 +29,7 @@ export default function withAuth(AuthComponent) {
             <AuthComponent {...this.props} auth={Auth} />
           )}
         </div>
-      );
+      )
     }
-  };
+  }
 }

@@ -1,29 +1,29 @@
-import { queryCurrentUser, queryUser } from '@/services/base/user';
-import { Effect } from 'dva';
-import { Reducer } from 'redux';
+import { queryCurrentUser, queryUser } from '@/services/base/user'
+import { Effect } from 'dva'
+import { Reducer } from 'redux'
 
 export interface CurrentUser {
-  avatar?: string;
-  username?: string;
-  userid?: string;
-  unreadCount?: number;
+  avatar?: string
+  username?: string
+  userid?: string
+  unreadCount?: number
 }
 
 export interface UserModelState {
-  currentUser?: CurrentUser;
+  currentUser?: CurrentUser
 }
 
 export interface UserModelType {
-  namespace: 'user';
-  state: UserModelState;
+  namespace: 'user'
+  state: UserModelState
   effects: {
-    fetch: Effect;
-    fetchCurrent: Effect;
-  };
+    fetch: Effect
+    fetchCurrent: Effect
+  }
   reducers: {
-    saveCurrentUser: Reducer<UserModelState>;
-    changeNotifyCount: Reducer<UserModelState>;
-  };
+    saveCurrentUser: Reducer<UserModelState>
+    changeNotifyCount: Reducer<UserModelState>
+  }
 }
 
 const UserModel: UserModelType = {
@@ -35,19 +35,19 @@ const UserModel: UserModelType = {
 
   effects: {
     *fetch(_, { call, put }) {
-      const response = yield call(queryUser);
+      const response = yield call(queryUser)
       yield put({
         type: 'save',
         payload: response,
-      });
+      })
     },
     // 获取当前用户
     *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrentUser);
+      const response = yield call(queryCurrentUser)
       yield put({
         type: 'saveCurrentUser',
         payload: response && response.data ? response.data : {},
-      });
+      })
     },
   },
 
@@ -57,7 +57,7 @@ const UserModel: UserModelType = {
       return {
         ...state,
         currentUser: action.payload || {},
-      };
+      }
     },
     changeNotifyCount(
       state = {
@@ -72,9 +72,9 @@ const UserModel: UserModelType = {
           notifyCount: action.payload.totalCount,
           unreadCount: action.payload.unreadCount,
         },
-      };
+      }
     },
   },
-};
+}
 
-export default UserModel;
+export default UserModel

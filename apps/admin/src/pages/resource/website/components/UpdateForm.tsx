@@ -1,14 +1,14 @@
-import { Outlet } from '@umijs/max';
-import { Drawer } from 'antd';
-import React from 'react';
+import { Outlet } from '@umijs/max'
+import { Drawer } from 'antd'
+import React from 'react'
 
 interface UpdateFormProps {
-  updateModalVisible: boolean;
-  onClose: () => void;
+  updateModalVisible: boolean
+  onClose: () => void
 }
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
-  const { updateModalVisible, onClose } = props;
+  const { updateModalVisible, onClose } = props
 
   return (
     <Drawer
@@ -22,7 +22,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       <Outlet />
       {props.children}
     </Drawer>
-  );
-};
+  )
+}
 
-export default UpdateForm;
+export default UpdateForm

@@ -1,38 +1,38 @@
-import { Button, Form, Space } from 'antd';
-import React, { forwardRef, useImperativeHandle } from 'react';
+import { Button, Form, Space } from 'antd'
+import React, { forwardRef, useImperativeHandle } from 'react'
 
-import { TableListItem } from '@/services/base/menu.d';
-import BaseFormItems from './BaseFormItems';
+import { TableListItem } from '@/services/base/menu.d'
+import BaseFormItems from './BaseFormItems'
 
 export interface CreateFormHandleProps {
-  reset: () => void;
+  reset: () => void
 }
 
 interface CreateFormProps {
-  onCancel?: () => void;
-  onSubmit: (value: TableListItem) => void;
+  onCancel?: () => void
+  onSubmit: (value: TableListItem) => void
 }
 
-const CreateForm: React.RefForwardingComponent<CreateFormHandleProps, CreateFormProps> = (
-  { onSubmit },
-  ref,
-) => {
+const CreateForm: React.RefForwardingComponent<
+  CreateFormHandleProps,
+  CreateFormProps
+> = ({ onSubmit }, ref) => {
   // const { onCancel } = props
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const onFinish = async (fields: TableListItem) => {
-    onSubmit(fields);
-  };
+    onSubmit(fields)
+  }
 
   const onReset = () => {
-    form?.resetFields();
-  };
+    form?.resetFields()
+  }
 
   useImperativeHandle(ref, () => ({
     reset: (): void => {
-      onReset();
+      onReset()
     },
-  }));
+  }))
 
   return (
     <Form
@@ -53,7 +53,7 @@ const CreateForm: React.RefForwardingComponent<CreateFormHandleProps, CreateForm
         </Space>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default forwardRef(CreateForm);
+export default forwardRef(CreateForm)

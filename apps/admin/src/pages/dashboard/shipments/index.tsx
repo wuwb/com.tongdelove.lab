@@ -1,9 +1,9 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Index/Header';
-import { Helmet as Head, Link } from '@umijs/max';
-import { Select, Table, Tag } from 'antd';
+import Footer from '@/components/Footer'
+import Header from '@/components/Index/Header'
+import { Helmet as Head, Link } from '@umijs/max'
+import { Select, Table, Tag } from 'antd'
 
-const { Option } = Select;
+const { Option } = Select
 
 const renderData = () => {
   const data = [
@@ -34,22 +34,26 @@ const renderData = () => {
       type: '',
       carrier: '',
     },
-  ];
+  ]
   const columns = [
     { title: '装运编号', dataIndex: 'shipment', key: 'shipment' },
     { title: '目的地', dataIndex: 'destination', key: 'destination' },
     { title: '状态', dataIndex: 'status', key: 'status' },
-    { title: '预计收货时间', dataIndex: 'estimatedDelivery', key: 'estimatedDelivery' },
+    {
+      title: '预计收货时间',
+      dataIndex: 'estimatedDelivery',
+      key: 'estimatedDelivery',
+    },
     { title: '发货时间', dataIndex: 'departureDate', key: 'departureDate' },
     { title: '发货方式', dataIndex: 'type', key: 'type' },
     { title: '装运公司', dataIndex: 'carrier', key: 'carrier' },
-  ];
+  ]
 
-  return <Table dataSource={data} columns={columns} />;
-};
+  return <Table dataSource={data} columns={columns} />
+}
 
 const Home = () => {
-  const handler = (val) => console.log(val);
+  const handler = (val) => console.log(val)
 
   return (
     <>
@@ -64,7 +68,11 @@ const Home = () => {
       <div>
         <div>装配</div>
         <div>
-          <Select placeholder="选择工作方式" defaultValue="1" onChange={handler}>
+          <Select
+            placeholder="选择工作方式"
+            defaultValue="1"
+            onChange={handler}
+          >
             <Option value="1">远程工作</Option>
             <Option value="2">线下工作</Option>
           </Select>
@@ -80,7 +88,7 @@ const Home = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

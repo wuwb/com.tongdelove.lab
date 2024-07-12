@@ -1,75 +1,75 @@
-import { DownOutlined } from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
-import { Button, Divider, Dropdown, Menu, message, Popconfirm, Tag } from 'antd';
-import { SorterResult } from 'antd/es/table/interface';
-import React, { useRef, useState } from 'react';
+import { DownOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table'
+import { Button, Divider, Dropdown, Menu, Popconfirm, Tag, message } from 'antd'
+import { SorterResult } from 'antd/es/table/interface'
+import React, { useRef, useState } from 'react'
 
-import { queryLogs, removeLogs } from '@/services/base/logs';
-import { TableListItem } from '@/services/base/logs.d';
+import { queryLogs, removeLogs } from '@/services/base/logs'
+import { TableListItem } from '@/services/base/logs.d'
 
-import styles from './index.less';
+import styles from './index.less'
 
 /**
  *  删除
  * @param selectedRows
  */
 const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  const hide = message.loading('正在删除')
+  if (!selectedRows) return true
   try {
     await removeLogs({
       id: selectedRows.map((row) => row.id),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
+    })
+    hide()
+    message.success('删除成功，即将刷新')
+    return true
   } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
+    hide()
+    message.error('删除失败，请重试')
+    return false
   }
-};
+}
 
 const MethodTag: React.FC<{ text: string }> = ({ text }) => {
-  let color = '#108ee9';
+  let color = '#108ee9'
   switch (text) {
     case 'ANY':
-      color = '#108ee9';
-      break;
+      color = '#108ee9'
+      break
     case 'GET':
-      color = '#52c41a';
-      break;
+      color = '#52c41a'
+      break
     case 'POST':
-      color = '#faad14';
-      break;
+      color = '#faad14'
+      break
     case 'PUT':
-      color = '#1890ff';
-      break;
+      color = '#1890ff'
+      break
     case 'DELETE':
-      color = '#ff4d4f';
-      break;
+      color = '#ff4d4f'
+      break
     case 'PATCH':
-      color = '#13c2c2';
-      break;
+      color = '#13c2c2'
+      break
     case 'OPTIONS':
-      color = '#2f54eb';
-      break;
+      color = '#2f54eb'
+      break
     case 'HEAD':
-      color = 'lime';
-      break;
+      color = 'lime'
+      break
     default:
   }
   return (
     <Tag color={color} style={{ marginBottom: 8 }}>
       {text}
     </Tag>
-  );
-};
+  )
+}
 
 export default () => {
-  const [sorter, setSorter] = useState<string>('');
-  const actionRef = useRef<ActionType>();
+  const [sorter, setSorter] = useState<string>('')
+  const actionRef = useRef<ActionType>()
   const columns: ProColumns<TableListItem>[] = [
     {
       title: 'ID',
@@ -121,7 +121,9 @@ export default () => {
         <>
           {record.method?.length > 0 ? (
             // eslint-disable-next-line react/no-array-index-key
-            record.method.map((text, index) => <MethodTag key={index} text={text} />)
+            record.method.map((text, index) => (
+              <MethodTag key={index} text={text} />
+            ))
           ) : (
             <Tag color="#108ee9">ANY</Tag>
           )}
@@ -131,12 +133,16 @@ export default () => {
     {
       title: 'HTTP路径',
       dataIndex: 'path',
-      render: (_, record: TableListItem) => <Tag color="#2db7f5">{record.path}</Tag>,
+      render: (_, record: TableListItem) => (
+        <Tag color="#2db7f5">{record.path}</Tag>
+      ),
     },
     {
       title: 'IP',
       dataIndex: 'ip',
-      render: (_, record: TableListItem) => <Tag color="#108ee9">{record.ip}</Tag>,
+      render: (_, record: TableListItem) => (
+        <Tag color="#108ee9">{record.ip}</Tag>
+      ),
     },
     {
       title: '参数',
@@ -165,8 +171,8 @@ export default () => {
             placement="left"
             onConfirm={async () => {
               // 不论是否删除成功，都重新加载列表数据
-              await handleRemove([record]);
-              actionRef?.current?.reload();
+              await handleRemove([record])
+              actionRef?.current?.reload()
             }}
             style={{ width: 220 }}
             okText="确定"
@@ -177,7 +183,7 @@ export default () => {
         </>
       ),
     },
-  ];
+  ]
 
   return (
     <PageHeader content="" className={styles.main}>
@@ -187,9 +193,9 @@ export default () => {
         actionRef={actionRef}
         rowKey="id"
         onChange={(_, _filter, _sorter) => {
-          const sorterResult = _sorter as SorterResult<TableListItem>;
+          const sorterResult = _sorter as SorterResult<TableListItem>
           if (sorterResult.field) {
-            setSorter(`${sorterResult.field}_${sorterResult.order}`);
+            setSorter(`${sorterResult.field}_${sorterResult.order}`)
           }
         }}
         params={{
@@ -202,8 +208,8 @@ export default () => {
                 <Menu
                   onClick={async (e) => {
                     if (e.key === 'remove') {
-                      await handleRemove(selectedRows);
-                      action.reload();
+                      await handleRemove(selectedRows)
+                      action.reload()
                     }
                   }}
                   selectedKeys={[]}
@@ -220,17 +226,18 @@ export default () => {
         ]}
         tableAlertRender={({ selectedRowKeys }) => (
           <div>
-            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
+            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{' '}
+            项&nbsp;&nbsp;
           </div>
         )}
         request={async (params) => {
-          const { list, total } = (await queryLogs(params)).data;
-          return { data: list, total, success: true };
+          const { list, total } = (await queryLogs(params)).data
+          return { data: list, total, success: true }
         }}
         columns={columns}
         rowSelection={{}}
         scroll={{ x: 1400 }}
       />
     </PageHeader>
-  );
-};
+  )
+}

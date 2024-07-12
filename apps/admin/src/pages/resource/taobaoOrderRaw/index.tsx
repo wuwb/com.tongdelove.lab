@@ -1,45 +1,44 @@
-import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
-import { useRequest } from '@umijs/max';
-import { Button, message, Space } from 'antd';
-import React, { useRef } from 'react';
-import { TableListItem } from './data';
-import ImportTabaoCSV from './ImportTaobaoCsv';
-import { queryData, syncById, syncData } from './service';
-
+import { PageContainer } from '@ant-design/pro-components'
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table'
+import { useRequest } from '@umijs/max'
+import { Button, Space, message } from 'antd'
+import React, { useRef } from 'react'
+import ImportTabaoCSV from './ImportTaobaoCsv'
+import { TableListItem } from './data'
+import { queryData, syncById, syncData } from './service'
 
 const TableList: React.FC = () => {
   const { loading, run } = useRequest(syncData, {
     manual: true,
     onSuccess: (result, params) => {
       if (result.success) {
-        message.success(`清洗成功`);
+        message.success(`清洗成功`)
       }
     },
-  });
+  })
 
   const onSyncData = async (id: string | null) => {
-    const hide = message.loading('正在清洗');
+    const hide = message.loading('正在清洗')
 
     try {
       if (!id) {
-        await run();
+        await run()
       } else {
         await syncById({
           id,
-        });
+        })
       }
-      hide();
-      message.success('清洗成功，即将刷新');
-      return true;
+      hide()
+      message.success('清洗成功，即将刷新')
+      return true
     } catch (error) {
-      hide();
-      message.error('清洗失败，请重试');
-      return false;
+      hide()
+      message.error('清洗失败，请重试')
+      return false
     }
-  };
+  }
 
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType>()
 
   // 表格列设置
   const columns: ProColumns<TableListItem>[] = [
@@ -144,16 +143,16 @@ const TableList: React.FC = () => {
         <Space>
           <a
             onClick={() => {
-              onSyncData(record.id);
+              onSyncData(record.id)
             }}
           >
             清洗
           </a>
-          <a onClick={() => { }}>归档</a>
+          <a onClick={() => {}}>归档</a>
         </Space>
       ),
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -166,9 +165,9 @@ const TableList: React.FC = () => {
         rowKey="id"
         request={(params, sorter, filter) => {
           if (filter.status === null) {
-            delete filter.status;
+            delete filter.status
           }
-          return queryData({ ...params, sorter, filter });
+          return queryData({ ...params, sorter, filter })
         }}
         columns={columns}
         size="small"
@@ -223,7 +222,7 @@ const TableList: React.FC = () => {
         }}
       />
     </PageContainer>
-  );
-};
+  )
+}
 
-export default TableList;
+export default TableList

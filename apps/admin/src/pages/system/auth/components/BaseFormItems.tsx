@@ -1,19 +1,19 @@
-import { queryMenu } from '@/services/base/menu';
-import { queryPermission } from '@/services/base/permission';
-import { queryRole } from '@/services/base/role';
-import { arrayTransTree } from '@/utils/utils';
-import { useRequest } from '@umijs/max';
-import { Form, Input, Select, Transfer, TreeSelect } from 'antd';
-import React from 'react';
+import { queryMenu } from '@/services/base/menu'
+import { queryPermission } from '@/services/base/permission'
+import { queryRole } from '@/services/base/role'
+import { arrayTransTree } from '@/utils/utils'
+import { useRequest } from '@umijs/max'
+import { Form, Input, Select, Transfer, TreeSelect } from 'antd'
+import React from 'react'
 
 interface CustomFormItemProps {
-  value?: any;
-  onChange?: (values: any) => void;
-  id?: string;
+  value?: any
+  onChange?: (values: any) => void
+  id?: string
 }
 
 const BaseFormItems: React.FC<{
-  disabledParentKeys?: string[];
+  disabledParentKeys?: string[]
 }> = ({ disabledParentKeys }) => {
   // 加载菜单数据
   const {
@@ -21,8 +21,8 @@ const BaseFormItems: React.FC<{
     loading: menuLoading,
     error: menuError,
   } = useRequest(() => {
-    return queryMenu({ pageSize: 1000 });
-  });
+    return queryMenu({ pageSize: 1000 })
+  })
 
   // 预先加载权限选择器数据
   const {
@@ -30,8 +30,8 @@ const BaseFormItems: React.FC<{
     loading: permissionLoading,
     error: permissionError,
   } = useRequest(() => {
-    return queryPermission({ pageSize: 1000 });
-  });
+    return queryPermission({ pageSize: 1000 })
+  })
 
   // 预先加载角色选择器数据
   const {
@@ -39,17 +39,20 @@ const BaseFormItems: React.FC<{
     loading: roleLoading,
     error: roleError,
   } = useRequest(() => {
-    return queryRole({ pageSize: 1000 });
-  });
+    return queryRole({ pageSize: 1000 })
+  })
 
-  const ParentFormItem: React.FC<CustomFormItemProps> = ({ value, onChange }) => {
-    const newValue = value || null;
+  const ParentFormItem: React.FC<CustomFormItemProps> = ({
+    value,
+    onChange,
+  }) => {
+    const newValue = value || null
     // 过滤默认选择的数据格式
     if (menuError) {
-      return <div>failed to load</div>;
+      return <div>failed to load</div>
     }
     if (menuLoading) {
-      return <div>loading...</div>;
+      return <div>loading...</div>
     }
     const treeData =
       arrayTransTree(
@@ -60,7 +63,7 @@ const BaseFormItems: React.FC<{
           disabled: disabledParentKeys?.includes(item.id),
         })),
         'parentId',
-      ) || [];
+      ) || []
     return (
       <TreeSelect
         allowClear
@@ -72,16 +75,19 @@ const BaseFormItems: React.FC<{
         treeData={treeData}
         treeDefaultExpandAll
       />
-    );
-  };
+    )
+  }
 
-  const PermissionsFormItem: React.FC<CustomFormItemProps> = ({ value, onChange }) => {
+  const PermissionsFormItem: React.FC<CustomFormItemProps> = ({
+    value,
+    onChange,
+  }) => {
     // 过滤默认选择的数据格式
     if (permissionError) {
-      return <div>failed to load</div>;
+      return <div>failed to load</div>
     }
     if (permissionLoading) {
-      return <div>loading...</div>;
+      return <div>loading...</div>
     }
     return (
       <Select
@@ -99,17 +105,20 @@ const BaseFormItems: React.FC<{
           option?.name?.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       />
-    );
-  };
+    )
+  }
 
-  const RolesFormItem: React.FC<CustomFormItemProps> = ({ value, onChange }) => {
+  const RolesFormItem: React.FC<CustomFormItemProps> = ({
+    value,
+    onChange,
+  }) => {
     // 过滤默认选择的数据格式
-    const newValue = value?.map((row: any) => row.id || row);
+    const newValue = value?.map((row: any) => row.id || row)
     if (roleError) {
-      return <div>failed to load</div>;
+      return <div>failed to load</div>
     }
     if (roleLoading) {
-      return <div>loading...</div>;
+      return <div>loading...</div>
     }
     return (
       <Transfer
@@ -126,8 +135,8 @@ const BaseFormItems: React.FC<{
         render={(row: any) => row.name}
         pagination
       />
-    );
-  };
+    )
+  }
   return (
     <>
       <Form.Item name="parentId" label="Parent">
@@ -164,7 +173,7 @@ const BaseFormItems: React.FC<{
         <PermissionsFormItem />
       </Form.Item>
     </>
-  );
-};
+  )
+}
 
-export default BaseFormItems;
+export default BaseFormItems

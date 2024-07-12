@@ -1,5 +1,5 @@
-import { Link, withRouter } from '@umijs/max';
-import './TinyNav.less';
+import { Link, withRouter } from '@umijs/max'
+import './TinyNav.less'
 
 const Home = ({ navs, history, location, match }) => {
   return (
@@ -7,12 +7,14 @@ const Home = ({ navs, history, location, match }) => {
       {navs.map((item) => {
         return (
           <Link to={item.href} key={item.href}>
-            <a className={location.pathname === item.href ? 'active' : ''}>{item.name}</a>
+            <a className={location.pathname === item.href ? 'active' : ''}>
+              {item.name}
+            </a>
           </Link>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(Home);
+export default withRouter(Home)

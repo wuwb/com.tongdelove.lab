@@ -1,10 +1,10 @@
-import { notification } from 'antd';
-import axios from 'axios';
+import { notification } from 'antd'
+import axios from 'axios'
 
 const instance = axios.create({
   //当创建实例的时候配置默认配置
   xsrfCookieName: 'xsrf-token',
-});
+})
 
 // 添加请求拦截器
 // instance.interceptors.request.use(function(config){
@@ -25,14 +25,14 @@ instance.interceptors.response.use(
   function (response) {
     // 1.成功
     if (response.data.success) {
-      return Promise.resolve(response.data);
+      return Promise.resolve(response.data)
     } else {
       notification['error']({
         message: response.data.message,
-      });
+      })
       return Promise.reject({
         message: response.data.message,
-      });
+      })
     }
 
     // // 2.session过期
@@ -63,22 +63,22 @@ instance.interceptors.response.use(
     try {
       notification['error']({
         message: error.response.data.message || '系统异常',
-      });
+      })
       // 登录授权
       if (error.response.status === 401) {
         setTimeout(() => {
-          window.location.href = '/login';
-        }, 2000);
+          window.location.href = '/login'
+        }, 2000)
       }
     } catch (err) {
       notification['error']({
         message: '系统异常，请稍后重试！',
-      });
+      })
     }
     return Promise.reject({
       messageCode: 'sysError',
-    });
+    })
   },
-);
+)
 
-export default instance;
+export default instance

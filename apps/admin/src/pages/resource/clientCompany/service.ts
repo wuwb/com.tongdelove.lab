@@ -1,12 +1,12 @@
-import { request } from '@umijs/max';
-import { BasicListItemDataType } from './data.d';
+import { request } from '@umijs/max'
+import { BasicListItemDataType } from './data.d'
 
 interface ParamsType extends Partial<BasicListItemDataType> {
-  count?: number;
+  count?: number
 }
 
 export async function create(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
+  const { count = 5, ...restParams } = params
   return request('/api/fake_list', {
     method: 'POST',
     params: {
@@ -16,11 +16,11 @@ export async function create(params: ParamsType) {
       ...restParams,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function remove(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
+  const { count = 5, ...restParams } = params
   return request('/api/fake_list', {
     method: 'POST',
     params: {
@@ -30,11 +30,11 @@ export async function remove(params: ParamsType) {
       ...restParams,
       method: 'delete',
     },
-  });
+  })
 }
 
 export async function update(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
+  const { count = 5, ...restParams } = params
   return request('/api/fake_list', {
     method: 'POST',
     params: {
@@ -44,11 +44,11 @@ export async function update(params: ParamsType) {
       ...restParams,
       method: 'update',
     },
-  });
+  })
 }
 
 export async function list(params: ParamsType) {
   return request('/api/fake_list', {
     params,
-  });
+  })
 }

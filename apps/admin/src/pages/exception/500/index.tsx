@@ -1,5 +1,5 @@
-import { Link } from '@umijs/max';
-import { Button, Result } from 'antd';
+import { Link } from '@umijs/max'
+import { Button, Result } from 'antd'
 
 const Page500 = () => (
   <Result
@@ -15,6 +15,6 @@ const Page500 = () => (
       </Link>
     }
   />
-);
+)
 
 export default Page500

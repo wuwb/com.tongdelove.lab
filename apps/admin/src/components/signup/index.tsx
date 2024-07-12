@@ -1,12 +1,12 @@
-import { Button, Checkbox, Form, Input, notification } from 'antd';
+import { Button, Checkbox, Form, Input, notification } from 'antd'
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
-};
+}
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
-};
+}
 
 export const Signup = (props) => {
   const getUserinfo = () => {
@@ -14,33 +14,33 @@ export const Signup = (props) => {
       store.dispatch({
         type: 'ADD_USERINFO',
         info: response.data,
-      });
-    });
-  };
+      })
+    })
+  }
 
   const onFinish = async (values) => {
-    console.log('Success:', values);
-    console.log('Received values of form: ', values);
+    console.log('Success:', values)
+    console.log('Received values of form: ', values)
 
-    let response = await API.login(values);
+    let response = await API.login(values)
     notification['success']({
       message: response.message,
-    });
+    })
 
     // 登录成功后，获取用户基础数据
-    getUserinfo();
+    getUserinfo()
 
-    const { history } = props;
+    const { history } = props
 
     // 跳转登录
     setTimeout(() => {
-      history.push('/');
-    }, 500);
-  };
+      history.push('/')
+    }, 500)
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   return (
     <Form
@@ -70,5 +70,5 @@ export const Signup = (props) => {
         </Button>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}

@@ -1,26 +1,26 @@
-import Ellipsis from '@/components/Ellipsis';
-import { setLocale } from '@/utils';
+import Ellipsis from '@/components/Ellipsis'
+import { setLocale } from '@/utils'
 import {
   BellOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   RightOutlined,
-} from '@ant-design/icons';
-import { FormattedMessage } from '@umijs/max';
-import { Avatar, Badge, Layout, List, Menu, Popover } from 'antd';
-import dayjs from 'dayjs';
-import { Fragment, PureComponent } from 'react';
+} from '@ant-design/icons'
+import { FormattedMessage } from '@umijs/max'
+import { Avatar, Badge, Layout, List, Menu, Popover } from 'antd'
+import dayjs from 'dayjs'
+import { Fragment, PureComponent } from 'react'
 
-import { config } from '@/utils/config';
-import clsx from 'clsx';
-import styles from './Header.less';
+import { config } from '@/utils/config'
+import clsx from 'clsx'
+import styles from './Header.less'
 
-const { SubMenu } = Menu;
+const { SubMenu } = Menu
 
 class Header extends PureComponent {
   handleClickMenu = (e) => {
-    e.key === 'SignOut' && this.props.onSignOut();
-  };
+    e.key === 'SignOut' && this.props.onSignOut()
+  }
   render() {
     const {
       i18n,
@@ -31,7 +31,7 @@ class Header extends PureComponent {
       notifications,
       onCollapseChange,
       onAllNotificationsRead,
-    } = this.props;
+    } = this.props
 
     const rightContent = [
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
@@ -51,31 +51,37 @@ class Header extends PureComponent {
           </Menu.Item>
         </SubMenu>
       </Menu>,
-    ];
+    ]
 
     if (config.i18n) {
-      const { languages } = config.i18n;
-      const currentLanguage = languages.find((item) => item.key === i18n._language);
+      const { languages } = config.i18n
+      const currentLanguage = languages.find(
+        (item) => item.key === i18n._language,
+      )
 
       rightContent.unshift(
         <Menu
           key="language"
           selectedKeys={[currentLanguage.key]}
           onClick={(data) => {
-            setLocale(data.key);
+            setLocale(data.key)
           }}
           mode="horizontal"
         >
           <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
             {languages.map((item) => (
               <Menu.Item key={item.key}>
-                <Avatar size="small" style={{ marginRight: 8 }} src={item.flag} />
+                <Avatar
+                  size="small"
+                  style={{ marginRight: 8 }}
+                  src={item.flag}
+                />
                 {item.title}
               </Menu.Item>
             ))}
           </SubMenu>
         </Menu>,
-      );
+      )
     }
 
     rightContent.unshift(
@@ -113,18 +119,26 @@ class Header extends PureComponent {
               )}
             />
             {notifications.length ? (
-              <div onClick={onAllNotificationsRead} className={styles.clearButton}>
+              <div
+                onClick={onAllNotificationsRead}
+                className={styles.clearButton}
+              >
                 清除消息
               </div>
             ) : null}
           </div>
         }
       >
-        <Badge count={notifications.length} dot offset={[-10, 10]} className={styles.iconButton}>
+        <Badge
+          count={notifications.length}
+          dot
+          offset={[-10, 10]}
+          className={styles.iconButton}
+        >
           <BellOutlined className={styles.iconFont} />
         </Badge>
       </Popover>,
-    );
+    )
 
     return (
       <Layout.Header
@@ -134,13 +148,16 @@ class Header extends PureComponent {
         })}
         id="layoutHeader"
       >
-        <div className={styles.button} onClick={onCollapseChange.bind(this, !collapsed)}>
+        <div
+          className={styles.button}
+          onClick={onCollapseChange.bind(this, !collapsed)}
+        >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

@@ -5,28 +5,28 @@ import {
   ProFormText,
   ProFormTextArea,
   StepsForm,
-} from '@ant-design/pro-components';
-import { FormattedMessage, useIntl } from '@umijs/max';
-import { Modal } from 'antd';
-import React from 'react';
+} from '@ant-design/pro-components'
+import { FormattedMessage, useIntl } from '@umijs/max'
+import { Modal } from 'antd'
+import React from 'react'
 
 export type FormValueType = {
-  target?: string;
-  template?: string;
-  type?: string;
-  time?: string;
-  frequency?: string;
-} & Partial<API.RuleListItem>;
+  target?: string
+  template?: string
+  type?: string
+  time?: string
+  frequency?: string
+} & Partial<API.RuleListItem>
 
 export type UpdateFormProps = {
-  onCancel: (flag?: boolean, formVals?: FormValueType) => void;
-  onSubmit: (values: FormValueType) => Promise<void>;
-  updateModalOpen: boolean;
-  values: Partial<API.RuleListItem>;
-};
+  onCancel: (flag?: boolean, formVals?: FormValueType) => void
+  onSubmit: (values: FormValueType) => Promise<void>
+  updateModalOpen: boolean
+  values: Partial<API.RuleListItem>
+}
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
-  const intl = useIntl();
+  const intl = useIntl()
   return (
     <StepsForm
       stepsProps={{
@@ -45,12 +45,12 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             open={props.updateModalOpen}
             footer={submitter}
             onCancel={() => {
-              props.onCancel();
+              props.onCancel()
             }}
           >
             {dom}
           </Modal>
-        );
+        )
       }}
       onFinish={props.onSubmit}
     >
@@ -203,7 +203,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         />
       </StepsForm.StepForm>
     </StepsForm>
-  );
-};
+  )
+}
 
-export default UpdateForm;
+export default UpdateForm

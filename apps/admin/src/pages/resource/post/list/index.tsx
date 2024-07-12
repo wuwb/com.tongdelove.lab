@@ -1,12 +1,12 @@
-import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ActionType } from '@ant-design/pro-table';
-import { Link } from '@umijs/max';
-import { Space } from 'antd';
-import React, { useRef } from 'react';
-import { list } from '../service';
+import { PageContainer } from '@ant-design/pro-components'
+import ProTable, { ActionType } from '@ant-design/pro-table'
+import { Link } from '@umijs/max'
+import { Space } from 'antd'
+import React, { useRef } from 'react'
+import { list } from '../service'
 
 const PostListPage: React.FC<{}> = () => {
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType>()
 
   const columns = [
     {
@@ -51,7 +51,7 @@ const PostListPage: React.FC<{}> = () => {
         </Space>
       ),
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -66,11 +66,13 @@ const PostListPage: React.FC<{}> = () => {
           setting: true,
         }}
         toolBarRender={() => []}
-        request={(params, sorter, filter) => list({ ...params, sorter, filter })}
+        request={(params, sorter, filter) =>
+          list({ ...params, sorter, filter })
+        }
         columns={columns}
       />
     </PageContainer>
-  );
-};
+  )
+}
 
-export default PostListPage;
+export default PostListPage

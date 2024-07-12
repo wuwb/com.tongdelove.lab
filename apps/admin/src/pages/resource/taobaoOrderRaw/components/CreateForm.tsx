@@ -1,14 +1,14 @@
-import { Outlet } from '@umijs/max';
-import { Modal } from 'antd';
-import React from 'react';
+import { Outlet } from '@umijs/max'
+import { Modal } from 'antd'
+import React from 'react'
 
 interface CreateFormProps {
-  modalVisible: boolean;
-  onCancel: () => void;
+  modalVisible: boolean
+  onCancel: () => void
 }
 
 const CreateForm: React.FC<CreateFormProps> = (props) => {
-  const { modalVisible, onCancel } = props;
+  const { modalVisible, onCancel } = props
 
   return (
     <Modal
@@ -20,7 +20,7 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
     >
       <Outlet />
     </Modal>
-  );
-};
+  )
+}
 
-export default CreateForm;
+export default CreateForm

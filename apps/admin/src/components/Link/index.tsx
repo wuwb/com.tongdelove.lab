@@ -1,19 +1,19 @@
-import { Link as UmiLink } from '@umijs/max';
-import React from 'react';
+import { Link as UmiLink } from '@umijs/max'
+import React from 'react'
 
 interface LinkProps {
-  to: string;
-  children: React.ReactNode;
-  [string]: any;
+  to: string
+  children: React.ReactNode
+  [string]: any
 }
 
 export const Link: React.FC<LinkProps> = (props: LinkProps) => {
-  const { to, children } = props;
+  const { to, children } = props
 
-  let isOutLink = false;
+  let isOutLink = false
 
   if (to.indexOf('http') === 0) {
-    isOutLink = true;
+    isOutLink = true
   }
   return (
     <>
@@ -27,5 +27,5 @@ export const Link: React.FC<LinkProps> = (props: LinkProps) => {
         </UmiLink>
       )}
     </>
-  );
-};
+  )
+}

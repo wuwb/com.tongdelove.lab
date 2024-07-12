@@ -1,18 +1,18 @@
+import { AccentSidebarLayout, FullLayout } from '@/components/layouts'
+import BaseCard from '@/components/module/baseCard/BaseCard'
 import {
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
   Grid,
+  Radio,
+  RadioGroup,
   Stack,
   TextField,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-  FormLabel,
-  FormControl,
-  Button,
-} from "@mui/material";
-import BaseCard from "@/components/module/baseCard/BaseCard";
-import { FullLayout, AccentSidebarLayout } from "@/components/layouts";
+} from '@mui/material'
 
 const Forms = () => {
   return (
@@ -60,7 +60,9 @@ const Forms = () => {
                 />
               </FormGroup>
               <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Gender
+                </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
@@ -110,13 +112,13 @@ const Forms = () => {
         </Grid>
       </Grid>
     </FullLayout>
-  );
-};
+  )
+}
 
 Forms.getLayout = (page) => (
   // <Authenticated>
   <AccentSidebarLayout>{page}</AccentSidebarLayout>
   // </Authenticated>
-);
+)
 
-export default Forms;
+export default Forms

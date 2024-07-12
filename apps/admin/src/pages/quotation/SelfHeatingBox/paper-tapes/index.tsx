@@ -1,4 +1,4 @@
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-components'
 import {
   Checkbox,
   FormButtonGroup,
@@ -10,12 +10,12 @@ import {
   Select,
   Submit,
   Switch,
-} from '@formily/antd-v5';
-import { createForm } from '@formily/core';
-import { createSchemaField, FormConsumer, FormProvider } from '@formily/react';
-import { useIntl } from '@umijs/max';
-import { Card } from 'antd';
-import React from 'react';
+} from '@formily/antd-v5'
+import { createForm } from '@formily/core'
+import { FormConsumer, FormProvider, createSchemaField } from '@formily/react'
+import { useIntl } from '@umijs/max'
+import { Card } from 'antd'
+import React from 'react'
 
 const SchemaField = createSchemaField({
   components: {
@@ -27,9 +27,9 @@ const SchemaField = createSchemaField({
     Select,
     Checkbox,
   },
-});
+})
 
-const form = createForm();
+const form = createForm()
 
 const schema = {
   type: 'object',
@@ -194,10 +194,10 @@ const schema = {
       },
     },
   },
-};
+}
 
 const Page = (): React.ReactNode => {
-  const intl = useIntl();
+  const intl = useIntl()
 
   return (
     <PageContainer>
@@ -236,7 +236,7 @@ const Page = (): React.ReactNode => {
         </FormProvider>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

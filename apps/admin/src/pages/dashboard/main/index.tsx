@@ -1,7 +1,7 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { useModel } from '@umijs/max';
-import { Card, theme } from 'antd';
-import React from 'react';
+import { PageContainer } from '@ant-design/pro-components'
+import { useModel } from '@umijs/max'
+import { Card, theme } from 'antd'
+import React from 'react'
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -9,14 +9,14 @@ import React from 'react';
  * @returns
  */
 const InfoCard: React.FC<{
-  title: string;
-  index: number;
-  desc: string;
-  href: string;
+  title: string
+  index: number
+  desc: string
+  href: string
 }> = ({ title, href, index, desc }) => {
-  const { useToken } = theme;
+  const { useToken } = theme
 
-  const { token } = useToken();
+  const { token } = useToken()
   return (
     <div
       style={{
@@ -79,12 +79,12 @@ const InfoCard: React.FC<{
         了解更多 {'>'}
       </a>
     </div>
-  );
-};
+  )
+}
 
 const MainPage: React.FC = () => {
-  const { token } = theme.useToken();
-  const { initialState } = useModel('@@initialState');
+  const { token } = theme.useToken()
+  const { initialState } = useModel('@@initialState')
 
   return (
     <PageContainer>
@@ -158,7 +158,7 @@ const MainPage: React.FC = () => {
         </div>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default MainPage;
+export default MainPage

@@ -15,6 +15,6 @@ const api = {
   queryPostList: '/posts',
 
   queryDashboard: '/dashboard',
-};
+}
 
-export default api;
+export default api

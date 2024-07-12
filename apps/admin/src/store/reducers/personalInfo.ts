@@ -5,44 +5,44 @@ const defaultValue = {
   },
   fansCounts: 0,
   followCounts: 0,
-};
+}
 
 const personalInfo = (state = defaultValue, action) => {
   switch (action.type) {
     case 'ADD_PERSONAL_INFO':
-      return Object.assign({}, state, action.info);
+      return Object.assign({}, state, action.info)
     case 'ADD_PERSONAL_COMMENT':
-      return addComments(state, action.info);
+      return addComments(state, action.info)
     case 'TOPIC_PERSONAL_LIKE':
-      return topicLike(state, action.info);
+      return topicLike(state, action.info)
     default:
-      return state;
+      return state
   }
-};
+}
 
 // 点赞
 function topicLike(state, { index, topicLikeCounts, topicLike }) {
-  let newState = Object.assign({}, state);
-  let newArray = [...newState.topic.topicList];
-  let targetTopic = newArray[index].topic;
+  let newState = Object.assign({}, state)
+  let newArray = [...newState.topic.topicList]
+  let targetTopic = newArray[index].topic
   Object.assign(targetTopic, {
     topicLikeCounts,
     topicLike,
-  });
-  return newState;
+  })
+  return newState
 }
 
 //  添加评论
 function addComments(state, { index, replyContent, replyName }) {
-  let newState = Object.assign({}, state);
-  let newArray = [...newState.topic.topicList];
+  let newState = Object.assign({}, state)
+  let newArray = [...newState.topic.topicList]
   let sourceComment = {
     replyName,
     replyContent,
-  };
+  }
 
-  newArray[index].discuss.push(sourceComment);
-  return newState;
+  newArray[index].discuss.push(sourceComment)
+  return newState
 }
 
-export default personalInfo;
+export default personalInfo

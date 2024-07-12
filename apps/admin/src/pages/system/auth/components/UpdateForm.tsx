@@ -1,52 +1,52 @@
-import { Button, Form, Input, Modal, Space } from 'antd';
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
+import { Button, Form, Input, Modal, Space } from 'antd'
+import React, { forwardRef, useEffect, useImperativeHandle } from 'react'
 
-import { TableListItem } from '@/services/base/menu.d';
-import BaseFormItems from './BaseFormItems';
+import { TableListItem } from '@/services/base/menu.d'
+import BaseFormItems from './BaseFormItems'
 
 export interface UpdateFormHandleProps {
-  reset: () => void;
-  fill: (value: TableListItem) => void;
+  reset: () => void
+  fill: (value: TableListItem) => void
 }
 
 interface UpdateFormProps {
-  updateModalVisible: boolean;
-  onCancel: () => void;
-  onSubmit: (value: TableListItem) => void;
-  values: TableListItem;
+  updateModalVisible: boolean
+  onCancel: () => void
+  onSubmit: (value: TableListItem) => void
+  values: TableListItem
 }
 
-const UpdateForm: React.RefForwardingComponent<UpdateFormHandleProps, UpdateFormProps> = (
-  { onSubmit, onCancel, updateModalVisible, values },
-  ref,
-) => {
+const UpdateForm: React.RefForwardingComponent<
+  UpdateFormHandleProps,
+  UpdateFormProps
+> = ({ onSubmit, onCancel, updateModalVisible, values }, ref) => {
   // const { onCancel } = props
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const onFinish = async (fields: TableListItem) => {
-    onSubmit(fields);
-  };
+    onSubmit(fields)
+  }
 
   const onReset = () => {
-    form?.resetFields();
-  };
+    form?.resetFields()
+  }
 
   const onFill = (fields: TableListItem) => {
-    form.setFieldsValue(fields);
-  };
+    form.setFieldsValue(fields)
+  }
 
   useImperativeHandle(ref, () => ({
     reset: (): void => {
-      onReset();
+      onReset()
     },
     fill: (fields: TableListItem): void => {
-      onFill(fields);
+      onFill(fields)
     },
-  }));
+  }))
 
   useEffect(() => {
-    onFill(values);
-  }, [values]);
+    onFill(values)
+  }, [values])
 
   return (
     <Modal
@@ -72,7 +72,7 @@ const UpdateForm: React.RefForwardingComponent<UpdateFormHandleProps, UpdateForm
             <Button
               htmlType="button"
               onClick={() => {
-                onFill(values);
+                onFill(values)
               }}
             >
               重置
@@ -84,7 +84,7 @@ const UpdateForm: React.RefForwardingComponent<UpdateFormHandleProps, UpdateForm
         </div>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default forwardRef(UpdateForm);
+export default forwardRef(UpdateForm)

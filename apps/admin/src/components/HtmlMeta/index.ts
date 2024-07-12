@@ -1,1 +1,1 @@
-export { HtmlMeta } from './HtmlMeta';
+export { HtmlMeta } from './HtmlMeta'

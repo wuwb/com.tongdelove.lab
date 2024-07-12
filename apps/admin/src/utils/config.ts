@@ -90,7 +90,9 @@ export const config = {
         required: true,
       },
     ],
-    serverChan: [{ label: 'serverChanKey', tip: 'Server酱SENDKEY', required: true }],
+    serverChan: [
+      { label: 'serverChanKey', tip: 'Server酱SENDKEY', required: true },
+    ],
     bark: [
       {
         label: 'barkPush',
@@ -172,4 +174,4 @@ export const config = {
       { label: 'emailPass', tip: '邮箱SMTP授权码', required: true },
     ],
   },
-};
+}

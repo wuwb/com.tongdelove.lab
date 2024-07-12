@@ -1,6 +1,6 @@
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import { connect, Dispatch } from '@umijs/max';
+import { DownOutlined, PlusOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import { Dispatch, connect } from '@umijs/max'
 import {
   Avatar,
   Button,
@@ -14,41 +14,41 @@ import {
   Progress,
   Radio,
   Row,
-} from 'antd';
-import dayjs from 'dayjs';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { findDOMNode } from 'react-dom';
-import OperationModal from './components/OperationModal';
-import { BasicListItemDataType } from './data.d';
-import { StateType } from './model';
-import styles from './style.less';
+} from 'antd'
+import dayjs from 'dayjs'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { findDOMNode } from 'react-dom'
+import OperationModal from './components/OperationModal'
+import { BasicListItemDataType } from './data.d'
+import { StateType } from './model'
+import styles from './style.less'
 
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
-const { Search } = Input;
+const RadioButton = Radio.Button
+const RadioGroup = Radio.Group
+const { Search } = Input
 
 interface CompaniesProps {
-  adminAndCompanies: StateType;
-  dispatch: Dispatch<any>;
-  loading: boolean;
+  adminAndCompanies: StateType
+  dispatch: Dispatch<any>
+  loading: boolean
 }
 
 const Info: FC<{
-  title: React.ReactNode;
-  value: React.ReactNode;
-  bordered?: boolean;
+  title: React.ReactNode
+  value: React.ReactNode
+  bordered?: boolean
 }> = ({ title, value, bordered }) => (
   <div className={styles.headerInfo}>
     <span>{title}</span>
     <p>{value}</p>
     {bordered && <em />}
   </div>
-);
+)
 
 const ListContent = ({
   data: { owner, createdAt, percent, status },
 }: {
-  data: BasicListItemDataType;
+  data: BasicListItemDataType
 }) => (
   <div className={styles.listContent}>
     <div className={styles.listContentItem}>
@@ -70,19 +70,21 @@ const ListContent = ({
       />
     </div>
   </div>
-);
+)
 
 export const Companies: FC<CompaniesProps> = (props) => {
-  const addBtn = useRef(null);
+  const addBtn = useRef(null)
   const {
     loading,
     dispatch,
     adminAndCompanies: { list },
-  } = props;
+  } = props
 
-  const [done, setDone] = useState<boolean>(false);
-  const [visible, setVisible] = useState<boolean>(false);
-  const [current, setCurrent] = useState<Partial<BasicListItemDataType> | undefined>(undefined);
+  const [done, setDone] = useState<boolean>(false)
+  const [visible, setVisible] = useState<boolean>(false)
+  const [current, setCurrent] = useState<
+    Partial<BasicListItemDataType> | undefined
+  >(undefined)
 
   useEffect(() => {
     dispatch({
@@ -90,25 +92,25 @@ export const Companies: FC<CompaniesProps> = (props) => {
       payload: {
         count: 5,
       },
-    });
-  }, [1]);
+    })
+  }, [1])
 
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
     pageSize: 5,
     total: 50,
-  };
+  }
 
   const showModal = () => {
-    setVisible(true);
-    setCurrent(undefined);
-  };
+    setVisible(true)
+    setCurrent(undefined)
+  }
 
   const showEditModal = (item: BasicListItemDataType) => {
-    setVisible(true);
-    setCurrent(item);
-  };
+    setVisible(true)
+    setCurrent(item)
+  }
 
   const deleteItem = (id: string) => {
     dispatch({
@@ -116,11 +118,11 @@ export const Companies: FC<CompaniesProps> = (props) => {
       payload: {
         id,
       },
-    });
-  };
+    })
+  }
 
   const editAndDelete = (key: string, currentItem: BasicListItemDataType) => {
-    if (key === 'edit') showEditModal(currentItem);
+    if (key === 'edit') showEditModal(currentItem)
     else if (key === 'delete') {
       Modal.confirm({
         title: '删除任务',
@@ -128,9 +130,9 @@ export const Companies: FC<CompaniesProps> = (props) => {
         okText: '确认',
         cancelText: '取消',
         onOk: () => deleteItem(currentItem.id),
-      });
+      })
     }
-  };
+  }
 
   const extraContent = (
     <div className={styles.extraContent}>
@@ -151,12 +153,16 @@ export const Companies: FC<CompaniesProps> = (props) => {
         <RadioButton value="progress">进行中</RadioButton>
         <RadioButton value="waiting">等待中</RadioButton>
       </RadioGroup>
-      <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
+      <Search
+        className={styles.extraContentSearch}
+        placeholder="请输入"
+        onSearch={() => ({})}
+      />
     </div>
-  );
+  )
 
   const MoreBtn: React.FC<{
-    item: BasicListItemDataType;
+    item: BasicListItemDataType
   }> = ({ item }) => (
     <Dropdown
       menu={
@@ -170,39 +176,39 @@ export const Companies: FC<CompaniesProps> = (props) => {
         更多 <DownOutlined />
       </a>
     </Dropdown>
-  );
+  )
 
   const setAddBtnblur = () => {
     if (addBtn.current) {
       // eslint-disable-next-line react/no-find-dom-node
-      const addBtnDom = findDOMNode(addBtn.current) as HTMLButtonElement;
-      setTimeout(() => addBtnDom.blur(), 0);
+      const addBtnDom = findDOMNode(addBtn.current) as HTMLButtonElement
+      setTimeout(() => addBtnDom.blur(), 0)
     }
-  };
+  }
 
   const handleDone = () => {
-    setAddBtnblur();
-    setDone(false);
-    setVisible(false);
-  };
+    setAddBtnblur()
+    setDone(false)
+    setVisible(false)
+  }
 
   const handleCancel = () => {
-    setAddBtnblur();
-    setVisible(false);
-  };
+    setAddBtnblur()
+    setVisible(false)
+  }
 
   const handleSubmit = (values: BasicListItemDataType) => {
-    const id = current ? current.id : '';
-    setAddBtnblur();
-    setDone(true);
+    const id = current ? current.id : ''
+    setAddBtnblur()
+    setDone(true)
     dispatch({
       type: 'adminAndCompanies/submit',
       payload: {
         id,
         ...values,
       },
-    });
-  };
+    })
+  }
 
   return (
     <div>
@@ -246,8 +252,8 @@ export const Companies: FC<CompaniesProps> = (props) => {
                     <a
                       key="edit"
                       onClick={(e) => {
-                        e.preventDefault();
-                        showEditModal(item);
+                        e.preventDefault()
+                        showEditModal(item)
                       }}
                     >
                       编辑
@@ -256,7 +262,9 @@ export const Companies: FC<CompaniesProps> = (props) => {
                   ]}
                 >
                   <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                    avatar={
+                      <Avatar src={item.logo} shape="square" size="large" />
+                    }
                     title={<a href={item.href}>{item.title}</a>}
                     description={item.subDescription}
                   />
@@ -277,22 +285,22 @@ export const Companies: FC<CompaniesProps> = (props) => {
         onSubmit={handleSubmit}
       />
     </div>
-  );
-};
+  )
+}
 
 export default connect(
   ({
     adminAndCompanies,
     loading,
   }: {
-    adminAndCompanies: StateType;
+    adminAndCompanies: StateType
     loading: {
       models: {
-        [key: string]: boolean;
-      };
-    };
+        [key: string]: boolean
+      }
+    }
   }) => ({
     adminAndCompanies,
     loading: loading.models.adminAndCompanies,
   }),
-)(Companies);
+)(Companies)

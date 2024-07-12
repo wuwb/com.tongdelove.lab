@@ -1,39 +1,39 @@
-const defaultValue = [];
+const defaultValue = []
 
 // 点赞
 function topicLike(state, { index, topicLikeCounts, topicLike }) {
-  let newArray = [...state];
-  let targetTopic = newArray[index].topic;
+  let newArray = [...state]
+  let targetTopic = newArray[index].topic
   Object.assign(targetTopic, {
     topicLikeCounts,
     topicLike,
-  });
-  return newArray;
+  })
+  return newArray
 }
 
 //  添加评论
 function addComments(state, { index, replyContent, replyName }) {
-  let newArray = [...state];
+  let newArray = [...state]
   let sourceComment = {
     replyName,
     replyContent,
-  };
+  }
 
-  newArray[index].discuss.push(sourceComment);
-  return newArray;
+  newArray[index].discuss.push(sourceComment)
+  return newArray
 }
 
 const searchInfo = (state = defaultValue, action) => {
   switch (action.type) {
     case 'ADD_SEARCH_INFO':
-      return [...action.info];
+      return [...action.info]
     case 'ADD_SEARCH_COMMENT':
-      return addComments(state, action.info);
+      return addComments(state, action.info)
     case 'TOPIC_SEARCH_LIKE':
-      return topicLike(state, action.info);
+      return topicLike(state, action.info)
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default searchInfo;
+export default searchInfo

@@ -1,14 +1,14 @@
-import { request } from '@umijs/max';
-import { TableListItem, TableListParams } from './data.d';
+import { request } from '@umijs/max'
+import { TableListItem, TableListParams } from './data.d'
 
 export async function findProductAll(params: any) {
   return request('/api/products', {
     params,
-  });
+  })
 }
 
 export async function queryCreateMetadata() {
-  return request('/api/products/query-create-metadata');
+  return request('/api/products/query-create-metadata')
 }
 
 export async function createProduct(params) {
@@ -18,7 +18,7 @@ export async function createProduct(params) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function removeProduct(params: { key: number[] }) {
@@ -28,7 +28,7 @@ export async function removeProduct(params: { key: number[] }) {
       ...params,
       method: 'delete',
     },
-  });
+  })
 }
 
 export async function addRule(params: TableListItem) {
@@ -38,7 +38,7 @@ export async function addRule(params: TableListItem) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function updateRule(params: TableListParams) {
@@ -48,5 +48,5 @@ export async function updateRule(params: TableListParams) {
       ...params,
       method: 'update',
     },
-  });
+  })
 }

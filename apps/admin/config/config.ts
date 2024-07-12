@@ -1,19 +1,19 @@
 // https://umijs.org/config/
-import { convertLegacyToken } from '@ant-design/compatible/lib';
-import { defineConfig } from '@umijs/max';
-import { theme } from 'antd';
-import { join } from 'path';
-import { defaultSettings } from './defaultSettings';
-import proxy from './proxy';
-import routes from './routes';
+import { convertLegacyToken } from '@ant-design/compatible/lib'
+import { defineConfig } from '@umijs/max'
+import { theme } from 'antd'
+import { join } from 'path'
+import { defaultSettings } from './defaultSettings'
+import proxy from './proxy'
+import routes from './routes'
 
-const { defaultAlgorithm, defaultSeed } = theme;
+const { defaultAlgorithm, defaultSeed } = theme
 
-const mapToken = defaultAlgorithm(defaultSeed);
-const v4Token = convertLegacyToken(mapToken);
+const mapToken = defaultAlgorithm(defaultSeed)
+const v4Token = convertLegacyToken(mapToken)
 
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const { REACT_APP_ENV = 'dev' } = process.env;
+const { REACT_APP_ENV = 'dev' } = process.env
 
 export default defineConfig({
   // define: {
@@ -219,7 +219,8 @@ export default defineConfig({
     },
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json',
+      schemaPath:
+        'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json',
       projectName: 'swagger',
     },
   ],
@@ -372,7 +373,7 @@ export default defineConfig({
           modifyVars: v4Token,
         },
       })
-      .end();
+      .end()
 
     // 对 ssr bundler memo 的修改
     // 服务端渲染构建扩展
@@ -433,4 +434,4 @@ export default defineConfig({
     //   }
     // });
   },
-});
+})

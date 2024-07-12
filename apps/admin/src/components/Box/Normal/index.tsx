@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import { Group, Transformer } from 'react-konva';
-import { Pa, PMain, PSide } from '../../Slice';
+import { Component } from 'react'
+import { Group, Transformer } from 'react-konva'
+import { PMain, PSide, Pa } from '../../Slice'
 
 class Normal extends Component {
   state = {
@@ -30,48 +30,48 @@ class Normal extends Component {
 
     pdWidth: 10,
     pdLength: 9,
-  };
+  }
 
   constructor(props) {
-    super(props);
-    this.handleChangeWidth = this.handleChangeWidth.bind(this);
+    super(props)
+    this.handleChangeWidth = this.handleChangeWidth.bind(this)
   }
 
   handleChangeWidth(e) {
-    console.log('e: ', e);
+    console.log('e: ', e)
     this.setState({
       paWidth: Number(e.currentTarget.value),
-    });
+    })
   }
 
   render() {
-    let pThickness = 0.05;
-    let paddingLeft = 10;
-    let paddingTop = 10;
+    let pThickness = 0.05
+    let paddingLeft = 10
+    let paddingTop = 10
 
-    let pLength = 80;
-    let pDeepth = 100;
-    let pWidth = 30;
+    let pLength = 80
+    let pDeepth = 100
+    let pWidth = 30
 
-    let paType = 1;
-    let pbType = 1;
-    let pcType = 1;
+    let paType = 1
+    let pbType = 1
+    let pcType = 1
 
-    let paHeight = 15;
-    let paWidth = 20;
+    let paHeight = 15
+    let paWidth = 20
 
-    let pbHeight = 15;
-    let pbWidth = 20;
+    let pbHeight = 15
+    let pbWidth = 20
 
-    let pcHeight = 10;
-    let pcRadius = 5;
+    let pcHeight = 10
+    let pcRadius = 5
 
-    let pdWidth = 10;
-    let pdLength = 90;
+    let pdWidth = 10
+    let pdLength = 90
 
-    console.log('this.state: ', this.state);
+    console.log('this.state: ', this.state)
 
-    const origin = [paddingLeft, paddingTop];
+    const origin = [paddingLeft, paddingTop]
 
     return (
       <Group x={paddingLeft} y={paddingTop}>
@@ -82,8 +82,8 @@ class Normal extends Component {
           <Pa options={this.state}></Pa>
         </Transformer>
       </Group>
-    );
+    )
   }
 }
 
-export default Normal;
+export default Normal

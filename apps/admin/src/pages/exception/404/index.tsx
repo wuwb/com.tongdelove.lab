@@ -1,5 +1,5 @@
-import { Link } from '@umijs/max';
-import { Button, Result } from 'antd';
+import { Link } from '@umijs/max'
+import { Button, Result } from 'antd'
 
 const Page404 = () => (
   <Result
@@ -15,5 +15,5 @@ const Page404 = () => (
       </Link>
     }
   />
-);
+)
 export default Page404

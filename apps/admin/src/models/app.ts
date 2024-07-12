@@ -1,17 +1,17 @@
-import api from '@/services/api';
-import { history } from '@umijs/max';
-import { pathToRegexp } from 'path-to-regexp';
-import store from 'store';
+import api from '@/services/api'
+import { history } from '@umijs/max'
+import { pathToRegexp } from 'path-to-regexp'
+import store from 'store'
 
-const { queryRouteList, logoutUser, queryUserInfo } = api;
+const { queryRouteList, logoutUser, queryUserInfo } = api
 
 const goDashboard = () => {
   if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
     history.push({
       pathname: '/dashboard',
-    });
+    })
   }
-};
+}
 
 export default {
   namespace: 'app',
@@ -144,4 +144,4 @@ export default {
     //   state.notifications = []
     // },
   },
-};
+}

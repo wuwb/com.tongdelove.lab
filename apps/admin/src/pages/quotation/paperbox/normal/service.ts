@@ -1,10 +1,10 @@
-import { request } from '@umijs/max';
-import { TableListItem, TableListParams } from './data.d';
+import { request } from '@umijs/max'
+import { TableListItem, TableListParams } from './data.d'
 
 export async function queryData(params?: TableListParams) {
   return request('/api/demo/client/query', {
     params,
-  });
+  })
 }
 
 export async function removeRule(params: { key: number[] }) {
@@ -14,7 +14,7 @@ export async function removeRule(params: { key: number[] }) {
       ...params,
       method: 'delete',
     },
-  });
+  })
 }
 
 export async function addRule(params: TableListItem) {
@@ -24,7 +24,7 @@ export async function addRule(params: TableListItem) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function updateRule(params: TableListParams) {
@@ -34,5 +34,5 @@ export async function updateRule(params: TableListParams) {
       ...params,
       method: 'update',
     },
-  });
+  })
 }

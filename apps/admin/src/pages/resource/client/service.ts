@@ -1,5 +1,5 @@
-import { request } from '@umijs/max';
-import { TableListItem, TableListParams } from './data.d';
+import { request } from '@umijs/max'
+import { TableListItem, TableListParams } from './data.d'
 
 export async function create(params: TableListItem) {
   return request('/api/demo/client/create', {
@@ -8,7 +8,7 @@ export async function create(params: TableListItem) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function remove(params) {
@@ -17,7 +17,7 @@ export async function remove(params) {
     data: {
       id: params,
     },
-  });
+  })
 }
 
 export async function update(params: TableListParams) {
@@ -27,17 +27,17 @@ export async function update(params: TableListParams) {
       ...params,
       method: 'update',
     },
-  });
+  })
 }
 
 export async function list(params?: TableListParams) {
   return request('/api/demo/client/list', {
     params,
-  });
+  })
 }
 
 export async function get(params?: TableListParams) {
   return request('/api/demo/client/get', {
     params,
-  });
+  })
 }

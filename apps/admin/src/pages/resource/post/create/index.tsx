@@ -1,33 +1,43 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { Button, Col, Collapse, Form, Input, message, Radio, Row, Space } from 'antd';
-import React from 'react';
-import ReactQuill from 'react-quill'; // Typescript
-import 'react-quill/dist/quill.snow.css';
-import { create } from '../service';
+import { PageContainer } from '@ant-design/pro-components'
+import {
+  Button,
+  Col,
+  Collapse,
+  Form,
+  Input,
+  message,
+  Radio,
+  Row,
+  Space,
+} from 'antd'
+import React from 'react'
+import ReactQuill from 'react-quill' // Typescript
+import 'react-quill/dist/quill.snow.css'
+import { create } from '../service'
 
-const { Panel } = Collapse;
-const { TextArea } = Input;
+const { Panel } = Collapse
+const { TextArea } = Input
 
 function callback(key) {
-  console.log(key);
+  console.log(key)
 }
 
 const PostCreatePage: React.FC<{}> = () => {
-  const [postContent, setPostContent] = React.useState('');
+  const [postContent, setPostContent] = React.useState('')
 
   const handlePostContentChange = (value: any) => {
-    setPostContent(value);
-  };
+    setPostContent(value)
+  }
 
   const onFinish = async (values: any) => {
-    console.log('Success:', values);
-    values.postContent = postContent;
-    const result = await create(values);
+    console.log('Success:', values)
+    values.postContent = postContent
+    const result = await create(values)
     if (result.success) {
-      message.success('创建成功');
+      message.success('创建成功')
     }
-    console.log(result);
-  };
+    console.log(result)
+  }
 
   return (
     <PageContainer>
@@ -37,13 +47,25 @@ const PostCreatePage: React.FC<{}> = () => {
             <Space direction="vertical" style={{ width: '100%' }}>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="基本信息" key="1">
-                  <Form.Item name="postTitle" label="标题" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="postTitle"
+                    label="标题"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="postName" label="Slug" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="postName"
+                    label="Slug"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="postExcerpt" label="简介" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="postExcerpt"
+                    label="简介"
+                    rules={[{ required: false }]}
+                  >
                     <TextArea rows={4} />
                   </Form.Item>
                 </Panel>
@@ -69,13 +91,25 @@ const PostCreatePage: React.FC<{}> = () => {
               </Collapse>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="SEO Meta" key="1">
-                  <Form.Item name="seoTitle" label="标题" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoTitle"
+                    label="标题"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="seoKeyword" label="关键词" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoKeyword"
+                    label="关键词"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="seoDesc" label="描述" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoDesc"
+                    label="描述"
+                    rules={[{ required: false }]}
+                  >
                     <TextArea rows={4} />
                   </Form.Item>
                 </Panel>
@@ -86,19 +120,39 @@ const PostCreatePage: React.FC<{}> = () => {
             <Space direction="vertical" style={{ width: '100%' }}>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="发布" key="1">
-                  <Form.Item name="order" label="顺序" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="order"
+                    label="顺序"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="category" label="分类" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="category"
+                    label="分类"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="tag" label="标签" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="tag"
+                    label="标签"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="addon" label="附加属性" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="addon"
+                    label="附加属性"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="publish" label="发布" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="publish"
+                    label="发布"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
                   <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
@@ -123,7 +177,11 @@ const PostCreatePage: React.FC<{}> = () => {
               </Collapse>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="Media" key="1">
-                  <Form.Item name="media" label="图片" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="media"
+                    label="图片"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
                 </Panel>
@@ -133,7 +191,7 @@ const PostCreatePage: React.FC<{}> = () => {
         </Row>
       </Form>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default PostCreatePage;
+export default PostCreatePage

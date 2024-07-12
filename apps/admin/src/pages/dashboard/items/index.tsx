@@ -1,7 +1,7 @@
-import Header from '@/components/Index/Header';
-import { PageContainer } from '@ant-design/pro-components';
-import { Helmet as Head } from '@umijs/max';
-import { Button, Image, Pagination, Row } from 'antd';
+import Header from '@/components/Index/Header'
+import { PageContainer } from '@ant-design/pro-components'
+import { Helmet as Head } from '@umijs/max'
+import { Button, Image, Pagination, Row } from 'antd'
 
 function Clients() {
   const items = [
@@ -37,7 +37,7 @@ function Clients() {
       title: '飞机盒',
       size: '18 x 15 x 7',
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -95,7 +95,7 @@ function Clients() {
                       {/* <Image src="/assets/dashboard/demo.png" /> */}
                     </div>
                   </Row>
-                );
+                )
               })}
             </Row>
           </div>
@@ -105,7 +105,7 @@ function Clients() {
         </div>
       </>
     </PageContainer>
-  );
+  )
 }
 
-export default Clients;
+export default Clients

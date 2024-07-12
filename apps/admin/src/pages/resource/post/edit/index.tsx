@@ -1,48 +1,58 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { useParams } from '@umijs/max';
-import { Button, Col, Collapse, Form, Input, message, Radio, Row, Space } from 'antd';
-import React, { useCallback, useEffect, useState } from 'react';
-import ReactQuill from 'react-quill'; // Typescript
-import 'react-quill/dist/quill.snow.css';
-import { create, get } from '../service';
+import { PageContainer } from '@ant-design/pro-components'
+import { useParams } from '@umijs/max'
+import {
+  Button,
+  Col,
+  Collapse,
+  Form,
+  Input,
+  message,
+  Radio,
+  Row,
+  Space,
+} from 'antd'
+import React, { useCallback, useEffect, useState } from 'react'
+import ReactQuill from 'react-quill' // Typescript
+import 'react-quill/dist/quill.snow.css'
+import { create, get } from '../service'
 
-const { Panel } = Collapse;
-const { TextArea } = Input;
+const { Panel } = Collapse
+const { TextArea } = Input
 
 function callback(key) {
-  console.log(key);
+  console.log(key)
 }
 
 const PostEditPage: React.FC<{}> = (props: any) => {
-  console.log(props);
-  const params: any = useParams();
-  const [postData, setPostData] = useState<any>();
-  const [postContent, setPostContent] = useState('');
+  console.log(props)
+  const params: any = useParams()
+  const [postData, setPostData] = useState<any>()
+  const [postContent, setPostContent] = useState('')
 
   const fetchData = useCallback(async () => {
-    const postData = await get({ id: params.id });
-    console.log('postData: ', postData);
-    setPostData(postData);
+    const postData = await get({ id: params.id })
+    console.log('postData: ', postData)
+    setPostData(postData)
     // setPostContent(postData.postContent);
-  }, []);
+  }, [])
 
   useEffect(() => {
-    fetchData().catch(console.error);
-  }, [fetchData]);
+    fetchData().catch(console.error)
+  }, [fetchData])
 
   const handlePostContentChange = (value: any) => {
-    setPostContent(value);
-  };
+    setPostContent(value)
+  }
 
   const onFinish = async (values: any) => {
-    console.log('Success:', values);
-    values.postContent = postContent;
-    const result = await create(values);
+    console.log('Success:', values)
+    values.postContent = postContent
+    const result = await create(values)
     if (result.success) {
-      message.success('创建成功');
+      message.success('创建成功')
     }
-    console.log(result);
-  };
+    console.log(result)
+  }
 
   return (
     <PageContainer>
@@ -52,13 +62,25 @@ const PostEditPage: React.FC<{}> = (props: any) => {
             <Space direction="vertical" style={{ width: '100%' }}>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="基本信息" key="1">
-                  <Form.Item name="postTitle" label="标题" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="postTitle"
+                    label="标题"
+                    rules={[{ required: true }]}
+                  >
                     <Input value={postData?.postTitle} />
                   </Form.Item>
-                  <Form.Item name="postName" label="Slug" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="postName"
+                    label="Slug"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="postExcerpt" label="简介" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="postExcerpt"
+                    label="简介"
+                    rules={[{ required: false }]}
+                  >
                     <TextArea rows={4} />
                   </Form.Item>
                 </Panel>
@@ -84,13 +106,25 @@ const PostEditPage: React.FC<{}> = (props: any) => {
               </Collapse>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="SEO Meta" key="1">
-                  <Form.Item name="seoTitle" label="标题" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoTitle"
+                    label="标题"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="seoKeyword" label="关键词" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoKeyword"
+                    label="关键词"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="seoDesc" label="描述" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="seoDesc"
+                    label="描述"
+                    rules={[{ required: false }]}
+                  >
                     <TextArea rows={4} />
                   </Form.Item>
                 </Panel>
@@ -101,19 +135,39 @@ const PostEditPage: React.FC<{}> = (props: any) => {
             <Space direction="vertical" style={{ width: '100%' }}>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="发布" key="1">
-                  <Form.Item name="order" label="顺序" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="order"
+                    label="顺序"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="category" label="分类" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="category"
+                    label="分类"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="tag" label="标签" rules={[{ required: true }]}>
+                  <Form.Item
+                    name="tag"
+                    label="标签"
+                    rules={[{ required: true }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="addon" label="附加属性" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="addon"
+                    label="附加属性"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
-                  <Form.Item name="publish" label="发布" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="publish"
+                    label="发布"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
                   <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
@@ -138,7 +192,11 @@ const PostEditPage: React.FC<{}> = (props: any) => {
               </Collapse>
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="Media" key="1">
-                  <Form.Item name="media" label="图片" rules={[{ required: false }]}>
+                  <Form.Item
+                    name="media"
+                    label="图片"
+                    rules={[{ required: false }]}
+                  >
                     <Input />
                   </Form.Item>
                 </Panel>
@@ -148,7 +206,7 @@ const PostEditPage: React.FC<{}> = (props: any) => {
         </Row>
       </Form>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default PostEditPage;
+export default PostEditPage

@@ -1,17 +1,17 @@
-import { Outlet } from '@umijs/max';
-import { Button, Drawer, Space } from 'antd';
-import type { DrawerProps } from 'antd/es/drawer';
-import React, { useState } from 'react';
+import { Outlet } from '@umijs/max'
+import { Button, Drawer, Space } from 'antd'
+import type { DrawerProps } from 'antd/es/drawer'
+import React, { useState } from 'react'
 
 interface CreateFormProps {
-  createDrawerVisible: boolean;
-  onClose: () => void;
+  createDrawerVisible: boolean
+  onClose: () => void
 }
 
 const CreateForm: React.FC<CreateFormProps> = (props) => {
-  const { createDrawerVisible, onClose } = props;
+  const { createDrawerVisible, onClose } = props
 
-  const [size, setSize] = useState<DrawerProps['size']>('large');
+  const [size, setSize] = useState<DrawerProps['size']>('large')
 
   return (
     <Drawer
@@ -33,7 +33,7 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
     >
       <Outlet />
     </Drawer>
-  );
-};
+  )
+}
 
-export default CreateForm;
+export default CreateForm

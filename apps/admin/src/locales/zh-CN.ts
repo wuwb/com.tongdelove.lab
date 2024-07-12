@@ -1,10 +1,10 @@
-import component from './zh-CN/component';
-import globalHeader from './zh-CN/globalHeader';
-import menu from './zh-CN/menu';
-import pages from './zh-CN/pages';
-import pwa from './zh-CN/pwa';
-import settingDrawer from './zh-CN/settingDrawer';
-import settings from './zh-CN/settings';
+import component from './zh-CN/component'
+import globalHeader from './zh-CN/globalHeader'
+import menu from './zh-CN/menu'
+import pages from './zh-CN/pages'
+import pwa from './zh-CN/pwa'
+import settingDrawer from './zh-CN/settingDrawer'
+import settings from './zh-CN/settings'
 
 const config = {
   'navBar.lang': '语言',
@@ -22,6 +22,6 @@ const config = {
   ...settings,
   ...pwa,
   ...component,
-};
+}
 
-export default config;
+export default config

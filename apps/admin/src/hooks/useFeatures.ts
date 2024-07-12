@@ -1,16 +1,16 @@
-import { useListFeaturesQuery } from '@/services/api';
+import { useListFeaturesQuery } from '@/services/api'
 
 export type AppFeatures = {
-  emailVerification: boolean;
-};
+  emailVerification: boolean
+}
 
 export const useFeatures = () => {
-  const { data } = useListFeaturesQuery(null);
-  const features = data?.data;
+  const { data } = useListFeaturesQuery(null)
+  const features = data?.data
 
   return {
     isFeatureEnabled: (featureName: keyof AppFeatures) => {
-      return features ? features[featureName] : false;
+      return features ? features[featureName] : false
     },
-  };
-};
+  }
+}

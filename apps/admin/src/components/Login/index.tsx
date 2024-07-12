@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 const LoginComponent = () => {
   return (
@@ -10,7 +10,7 @@ const LoginComponent = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginComponent;
+export default LoginComponent

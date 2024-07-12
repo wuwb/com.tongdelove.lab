@@ -1,11 +1,5 @@
-import * as React from "react";
-import {
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-} from "@mui/material";
-import { AccentSidebarLayout, FullLayout } from '@/components/layouts';
+import { AccentSidebarLayout, FullLayout } from '@/components/layouts'
+import { Card, CardContent, Grid, Typography } from '@mui/material'
 
 function AboutPage() {
   return (
@@ -25,13 +19,13 @@ function AboutPage() {
         </Grid>
       </Grid>
     </FullLayout>
-  );
+  )
 }
 
 AboutPage.getLayout = (page) => (
   // <Authenticated>
   <AccentSidebarLayout>{page}</AccentSidebarLayout>
   // </Authenticated>
-);
+)
 
-export default AboutPage;
+export default AboutPage

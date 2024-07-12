@@ -1,8 +1,8 @@
-import clsx from 'clsx';
-import styles from './index.less';
+import clsx from 'clsx'
+import styles from './index.less'
 
 const GlobalFooter = ({ className, links, copyright }) => {
-  const clsString = clsx(styles.globalFooter, className);
+  const clsString = clsx(styles.globalFooter, className)
   return (
     <footer className={clsString}>
       {links && (
@@ -22,7 +22,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
       )}
       {copyright && <div className={styles.copyright}>{copyright}</div>}
     </footer>
-  );
-};
+  )
+}
 
-export default GlobalFooter;
+export default GlobalFooter

@@ -1,55 +1,56 @@
-import { PageContainer } from '@ant-design/pro-components';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
-import { Card, Col, Input, message, Popconfirm, Row, Space } from 'antd';
-import React, { FC, useRef, useState } from 'react';
-import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
-import { TableListItem } from './data.d';
-import { list, remove } from './service';
-import styles from './style.less';
+import { PageContainer } from '@ant-design/pro-components'
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table'
+import { Card, Col, Input, Popconfirm, Row, Space, message } from 'antd'
+import React, { FC, useRef, useState } from 'react'
+import CreateForm from './components/CreateForm'
+import UpdateForm, { FormValueType } from './components/UpdateForm'
+import { TableListItem } from './data.d'
+import { list, remove } from './service'
+import styles from './style.less'
 
 const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在配置')
   try {
     await updateRule({
       name: fields.name,
       desc: fields.desc,
       key: fields.key,
-    });
-    hide();
+    })
+    hide()
 
-    message.success('配置成功');
-    return true;
+    message.success('配置成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('配置失败请重试！');
-    return false;
+    hide()
+    message.error('配置失败请重试！')
+    return false
   }
-};
+}
 
 const Info: FC<{
-  title: React.ReactNode;
-  value: React.ReactNode;
-  bordered?: boolean;
+  title: React.ReactNode
+  value: React.ReactNode
+  bordered?: boolean
 }> = ({ title, value, bordered }) => (
   <div className={styles.headerInfo}>
     <span>{title}</span>
     <p>{value}</p>
     {bordered && <em />}
   </div>
-);
+)
 
 const TableList: React.FC<{}> = () => {
-  const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
-  const [stepFormValues, setStepFormValues] = useState({});
-  const [total, setTotal] = useState(0);
-  const actionRef = useRef<ActionType>();
+  const [updateModalVisible, handleUpdateModalVisible] =
+    useState<boolean>(false)
+  const [stepFormValues, setStepFormValues] = useState({})
+  const [total, setTotal] = useState(0)
+  const actionRef = useRef<ActionType>()
 
   const handleConfirm = async (id) => {
-    await remove(id);
-    message.success('删除成功。');
-    actionRef.current?.reload();
-  };
+    await remove(id)
+    message.success('删除成功。')
+    actionRef.current?.reload()
+  }
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -117,7 +118,7 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'location',
       hideInSearch: true,
       render: (_, record) => {
-        return record.location.replace(',', '\n');
+        return record.location.replace(',', '\n')
       },
     },
     {
@@ -126,14 +127,14 @@ const TableList: React.FC<{}> = () => {
       valueType: 'dateTime',
       hideInForm: true,
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
-        const status = form.getFieldValue('status');
+        const status = form.getFieldValue('status')
         if (`${status}` === '0') {
-          return false;
+          return false
         }
         if (`${status}` === '3') {
-          return <Input {...rest} placeholder="请输入异常原因！" />;
+          return <Input {...rest} placeholder="请输入异常原因！" />
         }
-        return defaultRender(item);
+        return defaultRender(item)
       },
     },
     {
@@ -155,10 +156,10 @@ const TableList: React.FC<{}> = () => {
               <a href="#">删除</a>
             </Popconfirm>
           </Space>
-        );
+        )
       },
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -188,12 +189,12 @@ const TableList: React.FC<{}> = () => {
         }}
         toolBarRender={() => [<CreateForm />]}
         request={async (params, sorter, filter) => {
-          const result = await list({ ...params, sorter, filter });
-          setTotal(result.total);
+          const result = await list({ ...params, sorter, filter })
+          setTotal(result.total)
           return {
             data: result.data,
             success: true,
-          };
+          }
         }}
         columns={columns}
       />
@@ -201,25 +202,25 @@ const TableList: React.FC<{}> = () => {
       {stepFormValues && Object.keys(stepFormValues).length ? (
         <UpdateForm
           onSubmit={async (value) => {
-            const success = await handleUpdate(value);
+            const success = await handleUpdate(value)
             if (success) {
-              handleUpdateModalVisible(false);
-              setStepFormValues({});
+              handleUpdateModalVisible(false)
+              setStepFormValues({})
               if (actionRef.current) {
-                actionRef.current.reload();
+                actionRef.current.reload()
               }
             }
           }}
           onCancel={() => {
-            handleUpdateModalVisible(false);
-            setStepFormValues({});
+            handleUpdateModalVisible(false)
+            setStepFormValues({})
           }}
           updateModalVisible={updateModalVisible}
           values={stepFormValues}
         />
       ) : null}
     </PageContainer>
-  );
-};
+  )
+}
 
-export default TableList;
+export default TableList

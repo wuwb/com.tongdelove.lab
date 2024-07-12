@@ -1,17 +1,17 @@
-import { Outlet, useNavigate } from '@umijs/max';
+import { Outlet, useNavigate } from '@umijs/max'
 
 const Auth = (props) => {
   const navigate = useNavigate()
-  const { isLogin } = useAuth();
+  const { isLogin } = useAuth()
   if (isLogin) {
     return (
       <div>
         <Outlet />
       </div>
-    );
+    )
   } else {
-    return navigate("../login", { replace: true });
+    return navigate('../login', { replace: true })
   }
-};
+}
 
 export default Auth

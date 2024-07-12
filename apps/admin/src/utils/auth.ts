@@ -1,14 +1,14 @@
-import { useNavigate } from '@umijs/max';
-import axios from 'axios';
+import { useNavigate } from '@umijs/max'
+import axios from 'axios'
 
-import { Cookies } from 'react-cookie';
+import { Cookies } from 'react-cookie'
 // set up cookies
-const cookies = new Cookies();
-const serverUrl = 'http://localhost:3000';
+const cookies = new Cookies()
+const serverUrl = 'http://localhost:3000'
 
 export async function HandleAuthSSR(ctx) {
-  const navigate = useNavigate();
-  let token = null;
+  const navigate = useNavigate()
+  let token = null
 
   // if context has request info aka Server Side
   if (ctx.req) {
@@ -16,27 +16,27 @@ export async function HandleAuthSSR(ctx) {
     // good enough for demostration
   } else {
     // we dont have request info aka Client Side
-    token = cookies.get('token');
+    token = cookies.get('token')
   }
 
   try {
     const response = await axios.get(serverUrl + '/api/token/ping', {
       headers: { Authorization: token },
-    });
+    })
     // dont really care about response, as long as it not an error
-    console.log('token ping:', response.data.msg);
+    console.log('token ping:', response.data.msg)
   } catch (err: any) {
     // in case of error
-    console.log(err.response.data.msg);
-    console.log('redirecting back to main page');
+    console.log(err.response.data.msg)
+    console.log('redirecting back to main page')
     // redirect to login
     if (ctx.res) {
       ctx.res.writeHead(302, {
         Location: '/',
-      });
-      ctx.res.end();
+      })
+      ctx.res.end()
     } else {
-      navigate('/');
+      navigate('/')
     }
   }
 }

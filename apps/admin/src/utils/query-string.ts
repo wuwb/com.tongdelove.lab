@@ -1,14 +1,14 @@
-const REG_SEP = /&/;
-const REG_PLUS = /\+/g;
+const REG_SEP = /&/
+const REG_PLUS = /\+/g
 
-const hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwnProperty = Object.prototype.hasOwnProperty
 
 function returnVal<T>(val: T): T {
-  return val;
+  return val
 }
 
-export type ParseValueType = string | null;
-export type StringifyValueType = ParseValueType | number | undefined;
+export type ParseValueType = string | null
+export type StringifyValueType = ParseValueType | number | undefined
 
 /**
  * Parse query string.
@@ -19,56 +19,56 @@ export function parse(
   string?: string,
   shouldDecode: boolean = true,
 ): Record<string, ParseValueType | ParseValueType[]> {
-  const query: Record<string, ParseValueType | ParseValueType[]> = {};
+  const query: Record<string, ParseValueType | ParseValueType[]> = {}
 
   if (!string) {
-    return query;
+    return query
   }
 
-  let trimedString = string.trim();
+  let trimedString = string.trim()
 
   if (trimedString[0] === '?' || trimedString[0] === '#') {
-    trimedString = trimedString.slice(1);
+    trimedString = trimedString.slice(1)
   }
 
-  const queryArray = trimedString.split(REG_SEP);
-  const decode = shouldDecode ? decodeURIComponent : returnVal;
+  const queryArray = trimedString.split(REG_SEP)
+  const decode = shouldDecode ? decodeURIComponent : returnVal
 
   for (let item of queryArray) {
-    item = item.replace(REG_PLUS, '%20');
+    item = item.replace(REG_PLUS, '%20')
 
     if (item.length === 0) {
-      continue;
+      continue
     }
 
-    const eqIndex = item.indexOf('=');
-    let key, value;
+    const eqIndex = item.indexOf('=')
+    let key, value
 
     if (eqIndex < 0) {
-      key = item;
-      value = null;
+      key = item
+      value = null
     } else {
-      key = item.slice(0, eqIndex);
-      value = item.slice(eqIndex + 1);
+      key = item.slice(0, eqIndex)
+      value = item.slice(eqIndex + 1)
     }
 
-    key = decode(key);
+    key = decode(key)
     if (value !== null) {
-      value = decode(value);
+      value = decode(value)
     }
 
-    const prev = query[key];
+    const prev = query[key]
 
     if (typeof prev === 'undefined' || !hasOwnProperty.call(query, key)) {
-      query[key] = value;
+      query[key] = value
     } else if (Array.isArray(prev)) {
-      prev.push(value);
+      prev.push(value)
     } else {
-      query[key] = [prev, value];
+      query[key] = [prev, value]
     }
   }
 
-  return query;
+  return query
 }
 
 /**
@@ -81,41 +81,41 @@ export function stringify(
   shouldEncode: boolean = true,
 ) {
   if (!query) {
-    return '';
+    return ''
   }
 
-  const encode = shouldEncode ? encodeURIComponent : returnVal;
+  const encode = shouldEncode ? encodeURIComponent : returnVal
 
   function stringifyKV(key: string, value: StringifyValueType) {
     if (typeof value === 'undefined') {
-      return '';
+      return ''
     }
 
     if (value === null) {
-      return key;
+      return key
     }
 
     if (typeof value === 'string') {
-      value = encode(value);
+      value = encode(value)
     }
 
-    return `${key}=${value}`;
+    return `${key}=${value}`
   }
 
   return Object.keys(query)
     .map((key) => {
-      const value = query[key];
-      key = encode(key);
+      const value = query[key]
+      key = encode(key)
 
       if (Array.isArray(value)) {
         return value
           .map((item) => stringifyKV(key, item))
           .filter(Boolean)
-          .join('&');
+          .join('&')
       }
 
-      return stringifyKV(key, value);
+      return stringifyKV(key, value)
     })
     .filter(Boolean)
-    .join('&');
+    .join('&')
 }

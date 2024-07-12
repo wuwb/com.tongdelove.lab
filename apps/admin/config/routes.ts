@@ -579,6 +579,6 @@ const route = [
     layout: false,
     component: './Exception/404',
   },
-];
+]
 
-export default route;
+export default route

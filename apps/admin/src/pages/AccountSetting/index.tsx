@@ -1,24 +1,24 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { useIntl, useModel } from '@umijs/max';
-import { Card, Menu } from 'antd';
-import { createStyles } from 'antd-style';
-import { MenuMode } from 'rc-menu/lib/interface';
-import React, { useEffect, useRef, useState } from 'react';
-import BaseView from './components/base';
-import BindingView from './components/binding';
-import NotificationView from './components/notification';
-import { SecurityView } from './components/security';
-import styles from './style.less';
+import { PageContainer } from '@ant-design/pro-components'
+import { useIntl, useModel } from '@umijs/max'
+import { Card, Menu } from 'antd'
+import { createStyles } from 'antd-style'
+import { MenuMode } from 'rc-menu/lib/interface'
+import React, { useRef, useState } from 'react'
+import BaseView from './components/base'
+import BindingView from './components/binding'
+import NotificationView from './components/notification'
+import { SecurityView } from './components/security'
+import styles from './style.less'
 
-const useStyles = createStyles(({ token, css }) => ({}));
+const useStyles = createStyles(({ token, css }) => ({}))
 
-const { Item } = Menu;
+const { Item } = Menu
 
-type AccountSettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
+type AccountSettingsStateKeys = 'base' | 'security' | 'binding' | 'notification'
 
 const AccountSettingsPage: React.FC = (props) => {
-  const main = useRef();
-  const intl = useIntl();
+  const main = useRef()
+  const intl = useIntl()
   const defaultMenuMap = {
     base: intl.formatMessage({
       id: 'accountsettings.menuMap.basic',
@@ -36,64 +36,66 @@ const AccountSettingsPage: React.FC = (props) => {
       id: 'accountsettings.menuMap.notification',
       defaultMessage: 'New Message Notification',
     }),
-  };
-  const [menuMap, setMenuMap] = useState(defaultMenuMap);
-  const [mode, setMode] = useState<MenuMode>('inline');
-  const [selectKey, setSelectKey] = useState('base');
+  }
+  const [menuMap, setMenuMap] = useState(defaultMenuMap)
+  const [mode, setMode] = useState<MenuMode>('inline')
+  const [selectKey, setSelectKey] = useState('base')
   const { currentUser, fetchUser } = useModel('useUser', (model) => ({
     currentUser: model.user,
     fetchUser: model.fetchUser,
-  }));
-  const { initialState } = useModel('@@initialState');
+  }))
+  const { initialState } = useModel('@@initialState')
 
   if (!currentUser.userid) {
-    return '';
+    return ''
   }
 
   const resize = () => {
     if (!main) {
-      return;
+      return
     }
     requestAnimationFrame(() => {
       if (!main) {
-        return;
+        return
       }
-      let mode: 'inline' | 'horizontal' = 'inline';
-      const { offsetWidth } = main;
+      let mode: 'inline' | 'horizontal' = 'inline'
+      const { offsetWidth } = main
       if (main.offsetWidth < 641 && offsetWidth > 400) {
-        mode = 'horizontal';
+        mode = 'horizontal'
       }
       if (window.innerWidth < 768 && offsetWidth > 400) {
-        mode = 'horizontal';
+        mode = 'horizontal'
       }
-      setMode(mode);
-    });
-  };
+      setMode(mode)
+    })
+  }
 
   const getMenu = () => {
-    return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>);
-  };
+    return Object.keys(menuMap).map((item) => (
+      <Item key={item}>{menuMap[item]}</Item>
+    ))
+  }
 
   const getRightTitle = () => {
-    return menuMap[selectKey];
-  };
+    return menuMap[selectKey]
+  }
 
   const renderChildren = () => {
     switch (selectKey) {
       case 'base':
-        return <BaseView />;
+        return <BaseView />
       case 'security':
-        return <SecurityView />;
+        return <SecurityView />
       case 'binding':
-        return <BindingView />;
+        return <BindingView />
       case 'notification':
-        return <NotificationView />;
+        return <NotificationView />
       default:
-        break;
+        break
     }
 
-    return null;
-  };
+    return null
+  }
 
   return (
     <PageContainer>
@@ -113,7 +115,9 @@ const AccountSettingsPage: React.FC = (props) => {
             <Menu
               mode={mode}
               selectedKeys={[selectKey]}
-              onClick={({ key }) => setSelectKey(key as AccountSettingsStateKeys)}
+              onClick={({ key }) =>
+                setSelectKey(key as AccountSettingsStateKeys)
+              }
             >
               {getMenu()}
             </Menu>
@@ -125,7 +129,7 @@ const AccountSettingsPage: React.FC = (props) => {
         </div>
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default AccountSettingsPage;
+export default AccountSettingsPage

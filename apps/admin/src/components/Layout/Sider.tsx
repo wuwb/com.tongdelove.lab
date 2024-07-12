@@ -1,16 +1,24 @@
-import { BulbOutlined } from '@ant-design/icons';
-import { FormattedMessage } from '@umijs/max';
-import { Layout, Switch } from 'antd';
-import { PureComponent } from 'react';
+import { BulbOutlined } from '@ant-design/icons'
+import { FormattedMessage } from '@umijs/max'
+import { Layout, Switch } from 'antd'
+import { PureComponent } from 'react'
 
-import { config } from '@/utils';
-import ScrollBar from '../ScrollBar';
-import SiderMenu from './Menu';
-import styles from './Sider.less';
+import { config } from '@/utils'
+import ScrollBar from '../ScrollBar'
+import SiderMenu from './Menu'
+import styles from './Sider.less'
 
 class Sider extends PureComponent {
   render() {
-    const { i18n, menus, theme, isMobile, collapsed, onThemeChange, onCollapseChange } = this.props;
+    const {
+      i18n,
+      menus,
+      theme,
+      isMobile,
+      collapsed,
+      onThemeChange,
+      onCollapseChange,
+    } = this.props
 
     return (
       <Layout.Sider
@@ -50,10 +58,16 @@ class Sider extends PureComponent {
           <div className={styles['switch-theme']}>
             <span>
               <BulbOutlined />
-              <FormattedMessage id="switch-theme" defaultMessage="Switch Theme" />
+              <FormattedMessage
+                id="switch-theme"
+                defaultMessage="Switch Theme"
+              />
             </span>
             <Switch
-              onChange={onThemeChange.bind(this, theme === 'dark' ? 'light' : 'dark')}
+              onChange={onThemeChange.bind(
+                this,
+                theme === 'dark' ? 'light' : 'dark',
+              )}
               defaultChecked={theme === 'dark'}
               checkedChildren={i18n.t`Dark`}
               unCheckedChildren={i18n.t`Light`}
@@ -61,8 +75,8 @@ class Sider extends PureComponent {
           </div>
         )}
       </Layout.Sider>
-    );
+    )
   }
 }
 
-export default Sider;
+export default Sider

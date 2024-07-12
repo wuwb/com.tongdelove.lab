@@ -1,13 +1,13 @@
-import { configUmiAlias, createConfig } from '@umijs/max/test';
+import { configUmiAlias, createConfig } from '@umijs/max/test'
 
 export default async () => {
   const config = await configUmiAlias({
     ...createConfig({
       target: 'browser',
     }),
-  });
+  })
 
-  console.log();
+  console.log()
   return {
     ...config,
     testEnvironmentOptions: {
@@ -22,5 +22,5 @@ export default async () => {
       localStorage: null,
       ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: false,
     },
-  };
-};
+  }
+}

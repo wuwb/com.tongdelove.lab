@@ -1,7 +1,5 @@
 ﻿// do some test init
 
-const localStorageMock = {
+const localStorageMock = {}
 
-};
-
-global.localStorage = localStorageMock;
+global.localStorage = localStorageMock

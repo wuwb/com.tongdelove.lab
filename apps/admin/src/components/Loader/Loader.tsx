@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import styles from './Loader.less';
+import clsx from 'clsx'
+import styles from './Loader.less'
 
 const Loader = ({ spinning = false, fullScreen }) => {
   return (
@@ -14,7 +14,7 @@ const Loader = ({ spinning = false, fullScreen }) => {
         <div className={styles.text}>LOADING</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Loader;
+export default Loader

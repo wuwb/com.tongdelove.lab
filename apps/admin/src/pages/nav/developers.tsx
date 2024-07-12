@@ -1,5 +1,5 @@
-import { Link } from '@umijs/max';
-import { Table } from 'antd';
+import { Link } from '@umijs/max'
+import { Table } from 'antd'
 
 const Home = () => {
   // {
@@ -29,15 +29,15 @@ const Home = () => {
       siteName: 'Geekhmer',
       link: 'http://geekhmer.github.io/',
     },
-  ];
+  ]
 
   data.forEach((item: any) => {
     item.site = (
       <Link href={item.link} icon color>
         {item.siteName}
       </Link>
-    );
-  });
+    )
+  })
 
   const columns = [
     {
@@ -55,9 +55,9 @@ const Home = () => {
       dataIndex: 'site',
       key: 'site',
     },
-  ];
+  ]
 
-  return <Table dataSource={data} columns={columns} />;
-};
+  return <Table dataSource={data} columns={columns} />
+}
 
-export default Home;
+export default Home

@@ -1,10 +1,10 @@
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export class BaseService {
-  path: string;
+  path: string
 
   constructor(path: string) {
-    this.path = path;
+    this.path = path
   }
 
   async create(params) {
@@ -13,7 +13,7 @@ export class BaseService {
       data: {
         ...params,
       },
-    });
+    })
   }
 
   async remove(params) {
@@ -22,7 +22,7 @@ export class BaseService {
       data: {
         ...params,
       },
-    });
+    })
   }
 
   async update(params) {
@@ -31,19 +31,19 @@ export class BaseService {
       data: {
         ...params,
       },
-    });
+    })
   }
 
   async list(params) {
     return request(`/api/${this.path}/list`, {
       params,
-    });
+    })
   }
 
   async get(params) {
     return request(`/api/${this.path}/get`, {
       params,
-    });
+    })
   }
 
   async order(params) {
@@ -52,6 +52,6 @@ export class BaseService {
       data: {
         ...params,
       },
-    });
+    })
   }
 }

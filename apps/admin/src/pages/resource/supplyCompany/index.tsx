@@ -1,5 +1,9 @@
-import { addRule, removeRule } from '@/services/ant-design-pro/api';
-import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
+import { addRule, removeRule } from '@/services/ant-design-pro/api'
+import type {
+  ActionType,
+  ProColumns,
+  ProDescriptionsItemProps,
+} from '@ant-design/pro-components'
 import {
   FooterToolbar,
   ModalForm,
@@ -8,15 +12,24 @@ import {
   ProFormText,
   ProFormTextArea,
   ProTable,
-} from '@ant-design/pro-components';
-import { FormattedMessage, useIntl, useRequest } from '@umijs/max';
-import { Button, Card, Col, Drawer, message, Popconfirm, Row, Space } from 'antd';
-import React, { FC, useRef, useState } from 'react';
-import CreateForm from './components/CreateForm';
-import UpdateForm from './components/UpdateForm';
+} from '@ant-design/pro-components'
+import { FormattedMessage, useIntl, useRequest } from '@umijs/max'
+import {
+  Button,
+  Card,
+  Col,
+  Drawer,
+  Popconfirm,
+  Row,
+  Space,
+  message,
+} from 'antd'
+import React, { FC, useRef, useState } from 'react'
+import CreateForm from './components/CreateForm'
+import UpdateForm from './components/UpdateForm'
 // import UpdateForm, { FormValueType } from './components/UpdateForm';
 // import { TableListItem } from './data.d';
-import { list } from './service';
+import { list } from './service'
 // import styles from './style.less';
 
 /**
@@ -25,18 +38,18 @@ import { list } from './service';
  * @param fields
  */
 const handleAdd = async (fields: API.RuleListItem) => {
-  const hide = message.loading('正在添加');
+  const hide = message.loading('正在添加')
   try {
-    await addRule({ ...fields });
-    hide();
-    message.success('Added successfully');
-    return true;
+    await addRule({ ...fields })
+    hide()
+    message.success('Added successfully')
+    return true
   } catch (error) {
-    hide();
-    message.error('Adding failed, please try again!');
-    return false;
+    hide()
+    message.error('Adding failed, please try again!')
+    return false
   }
-};
+}
 
 /**
  * @en-US Update node
@@ -45,23 +58,23 @@ const handleAdd = async (fields: API.RuleListItem) => {
  * @param fields
  */
 const handleUpdate = async (fields) => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('正在配置')
   try {
     // await updateRule({
     //   name: fields.name,
     //   desc: fields.desc,
     //   key: fields.key,
     // });
-    hide();
+    hide()
 
-    message.success('配置成功');
-    return true;
+    message.success('配置成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('配置失败请重试！');
-    return false;
+    hide()
+    message.error('配置失败请重试！')
+    return false
   }
-};
+}
 
 /**
  *  Delete node
@@ -70,33 +83,33 @@ const handleUpdate = async (fields) => {
  * @param selectedRows
  */
 const handleRemove = async (selectedRows: API.RuleListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  const hide = message.loading('正在删除')
+  if (!selectedRows) return true
   try {
     await removeRule({
       key: selectedRows.map((row) => row.key),
-    });
-    hide();
-    message.success('Deleted successfully and will refresh soon');
-    return true;
+    })
+    hide()
+    message.success('Deleted successfully and will refresh soon')
+    return true
   } catch (error) {
-    hide();
-    message.error('Delete failed, please try again');
-    return false;
+    hide()
+    message.error('Delete failed, please try again')
+    return false
   }
-};
+}
 
 const Info: FC<{
-  title: React.ReactNode;
-  value: React.ReactNode;
-  bordered?: boolean;
+  title: React.ReactNode
+  value: React.ReactNode
+  bordered?: boolean
 }> = ({ title, value, bordered }) => (
   <div>
     <span>{title}</span>
     <p>{value}</p>
     {bordered && <em />}
   </div>
-);
+)
 
 // 平盛模具 http://www.psmould.com/
 
@@ -105,33 +118,34 @@ const SupplyCompanyPage: React.FC<{}> = () => {
    * @en-US Pop-up window of new window
    * @zh-CN 新建窗口的弹窗
    */
-  const [createModalVisible, handleModalVisible] = useState<boolean>(false);
+  const [createModalVisible, handleModalVisible] = useState<boolean>(false)
   /**
    * @en-US The pop-up window of the distribution update window
    * @zh-CN 分布更新窗口的弹窗
    */
-  const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
+  const [updateModalVisible, handleUpdateModalVisible] =
+    useState<boolean>(false)
 
-  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [showDetail, setShowDetail] = useState<boolean>(false)
 
-  const [stepFormValues, setStepFormValues] = useState({});
-  const [total, setTotal] = useState(0);
-  const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.RuleListItem>();
-  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
+  const [stepFormValues, setStepFormValues] = useState({})
+  const [total, setTotal] = useState(0)
+  const actionRef = useRef<ActionType>()
+  const [currentRow, setCurrentRow] = useState<API.RuleListItem>()
+  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([])
   /**
    * @en-US International configuration
    * @zh-CN 国际化配置
    * */
-  const intl = useIntl();
+  const intl = useIntl()
 
   const handleConfirm = async (id: string) => {
     // await remove(id);
-    message.success('删除成功。');
-    actionRef.current?.reload();
-  };
+    message.success('删除成功。')
+    actionRef.current?.reload()
+  }
 
-  const init = useRequest('/api/supplyCompany/list');
+  const init = useRequest('/api/supplyCompany/list')
 
   const columns: ProColumns[] = [
     {
@@ -213,14 +227,14 @@ const SupplyCompanyPage: React.FC<{}> = () => {
               <a href="#">删除</a>
             </Popconfirm>
           </Space>
-        );
+        )
       },
     },
-  ];
+  ]
 
   const onCreated = async () => {
-    actionRef.current?.reload();
-  };
+    actionRef.current?.reload()
+  }
 
   return (
     <PageContainer>
@@ -248,12 +262,12 @@ const SupplyCompanyPage: React.FC<{}> = () => {
         }}
         toolBarRender={() => [<CreateForm onCreated={onCreated} />]}
         request={async (params, sorter, filter) => {
-          const result = await list({ ...params, sorter, filter });
-          setTotal(result.total);
+          const result = await list({ ...params, sorter, filter })
+          setTotal(result.total)
           return {
             data: result.data,
             success: true,
-          };
+          }
         }}
         columns={columns}
       />
@@ -261,9 +275,15 @@ const SupplyCompanyPage: React.FC<{}> = () => {
         <FooterToolbar
           extra={
             <div>
-              <FormattedMessage id="pages.searchTable.chosen" defaultMessage="Chosen" />{' '}
+              <FormattedMessage
+                id="pages.searchTable.chosen"
+                defaultMessage="Chosen"
+              />{' '}
               <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a>{' '}
-              <FormattedMessage id="pages.searchTable.item" defaultMessage="项" />
+              <FormattedMessage
+                id="pages.searchTable.item"
+                defaultMessage="项"
+              />
               &nbsp;&nbsp;
               <span>
                 <FormattedMessage
@@ -271,16 +291,19 @@ const SupplyCompanyPage: React.FC<{}> = () => {
                   defaultMessage="Total number of service calls"
                 />{' '}
                 {selectedRowsState.reduce((pre, item) => pre + item.callNo!, 0)}{' '}
-                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
+                <FormattedMessage
+                  id="pages.searchTable.tenThousand"
+                  defaultMessage="万"
+                />
               </span>
             </div>
           }
         >
           <Button
             onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
+              await handleRemove(selectedRowsState)
+              setSelectedRows([])
+              actionRef.current?.reloadAndRest?.()
             }}
           >
             <FormattedMessage
@@ -305,11 +328,11 @@ const SupplyCompanyPage: React.FC<{}> = () => {
         open={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
-          const success = await handleAdd(value as API.RuleListItem);
+          const success = await handleAdd(value as API.RuleListItem)
           if (success) {
-            handleModalVisible(false);
+            handleModalVisible(false)
             if (actionRef.current) {
-              actionRef.current.reload();
+              actionRef.current.reload()
             }
           }
         }}
@@ -333,19 +356,19 @@ const SupplyCompanyPage: React.FC<{}> = () => {
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
-          const success = await handleUpdate(value);
+          const success = await handleUpdate(value)
           if (success) {
-            handleUpdateModalVisible(false);
-            setCurrentRow(undefined);
+            handleUpdateModalVisible(false)
+            setCurrentRow(undefined)
             if (actionRef.current) {
-              actionRef.current.reload();
+              actionRef.current.reload()
             }
           }
         }}
         onCancel={() => {
-          handleUpdateModalVisible(false);
+          handleUpdateModalVisible(false)
           if (!showDetail) {
-            setCurrentRow(undefined);
+            setCurrentRow(undefined)
           }
         }}
         updateModalVisible={updateModalVisible}
@@ -356,8 +379,8 @@ const SupplyCompanyPage: React.FC<{}> = () => {
         width={600}
         open={showDetail}
         onClose={() => {
-          setCurrentRow(undefined);
-          setShowDetail(false);
+          setCurrentRow(undefined)
+          setShowDetail(false)
         }}
         closable={false}
       >
@@ -396,7 +419,7 @@ const SupplyCompanyPage: React.FC<{}> = () => {
         />
       ) : null} */}
     </PageContainer>
-  );
-};
+  )
+}
 
-export default SupplyCompanyPage;
+export default SupplyCompanyPage

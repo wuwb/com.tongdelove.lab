@@ -1,15 +1,15 @@
-import { request } from '@umijs/max';
-import type { TableListItem, TableListParams } from './user.d';
+import { request } from '@umijs/max'
+import type { TableListItem, TableListParams } from './user.d'
 
 export async function queryWebsite(options?: { [key: string]: any }) {
   return request('/api/link', {
     method: 'GET',
     ...(options || {}),
-  });
+  })
 }
 
 export async function showWebsite(params?: TableListParams) {
-  return request<API.Response<TableListItem>>(`/api/link/${params.id}`);
+  return request<API.Response<TableListItem>>(`/api/link/${params.id}`)
 }
 
 export async function removeWebsite(params: { id: string[] }) {
@@ -18,7 +18,7 @@ export async function removeWebsite(params: { id: string[] }) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function createWebsite(params: TableListItem, options = {}) {
@@ -26,7 +26,7 @@ export async function createWebsite(params: TableListItem, options = {}) {
     method: 'POST',
     data: params,
     ...options,
-  });
+  })
 }
 
 export async function updateWebsite(params: TableListItem, options = {}) {
@@ -34,5 +34,5 @@ export async function updateWebsite(params: TableListItem, options = {}) {
     method: 'PUT',
     data: params,
     ...options,
-  });
+  })
 }

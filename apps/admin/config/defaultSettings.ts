@@ -1,10 +1,10 @@
-import { RuntimeConfig } from '@umijs/max';
+import { RuntimeConfig } from '@umijs/max'
 /**
  * @name
  */
 export const defaultSettings: RuntimeConfig['layout'] & {
-  pwa?: boolean;
-  logo?: string;
+  pwa?: boolean
+  logo?: string
 } = (initData) => {
   return {
     // 设置标题的 title
@@ -35,5 +35,5 @@ export const defaultSettings: RuntimeConfig['layout'] & {
     },
     headerHeight: 48,
     splitMenus: false,
-  };
-};
+  }
+}

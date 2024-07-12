@@ -173,7 +173,8 @@ const develop = [
     children: [
       {
         path: 'http://xcloud.alipay.com/',
-        icon: require('./img/181118_7bf568ka2hfd6l2eg5fb560i90ge9_130x130.png').default,
+        icon: require('./img/181118_7bf568ka2hfd6l2eg5fb560i90ge9_130x130.png')
+          .default,
         name: '蚂蚁体验科技',
         desc: '蚂蚁金服体验技术部',
       },
@@ -245,7 +246,8 @@ const develop = [
       },
       {
         path: 'http://feg.netease.com/',
-        icon: require('./img/181118_5d0d4hdejl55a09f6h1b30g8lae19_130x130.png').default,
+        icon: require('./img/181118_5d0d4hdejl55a09f6h1b30g8lae19_130x130.png')
+          .default,
         name: '网易 FEG',
         desc: '网易 FEG 前端团队',
       },
@@ -269,7 +271,8 @@ const develop = [
       },
       {
         path: 'https://tech.youzan.com/tag/front-end/',
-        icon: require('./img/181118_866dleack69c7k1895bl0hc1604jk_130x130.png').default,
+        icon: require('./img/181118_866dleack69c7k1895bl0hc1604jk_130x130.png')
+          .default,
         name: '有赞 FED',
         desc: '有赞前端开发团队',
       },
@@ -293,7 +296,8 @@ const develop = [
       },
       {
         path: 'https://fed.renren.com/',
-        icon: require('./img/181118_3ed4dlk6k4dj0f6391549khc04b4f_361x363.png').default,
+        icon: require('./img/181118_3ed4dlk6k4dj0f6391549khc04b4f_361x363.png')
+          .default,
         name: '人人网 FED',
         desc: '人人网前端开发团队',
       },
@@ -1095,6 +1099,6 @@ const develop = [
       },
     ],
   },
-];
+]
 
-export default develop;
+export default develop

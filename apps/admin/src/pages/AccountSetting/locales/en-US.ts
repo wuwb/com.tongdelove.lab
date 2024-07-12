@@ -10,23 +10,27 @@ export default {
   'accountsettings.basic.nickname': 'Nickname',
   'accountsettings.basic.nickname-message': 'Please input your Nickname!',
   'accountsettings.basic.profile': 'Personal profile',
-  'accountsettings.basic.profile-message': 'Please input your personal profile!',
+  'accountsettings.basic.profile-message':
+    'Please input your personal profile!',
   'accountsettings.basic.profile-placeholder': 'Brief introduction to yourself',
   'accountsettings.basic.country': 'Country/Region',
   'accountsettings.basic.country-message': 'Please input your country!',
   'accountsettings.basic.geographic': 'Province or city',
-  'accountsettings.basic.geographic-message': 'Please input your geographic info!',
+  'accountsettings.basic.geographic-message':
+    'Please input your geographic info!',
   'accountsettings.basic.address': 'Street Address',
   'accountsettings.basic.address-message': 'Please input your address!',
   'accountsettings.basic.phone': 'Phone Number',
   'accountsettings.basic.phone-message': 'Please input your phone!',
   'accountsettings.basic.update': 'Update Information',
-  'accountsettings.basic.update.success': 'Update basic information successfully',
+  'accountsettings.basic.update.success':
+    'Update basic information successfully',
   'accountsettings.security.strong': 'Strong',
   'accountsettings.security.medium': 'Medium',
   'accountsettings.security.weak': 'Weak',
   'accountsettings.security.password': 'Account Password',
-  'accountsettings.security.password-description': 'Current password strength：',
+  'accountsettings.security.password-description':
+    'Current password strength：',
   'accountsettings.security.phone': 'Security Phone',
   'accountsettings.security.phone-description': 'Bound phone：',
   'accountsettings.security.question': 'Security Question',
@@ -41,11 +45,14 @@ export default {
   'accountsettings.security.set': 'Set',
   'accountsettings.security.bind': 'Bind',
   'accountsettings.binding.taobao': 'Binding Taobao',
-  'accountsettings.binding.taobao-description': 'Currently unbound Taobao account',
+  'accountsettings.binding.taobao-description':
+    'Currently unbound Taobao account',
   'accountsettings.binding.alipay': 'Binding Alipay',
-  'accountsettings.binding.alipay-description': 'Currently unbound Alipay account',
+  'accountsettings.binding.alipay-description':
+    'Currently unbound Alipay account',
   'accountsettings.binding.dingding': 'Binding DingTalk',
-  'accountsettings.binding.dingding-description': 'Currently unbound DingTalk account',
+  'accountsettings.binding.dingding-description':
+    'Currently unbound DingTalk account',
   'accountsettings.binding.bind': 'Bind',
   'accountsettings.notification.password': 'Account Password',
   'accountsettings.notification.password-description':
@@ -58,4 +65,4 @@ export default {
     'The to-do list will be notified in the form of a letter from the station',
   'accountsettings.settings.open': 'Open',
   'accountsettings.settings.close': 'Close',
-};
+}

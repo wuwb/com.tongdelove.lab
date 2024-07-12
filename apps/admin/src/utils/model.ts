@@ -4,10 +4,10 @@ export const model = {
       return {
         ...state,
         ...payload,
-      };
+      }
     },
   },
-};
+}
 
 export const pageModel = {
   state: {
@@ -25,7 +25,7 @@ export const pageModel = {
 
   reducers: {
     querySuccess(state, { payload }) {
-      const { list, pagination } = payload;
+      const { list, pagination } = payload
       return {
         ...state,
         list,
@@ -33,19 +33,19 @@ export const pageModel = {
           ...state.pagination,
           ...pagination,
         },
-      };
+      }
     },
 
     updateState(state, { payload }) {
       return {
         ...state,
         ...payload,
-      };
+      }
     },
   },
 
   test(state) {
-    console.log('test');
-    return state;
+    console.log('test')
+    return state
   },
-};
+}

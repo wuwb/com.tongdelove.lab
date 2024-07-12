@@ -1,8 +1,8 @@
-import { Link } from '@umijs/max';
-import { Button, Result } from 'antd';
-import React from 'react';
+import { Link } from '@umijs/max'
+import { Button, Result } from 'antd'
+import React from 'react'
 
-import styles from './style.less';
+import styles from './style.less'
 
 const actions = (
   <div className={styles.actions}>
@@ -15,14 +15,14 @@ const actions = (
       <Button size="large">返回首页</Button>
     </Link>
   </div>
-);
+)
 
-export type LocationState = Record<string, unknown>;
+export type LocationState = Record<string, unknown>
 
 const RegisterResult: React.FC = ({ location }) => {
   const email = location.state
     ? (location.state as LocationState).account
-    : 'AntDesign@example.com';
+    : 'AntDesign@example.com'
   return (
     <Result
       className={styles.registerResult}
@@ -35,7 +35,7 @@ const RegisterResult: React.FC = ({ location }) => {
       subTitle="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
       extra={actions}
     />
-  );
-};
+  )
+}
 
-export default RegisterResult;
+export default RegisterResult

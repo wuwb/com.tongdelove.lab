@@ -1,6 +1,6 @@
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import styles from './Editor.less';
+import { Editor } from 'react-draft-wysiwyg'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import styles from './Editor.less'
 
 const DraftEditor = (props) => {
   return (
@@ -10,7 +10,7 @@ const DraftEditor = (props) => {
       editorClassName={styles.editor}
       {...props}
     />
-  );
-};
+  )
+}
 
-export default DraftEditor;
+export default DraftEditor

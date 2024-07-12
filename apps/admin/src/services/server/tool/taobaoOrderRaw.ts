@@ -1,4 +1,4 @@
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export async function listTaobaoOrderRaw(params) {
   return request('/api/tool/taobao-order-raw', {
@@ -7,14 +7,14 @@ export async function listTaobaoOrderRaw(params) {
       limit: params.pageSize,
       ...params,
     },
-  });
+  })
 }
 
 export async function syncData() {
   return request('/api/taobao/purge-all', {
     method: 'POST',
     data: {},
-  });
+  })
 }
 
 export async function syncById(params) {
@@ -23,5 +23,5 @@ export async function syncById(params) {
     data: {
       ...params,
     },
-  });
+  })
 }

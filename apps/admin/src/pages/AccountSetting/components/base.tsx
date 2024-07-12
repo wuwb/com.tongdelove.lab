@@ -1,20 +1,23 @@
-import { UploadOutlined } from '@ant-design/icons';
-import { connect, formatMessage, FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, Input, message, Select, Upload } from 'antd';
-import { Component } from 'react';
-import { CurrentUser } from '../data.d';
-import styles from './BaseView.less';
-import GeographicView from './GeographicView';
-import PhoneView from './PhoneView';
+import { UploadOutlined } from '@ant-design/icons'
+import { connect, formatMessage, FormattedMessage, useIntl } from '@umijs/max'
+import { Button, Form, Input, message, Select, Upload } from 'antd'
+import { Component } from 'react'
+import { CurrentUser } from '../data.d'
+import styles from './BaseView.less'
+import GeographicView from './GeographicView'
+import PhoneView from './PhoneView'
 
-const { Option } = Select;
+const { Option } = Select
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => {
   return (
     <>
       <div className={styles['avatar-title']}>
-        <FormattedMessage id="accountsettings.basic.avatar" defaultMessage="Avatar" />
+        <FormattedMessage
+          id="accountsettings.basic.avatar"
+          defaultMessage="Avatar"
+        />
       </div>
       <div className={styles.avatar}>
         <img src={avatar} alt="avatar" />
@@ -31,73 +34,80 @@ const AvatarView = ({ avatar }: { avatar: string }) => {
         </div>
       </Upload>
     </>
-  );
-};
+  )
+}
 
 interface SelectItem {
-  label: string;
-  key: string;
+  label: string
+  key: string
 }
 
 const validatorGeographic = (
   _: any,
   value: {
-    province: SelectItem;
-    city: SelectItem;
+    province: SelectItem
+    city: SelectItem
   },
   callback: (message?: string) => void,
 ) => {
-  const { province, city } = value;
+  const { province, city } = value
   if (!province.key) {
-    callback('Please input your province!');
+    callback('Please input your province!')
   }
   if (!city.key) {
-    callback('Please input your city!');
+    callback('Please input your city!')
   }
-  callback();
-};
+  callback()
+}
 
-const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
-  const values = value.split('-');
+const validatorPhone = (
+  rule: any,
+  value: string,
+  callback: (message?: string) => void,
+) => {
+  const values = value.split('-')
   if (!values[0]) {
-    callback('Please input your area code!');
+    callback('Please input your area code!')
   }
   if (!values[1]) {
-    callback('Please input your phone number!');
+    callback('Please input your phone number!')
   }
-  callback();
-};
+  callback()
+}
 
 interface BaseViewProps {
-  currentUser?: CurrentUser;
+  currentUser?: CurrentUser
 }
 
 class BaseView extends Component<BaseViewProps> {
-  view: HTMLDivElement | undefined = undefined;
+  view: HTMLDivElement | undefined = undefined
 
   getAvatarURL() {
-    const { currentUser } = this.props;
+    const { currentUser } = this.props
     if (currentUser) {
       if (currentUser.avatar) {
-        return currentUser.avatar;
+        return currentUser.avatar
       }
-      const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
-      return url;
+      const url =
+        'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+      return url
     }
-    return '';
+    return ''
   }
 
   getViewDom = (ref: HTMLDivElement) => {
-    this.view = ref;
-  };
+    this.view = ref
+  }
 
   handleFinish = () => {
-    const intl = useIntl();
-    message.success(intl.formatMessage({ id: 'accountsettings.basic.update.success' }));
-  };
+    const intl = useIntl()
+    message.success(
+      intl.formatMessage({ id: 'accountsettings.basic.update.success' }),
+    )
+  }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser } = this.props
 
     return (
       <div className={styles['base-view']} ref={this.getViewDom}>
@@ -114,7 +124,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.email-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.email-message' },
+                    {},
+                  ),
                 },
               ]}
             >
@@ -126,7 +139,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.nickname-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.nickname-message' },
+                    {},
+                  ),
                 },
               ]}
             >
@@ -138,12 +154,17 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.profile-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.profile-message' },
+                    {},
+                  ),
                 },
               ]}
             >
               <Input.TextArea
-                placeholder={formatMessage({ id: 'accountsettings.basic.profile-placeholder' })}
+                placeholder={formatMessage({
+                  id: 'accountsettings.basic.profile-placeholder',
+                })}
                 rows={4}
               />
             </Form.Item>
@@ -153,7 +174,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.country-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.country-message' },
+                    {},
+                  ),
                 },
               ]}
             >
@@ -167,7 +191,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.geographic-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.geographic-message' },
+                    {},
+                  ),
                 },
                 {
                   validator: validatorGeographic,
@@ -182,7 +209,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.address-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.address-message' },
+                    {},
+                  ),
                 },
               ]}
             >
@@ -194,7 +224,10 @@ class BaseView extends Component<BaseViewProps> {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'accountsettings.basic.phone-message' }, {}),
+                  message: formatMessage(
+                    { id: 'accountsettings.basic.phone-message' },
+                    {},
+                  ),
                 },
                 { validator: validatorPhone },
               ]}
@@ -215,7 +248,7 @@ class BaseView extends Component<BaseViewProps> {
           <AvatarView avatar={this.getAvatarURL()} />
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -223,4 +256,4 @@ export default connect(
   ({ accountSettings }: { accountSettings: { currentUser: CurrentUser } }) => ({
     currentUser: accountSettings.currentUser,
   }),
-)(BaseView);
+)(BaseView)

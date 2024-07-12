@@ -1,22 +1,29 @@
-import { List, Switch } from 'antd';
-import { Component, Fragment } from 'react';
+import { List, Switch } from 'antd'
+import { Fragment } from 'react'
 
-import { useIntl } from '@umijs/max';
+import { useIntl } from '@umijs/max'
 
-type Unpacked<T> = T extends (infer U)[] ? U : T;
+type Unpacked<T> = T extends (infer U)[] ? U : T
 
 const NotificationView = (props) => {
   const getData = (intl) => {
     const Action = (
       <Switch
-        checkedChildren={intl.formatMessage({ id: 'accountsettings.settings.open' })}
-        unCheckedChildren={intl.formatMessage({ id: 'accountsettings.settings.close' })}
+        checkedChildren={intl.formatMessage({
+          id: 'accountsettings.settings.open',
+        })}
+        unCheckedChildren={intl.formatMessage({
+          id: 'accountsettings.settings.close',
+        })}
         defaultChecked
       />
-    );
+    )
     return [
       {
-        title: intl.formatMessage({ id: 'accountsettings.notification.password' }, {}),
+        title: intl.formatMessage(
+          { id: 'accountsettings.notification.password' },
+          {},
+        ),
         description: intl.formatMessage(
           { id: 'accountsettings.notification.password-description' },
           {},
@@ -24,7 +31,10 @@ const NotificationView = (props) => {
         actions: [Action],
       },
       {
-        title: intl.formatMessage({ id: 'accountsettings.notification.messages' }, {}),
+        title: intl.formatMessage(
+          { id: 'accountsettings.notification.messages' },
+          {},
+        ),
         description: intl.formatMessage(
           { id: 'accountsettings.notification.messages-description' },
           {},
@@ -32,18 +42,21 @@ const NotificationView = (props) => {
         actions: [Action],
       },
       {
-        title: intl.formatMessage({ id: 'accountsettings.notification.todo' }, {}),
+        title: intl.formatMessage(
+          { id: 'accountsettings.notification.todo' },
+          {},
+        ),
         description: intl.formatMessage(
           { id: 'accountsettings.notification.todo-description' },
           {},
         ),
         actions: [Action],
       },
-    ];
-  };
+    ]
+  }
 
-  const intl = useIntl();
-  const data = getData(intl);
+  const intl = useIntl()
+  const data = getData(intl)
 
   return (
     <Fragment>
@@ -57,7 +70,7 @@ const NotificationView = (props) => {
         )}
       />
     </Fragment>
-  );
+  )
 }
 
-export default NotificationView;
+export default NotificationView

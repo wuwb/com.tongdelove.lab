@@ -1,3 +1,3 @@
 export const useIsAuthenticated = () => {
-  return false;
-};
+  return false
+}

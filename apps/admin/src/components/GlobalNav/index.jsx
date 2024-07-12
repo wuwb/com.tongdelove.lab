@@ -1,14 +1,14 @@
-import { useCallback, useState } from 'react';
-import css from './index.module.less';
+import { useCallback, useState } from 'react'
+import css from './index.module.less'
 
 const GlobalNav = () => {
   // const isServer = typeof window === "undefined";
 
-  const [isServer, setIsServer] = useState(true);
+  const [isServer, setIsServer] = useState(true)
 
   useCallback(() => {
-    setIsServer(typeof window !== 'undefined');
-  }, []);
+    setIsServer(typeof window !== 'undefined')
+  }, [])
 
   return (
     <div className={css.globalNav}>
@@ -16,7 +16,8 @@ const GlobalNav = () => {
         <ul className="fl">
           <li>
             <a>
-              {isServer ? 'Server' : 'Client'} <span className="badge badge-secondary">Beta</span>
+              {isServer ? 'Server' : 'Client'}{' '}
+              <span className="badge badge-secondary">Beta</span>
             </a>
           </li>
           <li>
@@ -61,7 +62,7 @@ const GlobalNav = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GlobalNav;
+export default GlobalNav

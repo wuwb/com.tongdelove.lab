@@ -1,19 +1,19 @@
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Card, Divider, Statistic, Tooltip } from 'antd';
-import React from 'react';
+import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { Card, Divider, Statistic, Tooltip } from 'antd'
+import React from 'react'
 
-import style from './index.less';
+import style from './index.less'
 
 export default class Static extends React.Component {
   static defaultProps = {
     type: 'line',
     areaStyle: false,
     data: {},
-  };
+  }
 
   render() {
-    const { title, data, ...restProps } = this.props;
-    const { data: dataSource = [] } = data;
+    const { title, data, ...restProps } = this.props
+    const { data: dataSource = [] } = data
 
     const option = {
       tooltip: {},
@@ -26,7 +26,18 @@ export default class Static extends React.Component {
       xAxis: {
         type: 'category',
         show: false,
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月'],
+        data: [
+          '1月',
+          '2月',
+          '3月',
+          '4月',
+          '5月',
+          '6月',
+          '7月',
+          '8月',
+          '9月',
+          '10月',
+        ],
       },
       yAxis: {
         type: 'value',
@@ -40,9 +51,9 @@ export default class Static extends React.Component {
           ...restProps,
         },
       ],
-    };
+    }
 
-    const total = dataSource.reduce((a, b) => a + b, 0);
+    const total = dataSource.reduce((a, b) => a + b, 0)
 
     return (
       <Card bodyStyle={{ paddingBottom: 8 }}>
@@ -55,6 +66,6 @@ export default class Static extends React.Component {
           月最高{title}数量: {dataSource.length ? Math.max(...dataSource) : 0}
         </span>
       </Card>
-    );
+    )
   }
 }

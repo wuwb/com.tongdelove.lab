@@ -1,7 +1,7 @@
-import ms from 'ms';
+import ms from 'ms'
 
 export const msToString = (time) => {
-  const str = ms(time, { long: true });
+  const str = ms(time, { long: true })
   return (
     str
       .replace('days', '天')
@@ -11,12 +11,12 @@ export const msToString = (time) => {
       .replace('hours', '小时')
       .replace('hour', '小时')
       .replace('seconds', '秒') + '之前'
-  );
-};
+  )
+}
 
 export const getDNSPrefetchValue = (domain) => {
-  if (!domain) return null;
-  if (domain.startsWith('http')) return domain.replace(/https?:/, '');
-  if (domain.startsWith('//')) return domain;
-  return `//${domain}`;
-};
+  if (!domain) return null
+  if (domain.startsWith('http')) return domain.replace(/https?:/, '')
+  if (domain.startsWith('//')) return domain
+  return `//${domain}`
+}

@@ -1,7 +1,7 @@
-﻿import type { RequestOptions } from '@@/plugin-request/request';
-import type { RequestConfig } from '@umijs/max';
-import { history } from '@umijs/max';
-import { message, notification } from 'antd';
+﻿import type { RequestOptions } from '@@/plugin-request/request'
+import type { RequestConfig } from '@umijs/max'
+import { history } from '@umijs/max'
+import { message, notification } from 'antd'
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -13,16 +13,16 @@ enum ErrorShowType {
 }
 // 与后端约定的响应数据格式
 interface ResponseStructure {
-  success: boolean;
-  data: any;
-  errorCode?: number;
-  errorMessage?: string;
-  showType?: ErrorShowType;
+  success: boolean
+  data: any
+  errorCode?: number
+  errorMessage?: string
+  showType?: ErrorShowType
 }
 
 const authHeaderInterceptor = (config: RequestOptions) => {
   // 拦截请求配置，进行个性化处理。
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
 
   if (token) {
     const headers = {
@@ -30,7 +30,7 @@ const authHeaderInterceptor = (config: RequestOptions) => {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
       'X-tenant': 'default', // 公司编码？
-    };
+    }
     const result = {
       url: config.url,
       ...config,
@@ -38,11 +38,11 @@ const authHeaderInterceptor = (config: RequestOptions) => {
         ...config.headers,
         ...headers,
       },
-    };
-    return result;
+    }
+    return result
   }
-  return config;
-};
+  return config
+}
 
 /**
  * @name 错误处理
@@ -59,68 +59,68 @@ export const requestConfig: RequestConfig = {
     // 错误抛出
     errorThrower: (res) => {
       const { success, data, errorCode, errorMessage, showType } =
-        res as unknown as ResponseStructure;
+        res as unknown as ResponseStructure
       if (!success) {
-        const error: any = new Error(errorMessage);
-        error.name = 'BizError';
-        error.info = { errorCode, errorMessage, showType, data };
-        throw error; // 抛出自制的错误
+        const error: any = new Error(errorMessage)
+        error.name = 'BizError'
+        error.info = { errorCode, errorMessage, showType, data }
+        throw error // 抛出自制的错误
       }
     },
     // 错误接收及处理
     errorHandler: (error: any, opts: any) => {
-      console.error('error: ', error);
-      console.error('error.name: ', error.name);
-      console.error('error.response: ', error.response);
-      console.error('error.request: ', error.request);
-      console.error('opts: ', opts);
+      console.error('error: ', error)
+      console.error('error.name: ', error.name)
+      console.error('error.response: ', error.response)
+      console.error('error.request: ', error.request)
+      console.error('opts: ', opts)
 
-      if (opts?.skipErrorHandler) throw error;
+      if (opts?.skipErrorHandler) throw error
 
       // 我们的 errorThrower 抛出的错误。
       if (error.name === 'BizError') {
-        const errorInfo: ResponseStructure | undefined = error.info;
+        const errorInfo: ResponseStructure | undefined = error.info
         if (errorInfo) {
-          const { errorMessage, errorCode } = errorInfo;
+          const { errorMessage, errorCode } = errorInfo
           switch (errorInfo.showType) {
             case ErrorShowType.SILENT:
               // do nothing
-              break;
+              break
             case ErrorShowType.WARN_MESSAGE:
-              message.warning(errorMessage);
-              break;
+              message.warning(errorMessage)
+              break
             case ErrorShowType.ERROR_MESSAGE:
-              message.error(errorMessage);
-              break;
+              message.error(errorMessage)
+              break
             case ErrorShowType.NOTIFICATION:
               notification.open({
                 description: errorMessage,
                 message: errorCode,
-              });
-              break;
+              })
+              break
             case ErrorShowType.REDIRECT:
               // TODO: redirect
-              break;
+              break
             default:
-              message.error(errorMessage);
+              message.error(errorMessage)
           }
         } else {
-          message.error('Business Error, please try again.');
+          message.error('Business Error, please try again.')
         }
       } else if (error.name === 'TypeError') {
-        message.error(`Network error. Please try again.`);
+        message.error(`Network error. Please try again.`)
       } else if (error.response) {
         // Axios 的错误
         // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-        message.error(`Response status:${error.response.status}`);
+        message.error(`Response status:${error.response.status}`)
       } else if (error.request) {
         // 请求已经成功发起，但没有收到响应
         // \`error.request\` 在浏览器中是 XMLHttpRequest 的实例，
         // 而在node.js中是 http.ClientRequest 的实例
-        message.error('None response! Please retry.');
+        message.error('None response! Please retry.')
       } else {
         // 发送请求时出了点问题
-        message.error('Request error, please retry.');
+        message.error('Request error, please retry.')
       }
     },
   },
@@ -132,10 +132,10 @@ export const requestConfig: RequestConfig = {
   responseInterceptors: [
     (response) => {
       // 拦截响应数据，进行个性化处理
-      const { data } = response as unknown as ResponseStructure;
+      const { data } = response as unknown as ResponseStructure
 
       if (data?.success === false) {
-        message.error('请求失败！');
+        message.error('请求失败！')
       }
 
       if (data.code === 401) {
@@ -151,10 +151,10 @@ export const requestConfig: RequestConfig = {
           search: JSON.stringify({
             redirect: window.location.href,
           }),
-        });
+        })
       }
 
-      return response;
+      return response
     },
   ],
-};
+}

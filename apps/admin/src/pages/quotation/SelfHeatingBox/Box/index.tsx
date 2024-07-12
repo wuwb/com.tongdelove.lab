@@ -1,4 +1,4 @@
-import { PageHeader } from '@ant-design/pro-layout';
+import { PageHeader } from '@ant-design/pro-layout'
 import {
   ArrayItems,
   Cascader,
@@ -12,11 +12,11 @@ import {
   Select,
   Space,
   Submit,
-} from '@formily/antd-v5';
-import { createForm } from '@formily/core';
-import { createSchemaField, FormProvider } from '@formily/react';
-import { action } from '@formily/reactive';
-import { Card } from 'antd';
+} from '@formily/antd-v5'
+import { createForm } from '@formily/core'
+import { FormProvider, createSchemaField } from '@formily/react'
+import { action } from '@formily/reactive'
+import { Card } from 'antd'
 
 const SchemaField = createSchemaField({
   components: {
@@ -31,7 +31,7 @@ const SchemaField = createSchemaField({
     NumberPicker,
     Cascader,
   },
-});
+})
 
 const transformAddress = (data = {}) => {
   return Object.entries(data).reduce((buf, [key, value]) => {
@@ -39,32 +39,37 @@ const transformAddress = (data = {}) => {
       return buf.concat({
         label: value,
         value: key,
-      });
+      })
     }
-    const { name, code, cities, districts } = value;
-    const _cities = transformAddress(cities);
-    const _districts = transformAddress(districts);
+    const { name, code, cities, districts } = value
+    const _cities = transformAddress(cities)
+    const _districts = transformAddress(districts)
     return buf.concat({
       label: name,
       value: code,
-      children: _cities.length ? _cities : _districts.length ? _districts : undefined,
-    });
-  }, []);
-};
+      children: _cities.length
+        ? _cities
+        : _districts.length
+          ? _districts
+          : undefined,
+    })
+  }, [])
+}
 
-const useAsyncDataSource = (url: string, transform: (data: any) => any) => (field) => {
-  field.loading = true;
-  fetch(url)
-    .then((res) => res.json())
-    .then(
-      action.bound((data) => {
-        field.dataSource = transform(data);
-        field.loading = false;
-      }),
-    );
-};
+const useAsyncDataSource =
+  (url: string, transform: (data: any) => any) => (field) => {
+    field.loading = true
+    fetch(url)
+      .then((res) => res.json())
+      .then(
+        action.bound((data) => {
+          field.dataSource = transform(data)
+          field.loading = false
+        }),
+      )
+  }
 
-const form = createForm();
+const form = createForm()
 
 const schema = {
   type: 'object',
@@ -257,21 +262,24 @@ const schema = {
       ],
     },
   },
-};
+}
 
 const BoxPage = () => {
   return (
     <PageHeader>
       <Card>
         <FormProvider form={form}>
-          <SchemaField schema={schema} scope={{ useAsyncDataSource, transformAddress }} />
+          <SchemaField
+            schema={schema}
+            scope={{ useAsyncDataSource, transformAddress }}
+          />
           <FormButtonGroup>
             <Submit onSubmit={console.log}>提交</Submit>
           </FormButtonGroup>
         </FormProvider>
       </Card>
     </PageHeader>
-  );
-};
+  )
+}
 
-export default BoxPage;
+export default BoxPage

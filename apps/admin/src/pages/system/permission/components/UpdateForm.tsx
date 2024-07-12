@@ -1,14 +1,14 @@
-import { Outlet } from '@umijs/max';
-import { Modal } from 'antd';
-import React from 'react';
+import { Outlet } from '@umijs/max'
+import { Modal } from 'antd'
+import React from 'react'
 
 interface UpdateFormProps {
-  updateModalVisible: boolean;
-  onCancel: () => void;
+  updateModalVisible: boolean
+  onCancel: () => void
 }
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
-  const { updateModalVisible, onCancel } = props;
+  const { updateModalVisible, onCancel } = props
 
   return (
     <Modal
@@ -20,7 +20,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
     >
       <Outlet />
     </Modal>
-  );
-};
+  )
+}
 
-export default UpdateForm;
+export default UpdateForm

@@ -1,5 +1,10 @@
-import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from '@ant-design/icons';
-import styles from './index.less';
+import {
+  LockTwoTone,
+  MailTwoTone,
+  MobileTwoTone,
+  UserOutlined,
+} from '@ant-design/icons'
+import styles from './index.less'
 
 export default {
   Username: {
@@ -68,4 +73,4 @@ export default {
       },
     ],
   },
-};
+}

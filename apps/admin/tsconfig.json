@@ -13,35 +13,19 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/config/*": [
-        "./config/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-      "@@/*": [
-        "./src/.umi/*"
-      ],
-      "@@test/*": [
-        "./src/.umi-test/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/config/*": ["./config/*"],
+      "@/public/*": ["./public/*"],
+      "@@/*": ["./src/.umi/*"],
+      "@@test/*": ["./src/.umi-test/*"]
     },
     "declaration": true,
     "outDir": "build/dist",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     // "jsx": "react-jsx",
     // path
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
+    "typeRoots": ["./node_modules/@types"],
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "preserveConstEnums": true,
@@ -60,10 +44,7 @@
     "useDefineForClassFields": true,
     "strictPropertyInitialization": false
   },
-  "include": [
-    "src",
-    "config"
-  ],
+  "include": ["src", "config"],
   "exclude": [
     "node_modules",
     "dist",

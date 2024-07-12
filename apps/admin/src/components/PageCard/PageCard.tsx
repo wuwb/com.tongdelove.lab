@@ -1,16 +1,16 @@
-import { Outlet } from '@umijs/max';
-import { Spin } from 'antd';
-import clsx from 'clsx';
-import React from 'react';
+import { Outlet } from '@umijs/max'
+import { Spin } from 'antd'
+import clsx from 'clsx'
+import React from 'react'
 
-import style from './style.less';
+import style from './style.less'
 
 interface IProps {
-  children: React.ReactNode;
-  title?: React.ReactNode;
-  extra?: React.ReactNode;
-  className?: string;
-  loading?: boolean;
+  children: React.ReactNode
+  title?: React.ReactNode
+  extra?: React.ReactNode
+  className?: string
+  loading?: boolean
 }
 
 export const PageCard = (props: IProps) => (
@@ -26,4 +26,4 @@ export const PageCard = (props: IProps) => (
       </div>
     </Spin>
   </div>
-);
+)

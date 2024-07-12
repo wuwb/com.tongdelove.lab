@@ -30,11 +30,13 @@ export default {
   'accountsettings.security.phone': '密保手机',
   'accountsettings.security.phone-description': '已绑定手机：',
   'accountsettings.security.question': '密保问题',
-  'accountsettings.security.question-description': '未设置密保问题，密保问题可有效保护账户安全',
+  'accountsettings.security.question-description':
+    '未设置密保问题，密保问题可有效保护账户安全',
   'accountsettings.security.email': '备用邮箱',
   'accountsettings.security.email-description': '已绑定邮箱：',
   'accountsettings.security.mfa': 'MFA 设备',
-  'accountsettings.security.mfa-description': '未绑定 MFA 设备，绑定后，可以进行二次确认',
+  'accountsettings.security.mfa-description':
+    '未绑定 MFA 设备，绑定后，可以进行二次确认',
   'accountsettings.security.modify': '修改',
   'accountsettings.security.set': '设置',
   'accountsettings.security.bind': '绑定',
@@ -46,11 +48,14 @@ export default {
   'accountsettings.binding.dingding-description': '当前未绑定钉钉账号',
   'accountsettings.binding.bind': '绑定',
   'accountsettings.notification.password': '账户密码',
-  'accountsettings.notification.password-description': '其他用户的消息将以站内信的形式通知',
+  'accountsettings.notification.password-description':
+    '其他用户的消息将以站内信的形式通知',
   'accountsettings.notification.messages': '系统消息',
-  'accountsettings.notification.messages-description': '系统消息将以站内信的形式通知',
+  'accountsettings.notification.messages-description':
+    '系统消息将以站内信的形式通知',
   'accountsettings.notification.todo': '待办任务',
-  'accountsettings.notification.todo-description': '待办任务将以站内信的形式通知',
+  'accountsettings.notification.todo-description':
+    '待办任务将以站内信的形式通知',
   'accountsettings.settings.open': '开',
   'accountsettings.settings.close': '关',
-};
+}

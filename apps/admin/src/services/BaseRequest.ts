@@ -1,4 +1,4 @@
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export async function create(path: string, params) {
   return request(`/api/${path}/create`, {
@@ -6,7 +6,7 @@ export async function create(path: string, params) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function remove(path: string, params) {
@@ -15,7 +15,7 @@ export async function remove(path: string, params) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function update(path: string, params) {
@@ -24,19 +24,19 @@ export async function update(path: string, params) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function list(path: string, params) {
   return request(`/api/${path}/list`, {
     params,
-  });
+  })
 }
 
 export async function get(path: string, params) {
   return request(`/api/${path}/get`, {
     params,
-  });
+  })
 }
 
 export async function order(path: string, params) {
@@ -45,5 +45,5 @@ export async function order(path: string, params) {
     data: {
       ...params,
     },
-  });
+  })
 }

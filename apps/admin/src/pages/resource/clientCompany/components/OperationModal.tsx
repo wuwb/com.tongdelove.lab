@@ -1,57 +1,57 @@
-import { Button, DatePicker, Form, Input, Modal, Result, Select } from 'antd';
-import dayjs from 'dayjs';
-import { FC, useEffect } from 'react';
-import { BasicListItemDataType } from '../data.d';
-import styles from '../style.less';
+import { Button, DatePicker, Form, Input, Modal, Result, Select } from 'antd'
+import dayjs from 'dayjs'
+import { FC, useEffect } from 'react'
+import { BasicListItemDataType } from '../data.d'
+import styles from '../style.less'
 
 interface OperationModalProps {
-  done: boolean;
-  visible: boolean;
-  current: Partial<BasicListItemDataType> | undefined;
-  onDone: () => void;
-  onSubmit: (values: BasicListItemDataType) => void;
-  onCancel: () => void;
+  done: boolean
+  visible: boolean
+  current: Partial<BasicListItemDataType> | undefined
+  onDone: () => void
+  onSubmit: (values: BasicListItemDataType) => void
+  onCancel: () => void
 }
 
-const { TextArea } = Input;
+const { TextArea } = Input
 const formLayout = {
   labelCol: { span: 7 },
   wrapperCol: { span: 13 },
-};
+}
 
 const OperationModal: FC<OperationModalProps> = (props) => {
-  const [form] = Form.useForm();
-  const { done, visible, current, onDone, onCancel, onSubmit } = props;
+  const [form] = Form.useForm()
+  const { done, visible, current, onDone, onCancel, onSubmit } = props
 
   useEffect(() => {
     if (form && !visible) {
-      form.resetFields();
+      form.resetFields()
     }
-  }, [props.visible]);
+  }, [props.visible])
 
   useEffect(() => {
     if (current) {
       form.setFieldsValue({
         ...current,
         createdAt: current.createdAt ? dayjs(current.createdAt) : null,
-      });
+      })
     }
-  }, [props.current]);
+  }, [props.current])
 
   const handleSubmit = () => {
-    if (!form) return;
-    form.submit();
-  };
+    if (!form) return
+    form.submit()
+  }
 
   const handleFinish = (values: { [key: string]: any }) => {
     if (onSubmit) {
-      onSubmit(values as BasicListItemDataType);
+      onSubmit(values as BasicListItemDataType)
     }
-  };
+  }
 
   const modalFooter = done
     ? { footer: null, onCancel: onDone }
-    : { okText: '保存', onOk: handleSubmit, onCancel };
+    : { okText: '保存', onOk: handleSubmit, onCancel }
 
   const getModalContent = () => {
     if (done) {
@@ -67,7 +67,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
           }
           className={styles.formResult}
         />
-      );
+      )
     }
     return (
       <Form {...formLayout} form={form} onFinish={handleFinish}>
@@ -108,8 +108,8 @@ const OperationModal: FC<OperationModalProps> = (props) => {
           <TextArea rows={4} placeholder="请输入至少五个字符" />
         </Form.Item>
       </Form>
-    );
-  };
+    )
+  }
 
   return (
     <Modal
@@ -123,7 +123,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
     >
       {getModalContent()}
     </Modal>
-  );
-};
+  )
+}
 
-export default OperationModal;
+export default OperationModal

@@ -1,5 +1,5 @@
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 export async function getCache() {
-  return request('/api/monitor/cache');
+  return request('/api/monitor/cache')
 }

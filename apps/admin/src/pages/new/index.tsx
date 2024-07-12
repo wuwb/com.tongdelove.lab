@@ -1,19 +1,19 @@
-import { BoxCell, BoxInner, BoxWrap, NewTips } from '@/components/Sider';
-import { basicSetup } from '@codemirror/basic-setup';
-import { markdown } from '@codemirror/lang-markdown';
-import { EditorState } from '@codemirror/state';
-import { EditorView, ViewUpdate } from '@codemirror/view';
-import { Button, Input, Layout, Space } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import Styles from './index.less';
+import { BoxCell, BoxInner, BoxWrap, NewTips } from '@/components/Sider'
+import { basicSetup } from '@codemirror/basic-setup'
+import { markdown } from '@codemirror/lang-markdown'
+import { EditorState } from '@codemirror/state'
+import { EditorView, ViewUpdate } from '@codemirror/view'
+import { Button, Input, Layout, Space } from 'antd'
+import { useEffect, useRef, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import Styles from './index.less'
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 const NewPage = () => {
-  const editor = useRef();
-  const [cacheContent, setCacheContent] = useState(``);
-  const [preview, setPreview] = useState(``);
+  const editor = useRef()
+  const [cacheContent, setCacheContent] = useState(``)
+  const [preview, setPreview] = useState(``)
   const state = EditorState.create({
     doc: preview,
     extensions: [
@@ -22,14 +22,14 @@ const NewPage = () => {
       EditorView.updateListener.of((v: ViewUpdate) => {
         if (v.docChanged) {
           // Document changed
-          setCacheContent(v.state.doc.text.join('\n'));
+          setCacheContent(v.state.doc.text.join('\n'))
         }
       }),
       EditorView.theme({
         '.cm-content, .cm-gutter': { minHeight: '200px' },
       }),
     ],
-  });
+  })
 
   useEffect(() => {
     // const log = (event) => {
@@ -40,17 +40,17 @@ const NewPage = () => {
     const view = new EditorView({
       state,
       parent: editor.current,
-    });
+    })
 
     return () => {
-      view.destroy();
+      view.destroy()
       //   editor.current.removeEventListener('input', log);
-    };
-  }, []);
+    }
+  }, [])
 
   const handlePreview = () => {
-    setPreview(cacheContent);
-  };
+    setPreview(cacheContent)
+  }
 
   return (
     <Layout.Content>
@@ -93,7 +93,7 @@ const NewPage = () => {
         </div>
       </div>
     </Layout.Content>
-  );
-};
+  )
+}
 
-export default NewPage;
+export default NewPage

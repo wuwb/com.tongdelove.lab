@@ -1,10 +1,10 @@
-import { SiderBox } from '@/components/Sider';
-import { Tabs } from 'antd';
+import { SiderBox } from '@/components/Sider'
+import { Tabs } from 'antd'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
 function callback(key) {
-  console.log(key);
+  console.log(key)
 }
 
 const NewTips = () => {
@@ -25,7 +25,7 @@ const NewTips = () => {
         </TabPane>
       </Tabs>
     </SiderBox>
-  );
-};
+  )
+}
 
-export default NewTips;
+export default NewTips

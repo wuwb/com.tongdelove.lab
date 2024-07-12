@@ -1,15 +1,15 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
-import { Card, Input, Typography } from 'antd';
-import React, { useState } from 'react';
+import { PageContainer } from '@ant-design/pro-components'
+import { useIntl } from '@umijs/max'
+import { Card, Input, Typography } from 'antd'
+import React, { useState } from 'react'
 
 const PunctureResistance = (): React.ReactNode => {
-  const intl = useIntl();
-  let [param, seParam] = useState(0);
+  const intl = useIntl()
+  let [param, seParam] = useState(0)
 
   function cal(e: any) {
-    console.log(e);
-    seParam(e.currentTarget.value);
+    console.log(e)
+    seParam(e.currentTarget.value)
   }
 
   return (
@@ -23,7 +23,12 @@ const PunctureResistance = (): React.ReactNode => {
         <div>计算公式：PET=0.0054×纸板耐破强度+2.1635</div>
         <div>纸箱耐破强度</div>
         <div style={{ marginBottom: 16 }}>
-          <Input value={param} addonAfter="Kpa" defaultValue="" onChange={cal} />
+          <Input
+            value={param}
+            addonAfter="Kpa"
+            defaultValue=""
+            onChange={cal}
+          />
         </div>
         <div>瓦楞纸版戳穿强度计算结果</div>
         纸板戳穿强度PET=
@@ -33,7 +38,7 @@ const PunctureResistance = (): React.ReactNode => {
         参考： http://www.3602000.com/jisuanji/index.html
       </Card>
     </PageContainer>
-  );
-};
+  )
+}
 
-export default PunctureResistance;
+export default PunctureResistance

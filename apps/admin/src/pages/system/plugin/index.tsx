@@ -1,7 +1,7 @@
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-components'
 
 function Plugins() {
-  return <PageContainer>plugins</PageContainer>;
+  return <PageContainer>plugins</PageContainer>
 }
 
-export default Plugins;
+export default Plugins

@@ -1,16 +1,19 @@
+import { AccentSidebarLayout, FullLayout } from '@/components/layouts'
+import BaseCard from '@/components/module/baseCard/BaseCard'
 import {
-  Grid,
-  Button,
   Box,
-  Stack,
-  IconButton,
-  Fab,
+  Button,
   ButtonGroup,
-} from "@mui/material";
-import BaseCard from "@/components/module/baseCard/BaseCard";
-import { FullLayout } from "@/components/layouts";
-import { AccentSidebarLayout } from '@/components/layouts';
-import { RiHomeSmileLine, RiChatDeleteLine, RiAccountBoxLine } from "react-icons/ri";
+  Fab,
+  Grid,
+  IconButton,
+  Stack,
+} from '@mui/material'
+import {
+  RiAccountBoxLine,
+  RiChatDeleteLine,
+  RiHomeSmileLine,
+} from 'react-icons/ri'
 
 const Buttons = () => {
   return (
@@ -76,7 +79,7 @@ const Buttons = () => {
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={6}>
           <BaseCard title="Size Buttons">
-            <Box sx={{ "& button": { mx: 1 } }}>
+            <Box sx={{ '& button': { mx: 1 } }}>
               <Button color="primary" size="small" variant="contained">
                 small
               </Button>
@@ -147,13 +150,13 @@ const Buttons = () => {
         </Grid>
       </Grid>
     </FullLayout>
-  );
-};
+  )
+}
 
 Buttons.getLayout = (page) => (
   // <Authenticated>
   <AccentSidebarLayout>{page}</AccentSidebarLayout>
   // </Authenticated>
-);
+)
 
-export default Buttons;
+export default Buttons

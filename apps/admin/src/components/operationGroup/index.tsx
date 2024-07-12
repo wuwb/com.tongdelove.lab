@@ -1,48 +1,48 @@
-import Dropdown from '@/components/dropdown';
-import { Space } from 'antd';
-import React from 'react';
+import Dropdown from '@/components/dropdown'
+import { Space } from 'antd'
+import React from 'react'
 
 function arrCut(arr, cutLength) {
-  const arrLength = arr.length;
-  let arrBefore = [];
-  let arrAfter = [];
+  const arrLength = arr.length
+  let arrBefore = []
+  let arrAfter = []
   if (arrLength > cutLength) {
-    arrBefore = arr.slice(0, cutLength - 1);
-    arrAfter = arr.slice(cutLength - 1, arrLength);
+    arrBefore = arr.slice(0, cutLength - 1)
+    arrAfter = arr.slice(cutLength - 1, arrLength)
   } else {
-    arrBefore = [...arr];
+    arrBefore = [...arr]
   }
   return {
     arrBefore,
     arrAfter,
-  };
+  }
 }
 
 class OperationGroup extends React.Component {
   renderOperating = () => {
-    const { config, ctx } = this.props;
-    const { actionsRender, max = 4 } = config;
+    const { config, ctx } = this.props
+    const { actionsRender, max = 4 } = config
     const renders = actionsRender
       .filter((c) => {
-        const { visible } = c || {};
-        return !(visible === false);
+        const { visible } = c || {}
+        return !(visible === false)
       })
       .map(({ funcProps, ...others }) => {
-        const { visible, ...funcPropsOthers } = funcProps || {};
+        const { visible, ...funcPropsOthers } = funcProps || {}
         return {
           ...funcPropsOthers,
           ...others,
-        };
-      });
+        }
+      })
 
     if (Array.isArray(renders) && renders.length > 0) {
-      const { arrBefore, arrAfter } = arrCut(renders, max);
-      let arrAfterRender = null;
+      const { arrBefore, arrAfter } = arrCut(renders, max)
+      let arrAfterRender = null
       const arrBeforeRender = arrBefore.map((item, idx) => {
-        return {};
-      });
+        return {}
+      })
 
-      let finalAfterRender;
+      let finalAfterRender
       if (arrAfter.length > 0) {
         finalAfterRender = arrAfter.map((c, idx) => {
           const {
@@ -52,7 +52,7 @@ class OperationGroup extends React.Component {
             props: { type, style },
             action = [],
             ...others
-          } = c || {};
+          } = c || {}
           const finalConfig = {
             ...others,
             type: 'button',
@@ -68,28 +68,32 @@ class OperationGroup extends React.Component {
               },
             },
             action,
-          };
-          return finalConfig;
-        });
+          }
+          return finalConfig
+        })
 
         arrAfterRender = (
-          <Dropdown ctx={ctx} config={{ render: finalAfterRender }} key={ctx.record.id} />
-        );
+          <Dropdown
+            ctx={ctx}
+            config={{ render: finalAfterRender }}
+            key={ctx.record.id}
+          />
+        )
       }
-      return [arrBeforeRender, arrAfterRender];
+      return [arrBeforeRender, arrAfterRender]
     }
-  };
+  }
 
   render() {
     const {
       config: { props = {}, spaceSize = 'small' },
-    } = this.props;
+    } = this.props
     return (
       <Space size={spaceSize} style={props.style || {}}>
         {this.renderOperating()}
       </Space>
-    );
+    )
   }
 }
 
-export default OperationGroup;
+export default OperationGroup

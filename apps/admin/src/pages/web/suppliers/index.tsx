@@ -1,18 +1,18 @@
-import { queryProducts } from '@/services/demo/product';
-import { PageContainer } from '@ant-design/pro-components';
-import { Link, useIntl, useRequest } from '@umijs/max';
-import React from 'react';
+import { queryProducts } from '@/services/demo/product'
+import { PageContainer } from '@ant-design/pro-components'
+import { Link, useIntl, useRequest } from '@umijs/max'
+import React from 'react'
 
 const Suppliers = (): React.ReactNode => {
-  const intl = useIntl();
+  const intl = useIntl()
 
-  const { data, error, loading } = useRequest(queryProducts);
+  const { data, error, loading } = useRequest(queryProducts)
 
   if (loading) {
-    return <div>loading</div>;
+    return <div>loading</div>
   }
   if (error) {
-    return <div>loading</div>;
+    return <div>loading</div>
   }
 
   return (
@@ -22,10 +22,10 @@ const Suppliers = (): React.ReactNode => {
           <div key={item.id}>
             <Link to={`/products/${item.path}`}>{item.name}</Link>
           </div>
-        );
+        )
       })}
     </PageContainer>
-  );
-};
+  )
+}
 
 export default Suppliers

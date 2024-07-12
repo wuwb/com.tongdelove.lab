@@ -8,10 +8,10 @@ let class2type = {
   '[object Object]': 'object',
   '[object RegExp]': 'regexp',
   '[object String]': 'string',
-};
+}
 
 export default (value) => {
   return typeof value === 'object' || typeof value === 'function'
     ? class2type[toString.call(value)] || 'object'
-    : typeof value;
-};
+    : typeof value
+}

@@ -1,10 +1,10 @@
-import { LogoutOutlined } from '@ant-design/icons';
-import { useModel } from '@umijs/max';
-import { Avatar, Dropdown, Menu } from 'antd';
-import { parse } from 'querystring';
+import { LogoutOutlined } from '@ant-design/icons'
+import { useModel } from '@umijs/max'
+import { Avatar, Dropdown, Menu } from 'antd'
+import { parse } from 'querystring'
 
 function AvatarDropdown() {
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { initialState, setInitialState } = useModel('@@initialState')
 
   const handleLogout = async () => {
     // await request({
@@ -13,10 +13,10 @@ function AvatarDropdown() {
     //   successMessage: true,
     // });
 
-    const { redirect } = parse(window.location.href.split('?')[1]);
-    console.log('window.location.pathname: ', window.location.pathname);
+    const { redirect } = parse(window.location.href.split('?')[1])
+    console.log('window.location.pathname: ', window.location.pathname)
     if (window.location.pathname !== '/user/login' && !redirect) {
-      console.log('window.location.pathname: ', window.location.pathname);
+      console.log('window.location.pathname: ', window.location.pathname)
       // history.replace({
       //   pathname: '/user/login',
       //   search: stringify({
@@ -27,9 +27,9 @@ function AvatarDropdown() {
       setInitialState({
         ...initialState,
         currentUser: 'none',
-      });
+      })
     }
-  };
+  }
 
   const menu = (
     <Menu>
@@ -38,7 +38,7 @@ function AvatarDropdown() {
         退出登录
       </Menu.Item>
     </Menu>
-  );
+  )
 
   return (
     <Dropdown menu={menu}>
@@ -52,7 +52,7 @@ function AvatarDropdown() {
         {initialState?.currentUser}
       </Avatar>
     </Dropdown>
-  );
+  )
 }
 
-export default AvatarDropdown;
+export default AvatarDropdown

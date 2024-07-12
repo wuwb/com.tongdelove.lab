@@ -1,9 +1,9 @@
-import { ApolloClient, InMemoryCache } from 'apollo-boost';
-import { PrimeLink } from 'apollo-link-prime';
+import { ApolloClient, InMemoryCache } from 'apollo-boost'
+import { PrimeLink } from 'apollo-link-prime'
 
-const endpoint = 'https://example-prime.herokuapp.com';
+const endpoint = 'https://example-prime.herokuapp.com'
 
-let apolloClient = null;
+let apolloClient = null
 
 // // Polyfill fetch() on the server (used by apollo-client)
 // if (!process.browser) {
@@ -36,20 +36,20 @@ function create(initialState, { cookies }) {
       cookies,
     }),
     cache: new InMemoryCache().restore(initialState || {}),
-  });
+  })
 }
 
 export default function initApollo(initialState, options) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState, options);
+    return create(initialState, options)
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState, options);
+    apolloClient = create(initialState, options)
   }
 
-  return apolloClient;
+  return apolloClient
 }

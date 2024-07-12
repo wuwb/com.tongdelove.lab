@@ -1,4 +1,4 @@
-import ToolBar from '@/components/ToolBar';
+import ToolBar from '@/components/ToolBar'
 import {
   DeleteOutlined,
   FormOutlined,
@@ -6,111 +6,119 @@ import {
   PlusSquareOutlined,
   ReloadOutlined,
   SaveOutlined,
-} from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import { useRequest } from '@umijs/max';
-import { Alert, Card, Col, message, Popconfirm, Row, Tag } from 'antd';
-import { useRef, useState } from 'react';
+} from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import { useRequest } from '@umijs/max'
+import { Alert, Card, Col, Popconfirm, Row, Tag, message } from 'antd'
+import { useRef, useState } from 'react'
 
-import { createMenu, orderMenu, queryMenu, removeMenu, updateMenu } from '@/services/base/menu';
-import { TableListItem } from '@/services/base/menu.d';
+import {
+  createMenu,
+  orderMenu,
+  queryMenu,
+  removeMenu,
+  updateMenu,
+} from '@/services/base/menu'
+import { TableListItem } from '@/services/base/menu.d'
 
-import { arrayTransTree, treeTransArray } from '@/utils/utils';
+import { arrayTransTree, treeTransArray } from '@/utils/utils'
 
-import CreateForm, { CreateFormHandleProps } from './components/CreateForm';
-import UpdateForm, { UpdateFormHandleProps } from './components/UpdateForm';
-import styles from './index.less';
+import CreateForm, { CreateFormHandleProps } from './components/CreateForm'
+import UpdateForm, { UpdateFormHandleProps } from './components/UpdateForm'
+import styles from './index.less'
 
 /**
  * 添加
  * @param fields
  */
 const handleCreate = async (fields: TableListItem) => {
-  const hide = message.loading('正在添加');
+  const hide = message.loading('正在添加')
   try {
-    await createMenu({ ...fields });
-    hide();
-    message.success('添加成功');
-    return true;
+    await createMenu({ ...fields })
+    hide()
+    message.success('添加成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('添加失败请重试！');
-    return false;
+    hide()
+    message.error('添加失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 更新
  * @param fields
  */
 const handleUpdate = async (fields: TableListItem) => {
-  const hide = message.loading('正在更新');
+  const hide = message.loading('正在更新')
   try {
     await updateMenu({
       ...fields,
-    });
-    hide();
-    message.success('更新成功');
-    return true;
+    })
+    hide()
+    message.success('更新成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('更新失败请重试！');
-    return false;
+    hide()
+    message.error('更新失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 删除
  * @param selectedRows
  */
 const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  const hide = message.loading('正在删除')
+  if (!selectedRows) return true
   try {
     await removeMenu({
       id: selectedRows.map((row) => row.id),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
+    })
+    hide()
+    message.success('删除成功，即将刷新')
+    return true
   } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
+    hide()
+    message.error('删除失败，请重试')
+    return false
   }
-};
+}
 
 /**
  * 保存排序
  */
 const handleOrder = async (orders: { id: string; parentId: string }[]) => {
-  const hide = message.loading('正在保存');
+  const hide = message.loading('正在保存')
   try {
-    await orderMenu({ orders });
-    hide();
-    message.success('保存成功，即将刷新');
-    return true;
+    await orderMenu({ orders })
+    hide()
+    message.success('保存成功，即将刷新')
+    return true
   } catch (error) {
-    hide();
-    message.error('保存失败，请重试');
-    return false;
+    hide()
+    message.error('保存失败，请重试')
+    return false
   }
-};
+}
 
 export const AuthPage = () => {
-  const nestableRef = useRef<{ collapse: (type: string | number[]) => void }>(null);
-  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
-  const [currentFormValues, setCurrentFormValues] = useState({});
-  const createFormRef = useRef<CreateFormHandleProps>(null);
-  const updateFormRef = useRef<UpdateFormHandleProps>(null);
+  const nestableRef = useRef<{ collapse: (type: string | number[]) => void }>(
+    null,
+  )
+  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false)
+  const [currentFormValues, setCurrentFormValues] = useState({})
+  const createFormRef = useRef<CreateFormHandleProps>(null)
+  const updateFormRef = useRef<UpdateFormHandleProps>(null)
 
   // 加载菜单数据
   const { data, loading, error, run } = useRequest(
     () => {
-      return queryMenu({ pageSize: 1000 });
+      return queryMenu({ pageSize: 1000 })
     },
     { throttleInterval: 500 },
-  );
+  )
 
   const renderItem = (params: any) => {
     return (
@@ -129,10 +137,12 @@ export const AuthPage = () => {
           )}
           <a
             onClick={() => {
-              setUpdateModalVisible(true);
+              setUpdateModalVisible(true)
               setCurrentFormValues(
-                Object.assign(params.item, { permission: params.item.permission.id }),
-              );
+                Object.assign(params.item, {
+                  permission: params.item.permission.id,
+                }),
+              )
             }}
           >
             <FormOutlined />
@@ -149,8 +159,8 @@ export const AuthPage = () => {
             placement="left"
             onConfirm={async () => {
               // 不论是否删除成功，都重新加载列表数据
-              await handleRemove([params.item]);
-              run();
+              await handleRemove([params.item])
+              run()
             }}
             style={{ width: 220 }}
             okText="确定"
@@ -162,37 +172,37 @@ export const AuthPage = () => {
           </Popconfirm>
         </span>
       </>
-    );
-  };
+    )
+  }
 
   const collapse = (collapseCase: number, expendIds?: number[]) => {
     if (nestableRef.current) {
       switch (collapseCase) {
         case 0:
-          nestableRef.current?.collapse('NONE');
-          break;
+          nestableRef.current?.collapse('NONE')
+          break
         case 1:
-          nestableRef.current?.collapse('ALL');
-          break;
+          nestableRef.current?.collapse('ALL')
+          break
         case 2:
-          nestableRef.current?.collapse(expendIds || []);
-          break;
+          nestableRef.current?.collapse(expendIds || [])
+          break
         default:
       }
     }
-  };
+  }
 
   const NestableBox = () => {
     // 过滤默认选择的数据格式
     if (error) {
-      return <div>failed to load</div>;
+      return <div>failed to load</div>
     }
     if (loading) {
-      return <div>loading...</div>;
+      return <div>loading...</div>
     }
-    const items = arrayTransTree(data?.list as any[], 'parentId') || [];
-    return <div ref={nestableRef}>{renderItem(items)}</div>;
-  };
+    const items = arrayTransTree(data?.list as any[], 'parentId') || []
+    return <div ref={nestableRef}>{renderItem(items)}</div>
+  }
 
   return (
     <PageHeader className={styles.main}>
@@ -206,7 +216,7 @@ export const AuthPage = () => {
                   className="ant-pro-table-toolbar-item-icon"
                   title="展开"
                   onClick={() => {
-                    collapse(0);
+                    collapse(0)
                   }}
                 >
                   <PlusSquareOutlined />
@@ -215,7 +225,7 @@ export const AuthPage = () => {
                   className="ant-pro-table-toolbar-item-icon"
                   title="折叠"
                   onClick={() => {
-                    collapse(1);
+                    collapse(1)
                   }}
                 >
                   <MinusSquareOutlined />
@@ -225,15 +235,24 @@ export const AuthPage = () => {
                   title="保存"
                   onClick={async () => {
                     const rows: TableListItem[] =
-                      treeTransArray((nestableRef.current as any)?.state?.items) || [];
-                    const orders = rows.map((item) => ({ id: item.id, parentId: item.parentId }));
-                    await handleOrder(orders);
-                    run();
+                      treeTransArray(
+                        (nestableRef.current as any)?.state?.items,
+                      ) || []
+                    const orders = rows.map((item) => ({
+                      id: item.id,
+                      parentId: item.parentId,
+                    }))
+                    await handleOrder(orders)
+                    run()
                   }}
                 >
                   <SaveOutlined />
                 </span>,
-                <span className="ant-pro-table-toolbar-item-icon" title="刷新" onClick={run}>
+                <span
+                  className="ant-pro-table-toolbar-item-icon"
+                  title="刷新"
+                  onClick={run}
+                >
                   <ReloadOutlined />
                 </span>,
               ]}
@@ -248,7 +267,8 @@ export const AuthPage = () => {
                     <br />
                     左侧菜单显示的名称在locales做国际化配置
                     <br />
-                    需要鉴权的页面，在 config.ts 中配置 access: &apos;canAdmin&apos; 即可走鉴权
+                    需要鉴权的页面，在 config.ts 中配置 access:
+                    &apos;canAdmin&apos; 即可走鉴权
                   </>
                 }
                 type="info"
@@ -265,10 +285,10 @@ export const AuthPage = () => {
             <CreateForm
               ref={createFormRef}
               onSubmit={async (values) => {
-                const success = await handleCreate(values);
+                const success = await handleCreate(values)
                 if (success) {
-                  createFormRef.current?.reset();
-                  run();
+                  createFormRef.current?.reset()
+                  run()
                 }
               }}
             />
@@ -280,22 +300,22 @@ export const AuthPage = () => {
       {updateModalVisible && Object.keys(currentFormValues).length ? (
         <UpdateForm
           onCancel={() => {
-            setUpdateModalVisible(false);
-            setCurrentFormValues({});
-            updateFormRef.current?.reset();
+            setUpdateModalVisible(false)
+            setCurrentFormValues({})
+            updateFormRef.current?.reset()
           }}
           values={currentFormValues as TableListItem}
           updateModalVisible={updateModalVisible}
           onSubmit={async (values) => {
-            const success = await handleUpdate(values);
+            const success = await handleUpdate(values)
             if (success) {
-              setUpdateModalVisible(false);
-              setCurrentFormValues({});
-              run();
+              setUpdateModalVisible(false)
+              setCurrentFormValues({})
+              run()
             }
           }}
         />
       ) : null}
     </PageHeader>
-  );
-};
+  )
+}

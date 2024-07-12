@@ -1,14 +1,14 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { ActionType, ProColumns } from '@ant-design/pro-table';
-import { Card } from 'antd';
-import React, { useRef } from 'react';
-import { TableListItem } from './data.d';
-import { removeProduct } from './service';
+import { PageContainer } from '@ant-design/pro-components'
+import { ActionType, ProColumns } from '@ant-design/pro-table'
+import { Card } from 'antd'
+import React, { useRef } from 'react'
+import { TableListItem } from './data.d'
+import { removeProduct } from './service'
 
 export default (): React.ReactNode => {
-  console.log('--------');
+  console.log('--------')
 
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType>()
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -44,7 +44,7 @@ export default (): React.ReactNode => {
         </>
       ),
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -71,5 +71,5 @@ export default (): React.ReactNode => {
         columns={columns}
       /> */}
     </PageContainer>
-  );
-};
+  )
+}

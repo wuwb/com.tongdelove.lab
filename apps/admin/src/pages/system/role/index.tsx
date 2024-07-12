@@ -1,104 +1,119 @@
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { PageHeader } from '@ant-design/pro-layout';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
-import { useRequest } from '@umijs/max';
-import { Button, Divider, Dropdown, Menu, message, Popconfirm, Select, Tag } from 'antd';
-import { SorterResult } from 'antd/es/table/interface';
-import { useRef, useState } from 'react';
+import { DownOutlined, PlusOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
+import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table'
+import { useRequest } from '@umijs/max'
+import {
+  Button,
+  Divider,
+  Dropdown,
+  Menu,
+  Popconfirm,
+  Select,
+  Tag,
+  message,
+} from 'antd'
+import { SorterResult } from 'antd/es/table/interface'
+import { useRef, useState } from 'react'
 
-import { queryPermission } from '@/services/base/permission';
-import { createRole, queryRole, removeRole, showRole, updateRole } from '@/services/base/role';
-import { TableListItem } from '@/services/base/role.d';
-import CreateForm from './components/CreateForm';
-import ShowForm from './components/ShowForm';
-import UpdateForm from './components/UpdateForm';
+import { queryPermission } from '@/services/base/permission'
+import {
+  createRole,
+  queryRole,
+  removeRole,
+  showRole,
+  updateRole,
+} from '@/services/base/role'
+import { TableListItem } from '@/services/base/role.d'
+import CreateForm from './components/CreateForm'
+import ShowForm from './components/ShowForm'
+import UpdateForm from './components/UpdateForm'
 
-import styles from './index.less';
+import styles from './index.less'
 
 /**
  * 添加
  * @param fields
  */
 const handleCreate = async (fields: TableListItem) => {
-  const hide = message.loading('正在添加');
+  const hide = message.loading('正在添加')
   try {
-    await createRole({ ...fields });
-    hide();
-    message.success('添加成功');
-    return true;
+    await createRole({ ...fields })
+    hide()
+    message.success('添加成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('添加失败请重试！');
-    return false;
+    hide()
+    message.error('添加失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 更新
  * @param fields
  */
 const handleUpdate = async (fields: TableListItem) => {
-  const hide = message.loading('正在更新');
+  const hide = message.loading('正在更新')
   try {
     await updateRole({
       ...fields,
-    });
-    hide();
-    message.success('更新成功');
-    return true;
+    })
+    hide()
+    message.success('更新成功')
+    return true
   } catch (error) {
-    hide();
-    message.error('更新失败请重试！');
-    return false;
+    hide()
+    message.error('更新失败请重试！')
+    return false
   }
-};
+}
 
 /**
  * 查看
  * @param record
  */
 const handleShow = async (record: TableListItem) => {
-  const hide = message.loading('正在加载数据');
+  const hide = message.loading('正在加载数据')
   try {
-    const { data } = await showRole({ id: record.id });
-    hide();
-    message.success('加载成功');
-    return data;
+    const { data } = await showRole({ id: record.id })
+    hide()
+    message.success('加载成功')
+    return data
   } catch (error) {
-    hide();
-    message.error('加载失败请重试！');
-    return false;
+    hide()
+    message.error('加载失败请重试！')
+    return false
   }
-};
+}
 
 /**
  *  删除
  * @param selectedRows
  */
 const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+  const hide = message.loading('正在删除')
+  if (!selectedRows) return true
   try {
     await removeRole({
       id: selectedRows.map((row) => row.id),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
+    })
+    hide()
+    message.success('删除成功，即将刷新')
+    return true
   } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
+    hide()
+    message.error('删除失败，请重试')
+    return false
   }
-};
+}
 
 export default () => {
-  const [sorter, setSorter] = useState<string>();
-  const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
-  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
-  const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
-  const [currentFormValues, setCurrentFormValues] = useState({});
-  const actionRef = useRef<ActionType>();
+  const [sorter, setSorter] = useState<string>()
+  const [createModalVisible, setCreateModalVisible] = useState<boolean>(false)
+  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false)
+  const [showModalVisible, setShowModalVisible] = useState<boolean>(false)
+  const [currentFormValues, setCurrentFormValues] = useState({})
+  const actionRef = useRef<ActionType>()
 
   // 预先加载权限选择器数据
   const {
@@ -106,8 +121,8 @@ export default () => {
     loading: permissionLoading,
     error: permissionError,
   } = useRequest(() => {
-    return queryPermission({ pageSize: 1000 });
-  });
+    return queryPermission({ pageSize: 1000 })
+  })
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -152,10 +167,10 @@ export default () => {
       hideInSearch: true,
       renderFormItem: () => {
         if (permissionError) {
-          return <div>failed to load</div>;
+          return <div>failed to load</div>
         }
         if (permissionLoading) {
-          return <div>loading...</div>;
+          return <div>loading...</div>
         }
         return (
           <Select
@@ -165,14 +180,14 @@ export default () => {
             filterOption={(inputValue, option) => {
               return (option?.label as string)
                 .toLocaleLowerCase()
-                .includes(inputValue.toLocaleLowerCase());
+                .includes(inputValue.toLocaleLowerCase())
             }}
             options={permissionData?.list.map((item) => ({
               label: item.name,
               value: item.id,
             }))}
           />
-        );
+        )
       },
       render: (_, record: TableListItem) =>
         record.permissions?.map((item, index) => (
@@ -208,10 +223,10 @@ export default () => {
           <a
             onClick={async () => {
               // 编辑前去服务端获取最新的数据
-              const success = await handleShow(record);
+              const success = await handleShow(record)
               if (success) {
-                setUpdateModalVisible(true);
-                setCurrentFormValues(Object.assign(record, success));
+                setUpdateModalVisible(true)
+                setCurrentFormValues(Object.assign(record, success))
               }
             }}
           >
@@ -221,10 +236,10 @@ export default () => {
           <a
             onClick={async () => {
               // 查看前去服务端获取最新的数据
-              const success = await handleShow(record);
+              const success = await handleShow(record)
               if (success) {
-                setShowModalVisible(true);
-                setCurrentFormValues(Object.assign(record, success));
+                setShowModalVisible(true)
+                setCurrentFormValues(Object.assign(record, success))
               }
             }}
           >
@@ -236,8 +251,8 @@ export default () => {
             placement="left"
             onConfirm={async () => {
               // 不论是否删除成功，都重新加载列表数据
-              await handleRemove([record]);
-              actionRef?.current?.reload();
+              await handleRemove([record])
+              actionRef?.current?.reload()
             }}
             style={{ width: 220 }}
             okText="确定"
@@ -248,7 +263,7 @@ export default () => {
         </>
       ),
     },
-  ];
+  ]
 
   return (
     <PageHeader content="" className={styles.main}>
@@ -258,9 +273,9 @@ export default () => {
         actionRef={actionRef}
         rowKey="id"
         onChange={(_, _filter, _sorter) => {
-          const sorterResult = _sorter as SorterResult<TableListItem>;
+          const sorterResult = _sorter as SorterResult<TableListItem>
           if (sorterResult.field) {
-            setSorter(`${sorterResult.field}_${sorterResult.order}`);
+            setSorter(`${sorterResult.field}_${sorterResult.order}`)
           }
         }}
         params={{
@@ -276,8 +291,8 @@ export default () => {
                 <Menu
                   onClick={async (e) => {
                     if (e.key === 'remove') {
-                      await handleRemove(selectedRows);
-                      action.reload();
+                      await handleRemove(selectedRows)
+                      action.reload()
                     }
                   }}
                   selectedKeys={[]}
@@ -294,12 +309,13 @@ export default () => {
         ]}
         tableAlertRender={({ selectedRowKeys }) => (
           <div>
-            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
+            已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{' '}
+            项&nbsp;&nbsp;
           </div>
         )}
         request={async (params) => {
-          const { list, total } = (await queryRole(params)).data;
-          return { data: list, total, success: true };
+          const { list, total } = (await queryRole(params)).data
+          return { data: list, total, success: true }
         }}
         columns={columns}
         rowSelection={{}}
@@ -313,10 +329,10 @@ export default () => {
       >
         <ProTable<TableListItem, TableListItem>
           onSubmit={async (values) => {
-            const success = await handleCreate(values);
+            const success = await handleCreate(values)
             if (success) {
-              setCreateModalVisible(false);
-              actionRef.current?.reload();
+              setCreateModalVisible(false)
+              actionRef.current?.reload()
             }
           }}
           rowKey="id"
@@ -335,8 +351,8 @@ export default () => {
       {currentFormValues && Object.keys(currentFormValues).length ? (
         <UpdateForm
           onCancel={() => {
-            setUpdateModalVisible(false);
-            setCurrentFormValues({});
+            setUpdateModalVisible(false)
+            setCurrentFormValues({})
           }}
           updateModalVisible={updateModalVisible}
         >
@@ -345,11 +361,11 @@ export default () => {
               const success = await handleUpdate({
                 ...values,
                 id: (currentFormValues as TableListItem).id,
-              });
+              })
               if (success) {
-                setUpdateModalVisible(false);
-                setCurrentFormValues({});
-                actionRef.current?.reload();
+                setUpdateModalVisible(false)
+                setCurrentFormValues({})
+                actionRef.current?.reload()
               }
             }}
             rowKey="id"
@@ -360,7 +376,9 @@ export default () => {
               wrapperCol: { span: 19 },
               initialValues: {
                 ...currentFormValues,
-                permissions: (currentFormValues as TableListItem).permissions.map((row) => row.id),
+                permissions: (
+                  currentFormValues as TableListItem
+                ).permissions.map((row) => row.id),
               },
             }}
             columns={columns}
@@ -373,8 +391,8 @@ export default () => {
       {currentFormValues && Object.keys(currentFormValues).length ? (
         <ShowForm
           onCancel={() => {
-            setShowModalVisible(false);
-            setCurrentFormValues({});
+            setShowModalVisible(false)
+            setCurrentFormValues({})
           }}
           showModalVisible={showModalVisible}
           values={currentFormValues}
@@ -382,5 +400,5 @@ export default () => {
         />
       ) : null}
     </PageHeader>
-  );
-};
+  )
+}

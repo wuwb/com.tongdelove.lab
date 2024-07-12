@@ -1,17 +1,17 @@
-import { request } from '@umijs/max';
-import { TableListItem, TableListParams } from './data';
+import { request } from '@umijs/max'
+import { TableListItem, TableListParams } from './data'
 
 export async function queryData(params?: TableListParams) {
   return request('/api/taobao/order-raw', {
     params,
-  });
+  })
 }
 
 export async function syncData() {
   return request('/api/taobao/purge-all', {
     method: 'POST',
     data: {},
-  });
+  })
 }
 
 export async function syncById(params: any) {
@@ -20,7 +20,7 @@ export async function syncById(params: any) {
     data: {
       ...params,
     },
-  });
+  })
 }
 
 export async function removeRule(params: { key: number[] }) {
@@ -30,7 +30,7 @@ export async function removeRule(params: { key: number[] }) {
       ...params,
       method: 'delete',
     },
-  });
+  })
 }
 
 export async function addRule(params: TableListItem) {
@@ -40,7 +40,7 @@ export async function addRule(params: TableListItem) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export async function updateRule(params: TableListParams) {
@@ -50,5 +50,5 @@ export async function updateRule(params: TableListParams) {
       ...params,
       method: 'update',
     },
-  });
+  })
 }

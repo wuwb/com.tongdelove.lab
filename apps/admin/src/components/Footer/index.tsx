@@ -1,15 +1,15 @@
-import { DefaultFooter } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
-import React from 'react';
+import { DefaultFooter } from '@ant-design/pro-components'
+import { useIntl } from '@umijs/max'
+import React from 'react'
 
 const Footer: React.FC = () => {
-  const intl = useIntl();
+  const intl = useIntl()
   const defaultMessage = intl.formatMessage({
     id: 'app.copyright.produced',
     defaultMessage: '海维包装',
-  });
+  })
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   return (
     <DefaultFooter
       style={{
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

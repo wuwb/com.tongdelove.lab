@@ -1,69 +1,72 @@
-import access from '@/components/access';
-import { history } from '@umijs/max';
-import { Button, Dropdown, Menu, Modal } from 'antd';
-import React from 'react';
+import access from '@/components/access'
+import { history } from '@umijs/max'
+import { Button, Dropdown, Menu, Modal } from 'antd'
+import React from 'react'
 
-import styles from './index.less';
+import styles from './index.less'
 
 class StatusList extends React.Component {
-  format = this.props.formatMessage;
+  format = this.props.formatMessage
 
   static defaultProps = {
     statusList: ['D', 'A', 'G', 'R'],
-  };
+  }
 
   getCurrentIndex = () => {
-    const { status, statusList } = this.props;
-    return statusList.indexOf(status);
-  };
+    const { status, statusList } = this.props
+    return statusList.indexOf(status)
+  }
 
   renderButton = ({ index, text }) => (
-    <Button className={styles.flowItem} disabled={this.getCurrentIndex() < index}>
+    <Button
+      className={styles.flowItem}
+      disabled={this.getCurrentIndex() < index}
+    >
       {text}
     </Button>
-  );
+  )
 
   getColor = (idx) => {
     let color =
       this.getCurrentIndex() === idx
         ? '#1890ff'
         : this.getCurrentIndex() > idx
-        ? '#69c0ff'
-        : '#DBE2EC';
-    let fontColor = this.getCurrentIndex() < idx ? 'rgba(0, 0, 0, .65)' : '#fff';
+          ? '#69c0ff'
+          : '#DBE2EC'
+    let fontColor = this.getCurrentIndex() < idx ? 'rgba(0, 0, 0, .65)' : '#fff'
     return {
       backgroundColor: color,
       borderColor: color,
       color: fontColor,
-    };
-  };
+    }
+  }
 
   getMenu = (data) => (
     <Menu>
       {data.map((item, index) => {
-        const { value = '', text, disabled } = item;
+        const { value = '', text, disabled } = item
         return (
           <Menu.Item
             key={`${value}${index}`}
             style={{ textAlign: 'center' }}
             onClick={() => {
-              this.handleMenuItemClick(item);
+              this.handleMenuItemClick(item)
             }}
             disabled={disabled}
           >
             {text}
           </Menu.Item>
-        );
+        )
       })}
     </Menu>
-  );
+  )
 
   handleMenuItemClick = (item) => {
-    const { text, confirm, action, url, href } = item;
+    const { text, confirm, action, url, href } = item
     const {
       table,
       record: { id },
-    } = this.props;
+    } = this.props
     if (confirm) {
       Modal.confirm({
         title: this.format(
@@ -87,19 +90,19 @@ class StatusList extends React.Component {
           //   table.refreshTable();
           // });
         },
-      });
+      })
     }
     if (href) {
-      history.push(`${href}/${id}`);
+      history.push(`${href}/${id}`)
     }
-  };
+  }
 
   render() {
-    const { statusList } = this.props;
+    const { statusList } = this.props
     return (
       <div className={styles.flow}>
         {statusList.map((item, index) => {
-          const { text, operators } = this.props.statusConfig[statusList[index]];
+          const { text, operators } = this.props.statusConfig[statusList[index]]
           return (
             <div
               className={styles.item}
@@ -115,13 +118,16 @@ class StatusList extends React.Component {
               ) : (
                 <div style={{ zIndex: 100, position: 'relative' }}>{text}</div>
               )}
-              <div className={styles.corner} style={{ ...this.getColor(index) }} />
+              <div
+                className={styles.corner}
+                style={{ ...this.getColor(index) }}
+              />
             </div>
-          );
+          )
         })}
       </div>
-    );
+    )
   }
 }
 
-export default access(StatusList);
+export default access(StatusList)

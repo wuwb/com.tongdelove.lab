@@ -1,6 +1,9 @@
-import React from 'react';
+import React from 'react'
 // spacer
-export type UseLocalStorageResult<T> = [T, React.Dispatch<React.SetStateAction<T>>];
+export type UseLocalStorageResult<T> = [
+  T,
+  React.Dispatch<React.SetStateAction<T>>,
+]
 
 /**
  * Result of the {@link useLocalStorage}.

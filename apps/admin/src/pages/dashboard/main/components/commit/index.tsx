@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 export default class Commit extends React.Component {
   static defaultProps = {
     type: 'line',
     title: '',
     url: '',
-  };
+  }
 
   state = {
     option: {
@@ -45,11 +45,11 @@ export default class Commit extends React.Component {
       },
       series: [],
     },
-  };
+  }
 
   static getDerivedStateFromProps(props, state) {
     if (props.data) {
-      const { xAxisData = [], list = [] } = props.data || {};
+      const { xAxisData = [], list = [] } = props.data || {}
 
       return {
         option: {
@@ -65,13 +65,13 @@ export default class Commit extends React.Component {
             ...props.seriesProps,
           })),
         },
-      };
+      }
     }
-    return null;
+    return null
   }
 
   render() {
-    const { option } = this.state;
-    return <div style={{ background: '#fff', padding: '16px' }}></div>;
+    const { option } = this.state
+    return <div style={{ background: '#fff', padding: '16px' }}></div>
   }
 }

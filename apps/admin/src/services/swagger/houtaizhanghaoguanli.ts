@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import { request } from '@umijs/max'
 
 /** 查询账号列表 根据条件查询账号列表 GET /api/account */
 export async function accountList(
@@ -19,11 +19,14 @@ export async function accountList(
       ...params,
     },
     ...(options || {}),
-  });
+  })
 }
 
 /** 创建账号 创建账号 POST /api/account */
-export async function createAccount(body: API.CreateAccountDto, options?: { [key: string]: any }) {
+export async function createAccount(
+  body: API.CreateAccountDto,
+  options?: { [key: string]: any },
+) {
   return request<string>('/api/account', {
     method: 'POST',
     headers: {
@@ -31,7 +34,7 @@ export async function createAccount(body: API.CreateAccountDto, options?: { [key
     },
     data: body,
     ...(options || {}),
-  });
+  })
 }
 
 /** 查询账号信息 根据账号id查询账号信息 GET /api/account/${param0} */
@@ -40,12 +43,12 @@ export async function accountById(
   params: API.accountByIdParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<API.AccountResDto>(`/api/account/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
-  });
+  })
 }
 
 /** 删除账号 根据id删除账号 DELETE /api/account/${param0} */
@@ -54,12 +57,12 @@ export async function removeById(
   params: API.removeByIdParams,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<string>(`/api/account/${param0}`, {
     method: 'DELETE',
     params: { ...queryParams },
     ...(options || {}),
-  });
+  })
 }
 
 /** 修改账号信息 根据账号id修改账号信息 PATCH /api/account/${param0} */
@@ -69,7 +72,7 @@ export async function updateById(
   body: API.UpdateAccountDto,
   options?: { [key: string]: any },
 ) {
-  const { id: param0, ...queryParams } = params;
+  const { id: param0, ...queryParams } = params
   return request<string>(`/api/account/${param0}`, {
     method: 'PATCH',
     headers: {
@@ -78,7 +81,7 @@ export async function updateById(
     params: { ...queryParams },
     data: body,
     ...(options || {}),
-  });
+  })
 }
 
 /** 此处后端没有提供注释 GET /api/account/current */
@@ -86,7 +89,7 @@ export async function findCurrentUser(options?: { [key: string]: any }) {
   return request<any>('/api/account/current', {
     method: 'GET',
     ...(options || {}),
-  });
+  })
 }
 
 /** 修改密码 根据账号自己的密码 POST /api/account/modify_password */
@@ -101,7 +104,7 @@ export async function updatePassWordById(
     },
     data: body,
     ...(options || {}),
-  });
+  })
 }
 
 /** 重置为默认密码 根据id重置默认密码 POST /api/account/reset_password */
@@ -109,5 +112,5 @@ export async function resetPassword(options?: { [key: string]: any }) {
   return request<string>('/api/account/reset_password', {
     method: 'POST',
     ...(options || {}),
-  });
+  })
 }

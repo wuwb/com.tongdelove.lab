@@ -1,12 +1,12 @@
-import { Link } from '@umijs/max';
-import { Grid, Menu } from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import { Link } from '@umijs/max'
+import { Grid, Menu } from 'antd'
+const SubMenu = Menu.SubMenu
+const MenuItemGroup = Menu.ItemGroup
 
-const { useBreakpoint } = Grid;
+const { useBreakpoint } = Grid
 
 const LeftMenu = () => {
-  const { md } = useBreakpoint();
+  const { md } = useBreakpoint()
   return (
     <Menu mode={md ? 'horizontal' : 'inline'} theme="dark">
       <Menu.Item key="posts">
@@ -127,7 +127,7 @@ const LeftMenu = () => {
         <Link to="/topic">话题</Link>
       </Menu.Item>
     </Menu>
-  );
-};
+  )
+}
 
-export default LeftMenu;
+export default LeftMenu

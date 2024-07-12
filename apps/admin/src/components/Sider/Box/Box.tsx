@@ -1,8 +1,8 @@
-import { Outlet } from '@umijs/max';
-import BoxCell from './BoxCell';
-import BoxInner from './BoxInner';
-import BoxWrap from './BoxWrap';
-import Styles from './index.less';
+import { Outlet } from '@umijs/max'
+import BoxCell from './BoxCell'
+import BoxInner from './BoxInner'
+import BoxWrap from './BoxWrap'
+import Styles from './index.less'
 
 const Box = (props) => {
   return (
@@ -12,7 +12,7 @@ const Box = (props) => {
         <Outlet />
       </BoxInner>
     </BoxWrap>
-  );
-};
+  )
+}
 
-export default Box;
+export default Box
