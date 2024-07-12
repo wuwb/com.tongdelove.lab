@@ -68,9 +68,10 @@
     "access": "restricted"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.1.1",
     "@ant-design/pro-components": "^2.7.10",
     "@ant-design/pro-form": "^2.28.0",
-    "@antv/g2plot": "^2.4.31",
+    "@antv/g2": "^5.2.1",
     "@auth/prisma-adapter": "^1.6.0",
     "@axiomhq/winston": "^1.0.0-rc.1",
     "@formatjs/intl-localematcher": "^0.5.4",

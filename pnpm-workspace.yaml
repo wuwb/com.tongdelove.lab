@@ -1,6 +1,7 @@
 packages:
   - 'apps/lab'
   - 'apps/web'
+  - 'apps/admin'
   - 'prisma'
   - 'packages/schema'
   - 'packages/utils'

@@ -1,26 +1,24 @@
-import { Bullet } from '@antv/g2plot';
-import { useEffect } from 'react';
+import { Bullet } from '@ant-design/charts';
 
 function JianLaJi() {
-  useEffect(() => {
-    const data = [
-      {
-        title: '上证指数 000001',
-        ranges: [0, 1000, 2000, 2000, 1000],
-        measures: [2800, 440],
-        support: [2600],
-        target: [3400, 3500, 3600],
-      },
-      {
-        title: '沪深300 000300',
-        ranges: [0, 6000],
-        measures: [3500, 440],
-        support: [3800],
-        target: [3975, 4200],
-      },
-    ].reverse();
+  const data = [
+    {
+      title: '上证指数 000001',
+      ranges: [0, 1000, 2000, 2000, 1000],
+      measures: [2800, 440],
+      support: [2600],
+      target: [3400, 3500, 3600],
+    },
+    {
+      title: '沪深300 000300',
+      ranges: [0, 6000],
+      measures: [3500, 440],
+      support: [3800],
+      target: [3975, 4200],
+    },
+  ].reverse();
 
-    const bulletPlot = new Bullet('container2', {
+  const config = {
       // 图表容器
       autoFit: true,
       padding: 'auto',
@@ -50,15 +48,13 @@ function JianLaJi() {
         target: 20,
       },
       yAxis: false,
-    });
-
-    bulletPlot.render();
-  });
+  };
 
   return (
     <div>
-      <div id="container"></div>
-      <div id="container2"></div>
+      <Bullet
+        {...config}
+      />
     </div>
   );
 }
