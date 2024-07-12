@@ -1,10 +1,8 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
 import { Card, Input, Typography } from 'antd';
 import React, { useState } from 'react';
 
 const PunctureResistance = (): React.ReactNode => {
-  const intl = useIntl();
   let [param, seParam] = useState(0);
 
   function cal(e: any) {

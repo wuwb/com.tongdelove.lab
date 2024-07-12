@@ -9,7 +9,7 @@ module.exports = {
     // ns: ['common'],
     defaultLocale: 'en',
     locales: ['en', 'zh'],
-    localeDetection: true,
+    // localeDetection: true,
     domains: [
       {
         domain: 'printlake.com',

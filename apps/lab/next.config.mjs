@@ -13,7 +13,7 @@ import path from 'node:path'
 import url from 'node:url'
 import withBundleAnalyzer from '@next/bundle-analyzer'
 import nextI18nConfig from './next-i18next.config.js'
-import nextUtils from './next-utils.config.js'
+import nextUtils from './next-utils.config.mjs'
 
 const jiti = createJiti(fileURLToPath(import.meta.url))
 
@@ -458,7 +458,7 @@ const config = {
     //       });
     //     }
     //   });
-
+    config.resolve.fallback = { fs: false };
     return config
   },
 

@@ -72,7 +72,8 @@ module.exports = {
     // container: {}
   },
   plugins: [
-    require('@tailwindcss/line-clamp'),
+    // from 3.3, include default
+    // require('@tailwindcss/line-clamp'),
     require("@tailwindcss/typography"),
   ],
   corePlugins: {

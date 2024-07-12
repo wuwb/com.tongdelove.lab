@@ -1,10 +1,10 @@
-import path from 'path'
+const path = require('path')
 
 const isDev = process.env.NODE_ENV !== 'production'
 const debugI18n = ['true', 1].includes(process?.env?.NEXTJS_DEBUG_I18N ?? 'false')
 
 const localePublicFolder = undefined
-export const defaultLocale = 'en'
+const defaultLocale = 'en'
 
 /**
  * @type {import('next-i18next').UserConfig}
@@ -76,4 +76,4 @@ const nextI18NextConfig = {
   // nsSeparator: '.',
 }
 
-export default nextI18NextConfig
+module.exports = nextI18NextConfig
