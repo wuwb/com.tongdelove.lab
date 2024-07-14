@@ -27,17 +27,17 @@ export const appRouter = createTRPCRouter({
         greeting: `hello ${opts.input.text}`,
       }
     }),
-  auth: authRouter,
-  post: postRouter,
+  // auth: authRouter,
+  // post: postRouter,
   example: exampleRouter,
   link: linkRouter,
 
   // 诗词
-  poem: poemRouter,
+  // poem: poemRouter,
   poemAuthor: poemAuthorRouter,
   poemCard: poemCardRouter,
   poemTag: poemTagRouter,
-  appleGuide: appleGuideRouter,
+  // appleGuide: appleGuideRouter,
 })
 
 // export type definition of API

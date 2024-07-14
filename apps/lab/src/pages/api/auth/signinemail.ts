@@ -1,6 +1,13 @@
 import { Theme } from 'next-auth'
 import { SendVerificationRequestParams } from 'next-auth/providers'
-import { createTransport } from 'nodemailer'
+
+const createTransport = (server: string) => {
+  return {
+    sendMail: (data: any) => {
+
+    }
+  }
+}
 
 export async function customSendVerificationRequest(params: Omit<SendVerificationRequestParams, 'expires' | 'token'>) {
   const { identifier, url, provider, theme } = params

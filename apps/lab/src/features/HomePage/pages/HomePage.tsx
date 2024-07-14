@@ -16,7 +16,7 @@ export const HomePage: FC = () => {
       {
         data?.map((item) => {
           return (
-            <div>{item.id}</div>
+            <div key={item}>{item.id}</div>
           )
         })
       }
