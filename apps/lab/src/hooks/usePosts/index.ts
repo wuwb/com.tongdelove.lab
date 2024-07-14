@@ -3,7 +3,7 @@ import axios from '@/utils/axios'
 
 const endpoint = 'https://graphqlzero.almansi.me/api'
 
-const fetchPosts = async (limit = 10) => {
+export const fetchPosts = async (limit = 10) => {
   const data = await axios.get('/api/posts')
   const result = data.data.filter(x => x.id <= limit)
   return result
@@ -28,7 +28,7 @@ const fetchGQLPosts = async () => {
   // return data;
 }
 
-const usePosts = limit => {
+export const usePosts = limit => {
   return useQuery(['posts', limit], () => fetchPosts(limit))
 }
 
@@ -36,4 +36,3 @@ function useGQLPosts() {
   return useQuery(['posts'], async () => fetchGQLPosts())
 }
 
-export { usePosts, fetchPosts }

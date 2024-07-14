@@ -1,4 +1,4 @@
-import { IconWorld, IconChevronDown } from '@tabler/icons-react'
+import { TbWorld, TbChevronDown } from 'react-icons/tb'
 import { Menu, MenuItem, Button, Text, rem } from '@mantine/core'
 import React from 'react'
 import Link from 'next/link'
@@ -55,8 +55,8 @@ const SwitchLang = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <IconWorld className="h-4 w-4" />
-        <IconChevronDown className="h-3 w-3" />
+        <TbWorld className="h-4 w-4" />
+        <TbChevronDown className="h-3 w-3" />
       </Button>
 
       <Menu

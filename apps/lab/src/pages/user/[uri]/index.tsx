@@ -1,6 +1,6 @@
-import { authOptions } from '@/server/auth'
-import { getServerSession } from 'next-auth/next'
-
+// import { authOptions } from '@/server/auth'
+// import { getServerSession } from 'next-auth/next'
+// import { auth } from "@/auth"
 const Profile = ({ user }) => {
   // Show the user. No loading state is required
   return (
@@ -12,7 +12,7 @@ const Profile = ({ user }) => {
 }
 
 // export async function getServerSideProps(context) {
-//   const session = await getServerSession(context.req, context.res, authOptions)
+//   const session = await auth()
 
 //   if (!session) {
 //     return {

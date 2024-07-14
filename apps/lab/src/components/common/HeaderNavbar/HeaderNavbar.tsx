@@ -1,4 +1,4 @@
-import { IconMoon, IconPercentage, IconHistory } from '@tabler/icons-react'
+import { TbMoon, TbPercentage, TbHistory } from 'react-icons/tb'
 import { Button } from '@mantine/core'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -10,12 +10,12 @@ export const HeaderNavbar = props => {
   const { pathname, route, query } = useRouter()
 
   const navs = [
-    { to: '/', icon: <IconHistory />, exact: true },
-    { to: '/about', icon: <IconPercentage />, exact: true },
+    { to: '/', icon: <TbHistory />, exact: true },
+    { to: '/about', icon: <TbPercentage />, exact: true },
     {
       to: '/about/darkmode',
       active: '/about/[name]',
-      icon: <IconMoon />,
+      icon: <TbMoon />,
       exact: true,
     },
   ]

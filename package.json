@@ -59,7 +59,7 @@
     "schema": "prisma/prisma/schema.prisma"
   },
   "devDependencies": {
-    "@prisma/client": "^5.14.0",
+    "@prisma/client": "^5.16.2",
     "cross-env": "7.0.3",
     "inquirer": "^8",
     "@tongdelove/prettier-config": "workspace:*",
@@ -86,7 +86,7 @@
     "lint-staged": "15.2.1",
     "prettier-plugin-packagejson": "^2.4.10",
     "prettier-plugin-tailwindcss": "^0.5.13",
-    "prisma": "^5.14.0",
+    "prisma": "^5.16.2",
     "prisma-json-types-generator": "^3.0.3",
     "rimraf": "5.0.5",
     "shell-quote": "1.8.1",
@@ -115,7 +115,32 @@
     },
     "overrides": {
       "@langchain/core": "0.1.5",
-      "canvas": "2.11.2"
+      "canvas": "2.11.2",
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "@types/react": "18.2.53",
+      "@types/node": "18.18.13",
+      "typescript": "5.3.3",
+      "@aws-sdk/client-s3": "3.458.0",
+      "@aws-sdk/s3-request-presigner": "3.458.0",
+      "expo": "50.0.19",
+      "@babel/runtime": "7.24.4",
+      "@expo/cli": "0.17.12",
+      "@expo/config": "8.5.6",
+      "@expo/config-plugins": "7.9.2",
+      "@expo/metro-config": "0.17.7",
+      "@expo/vector-icons": "14.0.0",
+      "babel-preset-expo": "10.0.2",
+      "expo-asset": "9.0.2",
+      "expo-file-system": "16.0.9",
+      "expo-font": "11.10.3",
+      "expo-keep-awake": "12.8.2",
+      "expo-modules-autolinking": "1.10.3",
+      "expo-modules-core": "1.11.13",
+      "expo-sqlite": "13.3.0",
+      "expo-updates": "0.24.13",
+      "@react-native/assets-registry": "0.73.1",
+      "react-native": "0.73.1"
     }
   },
   "husky": {

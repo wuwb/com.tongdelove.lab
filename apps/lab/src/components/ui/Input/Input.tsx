@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, RefObject, useCallback, ChangeEvent, Component } from 'react'
 import debounce from 'lodash/debounce'
 import { usePercentValue } from '@/hooks/usePercentValue'
-import useUpdateEffect from '@/hooks/useUpdateEffect'
+import { useUpdateEffect } from '@/hooks/useUpdateEffect'
 import { ErrorMessage } from '../ErrorMessage'
 import './Input.module.scss'
 import TextareaAutosize from 'react-textarea-autosize'

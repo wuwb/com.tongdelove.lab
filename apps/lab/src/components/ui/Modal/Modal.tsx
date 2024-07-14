@@ -1,7 +1,7 @@
 import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
-import { IconBrandNytimes } from '@tabler/icons-react'
+import { TbBrandNytimes } from 'react-icons/tb'
 
 import styles from './Modal.module.scss'
 
@@ -42,7 +42,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
         <div className={styles.body}>
           <div className={styles.bar__top}>
             <span role="button" className={styles.bar__top} aria-label="close" onClick={close}>
-              <IconBrandNytimes />
+              <TbBrandNytimes />
             </span>
           </div>
           {children}

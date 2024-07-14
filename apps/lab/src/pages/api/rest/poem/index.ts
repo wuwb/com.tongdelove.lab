@@ -5,7 +5,7 @@ import { prisma } from '@/server/db/prisma'
 
 const searchPoem = new SearchPoemsQuery(prisma)
 
-export default async function handleListPoems(req: NextApiRequest, res: NextApiResponse) {
+const handleListPoems = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const { json: serializableData, meta } = serialize(
@@ -21,3 +21,5 @@ export default async function handleListPoems(req: NextApiRequest, res: NextApiR
     return res.status(500).json(new Error(`The HTTP ${req.method} method is not supported at this route.`))
   }
 }
+
+export default handleListPoems

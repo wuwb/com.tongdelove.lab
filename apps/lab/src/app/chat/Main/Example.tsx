@@ -3,8 +3,9 @@ import examples from '@/data/examples.json'
 import { Button } from '@tongdelove/ui/Button'
 import { useMemo, useState } from 'react'
 
-export default function Example() {
+const Example = () => {
   const [showFull, setShowFull] = useState(false)
+
   const list = useMemo(() => {
     if (showFull) {
       return examples
@@ -12,6 +13,7 @@ export default function Example() {
       return examples.slice(0, 15)
     }
   }, [showFull])
+
   return (
     <>
       <div className="mb-4 mt-20 text-4xl">
@@ -46,3 +48,5 @@ export default function Example() {
     </>
   )
 }
+
+export default Example

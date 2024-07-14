@@ -3,12 +3,15 @@
 import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react'
 import { Box, Stack, Button, Popover, Text, Divider, MenuItem, Menu, Tooltip, ActionIcon } from '@mantine/core'
 
-import { IconChecks, IconCubeUnfolded } from '@tabler/icons-react'
+import { TbChecks, TbCubeUnfolded } from 'react-icons/tb'
 import { useTranslation } from 'next-i18next'
 import { Link } from '@tongdelove/ui/Link'
 
-const ThemeSettings: FC = () => {
-  const { t }: { t: any } = useTranslation()
+interface ThemeSettingsProps {
+}
+
+const ThemeSettings: FC<ThemeSettingsProps> = () => {
+  const { t } = useTranslation()
 
   const ref = useRef<any>(null)
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -79,7 +82,7 @@ const ThemeSettings: FC = () => {
               fullWidth
               size="large"
               variant="outlined"
-              endIcon={<IconCubeUnfolded />}
+              endIcon={<TbCubeUnfolded />}
               color="primary"
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
@@ -150,7 +153,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'TestTheme' && (
                       <div>
-                        <IconChecks />
+                        <TbChecks />
                       </div>
                     )}
                     <Box className="colorSchemeWrapper pureLight">
@@ -169,7 +172,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'PureLightTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper pureLight">
@@ -187,7 +190,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'GreyGooseTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper greyGoose">
@@ -205,7 +208,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'PurpleFlowTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper purpleFlow">
@@ -239,7 +242,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'NebulaFighterTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper nebulaFighter">
@@ -257,7 +260,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'GreenFieldsTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper greenFields">
@@ -275,7 +278,7 @@ const ThemeSettings: FC = () => {
                   >
                     {theme === 'DarkSpacesTheme' && (
                       <Box>
-                        <IconChecks />
+                        <TbChecks />
                       </Box>
                     )}
                     <Box className="colorSchemeWrapper darkSpaces">

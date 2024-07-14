@@ -1,6 +1,6 @@
 import React, { useState, useCallback, ChangeEvent } from 'react'
 
-import useUpdateEffect from '@/hooks/useUpdateEffect'
+import { useUpdateEffect } from '@/hooks/useUpdateEffect'
 
 type InputHTMLAttributes = React.InputHTMLAttributes<HTMLInputElement>
 type IOnChange = (value: boolean) => void

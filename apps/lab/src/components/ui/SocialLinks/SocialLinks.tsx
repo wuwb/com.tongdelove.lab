@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconBrandFacebook, IconBrandInstagram, IconBrandTwitter, IconBrandBandcamp, IconBrandSoundcloud } from '@tabler/icons-react'
+import { TbBrandFacebook, TbBrandInstagram, TbBrandTwitter, TbBrandBandcamp, TbBrandSoundcloud } from 'react-icons/tb'
 
 import styles from './SocialLinks.module.scss'
 
@@ -8,28 +8,28 @@ const SocialLinks = () => {
     <ul className={styles.socialLinks}>
       <li>
         <a href="https://www.facebook.com/keithbkelly">
-          <IconBrandFacebook />
+          <TbBrandFacebook />
         </a>
       </li>
       <li>
         <a href="http://www.instagram.com/a_grand_apparatus">
-          <IconBrandInstagram />
+          <TbBrandInstagram />
         </a>
       </li>
       <li>
         <a href="https://twitter.com/grand_apparatus">
-          <IconBrandTwitter />
+          <TbBrandTwitter />
         </a>
       </li>
       <li>|</li>
       <li>
         <a href="http://www.edgetonerecords.com/keith_kelly.html">
-          <IconBrandBandcamp />
+          <TbBrandBandcamp />
         </a>
       </li>
       <li>
         <a href="https://soundcloud.com/keithbkelly">
-          <IconBrandSoundcloud />
+          <TbBrandSoundcloud />
         </a>
       </li>
     </ul>

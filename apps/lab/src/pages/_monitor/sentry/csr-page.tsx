@@ -5,7 +5,7 @@ const getAsyncError = async (): Promise<never> => {
   throw new Error('Error purposely crafted for monitoring sentry (/pages/_monitor/sentry/csr-page.tsx)')
 }
 
-const MonitorSentryCsrRoute: FC = () => {
+const MonitorSentryCsrRoute = () => {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {

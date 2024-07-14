@@ -1,15 +1,17 @@
 import { useState, useEffect, ReactPortal, useMemo } from 'react'
-import useUpdateEffect from './useUpdateEffect'
+import { useUpdateEffect } from './useUpdateEffect'
 import { createPortal } from 'react-dom'
 
 const Prefix = 'portal'
 let count = 0
 
-export default function usePortal(node: React.ReactNode) {
+export function usePortal(node: React.ReactNode) {
   const [visible, togglePortal] = useState(false)
+
   const id = useMemo(() => {
     return `${Prefix}-${++count}`
   }, [])
+
   const [portal, setPortal] = useState<ReactPortal | null>(null)
 
   useEffect(() => {

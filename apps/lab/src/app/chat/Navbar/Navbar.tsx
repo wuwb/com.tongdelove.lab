@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core';
 import {
-  IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
-  IconSettings,
-} from '@tabler/icons-react';
+  TbHome2,
+  TbGauge,
+  TbDeviceDesktopAnalytics,
+  TbFingerprint,
+  TbCalendarStats,
+  TbUser,
+  TbSettings,
+} from 'react-icons/tb';
 import classes from './Navbar.module.css';
 import Navigation from '../Navigation'
 
 const mainLinksMockdata = [
-  { icon: IconHome2, label: 'Home' },
-  { icon: IconGauge, label: 'Dashboard' },
-  { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
-  { icon: IconCalendarStats, label: 'Releases' },
-  { icon: IconUser, label: 'Account' },
-  { icon: IconFingerprint, label: 'Security' },
-  { icon: IconSettings, label: 'Settings' },
+  { icon: TbHome2, label: 'Home' },
+  { icon: TbGauge, label: 'Dashboard' },
+  { icon: TbDeviceDesktopAnalytics, label: 'Analytics' },
+  { icon: TbCalendarStats, label: 'Releases' },
+  { icon: TbUser, label: 'Account' },
+  { icon: TbFingerprint, label: 'Security' },
+  { icon: TbSettings, label: 'Settings' },
 ];
 
 const linksMockdata = [

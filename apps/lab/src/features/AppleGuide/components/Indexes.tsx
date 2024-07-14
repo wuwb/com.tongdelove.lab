@@ -17,7 +17,10 @@ export const Indexes = ({
 }) => {
   const [startTop, setStartTop] = useState(0)
   const [itemHeight, setItemHeight] = useState(0)
-  const products = useMemo(() => data[selectedCategory]?.products.map(p => p.name) || [], [data, selectedCategory])
+
+  const products = useMemo(() => {
+    return data[selectedCategory]?.products.map(p => p.name) || []
+  }, [data, selectedCategory])
 
   const handleTouchMove = (event: any) => {
     event.stopPropagation()

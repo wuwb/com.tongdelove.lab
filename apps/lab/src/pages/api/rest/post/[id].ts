@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PostRepositorySsr } from '@/server/backend/api/rest/post-repository.ssr'
 import { prisma } from '@/server/db/prisma'
 
-export default async function handleGetPost(req: NextApiRequest, res: NextApiResponse) {
+const handleGetPost = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query
     const postRepo = new PostRepositorySsr(prisma)
@@ -13,3 +13,5 @@ export default async function handleGetPost(req: NextApiRequest, res: NextApiRes
     res.status(statusCode).json(new Error(message))
   }
 }
+
+export default handleGetPost

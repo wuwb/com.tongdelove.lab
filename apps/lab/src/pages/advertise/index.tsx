@@ -1,6 +1,6 @@
 import { Divider, Box, Flex, Button, Text, Container, Input, Textarea, Stack, List, ListItem, Title, ThemeIcon } from '@mantine/core'
 
-import { IconCircleCheck } from '@tabler/icons-react'
+import { TbCircleCheck } from 'react-icons/tb'
 
 // 广告价位
 // 时间	价格(￥)	RMB / 天	描述
@@ -59,7 +59,7 @@ const PackageTier = ({ title, options, typePlan, checked = false }: PackageTierP
             key={desc.id}
             icon={
               <ThemeIcon color="blue" size={24} radius="xl">
-                <IconCircleCheck size="1rem" />
+                <TbCircleCheck size="1rem" />
               </ThemeIcon>
             }
           >

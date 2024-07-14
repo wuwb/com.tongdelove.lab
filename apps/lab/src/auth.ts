@@ -1,7 +1,5 @@
 import NextAuth from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { type GetServerSidePropsContext } from 'next'
-import EmailProvider from 'next-auth/providers/email'
 import GoogleProvider from 'next-auth/providers/google'
 import LinkedinProvider from 'next-auth/providers/linkedin'
 import TwitterProvider from 'next-auth/providers/twitter'
@@ -113,20 +111,20 @@ const providers = [
   //     return user
   //   },
   // }),
-  EmailProvider({
+  {
+    id: "http-email",
+    name: "Email",
+    type: "email",
     server: env.EMAIL_SERVER,
     from: env.EMAIL_FROM,
+    maxAge: OneDayInSeconds, // Email link will expire in 24 hours
     sendVerificationRequest: customSendVerificationRequest,
-    maxAge: OneDayInSeconds, // 设置邮箱链接失效时间，默认24小时
-  }),
+  },
   // @see https://github.com/settings/applications/2443205
   // @see https://next-auth.js.org/providers/github
   GithubProvider({
     clientId: env.GITHUB_CLIENT_ID,
     clientSecret: env.GITHUB_CLIENT_SECRET,
-    httpOptions: {
-      timeout: 50000,
-    },
   }),
   DiscordProvider({
     clientId: env.DISCORD_CLIENT_ID,
@@ -135,7 +133,6 @@ const providers = [
   TwitterProvider({
     clientId: env.TWITTER_CLIENT_ID,
     clientSecret: env.TWITTER_CLIENT_SECRET,
-    version: '2.0',
   }),
   GoogleProvider({
     clientId: env.GOOGLE_CLIENT_ID!,
@@ -227,7 +224,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   jwt: {
     // The maximum age of the NextAuth.js issued JWT in seconds.
     // Defaults to `session.maxAge`.
-    secret: 'test',
     maxAge: OneDayInSeconds * 30,
     // You can define your own encode/decode functions for signing and encryption
     async encode({ secret, token }) {

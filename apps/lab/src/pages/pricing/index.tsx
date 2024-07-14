@@ -2,7 +2,7 @@ import { Container, Footer } from '@/components/common'
 import { PricingCardGroup } from '@/components/ui/Pricing'
 import { getRencentTasks } from '@/server/task'
 
-const HomePage = props => {
+const HomePage = (props) => {
   return (
     <Container>
       <div className="relative z-10 py-16 lg:py-28">

@@ -24,7 +24,7 @@ const getGQLPostById = async (postId: string) => {
   //     return post;
 }
 
-export default function usePost(postId) {
+export function usePost(postId) {
   return useQuery(['post', postId], () => getPostById(postId))
 }
 

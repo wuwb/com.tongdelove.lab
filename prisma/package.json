@@ -25,9 +25,9 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "prisma": "^5.14.0",
+    "prisma": "^5.16.2",
     "prisma-erd-generator": "^1.11.1",
-    "@prisma/client": "^5.14.0"
+    "@prisma/client": "^5.16.2"
   },
   "devDependencies": {
     "@soluble/dsn-parser": "^1.9.2",

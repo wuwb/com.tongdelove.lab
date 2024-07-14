@@ -12,12 +12,14 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
     "typescript": "^5.4.5",
     "@tongdelove/tsconfig": "workspace:*"
+  },
+  "peerDependencies": {
+    "@prisma/client": "^5.16.2"
   }
 }

@@ -19,7 +19,7 @@ import {
   ActionIcon,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { IconCode, IconBook, IconCoin, IconChevronDown, IconBrandMcdonalds, IconX, IconChevronRight } from '@tabler/icons-react'
+import { TbCode, TbBook, TbCoin, TbChevronDown, TbBrandMcdonalds, TbX, TbChevronRight } from 'react-icons/tb'
 import { useSession, signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import classes from './HeaderMegaMenu.module.css'
@@ -32,17 +32,17 @@ import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
 
 const mockdata = [
   {
-    icon: IconCode,
+    icon: TbCode,
     title: 'Open source',
     description: 'This Pokémon’s cry is very loud and distracting',
   },
   {
-    icon: IconCoin,
+    icon: TbCoin,
     title: 'Free for everyone',
     description: 'The fluid of Smeargle’s tail secretions changes',
   },
   {
-    icon: IconBook,
+    icon: TbBook,
     title: 'Documentation',
     description: 'Yanma is capable of seeing 360 degrees without',
   },
@@ -219,7 +219,7 @@ export default function WithSubnavigation() {
       <Flex py={{ base: 2 }} px={{ base: 4 }} align="center">
         <Flex ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
           <ActionIcon variant="filled" aria-label="Settings" onClick={toggle} ariaLabel="Toggle Navigation">
-            {open ? <IconX /> : <IconBrandMcdonalds />}
+            {open ? <TbX /> : <TbBrandMcdonalds />}
           </ActionIcon>
         </Flex>
         <Flex justify={{ base: 'center', md: 'start' }}>
@@ -276,7 +276,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Text>{subLabel}</Text>
         </Box>
         <Flex transform="translateX(-10px)" opacity={0} _groupHover={{ opacity: '100%', transform: 'translateX(0)' }} justify="flex-end" align="center" flex={1}>
-          <IconChevronRight />
+          <TbChevronRight />
         </Flex>
       </Stack>
     </Box>
@@ -300,7 +300,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack onClick={children && toggle}>
       <Box py={2}>
         <Text>{label}</Text>
-        {children && <IconChevronDown />}
+        {children && <TbChevronDown />}
       </Box>
 
       <Collapse animateOpacity style={{ marginTop: '0!important' }}>

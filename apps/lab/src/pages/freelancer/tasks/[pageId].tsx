@@ -6,7 +6,6 @@ import axios from '@/utils/axios'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import styles from './index.module.scss'
 
 interface Props {
   data: any[]
@@ -74,7 +73,7 @@ const TasksPageIdPage = (props: Props) => {
             </div>
             <div className="bg-white lg:rounded-lg">
               {data.map(item => (
-                <div key={item.id} className={clsx(styles['task-item'], 'lg:h-120px relative cursor-pointer border-gray-200 hover:bg-gray-50')}>
+                <div key={item.id} className={clsx('lg:h-120px relative cursor-pointer border-gray-200 hover:bg-gray-50 border-b')}>
                   <Link className="lg:p-20px pr-18 lg:pr-104px group flex flex-col p-3" href={item.url}>
                     <div className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">
                       <span className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">{item.title}</span>

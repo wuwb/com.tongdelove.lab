@@ -18,7 +18,7 @@ type Props = PropsWithChildren<{
 export const AppProviders: FC<Props> = props => {
   const { children, session } = props
   return (
-    <SessionProvider session={session} refetchInterval={0}>
+    <SessionProvider session={session} refetchInterval={0} refetchOnWindowFocus={false}>
       {/* <SessionProvider session={session} refetchInterval={0}> */}
       {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
       {/* <ReactQueryClientProvider> */}

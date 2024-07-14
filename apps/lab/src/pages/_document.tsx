@@ -1,6 +1,5 @@
 import { default as Document, type DocumentProps, Html, Main, Head, NextScript } from 'next/document'
-import { defaultLocale } from '../../next-i18next.config.js'
-import i18nextConfig from '../../next-i18next.config'
+import nextI18NextConfig from '../../next-i18next.config'
 import { ColorSchemeScript } from '@mantine/core'
 
 type Props = DocumentProps & {
@@ -8,9 +7,11 @@ type Props = DocumentProps & {
   emotionStyleTags?: string[]
 }
 
+const defaultLocale = 'en'
+
 export default function MyDocument(props) {
   const locale = props.locale ?? defaultLocale
-  const currentLocale = props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale
+  const currentLocale = props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale
 
   return (
     <Html lang={locale}>
@@ -32,7 +33,6 @@ export default function MyDocument(props) {
         <ColorSchemeScript defaultColorScheme="auto" />
         <script dangerouslySetInnerHTML={{
           __html: `
-            <script>
             var _hmt = _hmt || [];
             (function() {
               var hm = document.createElement("script");
@@ -40,7 +40,6 @@ export default function MyDocument(props) {
               var s = document.getElementsByTagName("script")[0]; 
               s.parentNode.insertBefore(hm, s);
             })();
-            </script>
           `}} />
       </Head>
       <body>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './offscreen-container.module.css'
-import { IconBrandNytimes } from '@tabler/icons-react'
+import { TbBrandNytimes } from 'react-icons/tb'
 
 export const OffscreenContainer = ({ isVisible, children, handleOffscreenContainer }) => {
   let classNames = styles.offscreenContainer
@@ -12,7 +12,7 @@ export const OffscreenContainer = ({ isVisible, children, handleOffscreenContain
   return (
     <div className={classNames} onClick={handleOffscreenContainer}>
       <button className={styles.button} onClick={handleOffscreenContainer}>
-        <IconBrandNytimes />
+        <TbBrandNytimes />
       </button>
       {children}
     </div>

@@ -28,7 +28,6 @@
       "types": [
         "node",
         "reflect-metadata",
-        "jest",
         "Multer"
       ],
       // https://stackoverflow.com/questions/61687679/nest-js-build-does-does-not-generate-the-dist-folder
@@ -72,7 +71,6 @@
     },
     "include": [
       "**/*",
-      "jest.config.js",
       "src/**/*",
       "tests/**/*",
       "scripts/**/*"

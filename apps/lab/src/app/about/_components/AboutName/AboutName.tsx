@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
-import { IconMoon } from '@tabler/icons-react'
+import { TbMoon } from 'react-icons/tb'
 // import { useDarkMode } from '@/hooks'
 import { PageWrapper } from '@/components/ui/'
 
@@ -13,7 +13,7 @@ export const AboutName: React.FC<AnyAaaaRecord> = props => {
 
   return (
     <PageWrapper>
-      <IconMoon />
+      <TbMoon />
       <div>
         <code>{name}</code>
       </div>

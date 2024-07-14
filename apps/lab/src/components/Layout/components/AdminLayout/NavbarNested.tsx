@@ -1,15 +1,15 @@
 import { Group, Code, ScrollArea, rem } from '@mantine/core'
-import { IconNotes, IconCalendarStats, IconGauge, IconPresentationAnalytics, IconFileAnalytics, IconAdjustments, IconLock } from '@tabler/icons-react'
+import { TbNotes, TbCalendarStats, TbGauge, TbPresentationAnalytics, TbFileAnalytics, TbAdjustments, TbLock } from 'react-icons/tb'
 // import { UserButton } from '../UserButton/UserButton';
 import { LinksGroup } from './components/NavbarLinksGroup/NavbarLinksGroup'
 import { Logo } from './Logo'
 import classes from './NavbarNested.module.css'
 
 const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
+  { label: 'Dashboard', icon: TbGauge },
   {
     label: 'Market news',
-    icon: IconNotes,
+    icon: TbNotes,
     initiallyOpened: true,
     links: [
       { label: 'Overview', link: '/' },
@@ -20,19 +20,19 @@ const mockdata = [
   },
   {
     label: 'Releases',
-    icon: IconCalendarStats,
+    icon: TbCalendarStats,
     links: [
       { label: 'Upcoming releases', link: '/' },
       { label: 'Previous releases', link: '/' },
       { label: 'Releases schedule', link: '/' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
+  { label: 'Analytics', icon: TbPresentationAnalytics },
+  { label: 'Contracts', icon: TbFileAnalytics },
+  { label: 'Settings', icon: TbAdjustments },
   {
     label: 'Security',
-    icon: IconLock,
+    icon: TbLock,
     links: [
       { label: 'Enable 2FA', link: '/' },
       { label: 'Change password', link: '/' },

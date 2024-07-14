@@ -1,6 +1,6 @@
 import { Container } from '@/components/common'
 import { Link } from '@/components/ui/'
-import { IconHelpHexagon } from '@tabler/icons-react'
+import { TbHelpHexagon } from 'react-icons/tb'
 import { useForm } from 'react-hook-form'
 
 const HomePage = props => {
@@ -88,7 +88,7 @@ const HomePage = props => {
                     <input id="outlined-basic2" type="text" className="w-40 p-2" placeholder="请填写签名校验的密钥串" {...register('dingdingWebhook.secret')} />
                   </div>
                   <Link href="https://open.dingtalk.com/document/group/custom-robot-access">
-                    <IconHelpHexagon />
+                    <TbHelpHexagon />
                   </Link>
                 </div>
                 <div className="mb-2 flex space-x-4">
@@ -102,7 +102,7 @@ const HomePage = props => {
                     <input id="outlined-basic2" type="text" placeholder="请填写签名校验的密钥串" className="w-72 p-2" {...register('feishuWebhook.secret')} />
                   </div>
                   <Link href="https://www.feishu.cn/hc/zh-CN/articles/360024984973">
-                    <IconHelpHexagon />
+                    <TbHelpHexagon />
                   </Link>
                 </div>
                 <div className="mb-2 flex space-x-4">

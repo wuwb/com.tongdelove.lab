@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { IconHome, IconChevronRight } from '@tabler/icons-react'
+import { TbHome, TbChevronRight } from 'react-icons/tb'
 import { useTranslation } from 'next-i18next'
 
 const HomeCrumb = () => {
@@ -7,7 +7,7 @@ const HomeCrumb = () => {
 
   return (
     <Link href="/" className="flex items-center">
-      <IconHome className="h-3 w-3" />
+      <TbHome className="h-3 w-3" />
       <span className="ml-2 font-medium">{t('Home')}</span>
     </Link>
   )
@@ -26,7 +26,7 @@ export const Breadcrumb: React.FC<{ query?: any }> = ({ query }) => {
             .reverse()
             .map((p: string, i: number) => (
               <li key={i} className="flex flex-shrink-0 items-center">
-                <IconChevronRight className="h-3 w-3" />
+                <TbChevronRight className="h-3 w-3" />
                 <Link
                   href={`/${path
                     .slice(0, path.length - i)

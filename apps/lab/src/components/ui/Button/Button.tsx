@@ -3,11 +3,11 @@ import clsx from 'clsx'
 import { Loader } from '../Loader'
 import { Spinner } from '../Spinner'
 import styles from './styles.module.scss'
-import { type Icon } from '@tabler/icons-react'
+import { IconType } from 'react-icons/lib'
 
-export const SpinnerButton = React.forwardRef(ref => {
+export const SpinnerButton = React.forwardRef((ref) => {
   return (
-    <button ref={() => ref}>
+    <button ref={ref}>
       <Spinner />
     </button>
   )
@@ -84,7 +84,7 @@ export function Button2(props: IButtonProps) {
 }
 
 type ButtonProps = {
-  icon?: Icon
+  icon?: IconType
   variant?: 'default' | 'outline' | 'text'
 } & React.ComponentPropsWithRef<'button'>
 

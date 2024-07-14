@@ -1,11 +1,9 @@
 // @link https://nextjs.org/docs/app/building-your-application/routing/middleware
-import { withAuth } from 'next-auth/middleware'
-import NextAuth from 'next-auth'
-import { authOptions } from '@/server/auth'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { type NextRequest, NextResponse } from 'next/server'
 import { locales, defaultLocale } from './i18n/config'
+export { auth } from '@/auth'
 
 type MiddlewareEnabledRouteMatchers = (typeof config.matcher)[number]
 
@@ -29,7 +27,8 @@ function getLocale(request) {
   return match(languages, locales, defaultLocale) // -> 'en-US'
 }
 
-export function middleware(request: NextRequest) {
+export default auth((request: NextRequest) => {
+  // request.auth
   console.log('request path: ', request.nextUrl.href)
 
   // if (request.nextUrl.pathname.startsWith('/_next/image')) {
@@ -50,7 +49,7 @@ export function middleware(request: NextRequest) {
   // return NextResponse.redirect(request.nextUrl)
 
   return NextResponse.next()
-}
+}) 
 
 export const config = {
   matcher: [

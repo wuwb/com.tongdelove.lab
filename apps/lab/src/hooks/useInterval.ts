@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 type Delay = number | null
 type TimerHandler = (...args: any[]) => void
 
-const useInterval = (callback: TimerHandler, delay: Delay) => {
+export const useInterval = (callback: TimerHandler, delay: Delay) => {
   const savedCallbackRef = useRef<TimerHandler>()
 
   useEffect(() => {
@@ -21,5 +21,3 @@ const useInterval = (callback: TimerHandler, delay: Delay) => {
     }
   }, [delay])
 }
-
-export default useInterval

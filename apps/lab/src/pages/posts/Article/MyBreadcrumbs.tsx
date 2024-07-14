@@ -1,4 +1,4 @@
-import { Container, Grid, Breadcrumbs, Text } from '@mantine/core'
+import { Breadcrumbs, Text } from '@mantine/core'
 import Link from 'next/link'
 
 function MyBreadcrumbs() {

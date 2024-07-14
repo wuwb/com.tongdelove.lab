@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, rem } from '@mantine/core'
-import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react'
+import { TbCalendarStats, TbChevronRight } from 'react-icons/tb'
 import classes from './NavbarLinksGroup.module.css'
 
 interface LinksGroupProps {
@@ -30,7 +30,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
             <Box ml="md">{label}</Box>
           </Box>
           {hasLinks && (
-            <IconChevronRight
+            <TbChevronRight
               className={classes.chevron}
               stroke={1.5}
               style={{
@@ -49,7 +49,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
 
 const mockdata = {
   label: 'Releases',
-  icon: IconCalendarStats,
+  icon: TbCalendarStats,
   links: [
     { label: 'Upcoming releases', link: '/' },
     { label: 'Previous releases', link: '/' },

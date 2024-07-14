@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PostRepositorySsr } from '@/server/backend/api/rest/post-repository.ssr'
 import { prisma } from '@/server/db/prisma'
 
-export default async function handleListPosts(req: NextApiRequest, res: NextApiResponse) {
+const handleListPosts = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     const postRepo = new PostRepositorySsr(prisma)
     try {
@@ -18,3 +18,5 @@ export default async function handleListPosts(req: NextApiRequest, res: NextApiR
     return res.status(500).json(new Error(`The HTTP ${req.method} method is not supported at this route.`))
   }
 }
+
+export default handleListPosts

@@ -1,5 +1,5 @@
 import type { Chat } from '@/types/chat'
-import { IconMessageCircle } from '@tabler/icons-react'
+import { TbMessageCircle } from 'react-icons/tb'
 import { useMemo, useState } from 'react'
 import cn from 'clsx'
 import { groupByDate } from '@/utils/helpers/chat'
@@ -85,9 +85,11 @@ export default function ChatList() {
   ])
 
   const [selectedChat, setSelectedChat] = useState<Chat>()
+
   const groupList = useMemo(() => {
     return groupByDate(chatList)
   }, [chatList])
+
   return (
     <div className="mb-[48px] mt-2 flex flex-1 flex-col overflow-y-auto">
       {groupList.map(([date, list]) => {

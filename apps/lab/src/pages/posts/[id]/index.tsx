@@ -3,7 +3,8 @@ import { useSearchParams } from 'next/navigation'
 
 const Post = () => {
   const searchParams = useSearchParams()
-  const id = searchParams.get('id')
+
+  const id = searchParams?.get('id')
 
   return (
     <>

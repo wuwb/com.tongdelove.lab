@@ -9,7 +9,7 @@
     "jsxImportSource": "@emotion/react",
     "noEmit": false,
     "incremental": true,
-    "types": ["@testing-library/jest-dom/vitest"]
+    "types": []
   },
   "exclude": ["**/node_modules", "**/.*/*", "dist"],
   "include": [

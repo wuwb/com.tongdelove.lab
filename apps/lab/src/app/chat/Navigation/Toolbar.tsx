@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
-import { IconSun, IconMoon } from '@tabler/icons-react'
+import { TbSun, TbMoon } from 'react-icons/tb'
 import clsx from 'clsx'
 
 export default function Toolbar() {
@@ -25,8 +25,8 @@ export default function Toolbar() {
           })
         }}
       >
-        {themeMode === 'light' ? <IconSun /> : null}
-        {themeMode === 'dark' ? <IconMoon /> : null}
+        {themeMode === 'light' ? <TbSun /> : null}
+        {themeMode === 'dark' ? <TbMoon /> : null}
       </Button>
       <Button variant="outline">切换</Button>
     </div>
