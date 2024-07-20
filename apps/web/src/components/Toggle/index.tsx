@@ -13,7 +13,9 @@ function Toggle(props) {
 
   // If we have items, render them
   if (props.values) {
-    content = props.values.map(value => <ToggleOption key={value} value={value} message={props.messages[value]} />)
+    content = props.values.map((value) => (
+      <ToggleOption key={value} value={value} message={props.messages[value]} />
+    ))
   }
 
   return (

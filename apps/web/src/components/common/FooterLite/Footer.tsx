@@ -32,7 +32,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
           <div className="col-span-1 lg:col-span-2"></div>
           <div className="col-span-1 lg:col-span-8">
             <div className="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-4">
-              {[...links, ...sitePages].map(page => (
+              {[...links, ...sitePages].map((page) => (
                 <span key={page.url} className="py-3 md:py-0 md:pb-4">
                   <Link
                     href={page.url!}
@@ -65,7 +65,7 @@ function usePages(pages?: any[]) {
   const sitePages: any[] = []
 
   if (pages) {
-    pages.forEach(page => {
+    pages.forEach((page) => {
       const slug = page.url // && getSlug(page.url)
       if (!slug) return
       if (locale && !slug.startsWith(`${locale}/`)) return

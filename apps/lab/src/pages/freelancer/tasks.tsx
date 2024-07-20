@@ -1,4 +1,4 @@
-const Tasks = props => {
+const Tasks = (props) => {
   return <div>tasks</div>
 }
 

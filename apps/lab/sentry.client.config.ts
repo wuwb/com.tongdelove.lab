@@ -10,7 +10,11 @@ Sentry.init({
   denyUrls: ['http://localhost:3000'],
   // Adjust this value in production, or use tracesSampler for greater control
   // @see https://develop.sentry.dev/sdk/performance/
-  tracesSampleRate: ['false', '0'].includes(process.env.NEXTJS_SENTRY_TRACING ?? '') ? undefined : 0.05,
+  tracesSampleRate: ['false', '0'].includes(
+    process.env.NEXTJS_SENTRY_TRACING ?? ''
+  )
+    ? undefined
+    : 0.05,
 
   // ...
   // Note: if you want to override the automatic release value, do not set a

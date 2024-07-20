@@ -1,5 +1,43 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "build-request": {
+      "inputs": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "../../openapi/**",
+        "!_*"
+      ],
+      "dependsOn": [
+        "^build-request"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "prepare": {
+      "dependsOn": [
+        "^prepare"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    }
+  },
   "experimentalUI": true,
   "globalDependencies": [
     "**/.env"

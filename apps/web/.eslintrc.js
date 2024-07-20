@@ -1,10 +1,7 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: [
-    '@tongdelove/eslint-config/nextjs.js',
-    'next/core-web-vitals',
-  ],
+  extends: ['@tongdelove/eslint-config/nextjs.js'],
   rules: {
     'jsx-a11y/alt-text': 0,
     'react/display-name': 0,

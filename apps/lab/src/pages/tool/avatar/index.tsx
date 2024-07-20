@@ -8,9 +8,9 @@ const KILO_BYTES_PER_BYTE = 1000
 const COUNT = 1
 const FORMATS = ['jpg', 'png']
 
-const convertBytesToKB = bytes => Math.round(bytes / KILO_BYTES_PER_BYTE)
+const convertBytesToKB = (bytes) => Math.round(bytes / KILO_BYTES_PER_BYTE)
 
-const ToolAvatarPage = props => {
+const ToolAvatarPage = (props) => {
   const fileInputField = useRef(null)
   const [files, setFiles] = useState(null)
   const multiple = true
@@ -18,7 +18,11 @@ const ToolAvatarPage = props => {
   const drag = useRef(null)
   const avatarRef = useRef(null)
   const [dragging, setDragging] = useState(false)
-  const [message, setMessage] = useState({ show: false, text: null, type: null })
+  const [message, setMessage] = useState({
+    show: false,
+    text: null,
+    type: null,
+  })
 
   const [value, setValue] = useState('1') // tab index
   const [item, setItem] = useState(null)
@@ -45,7 +49,7 @@ const ToolAvatarPage = props => {
     fileInputField.current.click()
   }
 
-  const handleNewFileUpload = e => {
+  const handleNewFileUpload = (e) => {
     const { files: newFiles } = e.target
     if (newFiles.length) {
       const updatedFiles = addNewFiles(newFiles)
@@ -54,7 +58,7 @@ const ToolAvatarPage = props => {
     }
   }
 
-  const addNewFiles = newFiles => {
+  const addNewFiles = (newFiles) => {
     for (const file of newFiles) {
       if (file.size <= DEFAULT_MAX_FILE_SIZE_IN_BYTES) {
         if (!multiple) {
@@ -66,23 +70,23 @@ const ToolAvatarPage = props => {
     return { ...files }
   }
 
-  const convertNestedObjectToArray = nestedObj => {
-    return Object.keys(nestedObj).map(key => nestedObj[key])
+  const convertNestedObjectToArray = (nestedObj) => {
+    return Object.keys(nestedObj).map((key) => nestedObj[key])
   }
 
-  const callUpdateFilesCb = files => {
+  const callUpdateFilesCb = (files) => {
     const filesAsArray = convertNestedObjectToArray(files)
     // updateFilesCb(filesAsArray);
     console.log('filesAsArray: ', filesAsArray)
   }
 
-  const removeFile = fileName => {
+  const removeFile = (fileName) => {
     // delete files[fileName]
     setFiles({ ...files })
     callUpdateFilesCb({ ...files })
   }
 
-  const downloadFile = fileName => {
+  const downloadFile = (fileName) => {
     console.log('fileName: ', fileName)
     console.log('file: ', files[fileName])
     const blobUrl = window.URL.createObjectURL(files[fileName])
@@ -100,24 +104,24 @@ const ToolAvatarPage = props => {
     avatarRef.current.downloadImg()
   }
 
-  const handleDragEnter = e => {
+  const handleDragEnter = (e) => {
     e.preventDefault()
     e.stopPropagation()
     e.target !== drag.current && setDragging(true)
   }
 
-  const handleDragLeave = e => {
+  const handleDragLeave = (e) => {
     e.preventDefault()
     e.stopPropagation()
     e.target === drag.current && setDragging(false)
   }
 
-  const handleDragOver = e => {
+  const handleDragOver = (e) => {
     e.preventDefault()
     e.stopPropagation()
   }
 
-  const handleDrop = e => {
+  const handleDrop = (e) => {
     e.preventDefault()
     e.stopPropagation()
     setDragging(false)
@@ -128,7 +132,15 @@ const ToolAvatarPage = props => {
       showMessage(`抱歉，每次最多只能上传${count} 文件。`, 'error', 2000)
       return
     }
-    if (formats && files.some(file => !formats.some(format => file.name.toLowerCase().endsWith(format.toLowerCase())))) {
+    if (
+      formats &&
+      files.some(
+        (file) =>
+          !formats.some((format) =>
+            file.name.toLowerCase().endsWith(format.toLowerCase())
+          )
+      )
+    ) {
       showMessage(`只允许上传 ${formats.join(', ')}格式的文件`, 'error', 2000)
       return
     }
@@ -142,14 +154,17 @@ const ToolAvatarPage = props => {
 
   const showMessage = (text, type, timeout) => {
     setMessage({ show: true, text, type })
-    setTimeout(() => setMessage({ show: false, text: null, type: null }), timeout)
+    setTimeout(
+      () => setMessage({ show: false, text: null, type: null }),
+      timeout
+    )
   }
 
   const handleAddItem = () => {
     // setItem('http://localhost:3000/images/avatars/1.jpg')
   }
 
-  const handledivAddItem = e => {
+  const handledivAddItem = (e) => {
     console.log('e:', e)
     const imageUrl = e.target['data-loaded-src']
     console.log('imageUrl', imageUrl)
@@ -172,8 +187,14 @@ const ToolAvatarPage = props => {
 
       {/* 选择器 */}
       <div className="my-10 flex items-center justify-center gap-2">
-        <div ref={drop} className="relative rounded border-2 border-dashed bg-gray-50">
-          <div className="flex h-80 w-80 flex-col items-center justify-center gap-1" data-v-bb94a89a="">
+        <div
+          ref={drop}
+          className="relative rounded border-2 border-dashed bg-gray-50"
+        >
+          <div
+            className="flex h-80 w-80 flex-col items-center justify-center gap-1"
+            data-v-bb94a89a=""
+          >
             <div className="text-gray-600" data-v-bb94a89a="">
               粘贴、拖拽图片到这
             </div>
@@ -210,7 +231,14 @@ const ToolAvatarPage = props => {
               </span>
             </div>
           )}
-          <input type="file" ref={fileInputField} onChange={handleNewFileUpload} title="" value="" alt="" />
+          <input
+            type="file"
+            ref={fileInputField}
+            onChange={handleNewFileUpload}
+            title=""
+            value=""
+            alt=""
+          />
         </div>
       </div>
 
@@ -224,8 +252,17 @@ const ToolAvatarPage = props => {
             <div key={fileName}>
               {isImageFile && (
                 <>
-                  <Image src={URL.createObjectURL(file)} alt={`file preview ${index}`} width="200" height="200" />
-                  <image ref={avatarRef} src={URL.createObjectURL(file) ?? ''} alt="" />
+                  <Image
+                    src={URL.createObjectURL(file)}
+                    alt={`file preview ${index}`}
+                    width="200"
+                    height="200"
+                  />
+                  <image
+                    ref={avatarRef}
+                    src={URL.createObjectURL(file) ?? ''}
+                    alt=""
+                  />
                 </>
               )}
               <div>
@@ -250,14 +287,62 @@ const ToolAvatarPage = props => {
         </div>
         <div onClick={handledivAddItem}>
           <div className="space-x-2">
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/1.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/2.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/3.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/4.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/5.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/6.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/7.jpg" alt="" />
-            <Image className="w-10" width="96" height="96" src="http://127.0.0.1:3000/images/avatars/8.jpg" alt="" />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/1.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/2.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/3.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/4.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/5.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/6.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/7.jpg"
+              alt=""
+            />
+            <Image
+              className="w-10"
+              width="96"
+              height="96"
+              src="http://127.0.0.1:3000/images/avatars/8.jpg"
+              alt=""
+            />
           </div>
           <button onClick={handleAddItem}>添加元素</button>
         </div>

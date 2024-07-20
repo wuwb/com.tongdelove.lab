@@ -1,7 +1,7 @@
 const FeatureColumnsGroup = ({ data }) => {
   return (
     <div className="container flex flex-col gap-12 py-12 align-top lg:flex-row lg:flex-wrap">
-      {data.features.map(feature => (
+      {data.features.map((feature) => (
         <div className="flex-1 text-lg" key={feature.id}>
           <div className="h-10 w-10">image here</div>
           <h3 className="mb-4 mt-4 font-bold">{feature.title}</h3>

@@ -25,10 +25,12 @@ const TinyNav = ({ navs }) => {
   const router = useRouter()
   return (
     <SubNav className="text-center">
-      {navs.map(item => {
+      {navs.map((item) => {
         return (
           <Link href={item.href} key={item.href} passHref>
-            <a className={router.pathname === item.href ? 'active' : ''}>{item.name}</a>
+            <a className={router.pathname === item.href ? 'active' : ''}>
+              {item.name}
+            </a>
           </Link>
         )
       })}

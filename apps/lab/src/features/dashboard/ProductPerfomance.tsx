@@ -1,5 +1,14 @@
 import React from 'react'
-import { TableTbody, TableThead, TableTd, TableTr, Chip, Text, Box, Table } from '@mantine/core'
+import {
+  TableTbody,
+  TableThead,
+  TableTd,
+  TableTr,
+  Chip,
+  Text,
+  Box,
+  Table,
+} from '@mantine/core'
 import BaseCard from '@/components/module/baseCard/BaseCard'
 
 const products = [
@@ -81,7 +90,7 @@ const ProductPerfomance = () => {
           </TableTr>
         </TableThead>
         <TableTbody>
-          {products.map(product => (
+          {products.map((product) => (
             <TableTr key={product.name}>
               <TableTd>
                 <Text

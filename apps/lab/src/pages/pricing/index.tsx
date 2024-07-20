@@ -10,7 +10,10 @@ const HomePage = (props) => {
           <div className="mx-auto max-w-3xl space-y-2 lg:max-w-none">
             <h1 className="text-brand-900 text-base">Pricing</h1>
             <h2 className="h1">Predictable pricing, no surprises</h2>
-            <p className="p text-lg">Start building for free, collaborate with a team, then scale to millions of users</p>
+            <p className="p text-lg">
+              Start building for free, collaborate with a team, then scale to
+              millions of users
+            </p>
           </div>
         </div>
       </div>

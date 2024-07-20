@@ -105,7 +105,7 @@ const markdown = `
 假发，手机贴膜，隐形眼镜都是敏感货；
 任何含有电池的物品也都是敏感货比如蓝牙鼠标和计算器;
 `
-const Page = props => {
+const Page = (props) => {
   return <div>{/* <ReactMarkdown children={markdown} /> */}</div>
 }
 

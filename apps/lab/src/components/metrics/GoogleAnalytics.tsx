@@ -1,5 +1,3 @@
-'use client'
-
 import Script from 'next/script'
 
 export const GoogleAnalytics = ({ id }: { id?: string }) => {
@@ -7,7 +5,10 @@ export const GoogleAnalytics = ({ id }: { id?: string }) => {
 
   return (
     <>
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
+      />
       <Script
         id="google-analytics-init"
         strategy="afterInteractive"

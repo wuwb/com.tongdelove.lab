@@ -40,7 +40,14 @@ class Tabs extends Component<ITabsProps, any> {
           {Array(children).map((child: any) => {
             const { label } = child.props
 
-            return <Tab activeTab={activeTab} key={label} label={label} onClick={onClickTabItem} />
+            return (
+              <Tab
+                activeTab={activeTab}
+                key={label}
+                label={label}
+                onClick={onClickTabItem}
+              />
+            )
           })}
         </ol>
         <div className="tab-content">

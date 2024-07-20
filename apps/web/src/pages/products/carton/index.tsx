@@ -369,7 +369,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -388,7 +391,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -408,7 +414,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -427,7 +436,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -446,7 +458,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -465,7 +480,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -484,7 +502,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -510,7 +531,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -529,7 +553,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -548,7 +575,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -567,7 +597,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -586,7 +619,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -688,7 +724,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                        <Image
+                          alt=""
+                          src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                        />
                       </a>
                     </Link>
                   </div>

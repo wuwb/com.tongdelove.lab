@@ -1,6 +1,6 @@
 import { ProductDemoList } from '@/components/module'
 
-export const UsgCate = props => {
+export const UsgCate = (props) => {
   return (
     <>
       <ProductDemoList

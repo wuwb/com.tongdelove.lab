@@ -1,12 +1,16 @@
 import { Button, message, Space } from 'antd'
-import { ExclamationCircleOutlined, CheckCircleOutlined } from '@ant-design/icons'
+import {
+  ExclamationCircleOutlined,
+  CheckCircleOutlined,
+} from '@ant-design/icons'
 import { Layout } from '@/components/common'
 
 const SolutionsBackedFishPage = () => {
   const info = () => {
     message.info(
       <>
-        请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span> 详细沟通。
+        请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span>{' '}
+        详细沟通。
       </>,
       30
     )
@@ -45,7 +49,9 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">待定</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 高档
               </li>
               <li className="flex items-center">
@@ -66,11 +72,15 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">9元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 质量好
               </li>
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 高档
               </li>
               <li className="flex items-center">
@@ -79,7 +89,9 @@ const SolutionsBackedFishPage = () => {
             </ul>
           </div>
           <div className="w-40 rounded bg-gray-100 text-center shadow lg:scale-110">
-            <div className="-mt-10 h-10 w-full bg-gray-600 px-2 text-left leading-10 text-white">推荐</div>
+            <div className="-mt-10 h-10 w-full bg-gray-600 px-2 text-left leading-10 text-white">
+              推荐
+            </div>
             <div className="p-2 text-xl font-extrabold">吸塑包装</div>
             <div className="p-2">4</div>
             <div className="p-2">38000元</div>
@@ -88,7 +100,9 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">9.3元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 便宜
               </li>
               <li className="flex items-center">
@@ -106,11 +120,15 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">8元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 便宜
               </li>
               <li className="flex items-center">
-                <CheckCircleOutlined style={{ color: 'red', marginRight: '5px' }} />
+                <CheckCircleOutlined
+                  style={{ color: 'red', marginRight: '5px' }}
+                />
                 印刷美观
               </li>
               <li className="flex items-center">

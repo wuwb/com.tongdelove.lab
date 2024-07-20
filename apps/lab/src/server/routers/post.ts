@@ -10,9 +10,11 @@ export const postRouter = {
       limit: 10,
     })
   }),
-  byId: publicProcedure.input(z.object({ id: z.number() })).query(({ ctx, input }) => {
-    return ctx.prisma.post.findFirst({ where: { id: input.id } })
-  }),
+  byId: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.post.findFirst({ where: { id: input.id } })
+    }),
   create: publicProcedure
     .input(
       z.object({

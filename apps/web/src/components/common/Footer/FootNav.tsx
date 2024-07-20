@@ -13,7 +13,7 @@ const Home = ({ title, navs, children }: Props) => {
     <ul className={s.footNav}>
       <>
         <li className="title">{title}</li>
-        {navs.map(item => {
+        {navs.map((item) => {
           return (
             <li key={item.href}>
               <Link href={item.href} className="item">

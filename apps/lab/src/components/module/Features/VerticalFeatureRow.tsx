@@ -11,9 +11,15 @@ type IVerticalFeatureRowProps = {
 }
 
 const VerticalFeatureRow = (props: IVerticalFeatureRowProps) => {
-  const verticalFeatureClass = clsx('mt-20', 'flex', 'flex-wrap', 'items-center', {
-    'flex-row-reverse': props.reverse,
-  })
+  const verticalFeatureClass = clsx(
+    'mt-20',
+    'flex',
+    'flex-wrap',
+    'items-center',
+    {
+      'flex-row-reverse': props.reverse,
+    }
+  )
 
   const router = useRouter()
 

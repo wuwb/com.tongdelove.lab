@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { UserService } from '@/services'
 import { useAuth } from '@/contexts/auth'
 
-const UserLoginPage = props => {
+const UserLoginPage = (props) => {
   const [username, setUsername] = useState()
   const [error, setError] = useState()
   const [waitTime, setWaitTime] = useState<any>()
@@ -22,7 +22,7 @@ const UserLoginPage = props => {
     }
   }, [])
 
-  const onFinish = async values => {
+  const onFinish = async (values) => {
     console.log('Success:', values)
 
     try {
@@ -37,7 +37,7 @@ const UserLoginPage = props => {
     }
   }
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 

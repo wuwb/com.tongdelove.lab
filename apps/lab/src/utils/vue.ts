@@ -1,4 +1,4 @@
-export const registerDirective = Vue => {
+export const registerDirective = (Vue) => {
   if (!Vue.directive('clickoutside')) {
     Vue.directive('clickoutside', {
       bind(el, binding, vnode) {
@@ -21,9 +21,9 @@ export const registerDirective = Vue => {
   }
 
   if (!Vue.directive('highlight')) {
-    Vue.directive('highlight', el => {
+    Vue.directive('highlight', (el) => {
       const blocks = el.querySelectorAll('pre code')
-      blocks.forEach(block => {
+      blocks.forEach((block) => {
         hljs.highlightBlock(block)
       })
     })

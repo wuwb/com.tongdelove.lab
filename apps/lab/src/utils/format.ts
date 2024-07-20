@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 
-export const formatDate = (date: number) => dayjs(date).format('MMMM D, YYYY h:mm A')
+export const formatDate = (date: number) =>
+  dayjs(date).format('MMMM D, YYYY h:mm A')
 
 export function formatCompactNumber(number: number) {
   if (number >= 1000 && number < 1000000) {

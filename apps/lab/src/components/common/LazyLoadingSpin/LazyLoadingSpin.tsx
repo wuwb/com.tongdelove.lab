@@ -11,7 +11,7 @@ interface IProps {
   alwaysDarkMode?: boolean
 }
 
-export const LazyLoadingSpin: React.FC<IProps> = props => {
+export const LazyLoadingSpin: React.FC<IProps> = (props) => {
   // const dom = (
   //   <Spin
   //     className={clsx(

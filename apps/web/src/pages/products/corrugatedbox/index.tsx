@@ -218,7 +218,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/1.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/1.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -237,7 +240,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/2.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/2.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -256,7 +262,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/3.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/3.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -275,7 +284,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/4.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/4.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -294,7 +306,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/5.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/5.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -314,7 +329,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/6.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/6.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -333,7 +351,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/7.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/7.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -352,7 +373,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/8.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/8.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -371,7 +395,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/9.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/9.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -390,7 +417,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/10.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/10.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -409,7 +439,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/11.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/11.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -428,7 +461,10 @@ class Page extends Component {
                   <div className="product">
                     <Link href="">
                       <a href="" className="action-hover">
-                        <Image alt="" src="/assets/products/corrugatedbox/12.jpg" />
+                        <Image
+                          alt=""
+                          src="/assets/products/corrugatedbox/12.jpg"
+                        />
                       </a>
                     </Link>
                   </div>

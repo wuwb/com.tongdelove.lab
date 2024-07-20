@@ -39,7 +39,10 @@ export interface FetchSSEOptions {
  * @param fetchFn
  * @param options
  */
-export const fetchSSE = async (fetchFn: () => Promise<Response>, options: FetchSSEOptions = {}) => {
+export const fetchSSE = async (
+  fetchFn: () => Promise<Response>,
+  options: FetchSSEOptions = {}
+) => {
   const response = await fetchFn()
 
   // 如果不 ok 说明有请求错误
@@ -112,8 +115,17 @@ interface FetchAITaskResultParams<T> {
 }
 
 export const fetchAIFactory =
-  <T>(fetcher: (params: T, options: { signal?: AbortSignal }) => Promise<Response>) =>
-  async ({ params, onMessageHandle, onFinish, onError, onLoadingChange, abortController }: FetchAITaskResultParams<T>) => {
+  <T>(
+    fetcher: (params: T, options: { signal?: AbortSignal }) => Promise<Response>
+  ) =>
+  async ({
+    params,
+    onMessageHandle,
+    onFinish,
+    onError,
+    onLoadingChange,
+    abortController,
+  }: FetchAITaskResultParams<T>) => {
     const errorHandle = (error: Error, errorContent?: any) => {
       onLoadingChange?.(false)
       if (abortController?.signal.aborted) {
@@ -124,13 +136,16 @@ export const fetchAIFactory =
 
     onLoadingChange?.(true)
 
-    const data = await fetchSSE(() => fetcher(params, { signal: abortController?.signal }), {
-      onErrorHandle: error => {
-        errorHandle(new Error(error.message), error)
-      },
-      onFinish,
-      onMessageHandle,
-    }).catch(errorHandle)
+    const data = await fetchSSE(
+      () => fetcher(params, { signal: abortController?.signal }),
+      {
+        onErrorHandle: (error) => {
+          errorHandle(new Error(error.message), error)
+        },
+        onFinish,
+        onMessageHandle,
+      }
+    ).catch(errorHandle)
 
     onLoadingChange?.(false)
 

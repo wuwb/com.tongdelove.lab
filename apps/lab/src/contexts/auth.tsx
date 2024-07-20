@@ -28,7 +28,10 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (username, password) => {
-    const { data: token } = await axios.post('auth/login', { username, password })
+    const { data: token } = await axios.post('auth/login', {
+      username,
+      password,
+    })
     if (token) {
       Cookies.set('token', token.token, { expires: 60 })
       axios.defaults.headers['Authorization'] = `Bearer ${token.token}`
@@ -45,7 +48,13 @@ export const AuthProvider = ({ children }) => {
     window.location.pathname = '/login'
   }
 
-  return <AuthContext.Provider value={{ isAuthenticated: !!user, user, login, loading, logout }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider
+      value={{ isAuthenticated: !!user, user, login, loading, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => {
@@ -60,7 +69,10 @@ export const useAuth = () => {
 
 export const ProtectRoute = ({ children }) => {
   const { isAuthenticated, isLoading } = useAuth()
-  if (isLoading || (!isAuthenticated && window.location.pathname !== '/login')) {
+  if (
+    isLoading ||
+    (!isAuthenticated && window.location.pathname !== '/login')
+  ) {
     return <div>loading</div>
   }
   return children

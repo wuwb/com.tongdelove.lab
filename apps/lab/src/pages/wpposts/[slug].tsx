@@ -56,11 +56,22 @@ export default function Post({
           <>
             <article>
               <Head>
-                <meta property="og:image" content={post.featuredImage?.sourceUrl} />
+                <meta
+                  property="og:image"
+                  content={post.featuredImage?.sourceUrl}
+                />
               </Head>
-              <PostHeader title={post.title} coverImage={post.featuredImage} date={post.date} author={post.author} categories={post.categories} />
+              <PostHeader
+                title={post.title}
+                coverImage={post.featuredImage}
+                date={post.date}
+                author={post.author}
+                categories={post.categories}
+              />
               <PostBody content={post.content} />
-              <footer>{post.tags.edges.length > 0 && <Tags tags={post.tags} />}</footer>
+              <footer>
+                {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
+              </footer>
             </article>
 
             <SectionSeparator />
@@ -72,7 +83,11 @@ export default function Post({
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = false, previewData }) => {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+  previewData,
+}) => {
   const data = await getPostAndMorePosts(params?.slug, preview, previewData)
 
   return {

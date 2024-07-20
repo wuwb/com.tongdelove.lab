@@ -112,9 +112,9 @@ const providers = [
   //   },
   // }),
   {
-    id: "http-email",
-    name: "Email",
-    type: "email",
+    id: 'http-email',
+    name: 'Email',
+    type: 'email',
     server: env.EMAIL_SERVER,
     from: env.EMAIL_FROM,
     maxAge: OneDayInSeconds, // Email link will expire in 24 hours
@@ -180,7 +180,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           exp: Math.floor(Date.now() / 1000) + JWT_EXPIRY,
         }
 
-        const encodedToken = jwt.sign(jwtClaims, env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'), { algorithm: 'RS256' })
+        const encodedToken = jwt.sign(
+          jwtClaims,
+          env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n'),
+          { algorithm: 'RS256' }
+        )
 
         session.user.encodeToken = encodedToken
         // session.user.accessToken = token.accessToken

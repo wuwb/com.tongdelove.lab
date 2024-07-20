@@ -217,7 +217,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover relative">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/1.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/1.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -232,7 +237,12 @@ const Page = () => {
                   <div className="product">
                     <Link href="/" passHref>
                       <a href="" className="action-hover">
-                        <Image alt="" width="100" height="100" src="/assets/products/accessories/2.jpg" />
+                        <Image
+                          alt=""
+                          width="100"
+                          height="100"
+                          src="/assets/products/accessories/2.jpg"
+                        />
                       </a>
                     </Link>
                   </div>
@@ -249,7 +259,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/3.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/3.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -265,7 +280,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/4.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/4.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -281,7 +301,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/5.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/5.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -298,7 +323,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/6.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/6.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -314,7 +344,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/7.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/7.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -330,7 +365,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/8.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/8.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -346,7 +386,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/9.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/9.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -362,7 +407,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/10.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/10.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -379,7 +429,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/11.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/11.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -395,7 +450,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/12.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/12.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -411,7 +471,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/13.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/13.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -427,7 +492,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/14.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/14.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -443,7 +513,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/15.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/15.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -459,7 +534,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width="100" height="100" src="/assets/products/accessories/16.jpg" />
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/16.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">

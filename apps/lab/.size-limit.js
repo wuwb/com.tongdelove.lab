@@ -5,7 +5,9 @@ let manifest
 try {
   manifest = require('./.next/build-manifest.json')
 } catch (e) {
-  throw new Error('Cannot find a NextJs build folder, did you forget to build ?')
+  throw new Error(
+    'Cannot find a NextJs build folder, did you forget to build ?'
+  )
 }
 const pages = manifest.pages
 
@@ -30,7 +32,7 @@ const getPageLimits = () => {
     pageLimits.push({
       name: `Page '${uri}'`,
       limit: limitCfg.pages?.[uri] ?? limitCfg.defaultSize,
-      path: paths.map(p => `.next/${p}`),
+      path: paths.map((p) => `.next/${p}`),
     })
   }
   return pageLimits

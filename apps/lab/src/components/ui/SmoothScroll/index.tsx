@@ -9,12 +9,25 @@ type Props = {
   onLinkClick: () => void
 }
 
-const SmoothScroll = ({ className, children, to, duration, onLinkClick, ...props }: Props) => {
-  const easeInOutQuad = t => {
+const SmoothScroll = ({
+  className,
+  children,
+  to,
+  duration,
+  onLinkClick,
+  ...props
+}: Props) => {
+  const easeInOutQuad = (t) => {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
   }
 
-  const scrollToEl = (startTime, currentTime, duration, scrollEndElemTop, startScrollOffset) => {
+  const scrollToEl = (
+    startTime,
+    currentTime,
+    duration,
+    scrollEndElemTop,
+    startScrollOffset
+  ) => {
     const runtime = currentTime - startTime
     let progress = runtime / duration
 
@@ -24,14 +37,20 @@ const SmoothScroll = ({ className, children, to, duration, onLinkClick, ...props
 
     window.scroll(0, startScrollOffset + scrollEndElemTop * ease)
     if (runtime < duration) {
-      window.requestAnimationFrame(timestamp => {
+      window.requestAnimationFrame((timestamp) => {
         const currentTime = timestamp || new Date().getTime()
-        scrollToEl(startTime, currentTime, duration, scrollEndElemTop, startScrollOffset)
+        scrollToEl(
+          startTime,
+          currentTime,
+          duration,
+          scrollEndElemTop,
+          startScrollOffset
+        )
       })
     }
   }
 
-  const smoothScroll = e => {
+  const smoothScroll = (e) => {
     e.preventDefault()
 
     const targetId = to
@@ -42,7 +61,7 @@ const SmoothScroll = ({ className, children, to, duration, onLinkClick, ...props
 
     onLinkClick && onLinkClick()
 
-    window.requestAnimationFrame(timestamp => {
+    window.requestAnimationFrame((timestamp) => {
       const stamp = timestamp || new Date().getTime()
       const start = stamp
 

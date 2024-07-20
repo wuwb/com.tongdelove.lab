@@ -1,6 +1,6 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { ProFormSelect, ProFormText } from '@ant-design/pro-form';
-import { Card } from 'antd';
+import { PageContainer } from '@ant-design/pro-components'
+import { ProFormSelect, ProFormText } from '@ant-design/pro-form'
+import { Card } from 'antd'
 
 function CommonPlatemakingSize() {
   return (
@@ -18,10 +18,16 @@ function CommonPlatemakingSize() {
           name="unusedMode"
           label="纸张克重"
         />
-        <ProFormText width="md" name="name" label="书籍厚度" tooltip="" readonly />
+        <ProFormText
+          width="md"
+          name="name"
+          label="书籍厚度"
+          tooltip=""
+          readonly
+        />
       </Card>
     </PageContainer>
-  );
+  )
 }
 
-export default CommonPlatemakingSize;
+export default CommonPlatemakingSize

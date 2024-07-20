@@ -1,7 +1,7 @@
 // import { ProFormSelect } from '@ant-design/pro-form';
-import { Card } from '@tongdelove/ui/card';
+import { Card } from '@tongdelove/ui/card'
 import { Input } from '@tongdelove/ui/input'
-import { Label } from "@tongdelove/ui/label"
+import { Label } from '@tongdelove/ui/label'
 import {
   Select,
   SelectContent,
@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@tongdelove/ui/select"
+} from '@tongdelove/ui/select'
 
 function CommonPlatemakingSize() {
   return (
@@ -64,7 +64,7 @@ function CommonPlatemakingSize() {
         {/* </Card> */}
       </div>
     </div>
-  );
+  )
 }
 
-export default CommonPlatemakingSize;
+export default CommonPlatemakingSize

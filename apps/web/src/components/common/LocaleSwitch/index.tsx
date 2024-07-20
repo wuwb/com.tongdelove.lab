@@ -13,7 +13,7 @@ const LocaleSwitch = ({ pageContext }) => {
   const [locale, setLocale] = useState<string>()
   const [showing, setShowing] = useState(false)
 
-  const handleLocaleChange = async selectedLocale => {
+  const handleLocaleChange = async (selectedLocale) => {
     // Persist the user's language preference
     // https://nextjs.org/docs/advanced-features/i18n-routing#leveraging-the-next_locale-cookie
     Cookies.set('NEXT_LOCALE', selectedLocale)

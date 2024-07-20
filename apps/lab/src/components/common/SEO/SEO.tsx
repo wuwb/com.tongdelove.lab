@@ -47,13 +47,15 @@ export const SEO = (props: ISEOProp) => {
         // Only include OG image if we have it
         // Careful: if you disable image optimization in Strapi, this will break
         ...(props.ogShareImage && {
-          images: Object.values(props.ogShareImage.formats).map((image: any) => {
-            return {
-              url: image.urls,
-              width: image.width,
-              height: image.height,
+          images: Object.values(props.ogShareImage.formats).map(
+            (image: any) => {
+              return {
+                url: image.urls,
+                width: image.width,
+                height: image.height,
+              }
             }
-          }),
+          ),
         }),
       }}
       // Only included Twitter data if we have it

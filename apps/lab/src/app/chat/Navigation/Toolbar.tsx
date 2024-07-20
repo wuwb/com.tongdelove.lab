@@ -4,7 +4,7 @@ import { ActionType } from '@/reducers/AppReducer'
 import { TbSun, TbMoon } from 'react-icons/tb'
 import clsx from 'clsx'
 
-export default function Toolbar() {
+export const Toolbar = () => {
   const {
     state: { displayNavigation, themeMode },
     dispatch,

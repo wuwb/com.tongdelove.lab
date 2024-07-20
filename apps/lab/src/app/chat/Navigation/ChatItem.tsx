@@ -5,13 +5,13 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { MdCheck, MdClose, MdDeleteOutline } from 'react-icons/md'
 import { PiChatBold, PiTrashBold } from 'react-icons/pi'
 
-type Props = {
+type ChatItemProps = {
   item: Chat
   selected: boolean
   onSelected: (chat: Chat) => void
 }
 
-export default function ChatItem({ item, selected, onSelected }: Props) {
+export const ChatItem = ({ item, selected, onSelected }: ChatItemProps) => {
   const [editing, setEditing] = useState(false)
   const [deleting, setDeleting] = useState(false)
   useEffect(() => {
@@ -27,11 +27,17 @@ export default function ChatItem({ item, selected, onSelected }: Props) {
     >
       <div>{deleting ? <PiTrashBold /> : <PiChatBold />}</div>
       {editing ? (
-        <input autoFocus={true} className="min-w-0 flex-1 bg-transparent outline-none" defaultValue={item.title} />
+        <input
+          autoFocus={true}
+          className="min-w-0 flex-1 bg-transparent outline-none"
+          defaultValue={item.title}
+        />
       ) : (
         <div className="relative flex-1 overflow-hidden whitespace-nowrap">
           {item.title}
-          <span className={`absolute inset-y-0 right-0 w-8 bg-gradient-to-l group-hover:from-gray-800 ${selected ? 'from-gray-800' : 'from-gray-900'}`}></span>
+          <span
+            className={`absolute inset-y-0 right-0 w-8 bg-gradient-to-l group-hover:from-gray-800 ${selected ? 'from-gray-800' : 'from-gray-900'}`}
+          ></span>
         </div>
       )}
 
@@ -40,7 +46,7 @@ export default function ChatItem({ item, selected, onSelected }: Props) {
           {editing || deleting ? (
             <>
               <button
-                onClick={e => {
+                onClick={(e) => {
                   if (deleting) {
                     console.log('deleted')
                   } else {
@@ -55,7 +61,7 @@ export default function ChatItem({ item, selected, onSelected }: Props) {
                 <MdCheck />
               </button>
               <button
-                onClick={e => {
+                onClick={(e) => {
                   setDeleting(false)
                   setEditing(false)
                   e.stopPropagation()
@@ -68,7 +74,7 @@ export default function ChatItem({ item, selected, onSelected }: Props) {
           ) : (
             <>
               <button
-                onClick={e => {
+                onClick={(e) => {
                   setEditing(true)
                   e.stopPropagation()
                 }}
@@ -77,7 +83,7 @@ export default function ChatItem({ item, selected, onSelected }: Props) {
                 <AiOutlineEdit />
               </button>
               <button
-                onClick={e => {
+                onClick={(e) => {
                   setDeleting(true)
                   e.stopPropagation()
                 }}

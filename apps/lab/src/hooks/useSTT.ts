@@ -1,5 +1,10 @@
 import { getRecordMineType } from '@lobehub/tts'
-import { OpenAISTTOptions, SpeechRecognitionOptions, useOpenAISTT, useSpeechRecognition } from '@lobehub/tts/react'
+import {
+  OpenAISTTOptions,
+  SpeechRecognitionOptions,
+  useOpenAISTT,
+  useSpeechRecognition,
+} from '@lobehub/tts/react'
 import isEqual from 'fast-deep-equal'
 import { SWRConfiguration } from 'swr'
 
@@ -16,11 +21,17 @@ interface STTConfig extends SWRConfiguration {
 
 export const useSTT = (config: STTConfig) => {
   const ttsSettings = useGlobalStore(settingsSelectors.currentTTS, isEqual)
-  const ttsAgentSettings = useSessionStore(agentSelectors.currentAgentTTS, isEqual)
+  const ttsAgentSettings = useSessionStore(
+    agentSelectors.currentAgentTTS,
+    isEqual
+  )
   const locale = useGlobalStore(settingsSelectors.currentLanguage)
 
   const autoStop = ttsSettings.sttAutoStop
-  const sttLocale = ttsAgentSettings?.sttLocale && ttsAgentSettings.sttLocale !== 'auto' ? ttsAgentSettings.sttLocale : locale
+  const sttLocale =
+    ttsAgentSettings?.sttLocale && ttsAgentSettings.sttLocale !== 'auto'
+      ? ttsAgentSettings.sttLocale
+      : locale
 
   let useSelectedSTT
   let options: any = {}

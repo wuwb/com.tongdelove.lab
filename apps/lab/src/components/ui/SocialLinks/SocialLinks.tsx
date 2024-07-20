@@ -1,5 +1,11 @@
 import React from 'react'
-import { TbBrandFacebook, TbBrandInstagram, TbBrandTwitter, TbBrandBandcamp, TbBrandSoundcloud } from 'react-icons/tb'
+import {
+  TbBrandFacebook,
+  TbBrandInstagram,
+  TbBrandTwitter,
+  TbBrandBandcamp,
+  TbBrandSoundcloud,
+} from 'react-icons/tb'
 
 import styles from './SocialLinks.module.scss'
 

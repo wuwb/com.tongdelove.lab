@@ -4,7 +4,7 @@ import { fetchAIFactory, fetchSSE, getMessageError } from './fetch'
 
 // 模拟 i18next
 vi.mock('i18next', () => ({
-  t: vi.fn(key => `translated_${key}`),
+  t: vi.fn((key) => `translated_${key}`),
 }))
 
 // 模拟 Response
@@ -75,7 +75,8 @@ describe('getMessageError', () => {
 
 describe('fetchAIFactory', () => {
   it('should handle successful response', async () => {
-    const fetcher = async (params: any, options: any) => new Response('AI response', { status: 200 })
+    const fetcher = async (params: any, options: any) =>
+      new Response('AI response', { status: 200 })
     const params = {
       /* mock params */
     }
@@ -103,7 +104,8 @@ describe('fetchAIFactory', () => {
   })
 
   it('should handle error response', async () => {
-    const fetcher = async (params: any, options: any) => new Response(null, { status: 404, statusText: 'Not Found' })
+    const fetcher = async (params: any, options: any) =>
+      new Response(null, { status: 404, statusText: 'Not Found' })
     const params = {
       /* mock params */
     }

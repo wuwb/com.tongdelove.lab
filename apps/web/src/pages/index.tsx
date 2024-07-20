@@ -8,7 +8,7 @@ import Customers from '@/containers/Index/Customers'
 import Ready from '@/containers/Index/Ready'
 import { Layout } from '@/components/common'
 
-const Home = props => {
+const Home = (props) => {
   return (
     <>
       <Head>

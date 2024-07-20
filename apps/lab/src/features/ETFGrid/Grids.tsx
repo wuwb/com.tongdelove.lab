@@ -1,7 +1,16 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids'
 import LazyDownload from './Download'
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableFooter, TableRow } from '@tongdelove/ui/table'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableFooter,
+  TableRow,
+} from '@tongdelove/ui/table'
 
 export function Grids() {
   const grids = useGrids()
@@ -82,7 +91,9 @@ export function Grids() {
             <TableCell />
             <TableCell />
             <TableCell>{toFixedString(totalProfits, 0)}</TableCell>
-            <TableCell>{toFixedString((totalProfits / totalBuyAmount) * 100, 2)}%</TableCell>
+            <TableCell>
+              {toFixedString((totalProfits / totalBuyAmount) * 100, 2)}%
+            </TableCell>
             <TableCell />
             <TableCell />
           </TableRow>
@@ -92,7 +103,9 @@ export function Grids() {
         <p>说明：</p>
         <ol>
           <li>1. 本表格统一设定最大跌幅为60%。</li>
-          <li>2. 场内基金必须按100份整数委托，因此买卖金额按实际委托份数进行修正。</li>
+          <li>
+            2. 场内基金必须按100份整数委托，因此买卖金额按实际委托份数进行修正。
+          </li>
           <li>3.https://github.com/hushicai/ETF</li>
         </ol>
       </div>

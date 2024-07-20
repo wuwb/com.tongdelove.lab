@@ -11,7 +11,9 @@ const Page = () => {
   return (
     <MainBanner>
       <h1 className="main-banner__title">包装简化</h1>
-      <h3 className="main-banner__desc">成千上万的电子商务公在海维包装网以无与伦比的价格获得世界级的包装。</h3>
+      <h3 className="main-banner__desc">
+        成千上万的电子商务公在海维包装网以无与伦比的价格获得世界级的包装。
+      </h3>
       <div className="main-banner__actions">
         <Link href="/get-started">
           <a className="btn btn-primary" href="/get-started">

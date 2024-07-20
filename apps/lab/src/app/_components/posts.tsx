@@ -1,11 +1,16 @@
-'use client'
-
 import { use } from 'react'
 
 import type { RouterOutputs } from '@acme/api'
 import { cn } from '@acme/ui'
 import { Button } from '@acme/ui/button'
-import { Form, FormControl, FormField, FormItem, FormMessage, useForm } from '@acme/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  useForm,
+} from '@acme/ui/form'
 import { Input } from '@acme/ui/input'
 import { toast } from '@acme/ui/toast'
 import { CreatePostSchema } from '@acme/validators'
@@ -27,8 +32,12 @@ export function CreatePostForm() {
       form.reset()
       await utils.post.invalidate()
     },
-    onError: err => {
-      toast.error(err.data?.code === 'UNAUTHORIZED' ? 'You must be logged in to post' : 'Failed to create post')
+    onError: (err) => {
+      toast.error(
+        err.data?.code === 'UNAUTHORIZED'
+          ? 'You must be logged in to post'
+          : 'Failed to create post'
+      )
     },
   })
 
@@ -36,7 +45,7 @@ export function CreatePostForm() {
     <Form {...form}>
       <form
         className="flex w-full max-w-2xl flex-col gap-4"
-        onSubmit={form.handleSubmit(data => {
+        onSubmit={form.handleSubmit((data) => {
           createPost.mutate(data)
         })}
       >
@@ -70,7 +79,9 @@ export function CreatePostForm() {
   )
 }
 
-export function PostList(props: { posts: Promise<RouterOutputs['post']['all']> }) {
+export function PostList(props: {
+  posts: Promise<RouterOutputs['post']['all']>
+}) {
   // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
   const initialData = use(props.posts)
   const { data: posts } = api.post.all.useQuery(undefined, {
@@ -93,21 +104,27 @@ export function PostList(props: { posts: Promise<RouterOutputs['post']['all']> }
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {posts.map(p => {
+      {posts.map((p) => {
         return <PostCard key={p.id} post={p} />
       })}
     </div>
   )
 }
 
-export function PostCard(props: { post: RouterOutputs['post']['all'][number] }) {
+export function PostCard(props: {
+  post: RouterOutputs['post']['all'][number]
+}) {
   const utils = api.useUtils()
   const deletePost = api.post.delete.useMutation({
     onSuccess: async () => {
       await utils.post.invalidate()
     },
-    onError: err => {
-      toast.error(err.data?.code === 'UNAUTHORIZED' ? 'You must be logged in to delete a post' : 'Failed to delete post')
+    onError: (err) => {
+      toast.error(
+        err.data?.code === 'UNAUTHORIZED'
+          ? 'You must be logged in to delete a post'
+          : 'Failed to delete post'
+      )
     },
   })
 
@@ -135,8 +152,22 @@ export function PostCardSkeleton(props: { pulse?: boolean }) {
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
       <div className="flex-grow">
-        <h2 className={cn('w-1/4 rounded bg-primary text-2xl font-bold', pulse && 'animate-pulse')}>&nbsp;</h2>
-        <p className={cn('mt-2 w-1/3 rounded bg-current text-sm', pulse && 'animate-pulse')}>&nbsp;</p>
+        <h2
+          className={cn(
+            'w-1/4 rounded bg-primary text-2xl font-bold',
+            pulse && 'animate-pulse'
+          )}
+        >
+          &nbsp;
+        </h2>
+        <p
+          className={cn(
+            'mt-2 w-1/3 rounded bg-current text-sm',
+            pulse && 'animate-pulse'
+          )}
+        >
+          &nbsp;
+        </p>
       </div>
     </div>
   )

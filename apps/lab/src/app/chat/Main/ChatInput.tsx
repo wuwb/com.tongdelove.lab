@@ -52,11 +52,16 @@ export default function ChatInput() {
             placeholder="输入一条消息..."
             rows={1}
             value={messageText}
-            onChange={e => {
+            onChange={(e) => {
               setMessageText(e.target.value)
             }}
           />
-          <Button className="mx-3 !rounded-lg" icon={FiSend} variant="primary" onClick={send} />
+          <Button
+            className="mx-3 !rounded-lg"
+            icon={FiSend}
+            variant="primary"
+            onClick={send}
+          />
         </div>
       </div>
     </div>

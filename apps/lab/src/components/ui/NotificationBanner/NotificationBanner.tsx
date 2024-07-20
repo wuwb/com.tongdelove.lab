@@ -9,8 +9,10 @@ export const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
         'bg-red-600': type === 'alert',
       })}
     >
-      <div className="container flex flex-row items-center justify-between ">
-        <div className="rich-text-banner flex-1">{/* <Markdown>{text}</Markdown> */}</div>
+      <div className="container flex flex-row items-center justify-between">
+        <div className="rich-text-banner flex-1">
+          {/* <Markdown>{text}</Markdown> */}
+        </div>
         <button onClick={closeSelf} className="flex-shrink-0 px-1 py-1">
           X
         </button>

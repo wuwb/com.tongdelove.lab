@@ -1,7 +1,3 @@
-
-
 export const AdminConsole = () => {
-  return (
-    <div>admin console</div>
-  )
+  return <div>admin console</div>
 }

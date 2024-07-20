@@ -1,4 +1,9 @@
-import { initState, type Action, type State, reducer } from '@/reducers/AppReducer'
+import {
+  initState,
+  type Action,
+  type State,
+  reducer,
+} from '@/reducers/AppReducer'
 import type { Dispatch, ReactNode } from 'react'
 import { createContext, useContext, useMemo, useReducer, useState } from 'react'
 
@@ -13,7 +18,7 @@ export function useAppContext() {
   return useContext(AppContext)
 }
 
-export default function AppContextProvider({ children }: { children: ReactNode }) {
+export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initState)
 
   const contextValue = useMemo(() => {
@@ -23,5 +28,7 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     }
   }, [state, dispatch])
 
-  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+  return (
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+  )
 }

@@ -25,10 +25,16 @@ export const Header = () => {
         <Logo />
         <Navbar />
         <div className="flex items-center justify-end space-x-1 text-sm font-medium text-gray-800">
-          <Link href="/user/login" className="btn hover: rounded bg-white px-3 py-2 transition sm:inline">
+          <Link
+            href="/user/login"
+            className="btn hover: rounded bg-white px-3 py-2 transition sm:inline"
+          >
             登录
           </Link>
-          <Link href="/user/register" className="btn rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700">
+          <Link
+            href="/user/register"
+            className="btn rounded bg-rose-600 px-3 py-2 text-white transition hover:bg-rose-700"
+          >
             注册
           </Link>
         </div>

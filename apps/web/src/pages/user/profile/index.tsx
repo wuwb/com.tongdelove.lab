@@ -6,7 +6,7 @@ const UserProfilePage = () => {
   const [users, setUsers] = useState(null)
 
   useEffect(() => {
-    UserService.getAll().then(users => setUsers(users))
+    UserService.getAll().then((users) => setUsers(users))
   }, [])
 
   return (
@@ -16,7 +16,7 @@ const UserProfilePage = () => {
         <h6>Users from secure api end point</h6>
         {users && (
           <ul>
-            {users.map(user => (
+            {users.map((user) => (
               <li key={user.id}>
                 {user.firstName} {user.lastName}
               </li>

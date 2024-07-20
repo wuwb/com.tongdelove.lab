@@ -1,16 +1,22 @@
-'use client'
-
 import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react'
-import { Box, Stack, Button, Popover, Text, Divider, MenuItem, Menu, Tooltip, ActionIcon } from '@mantine/core'
+import {
+  Box,
+  Stack,
+  Button,
+  Popover,
+  Text,
+  Divider,
+  MenuItem,
+  Menu,
+  Tooltip,
+  ActionIcon,
+} from '@mantine/core'
 
 import { TbChecks, TbCubeUnfolded } from 'react-icons/tb'
 import { useTranslation } from 'next-i18next'
 import { Link } from '@tongdelove/ui/Link'
 
-interface ThemeSettingsProps {
-}
-
-const ThemeSettings: FC<ThemeSettingsProps> = () => {
+export const ThemeSettings = () => {
   const { t } = useTranslation()
 
   const ref = useRef<any>(null)
@@ -25,7 +31,8 @@ const ThemeSettings: FC<ThemeSettingsProps> = () => {
   }
 
   useEffect(() => {
-    const curThemeName = window.localStorage.getItem('appTheme') || 'PureLightTheme'
+    const curThemeName =
+      window.localStorage.getItem('appTheme') || 'PureLightTheme'
     setTheme(curThemeName)
   }, [])
 
@@ -48,7 +55,12 @@ const ThemeSettings: FC<ThemeSettingsProps> = () => {
     <>
       <Box>
         <Tooltip arrow title={t('Theme Settings')}>
-          <ActionIcon ref={ref} onClick={handleOpen} color="primary" aria-label="add">
+          <ActionIcon
+            ref={ref}
+            onClick={handleOpen}
+            color="primary"
+            aria-label="add"
+          >
             {t('Customize')}
           </ActionIcon>
         </Tooltip>
@@ -104,31 +116,62 @@ const ThemeSettings: FC<ThemeSettingsProps> = () => {
                 horizontal: 'center',
               }}
             >
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/dashboards/reports"
+              >
                 Extended Sidebar
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/accent-header/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/accent-header/dashboards/reports"
+              >
                 Accent Header
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/accent-sidebar/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/accent-sidebar/dashboards/reports"
+              >
                 Accent Sidebar
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/boxed-sidebar/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/boxed-sidebar/dashboards/reports"
+              >
                 Boxed Sidebar
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/collapsed-sidebar/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/collapsed-sidebar/dashboards/reports"
+              >
                 Collapsed Sidebar
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/bottom-navigation/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/bottom-navigation/dashboards/reports"
+              >
                 Bottom Navigation
               </MenuItem>
-              <MenuItem sx={{ fontWeight: 'bold' }} component={Link} href="/blueprints/top-navigation/dashboards/reports">
+              <MenuItem
+                sx={{ fontWeight: 'bold' }}
+                component={Link}
+                href="/blueprints/top-navigation/dashboards/reports"
+              >
                 Top Navigation
               </MenuItem>
             </Menu>
           </Box>
           <Divider />
-          <Stack direction="row" divider={<Divider orientation="vertical" flexItem />}>
+          <Stack
+            direction="row"
+            divider={<Divider orientation="vertical" flexItem />}
+          >
             <Box>
               <Text
                 sx={{
@@ -295,5 +338,3 @@ const ThemeSettings: FC<ThemeSettingsProps> = () => {
     </>
   )
 }
-
-export default ThemeSettings

@@ -8,7 +8,12 @@ export class Wave {
     this.color = color
   }
 
-  public draw = (context: CanvasRenderingContext2D, width: number, height: number, frequency: number): void => {
+  public draw = (
+    context: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    frequency: number
+  ): void => {
     context.beginPath()
     context.moveTo(0, height)
     if (this.waveLength.length < 3) {

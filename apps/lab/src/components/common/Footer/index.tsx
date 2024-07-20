@@ -25,11 +25,22 @@ export function Footer(props): any {
     },
     {
       title: 'Features',
-      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+      description: [
+        'Cool stuff',
+        'Random feature',
+        'Team feature',
+        'Developer stuff',
+        'Another one',
+      ],
     },
     {
       title: 'Resources',
-      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+      description: [
+        'Resource',
+        'Resource name',
+        'Another resource',
+        'Final resource',
+      ],
     },
     {
       title: 'Legal',
@@ -40,11 +51,11 @@ export function Footer(props): any {
     <div className="section relative flex overflow-hidden bg-primary pb-4 text-white">
       <div className="container">
         <div className="grid grid-cols-2 gap-1 md:grid-cols-4">
-          {footers.map(footer => (
+          {footers.map((footer) => (
             <div className="" key={footer.title}>
               <div>{footer.title}</div>
               <ul className="m-0 list-none p-0">
-                {footer.description.map(item => (
+                {footer.description.map((item) => (
                   <li key={item}>
                     <Link href="#">{item}</Link>
                   </li>
@@ -73,7 +84,9 @@ export function CenteredFooter(props: ICenteredFooterProps) {
       {props.logo}
 
       <nav>
-        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">{props.children}</ul>
+        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">
+          {props.children}
+        </ul>
       </nav>
 
       <div className="mt-8 flex justify-center">

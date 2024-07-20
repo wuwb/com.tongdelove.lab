@@ -1,10 +1,14 @@
 .navbar {
-  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-6)
+  );
   height: 100%;
   width: rem(320px);
   display: flex;
   flex-direction: column;
-  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  border-right: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .wrapper {
@@ -20,12 +24,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  border-right: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
 }
 
 .main {
   flex: 1;
-  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-6)
+  );
   overflow: hidden;
 }
 
@@ -39,7 +47,10 @@
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
 
   &:hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-5)
+    );
   }
 
   &[data-active] {
@@ -60,7 +71,8 @@
   padding: var(--mantine-spacing-md);
   padding-top: rem(18px);
   height: rem(60px);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
 }
 
 .logo {
@@ -69,7 +81,8 @@
   justify-content: center;
   height: rem(60px);
   padding-top: var(--mantine-spacing-md);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
   margin-bottom: var(--mantine-spacing-xl);
 }
 
@@ -87,7 +100,10 @@
   line-height: rem(44px);
 
   &:hover {
-    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+    background-color: light-dark(
+      var(--mantine-color-gray-1),
+      var(--mantine-color-dark-5)
+    );
     color: light-dark(var(--mantine-color-dark), var(--mantine-color-light));
   }
 

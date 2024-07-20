@@ -14,7 +14,7 @@ export const Jumbotron: FC = () => {
 
   useIntervalWhen(() => {
     console.log('interval')
-    setCount(count => (count >= titles.length - 1 ? 0 : count + 1))
+    setCount((count) => (count >= titles.length - 1 ? 0 : count + 1))
   }, 1000)
 
   return (

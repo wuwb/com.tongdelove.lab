@@ -10,7 +10,9 @@ import { HomePage } from '@/features/HomePage/pages'
 
 type Props = {}
 
-const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Index = (
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   const { data: session } = useSession()
 
   console.log('session: ', session)
@@ -39,7 +41,9 @@ const Index = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) =
 
 export default Index
 
-export const getServerSideProps: GetServerSideProps<Props> = async context => {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
   const { locale = 'en' } = context
 
   if (locale === undefined) {

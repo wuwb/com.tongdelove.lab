@@ -9,7 +9,12 @@ const Home = () => {
           <div className="inner">
             <div className="photo-item">
               <div className="image">
-                <Image width={120} height={90} src="https://via.placeholder.com/120x90" alt="" />
+                <Image
+                  width={120}
+                  height={90}
+                  src="https://via.placeholder.com/120x90"
+                  alt=""
+                />
               </div>
               <div className="detail">
                 <p className="title">5寸照片</p>
@@ -18,7 +23,12 @@ const Home = () => {
             </div>
             <div className="photo-item">
               <div className="image">
-                <Image width={120} height={90} src="https://via.placeholder.com/120x90" alt="" />
+                <Image
+                  width={120}
+                  height={90}
+                  src="https://via.placeholder.com/120x90"
+                  alt=""
+                />
               </div>
               <div className="detail">
                 <p className="title">6寸照片</p>
@@ -27,7 +37,12 @@ const Home = () => {
             </div>
             <div className="photo-item">
               <div className="image">
-                <Image width={120} height={90} src="https://via.placeholder.com/120x90" alt="" />
+                <Image
+                  width={120}
+                  height={90}
+                  src="https://via.placeholder.com/120x90"
+                  alt=""
+                />
               </div>
               <div className="detail">
                 <p className="title">7寸照片</p>
@@ -36,7 +51,12 @@ const Home = () => {
             </div>
             <div className="photo-item">
               <div className="image">
-                <Image width={120} height={90} src="https://via.placeholder.com/120x90" alt="" />
+                <Image
+                  width={120}
+                  height={90}
+                  src="https://via.placeholder.com/120x90"
+                  alt=""
+                />
               </div>
               <div className="detail">
                 <p className="title">8寸照片</p>

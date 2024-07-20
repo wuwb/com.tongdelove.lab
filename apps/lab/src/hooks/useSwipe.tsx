@@ -23,12 +23,12 @@ export const useSwipe = <T extends HTMLElement = HTMLElement>(
 
   const x = useRef(-1)
 
-  useEventListener(elementRef, 'touchstart', event => {
+  useEventListener(elementRef, 'touchstart', (event) => {
     event.preventDefault()
     x.current = event.touches[0].clientX
   })
 
-  useEventListener(elementRef, 'touchmove', event => {
+  useEventListener(elementRef, 'touchmove', (event) => {
     const newX = event.touches[0].clientX
 
     const differ = newX - x.current
@@ -46,7 +46,7 @@ export const useSwipe = <T extends HTMLElement = HTMLElement>(
     }
   })
 
-  useEventListener(elementRef, 'touchend', event => {
+  useEventListener(elementRef, 'touchend', (event) => {
     setDirection('none')
     x.current = -1
   })

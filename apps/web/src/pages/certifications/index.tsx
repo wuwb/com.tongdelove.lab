@@ -11,18 +11,25 @@ const Home = () => (
             <div className="rounded bg-slate-300 p-5">
               <div></div>
               <div>FSC 100%</div>
-              <div>Indicates paper pulp is made of 100% virgin material from FSC-certified forests.</div>
+              <div>
+                Indicates paper pulp is made of 100% virgin material from
+                FSC-certified forests.
+              </div>
             </div>
             <div className="rounded bg-slate-300 p-5">
               <div></div>
               <div>FSC 100%</div>
-              <div>Indicates paper pulp is made of 100% virgin material from FSC-certified forests.</div>
+              <div>
+                Indicates paper pulp is made of 100% virgin material from
+                FSC-certified forests.
+              </div>
             </div>
             <div className="rounded bg-slate-300 p-5">
               <div>FSC Mix</div>
               <div>
-                Indicates that the pulp is a mix of FSC certified forests, recycled pulp, and controlled wood, or wood from ethical sources that does not meet the full FSC
-                certification.
+                Indicates that the pulp is a mix of FSC certified forests,
+                recycled pulp, and controlled wood, or wood from ethical sources
+                that does not meet the full FSC certification.
               </div>
             </div>
           </div>

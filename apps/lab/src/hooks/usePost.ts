@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const endpoint = 'https://graphqlzero.almansi.me/api'
 
-const getPostById = async postId => {
+const getPostById = async (postId) => {
   const { data } = await axios.get(`/api/posts/${postId}`)
   return data
 }

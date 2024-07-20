@@ -24,7 +24,7 @@ class Header3 extends React.Component<any, any> {
     const { dataSource, isMobile, ...props }: any = this.props
     const { phoneOpen } = this.state
     const navData = dataSource.Menu.children
-    const navChildren = navData.map(item => {
+    const navChildren = navData.map((item) => {
       const { children: a, subItem, ...itemProps } = item
       if (subItem) {
         return (

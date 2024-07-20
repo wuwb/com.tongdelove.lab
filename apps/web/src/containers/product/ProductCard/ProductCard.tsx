@@ -28,7 +28,12 @@ const ProductCard = ({ product, variant = 'default', imgProps }) => {
           {variant === 'default' && (
             <div className="product-wrap">
               <Product className="overflow-hidden text-left">
-                <Image width="800" height="800" src="/assets/products/accessories/1.jpg" alt="" />
+                <Image
+                  width="800"
+                  height="800"
+                  src="/assets/products/accessories/1.jpg"
+                  alt=""
+                />
               </Product>
               <ProductDetail>
                 <h4 className="box-title text-center">珍珠棉卷</h4>

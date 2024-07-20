@@ -6,7 +6,11 @@ interface PageWrapperProps extends PropsWithChildren {
   style: string
 }
 
-export const PageWrapper: FC<PageWrapperProps> = ({ className, style, children }) => {
+export const PageWrapper: FC<PageWrapperProps> = ({
+  className,
+  style,
+  children,
+}) => {
   return (
     <div className={clsx('relative', className)} style={style}>
       {children}

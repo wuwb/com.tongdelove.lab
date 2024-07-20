@@ -5,15 +5,19 @@ import { locales } from '@/i18n/config'
 
 export const LangZod = z.enum(locales).default('zh-Hans')
 
-function transform<T extends Record<string, unknown>>(res: T, keys: string[], lang: string) {
+function transform<T extends Record<string, unknown>>(
+  res: T,
+  keys: string[],
+  lang: string
+) {
   lang = lang.replace('-', '_')
 
   const objs = pick(
     res,
-    keys.map(item => `${item}_${lang}`)
+    keys.map((item) => `${item}_${lang}`)
   )
 
-  Object.keys(res).map(key => {
+  Object.keys(res).map((key) => {
     if (key.includes('zh_Hant') || key.includes('zh_Hans')) {
       delete res[key as keyof T]
     }
@@ -23,7 +27,7 @@ function transform<T extends Record<string, unknown>>(res: T, keys: string[], la
 
   const json: Record<string, unknown> = {}
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     json[key] = obj[key] || res[key]
   })
 
@@ -54,5 +58,9 @@ export function transformTag<T extends PoemTag>(res: T, lang: string) {
 export function transformPoem<T extends Poem>(res: T, lang: string) {
   lang = lang.replace('-', '_')
 
-  return transform(res, ['title', 'content', 'introduce', 'translation', 'annotation'], lang)
+  return transform(
+    res,
+    ['title', 'content', 'introduce', 'translation', 'annotation'],
+    lang
+  )
 }

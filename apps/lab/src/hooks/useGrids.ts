@@ -61,7 +61,14 @@ const T_MIDDLE = divide(GearPercent.middle, GearPercent.small)
 const T_BIG = divide(GearPercent.big, GearPercent.small)
 
 export const createGrid = (options: GridOptions): Grid => {
-  const { numberOfRetainedProfits, type, gear, price, percent, buyAmount: __buyAmount } = options
+  const {
+    numberOfRetainedProfits,
+    type,
+    gear,
+    price,
+    percent,
+    buyAmount: __buyAmount,
+  } = options
   const buyPrice = gear * price
   // 买入必须按照100份整数
   const buyCount = Math.floor(__buyAmount / buyPrice / 100) * 100
@@ -72,7 +79,8 @@ export const createGrid = (options: GridOptions): Grid => {
   const returnRate = toFixedString((profits / buyAmount) * 100, 2) + '%'
   let retainedProfits = profits * numberOfRetainedProfits
   // 卖出必须按照100份整数
-  const sellCount = Math.floor((currentAmount - retainedProfits) / sellPrice / 100) * 100
+  const sellCount =
+    Math.floor((currentAmount - retainedProfits) / sellPrice / 100) * 100
   const sellAmount = sellCount * sellPrice
   retainedProfits = currentAmount - sellAmount
   const retainedCount = retainedProfits / sellPrice
@@ -95,7 +103,14 @@ export const createGrid = (options: GridOptions): Grid => {
 
 export function useGrids() {
   const state = useAppState()
-  const { price, amount, increasePercentPerGrid, numberOfRetainedProfits, hasMiddleGrid, hasBigGrid } = state
+  const {
+    price,
+    amount,
+    increasePercentPerGrid,
+    numberOfRetainedProfits,
+    hasMiddleGrid,
+    hasBigGrid,
+  } = state
 
   const grids: Grid[] = []
 
@@ -118,7 +133,10 @@ export function useGrids() {
   let k = 0
 
   while (gear >= minGear) {
-    const buyAmount = toFixedNumber((increasePercentPerGrid * i + 1) * amount, 0)
+    const buyAmount = toFixedNumber(
+      (increasePercentPerGrid * i + 1) * amount,
+      0
+    )
 
     grids.push(
       createGrid({

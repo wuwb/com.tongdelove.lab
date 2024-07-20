@@ -1,4 +1,10 @@
-import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback } from 'react'
+import React, {
+  useEffect,
+  useImperativeHandle,
+  useState,
+  forwardRef,
+  useCallback,
+} from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import { TbBrandNytimes } from 'react-icons/tb'
@@ -22,7 +28,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
   )
 
   const handleEscape = useCallback(
-    event => {
+    (event) => {
       if (event.keyCode === 27) close()
     },
     [close]
@@ -41,7 +47,12 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
         <div className={styles.overlay} onClick={close} />
         <div className={styles.body}>
           <div className={styles.bar__top}>
-            <span role="button" className={styles.bar__top} aria-label="close" onClick={close}>
+            <span
+              role="button"
+              className={styles.bar__top}
+              aria-label="close"
+              onClick={close}
+            >
               <TbBrandNytimes />
             </span>
           </div>

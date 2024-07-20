@@ -9,7 +9,9 @@ function ProfilePage(): any {
     <div className="box max-w-screen-3xl container mx-auto w-full max-w-[1680px]">
       <div className="my-6 space-y-0.5">
         <h2 className="text-2xl font-bold tracking-tight">设置</h2>
-        <p className="text-muted-foreground">Manage your account settings and set e-mail preferences.</p>
+        <p className="text-muted-foreground">
+          Manage your account settings and set e-mail preferences.
+        </p>
       </div>
 
       <Separator className="my-6" />
@@ -71,14 +73,19 @@ function ProfilePage(): any {
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-medium">Profile</h3>
-              <p className="text-sm text-muted-foreground">This is how others will see you on the site.</p>
+              <p className="text-sm text-muted-foreground">
+                This is how others will see you on the site.
+              </p>
             </div>
 
             <Separator />
           </div>
           <form className="space-y-8">
             <div className="space-y-2">
-              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":rhk:-form-item">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for=":rhk:-form-item"
+              >
                 Username
               </label>
               <input
@@ -89,12 +96,19 @@ function ProfilePage(): any {
                 aria-invalid="false"
                 name="username"
               />
-              <p id=":rhk:-form-item-description" className="text-[0.8rem] text-muted-foreground">
-                This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.
+              <p
+                id=":rhk:-form-item-description"
+                className="text-[0.8rem] text-muted-foreground"
+              >
+                This is your public display name. It can be your real name or a
+                pseudonym. You can only change this once every 30 days.
               </p>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":rhl:-form-item">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for=":rhl:-form-item"
+              >
                 Email
               </label>
               <button
@@ -117,12 +131,19 @@ function ProfilePage(): any {
                 <option value=""></option>
                 <option value="m@example.com">m@example.com</option>
               </select>
-              <p id=":rhl:-form-item-description" className="text-[0.8rem] text-muted-foreground">
-                You can manage verified email addresses in your <a href="/examples/forms">email settings</a>.
+              <p
+                id=":rhl:-form-item-description"
+                className="text-[0.8rem] text-muted-foreground"
+              >
+                You can manage verified email addresses in your{' '}
+                <a href="/examples/forms">email settings</a>.
               </p>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":rhn:-form-item">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for=":rhn:-form-item"
+              >
                 Bio
               </label>
               <textarea
@@ -135,16 +156,26 @@ function ProfilePage(): any {
               >
                 I own a computer.
               </textarea>
-              <p id=":rhn:-form-item-description" className="text-[0.8rem] text-muted-foreground">
-                You can <span>@mention</span> other users and organizations to link to them.
+              <p
+                id=":rhn:-form-item-description"
+                className="text-[0.8rem] text-muted-foreground"
+              >
+                You can <span>@mention</span> other users and organizations to
+                link to them.
               </p>
             </div>
             <div>
               <div className="space-y-2">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":rho:-form-item">
+                <label
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":rho:-form-item"
+                >
                   URLs
                 </label>
-                <p id=":rho:-form-item-description" className="text-[0.8rem] text-muted-foreground">
+                <p
+                  id=":rho:-form-item-description"
+                  className="text-[0.8rem] text-muted-foreground"
+                >
                   Add links to your website, blog, or social media profiles.
                 </p>
                 <input
@@ -157,10 +188,16 @@ function ProfilePage(): any {
                 />
               </div>
               <div className="space-y-2">
-                <label className="sr-only text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":rhp:-form-item">
+                <label
+                  className="sr-only text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":rhp:-form-item"
+                >
                   URLs
                 </label>
-                <p id=":rhp:-form-item-description" className="sr-only text-[0.8rem] text-muted-foreground">
+                <p
+                  id=":rhp:-form-item-description"
+                  className="sr-only text-[0.8rem] text-muted-foreground"
+                >
                   Add links to your website, blog, or social media profiles.
                 </p>
                 <input

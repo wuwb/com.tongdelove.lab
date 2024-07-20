@@ -7,7 +7,9 @@ export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
   const url = env?.PRISMA_DATABASE_URL ?? null
 
   if (!url) {
-    throw new Error(`[Error] Cannot create prisma client instance, missing env variable PRISMA_DATABASE_URL.`)
+    throw new Error(
+      `[Error] Cannot create prisma client instance, missing env variable PRISMA_DATABASE_URL.`
+    )
   }
 
   console.log('prisma url: ', url)
@@ -40,7 +42,7 @@ export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
       ],
     })
     if (isDev) {
-      prismaClient.$on('query', e => {
+      prismaClient.$on('query', (e) => {
         console.log('Query: ' + e.query)
         console.log('Duration: ' + e.duration + 'ms')
       })

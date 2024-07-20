@@ -33,7 +33,7 @@ const DailyActivity = () => {
   return (
     <BaseCard title="Daily Activity">
       <div>
-        {activities.map(activity => (
+        {activities.map((activity) => (
           <div key={activity.time}>
             <div
               style={{

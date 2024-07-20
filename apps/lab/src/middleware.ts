@@ -8,8 +8,11 @@ type MiddlewareEnabledRouteMatchers = (typeof config.matcher)[number]
 
 const adminAuthRoutes: MiddlewareEnabledRouteMatchers[] = ['/admin/:path*']
 
-const isAdminRoute = (pathName: string, adminRoutes: MiddlewareEnabledRouteMatchers[]): boolean => {
-  return adminRoutes.some(routePrefix => {
+const isAdminRoute = (
+  pathName: string,
+  adminRoutes: MiddlewareEnabledRouteMatchers[]
+): boolean => {
+  return adminRoutes.some((routePrefix) => {
     const path = pathName.toLowerCase().trim()
     if (routePrefix.endsWith(':path*')) {
       return pathName.startsWith(routePrefix.slice(0, -7))
@@ -38,7 +41,9 @@ export function middleware(request: NextRequest) {
   // }
 
   const { pathname } = request.nextUrl
-  const pathnameHasLocale = locales.some(locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  )
 
   if (pathnameHasLocale) return
 

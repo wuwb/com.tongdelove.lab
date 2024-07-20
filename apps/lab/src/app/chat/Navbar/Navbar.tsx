@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core';
+import { useState } from 'react'
+import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core'
 import {
   TbHome2,
   TbGauge,
@@ -8,8 +8,8 @@ import {
   TbCalendarStats,
   TbUser,
   TbSettings,
-} from 'react-icons/tb';
-import classes from './Navbar.module.css';
+} from 'react-icons/tb'
+import classes from './Navbar.module.css'
 import Navigation from '../Navigation'
 
 const mainLinksMockdata = [
@@ -20,7 +20,7 @@ const mainLinksMockdata = [
   { icon: TbUser, label: 'Account' },
   { icon: TbFingerprint, label: 'Security' },
   { icon: TbSettings, label: 'Settings' },
-];
+]
 
 const linksMockdata = [
   'Security',
@@ -34,11 +34,11 @@ const linksMockdata = [
   'Pull Requests',
   'Open Issues',
   'Wiki pages',
-];
+]
 
 export function Navbar() {
-  const [active, setActive] = useState('Releases');
-  const [activeLink, setActiveLink] = useState('Settings');
+  const [active, setActive] = useState('Releases')
+  const [activeLink, setActiveLink] = useState('Settings')
 
   const mainLinks = mainLinksMockdata.map((link) => (
     <Tooltip
@@ -56,7 +56,7 @@ export function Navbar() {
         <link.icon style={{ width: rem(22), height: rem(22) }} stroke={1.5} />
       </UnstyledButton>
     </Tooltip>
-  ));
+  ))
 
   const links = linksMockdata.map((link) => (
     <a
@@ -64,22 +64,20 @@ export function Navbar() {
       data-active={activeLink === link || undefined}
       href="#"
       onClick={(event) => {
-        event.preventDefault();
-        setActiveLink(link);
+        event.preventDefault()
+        setActiveLink(link)
       }}
       key={link}
     >
       {link}
     </a>
-  ));
+  ))
 
   return (
     <nav className={classes.navbar}>
       <div className={classes.wrapper}>
         <div className={classes.aside}>
-          <div className={classes.logo}>
-            LOGO
-          </div>
+          <div className={classes.logo}>LOGO</div>
           {mainLinks}
         </div>
         <div className={classes.main}>
@@ -87,5 +85,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }

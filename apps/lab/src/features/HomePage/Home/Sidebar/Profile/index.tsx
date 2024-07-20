@@ -7,7 +7,12 @@ export const Profile = () => {
     <div className="mb-4 bg-white">
       <div className="bg-white p-4">
         <div>
-          <Image src="/images/placeholder/48x48?text=ezreal" alt="profile" width="48" height="48" />
+          <Image
+            src="/images/placeholder/48x48?text=ezreal"
+            alt="profile"
+            width="48"
+            height="48"
+          />
         </div>
         <div>
           <Link href="/">ezreal</Link>

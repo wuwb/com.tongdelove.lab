@@ -15,7 +15,7 @@ export const SpinnerButton = React.forwardRef((ref) => {
 
 SpinnerButton.displayName = 'SpinnerButton'
 
-export const DangerButton = props => {
+export const DangerButton = (props) => {
   const { type, onClick, children } = props
   return (
     <button className={styles['btn-danger']} type={type} onClick={onClick}>
@@ -24,8 +24,17 @@ export const DangerButton = props => {
   )
 }
 
-export const AppearanceButton = props => {
-  const { button, className, appearance, compact = false, handleClick, loading = false, type, children } = props
+export const AppearanceButton = (props) => {
+  const {
+    button,
+    className,
+    appearance,
+    compact = false,
+    handleClick,
+    loading = false,
+    type,
+    children,
+  } = props
 
   return (
     <button onClick={handleClick} type={type}>
@@ -44,11 +53,13 @@ export const AppearanceButton = props => {
           },
           // Specific to when the button is fully dark
           {
-            'border-primary-600 bg-primary-600 text-white': appearance === 'dark',
+            'border-primary-600 bg-primary-600 text-white':
+              appearance === 'dark',
           },
           // Specific to when the button is dark outlines
           {
-            'border-primary-600 text-primary-600': appearance === 'dark-outline',
+            'border-primary-600 text-primary-600':
+              appearance === 'dark-outline',
           },
           // Specific to when the button is fully white
           {
@@ -88,13 +99,26 @@ type ButtonProps = {
   variant?: 'default' | 'outline' | 'text'
 } & React.ComponentPropsWithRef<'button'>
 
-export const Button = ({ children, className = '', icon: Icon, variant = 'default', ...props }: ButtonProps) => {
+export const Button = ({
+  children,
+  className = '',
+  icon: Icon,
+  variant = 'default',
+  ...props
+}: ButtonProps) => {
   return (
     <div
-      className={clsx(className, 'bg-transparent text-black hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700', className, {
-        'bg-gray-50 text-black hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-900': variant === 'default',
-        'border border-gray-300 bg-gray-50 text-black hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700': variant === 'outline',
-      })}
+      className={clsx(
+        className,
+        'bg-transparent text-black hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700',
+        className,
+        {
+          'bg-gray-50 text-black hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-900':
+            variant === 'default',
+          'border border-gray-300 bg-gray-50 text-black hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700':
+            variant === 'outline',
+        }
+      )}
       {...props}
     >
       {Icon && <Icon className={`text-lg ${children ? 'mr-1' : ''}`} />}

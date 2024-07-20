@@ -1,5 +1,9 @@
 import { CheckBox } from '@/components/ui/Checkbox/Checkbox'
-import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input'
+import {
+  NumberInput,
+  PercentInput,
+  TextInput,
+} from '@/components/ui/Input/Input'
 import { Suggestion } from '@/components/ui/Suggestion/Suggestion'
 import { FundDataItem } from '@/server/service'
 import { useAppState, useDispatch } from '@/server/store'
@@ -29,7 +33,10 @@ export const Fund = () => {
     <>
       <div>
         <div>基金</div>
-        <Suggestion inputProps={{ placeholder: '请输入基金代码、拼音或者简称' }} onSelect={onSelectCallback} />
+        <Suggestion
+          inputProps={{ placeholder: '请输入基金代码、拼音或者简称' }}
+          onSelect={onSelectCallback}
+        />
       </div>
       {name && (
         <div>

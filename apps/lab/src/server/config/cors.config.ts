@@ -9,7 +9,10 @@ export const corsAllowedOrigins: string[] = [
 
 export const getCorsWhitelistOriginRegexp = (allowedOrigins?: string[]) => {
   const origins = allowedOrigins ?? corsAllowedOrigins
-  return new RegExp(`^https?://(([^/])+\\.)?(${origins.join('|')})(\\:\\d+)?$`, 'i')
+  return new RegExp(
+    `^https?://(([^/])+\\.)?(${origins.join('|')})(\\:\\d+)?$`,
+    'i'
+  )
 }
 
 type CorsDefaultOptions = Pick<CorsOptions, 'maxAge'>

@@ -9,7 +9,7 @@ const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === 'true',
-  middleware: getDefaultMiddleware => {
+  middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST'],

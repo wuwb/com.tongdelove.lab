@@ -76,19 +76,48 @@ export const CoverFlowImages = (props: { images: string[] }) => {
   }, [props.images])
 
   return (
-    <div className={clsx('swiper', styles.swiper, props.images.length < 2 ? styles.content : styles.screenshots)} ref={containerRef} tabIndex={1}>
+    <div
+      className={clsx(
+        'swiper',
+        styles.swiper,
+        props.images.length < 2 ? styles.content : styles.screenshots
+      )}
+      ref={containerRef}
+      tabIndex={1}
+    >
       <div className="swiper-wrapper">
         {props.images.map((image, index) => {
           let content
 
           if (image.endsWith('.mp4')) {
-            content = <video muted id={image} src={image} data-src={image} className={clsx('swiper-lazy', styles.video)} />
+            content = (
+              <video
+                muted
+                id={image}
+                src={image}
+                data-src={image}
+                className={clsx('swiper-lazy', styles.video)}
+              />
+            )
           } else {
-            content = <Image onClick={() => openLightBox(index)} id={image} alt={image} src={image} data-src={image} className={clsx('swiper-lazy', styles.image)} />
+            content = (
+              <Image
+                onClick={() => openLightBox(index)}
+                id={image}
+                alt={image}
+                src={image}
+                data-src={image}
+                className={clsx('swiper-lazy', styles.image)}
+              />
+            )
           }
 
           return (
-            <div key={image} style={{ width: props.images.length < 2 ? '100%' : undefined }} className={clsx('swiper-slide', styles.slide)}>
+            <div
+              key={image}
+              style={{ width: props.images.length < 2 ? '100%' : undefined }}
+              className={clsx('swiper-slide', styles.slide)}
+            >
               {content}
               <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
@@ -97,7 +126,7 @@ export const CoverFlowImages = (props: { images: string[] }) => {
       </div>
       <Lightbox
         images={props.images ?? []}
-        getState={setOpen => {
+        getState={(setOpen) => {
           setLightbox.current = setOpen
         }}
       />

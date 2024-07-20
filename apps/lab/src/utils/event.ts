@@ -14,7 +14,7 @@ _EventEmitter.prototype = {
       throw new Error('listener is not a function')
     }
     this.listeners[eventType] = this.listeners[eventType] || []
-    const findResult = this.listeners[eventType].find(item => {
+    const findResult = this.listeners[eventType].find((item) => {
       return item.listener === listener
     })
     if (!findResult) {

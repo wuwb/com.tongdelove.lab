@@ -1,7 +1,24 @@
 import React, { useState } from 'react'
 import { Layout } from '@/components/common'
-import { Collapse, Radio, Input, Space, Checkbox, Menu, Dropdown, Button, message, Tooltip, Drawer } from 'antd'
-import { DownOutlined, UserOutlined, FilterOutlined, AppstoreOutlined } from '@ant-design/icons'
+import {
+  Collapse,
+  Radio,
+  Input,
+  Space,
+  Checkbox,
+  Menu,
+  Dropdown,
+  Button,
+  message,
+  Tooltip,
+  Drawer,
+} from 'antd'
+import {
+  DownOutlined,
+  UserOutlined,
+  FilterOutlined,
+  AppstoreOutlined,
+} from '@ant-design/icons'
 import { ProductCard } from '@/containers/product'
 import s from './index.module.css'
 import { useRouter } from 'next/router'
@@ -95,15 +112,27 @@ const Page = () => {
 
   return (
     <>
-      <Drawer title="Basic Drawer" placement="right" onClose={handleCloseDrawer} visible={mobileFiltersOpen}>
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        onClose={handleCloseDrawer}
+        visible={mobileFiltersOpen}
+      >
         sidebar content
       </Drawer>
       <div className="flex flex-row">
         <div className={s.leftSidebar}>
           <div className={s.sidebarPanel}>
-            <Collapse defaultActiveKey={['1', '2', '3', '4']} ghost expandIconPosition="right">
+            <Collapse
+              defaultActiveKey={['1', '2', '3', '4']}
+              ghost
+              expandIconPosition="right"
+            >
               <Panel header="最小起订量" key="1">
-                <Radio.Group onChange={handleMiniumQuantityChange} value={minimumQuantity}>
+                <Radio.Group
+                  onChange={handleMiniumQuantityChange}
+                  value={minimumQuantity}
+                >
                   <Space direction="vertical" size={0}>
                     <Radio value={0}>任意数量</Radio>
                     <Radio value={500}>500单位或更少</Radio>
@@ -132,10 +161,20 @@ const Page = () => {
                 </Radio.Group>
               </Panel>
               <Panel header="材质" key="3">
-                <Checkbox.Group className="flex flex-col" options={materialsOptions} defaultValue={[]} onChange={onChange} />
+                <Checkbox.Group
+                  className="flex flex-col"
+                  options={materialsOptions}
+                  defaultValue={[]}
+                  onChange={onChange}
+                />
               </Panel>
               <Panel header="环保标准" key="4">
-                <Checkbox.Group className="flex flex-col" options={sustainabilityOptions} defaultValue={[]} onChange={onChange} />
+                <Checkbox.Group
+                  className="flex flex-col"
+                  options={sustainabilityOptions}
+                  defaultValue={[]}
+                  onChange={onChange}
+                />
               </Panel>
             </Collapse>
           </div>
@@ -145,15 +184,25 @@ const Page = () => {
             <div className={s.mainTitle}>包装产品分类</div>
             <div className="flex items-center">
               <Dropdown overlay={menu} trigger={['click']}>
-                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                >
                   Sort <DownOutlined />
                 </a>
               </Dropdown>
-              <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
+              <button
+                type="button"
+                className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
+              >
                 <span className="sr-only">View grid</span>
                 <AppstoreOutlined className="h-5 w-5" aria-hidden="true" />
               </button>
-              <button type="button" className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden" onClick={() => setMobileFiltersOpen(true)}>
+              <button
+                type="button"
+                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+                onClick={() => setMobileFiltersOpen(true)}
+              >
                 <span className="sr-only">Filters</span>
                 <FilterOutlined className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -161,7 +210,7 @@ const Page = () => {
           </div>
           <div className={s.mainContent}>
             <ul className={s.productGrid}>
-              {[1, 2, 3, 4, 5, 6, 7].map(i => (
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => (
                 <li key={i}>
                   <ProductCard
                     product={{

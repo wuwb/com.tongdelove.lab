@@ -41,7 +41,11 @@ const ButtonContent = ({ button, appearance, compact }) => {
 const ButtonLink = ({ button, appearance, compact = false }) => {
   return (
     <CustomLink link={button}>
-      <ButtonContent button={button} appearance={appearance} compact={compact} />
+      <ButtonContent
+        button={button}
+        appearance={appearance}
+        compact={compact}
+      />
     </CustomLink>
   )
 }

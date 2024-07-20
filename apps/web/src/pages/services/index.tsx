@@ -3,7 +3,18 @@ import { List, Typography } from 'antd'
 import { Layout } from '@/components/common'
 
 const Page = () => {
-  const data = ['采购', '产品管理', '工厂审核', '生产管理', '物流管理', 'ISTA / ASTM 测试', '现场质量控制', '即时库存', '可持续发展策略', 'ERP / WMS 集成']
+  const data = [
+    '采购',
+    '产品管理',
+    '工厂审核',
+    '生产管理',
+    '物流管理',
+    'ISTA / ASTM 测试',
+    '现场质量控制',
+    '即时库存',
+    '可持续发展策略',
+    'ERP / WMS 集成',
+  ]
 
   return (
     <div className="services pb-10 pt-10">
@@ -31,7 +42,11 @@ const Page = () => {
           <h3>联系我们的团队获取更多的服务</h3>
           <Link href="/">开始→</Link>
         </div>
-        <List className="list" dataSource={data} renderItem={item => <List.Item>{item}</List.Item>} />
+        <List
+          className="list"
+          dataSource={data}
+          renderItem={(item) => <List.Item>{item}</List.Item>}
+        />
       </div>
     </div>
   )

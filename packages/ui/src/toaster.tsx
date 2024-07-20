@@ -1,5 +1,3 @@
-'use client'
-
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from '@tongdelove/ui/toast'
 import { useToast } from '@tongdelove/ui/use-toast'
 

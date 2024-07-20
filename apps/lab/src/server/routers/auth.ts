@@ -8,4 +8,4 @@ export const authRouter = {
     // testing type validation of overridden next-auth Session in @myapp/auth package
     return 'you can see this secret message!'
   }),
-} 
+}

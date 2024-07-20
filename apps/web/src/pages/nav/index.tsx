@@ -120,7 +120,9 @@ const Page = () => (
       <div className="row">
         <div>
           <div className="daohang-title">网址导航</div>
-          <a href="https://top.chinaz.com/hangye/index_qiye_yinshua.html#obj_11">包装行业网站排行</a>
+          <a href="https://top.chinaz.com/hangye/index_qiye_yinshua.html#obj_11">
+            包装行业网站排行
+          </a>
           <div className="daohang-section">
             <div className="daohang-category">印刷资讯</div>
             <div className="daohang-links clearfix">
@@ -146,7 +148,9 @@ const Page = () => (
             <div className="daohang-category">商务印刷</div>
             <div className="daohang-links clearfix">
               <a href="https://www.duoduoyin.com/">多多印</a>
-              <a href="https://www.shengdaprint.com/">郑州盛大彩色印刷有限公司</a>
+              <a href="https://www.shengdaprint.com/">
+                郑州盛大彩色印刷有限公司
+              </a>
               <a href="http://www.ininin.com/">
                 云印 <div>1星</div>
               </a>
@@ -159,7 +163,7 @@ const Page = () => (
           <div className="daohang-section">
             <div className="daohang-category">包装企业</div>
             <div className="daohang-links clearfix">
-              {company_sites.map(item => {
+              {company_sites.map((item) => {
                 return (
                   <a key={item.link} href={item.link}>
                     {item.title}
@@ -186,27 +190,47 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.worldpackaging.org/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.worldpackaging.org/"
+              >
                 世界包装组织
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.asianpackaging.org/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.asianpackaging.org/"
+              >
                 亚洲包装联合会
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.fibrebox.org/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.fibrebox.org/"
+              >
                 美国纸箱协会
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.procarton.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.procarton.com/"
+              >
                 欧洲纸箱板和纸箱制造商协会
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.jcpra.or.jp/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.jcpra.or.jp/"
+              >
                 日本容器包装回收协会
               </a>
             </li>
@@ -242,12 +266,20 @@ const Page = () => (
           <h3 className="title">国家包装组织</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cpta.org.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cpta.org.cn/"
+              >
                 中国包装联合会
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinapack.net/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinapack.net/"
+              >
                 中国包装进出口总公司
               </a>
             </li>
@@ -257,22 +289,38 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cpipc.org.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cpipc.org.cn/"
+              >
                 包装行业生产力促进中心
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packagetest.net/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packagetest.net/"
+              >
                 中国包装科研测试中心
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cepi-china.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cepi-china.com/"
+              >
                 中国出口商品包装研究所
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.jn-chinapacking.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.jn-chinapacking.com/"
+              >
                 国家包装产品质量监督检验中心
               </a>
             </li>
@@ -283,12 +331,20 @@ const Page = () => (
           <h3 className="title">省级包装协会(含网站)</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.hnpack.gov.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.hnpack.gov.cn/"
+              >
                 河南省包装网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.hubeipack.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.hubeipack.com/"
+              >
                 湖北包装网
               </a>
             </li>
@@ -302,7 +358,11 @@ const Page = () => (
                 四川包装网
               </a>
               <div>
-                <a target="_blank" rel="noreferrer" href="http://www.bz028.com/">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="http://www.bz028.com/"
+                >
                   成都包装网
                 </a>
               </div>
@@ -313,7 +373,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.shanghaipack.org.cn">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.shanghaipack.org.cn"
+              >
                 上海市包装技术协会
               </a>
             </li>
@@ -328,7 +392,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.fujianpack.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.fujianpack.com/"
+              >
                 福建省包装技术协会
               </a>
             </li>
@@ -338,7 +406,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.htzgpack.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.htzgpack.com/"
+              >
                 江西省包装技术协会
               </a>
             </li>
@@ -367,7 +439,11 @@ const Page = () => (
                 广东包装印刷行业协会
               </a>
               <div>
-                <a target="_blank" rel="noreferrer" href="http://www.sz-packaging.com.cn/">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="http://www.sz-packaging.com.cn/"
+                >
                   深圳市包装网
                 </a>
               </div>
@@ -383,17 +459,29 @@ const Page = () => (
             <li>
               <span>江苏</span>
               <div>
-                <a target="_blank" rel="noreferrer" href="http://www.cz-pkg.com/">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="http://www.cz-pkg.com/"
+                >
                   常州包装网
                 </a>
-                <a target="_blank" rel="noreferrer" href="http://www.wxpacking.org/">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="http://www.wxpacking.org/"
+                >
                   无锡市包装技术协会
                 </a>
               </div>
             </li>
             <li>
               <span>辽宁</span>
-              <a target="_blank" rel="noreferrer" href="http://www.dalianpack.net">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.dalianpack.net"
+              >
                 大连包装网
               </a>
             </li>
@@ -438,7 +526,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.interpack.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.interpack.com.cn/"
+              >
                 国际包装网
               </a>
             </li>
@@ -453,32 +545,56 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packsourcing.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packsourcing.com/"
+              >
                 环宇包装网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.asiapackage.com.tw/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.asiapackage.com.tw/"
+              >
                 亚洲包装工业资讯网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bzys001.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bzys001.com/"
+              >
                 中国包装印刷网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cnzhixiang.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cnzhixiang.com/"
+              >
                 中国纸箱网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bz.cago365.com/news/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bz.cago365.com/news/"
+              >
                 365包装采购网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinappack.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinappack.com/"
+              >
                 中国塑料包装网
               </a>
             </li>
@@ -493,12 +609,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.superpack.cn/index.html">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.superpack.cn/index.html"
+              >
                 包装地带
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.paperpacking.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.paperpacking.com.cn/"
+              >
                 中国纸包装工业网
               </a>
             </li>
@@ -508,12 +632,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://pack.vogel.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://pack.vogel.com.cn/"
+              >
                 食品工程网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinafpma.org/index.html">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinafpma.org/index.html"
+              >
                 中国食品和包装机械工业协会
               </a>
             </li>
@@ -534,7 +666,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.printing.hc360.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.printing.hc360.com/"
+              >
                 慧聪印刷网
               </a>
             </li>
@@ -549,7 +685,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bisenet.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bisenet.com/"
+              >
                 必胜印刷网
               </a>
             </li>
@@ -564,7 +704,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinaprint.org/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinaprint.org/"
+              >
                 中国印刷行业网
               </a>
             </li>
@@ -574,12 +718,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.printing110.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.printing110.com/"
+              >
                 印包网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bzys001.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bzys001.com/"
+              >
                 中国包装印刷网
               </a>
             </li>
@@ -589,7 +741,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.digitalprint.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.digitalprint.cn/"
+              >
                 数码印刷网
               </a>
             </li>
@@ -599,7 +755,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.jpysprint.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.jpysprint.com/"
+              >
                 精品印刷指南
               </a>
             </li>
@@ -614,7 +774,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinaprint.org.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinaprint.org.cn/"
+              >
                 中国印刷及设备器材工业协会
               </a>
             </li>
@@ -624,7 +788,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.ahprint.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.ahprint.com/"
+              >
                 安徽省印刷网
               </a>
             </li>
@@ -639,7 +807,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.digitalprint.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.digitalprint.cn/"
+              >
                 数码印刷网
               </a>
             </li>
@@ -649,12 +821,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinakuaiyin.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinakuaiyin.cn/"
+              >
                 印联传媒
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.ccedisp.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.ccedisp.com/"
+              >
                 丝印特印网
               </a>
             </li>
@@ -664,7 +844,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.hljys.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.hljys.com.cn/"
+              >
                 黑龙江印刷网
               </a>
             </li>
@@ -690,7 +874,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.zxjx114.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.zxjx114.com/"
+              >
                 纸箱机械网
               </a>
             </li>
@@ -745,7 +933,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.fastpack.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.fastpack.com.cn/"
+              >
                 华北包装机械网
               </a>
             </li>
@@ -766,7 +958,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.jcpra.or.jp/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.jcpra.or.jp/"
+              >
                 日本包装设计协会
               </a>
             </li>
@@ -776,7 +972,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.tpda.com.tw/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.tpda.com.tw/"
+              >
                 台湾包装设计协会
               </a>
             </li>
@@ -791,12 +991,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.package-design.net/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.package-design.net/"
+              >
                 包装与设计
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.ccdol.com/sheji/baozhuang/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.ccdol.com/sheji/baozhuang/"
+              >
                 中国设计在线
               </a>
             </li>
@@ -807,12 +1015,20 @@ const Page = () => (
           <h3 className="title">包装人才</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://pack.job1001.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://pack.job1001.com/"
+              >
                 包装英才网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packjob.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packjob.com/"
+              >
                 中国包装人才网
               </a>
             </li>
@@ -837,7 +1053,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.printhr.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.printhr.com/"
+              >
                 众浩印刷人才网
               </a>
             </li>
@@ -847,7 +1067,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://pack.job1001.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://pack.job1001.com/"
+              >
                 一览包装人才网
               </a>
             </li>
@@ -868,12 +1092,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinapack.org.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinapack.org.cn/"
+              >
                 中国包装
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://pack.vogel.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://pack.vogel.com.cn/"
+              >
                 现代包装
               </a>
             </li>
@@ -883,17 +1115,29 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.pack168.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.pack168.com/"
+              >
                 包装前沿网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.paperpacking.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.paperpacking.com.cn/"
+              >
                 纸包装工业
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cpackage.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cpackage.com/"
+              >
                 中国包装报
               </a>
             </li>
@@ -903,17 +1147,29 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://cn.industrysourcing.com/Page/VerticalSites/Index.aspx?id=30">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://cn.industrysourcing.com/Page/VerticalSites/Index.aspx?id=30"
+              >
                 国际包装商情
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packjour.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packjour.com/"
+              >
                 包装工程
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="ttp://www.plaschina.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="ttp://www.plaschina.com.cn/"
+              >
                 中国塑料
               </a>
             </li>
@@ -923,17 +1179,29 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinacanmaking.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinacanmaking.com/"
+              >
                 金属包装
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.paper.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.paper.com.cn/"
+              >
                 中国纸网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cnzhipin.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cnzhipin.com/"
+              >
                 中国纸品
               </a>
             </li>
@@ -943,7 +1211,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.paperpacking.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.paperpacking.com.cn/"
+              >
                 纸包装工业
               </a>
             </li>
@@ -953,12 +1225,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinappi.org/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinappi.org/"
+              >
                 中国造纸协会
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cnjiangzhi.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cnjiangzhi.com/"
+              >
                 国际浆纸网
               </a>
             </li>
@@ -969,12 +1249,20 @@ const Page = () => (
           <h3 className="title">包装材料</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinamzbz.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinamzbz.com/"
+              >
                 中国木制包装网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.paper.com.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.paper.com.cn/"
+              >
                 中国纸网
               </a>
             </li>
@@ -984,12 +1272,20 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinapaper.net/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinapaper.net/"
+              >
                 中国纸业网
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinacanmaking.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinacanmaking.com/"
+              >
                 中国金属包装网
               </a>
             </li>
@@ -999,7 +1295,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinappack.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinappack.com/"
+              >
                 中国塑料包装网
               </a>
             </li>
@@ -1014,7 +1314,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinatinbox.net/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinatinbox.net/"
+              >
                 中国铁罐包装网
               </a>
             </li>
@@ -1024,7 +1328,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.chinabzp.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.chinabzp.com/"
+              >
                 中华包装瓶网
               </a>
             </li>
@@ -1034,7 +1342,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.china-papernet.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.china-papernet.com/"
+              >
                 中国纸业门户
               </a>
             </li>
@@ -1049,17 +1361,29 @@ const Page = () => (
           <h3 className="title">包装院校</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.tsinghua.edu.cn/publish/ad/2843/index.html">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.tsinghua.edu.cn/publish/ad/2843/index.html"
+              >
                 清华大学美术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://ysbz.bigc.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://ysbz.bigc.edu.cn/"
+              >
                 北京印刷学院（印刷与包装工程学院）
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cafa.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cafa.edu.cn/"
+              >
                 中央美术学院
               </a>
             </li>
@@ -1069,27 +1393,47 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.sust.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.sust.edu.cn/"
+              >
                 河南科技大学艺术设计系
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://art.ncu.edu.cn/default.aspx">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://art.ncu.edu.cn/default.aspx"
+              >
                 南昌大学艺术与设计学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://ccad.usst.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://ccad.usst.edu.cn/"
+              >
                 上海理工大学出版印刷与艺术设计学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.xaut.edu.cn/about.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=6197">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.xaut.edu.cn/about.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=6197"
+              >
                 西安理工大学印刷包装与数字媒体学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://pps.whu.edu.cn/yxgk/yxjj/2013-11-15/436.html">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://pps.whu.edu.cn/yxgk/yxjj/2013-11-15/436.html"
+              >
                 武汉大学印刷与包装工程系
               </a>
             </li>
@@ -1099,22 +1443,38 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.sdada.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.sdada.edu.cn/"
+              >
                 山东工艺美术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://ccad.usst.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://ccad.usst.edu.cn/"
+              >
                 上海理工大学出版印刷与设计艺术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://byxy.tust.edu.cn/main/index.html">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://byxy.tust.edu.cn/main/index.html"
+              >
                 天津科技大学包装与印刷工程学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://cailiao.syuct.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://cailiao.syuct.edu.cn/"
+              >
                 沈阳化工大学材料科学与工程学院
               </a>
             </li>
@@ -1124,22 +1484,38 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://yssj.haust.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://yssj.haust.edu.cn/"
+              >
                 河南科技大学艺术与设计学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://gaozhi.bigc.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://gaozhi.bigc.edu.cn/"
+              >
                 北京印刷学院职业技术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://msxy.ahnu.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://msxy.ahnu.edu.cn/"
+              >
                 安徽师范大学美术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.csust.edu.cn/pub/cslgdx/index.htm">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.csust.edu.cn/pub/cslgdx/index.htm"
+              >
                 长沙理工大学设计艺术学院
               </a>
             </li>
@@ -1149,47 +1525,83 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.sust.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.sust.edu.cn/"
+              >
                 陕西科技大学设计学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.xaut.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.xaut.edu.cn/"
+              >
                 西安理工大学印刷包装工程学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.ycptu.edu.cn/ysbzxy/index.asp">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.ycptu.edu.cn/ysbzxy/index.asp"
+              >
                 山西运城职业技术学院印刷工程系
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.cmse.buct.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.cmse.buct.edu.cn/"
+              >
                 北京化工大学材料科学与工程学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bigc.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bigc.edu.cn/"
+              >
                 北京印刷学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://mse.njit.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://mse.njit.edu.cn/"
+              >
                 南京工程学院材料工程学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://02362769569.locoso.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://02362769569.locoso.com/"
+              >
                 重庆工商大学机械与包装工程学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://design.bit.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://design.bit.edu.cn/"
+              >
                 北京理工大学设计与艺术学院
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://clxy.bjfu.edu.cn/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://clxy.bjfu.edu.cn/"
+              >
                 北京林业大学材料科学与技术学院
               </a>
             </li>
@@ -1205,7 +1617,11 @@ const Page = () => (
           <h3 className="title">其他类</h3>
           <ul className="link-list">
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packlee.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packlee.com/"
+              >
                 中国包装结构设计网
               </a>
             </li>
@@ -1220,7 +1636,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.bz.365cgw.com/">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.bz.365cgw.com/"
+              >
                 365包装采购网
               </a>
             </li>
@@ -1230,7 +1650,11 @@ const Page = () => (
               </a>
             </li>
             <li>
-              <a target="_blank" rel="noreferrer" href="http://www.packjour.cn/jzy/index.aspx">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://www.packjour.cn/jzy/index.aspx"
+              >
                 包装工程
               </a>
             </li>

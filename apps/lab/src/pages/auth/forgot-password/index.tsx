@@ -7,11 +7,19 @@ const ForgotPassword = () => {
       <div className="container h-full px-6 py-12">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-gray-800">
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-            <Image src="/images/placeholder/1010x727" className="w-full" alt="Phone image" width="1010" height="727" />
+            <Image
+              src="/images/placeholder/1010x727"
+              className="w-full"
+              alt="Phone image"
+              width="1010"
+              height="727"
+            />
           </div>
           <div className="md:w-8/12 lg:ml-20 lg:w-5/12">
             <div>
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">重置密码</h2>
+              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                重置密码
+              </h2>
             </div>
 
             <form>

@@ -18,7 +18,7 @@ const PostsPage = () => {
   let apiMethod = wp.posts()
 
   useEffect(() => {
-    PostService.post(slug).then(data => {
+    PostService.post(slug).then((data) => {
       setPost(data)
     })
     return () => {
@@ -31,7 +31,10 @@ const PostsPage = () => {
   }
 
   const heroUrl =
-    post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0] && post._embedded['wp:featuredmedia'][0].source_url
+    post._embedded &&
+    post._embedded['wp:featuredmedia'] &&
+    post._embedded['wp:featuredmedia'][0] &&
+    post._embedded['wp:featuredmedia'][0].source_url
       ? post._embedded['wp:featuredmedia'][0].source_url
       : false
 
@@ -45,12 +48,20 @@ const PostsPage = () => {
       <article className="mb-32">
         {heroUrl ? (
           <div className={`hero flex items-center post-type-${post.post_type}`}>
-            <Image alt="" width={100} height={100} className="w-100" src={heroUrl} />
+            <Image
+              alt=""
+              width={100}
+              height={100}
+              className="w-100"
+              src={heroUrl}
+            />
           </div>
         ) : (
           ''
         )}
-        <div className={`content mh4 mv4 w-two-thirds-l center-l post-${post.id} post-type-${post.post_type}`}>
+        <div
+          className={`content mh4 mv4 w-two-thirds-l center-l post-${post.id} post-type-${post.post_type}`}
+        >
           <h1>{post.postTitle}</h1>
           <div
             // eslint-disable-next-line react/no-danger

@@ -6,7 +6,9 @@ export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
   const url = process.env?.LAB_TONGDELOVE_URL_NON_POOLING ?? null
 
   if (!url) {
-    throw new Error(`[Error] Cannot create prisma client instance, missing env variable LAB_TONGDELOVE_URL_NON_POOLING.`)
+    throw new Error(
+      `[Error] Cannot create prisma client instance, missing env variable LAB_TONGDELOVE_URL_NON_POOLING.`
+    )
   }
 
   return PrismaManager.getDevSafeInstance('db-main', () => {
@@ -37,7 +39,7 @@ export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
       ],
     })
     if (isDev) {
-      prismaClient.$on('query', e => {
+      prismaClient.$on('query', (e) => {
         console.log('Query: ' + e.query)
         console.log('Duration: ' + e.duration + 'ms')
       })

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Layout from '@/components/common/Layout'
 
-const AboutPage = props => {
+const AboutPage = (props) => {
   return (
     <div title="关于">
       <div className="sub-nav">
@@ -23,7 +23,9 @@ const AboutPage = props => {
             <div>
               <p>海维包装是专注于包装行业的技术公司。</p>
 
-              <p>根据 中华文明共和国国家标准 GB/T 4754-2017 《国民经济行业分类》</p>
+              <p>
+                根据 中华文明共和国国家标准 GB/T 4754-2017 《国民经济行业分类》
+              </p>
 
               <p>本网站关注下面几个行业内容：</p>
 

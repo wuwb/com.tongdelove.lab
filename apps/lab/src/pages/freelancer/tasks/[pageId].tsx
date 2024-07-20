@@ -42,7 +42,7 @@ const TasksPageIdPage = (props: Props) => {
     fetchData(pageSize, num)
     router.push(`/freelancer/tasks/${num}`)
   }
-  const handleTo = num => {
+  const handleTo = (num) => {
     if (num === pageId) {
       return
     }
@@ -51,7 +51,9 @@ const TasksPageIdPage = (props: Props) => {
   }
   const fetchData = async (pageSize, pageId) => {
     try {
-      const { data } = await axios.get(`/freelancer/tasks?pageSize=${pageSize}&page=${pageId}`)
+      const { data } = await axios.get(
+        `/freelancer/tasks?pageSize=${pageSize}&page=${pageId}`
+      )
       setData(data.data.data)
       setCount(data.data.count)
     } catch (err) {
@@ -64,7 +66,7 @@ const TasksPageIdPage = (props: Props) => {
   }, [])
 
   return (
-    <div className=" pb-20 pt-10">
+    <div className="pb-20 pt-10">
       <Container className="">
         <div className="grid grid-cols-5 gap-3">
           <div className="col-span-4">
@@ -72,36 +74,67 @@ const TasksPageIdPage = (props: Props) => {
               <div className="text-base font-medium lg:text-xl">今天</div>
             </div>
             <div className="bg-white lg:rounded-lg">
-              {data.map(item => (
-                <div key={item.id} className={clsx('lg:h-120px relative cursor-pointer border-gray-200 hover:bg-gray-50 border-b')}>
-                  <Link className="lg:p-20px pr-18 lg:pr-104px group flex flex-col p-3" href={item.url}>
+              {data.map((item) => (
+                <div
+                  key={item.id}
+                  className={clsx(
+                    'lg:h-120px relative cursor-pointer border-b border-gray-200 hover:bg-gray-50'
+                  )}
+                >
+                  <Link
+                    className="lg:p-20px pr-18 lg:pr-104px group flex flex-col p-3"
+                    href={item.url}
+                  >
                     <div className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">
-                      <span className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">{item.title}</span>
+                      <span className="m-0 flex flex-row items-center text-base text-gray-700 lg:text-xl lg:font-light">
+                        {item.title}
+                      </span>
                       <div className="hidden flex-row items-center lg:flex">
-                        <svg className="ml-2 mr-1 fill-current text-white group-hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                        <svg
+                          className="ml-2 mr-1 fill-current text-white group-hover:text-gray-600"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          height="18"
+                        >
                           <path fill="none" d="M0 0h24v24H0z"></path>
                           <path d="M10 3v2H5v14h14v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6zm7.586 2H13V3h8v8h-2V6.414l-7 7L10.586 12l7-7z"></path>
                         </svg>
-                        <span className="text-sm text-white group-hover:text-gray-600">访问源站</span>
+                        <span className="text-sm text-white group-hover:text-gray-600">
+                          访问源站
+                        </span>
                       </div>
                     </div>
-                    <div className="text-xl text-pink-700">￥{item.fixedPrice}</div>
+                    <div className="text-xl text-pink-700">
+                      ￥{item.fixedPrice}
+                    </div>
                     <div className="font-normal text-gray-500">{item.desc}</div>
                     <div className="flex gap-2 text-sm text-gray-600">
-                      <span>项目类型： {item.type}</span> |{/* <span>发布时间：{format(new Date(item.time), 'yyyy-MM-dd HH:mm')}</span> */}
+                      <span>项目类型： {item.type}</span> |
+                      {/* <span>发布时间：{format(new Date(item.time), 'yyyy-MM-dd HH:mm')}</span> */}
                     </div>
                     <div className="flex gap-2 text-sm text-gray-600">
                       <div>
                         开发周期：{item.cycle} {item.cycleName}
                       </div>{' '}
-                      |<div>{item.bargain ? '可议价' : '固定价格'}</div> |<div>来源：{parseSourceType(item.source)}</div> |<div>状态：{item.status}</div> |
-                      <div>申请人数：{item.applyCount}</div> |<div>查看次数：{item.visitCount}</div>
+                      |<div>{item.bargain ? '可议价' : '固定价格'}</div> |
+                      <div>来源：{parseSourceType(item.source)}</div> |
+                      <div>状态：{item.status}</div> |
+                      <div>申请人数：{item.applyCount}</div> |
+                      <div>查看次数：{item.visitCount}</div>
                     </div>
                   </Link>
                 </div>
               ))}
 
-              <Pagination postsPerPage={10} totalPosts={count} paginatePrev={handlePrev} paginateNext={handleNext} handleTo={handleTo} currentPage={+pageId} />
+              <Pagination
+                postsPerPage={10}
+                totalPosts={count}
+                paginatePrev={handlePrev}
+                paginateNext={handleNext}
+                handleTo={handleTo}
+                currentPage={+pageId}
+              />
             </div>
           </div>
           <div className="">
@@ -112,7 +145,9 @@ const TasksPageIdPage = (props: Props) => {
                   <div className="mr-3 h-10 w-10 rounded"></div>
                   <div className="flex flex-col">
                     <div className="mb-1 text-base">技术</div>
-                    <div className="text-xs text-gray-400">收录 32053 个产品</div>
+                    <div className="text-xs text-gray-400">
+                      收录 32053 个产品
+                    </div>
                   </div>
                 </div>
                 <div className="p-2 text-center text-sm">查看更多</div>

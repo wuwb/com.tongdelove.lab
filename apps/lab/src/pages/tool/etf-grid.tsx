@@ -2,7 +2,14 @@ import { Grids } from '@/features/ETFGrid/Grids'
 import { Settings } from '@/features/ETFGrid/Settings'
 import { AppContext, initialState, reducer } from '@/server/store'
 import React from 'react'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@tongdelove/ui/breadcrumb'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@tongdelove/ui/breadcrumb'
 import { Input } from '@tongdelove/ui/input'
 import { Separator } from '@tongdelove/ui/separator'
 
@@ -36,7 +43,9 @@ const App = () => {
 
             <div className="my-6 space-y-0.5">
               <h2 className="text-2xl font-bold tracking-tight">网格工具</h2>
-              <p className="text-muted-foreground">为投资者精密计算买卖价格点位，依据市场波动智能生成网格计划，帮助把握震荡区间盈利机遇，兼容多平台使用，提升交易策略效率。</p>
+              <p className="text-muted-foreground">
+                为投资者精密计算买卖价格点位，依据市场波动智能生成网格计划，帮助把握震荡区间盈利机遇，兼容多平台使用，提升交易策略效率。
+              </p>
             </div>
 
             <Separator className="my-6" />
@@ -47,7 +56,11 @@ const App = () => {
           <aside className="w-2/7 grow">
             <div className="ml-4 space-y-3">
               <div>
-                <Input type="text" value="https://lab.printlake.com/tool/etf-grid" disabled />
+                <Input
+                  type="text"
+                  value="https://lab.printlake.com/tool/etf-grid"
+                  disabled
+                />
               </div>
             </div>
           </aside>

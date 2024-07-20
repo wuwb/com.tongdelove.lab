@@ -20,7 +20,7 @@ const Example = () => {
         <MdOutlineTipsAndUpdates />
       </div>
       <ul className="flex flex-wrap justify-center gap-3.5">
-        {list.map(item => {
+        {list.map((item) => {
           return (
             <li key={item.act}>
               <Button>{item.act}</Button>

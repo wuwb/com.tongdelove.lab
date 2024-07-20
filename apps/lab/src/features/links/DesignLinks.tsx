@@ -1,4 +1,3 @@
-
 const navs = [
   {
     title: '旺店通',
@@ -20,7 +19,5 @@ const navs = [
 // 图精灵 https://616pic.com
 
 export const DesignLinks = () => {
-  return (
-    <div>design links</div>
-  )
+  return <div>design links</div>
 }

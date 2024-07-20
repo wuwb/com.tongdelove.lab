@@ -11,7 +11,12 @@ function Markdown({ children, className = '', ...props }: Options) {
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
           return !inline ? (
-            <SyntaxHighlighter {...props} style={a11yDark} language={match?.[1] ?? ''} PreTag="div">
+            <SyntaxHighlighter
+              {...props}
+              style={a11yDark}
+              language={match?.[1] ?? ''}
+              PreTag="div"
+            >
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
           ) : (

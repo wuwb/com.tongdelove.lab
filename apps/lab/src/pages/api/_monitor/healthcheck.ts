@@ -8,7 +8,10 @@ export type HealthCheckApiPayload = {
   timestamp: string
 }
 
-export default function healthCheckApiRoute(req: NextApiRequest, res: NextApiResponse) {
+export default function healthCheckApiRoute(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'GET') {
     res.status(400).end()
     return

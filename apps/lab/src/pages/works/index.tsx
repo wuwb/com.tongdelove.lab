@@ -1,6 +1,6 @@
 import { Container, Footer } from '@/components/common'
 
-const Page = props => {
+const Page = (props) => {
   return (
     <Container>
       <Footer />

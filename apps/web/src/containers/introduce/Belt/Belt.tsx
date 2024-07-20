@@ -5,7 +5,7 @@ const StyledBelt = styled.div`
   width: 200px;
 `
 
-const Belt = props => {
+const Belt = (props) => {
   const { name, image, industry = '包装', description } = props
   return (
     <StyledBelt>

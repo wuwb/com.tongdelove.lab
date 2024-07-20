@@ -7,7 +7,7 @@ import s from './TopMenuDocker.module.css'
 
 const { Panel } = Collapse
 
-export const TopMenuDocker = props => {
+export const TopMenuDocker = (props) => {
   const [showContent, setShowContent] = useState(false)
 
   function handleClick() {
@@ -16,7 +16,12 @@ export const TopMenuDocker = props => {
 
   return (
     <div className={s.topMenuDocker}>
-      <div className="flex" tabIndex={0} aria-label="Menu" onClick={handleClick}>
+      <div
+        className="flex"
+        tabIndex={0}
+        aria-label="Menu"
+        onClick={handleClick}
+      >
         <MenuOutlined />
       </div>
       {

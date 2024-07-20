@@ -1,5 +1,13 @@
 import React, { Component, useState, memo } from 'react'
-import ReactKonva, { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva'
+import ReactKonva, {
+  Stage,
+  Layer,
+  Rect,
+  Text,
+  Line,
+  Group,
+  Transformer,
+} from 'react-konva'
 import Konva from 'konva'
 import { Pa, PMain, PSide } from '../../Slice'
 
@@ -33,7 +41,7 @@ export const Normal = memo(() => {
     pdLength: 9,
   })
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     setState({
       ...state,
       paWidth: Number(e.currentTarget.value),

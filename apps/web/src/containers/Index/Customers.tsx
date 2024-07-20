@@ -75,9 +75,12 @@ const Home = () => {
   const overseaCustomers = ['Mama Vege', 'Serveat', 'Cramer']
 
   function makeGridDom(data) {
-    return data.map(item => {
+    return data.map((item) => {
       return (
-        <div className="cursor-pointer border px-4 py-2 text-center hover:bg-black hover:text-white" key={item}>
+        <div
+          className="cursor-pointer border px-4 py-2 text-center hover:bg-black hover:text-white"
+          key={item}
+        >
           {item}
         </div>
       )

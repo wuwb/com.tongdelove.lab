@@ -3,7 +3,9 @@ import { Link } from '@/components/ui/'
 import axios from '@/utils/axios'
 import { InferGetServerSidePropsType } from 'next'
 
-const HomePage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const HomePage = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   return (
     <Container className="text-gray-800">
       <div className="grid grid-cols-5 gap-3">
@@ -19,14 +21,18 @@ const HomePage = (props: InferGetServerSidePropsType<typeof getServerSideProps>)
               <span>{props.time}</span>
             </div>
             <div className="flex gap-2 text-sm text-gray-600">
-              <div>开发周期：{props.duration}</div> |<div>{props.bargain ? '可议价' : '固定价格'}</div> |<div>来源：{props.origin}</div> |<div>状态：{props.status}</div> |
-              <div>申请人数：{props.applyCount}</div> |<div>查看次数：{props.visitCount}</div> |<div>开发类型：{props.developerType}</div> |
+              <div>开发周期：{props.duration}</div> |
+              <div>{props.bargain ? '可议价' : '固定价格'}</div> |
+              <div>来源：{props.origin}</div> |<div>状态：{props.status}</div> |
+              <div>申请人数：{props.applyCount}</div> |
+              <div>查看次数：{props.visitCount}</div> |
+              <div>开发类型：{props.developerType}</div> |
               <div>需求角色：{props.specificRole}</div>
             </div>
             <Link href={props.url}>访问原站</Link>
           </div>
         </div>
-        <div className="bg-red-100 ">
+        <div className="bg-red-100">
           <div className="">sidebar</div>
         </div>
       </div>
@@ -36,7 +42,7 @@ const HomePage = (props: InferGetServerSidePropsType<typeof getServerSideProps>)
 
 export default HomePage
 
-export const getServerSideProps = async context => {
+export const getServerSideProps = async (context) => {
   const { id } = context.params
 
   try {

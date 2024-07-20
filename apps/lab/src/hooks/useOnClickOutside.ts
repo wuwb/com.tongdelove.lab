@@ -1,6 +1,10 @@
 import { RefObject, MutableRefObject, useEffect, useRef } from 'react'
 
-export function useOnClickOutside<T extends HTMLElement>(node: RefObject<T | undefined>, handler: undefined | (() => void), keyBoardEvents = false): void {
+export function useOnClickOutside<T extends HTMLElement>(
+  node: RefObject<T | undefined>,
+  handler: undefined | (() => void),
+  keyBoardEvents = false
+): void {
   const handlerRef = useRef<undefined | (() => void)>(handler)
 
   useEffect(() => {

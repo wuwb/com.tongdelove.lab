@@ -19,7 +19,7 @@ export const Indexes = ({
   const [itemHeight, setItemHeight] = useState(0)
 
   const products = useMemo(() => {
-    return data[selectedCategory]?.products.map(p => p.name) || []
+    return data[selectedCategory]?.products.map((p) => p.name) || []
   }, [data, selectedCategory])
 
   const handleTouchMove = (event: any) => {
@@ -53,13 +53,16 @@ export const Indexes = ({
                 return (
                   <div
                     key={product.name}
-                    className={cn('grid h-16 w-12 origin-right place-content-center transition-all duration-300 ease-in-out', {
-                      'scale-150': distance === 0,
-                      'scale-125': distance === 1,
-                      'scale-110': distance === 2,
-                      'my-2': distance === 0,
-                      'my-1': distance === 1,
-                    })}
+                    className={cn(
+                      'grid h-16 w-12 origin-right place-content-center transition-all duration-300 ease-in-out',
+                      {
+                        'scale-150': distance === 0,
+                        'scale-125': distance === 1,
+                        'scale-110': distance === 2,
+                        'my-2': distance === 0,
+                        'my-1': distance === 1,
+                      }
+                    )}
                   >
                     {/* <Image mode="aspectFit" src={assets[product.name] || holder} className="pointer-events-none h-12 w-12" /> */}
                   </div>

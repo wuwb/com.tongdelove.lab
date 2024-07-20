@@ -37,12 +37,12 @@ export class RegistrationForm extends React.Component {
     autoCompleteResult: [],
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         let params = {}
-        Object.keys(values).forEach(index => {
+        Object.keys(values).forEach((index) => {
           if (!!values[index]) params[index] = values[index]
         })
 
@@ -56,7 +56,7 @@ export class RegistrationForm extends React.Component {
     })
   }
 
-  handleConfirmBlur = e => {
+  handleConfirmBlur = (e) => {
     const value = e.target.value
     this.setState({ confirmDirty: this.state.confirmDirty || !!value })
   }
@@ -78,19 +78,19 @@ export class RegistrationForm extends React.Component {
     callback()
   }
 
-  handleWebsiteChange = value => {
+  handleWebsiteChange = (value) => {
     let autoCompleteResult
     if (!value) {
       autoCompleteResult = []
     } else {
       autoCompleteResult = ['.com', '.org', '.net'].map(
-        domain => `${value}${domain}`
+        (domain) => `${value}${domain}`
       )
     }
     this.setState({ autoCompleteResult })
   }
 
-  changeAvatarCb = async avatarUrl => {
+  changeAvatarCb = async (avatarUrl) => {
     let info = {
       avatarUrl,
     }
@@ -105,7 +105,7 @@ export class RegistrationForm extends React.Component {
   render() {
     const { autoCompleteResult } = this.state
 
-    const websiteOptions = autoCompleteResult.map(website => (
+    const websiteOptions = autoCompleteResult.map((website) => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ))
     return (

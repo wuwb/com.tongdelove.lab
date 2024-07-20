@@ -1,6 +1,6 @@
 import { Container } from '@/components/common'
 
-const HomePage = props => {
+const HomePage = (props) => {
   return (
     <Container className="text-gray-800">
       <div>

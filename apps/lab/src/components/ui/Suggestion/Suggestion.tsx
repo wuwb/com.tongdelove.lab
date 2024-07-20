@@ -7,12 +7,19 @@ type IOnSelect = (item: FundDataItem) => void
 
 const initialResource = fetchFundData('')
 
-export function Suggestion({ inputProps, onSelect }: { inputProps?: OptionalInputProps; onSelect: IOnSelect }) {
+export function Suggestion({
+  inputProps,
+  onSelect,
+}: {
+  inputProps?: OptionalInputProps
+  onSelect: IOnSelect
+}) {
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [inputValue, setInputValue] = useState('')
   const [visible, setVisible] = useState(true)
-  const [resource, setResource] = useState<Resource<FundDataItem[]>>(initialResource)
+  const [resource, setResource] =
+    useState<Resource<FundDataItem[]>>(initialResource)
   let containerNode
 
   const onChangeCallback = useCallback((value: string) => {
@@ -22,7 +29,7 @@ export function Suggestion({ inputProps, onSelect }: { inputProps?: OptionalInpu
   }, [])
 
   const onSelectCallback = useCallback(
-    item => {
+    (item) => {
       onSelect(item)
       setInputValue(item.CODE)
       setVisible(false)
@@ -35,7 +42,7 @@ export function Suggestion({ inputProps, onSelect }: { inputProps?: OptionalInpu
   }, [])
 
   const onDocumentClick = useCallback(
-    e => {
+    (e) => {
       let node = e.target
       let justClickedInContainer = false
 
@@ -66,17 +73,36 @@ export function Suggestion({ inputProps, onSelect }: { inputProps?: OptionalInpu
   }, [onDocumentClick])
 
   return (
-    <div className="relative block" ref={node => (containerNode = node)}>
-      <TextInput {...inputProps} value={inputValue} onFocus={onFocusCallback} onChange={onChangeCallback} forwardedRef={inputRef} id="fund-input" />
-      <SuggestionList resource={resource} visible={visible} onSelect={onSelectCallback} />
+    <div className="relative block" ref={(node) => (containerNode = node)}>
+      <TextInput
+        {...inputProps}
+        value={inputValue}
+        onFocus={onFocusCallback}
+        onChange={onChangeCallback}
+        forwardedRef={inputRef}
+        id="fund-input"
+      />
+      <SuggestionList
+        resource={resource}
+        visible={visible}
+        onSelect={onSelectCallback}
+      />
     </div>
   )
 }
 
-function SuggestionList({ resource, visible, onSelect }: { resource: Resource<FundDataItem[]>; visible: boolean; onSelect: IOnSelect }): JSX.Element | null {
+function SuggestionList({
+  resource,
+  visible,
+  onSelect,
+}: {
+  resource: Resource<FundDataItem[]>
+  visible: boolean
+  onSelect: IOnSelect
+}): JSX.Element | null {
   const data = resource.funds.read()
   const onClick = useCallback(
-    e => {
+    (e) => {
       const node = e.target
       const index = node && node.getAttribute('data-suggest-index')
       const item = data[index]

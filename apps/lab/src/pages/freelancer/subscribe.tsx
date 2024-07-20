@@ -3,11 +3,11 @@ import { Link } from '@/components/ui/'
 import { TbHelpHexagon } from 'react-icons/tb'
 import { useForm } from 'react-hook-form'
 
-const HomePage = props => {
+const HomePage = (props) => {
   const setFormOptions = {}
   const { register, handleSubmit } = useForm(setFormOptions)
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     /**
     // 弹出扫码登录，登录成功，
         // 可以切换用账号密码登录
@@ -18,7 +18,7 @@ const HomePage = props => {
     */
   }
 
-  const handleTest = async data => {}
+  const handleTest = async (data) => {}
 
   const sourceList = [
     {
@@ -67,10 +67,17 @@ const HomePage = props => {
           <div className="bg-white p-5">
             <form>
               <div className="mb-8 space-y-4">
-                {sourceList.map(item => (
+                {sourceList.map((item) => (
                   <div key={item.id} className="">
                     <label key={item.id} className="form-check-label">
-                      <input type="checkbox" name="source" {...register('source')} id="source" value={item.id} className="form-check-input" />
+                      <input
+                        type="checkbox"
+                        name="source"
+                        {...register('source')}
+                        id="source"
+                        value={item.id}
+                        className="form-check-input"
+                      />
                       {item.name}
                     </label>
                   </div>
@@ -81,11 +88,23 @@ const HomePage = props => {
                   <span className="inline-block w-40">钉钉群机器人</span>
                   <div>
                     <label htmlFor="outlined-basic2">webhook</label>
-                    <input id="outlined-basic2" type="text" placeholder="群机器人的 webhook 地址" className="w-72 p-2" {...register('dingdingWebhook.webhook')} />
+                    <input
+                      id="outlined-basic2"
+                      type="text"
+                      placeholder="群机器人的 webhook 地址"
+                      className="w-72 p-2"
+                      {...register('dingdingWebhook.webhook')}
+                    />
                   </div>
                   <div>
                     <label htmlFor="outlined-basic2">key</label>
-                    <input id="outlined-basic2" type="text" className="w-40 p-2" placeholder="请填写签名校验的密钥串" {...register('dingdingWebhook.secret')} />
+                    <input
+                      id="outlined-basic2"
+                      type="text"
+                      className="w-40 p-2"
+                      placeholder="请填写签名校验的密钥串"
+                      {...register('dingdingWebhook.secret')}
+                    />
                   </div>
                   <Link href="https://open.dingtalk.com/document/group/custom-robot-access">
                     <TbHelpHexagon />
@@ -95,11 +114,23 @@ const HomePage = props => {
                   <span className="inline-block w-40">飞书群机器人</span>
                   <div>
                     <label htmlFor="outlined-basic2">通知地址</label>
-                    <input id="outlined-basic2" type="text" placeholder="群机器人的 webhook 地址" className="w-72 p-2" {...register('feishuWebhook.webhook')} />
+                    <input
+                      id="outlined-basic2"
+                      type="text"
+                      placeholder="群机器人的 webhook 地址"
+                      className="w-72 p-2"
+                      {...register('feishuWebhook.webhook')}
+                    />
                   </div>
                   <div>
                     <label htmlFor="outlined-basic2">签名密钥</label>
-                    <input id="outlined-basic2" type="text" placeholder="请填写签名校验的密钥串" className="w-72 p-2" {...register('feishuWebhook.secret')} />
+                    <input
+                      id="outlined-basic2"
+                      type="text"
+                      placeholder="请填写签名校验的密钥串"
+                      className="w-72 p-2"
+                      {...register('feishuWebhook.secret')}
+                    />
                   </div>
                   <Link href="https://www.feishu.cn/hc/zh-CN/articles/360024984973">
                     <TbHelpHexagon />
@@ -109,20 +140,35 @@ const HomePage = props => {
                   <span className="inline-block w-40">企业微信群机器人</span>
                   <div>
                     <label htmlFor="outlined-basic2">通知地址</label>
-                    <input id="outlined-basic2" type="text" placeholder="群机器人的 webhook 地址" className="w-72 p-2" {...register('wechatWebhook.webhook')} />
+                    <input
+                      id="outlined-basic2"
+                      type="text"
+                      placeholder="群机器人的 webhook 地址"
+                      className="w-72 p-2"
+                      {...register('wechatWebhook.webhook')}
+                    />
                   </div>
                 </div>
               </div>
               <div>
-                <button className="inline-block cursor-pointer border" onClick={handleSubmit(onSubmit)}>
+                <button
+                  className="inline-block cursor-pointer border"
+                  onClick={handleSubmit(onSubmit)}
+                >
                   订阅通知
                 </button>
-                <button className="ml-2 inline-block cursor-pointer border" onClick={handleSubmit(handleTest)}>
+                <button
+                  className="ml-2 inline-block cursor-pointer border"
+                  onClick={handleSubmit(handleTest)}
+                >
                   测试一下
                 </button>
               </div>
             </form>
-            <div className="mt-10">如果嫌配置机器人麻烦，可以加我的微信 wuxx2024，我拉你们到订阅群里，加我的时候备注"订阅任务"。</div>
+            <div className="mt-10">
+              如果嫌配置机器人麻烦，可以加我的微信
+              wuxx2024，我拉你们到订阅群里，加我的时候备注"订阅任务"。
+            </div>
           </div>
         </div>
         <div className="">sidebar</div>
@@ -133,7 +179,7 @@ const HomePage = props => {
 
 export default HomePage
 
-export const getServerSideProps = async context => {
+export const getServerSideProps = async (context) => {
   //     try {
   //         // 获取账号对应的订阅状态
   //     } catch (error) {

@@ -4,7 +4,13 @@ import CoverImage from '../components/cover-image'
 import { Card } from 'antd'
 import Categories from './categories'
 
-export default function PostHeader({ title, coverImage, date, author, categories }) {
+export default function PostHeader({
+  title,
+  coverImage,
+  date,
+  author,
+  categories,
+}) {
   return (
     <>
       <div>{title}</div>
@@ -13,10 +19,14 @@ export default function PostHeader({ title, coverImage, date, author, categories
         {/* <User src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=160" name={author.name} /> */}
       </div>
       <div className="-mx-5 mb-8 sm:mx-0 md:mb-16">
-        <Card>{/* <CoverImage title={title} src={coverImage} slug=""/> */}</Card>
+        <Card>
+          {/* <CoverImage title={title} src={coverImage} slug=""/> */}
+        </Card>
       </div>
       <div className="mx-auto max-w-2xl">
-        <div className="mb-6 block md:hidden">{/* <User src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=160" name={author.name} /> */}</div>
+        <div className="mb-6 block md:hidden">
+          {/* <User src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=160" name={author.name} /> */}
+        </div>
         <div className="mb-6 text-lg">
           Posted <DateFormater dateString={date} />
           {/* <Categories categories={categories} /> */}

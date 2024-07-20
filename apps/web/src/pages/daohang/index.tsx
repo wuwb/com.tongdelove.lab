@@ -226,7 +226,9 @@ const DaohangPage = () => (
             {
               link: 'http://www.scpack.cn/',
               title: '四川包装网',
-              children: [{ link: 'http://www.bz028.com/', title: '成都包装网' }],
+              children: [
+                { link: 'http://www.bz028.com/', title: '成都包装网' },
+              ],
             },
             { link: 'http://www.ynpack.org', title: '云南包装网' },
             {

@@ -79,6 +79,8 @@
     "@storybook/react": "^7.6.17",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
+    "@tongdelove/eslint-config": "workspace:^",
+    "@tongdelove/typescript-config": "workspace:^",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.random": "^3.2.6",
     "@types/lodash.throttle": "^4.1.6",
@@ -99,8 +101,6 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0",
-    "@tongdelove/eslint-config": "workspace:^",
-    "@tongdelove/typescript-config": "workspace:^"
+    "vitest": "^1.6.0"
   }
 }

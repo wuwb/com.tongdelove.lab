@@ -5,7 +5,7 @@ import Article from './Article'
 import Sidebar from './Sidebar'
 import { useSearchParams } from 'next/navigation'
 
-const PostIdPage = props => {
+const PostIdPage = (props) => {
   const router = useRouter()
   const { asPath } = router
   const searchParams = useSearchParams()
@@ -47,7 +47,7 @@ const PostIdPage = props => {
             <div className="bg-white">
               <Article />
 
-              {links.map(item => {
+              {links.map((item) => {
                 return (
                   <div key={item.title}>
                     <a href={item.link}>{item.title}</a>

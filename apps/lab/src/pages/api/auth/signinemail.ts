@@ -3,13 +3,13 @@ import { SendVerificationRequestParams } from 'next-auth/providers'
 
 const createTransport = (server: string) => {
   return {
-    sendMail: (data: any) => {
-
-    }
+    sendMail: (data: any) => {},
   }
 }
 
-export async function customSendVerificationRequest(params: Omit<SendVerificationRequestParams, 'expires' | 'token'>) {
+export async function customSendVerificationRequest(
+  params: Omit<SendVerificationRequestParams, 'expires' | 'token'>
+) {
   const { identifier, url, provider, theme } = params
   const { host } = new URL(url)
   // NOTE: You are not required to use `nodemailer`, use whatever you want.
@@ -27,7 +27,12 @@ export async function customSendVerificationRequest(params: Omit<SendVerificatio
   }
 }
 
-function html(params: { url: string; host: string; theme: Theme; identifier: string }) {
+function html(params: {
+  url: string
+  host: string
+  theme: Theme
+  identifier: string
+}) {
   const { url, host, identifier: userEmail } = params
 
   //由于使用

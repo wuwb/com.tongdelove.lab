@@ -3,10 +3,36 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const NextLinkComposed = React.forwardRef(function NextLinkComposed(props: any, ref) {
-  const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props
+const NextLinkComposed = React.forwardRef(function NextLinkComposed(
+  props: any,
+  ref
+) {
+  const {
+    to,
+    linkAs,
+    href,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    locale,
+    ...other
+  } = props
 
-  return <NextLink href={to} prefetch={prefetch} as={linkAs} replace={replace} scroll={scroll} shallow={shallow} passHref locale={locale} ref={ref} {...other}></NextLink>
+  return (
+    <NextLink
+      href={to}
+      prefetch={prefetch}
+      as={linkAs}
+      replace={replace}
+      scroll={scroll}
+      shallow={shallow}
+      passHref
+      locale={locale}
+      ref={ref}
+      {...other}
+    ></NextLink>
+  )
 })
 
 // A styled version of the Next.js Link component:
@@ -28,7 +54,9 @@ const Links = React.forwardRef(function Link(props: any, ref) {
     [activeClassName]: router.pathname === pathname && activeClassName,
   })
 
-  const isExternal = typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0)
+  const isExternal =
+    typeof href === 'string' &&
+    (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0)
 
   if (isExternal) {
     if (noLinkStyle) {
@@ -39,10 +67,21 @@ const Links = React.forwardRef(function Link(props: any, ref) {
   }
 
   if (noLinkStyle) {
-    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />
+    return (
+      <NextLinkComposed className={className} ref={ref} to={href} {...other} />
+    )
   }
 
-  return <NextLink component={NextLinkComposed} linkAs={linkAs} className={className} ref={ref} to={href} {...other} />
+  return (
+    <NextLink
+      component={NextLinkComposed}
+      linkAs={linkAs}
+      className={className}
+      ref={ref}
+      to={href}
+      {...other}
+    />
+  )
 })
 
 function Link({ href, children, ...props }: any) {

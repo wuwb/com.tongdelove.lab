@@ -19,7 +19,7 @@ const FeatureBar = dynamic(() => import('@/components/common/FeatureBar'), {
   ssr: true,
 })
 
-const Layout = props => {
+const Layout = (props) => {
   const { children, pageContext } = props
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   const [bannerIsShown, setBannerIsShown] = useState(true)

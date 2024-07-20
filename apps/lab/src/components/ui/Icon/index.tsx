@@ -2,7 +2,13 @@ import React from 'react'
 
 export function HomeIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
     </svg>
   )
@@ -10,8 +16,18 @@ export function HomeIcon() {
 
 export function WritingIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
-      <path fillRule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clipRule="evenodd" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+        clipRule="evenodd"
+      />
       <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
     </svg>
   )
@@ -19,7 +35,14 @@ export function WritingIcon() {
 
 export function CritIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      stroke="currentColor"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M10.5 1.75C10.0359 1.75 9.59075 1.93437 9.26256 2.26256C8.93437 2.59075 8.75 3.03587 8.75 3.5V10.5C8.75 10.9641 8.93437 11.4092 9.26256 11.7374C9.59075 12.0656 10.0359 12.25 10.5 12.25C10.9641 12.25 11.4092 12.0656 11.7374 11.7374C12.0656 11.4092 12.25 10.9641 12.25 10.5C12.25 10.0359 12.0656 9.59075 11.7374 9.26256C11.4092 8.93437 10.9641 8.75 10.5 8.75H3.5C3.03587 8.75 2.59075 8.93437 2.26256 9.26256C1.93437 9.59075 1.75 10.0359 1.75 10.5C1.75 10.9641 1.93437 11.4092 2.26256 11.7374C2.59075 12.0656 3.03587 12.25 3.5 12.25C3.96413 12.25 4.40925 12.0656 4.73744 11.7374C5.06563 11.4092 5.25 10.9641 5.25 10.5V3.5C5.25 3.03587 5.06563 2.59075 4.73744 2.26256C4.40925 1.93437 3.96413 1.75 3.5 1.75C3.03587 1.75 2.59075 1.93437 2.26256 2.26256C1.93437 2.59075 1.75 3.03587 1.75 3.5C1.75 3.96413 1.93437 4.40925 2.26256 4.73744C2.59075 5.06563 3.03587 5.25 3.5 5.25H10.5C10.9641 5.25 11.4092 5.06563 11.7374 4.73744C12.0656 4.40925 12.25 3.96413 12.25 3.5C12.25 3.03587 12.0656 2.59075 11.7374 2.26256C11.4092 1.93437 10.9641 1.75 10.5 1.75Z"
         strokeWidth="1.66667"
@@ -32,7 +55,13 @@ export function CritIcon() {
 
 export function FigmaIcon() {
   return (
-    <svg width="14" height="15" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="14"
+      height="15"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M4.63338 14.8C5.25222 14.8 5.84571 14.5541 6.2833 14.1166C6.72088 13.679 6.96672 13.0855 6.96672 12.4666V10.1333H4.63338C4.01454 10.1333 3.42105 10.3791 2.98347 10.8167C2.54588 11.2543 2.30005 11.8478 2.30005 12.4666C2.30005 13.0855 2.54588 13.679 2.98347 14.1166C3.42105 14.5541 4.01454 14.8 4.63338 14.8V14.8Z"
         fill="currentColor"
@@ -59,7 +88,13 @@ export function FigmaIcon() {
 
 export function PodcastIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path
         fillRule="evenodd"
         d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
@@ -71,7 +106,13 @@ export function PodcastIcon() {
 
 export function CampsiteIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -84,7 +125,13 @@ export function CampsiteIcon() {
 
 export function NewsletterIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -97,7 +144,13 @@ export function NewsletterIcon() {
 
 export function BookmarksIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
     </svg>
   )
@@ -105,7 +158,13 @@ export function BookmarksIcon() {
 
 export function AMAIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
       <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
     </svg>
@@ -114,7 +173,13 @@ export function AMAIcon() {
 
 export function StackIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
     </svg>
   )
@@ -122,7 +187,13 @@ export function StackIcon() {
 
 export function StaffDesignIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 19 20"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -134,7 +205,13 @@ export function StaffDesignIcon() {
 
 export function SecurityChecklistIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path
         fillRule="evenodd"
         d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -146,15 +223,31 @@ export function SecurityChecklistIcon() {
 
 export function AppDissectionIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
-      <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+        clipRule="evenodd"
+      />
     </svg>
   )
 }
 
 export function HackerNewsIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path
         fillRule="evenodd"
         d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
@@ -166,7 +259,13 @@ export function HackerNewsIcon() {
 
 export function TwitterIcon() {
   return (
-    <svg viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor">
+    <svg
+      viewBox="0 0 16 14"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="14"
+      fill="currentColor"
+    >
       <path d="M14.3617 3.35401C14.3687 3.49999 14.3713 3.64777 14.3713 3.79376C14.3713 8.29039 11.0696 13.4737 5.03217 13.4737C3.17739 13.4737 1.45304 12.9105 0 11.9445C0.859457 12.0522 1.73097 11.9833 2.56473 11.7418C3.39849 11.5003 4.17814 11.0908 4.85913 10.5369C4.17428 10.5235 3.51059 10.2886 2.96085 9.86516C2.41112 9.44169 2.00282 8.85078 1.79304 8.17505C2.28527 8.27044 2.79186 8.25042 3.27565 8.11647C2.53271 7.96035 1.8647 7.54285 1.38482 6.9347C0.904951 6.32655 0.642734 5.56518 0.642609 4.77959V4.73724C1.09843 5.00001 1.60823 5.14614 2.12957 5.16347C1.4338 4.6828 0.941284 3.94507 0.752536 3.10088C0.563788 2.25669 0.693041 1.36968 1.11391 0.620882C1.93808 1.67201 2.96639 2.53173 4.13207 3.14418C5.29774 3.75663 6.5747 4.10813 7.88 4.17584C7.82353 3.92137 7.79523 3.66107 7.79565 3.39996C7.79565 2.9534 7.88054 2.51121 8.04548 2.09865C8.21041 1.68609 8.45215 1.31124 8.7569 0.995511C9.06165 0.679784 9.42344 0.429363 9.82159 0.258552C10.2197 0.0877414 10.6465 -0.00011384 11.0774 4.51813e-06C11.5265 -0.000754465 11.9709 0.0941183 12.3832 0.278738C12.7954 0.463357 13.1667 0.733786 13.4739 1.07325C14.2088 0.922489 14.9136 0.643368 15.5583 0.247815C15.3131 1.03559 14.8001 1.70424 14.1148 2.12937C14.7654 2.04944 15.4009 1.86901 16 1.5941C15.5599 2.27755 15.005 2.87363 14.3617 3.35401V3.35401Z" />
     </svg>
   )
@@ -174,7 +273,13 @@ export function TwitterIcon() {
 
 export function GitHubIcon() {
   return (
-    <svg viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor">
+    <svg
+      viewBox="0 0 17 16"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -186,19 +291,35 @@ export function GitHubIcon() {
 
 export function YouTubeIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M0.734576 5.16761C0.805268 4.07928 1.68027 3.22636 2.76955 3.1724C4.34691 3.09425 6.60141 3 8.3001 3C9.99879 3 12.2533 3.09425 13.8306 3.1724C14.9199 3.22636 15.7949 4.07928 15.8656 5.16761C15.9333 6.21031 16.0001 7.49331 16.0001 8.5C16.0001 9.50669 15.9333 10.7897 15.8656 11.8324C15.7949 12.9207 14.9199 13.7736 13.8306 13.8276C12.2533 13.9058 9.99879 14 8.3001 14C6.60141 14 4.34691 13.9058 2.76955 13.8276C1.68027 13.7736 0.805268 12.9207 0.734576 11.8324C0.666848 10.7897 0.600098 9.50669 0.600098 8.5C0.600098 7.49331 0.666848 6.21031 0.734576 5.16761Z"
         fill="currentColor"
       />
-      <path d="M6.6499 6.30005V10.7L11.0499 8.50005L6.6499 6.30005Z" fill="currentColor" className="text-gray-50 dark:text-gray-900" />
+      <path
+        d="M6.6499 6.30005V10.7L11.0499 8.50005L6.6499 6.30005Z"
+        fill="currentColor"
+        className="text-gray-50 dark:text-gray-900"
+      />
     </svg>
   )
 }
 
 export function ExternalLinkIcon() {
   return (
-    <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="10"
+      height="9"
+      viewBox="0 0 10 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M9.00195 6.32617V0.824219C9.00195 0.490234 8.79102 0.267578 8.45117 0.267578L2.94922 0.279297C2.62109 0.279297 2.41016 0.519531 2.41016 0.794922C2.41016 1.07031 2.65039 1.30469 2.92578 1.30469H4.66602L7.45508 1.19922L6.39453 2.13672L1.16211 7.38086C1.05664 7.48633 0.998047 7.61523 0.998047 7.73828C0.998047 8.01367 1.24414 8.27734 1.53125 8.27734C1.66602 8.27734 1.78906 8.22461 1.89453 8.11914L7.13281 2.875L8.07617 1.81445L7.96484 4.48047V6.34961C7.96484 6.61914 8.19922 6.86523 8.48633 6.86523C8.76172 6.86523 9.00195 6.63672 9.00195 6.32617Z"
         fill="currentColor"
@@ -209,7 +330,13 @@ export function ExternalLinkIcon() {
 
 export function HeartIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M7.50001 13.125C7.09689 12.7675 6.64126 12.3956 6.15939 12H6.15314C4.45626 10.6125 2.53314 9.04247 1.68376 7.16122C1.40471 6.5623 1.25683 5.91067 1.25001 5.24997C1.24814 4.3434 1.61175 3.47434 2.25864 2.8392C2.90554 2.20406 3.78113 1.85647 4.68751 1.87497C5.42541 1.87614 6.14741 2.0894 6.76751 2.48935C7.03999 2.6662 7.28653 2.88013 7.50001 3.12497C7.71469 2.88109 7.96129 2.66729 8.23314 2.48935C8.85297 2.08932 9.5748 1.87604 10.3125 1.87497C11.2189 1.85647 12.0945 2.20406 12.7414 2.8392C13.3883 3.47434 13.7519 4.3434 13.75 5.24997C13.7436 5.91173 13.5957 6.56447 13.3163 7.16435C12.4669 9.0456 10.5444 10.615 8.84751 12L8.84126 12.005C8.35876 12.3981 7.90376 12.77 7.50064 13.13L7.50001 13.125ZM4.68751 3.12497C4.10533 3.11768 3.54381 3.3405 3.12501 3.74497C2.72151 4.14132 2.49599 4.68437 2.49996 5.24997C2.50709 5.73153 2.61616 6.20613 2.82001 6.64247C3.22096 7.45416 3.76196 8.18875 4.41814 8.81247C5.03751 9.43747 5.75001 10.0425 6.36626 10.5512C6.53689 10.6918 6.71064 10.8337 6.88439 10.9756L6.99376 11.065C7.16064 11.2012 7.33314 11.3425 7.50001 11.4812L7.50814 11.4737L7.51189 11.4706H7.51564L7.52126 11.4662H7.52439H7.52751L7.53876 11.4568L7.56439 11.4362L7.56876 11.4325L7.57564 11.4275H7.57939L7.58501 11.4225L8.00001 11.0818L8.10876 10.9925C8.28439 10.8493 8.45814 10.7075 8.62876 10.5668C9.24501 10.0581 9.95814 9.45372 10.5775 8.8256C11.2338 8.2022 11.7748 7.46779 12.1756 6.65622C12.3832 6.2161 12.4938 5.73654 12.5 5.24997C12.5026 4.68612 12.2772 4.14515 11.875 3.74997C11.457 3.34367 10.8954 3.11902 10.3125 3.12497C9.60122 3.11893 8.92122 3.41708 8.44376 3.94435L7.50001 5.03185L6.55626 3.94435C6.0788 3.41708 5.39881 3.11893 4.68751 3.12497Z"
         fill="currentColor"
@@ -220,7 +347,13 @@ export function HeartIcon() {
 
 export function HeartFillIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M1.25 5.25009C1.24984 4.34405 1.61399 3.476 2.26051 2.84123C2.90703 2.20647 3.78161 1.85831 4.6875 1.87509C5.76083 1.86939 6.78499 2.32458 7.5 3.12509C8.21501 2.32458 9.23917 1.86939 10.3125 1.87509C11.2184 1.85831 12.093 2.20647 12.7395 2.84123C13.386 3.476 13.7502 4.34405 13.75 5.25009C13.75 8.59759 9.76313 11.1251 7.5 13.1251C5.24188 11.1082 1.25 8.60009 1.25 5.25009Z"
         fill="currentColor"

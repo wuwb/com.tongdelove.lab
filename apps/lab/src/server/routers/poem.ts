@@ -34,29 +34,33 @@ const getToken = async () => {
 const getTranslation = async (content: string) => {
   const _token = await getToken()
 
-  const res = await fetch(`https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-8k-preview?access_token=${_token.access_token}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      messages: [
-        {
-          role: 'user',
-          content:
-            '你只需要将我发送的诗词内容进行白话文翻译，不需要赏析，不需要任何多余内容，只需要白话文翻译。不需要加上描述性文字“希望能符合我的要求”类似的结束语。不需要“以下是 xxx “的开始语， 确认请回复“确认”',
-        },
-        {
-          role: 'assistant',
-          content: '确认。请提供您需要翻译的诗词内容，我会直接将其翻译成白话文。',
-        },
-        {
-          role: 'user',
-          content: content,
-        },
-      ],
-    }),
-  })
+  const res = await fetch(
+    `https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-8k-preview?access_token=${_token.access_token}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        messages: [
+          {
+            role: 'user',
+            content:
+              '你只需要将我发送的诗词内容进行白话文翻译，不需要赏析，不需要任何多余内容，只需要白话文翻译。不需要加上描述性文字“希望能符合我的要求”类似的结束语。不需要“以下是 xxx “的开始语， 确认请回复“确认”',
+          },
+          {
+            role: 'assistant',
+            content:
+              '确认。请提供您需要翻译的诗词内容，我会直接将其翻译成白话文。',
+          },
+          {
+            role: 'user',
+            content: content,
+          },
+        ],
+      }),
+    }
+  )
 
   const json = (await res.json()) as { result: string }
 
@@ -106,7 +110,9 @@ export const poemRouter = {
         page: z.number().optional().default(1),
         pageSize: z.number().optional().default(28),
         authorId: z.number(),
-        select: z.array(z.enum(['title', 'titlePinYin', 'content', 'views', 'author'])).optional(),
+        select: z
+          .array(z.enum(['title', 'titlePinYin', 'content', 'views', 'author']))
+          .optional(),
       })
     )
     .query(async ({ input, ctx }) => {
@@ -148,28 +154,34 @@ export const poemRouter = {
     })
   ),
 
-  search: publicProcedure.input(z.string().default('')).query(({ input, ctx }) => {
-    return ctx.prisma.poem.findMany({
-      where: {
-        OR: [{ title: { contains: input } }, { content: { contains: input } }, { author: { name: { contains: input } } }],
-      },
-      select: {
-        author: {
-          select: {
-            id: true,
-            name: true,
-          },
+  search: publicProcedure
+    .input(z.string().default(''))
+    .query(({ input, ctx }) => {
+      return ctx.prisma.poem.findMany({
+        where: {
+          OR: [
+            { title: { contains: input } },
+            { content: { contains: input } },
+            { author: { name: { contains: input } } },
+          ],
         },
-        title: true,
-        content: true,
-        id: true,
-      },
-      orderBy: {
-        titlePinYin: { sort: 'desc', nulls: 'last' },
-      },
-      take: 50,
-    })
-  }),
+        select: {
+          author: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          title: true,
+          content: true,
+          id: true,
+        },
+        orderBy: {
+          titlePinYin: { sort: 'desc', nulls: 'last' },
+        },
+        take: 50,
+      })
+    }),
 
   find: publicProcedure
     .input(
@@ -211,7 +223,7 @@ export const poemRouter = {
           take: 500,
         })
 
-        data = temp.filter(item => item.translation).slice(0, pageSize)
+        data = temp.filter((item) => item.translation).slice(0, pageSize)
       } else {
         data = await ctx.prisma.poem.findMany({
           orderBy: {
@@ -228,7 +240,7 @@ export const poemRouter = {
       const total = await ctx.prisma.poem.count()
 
       return {
-        data: data.map(item => transformPoem(item, input.lang || 'zh-Hans')),
+        data: data.map((item) => transformPoem(item, input.lang || 'zh-Hans')),
         page,
         pageSize,
         hasNext: page * pageSize < total,
@@ -282,7 +294,7 @@ export const poemRouter = {
       if (!tag) return
 
       return {
-        data: data.map(item => transformPoem(item, input.lang)),
+        data: data.map((item) => transformPoem(item, input.lang)),
         page,
         pageSize,
         hasNext: page * pageSize < total,
@@ -341,7 +353,9 @@ export const poemRouter = {
       if (!res) return
 
       // 特殊逻辑，自动标注五言绝句/七言绝句
-      const has = res.tags.find(tag => ['五言绝句', '七言绝句', '五言律诗', '七言律诗'].includes(tag.name))
+      const has = res.tags.find((tag) =>
+        ['五言绝句', '七言绝句', '五言律诗', '七言律诗'].includes(tag.name)
+      )
 
       if (!has) {
         const contentArr = splitChineseSymbol(res.content, false)
@@ -350,21 +364,21 @@ export const poemRouter = {
 
         // 绝句
         if (contentArr?.length === 4) {
-          if (contentArr.every(item => item.length === 5)) {
+          if (contentArr.every((item) => item.length === 5)) {
             connectTagId = 109
           }
-          if (contentArr.every(item => item.length === 7)) {
+          if (contentArr.every((item) => item.length === 7)) {
             connectTagId = 110
           }
         }
 
         // 律诗
         if (contentArr?.length === 8) {
-          if (contentArr.every(item => item.length === 5)) {
+          if (contentArr.every((item) => item.length === 5)) {
             connectTagId = 105
           }
 
-          if (contentArr.every(item => item.length === 7)) {
+          if (contentArr.every((item) => item.length === 7)) {
             connectTagId = 108
           }
         }
@@ -375,7 +389,7 @@ export const poemRouter = {
               where: { id },
               data: { tags: { connect: [{ id: connectTagId }] } },
             })
-            .catch(e => {
+            .catch((e) => {
               console.log(e)
             })
         }
@@ -465,8 +479,8 @@ export const poemRouter = {
               connect: { id: input.authorId },
             },
             tags: input.tagIds && {
-              connect: input.tagIds.map(id => ({ id })),
-              disconnect: input.disconnectTagIds?.map(id => ({ id })),
+              connect: input.tagIds.map((id) => ({ id })),
+              disconnect: input.disconnectTagIds?.map((id) => ({ id })),
             },
           },
         })
@@ -486,7 +500,7 @@ export const poemRouter = {
           ...data,
           authorId: input.authorId,
           tags: input.tagIds && {
-            connect: input.tagIds.map(id => ({ id })),
+            connect: input.tagIds.map((id) => ({ id })),
           },
         },
       })

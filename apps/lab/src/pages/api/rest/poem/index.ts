@@ -18,7 +18,13 @@ const handleListPoems = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(500).json(new Error(e))
     }
   } else {
-    return res.status(500).json(new Error(`The HTTP ${req.method} method is not supported at this route.`))
+    return res
+      .status(500)
+      .json(
+        new Error(
+          `The HTTP ${req.method} method is not supported at this route.`
+        )
+      )
   }
 }
 

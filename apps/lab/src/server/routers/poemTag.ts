@@ -53,7 +53,7 @@ const findMany = async ({ ctx, input }: FindMany) => {
   ])
 
   return {
-    data: data.map(item => pick(transformTag(item, lang), [...select, 'id'])),
+    data: data.map((item) => pick(transformTag(item, lang), [...select, 'id'])),
     page,
     pageSize,
     hasNext: page * pageSize < total,
@@ -65,7 +65,9 @@ export const poemTagRouter = createTRPCRouter({
   findMany: publicProcedure
     .input(
       z.object({
-        select: z.array(z.enum(['name', 'type', 'introduce', '_count'])).default(['name', 'type', 'introduce']),
+        select: z
+          .array(z.enum(['name', 'type', 'introduce', '_count']))
+          .default(['name', 'type', 'introduce']),
         type: z.string().or(z.null()).optional(),
         page: z.number().default(1),
         pageSize: z.number().default(28),
@@ -77,7 +79,9 @@ export const poemTagRouter = createTRPCRouter({
   findCiPaiMing: publicProcedure
     .input(
       z.object({
-        select: z.array(z.enum(['name', 'type', 'introduce', '_count'])).default(['name', 'type', 'introduce']),
+        select: z
+          .array(z.enum(['name', 'type', 'introduce', '_count']))
+          .default(['name', 'type', 'introduce']),
         page: z.number().default(1),
         pageSize: z.number().default(28),
         lang: LangZod,
@@ -144,10 +148,20 @@ export const poemTagRouter = createTRPCRouter({
       if (!tag) return
 
       return {
-        data: data.map(item => {
-          const json = pick(transformPoem(item, input.lang), ['id', 'title', 'titlePinYin', 'author', 'views'])
+        data: data.map((item) => {
+          const json = pick(transformPoem(item, input.lang), [
+            'id',
+            'title',
+            'titlePinYin',
+            'author',
+            'views',
+          ])
 
-          json.author = pick(json.author, ['id', 'name', 'namePinYin']) as PoemAuthor
+          json.author = pick(json.author, [
+            'id',
+            'name',
+            'namePinYin',
+          ]) as PoemAuthor
 
           return json
         }),
@@ -178,13 +192,17 @@ export const poemTagRouter = createTRPCRouter({
         where: { id: input.tagId },
         data: {
           poems: {
-            connect: input.ids.map(id => ({ id })),
+            connect: input.ids.map((id) => ({ id })),
           },
         },
       })
     }),
 
-  deleteById: publicProcedure.input(z.number()).mutation(({ input, ctx }) => ctx.prisma.poemTag.delete({ where: { id: input } })),
+  deleteById: publicProcedure
+    .input(z.number())
+    .mutation(({ input, ctx }) =>
+      ctx.prisma.poemTag.delete({ where: { id: input } })
+    ),
 
   create: publicProcedure
     .input(

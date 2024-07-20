@@ -54,7 +54,12 @@ const Home = () => {
           </dl>
         </div>
         <div className="content-secondly col-span-8 float-right">
-          <Image width={1000} height={420} src="/assets/front-page/1.jpg" alt="印刷机械设备" />
+          <Image
+            width={1000}
+            height={420}
+            src="/assets/front-page/1.jpg"
+            alt="印刷机械设备"
+          />
         </div>
       </div>
     </Container>

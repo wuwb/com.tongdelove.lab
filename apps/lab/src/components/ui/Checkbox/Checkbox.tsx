@@ -8,7 +8,11 @@ type RequiredTextInputProps = Required<Pick<InputHTMLAttributes, 'checked'>> & {
   onChange: IOnChange
 }
 
-export function CheckBox({ checked, onChange, ...rest }: RequiredTextInputProps) {
+export function CheckBox({
+  checked,
+  onChange,
+  ...rest
+}: RequiredTextInputProps) {
   const [state, setState] = useState<boolean>(checked)
   const callback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const v = e.target.checked

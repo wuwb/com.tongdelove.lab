@@ -15,7 +15,10 @@ export const Alert = ({ preview }) => {
           {preview ? (
             <>
               This is page is a preview.{' '}
-              <a href="/api/exit-preview" className="underline transition-colors duration-200 hover:text-cyan">
+              <a
+                href="/api/exit-preview"
+                className="underline transition-colors duration-200 hover:text-cyan"
+              >
                 Click here
               </a>{' '}
               to exit preview mode.
@@ -23,7 +26,10 @@ export const Alert = ({ preview }) => {
           ) : (
             <>
               The source code for this blog is{' '}
-              <a href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`} className="hover:text-success underline transition-colors duration-200">
+              <a
+                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
+                className="hover:text-success underline transition-colors duration-200"
+              >
                 available on GitHub
               </a>
               .

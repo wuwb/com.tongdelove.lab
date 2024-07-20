@@ -7,7 +7,7 @@ class AuthService {
         email,
         password,
       })
-      .then(respose => {
+      .then((respose) => {
         if (respose.status === 200) {
           localStorage.setItem('user', JSON.stringify(respose.data))
         }

@@ -67,9 +67,15 @@ const SwitchLang = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {locales!.map(locale => (
+        {locales!.map((locale) => (
           <MenuItem key={locale} onClick={handleClose}>
-            <CustomLink key={locale} href={{ pathname, query }} as={asPath} locale={locale} onClick={handleMenuItemClick}>
+            <CustomLink
+              key={locale}
+              href={{ pathname, query }}
+              as={asPath}
+              locale={locale}
+              onClick={handleMenuItemClick}
+            >
               <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
                 {localeText(locale)}
               </div>

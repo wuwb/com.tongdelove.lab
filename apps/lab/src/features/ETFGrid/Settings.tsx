@@ -1,5 +1,9 @@
 import { CheckBox } from '@/components/ui/Checkbox/Checkbox'
-import { NumberInput, PercentInput, TextInput } from '@/components/ui/Input/Input'
+import {
+  NumberInput,
+  PercentInput,
+  TextInput,
+} from '@/components/ui/Input/Input'
 import { useAppState, useDispatch } from '@/server/store'
 import { Fund } from './Fund'
 
@@ -7,7 +11,14 @@ export function Settings() {
   const state = useAppState()
   const dispatch = useDispatch()
 
-  const { price, amount, increasePercentPerGrid, numberOfRetainedProfits, hasMiddleGrid, hasBigGrid } = state
+  const {
+    price,
+    amount,
+    increasePercentPerGrid,
+    numberOfRetainedProfits,
+    hasMiddleGrid,
+    hasBigGrid,
+  } = state
 
   return (
     <form>

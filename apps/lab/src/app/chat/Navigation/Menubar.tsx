@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/Button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 
-export default function MenuBar() {
+export const MenuBar = () => {
   const {
     state: { displayNavigation },
     dispatch,

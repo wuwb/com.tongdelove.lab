@@ -3,7 +3,7 @@ import NextHead from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import config from '@/config/seo'
 
-const Head: FC = props => {
+const Head: FC = (props) => {
   return (
     <>
       <DefaultSeo {...config} />

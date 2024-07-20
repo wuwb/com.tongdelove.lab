@@ -26,7 +26,7 @@ const slice = createSlice({
     updateEvent(state: CalendarState, action: PayloadAction<Event>): void {
       const event = action.payload
 
-      state.events = state.events.map(_event => {
+      state.events = state.events.map((_event) => {
         if (_event.id === event.id) {
           return event
         }
@@ -35,7 +35,7 @@ const slice = createSlice({
       })
     },
     deleteEvent(state: CalendarState, action: PayloadAction<string>): void {
-      state.events = state.events.filter(event => event.id !== action.payload)
+      state.events = state.events.filter((event) => event.id !== action.payload)
     },
   },
 })

@@ -1,4 +1,4 @@
-export const copy = obj => {
+export const copy = (obj) => {
   if (typeof obj !== 'object' || obj === null) {
     return obj
   }

@@ -8,7 +8,7 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
   const [current, setCurrent] = useState('/')
   const router = useRouter()
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     setCurrent(e.key)
     router.push(e.key)
   }

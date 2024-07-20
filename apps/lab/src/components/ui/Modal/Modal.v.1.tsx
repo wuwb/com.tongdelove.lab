@@ -18,7 +18,12 @@ export function Modal({ isModalOpen, setIsModalOpen, children }) {
   }
 
   return (
-    <dialog className={modalStyle} data-name="close" onClick={handleClose} onKeyUp={e => handleOnKeyUp(e)}>
+    <dialog
+      className={modalStyle}
+      data-name="close"
+      onClick={handleClose}
+      onKeyUp={(e) => handleOnKeyUp(e)}
+    >
       <div className={styles.modal__content}>
         <div className="modal__icon-wrapper modal__close">
           <p>

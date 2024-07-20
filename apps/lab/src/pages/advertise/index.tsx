@@ -1,4 +1,18 @@
-import { Divider, Box, Flex, Button, Text, Container, Input, Textarea, Stack, List, ListItem, Title, ThemeIcon } from '@mantine/core'
+import {
+  Divider,
+  Box,
+  Flex,
+  Button,
+  Text,
+  Container,
+  Input,
+  Textarea,
+  Stack,
+  List,
+  ListItem,
+  Title,
+  ThemeIcon,
+} from '@mantine/core'
 
 import { TbCircleCheck } from 'react-icons/tb'
 
@@ -43,7 +57,12 @@ interface PackageTierProps {
   typePlan: string
   checked?: boolean
 }
-const PackageTier = ({ title, options, typePlan, checked = false }: PackageTierProps) => {
+const PackageTier = ({
+  title,
+  options,
+  typePlan,
+  checked = false,
+}: PackageTierProps) => {
   const colorTextLight = checked ? 'white' : 'purple.600'
   const bgColorLight = checked ? 'purple.400' : 'gray.300'
 
@@ -86,16 +105,25 @@ const ThreeTierPricingHorizontal = () => {
             </Title>
           </Stack>
           <Stack>
-            <Text>本站需要大量资金进行维护与迭代，为了给大家带来更优质的服务与内容，所以决定增加少许广告展示。在此感谢大家的厚爱与支持！</Text>
             <Text>
-              展示位置： 1.首页banner位置 2.首页精品软件top3，3个广告位置 广告类型： 1.必须是合法的优质广告 2.必须是经过专业检测后无毒无后门的Mac应用 联系方式： 欢迎合作！
+              本站需要大量资金进行维护与迭代，为了给大家带来更优质的服务与内容，所以决定增加少许广告展示。在此感谢大家的厚爱与支持！
+            </Text>
+            <Text>
+              展示位置： 1.首页banner位置 2.首页精品软件top3，3个广告位置
+              广告类型： 1.必须是合法的优质广告
+              2.必须是经过专业检测后无毒无后门的Mac应用 联系方式： 欢迎合作！
             </Text>
           </Stack>
         </Stack>
         <Divider />
         <PackageTier title="1 个月广告" typePlan="599" options={options1} />
         <Divider />
-        <PackageTier title="6 个月广告" checked={true} typePlan="2699" options={options2} />
+        <PackageTier
+          title="6 个月广告"
+          checked={true}
+          typePlan="2699"
+          options={options2}
+        />
         <Divider />
         <PackageTier title="1 年广告" typePlan="3649" options={options3} />
       </Stack>

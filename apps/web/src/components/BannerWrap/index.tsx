@@ -1,4 +1,4 @@
-const Home = props => {
+const Home = (props) => {
   return (
     <div
       className="py-10 text-center"

@@ -220,12 +220,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <Link href="/" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/1.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/1.jpg"
+                      />
                     </Link>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒一
                       </Link>
                     </h4>
@@ -234,12 +242,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/2.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/2.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒二
                       </Link>
                     </h4>
@@ -248,12 +264,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/3.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/3.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒三
                       </Link>
                     </h4>
@@ -262,12 +286,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <Link href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/4.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/4.jpg"
+                      />
                     </Link>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒四
                       </Link>
                     </h4>
@@ -276,12 +308,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/5.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/5.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒五
                       </Link>
                     </h4>
@@ -291,12 +331,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/6.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/6.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒六
                       </Link>
                     </h4>
@@ -305,12 +353,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/7.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/7.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒七
                       </Link>
                     </h4>
@@ -319,12 +375,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/8.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/8.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒八
                       </Link>
                     </h4>
@@ -333,12 +397,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒四
                       </Link>
                     </h4>
@@ -347,12 +419,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒五
                       </Link>
                     </h4>
@@ -362,12 +442,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒一
                       </Link>
                     </h4>
@@ -376,12 +464,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒二
                       </Link>
                     </h4>
@@ -390,12 +486,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒三
                       </Link>
                     </h4>
@@ -404,12 +508,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒四
                       </Link>
                     </h4>
@@ -418,12 +530,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         自热盒五
                       </Link>
                     </h4>
@@ -439,12 +559,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         筷子
                       </Link>
                     </h4>
@@ -453,12 +581,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         叉勺
                       </Link>
                     </h4>
@@ -467,12 +603,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         吸管
                       </Link>
                     </h4>
@@ -481,12 +625,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         牙签
                       </Link>
                     </h4>
@@ -495,7 +647,12 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
@@ -514,12 +671,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/c1.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/c1.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         铝箔保温袋一
                       </Link>
                     </h4>
@@ -528,12 +693,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/c2.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/c2.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         铝箔保温袋二
                       </Link>
                     </h4>
@@ -542,12 +715,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/c3.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/c3.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         铝箔保温袋三
                       </Link>
                     </h4>
@@ -556,12 +737,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="/assets/products/standrad/c4.jpg" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="/assets/products/standrad/c4.jpg"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         外卖打包袋
                       </Link>
                     </h4>
@@ -570,12 +759,20 @@ const Page = () => {
                 <div className="product-wrap">
                   <div className="product">
                     <a href="" className="action-hover">
-                      <Image alt="" width={540} height={540} src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com" />
+                      <Image
+                        alt=""
+                        width={540}
+                        height={540}
+                        src="https://via.placeholder.com/500/EFEFEF/999999?text=printlake.com"
+                      />
                     </a>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes" className="action-hover">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
                         冷藏保鲜袋
                       </Link>
                     </h4>

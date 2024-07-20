@@ -60,7 +60,10 @@ const Home = () => (
         <div className="col-12 mt30">
           <div className="page-heading">
             <h1 className="page-title">帮助重塑制造业。</h1>
-            <div>在海维包装，我们建立了包装软件和供应链，帮助您喜爱的在线品牌更精美，可持续和经济地生产产品。 听起来是不是很有趣？你会喜欢这里的。</div>
+            <div>
+              在海维包装，我们建立了包装软件和供应链，帮助您喜爱的在线品牌更精美，可持续和经济地生产产品。
+              听起来是不是很有趣？你会喜欢这里的。
+            </div>
           </div>
         </div>
       </Row>

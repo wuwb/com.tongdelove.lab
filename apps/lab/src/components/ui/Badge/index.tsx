@@ -25,7 +25,13 @@ const variantClasses = {
 export const Badge = (props: Props) => {
   const { color, variant, size, className, ...rest } = props
   return (
-    <span className={clsx(styles.badge, className, [sizesClasses[size], variantClasses[variant]])} {...rest}>
+    <span
+      className={clsx(styles.badge, className, [
+        sizesClasses[size],
+        variantClasses[variant],
+      ])}
+      {...rest}
+    >
       {props.children}
     </span>
   )

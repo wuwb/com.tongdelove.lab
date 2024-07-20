@@ -105,7 +105,7 @@ export const getTreeNode = (id, treeData) => {
 /**
  * 返回node的最后一个叶子结点
  */
-export const getLastLeafChild = node => {
+export const getLastLeafChild = (node) => {
   if (!node.children || node.children.length <= 0) {
     return null
   }

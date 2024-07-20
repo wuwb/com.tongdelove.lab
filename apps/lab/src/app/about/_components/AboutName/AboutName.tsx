@@ -6,7 +6,7 @@ import { PageWrapper } from '@/components/ui/'
 
 import type { AnyAaaaRecord } from 'dns'
 
-export const AboutName: React.FC<AnyAaaaRecord> = props => {
+export const AboutName: React.FC<AnyAaaaRecord> = (props) => {
   // useDarkMode()
   const searchParams = useSearchParams()
   const name = searchParams?.get('name')

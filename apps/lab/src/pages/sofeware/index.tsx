@@ -12,8 +12,13 @@ function SofewarePage(): any {
 
   return (
     <>
-      <div className="box mx-auto max-w-screen-lg p-2">Tuxera Disk Manager ZeroTier</div>
-      <div>论坛 https://github.com/flarum/flarum/ 网盘 https://github.com/Xhofe/alist</div>
+      <div className="box mx-auto max-w-screen-lg p-2">
+        Tuxera Disk Manager ZeroTier
+      </div>
+      <div>
+        论坛 https://github.com/flarum/flarum/ 网盘
+        https://github.com/Xhofe/alist
+      </div>
     </>
   )
 }

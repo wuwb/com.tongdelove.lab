@@ -9,7 +9,14 @@ type Props = {
   currentPage: number
 }
 
-export const Pagination = ({ postsPerPage, totalPosts, paginatePrev, paginateNext, handleTo, currentPage }: Props) => {
+export const Pagination = ({
+  postsPerPage,
+  totalPosts,
+  paginatePrev,
+  paginateNext,
+  handleTo,
+  currentPage,
+}: Props) => {
   // 数量为 0 的时候不返回。
   if (totalPosts === 0) {
     return null
@@ -22,7 +29,9 @@ export const Pagination = ({ postsPerPage, totalPosts, paginatePrev, paginateNex
       <div>
         <p className="text-sm text-gray-700">
           Showing
-          <span className="font-medium">{currentPage * postsPerPage - 10 + 1}</span>
+          <span className="font-medium">
+            {currentPage * postsPerPage - 10 + 1}
+          </span>
           to
           <span className="font-medium"> {currentPage * postsPerPage} </span>
           of
@@ -33,7 +42,7 @@ export const Pagination = ({ postsPerPage, totalPosts, paginatePrev, paginateNex
       <nav className="block">
         <ul className="flex list-none flex-wrap rounded pl-0">
           <li>
-            {pageNumbers.map(number => (
+            {pageNumbers.map((number) => (
               <Link
                 key={number}
                 onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,9 +63,12 @@ export const Pagination = ({ postsPerPage, totalPosts, paginatePrev, paginateNex
         </ul>
       </nav>
       <div>
-        <nav className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+        <nav
+          className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
+          aria-label="Pagination"
+        >
           <a
-            onClick={event => {
+            onClick={(event) => {
               event.preventDefault()
               paginatePrev()
             }}
@@ -66,7 +78,7 @@ export const Pagination = ({ postsPerPage, totalPosts, paginatePrev, paginateNex
             <span>Previous</span>
           </a>
           <a
-            onClick={event => {
+            onClick={(event) => {
               event.preventDefault()
               paginateNext()
             }}

@@ -60,7 +60,7 @@ const CategorySelector = () => {
         </div>
       </div>
       <ul>
-        {data.map(item => (
+        {data.map((item) => (
           <li key={item.id}>
             <a>
               <span>{item.name}</span>

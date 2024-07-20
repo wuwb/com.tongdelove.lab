@@ -18,7 +18,9 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
     classes,
     setLayout,
   }
-  return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
+  return (
+    <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
+  )
 }
 
 export { LayoutProvider, LayoutContext }

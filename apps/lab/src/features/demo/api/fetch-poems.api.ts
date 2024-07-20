@@ -1,7 +1,7 @@
 import type { SearchPoems } from '@/server/backend/features/poem/SearchPoems'
 
 export const fetchPoems = async (): Promise<SearchPoems> => {
-  return fetch('/api/rest/poem').then(resp => {
+  return fetch('/api/rest/poem').then((resp) => {
     if (!resp) {
       throw new Error(
         // @todo improve error reporting

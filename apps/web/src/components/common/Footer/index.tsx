@@ -1,6 +1,6 @@
 import FootNav from './FootNav'
 
-const Footer = props => {
+const Footer = (props) => {
   return (
     <div>
       <div className="flex flex-wrap justify-center gap-2">
@@ -151,7 +151,11 @@ const Footer = props => {
             ]}
           >
             <li>
-              <a target="_blank" rel="noreferrer" href="https://cptech.taobao.com">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://cptech.taobao.com"
+              >
                 淘宝店铺
               </a>
             </li>

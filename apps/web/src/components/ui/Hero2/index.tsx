@@ -29,7 +29,9 @@ const Hero = ({ data }) => {
         </div>
       </div>
       {/* Right column for the image */}
-      <div className="mt-6 w-full flex-shrink-0 md:mt-0 md:w-6/12">image here</div>
+      <div className="mt-6 w-full flex-shrink-0 md:mt-0 md:w-6/12">
+        image here
+      </div>
     </main>
   )
 }

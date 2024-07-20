@@ -9,7 +9,9 @@ export const CtaBlock: FC<Props> = () => {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8 lg:py-16">
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           <span className="block">Ready to dive in?</span>
-          <span className="block text-indigo-600">Start your free trial today.</span>
+          <span className="block text-indigo-600">
+            Start your free trial today.
+          </span>
         </h2>
         <div className="mt-8 flex lg:mt-0 lg:shrink-0">
           <div className="inline-flex rounded-md shadow">

@@ -32,7 +32,13 @@ const Page = () => {
           <div>
             <StyledMaterialsItem>
               <div className={'image-wrap'}>
-                <Image width={100} height={100} className={'image'} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  className={'image'}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div className="title">天然牛皮纸板</div>
               <div className="desc">未涂层的天然牛皮纸表面。</div>
@@ -52,7 +58,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>
@@ -69,7 +80,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>
@@ -90,7 +106,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>
@@ -107,7 +128,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>
@@ -124,7 +150,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>
@@ -141,7 +172,12 @@ const Page = () => {
           <div>
             <div>
               <div>
-                <Image width={100} height={100} src="https://placehold.it/100x100" alt="" />
+                <Image
+                  width={100}
+                  height={100}
+                  src="https://placehold.it/100x100"
+                  alt=""
+                />
               </div>
               <div>天然牛皮纸板</div>
               <div>未涂层的天然牛皮纸表面。</div>

@@ -100,7 +100,7 @@ export const AuthContext = createContext<AuthContextValue>({
   register: () => Promise.resolve(),
 })
 
-export const AuthProvider: FC<AuthProviderProps> = props => {
+export const AuthProvider: FC<AuthProviderProps> = (props) => {
   // const { children } = props;
   // const [state, dispatch] = useReducer(reducer, initialAuthState);
 

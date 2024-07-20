@@ -1,7 +1,7 @@
 import React from 'react'
 import { DefaultSeo, NextSeo } from 'next-seo'
 
-const Seo = props => {
+const Seo = (props) => {
   {
     /* Global site metadata */
   }
@@ -14,7 +14,7 @@ const Seo = props => {
         // Title and description are mandatory
         title: '',
         description: '',
-        images: Object.values([]).map(image => {
+        images: Object.values([]).map((image) => {
           return {
             url: '',
             width: 0,

@@ -24,7 +24,8 @@ const Page = () => {
       name: 'Blackbox',
       image: '/assets/introduce/show-01-blackbox.jpg',
       industry: 'Fulfillment',
-      description: 'High‑volume boxes delivered to warehouses across the&nbsp;country',
+      description:
+        'High‑volume boxes delivered to warehouses across the&nbsp;country',
     },
     {
       name: 'ShaveFace',
@@ -135,7 +136,15 @@ const Page = () => {
       description: 'Eco-friendly bag at lower&nbsp;costs',
     },
   ]
-  const BeltList = beltData.map((item, index) => <Belt key={item.name} name={item.name} image={item.image} industry={item.industry} description={item.description} />)
+  const BeltList = beltData.map((item, index) => (
+    <Belt
+      key={item.name}
+      name={item.name}
+      image={item.image}
+      industry={item.industry}
+      description={item.description}
+    />
+  ))
 
   return (
     <>
@@ -189,7 +198,12 @@ const Page = () => {
                 <div className="wrap-l pn2">
                   <div className="ui-frame">
                     <div className="ui-frame-screen">
-                      <Image alt="" width={300} height={300} src="/assets/introduce/Items.png" />
+                      <Image
+                        alt=""
+                        width={300}
+                        height={300}
+                        src="/assets/introduce/Items.png"
+                      />
                     </div>
                   </div>
                 </div>
@@ -203,14 +217,23 @@ const Page = () => {
                   <div className="row row-extra-padding row-top">
                     <div className="col">
                       <div className="">
-                        <h4 className="strong">无论您是每月运送数千或数百万个订单，您的购买力都会因加入海维包装而放大。</h4>
-                        <p>海维包装汇集了像您这样的数千家企业的需求，为世界上最好的工厂提供无与伦比的价格。</p>
+                        <h4 className="strong">
+                          无论您是每月运送数千或数百万个订单，您的购买力都会因加入海维包装而放大。
+                        </h4>
+                        <p>
+                          海维包装汇集了像您这样的数千家企业的需求，为世界上最好的工厂提供无与伦比的价格。
+                        </p>
                       </div>
                     </div>
                     <div className="col">
                       <div className="">
-                        <h4 className="strong">您的业务正在发展，您的供应链也应如此。</h4>
-                        <p>现在可能工作的东西可能在六个月内不起作用。 随着您的业务增长，海维包装有助于预测隐藏的成本并定期重新评估您的包装，以确保您无缝扩展。</p>
+                        <h4 className="strong">
+                          您的业务正在发展，您的供应链也应如此。
+                        </h4>
+                        <p>
+                          现在可能工作的东西可能在六个月内不起作用。
+                          随着您的业务增长，海维包装有助于预测隐藏的成本并定期重新评估您的包装，以确保您无缝扩展。
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -225,12 +248,20 @@ const Page = () => {
                     <div className="bg-gray-light mb-8 mt-2">
                       <div className="row row-no-padding flex justify-center">
                         <div className="col-6 mr-2">
-                          <Image alt="" width={300} height={300} src="/assets/introduce/parchute-unboxing.jpg" />
+                          <Image
+                            alt=""
+                            width={300}
+                            height={300}
+                            src="/assets/introduce/parchute-unboxing.jpg"
+                          />
                         </div>
                         <div className="col-4">
                           <div className="ppa ssl ssr">
                             <h4 className="strong">Parachute Home</h4>
-                            <h4>We made Parachute's packaging more reliable and affordable so that everyone can sleep&nbsp;better.</h4>
+                            <h4>
+                              We made Parachute's packaging more reliable and
+                              affordable so that everyone can sleep&nbsp;better.
+                            </h4>
                             <span className="st action">Read more →</span>
                           </div>
                         </div>
@@ -242,12 +273,21 @@ const Page = () => {
                     <div className="bg mt-2">
                       <div className="row row-no-padding flex justify-center">
                         <div className="col-6 mr-2">
-                          <Image alt="" width={300} height={300} src="/assets/introduce/meundie-pink-spring.jpg" />
+                          <Image
+                            alt=""
+                            width={300}
+                            height={300}
+                            src="/assets/introduce/meundie-pink-spring.jpg"
+                          />
                         </div>
                         <div className="col-4">
                           <div className="ppa ssl ssr">
                             <h4 className="strong">MeUndies</h4>
-                            <h4>We reduced costs and streamlined the design of fun, seasonal variations for the signature MeUndies&nbsp;pouch.</h4>
+                            <h4>
+                              We reduced costs and streamlined the design of
+                              fun, seasonal variations for the signature
+                              MeUndies&nbsp;pouch.
+                            </h4>
                             <span className="st action">Read more →</span>
                           </div>
                         </div>
@@ -267,7 +307,9 @@ const Page = () => {
                   }}
                 >
                   <h3>我们的功能可以从数千个单元无缝扩展到数百万个单元。</h3>
-                  <h4>包装盒，邮寄包，袋子，胶带，信封，填充物，贴纸，所有尺寸均可提供，包括印刷和空白。</h4>
+                  <h4>
+                    包装盒，邮寄包，袋子，胶带，信封，填充物，贴纸，所有尺寸均可提供，包括印刷和空白。
+                  </h4>
                 </div>
               </div>
 

@@ -1,4 +1,12 @@
-;<svg xmlns="http://www.w3.org/2000/svg" className="m-auto hidden lg:block" fill="none" viewBox="0 0 24 24" width="18" height="auto" stroke="currentColor">
+;<svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="m-auto hidden lg:block"
+  fill="none"
+  viewBox="0 0 24 24"
+  width="18"
+  height="auto"
+  stroke="currentColor"
+>
   <path
     strokeLinecap="round"
     strokeLinejoin="round"

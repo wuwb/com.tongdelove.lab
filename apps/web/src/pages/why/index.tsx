@@ -14,7 +14,9 @@ const Page = () => {
       <div className="mx-auto max-w-screen-lg">
         <div className="banner p-20 text-center font-bold">
           <h2 className="text-2xl">在一个控制面板里管理你所有的包装产品。</h2>
-          <p className="mt-4 text-xl">从采购到交付，印合包装控制面板帮助你的团队全面掌控包装供应链</p>
+          <p className="mt-4 text-xl">
+            从采购到交付，印合包装控制面板帮助你的团队全面掌控包装供应链
+          </p>
         </div>
 
         <div className="grid grid-cols-12">
@@ -28,7 +30,12 @@ const Page = () => {
           <div className="col-span-8">
             <div className="webshot-wrap clearfix max-w-full">
               <div className="webshot">
-                <Image alt="" width={640} height={442} src="/assets/why/Items.png" />
+                <Image
+                  alt=""
+                  width={640}
+                  height={442}
+                  src="/assets/why/Items.png"
+                />
               </div>
             </div>
           </div>
@@ -38,7 +45,12 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
-                <Image alt="" width={640} height={442} src="/assets/why/Cart.png" />
+                <Image
+                  alt=""
+                  width={640}
+                  height={442}
+                  src="/assets/why/Cart.png"
+                />
               </div>
             </div>
           </Col>
@@ -62,7 +74,12 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
-                <Image alt="" width={640} height={442} src="/assets/why/Proof.png" />
+                <Image
+                  alt=""
+                  width={640}
+                  height={442}
+                  src="/assets/why/Proof.png"
+                />
               </div>
             </div>
           </Col>
@@ -72,7 +89,12 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
-                <Image alt="" width={640} height={442} src="/assets/why/Checkout.png" />
+                <Image
+                  alt=""
+                  width={640}
+                  height={442}
+                  src="/assets/why/Checkout.png"
+                />
               </div>
             </div>
           </Col>
@@ -96,13 +118,21 @@ const Page = () => {
           <Col span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
-                <Image alt="" width={640} height={442} src="/assets/why/Shipments.png" />
+                <Image
+                  alt=""
+                  width={640}
+                  height={442}
+                  src="/assets/why/Shipments.png"
+                />
               </div>
             </div>
           </Col>
         </Row>
 
-        <Hero headline="准备好升级你的供应链了吗？" description="马上开始 （ 内测 ）" />
+        <Hero
+          headline="准备好升级你的供应链了吗？"
+          description="马上开始 （ 内测 ）"
+        />
       </div>
     </>
   )

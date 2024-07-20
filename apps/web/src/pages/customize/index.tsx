@@ -31,7 +31,7 @@ const Home = () => {
 
   const [material, setMaterial] = useState()
 
-  const onChange = e => {
+  const onChange = (e) => {
     console.log('radio checked', e.target.value)
     setMaterial(e.target.value)
   }
@@ -238,7 +238,7 @@ const Home = () => {
                   <List
                     bordered
                     dataSource={data}
-                    renderItem={item => <List.Item>{item}</List.Item>}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
                   />
                   <div>尺寸的单位是厘米</div>
                   <div>不清楚自己需要多大尺寸？可以联系我们。</div>

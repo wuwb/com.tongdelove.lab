@@ -11,7 +11,9 @@ export interface Serializer<T> {
   write(value: T): string
 }
 
-export function guessSerializerType<T extends string | number | boolean | object | null>(rawInit: T) {
+export function guessSerializerType<
+  T extends string | number | boolean | object | null,
+>(rawInit: T) {
   return rawInit == null
     ? 'any'
     : rawInit instanceof Set
@@ -31,7 +33,10 @@ export function guessSerializerType<T extends string | number | boolean | object
                   : 'any'
 }
 
-export const StorageSerializers: Record<'boolean' | 'object' | 'number' | 'any' | 'string' | 'map' | 'set' | 'date', Serializer<any>> = {
+export const StorageSerializers: Record<
+  'boolean' | 'object' | 'number' | 'any' | 'string' | 'map' | 'set' | 'date',
+  Serializer<any>
+> = {
   boolean: {
     read: (v: any) => v === 'true',
     write: (v: any) => String(v),
@@ -54,7 +59,8 @@ export const StorageSerializers: Record<'boolean' | 'object' | 'number' | 'any' 
   },
   map: {
     read: (v: any) => new Map(JSON.parse(v)),
-    write: (v: any) => JSON.stringify(Array.from((v as Map<any, any>).entries())),
+    write: (v: any) =>
+      JSON.stringify(Array.from((v as Map<any, any>).entries())),
   },
   set: {
     read: (v: any) => new Set(JSON.parse(v)),
@@ -66,7 +72,11 @@ export const StorageSerializers: Record<'boolean' | 'object' | 'number' | 'any' 
   },
 }
 
-export const useStorage = <T extends string | number | boolean | object | null>(key: string, initial: T, storage: StorageLike = localStorage) => {
+export const useStorage = <T extends string | number | boolean | object | null>(
+  key: string,
+  initial: T,
+  storage: StorageLike = localStorage
+) => {
   const rawType = guessSerializerType(initial)
   const serializer = StorageSerializers[rawType]
 

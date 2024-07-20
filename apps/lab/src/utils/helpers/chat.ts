@@ -2,11 +2,13 @@ import type { Chat } from '@/types/chat'
 
 export function groupByDate(chatList: Chat[]) {
   const groupMap = new Map<string, Chat[]>()
-  chatList.forEach(item => {
+  chatList.forEach((item) => {
     const now = new Date()
     const updateAt = new Date(item.updateAt)
     let key = '未知时间'
-    const dayDiff = Math.floor((now.getTime() - updateAt.getTime()) / (1000 * 60 * 60 * 24))
+    const dayDiff = Math.floor(
+      (now.getTime() - updateAt.getTime()) / (1000 * 60 * 60 * 24)
+    )
     if (dayDiff === 0 && now.getDate() === updateAt.getDate()) {
       key = '今天'
     } else if (dayDiff <= 7) {
@@ -24,7 +26,7 @@ export function groupByDate(chatList: Chat[]) {
       groupMap.set(key, [item])
     }
   })
-  groupMap.forEach(item => {
+  groupMap.forEach((item) => {
     item.sort((a, b) => b.updateAt - a.updateAt)
   })
   const groupList = Array.from(groupMap).sort(([, list1], [, list2]) => {

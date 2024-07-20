@@ -7,7 +7,12 @@ export const Heading = () => {
   return (
     <div className={s.root}>
       <div className={s.content}>
-        <Avatar alt="Your Avatar" size={100} className="mr-10" src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180" />
+        <Avatar
+          alt="Your Avatar"
+          size={100}
+          className="mr-10"
+          src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180"
+        />
         <div className={s.name}>
           <div className={s.title}>
             <h2 className={s.username}>Evil Rabbit</h2>

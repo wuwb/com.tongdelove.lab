@@ -1,5 +1,13 @@
 import { Group, Code, ScrollArea, rem } from '@mantine/core'
-import { TbNotes, TbCalendarStats, TbGauge, TbPresentationAnalytics, TbFileAnalytics, TbAdjustments, TbLock } from 'react-icons/tb'
+import {
+  TbNotes,
+  TbCalendarStats,
+  TbGauge,
+  TbPresentationAnalytics,
+  TbFileAnalytics,
+  TbAdjustments,
+  TbLock,
+} from 'react-icons/tb'
 // import { UserButton } from '../UserButton/UserButton';
 import { LinksGroup } from './components/NavbarLinksGroup/NavbarLinksGroup'
 import { Logo } from './Logo'
@@ -42,7 +50,9 @@ const mockdata = [
 ]
 
 export function NavbarNested() {
-  const links = mockdata.map(item => <LinksGroup {...item} key={item.label} />)
+  const links = mockdata.map((item) => (
+    <LinksGroup {...item} key={item.label} />
+  ))
 
   return (
     <nav className={classes.navbar}>

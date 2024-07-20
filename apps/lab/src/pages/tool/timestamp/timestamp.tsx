@@ -1,17 +1,16 @@
-import { Collapse, Layout, Table } from 'antd';
-import { useEffect, useState } from 'react';
+import { Collapse, Layout, Table } from 'antd'
+import { useEffect, useState } from 'react'
 
-const { Panel } = Collapse;
+const { Panel } = Collapse
 
 const TimestampPage = (props) => {
-
-  const [currentTimestamp, setCurrentTimestamp] = useState(+new Date());
+  const [currentTimestamp, setCurrentTimestamp] = useState(+new Date())
 
   useEffect(() => {
     setInterval(() => {
-      setCurrentTimestamp(+new Date());
-    }, 1000);
-  }, []);
+      setCurrentTimestamp(+new Date())
+    }, 1000)
+  }, [])
 
   const dataSource1 = [
     {
@@ -164,7 +163,7 @@ const TimestampPage = (props) => {
       language: 'Unix/Linux Shell',
       code: 'date +%s',
     },
-  ];
+  ]
   const dataSource2 = [
     {
       key: '1',
@@ -255,7 +254,7 @@ With interval: SELECT EXTRACT(EPOCH FROM INTERVAL '5 days 3 hours')
       language: 'VBScript/ASP',
       code: 'DateDiff("s", "01/01/1970 00:00:00", time field)',
     },
-  ];
+  ]
   const dataSource3 = [
     {
       key: '1',
@@ -384,7 +383,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
       language: 'Unix/Linux Shell',
       code: 'date -d @1520000000',
     },
-  ];
+  ]
   const columns = [
     {
       title: '语言（language）',
@@ -396,7 +395,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
       dataIndex: 'code',
       key: 'code',
     },
-  ];
+  ]
 
   const dataSource4 = [
     {
@@ -429,7 +428,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
       unit: '1年（365.24天）',
       count: '31556926',
     },
-  ];
+  ]
   const columns2 = [
     {
       title: '单位',
@@ -441,7 +440,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
       dataIndex: 'count',
       key: 'count',
     },
-  ];
+  ]
 
   return (
     <Layout.Content>
@@ -455,27 +454,46 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
         <div>
           <Collapse ghost>
             <Panel header="获取时间长" key="1">
-              <Table dataSource={dataSource1} columns={columns} pagination={false} />
+              <Table
+                dataSource={dataSource1}
+                columns={columns}
+                pagination={false}
+              />
             </Panel>
             <Panel header="字符串转时间戳" key="2">
-              <Table dataSource={dataSource2} columns={columns} pagination={false} />
+              <Table
+                dataSource={dataSource2}
+                columns={columns}
+                pagination={false}
+              />
             </Panel>
             <Panel header="时间戳转字符串" key="3">
-              <Table dataSource={dataSource3} columns={columns} pagination={false} />
+              <Table
+                dataSource={dataSource3}
+                columns={columns}
+                pagination={false}
+              />
             </Panel>
           </Collapse>
         </div>
         <div>
           <h3>什么是Unix时间戳？</h3>
-          <p>Unix时间戳（Unix时间/POSIX时间）是自1970年1月1日（UTC / GMT午夜）以来经过的秒数。</p>
+          <p>
+            Unix时间戳（Unix时间/POSIX时间）是自1970年1月1日（UTC /
+            GMT午夜）以来经过的秒数。
+          </p>
           <p>
             此页面上的转换器将以秒（10位数字）和毫秒（13位数字）为单位的时间戳转换为可读的日期。
           </p>
-          <Table dataSource={dataSource4} columns={columns2} pagination={false} />
+          <Table
+            dataSource={dataSource4}
+            columns={columns2}
+            pagination={false}
+          />
         </div>
       </div>
     </Layout.Content>
-  );
-};
+  )
+}
 
-export default TimestampPage;
+export default TimestampPage

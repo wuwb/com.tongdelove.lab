@@ -9,7 +9,7 @@ export enum SourceType {
   人人开发 = 9, // ok
 }
 
-export const parseSourceType = id => {
+export const parseSourceType = (id) => {
   let sourceType = 'custom'
   switch (id) {
     case 1:

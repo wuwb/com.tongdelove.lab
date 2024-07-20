@@ -4,7 +4,7 @@ import {
   ConfirmationDialogProps,
 } from './ConfirmationDialog'
 
-const Template: Story<ConfirmationDialogProps> = props => (
+const Template: Story<ConfirmationDialogProps> = (props) => (
   <ConfirmationDialog {...props} />
 )
 

@@ -3,7 +3,7 @@ import { PageWrapper } from '@/components/ui/PageWrapper/PageWrapper'
 import TopicList from './TopicList'
 import Sidebar from './Sidebar'
 
-export const Home: React.FC<any> = props => {
+export const Home: React.FC<any> = (props) => {
   return (
     <PageWrapper>
       <div className="clearfix mt-5">

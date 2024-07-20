@@ -76,7 +76,7 @@ export const getAllPostsFromServer = async () => {
   }
 }
 
-export const getAuthor = async id => {
+export const getAuthor = async (id) => {
   try {
     const {
       data: { name },
@@ -87,7 +87,7 @@ export const getAuthor = async id => {
   }
 }
 
-export const getFeaturedImage = async id => {
+export const getFeaturedImage = async (id) => {
   try {
     const res = await axios.get(`${MEDIA_API_URL}/${id}`)
     return res.data.guid.rendered
@@ -97,7 +97,7 @@ export const getFeaturedImage = async id => {
   }
 }
 
-export const getDNSPrefetchValue = domain => {
+export const getDNSPrefetchValue = (domain) => {
   if (!domain) return null
   if (domain.startsWith('http')) return domain.replace(/https?:/, '')
   if (domain.startsWith('//')) return domain

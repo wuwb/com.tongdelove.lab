@@ -1,6 +1,11 @@
 import Link from 'next/link'
 
-export const Logo = ({ href = '/', color = '#000', title = '海维包装', ...props }) => {
+export const Logo = ({
+  href = '/',
+  color = '#000',
+  title = '海维包装',
+  ...props
+}) => {
   return (
     <div id="logo" aria-label="Logo" {...props}>
       <Link href={href} passHref>

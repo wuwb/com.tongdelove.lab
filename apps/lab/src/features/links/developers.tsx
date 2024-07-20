@@ -11,7 +11,8 @@ export const Home = () => {
   const data = [
     {
       name: 'GeekPlux',
-      description: 'Data Visualization & Full-stack programmer @ finance firm, Blogger, Cat lover, Lifelong learner.',
+      description:
+        'Data Visualization & Full-stack programmer @ finance firm, Blogger, Cat lover, Lifelong learner.',
       site: '',
       siteName: 'GeekPlux',
       link: 'https://geekplux.com/',

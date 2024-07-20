@@ -1,4 +1,12 @@
-import { EdgeSpeechOptions, MicrosoftSpeechOptions, OpenAITTSOptions, TTSOptions, useEdgeSpeech, useMicrosoftSpeech, useOpenAITTS } from '@lobehub/tts/react'
+import {
+  EdgeSpeechOptions,
+  MicrosoftSpeechOptions,
+  OpenAITTSOptions,
+  TTSOptions,
+  useEdgeSpeech,
+  useMicrosoftSpeech,
+  useOpenAITTS,
+} from '@lobehub/tts/react'
 import isEqual from 'fast-deep-equal'
 
 import { createHeaderWithOpenAI } from '@/services/_header'
@@ -17,7 +25,10 @@ interface TTSConfig extends TTSOptions {
 
 export const useTTS = (content: string, config?: TTSConfig) => {
   const ttsSettings = useGlobalStore(settingsSelectors.currentTTS, isEqual)
-  const ttsAgentSettings = useSessionStore(agentSelectors.currentAgentTTS, isEqual)
+  const ttsAgentSettings = useSessionStore(
+    agentSelectors.currentAgentTTS,
+    isEqual
+  )
   const lang = useGlobalStore(settingsSelectors.currentLanguage)
   const voice = useSessionStore(agentSelectors.currentAgentTTSVoice(lang))
   let useSelectedTTS
@@ -69,7 +80,7 @@ export const useTTS = (content: string, config?: TTSConfig) => {
   return useSelectedTTS(content, {
     ...config,
     ...options,
-    onFinish: arraybuffers => {
+    onFinish: (arraybuffers) => {
       config?.onUpload?.(options.voice || 'alloy', arraybuffers)
     },
   })

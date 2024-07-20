@@ -18,7 +18,7 @@ export function isServer() {
  */
 export const truthyStrEnvValue = ['true', '1']
 export function zConvertTruthyStrToBool(defaultValue = false) {
-  return z.preprocess(val => {
+  return z.preprocess((val) => {
     if (val === undefined) return defaultValue
     return truthyStrEnvValue.includes(String(val))
   }, z.boolean())
@@ -29,11 +29,16 @@ export function zConvertTruthyStrToBool(defaultValue = false) {
  */
 export function exitOrThrowError(zodSafeParseError) {
   if (isRunningInNode && !isTestEnv) {
-    console.error('- ' + pc.red('error'.padEnd(7)).concat('Invalid server env(s):'), Object.keys(zodSafeParseError.error.flatten().fieldErrors).join(','))
+    console.error(
+      '- ' + pc.red('error'.padEnd(7)).concat('Invalid server env(s):'),
+      Object.keys(zodSafeParseError.error.flatten().fieldErrors).join(',')
+    )
     console.error(JSON.stringify(zodSafeParseError.error.format(), null, 2))
     process.exit(1)
   } else {
-    throw new Error(`Invalid server env(s): ${JSON.stringify(zodSafeParseError.error.format(), null, 2)}}`)
+    throw new Error(
+      `Invalid server env(s): ${JSON.stringify(zodSafeParseError.error.format(), null, 2)}}`
+    )
   }
 }
 

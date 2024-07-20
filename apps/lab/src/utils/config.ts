@@ -1,7 +1,16 @@
 import { notification } from 'antd'
 
 import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
-import { ConfigFile, ConfigFileAgents, ConfigFileAll, ConfigFileSessions, ConfigFileSettings, ConfigFileSingleSession, ConfigModelMap, ExportType } from '@/types/exportConfig'
+import {
+  ConfigFile,
+  ConfigFileAgents,
+  ConfigFileAll,
+  ConfigFileSessions,
+  ConfigFileSettings,
+  ConfigFileSingleSession,
+  ConfigModelMap,
+  ExportType,
+} from '@/types/exportConfig'
 
 export const exportConfigFile = (config: object, fileName?: string) => {
   const file = `LobeChat-${fileName || '-config'}-v${CURRENT_CONFIG_VERSION}.json`
@@ -26,8 +35,11 @@ export const exportConfigFile = (config: object, fileName?: string) => {
   a.remove()
 }
 
-export const importConfigFile = (file: File, onConfigImport: (config: ConfigFile) => void) => {
-  file.text().then(text => {
+export const importConfigFile = (
+  file: File,
+  onConfigImport: (config: ConfigFile) => void
+) => {
+  file.text().then((text) => {
     try {
       const config = JSON.parse(text)
       const { state } = Migration.migrate(config)
@@ -47,7 +59,10 @@ type CreateConfigFileState<T extends ExportType> = ConfigModelMap[T]['state']
 
 type CreateConfigFile<T extends ExportType> = ConfigModelMap[T]['file']
 
-export const createConfigFile = <T extends ExportType>(type: T, state: CreateConfigFileState<T>): CreateConfigFile<T> => {
+export const createConfigFile = <T extends ExportType>(
+  type: T,
+  state: CreateConfigFileState<T>
+): CreateConfigFile<T> => {
   switch (type) {
     case 'agents': {
       return {

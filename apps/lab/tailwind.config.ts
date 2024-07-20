@@ -102,16 +102,20 @@ const tailwindConfig = {
           700: 'rgb(var(--color-base-red-700) / <alpha-value>)',
         },
         fgPurpleGradient: {
-          default: 'var(--purple-gradient, linear-gradient(235deg, #57E4FF 0%, #8B95F2 26.03%, #8B72EE 44.83%, #8556EA 60.47%, #4138E5 100%))',
+          default:
+            'var(--purple-gradient, linear-gradient(235deg, #57E4FF 0%, #8B95F2 26.03%, #8B72EE 44.83%, #8556EA 60.47%, #4138E5 100%))',
         },
         fgGold: {
-          default: 'var(--Gold, linear-gradient(148deg, #FFE092 12.55%, #E3A302 86.73%))',
+          default:
+            'var(--Gold, linear-gradient(148deg, #FFE092 12.55%, #E3A302 86.73%))',
         },
         fgSilver: {
-          default: 'var(--Silver, linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%))',
+          default:
+            'var(--Silver, linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%))',
         },
         fgBronze: {
-          default: 'var(--Bronze, linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%))',
+          default:
+            'var(--Bronze, linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%))',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -236,11 +240,10 @@ const tailwindConfig = {
             transform: 'translateY(0)',
           },
         },
-
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         marquee: 'marquee 60s linear infinite',
         marquee2: 'marquee2 60s linear infinite',
         fadeMoveUp: 'fadeMoveUp 1s forwards',
@@ -262,7 +265,7 @@ const tailwindConfig = {
       }
 
       function matchUtility(cssProps) {
-        return value => {
+        return (value) => {
           const result = {}
           for (const cssProp of cssProps) {
             result[cssProp] = value
@@ -270,7 +273,10 @@ const tailwindConfig = {
           return result
         }
       }
-      matchUtilities({ inset: matchUtility(['top', 'right', 'bottom', 'left']) }, config)
+      matchUtilities(
+        { inset: matchUtility(['top', 'right', 'bottom', 'left']) },
+        config
+      )
       matchUtilities(
         {
           'inset-x': matchUtility(['left', 'right']),

@@ -58,7 +58,8 @@
 @layer base {
   :root {
     /* 通用 */
-    --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'MicrosoftYaHei', 'WenQuanYi Micro Hei', sans-serif;
+    --font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB',
+      'Heiti SC', 'MicrosoftYaHei', 'WenQuanYi Micro Hei', sans-serif;
 
     /* 简书 */
     /* --font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "MicrosoftYaHei", "WenQuanYi Micro Hei", sans-serif; */
@@ -80,7 +81,8 @@
     --border-radius-base: ;
     --border-radius-sm: ;
 
-    --code-font: 'Consolas', 'Panic Sans', 'Bitstream Vera Sans Mono', 'Menlo', 'Microsoft Yahei', monospace;
+    --code-font: 'Consolas', 'Panic Sans', 'Bitstream Vera Sans Mono', 'Menlo',
+      'Microsoft Yahei', monospace;
     --box-background-color: #fff;
     --box-background-alt-color: #f9f9f9;
     --box-background-hover-color: #fafafa;

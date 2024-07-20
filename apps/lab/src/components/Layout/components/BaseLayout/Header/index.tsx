@@ -19,15 +19,45 @@ import {
   ActionIcon,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { TbCode, TbBook, TbCoin, TbChevronDown, TbBrandMcdonalds, TbX, TbChevronRight } from 'react-icons/tb'
+import {
+  TbCode,
+  TbBook,
+  TbCoin,
+  TbChevronDown,
+  TbBrandMcdonalds,
+  TbX,
+  TbChevronRight,
+} from 'react-icons/tb'
 import { useSession, signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import classes from './HeaderMegaMenu.module.css'
 import Image from 'next/image'
-import { Home, LineChart, Package, Package2, PanelLeft, ShoppingCart, Users2 } from 'lucide-react'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@tongdelove/ui/breadcrumb'
+import {
+  Home,
+  LineChart,
+  Package,
+  Package2,
+  PanelLeft,
+  ShoppingCart,
+  Users2,
+} from 'lucide-react'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@tongdelove/ui/breadcrumb'
 import { Button } from '@tongdelove/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@tongdelove/ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@tongdelove/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
 
 const mockdata = [
@@ -49,7 +79,8 @@ const mockdata = [
 ]
 
 export function HeaderMegaMenu() {
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false)
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
   const theme = useMantineTheme()
   const { data: session } = useSession()
@@ -62,11 +93,14 @@ export function HeaderMegaMenu() {
     }
   }
 
-  const links = mockdata.map(item => (
+  const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
+          <item.icon
+            style={{ width: rem(22), height: rem(22) }}
+            color={theme.colors.blue[6]}
+          />
         </ThemeIcon>
         <div>
           <Text size="sm" fw={500}>
@@ -85,7 +119,11 @@ export function HeaderMegaMenu() {
       <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" variant="outline" className="shrink-0 sm:hidden">
+            <Button
+              size="icon"
+              variant="outline"
+              className="shrink-0 sm:hidden"
+            >
               <PanelLeft className="h-5 w-5" />
               <span className="sr-only">Toggle Menu</span>
             </Button>
@@ -99,23 +137,38 @@ export function HeaderMegaMenu() {
                 <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                 <span className="sr-only">Tongdelove Inc</span>
               </Link>
-              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+              >
                 <Home className="h-5 w-5" />
                 Home
               </Link>
-              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+              >
                 <ShoppingCart className="h-5 w-5" />
                 Orders
               </Link>
-              <Link href="#" className="flex items-center gap-4 px-2.5 text-foreground">
+              <Link
+                href="#"
+                className="flex items-center gap-4 px-2.5 text-foreground"
+              >
                 <Package className="h-5 w-5" />
                 Products
               </Link>
-              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+              >
                 <Users2 className="h-5 w-5" />
                 Customers
               </Link>
-              <Link href="#" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+              >
                 <LineChart className="h-5 w-5" />
                 Settings
               </Link>
@@ -126,8 +179,18 @@ export function HeaderMegaMenu() {
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
-                  <Image src="/images/avatars/3.jpg" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="overflow-hidden rounded-full"
+                >
+                  <Image
+                    src="/images/avatars/3.jpg"
+                    width={36}
+                    height={36}
+                    alt="Avatar"
+                    className="overflow-hidden rounded-full"
+                  />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -138,7 +201,10 @@ export function HeaderMegaMenu() {
                 </DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer">
+                <DropdownMenuItem
+                  onClick={() => signOut()}
+                  className="cursor-pointer"
+                >
                   退出
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -146,8 +212,18 @@ export function HeaderMegaMenu() {
           ) : (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
-                  <Image src="/images/avatars/8.jpg" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="overflow-hidden rounded-full"
+                >
+                  <Image
+                    src="/images/avatars/8.jpg"
+                    width={36}
+                    height={36}
+                    alt="Avatar"
+                    className="overflow-hidden rounded-full"
+                  />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -175,7 +251,9 @@ export function HeaderMegaMenu() {
                   </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <button onClick={handleClick}>{session ? 'Sign out' : 'Sign in'}</button>
+                  <button onClick={handleClick}>
+                    {session ? 'Sign out' : 'Sign in'}
+                  </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -183,7 +261,15 @@ export function HeaderMegaMenu() {
         </div>
         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
       </header>
-      <Drawer opened={drawerOpened} onClose={closeDrawer} size="100%" padding="md" title="Navigation" hiddenFrom="sm" zIndex={1000000}>
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="Navigation"
+        hiddenFrom="sm"
+        zIndex={1000000}
+      >
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
           <Collapse in={linksOpened}>{links}</Collapse>
@@ -191,11 +277,20 @@ export function HeaderMegaMenu() {
           <Divider my="sm" />
           {session ? (
             <div className="flex items-center space-x-3">
-              <img className="h-12 w-12 rounded-full" src={session.user?.image ?? ''} alt="avator" />
+              <img
+                className="h-12 w-12 rounded-full"
+                src={session.user?.image ?? ''}
+                alt="avator"
+              />
               <Link href="/me">
-                <a className="font-medium text-blue-600">{session.user?.name}</a>
+                <a className="font-medium text-blue-600">
+                  {session.user?.name}
+                </a>
               </Link>
-              <button className="rounded bg-blue-500 px-3 py-2 text-white" onClick={() => signOut()}>
+              <button
+                className="rounded bg-blue-500 px-3 py-2 text-white"
+                onClick={() => signOut()}
+              >
                 登出
               </button>
             </div>
@@ -218,7 +313,12 @@ export default function WithSubnavigation() {
     <Box>
       <Flex py={{ base: 2 }} px={{ base: 4 }} align="center">
         <Flex ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
-          <ActionIcon variant="filled" aria-label="Settings" onClick={toggle} ariaLabel="Toggle Navigation">
+          <ActionIcon
+            variant="filled"
+            aria-label="Settings"
+            onClick={toggle}
+            ariaLabel="Toggle Navigation"
+          >
             {open ? <TbX /> : <TbBrandMcdonalds />}
           </ActionIcon>
         </Flex>
@@ -232,7 +332,11 @@ export default function WithSubnavigation() {
 
         <Stack justify="flex-end">
           <Button variant="link">Sign In</Button>
-          <Button display={{ base: 'none', md: 'inline-flex' }} color="white" bg="pink.400">
+          <Button
+            display={{ base: 'none', md: 'inline-flex' }}
+            color="white"
+            bg="pink.400"
+          >
             Sign Up
           </Button>
         </Stack>
@@ -244,7 +348,7 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   return (
     <Stack>
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover>
             <PopoverTarget>
@@ -254,7 +358,7 @@ const DesktopNav = () => {
             {navItem.children && (
               <PopoverDropdown p={4}>
                 <Stack>
-                  {navItem.children.map(child => (
+                  {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
                 </Stack>
@@ -275,7 +379,14 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Text>{label}</Text>
           <Text>{subLabel}</Text>
         </Box>
-        <Flex transform="translateX(-10px)" opacity={0} _groupHover={{ opacity: '100%', transform: 'translateX(0)' }} justify="flex-end" align="center" flex={1}>
+        <Flex
+          transform="translateX(-10px)"
+          opacity={0}
+          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+          justify="flex-end"
+          align="center"
+          flex={1}
+        >
           <TbChevronRight />
         </Flex>
       </Stack>
@@ -286,7 +397,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack p={4} display={{ md: 'none' }}>
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
@@ -306,7 +417,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       <Collapse animateOpacity style={{ marginTop: '0!important' }}>
         <Stack mt={2} pl={4}>
           {children &&
-            children.map(child => (
+            children.map((child) => (
               <Box key={child.label} py={2}>
                 {child.label}
               </Box>

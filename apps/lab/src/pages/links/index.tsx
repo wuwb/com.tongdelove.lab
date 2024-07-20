@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@tongdelove/ui/accordion"
+} from '@tongdelove/ui/accordion'
 
 // ## 运营数据
 // https://lunarcrush.com/
@@ -36,12 +36,9 @@ export default function DaohangPage() {
                 <div>计算机</div>
               </AccordionContent>
             </AccordionItem>
-
           </Accordion>
         </div>
-        <div className="w-[120px]">
-          二级侧边栏
-        </div>
+        <div className="w-[120px]">二级侧边栏</div>
       </div>
 
       <div className="grow">

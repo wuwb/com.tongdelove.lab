@@ -21,7 +21,7 @@ const mapToFullName = (nameOrFullName: string | FullName): FullName => {
   return nameOrFullName
 }
 
-export const TextAvatar: FC<Props> = props => {
+export const TextAvatar: FC<Props> = (props) => {
   const { name, className = '' } = props
   const { firstName, lastName } = mapToFullName(name)
   return (

@@ -48,9 +48,6 @@
     "versionup:major": "standard-version -r major",
     "versionup:init": "standard-version --first-release"
   },
-  "prisma": {
-    "schema": "../../prisma/prisma/schema.prisma"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -65,9 +62,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "publishConfig": {
-    "access": "restricted"
   },
   "dependencies": {
     "@ant-design/charts": "^2.1.1",
@@ -238,6 +232,8 @@
     "@testing-library/dom": "9.3.4",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
+    "@tongdelove/eslint-config": "workspace:^",
+    "@tongdelove/typescript-config": "workspace:^",
     "@types/cors": "^2.8.16",
     "@types/file-saver": "^2.0.5",
     "@types/fs-extra": "^11.0.4",
@@ -260,7 +256,6 @@
     "dotenv": "^16.4.5",
     "downloadjs": "^1.4.7",
     "es-check": "7.2.1",
-
     "fs-extra": "^11.2.0",
     "get-tsconfig": "4.7.5",
     "happy-dom": "13.3.8",
@@ -281,9 +276,13 @@
     "storybook": "^7.6.12",
     "tailwind-scrollbar": "^2.1.0",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.3",
-    "@tongdelove/eslint-config": "workspace:^",
-    "@tongdelove/typescript-config": "workspace:^"
+    "typescript": "^5.5.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.30.2"
   },
   "devDependencies2": {
     "apexcharts": "3.41.0",
@@ -324,7 +323,7 @@
     "stripe": "^12.0.0",
     "sanitize-html": "^2.10.0"
   },
-  "ct3aMetadata": {
-    "initVersion": "7.30.2"
+  "prisma": {
+    "schema": "../../prisma/prisma/schema.prisma"
   }
 }

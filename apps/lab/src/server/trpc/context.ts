@@ -46,7 +46,10 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: { headers: Headers; session: Session | null }) => {
+export const createTRPCContext = async (opts: {
+  headers: Headers
+  session: Session | null
+}) => {
   const session = opts.session
   // const source = opts.headers.get('x-trpc-source') ?? 'unknown'
 

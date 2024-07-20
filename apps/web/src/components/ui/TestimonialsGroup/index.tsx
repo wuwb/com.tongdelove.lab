@@ -31,9 +31,15 @@ const TestimonialsGroup = ({ data }) => {
             {/*  media={selectedTestimonial.logo}*/}
             {/*/>*/}
             image here
-            <p className="mb-6 italic">&quot;{selectedTestimonial.text}&quot;</p>
-            <p className="text-base font-bold sm:text-sm">{selectedTestimonial.authorName}</p>
-            <p className="text-base sm:text-sm">{selectedTestimonial.authorTitle}</p>
+            <p className="mb-6 italic">
+              &quot;{selectedTestimonial.text}&quot;
+            </p>
+            <p className="text-base font-bold sm:text-sm">
+              {selectedTestimonial.authorName}
+            </p>
+            <p className="text-base sm:text-sm">
+              {selectedTestimonial.authorTitle}
+            </p>
           </div>
           {/*<CustomLink*/}
           {/*  link={{*/}

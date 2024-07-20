@@ -1,9 +1,7 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import { DateDisplay } from '../DateDisplay/DateDisplay'
 
-export function CurrentDateTime({ updateBy = 'second' }) {
+export const CurrentDateTime = ({ updateBy = 'second' }) => {
   const [time, setTime] = useState(() => new Date())
   const [updateInterval, setUpdateInterval] = useState(1000)
 

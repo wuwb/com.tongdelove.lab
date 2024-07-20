@@ -10,7 +10,12 @@ const Banner = () => {
     console.log(current)
   }
   return (
-    <Carousel afterChange={onChange} dotPosition="right" autoplay autoplaySpeed={7000}>
+    <Carousel
+      afterChange={onChange}
+      dotPosition="right"
+      autoplay
+      autoplaySpeed={7000}
+    >
       <div>
         <Image src={Banner1} alt="" />
       </div>

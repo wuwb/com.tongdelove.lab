@@ -15,6 +15,6 @@ export const getRandom = async () => {
 
     const result = res.response as Random[]
 
-    return result.map(item => item.urls.regular)
+    return result.map((item) => item.urls.regular)
   }
 }

@@ -153,7 +153,7 @@ export const poemCardRouter = createTRPCRouter({
       }
 
       const result = await ctx.prisma.$transaction(
-        input.quotas.map(item =>
+        input.quotas.map((item) =>
           ctx.prisma.poem.findFirst({
             where: {
               content: {
@@ -171,7 +171,7 @@ export const poemCardRouter = createTRPCRouter({
       )
 
       const exist = await ctx.prisma.$transaction(
-        input.quotas.map(item =>
+        input.quotas.map((item) =>
           ctx.prisma.poemCard.findFirst({
             where: {
               content: { contains: item },

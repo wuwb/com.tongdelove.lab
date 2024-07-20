@@ -32,7 +32,7 @@ class ChangePassword extends React.Component<any, any> {
     autoCompleteResult: [],
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
@@ -59,7 +59,7 @@ class ChangePassword extends React.Component<any, any> {
     })
   }
 
-  handleConfirmBlur = e => {
+  handleConfirmBlur = (e) => {
     const value = e.target.value
     this.setState({ confirmDirty: this.state.confirmDirty || !!value })
   }
@@ -73,13 +73,13 @@ class ChangePassword extends React.Component<any, any> {
     }
   }
 
-  handleWebsiteChange = value => {
+  handleWebsiteChange = (value) => {
     let autoCompleteResult
     if (!value) {
       autoCompleteResult = []
     } else {
       autoCompleteResult = ['.com', '.org', '.net'].map(
-        domain => `${value}${domain}`
+        (domain) => `${value}${domain}`
       )
     }
     this.setState({ autoCompleteResult })

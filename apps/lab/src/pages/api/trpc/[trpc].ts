@@ -17,7 +17,9 @@ const nextApiHandler = createNextApiHandler({
             // send to bug reporting
             console.error('Something went wrong', error)
           }
-          console.error(`❌ tRPC failed on ${path ?? '<no-path>'}: ${error.message}`)
+          console.error(
+            `❌ tRPC failed on ${path ?? '<no-path>'}: ${error.message}`
+          )
         }
       : undefined,
   /**
@@ -34,7 +36,10 @@ const nextApiHandler = createNextApiHandler({
   // },
 })
 
-export default function handleApiHelloRoute(req: NextApiRequest, res: NextApiResponse) {
+export default function handleApiHelloRoute(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   // We can use the response object to enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Request-Method', '*')

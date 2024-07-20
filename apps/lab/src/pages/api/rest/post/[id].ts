@@ -9,7 +9,8 @@ const handleGetPost = async (req: NextApiRequest, res: NextApiResponse) => {
     const post = await postRepo.getPost(id)
     res.json(post)
   } catch (e) {
-    const { statusCode, message } = e instanceof Error ? e : { statusCode: 500, message: 'Unknown error' }
+    const { statusCode, message } =
+      e instanceof Error ? e : { statusCode: 500, message: 'Unknown error' }
     res.status(statusCode).json(new Error(message))
   }
 }

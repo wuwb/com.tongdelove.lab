@@ -5,8 +5,15 @@ export function Logo(props) {
   const { t } = useTranslation()
 
   return (
-    <div className={clsx(props.className, 'flex flex-1 items-center md:flex-initial')}>
-      <div className="h-10 w-10 rounded-full bg-red-400 text-center leading-10 text-white">HAI</div>
+    <div
+      className={clsx(
+        props.className,
+        'flex flex-1 items-center md:flex-initial'
+      )}
+    >
+      <div className="h-10 w-10 rounded-full bg-red-400 text-center leading-10 text-white">
+        HAI
+      </div>
       <div>海维包装实验室</div>
     </div>
   )

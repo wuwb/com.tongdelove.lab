@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styled from '@emotion/styled'
 import s from './DaohangLink.module.css'
 
-export const DaohangLink = props => {
+export const DaohangLink = (props) => {
   return (
     <div className={s.item}>
       <a href={props.link} target="_blank" rel="noreferrer">

@@ -41,7 +41,10 @@ const slice = createSlice({
   name: 'projects_board',
   initialState,
   reducers: {
-    getProject(state: ProjectsBoardState, action: PayloadAction<Project>): void {
+    getProject(
+      state: ProjectsBoardState,
+      action: PayloadAction<Project>
+    ): void {
       const project = action.payload
 
       state.lists.byId = objectArray(project.lists)
@@ -68,7 +71,9 @@ const slice = createSlice({
       const { taskId, position, listId } = action.payload
       const sourceListId = state.tasks.byId[taskId].listId
 
-      state.lists.byId[sourceListId].taskIds = state.lists.byId[sourceListId].taskIds.filter(_taskId => _taskId !== taskId)
+      state.lists.byId[sourceListId].taskIds = state.lists.byId[
+        sourceListId
+      ].taskIds.filter((_taskId) => _taskId !== taskId)
 
       if (listId) {
         state.tasks.byId[taskId].listId = listId

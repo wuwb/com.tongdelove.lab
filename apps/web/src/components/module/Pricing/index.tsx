@@ -5,18 +5,20 @@ const Pricing = ({ data }) => {
     <div className="container py-12">
       <h1 className="text-center text-4xl">{data.title}</h1>
       <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:justify-center">
-        {data.plans.map(plan => (
+        {data.plans.map((plan) => (
           <div
             className={classNames(
               // Common classes
               'md:w-lg flex-1 rounded-md border-2 px-4 py-4',
               // Normal plan
               {
-                'border-gray-300 bg-gray-100 text-gray-900': !plan.isRecommended,
+                'border-gray-300 bg-gray-100 text-gray-900':
+                  !plan.isRecommended,
               },
               // Recommended plan
               {
-                'bg-primary-100 text-primary-900 border-primary-300': plan.isRecommended,
+                'bg-primary-100 text-primary-900 border-primary-300':
+                  plan.isRecommended,
               }
             )}
             key={plan.id}
@@ -35,8 +37,11 @@ const Pricing = ({ data }) => {
               <span className="text-base font-medium">{plan.pricePeriod}</span>
             </p>
             <ul className="mt-4 flex flex-col gap-3">
-              {plan.features.map(feature => (
-                <li className="flex flex-row items-center justify-between" key={feature.id}>
+              {plan.features.map((feature) => (
+                <li
+                  className="flex flex-row items-center justify-between"
+                  key={feature.id}
+                >
                   <span>{feature.name}</span>
                   <div className="h-6 w-auto text-gray-900" />
                 </li>

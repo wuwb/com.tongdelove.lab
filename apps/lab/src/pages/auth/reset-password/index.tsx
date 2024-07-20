@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { Button, Input } from '@mantine/core'
 
 const ChangePassword = () => {
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log('data: ', data)
   }
 

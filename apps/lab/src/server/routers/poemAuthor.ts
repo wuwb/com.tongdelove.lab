@@ -21,9 +21,33 @@ export const poemAuthorRouter = createTRPCRouter({
           pageSize: z.number().optional().default(28),
           keyword: z.string().optional(),
           select: z
-            .array(z.enum(['_count', 'name', 'namePinYin', 'introduce', 'birthDate', 'deathDate', 'dynasty', 'poems', 'createdAt', 'updatedAt']))
+            .array(
+              z.enum([
+                '_count',
+                'name',
+                'namePinYin',
+                'introduce',
+                'birthDate',
+                'deathDate',
+                'dynasty',
+                'poems',
+                'createdAt',
+                'updatedAt',
+              ])
+            )
             .optional()
-            .default(['_count', 'name', 'namePinYin', 'introduce', 'birthDate', 'deathDate', 'dynasty', 'poems', 'createdAt', 'updatedAt']),
+            .default([
+              '_count',
+              'name',
+              'namePinYin',
+              'introduce',
+              'birthDate',
+              'deathDate',
+              'dynasty',
+              'poems',
+              'createdAt',
+              'updatedAt',
+            ]),
         })
         .optional()
     )

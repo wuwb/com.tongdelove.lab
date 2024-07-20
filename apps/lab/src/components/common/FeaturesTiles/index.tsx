@@ -3,7 +3,17 @@ import clsx from 'clsx'
 import SectionHeader from '../SectionHeader'
 import Image from 'next/legacy/image'
 
-const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivider, bottomDivider, hasBgColor, invertColor, pushLeft, ...props }: any) => {
+const FeaturesTiles = ({
+  className,
+  topOuterDivider,
+  bottomOuterDivider,
+  topDivider,
+  bottomDivider,
+  hasBgColor,
+  invertColor,
+  pushLeft,
+  ...props
+}: any) => {
   const outerClasses = clsx(
     'features-tiles section',
     topOuterDivider && 'has-top-divider',
@@ -13,9 +23,16 @@ const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivi
     className
   )
 
-  const innerClasses = clsx('features-tiles-inner section-inner pt-0', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
+  const innerClasses = clsx(
+    'features-tiles-inner section-inner pt-0',
+    topDivider && 'has-top-divider',
+    bottomDivider && 'has-bottom-divider'
+  )
 
-  const tilesClasses = clsx('tiles-wrap center-content', pushLeft && 'push-left')
+  const tilesClasses = clsx(
+    'tiles-wrap center-content',
+    pushLeft && 'push-left'
+  )
 
   const sectionHeader = {
     title: 'Build up the whole picture',
@@ -33,45 +50,72 @@ const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivi
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-01.svg')} alt="Features tile icon 01" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-01.svg')}
+                      alt="Features tile icon 01"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="tiles-item reveal-from-bottom" data-reveal-delay="200">
+            <div
+              className="tiles-item reveal-from-bottom"
+              data-reveal-delay="200"
+            >
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-02.svg')} alt="Features tile icon 02" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-02.svg')}
+                      alt="Features tile icon 02"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="tiles-item reveal-from-bottom" data-reveal-delay="400">
+            <div
+              className="tiles-item reveal-from-bottom"
+              data-reveal-delay="400"
+            >
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-03.svg')} alt="Features tile icon 03" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-03.svg')}
+                      alt="Features tile icon 03"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>
@@ -81,45 +125,72 @@ const FeaturesTiles = ({ className, topOuterDivider, bottomOuterDivider, topDivi
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-04.svg')} alt="Features tile icon 04" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-04.svg')}
+                      alt="Features tile icon 04"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="tiles-item reveal-from-bottom" data-reveal-delay="200">
+            <div
+              className="tiles-item reveal-from-bottom"
+              data-reveal-delay="200"
+            >
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-05.svg')} alt="Features tile icon 05" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-05.svg')}
+                      alt="Features tile icon 05"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="tiles-item reveal-from-bottom" data-reveal-delay="400">
+            <div
+              className="tiles-item reveal-from-bottom"
+              data-reveal-delay="400"
+            >
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
-                    <Image src={require('./../../assets/images/feature-tile-icon-06.svg')} alt="Features tile icon 06" width={64} height={64} />
+                    <Image
+                      src={require('./../../assets/images/feature-tile-icon-06.svg')}
+                      alt="Features tile icon 06"
+                      width={64}
+                      height={64}
+                    />
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mb-8 mt-0">Robust Workflow</h4>
                   <p className="m-0 text-sm">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat.
                   </p>
                 </div>
               </div>

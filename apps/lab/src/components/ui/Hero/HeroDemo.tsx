@@ -1,4 +1,15 @@
-import { Box, Flex, Button, Text, Container, Title, Image, Input, Textarea, Stack } from '@mantine/core'
+import {
+  Box,
+  Flex,
+  Button,
+  Text,
+  Container,
+  Title,
+  Image,
+  Input,
+  Textarea,
+  Stack,
+} from '@mantine/core'
 
 export default function SplitScreen() {
   return (
@@ -21,7 +32,10 @@ export default function SplitScreen() {
             </Text>
             <br /> <Text c="blue.400">Design Projects</Text>{' '}
           </Title>
-          <Text c="gray.500">The project board is an exclusive resource for contract work. It&apos;s perfect for freelancers, agencies, and moonlighters.</Text>
+          <Text c="gray.500">
+            The project board is an exclusive resource for contract work.
+            It&apos;s perfect for freelancers, agencies, and moonlighters.
+          </Text>
           <Stack>
             <Button bg="blue.400" color="white">
               Create Project

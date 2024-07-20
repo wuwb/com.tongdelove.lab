@@ -31,9 +31,18 @@ export function MenuItems({ items, depthLevel }: any) {
   }
 
   return (
-    <div className={styles['menu-items']} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+    <div
+      className={styles['menu-items']}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      ref={ref}
+    >
       {items.url ? (
-        <Link href={items.url} onClick={() => setDropdown(prev => !prev)} aria-expanded={dropdown ? 'true' : 'false'}>
+        <Link
+          href={items.url}
+          onClick={() => setDropdown((prev) => !prev)}
+          aria-expanded={dropdown ? 'true' : 'false'}
+        >
           <div className={styles['menu-items-link']}>
             {items.icon ? <div className="">icon</div> : null}
             {items.description ? (
@@ -50,16 +59,26 @@ export function MenuItems({ items, depthLevel }: any) {
             ) : (
               <div className="text-base font-normal">{items.title}</div>
             )}
-            {items.submenu ? depthLevel > 0 ? <span>&raquo;</span> : <span className={styles['arrow']} /> : null}
+            {items.submenu ? (
+              depthLevel > 0 ? (
+                <span>&raquo;</span>
+              ) : (
+                <span className={styles['arrow']} />
+              )
+            ) : null}
           </div>
         </Link>
       ) : (
-        <Link href="/#" onClick={() => setDropdown(prev => !prev)} aria-expanded={dropdown ? 'true' : 'false'}>
+        <Link
+          href="/#"
+          onClick={() => setDropdown((prev) => !prev)}
+          aria-expanded={dropdown ? 'true' : 'false'}
+        >
           <div className={styles['menu-items-link']}>
             {items.icon ? <div className="">icon</div> : null}
             {items.description ? (
               <div
-                  className={clsx({
+                className={clsx({
                   'ml-3': items.icon,
                 })}
               >
@@ -71,12 +90,24 @@ export function MenuItems({ items, depthLevel }: any) {
             ) : (
               <div className="text-base font-normal">{items.title}</div>
             )}
-            {items.submenu ? depthLevel > 0 ? <span>&raquo;</span> : <span className={styles['arrow']} /> : null}
+            {items.submenu ? (
+              depthLevel > 0 ? (
+                <span>&raquo;</span>
+              ) : (
+                <span className={styles['arrow']} />
+              )
+            ) : null}
           </div>
         </Link>
       )}
 
-      {items.submenu ? <DropdownMenu dropdown={dropdown} submenus={items.submenu} depthLevel={depthLevel} /> : null}
+      {items.submenu ? (
+        <DropdownMenu
+          dropdown={dropdown}
+          submenus={items.submenu}
+          depthLevel={depthLevel}
+        />
+      ) : null}
     </div>
   )
 }

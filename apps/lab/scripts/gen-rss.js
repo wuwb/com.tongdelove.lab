@@ -13,10 +13,12 @@ async function generate() {
   const posts = await fs.readdir(path.join(__dirname, '..', 'pages', 'posts'))
 
   await Promise.all(
-    posts.map(async name => {
+    posts.map(async (name) => {
       if (name.startsWith('index.')) return
 
-      const content = await fs.readFile(path.join(__dirname, '..', 'pages', 'posts', name))
+      const content = await fs.readFile(
+        path.join(__dirname, '..', 'pages', 'posts', name)
+      )
       const frontmatter = matter(content)
 
       feed.item({

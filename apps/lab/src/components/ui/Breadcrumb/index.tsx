@@ -30,7 +30,7 @@ export const Breadcrumb: React.FC<{ query?: any }> = ({ query }) => {
                 <Link
                   href={`/${path
                     .slice(0, path.length - i)
-                    .map(p => encodeURIComponent(p))
+                    .map((p) => encodeURIComponent(p))
                     .join('/')}`}
                   passHref
                   className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${i == 0 && 'pointer-events-none opacity-80'}`}

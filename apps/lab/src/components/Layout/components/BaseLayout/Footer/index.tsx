@@ -4,7 +4,15 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
   return <div>{children}</div>
 }
 
-const SocialButton = ({ children, label, href }: { children: ReactNode; label: string; href: string }) => {
+const SocialButton = ({
+  children,
+  label,
+  href,
+}: {
+  children: ReactNode
+  label: string
+  href: string
+}) => {
   return (
     <div className="inline-flex">
       <div>{label}</div>

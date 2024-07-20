@@ -1,9 +1,9 @@
 import type { Chat } from '@/types/chat'
 import { useMemo, useState } from 'react'
 import { groupByDate } from '@/utils/helpers/chat'
-import ChatItem from './ChatItem'
+import { ChatItem } from './ChatItem'
 
-export default function ChatList() {
+export const ChatList = () => {
   const [chatList, setChatList] = useState<Chat[]>([
     {
       id: '1',
@@ -93,16 +93,18 @@ export default function ChatList() {
       {groupList.map(([date, list]) => {
         return (
           <div key={date}>
-            <div className="sticky top-0 z-10 bg-gray-900 p-3 text-sm text-gray-500">{date}</div>
+            <div className="sticky top-0 z-10 bg-gray-900 p-3 text-sm text-gray-500">
+              {date}
+            </div>
             <ul>
-              {list.map(item => {
+              {list.map((item) => {
                 const selected = selectedChat?.id === item.id
                 return (
                   <ChatItem
                     key={item.id}
                     item={item}
                     selected={selected}
-                    onSelected={chat => {
+                    onSelected={(chat) => {
                       setSelectedChat(chat)
                     }}
                   />

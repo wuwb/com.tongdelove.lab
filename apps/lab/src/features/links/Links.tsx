@@ -10,11 +10,11 @@ function renderSidebar() {
 
   return (
     <div>
-      {navs.map(list => {
+      {navs.map((list) => {
         return (
           <div key={list.name}>
             <div
-              className="px-0.5 py-1 hover:bg-[#ff5a00] hover:text-white hover:rounded"
+              className="px-0.5 py-1 hover:rounded hover:bg-[#ff5a00] hover:text-white"
               onClick={() => {
                 scrollToLinkSection(list.name)
               }}
@@ -29,12 +29,12 @@ function renderSidebar() {
 }
 
 function renderNav() {
-  return navs.map(list => {
+  return navs.map((list) => {
     return (
       <div id={list.name} key={list.name}>
         <h3 className="py-2.5">{list.name}</h3>
         <div className="grid grid-cols-6 gap-4">
-          {list.children.map(item => {
+          {list.children.map((item) => {
             return <DaohangCard key={item.name} item={item} />
           })}
         </div>
@@ -48,8 +48,8 @@ export function Daohang() {
     <div>
       <LinksNav />
       <div className="container mx-auto mt-10 flex justify-between">
-        <div className="basis-1/12 w-[30%]">{renderSidebar()}</div>
-        <div className="basis-11/12 w-[70%]">{renderNav()}</div>
+        <div className="w-[30%] basis-1/12">{renderSidebar()}</div>
+        <div className="w-[70%] basis-11/12">{renderNav()}</div>
       </div>
       <div>
         <p>如需添加站点，请发邮件联系：541330190@qq.com</p>

@@ -110,12 +110,22 @@ export function getPDTToday() {
   const now = new Date()
 
   // get local time end of today at 00:00:00
-  const localTimeToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0)
+  const localTimeToday = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    0,
+    0,
+    0
+  )
 
   return localTimeToday
 }
 
-export function hoursDifference(date1: { getTime: () => number }, date2: { getTime: () => number }) {
+export function hoursDifference(
+  date1: { getTime: () => number },
+  date2: { getTime: () => number }
+) {
   const millisecondsPerHour = 1000 * 60 * 60
   return (date2.getTime() - date1.getTime()) / millisecondsPerHour
 }

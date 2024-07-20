@@ -26,9 +26,18 @@ const FeaturesSplit = ({
     className
   )
 
-  const innerClasses = clsx('features-split-inner section-inner', topDivider && 'has-top-divider', bottomDivider && 'has-bottom-divider')
+  const innerClasses = clsx(
+    'features-split-inner section-inner',
+    topDivider && 'has-top-divider',
+    bottomDivider && 'has-bottom-divider'
+  )
 
-  const splitClasses = clsx('split-wrap', invertMobile && 'invert-mobile', invertDesktop && 'invert-desktop', alignTop && 'align-top')
+  const splitClasses = clsx(
+    'split-wrap',
+    invertMobile && 'invert-mobile',
+    invertDesktop && 'invert-desktop',
+    alignTop && 'align-top'
+  )
 
   const sectionHeader = {
     title: 'Workflow that just works',
@@ -43,44 +52,98 @@ const FeaturesSplit = ({
           <SectionHeader data={sectionHeader} className="center-content" />
           <div className={splitClasses}>
             <div className="split-item">
-              <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">Lightning fast workflow</div>
+              <div
+                className="split-item-content center-content-mobile reveal-from-left"
+                data-reveal-container=".split-item"
+              >
+                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
+                  Lightning fast workflow
+                </div>
                 <h3 className="mb-12 mt-0">Data-driven insights</h3>
                 <p className="m-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  — Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
-                <Image src={require('./../../assets/images/features-split-image-01.png')} alt="Features split 01" width={528} height={396} />
+              <div
+                className={clsx(
+                  'split-item-image center-content-mobile reveal-from-bottom',
+                  imageFill && 'split-item-image-fill'
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require('./../../assets/images/features-split-image-01.png')}
+                  alt="Features split 01"
+                  width={528}
+                  height={396}
+                />
               </div>
             </div>
 
             <div className="split-item">
-              <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
-                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">Lightning fast workflow</div>
+              <div
+                className="split-item-content center-content-mobile reveal-from-right"
+                data-reveal-container=".split-item"
+              >
+                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
+                  Lightning fast workflow
+                </div>
                 <h3 className="mb-12 mt-0">Data-driven insights</h3>
                 <p className="m-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  — Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
-                <Image src={require('./../../assets/images/features-split-image-02.png')} alt="Features split 02" width={528} height={396} />
+              <div
+                className={clsx(
+                  'split-item-image center-content-mobile reveal-from-bottom',
+                  imageFill && 'split-item-image-fill'
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require('./../../assets/images/features-split-image-02.png')}
+                  alt="Features split 02"
+                  width={528}
+                  height={396}
+                />
               </div>
             </div>
 
             <div className="split-item">
-              <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">Lightning fast workflow</div>
+              <div
+                className="split-item-content center-content-mobile reveal-from-left"
+                data-reveal-container=".split-item"
+              >
+                <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
+                  Lightning fast workflow
+                </div>
                 <h3 className="mb-12 mt-0">Data-driven insights</h3>
                 <p className="m-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  — Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
-              <div className={clsx('split-item-image center-content-mobile reveal-from-bottom', imageFill && 'split-item-image-fill')} data-reveal-container=".split-item">
-                <Image src={require('./../../assets/images/features-split-image-03.png')} alt="Features split 03" width={528} height={396} />
+              <div
+                className={clsx(
+                  'split-item-image center-content-mobile reveal-from-bottom',
+                  imageFill && 'split-item-image-fill'
+                )}
+                data-reveal-container=".split-item"
+              >
+                <Image
+                  src={require('./../../assets/images/features-split-image-03.png')}
+                  alt="Features split 03"
+                  width={528}
+                  height={396}
+                />
               </div>
             </div>
           </div>

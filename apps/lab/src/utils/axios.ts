@@ -5,7 +5,9 @@ import { store } from '../stores'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const serverUrl = isDev ? 'http://localhost:3001/api/' : 'https://api.tongdelove.com/api'
+const serverUrl = isDev
+  ? 'http://localhost:3001/api/'
+  : 'https://api.tongdelove.com/api'
 
 const instance = axios.create({
   baseURL: serverUrl,
@@ -17,7 +19,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  config => {
+  (config) => {
     // if (!config.headers.Authorization) {
     //   // const [accessToken, setAccessToken] = useLocalStorage('access_token');
     //   // if (accessToken) {
@@ -37,7 +39,7 @@ instance.interceptors.request.use(
 
     return config
   },
-  error => {
+  (error) => {
     if (error.response) {
       // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
       console.log(error.response.data)
@@ -92,8 +94,8 @@ instance.interceptors.response.use(
 const request = ({ ...options }) => {
   instance.defaults.headers.common.Authorization = `Bearer ${getToken()}`
 
-  const onSuccess = response => response
-  const onError = error => {
+  const onSuccess = (response) => response
+  const onError = (error) => {
     // optionaly catch errors and add some additional logging here
     if (error.response.status === 'SESSION_EXPIRED_STATUS_CODE') {
       // Navigate to Login screen

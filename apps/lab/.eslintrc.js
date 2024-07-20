@@ -92,7 +92,10 @@ module.exports = {
     'no-constant-condition': 'off',
     'no-extra-semi': 'off',
     '@typescript-eslint/no-unnecessary-condition': 'off',
-    'no-restricted-syntax': ['error', 'AwaitExpression > AwaitExpression.argument'],
+    'no-restricted-syntax': [
+      'error',
+      'AwaitExpression > AwaitExpression.argument',
+    ],
 
     '@typescript-eslint/naming-convention': 'off',
     // https://github.com/vercel/next.js/discussions/16832
@@ -175,7 +178,10 @@ module.exports = {
         // let typescript check prop types
         'react/prop-types': [0, { ignore: ['className'] }],
         'react-refresh/only-export-components': 'off',
-        'react/no-unknown-property': ['error', { ignore: ['cmdk-input-wrapper'] }],
+        'react/no-unknown-property': [
+          'error',
+          { ignore: ['cmdk-input-wrapper'] },
+        ],
       },
     },
   ],

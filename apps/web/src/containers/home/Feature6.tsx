@@ -22,7 +22,7 @@ class Feature6 extends React.PureComponent<any, any> {
     })
   }
 
-  getChildrenToRender = dataSource => {
+  getChildrenToRender = (dataSource) => {
     const { current }: any = this.state
     const { Carousel } = dataSource
     const {
@@ -41,7 +41,7 @@ class Feature6 extends React.PureComponent<any, any> {
         <div
           {...title}
           key={ii.toString()}
-          onClick={e => {
+          onClick={(e) => {
             this.onTitleClick(e, ii)
           }}
           className={

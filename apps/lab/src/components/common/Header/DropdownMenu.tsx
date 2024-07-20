@@ -10,7 +10,9 @@ export function DropdownMenu({ submenus, dropdown, depthLevel }: any) {
     <div className={clsx(styles['dropdown-menu'], dropdownClass, hoverClass)}>
       <div className={styles['dropdown-menu-inner']}>
         {submenus.map((submenu, index) => {
-          return <MenuItems items={submenu} key={index} depthLevel={depthLevel} />
+          return (
+            <MenuItems items={submenu} key={index} depthLevel={depthLevel} />
+          )
         })}
       </div>
     </div>

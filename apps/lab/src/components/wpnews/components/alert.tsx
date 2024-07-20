@@ -14,7 +14,10 @@ export const Alert = ({ preview }) => {
           {preview ? (
             <>
               This is a page preview.{' '}
-              <a href="/api/exit-preview" className="hover:text-cyan underline transition-colors duration-200">
+              <a
+                href="/api/exit-preview"
+                className="hover:text-cyan underline transition-colors duration-200"
+              >
                 Click here
               </a>{' '}
               to exit preview mode.

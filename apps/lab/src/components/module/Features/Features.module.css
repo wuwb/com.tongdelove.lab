@@ -4,7 +4,11 @@
   align-items: center;
   margin-bottom: 50px;
   padding: 20px;
-  background: linear-gradient(144deg, rgba(60, 0, 166, 0.85), rgba(119, 0, 106, 0.85));
+  background: linear-gradient(
+    144deg,
+    rgba(60, 0, 166, 0.85),
+    rgba(119, 0, 106, 0.85)
+  );
   border-radius: 10px;
   color: #fff;
   box-shadow:

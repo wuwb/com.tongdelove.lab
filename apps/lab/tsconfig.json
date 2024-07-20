@@ -14,7 +14,15 @@
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
     /* Bundled projects */
-    "lib": ["dom", "dom.iterable", "es2022", "esnext", "WebWorker", "es6", "scripthost"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2022",
+      "esnext",
+      "WebWorker",
+      "es6",
+      "scripthost"
+    ],
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",

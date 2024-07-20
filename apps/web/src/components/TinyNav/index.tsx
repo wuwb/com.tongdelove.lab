@@ -21,12 +21,12 @@ const StyledTinyNav = styled.div`
   }
 `
 
-const TinyNav = props => {
+const TinyNav = (props) => {
   const { navs } = props
 
   return (
     <StyledTinyNav>
-      {navs.map(item => (
+      {navs.map((item) => (
         <Link href={item.href} key={item.name}>
           {item.name}
         </Link>

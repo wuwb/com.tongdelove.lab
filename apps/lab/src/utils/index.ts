@@ -3,7 +3,8 @@ import { twMerge } from 'tailwind-merge'
 export * from './env'
 
 export function identifyIdFormat(id: string) {
-  const uuidV4Regex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  const uuidV4Regex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
   const nanoIdRegex = /^[-_0-9a-zA-Z]{21}$/ // corrected placement of '-'
 
   if (uuidV4Regex.test(id)) {
@@ -18,7 +19,7 @@ export function identifyIdFormat(id: string) {
 export function noop() {}
 
 export function sleep(time: number) {
-  return new Promise(resolve =>
+  return new Promise((resolve) =>
     setTimeout(() => {
       resolve('time is up')
     }, time)
@@ -133,13 +134,15 @@ export const colors = [
  */
 export const splitChineseSymbol = (str: string, separator = true) => {
   if (separator) {
-    return str.replaceAll('\n', '').match(/[^。|！|？|，|；]+[。|！|？|，|；]+/g)
+    return str
+      .replaceAll('\n', '')
+      .match(/[^。|！|？|，|；]+[。|！|？|，|；]+/g)
   }
 
   return str
     .replaceAll('\n', '')
     .split(/。|！|？|，|；/)
-    .filter(s => !!s)
+    .filter((s) => !!s)
 }
 
 export const stringFormat = (str: string, arr: string[]) => {

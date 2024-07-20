@@ -13,13 +13,9 @@ export const HomePage: FC = () => {
         description="See https://github.com/belgattitude/nextjs-monorepo-example"
       />
       {/* <Banner /> */}
-      {
-        data?.map((item) => {
-          return (
-            <div key={item}>{item.id}</div>
-          )
-        })
-      }
+      {data?.map((item) => {
+        return <div key={item}>{item.id}</div>
+      })}
       {/* <HeroBlock /> */}
       {/* <FeaturesBlock /> */}
       {/* <CtaBlock /> */}

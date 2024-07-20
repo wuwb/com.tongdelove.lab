@@ -4,7 +4,8 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
   const headers = { 'Content-Type': 'application/json' }
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-    headers['Authorization'] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
+    headers['Authorization'] =
+      `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
 
   // WPGraphQL Plugin must be enabled
@@ -103,7 +104,9 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   const postPreview = preview && previewData?.post
   // The slug may be the id of an unpublished post
   const isId = Number.isInteger(Number(slug))
-  const isSamePost = isId ? Number(slug) === postPreview.id : slug === postPreview.slug
+  const isSamePost = isId
+    ? Number(slug) === postPreview.id
+    : slug === postPreview.slug
   const isDraft = isSamePost && postPreview?.status === 'draft'
   const isRevision = isSamePost && postPreview?.status === 'publish'
   const data = await fetchAPI(

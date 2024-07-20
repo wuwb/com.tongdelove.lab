@@ -10,7 +10,10 @@ import { useTranslation } from 'next-i18next'
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { locale = 'en' } = context
 
-  const inlinedTranslation = await getServerTranslations(locale, systemConfig.i18nNamespaces)
+  const inlinedTranslation = await getServerTranslations(
+    locale,
+    systemConfig.i18nNamespaces
+  )
 
   return {
     props: {
@@ -20,7 +23,9 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   }
 }
 
-export default function Custom404(_props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Custom404(
+  _props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   const { t }: { t: any } = useTranslation()
 
   return (
@@ -30,9 +35,18 @@ export default function Custom404(_props: InferGetStaticPropsType<typeof getStat
         <div className="align-center flex w-full flex-1 justify-center p-6">
           <div>
             <div className="text-center">
-              <Image alt="404" height={180} width={180} src="/images/status/404.svg" />
-              <h2>{/* {t("The page you were looking for doesn't exist.")} */}</h2>
-              <h4>{/* {t("It's on us, we moved the content to a different page. The search below should help!")} */}</h4>
+              <Image
+                alt="404"
+                height={180}
+                width={180}
+                src="/images/status/404.svg"
+              />
+              <h2>
+                {/* {t("The page you were looking for doesn't exist.")} */}
+              </h2>
+              <h4>
+                {/* {t("It's on us, we moved the content to a different page. The search below should help!")} */}
+              </h4>
             </div>
             <div className="bg-white">
               <div className="mt-3 p-4 text-center">

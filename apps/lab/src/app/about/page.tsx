@@ -1,6 +1,4 @@
-'use client'
-
-const About = props => {
+export const About = (props) => {
   // useEffect(() => {
   //     // 百度地图API功能
   //     let map = new BMapGL.Map('baidu_map'); // 创建Map实例
@@ -16,7 +14,10 @@ const About = props => {
 
       <div id="allmap"></div>
 
-      <div className="p-10 text-center text-3xl">我们将通过推荐精选职位、知识分享及技能培训等，帮助更多人找到理想的远程工作。扫码关注公众号 →</div>
+      <div className="p-10 text-center text-3xl">
+        我们将通过推荐精选职位、知识分享及技能培训等，帮助更多人找到理想的远程工作。扫码关注公众号
+        →
+      </div>
 
       <div className="flex flex-col">
         <div>公司介绍</div>
@@ -32,11 +33,15 @@ const About = props => {
 
       <div className="flex">
         <div>团队介绍</div>
-        <div>我们焦躁不安的创新欲望让我们一直着眼于未来。我们不断地询问下一步是什么？ 这意味着，我们将不断推陈出新，以帮助您在互联网保持领先。</div>
+        <div>
+          我们焦躁不安的创新欲望让我们一直着眼于未来。我们不断地询问下一步是什么？
+          这意味着，我们将不断推陈出新，以帮助您在互联网保持领先。
+        </div>
       </div>
-      <div>公司理念 经营理念 成就客户 诚信经营 服务理念 专业 合作 创新 企业格言 以创新为动力，以质量求发展</div>
+      <div>
+        公司理念 经营理念 成就客户 诚信经营 服务理念 专业 合作 创新 企业格言
+        以创新为动力，以质量求发展
+      </div>
     </div>
   )
 }
-
-export default About

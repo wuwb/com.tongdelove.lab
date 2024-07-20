@@ -25,7 +25,7 @@ export const Marquee: FC<MarqueeProps> = ({
 
   return (
     <FastMarquee gradient={false} className={rootClassName}>
-      {Children.map(children, child => ({
+      {Children.map(children, (child) => ({
         ...child,
         props: {
           ...child.props,

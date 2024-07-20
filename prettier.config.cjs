@@ -5,29 +5,30 @@ module.exports = {
   semi: false, // 是否使用分号
   singleQuote: true, // 使用单引号代替双引号
   endOfLine: 'auto',
-  arrowParens: "avoid",
+  arrowParens: "always", // always, avoid, 参数外加括号
   useTabs: false,
-  proseWrap: "always", //  never, preserve
-  bracketSpacing: true,  // 在对象，数组括号与文字之间加空格"{ foo: bar }
   printWidth: 80,
-  overrides: [
-    {
-      files: '.prettierrc',
-      options: {
-        parser: 'json',
-      },
-    },
-    {
-      files: 'document.ejs',
-      options: {
-        parser: 'html',
-      },
-    },
-  ],
-  parser: 'babel',
   singleAttributePerLine: false,
   jsxSingleQuote: false,
-  quoteProps: 'as-needed',
-  htmlWhitespaceSensitivity: 'css',
+  proseWrap: "preserve", // always never, preserve
+  // bracketSpacing: true,  // 在对象，数组括号与文字之间加空格"{ foo: bar }
+  // overrides: [
+  //   {
+  //     files: '.prettierrc',
+  //     options: {
+  //       parser: 'json',
+  //     },
+  //   },
+  //   {
+  //     files: 'document.ejs',
+  //     options: {
+  //       parser: 'html',
+  //     },
+  //   },
+  // ],
+  // parser: 'babel',
+
+  // quoteProps: 'as-needed',
+  // htmlWhitespaceSensitivity: 'css',
   // jsxBracketSameLine: false, // is deprecated
 }

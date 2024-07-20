@@ -3,7 +3,10 @@
  * @link https://nextjs.org/docs/advanced-features/custom-error-page
  */
 
-import { captureException as sentryCaptureException, flush as sentryFlush } from '@sentry/nextjs'
+import {
+  captureException as sentryCaptureException,
+  flush as sentryFlush,
+} from '@sentry/nextjs'
 import type { NextPage, NextPageContext } from 'next'
 import NextErrorComponent, { type ErrorProps } from 'next/error'
 import { ErrorPage } from '@/features/system/pages'
@@ -28,7 +31,9 @@ type AugmentedNextPageContext = Omit<NextPageContext, 'err'> & {
  * Alternatively a good practice is to proxy the sentry in a nextjs api route, istio...
  * @see https://github.com/getsentry/sentry-javascript/issues/2916
  */
-const sentryCaptureExceptionFailsafe = (err: Error | string): string | undefined => {
+const sentryCaptureExceptionFailsafe = (
+  err: Error | string
+): string | undefined => {
   let browserSentryErrorId: string | undefined
   try {
     browserSentryErrorId = sentryCaptureException(err)
@@ -54,8 +59,9 @@ const sentryFlushServerSide = async (flushAfter: number) => {
   }
 }
 
-const CustomError: NextPage<CustomErrorProps> = props => {
-  const { statusCode, err, hasGetInitialPropsRun, sentryErrorId, message } = props
+const CustomError: NextPage<CustomErrorProps> = (props) => {
+  const { statusCode, err, hasGetInitialPropsRun, sentryErrorId, message } =
+    props
 
   let browserSentryErrorId: string | undefined
 
@@ -65,10 +71,21 @@ const CustomError: NextPage<CustomErrorProps> = props => {
     browserSentryErrorId = sentryCaptureExceptionFailsafe(err)
     // Flushing is not required in this case as it only happens on the client
   }
-  return <ErrorPage error={err ?? undefined} message={message} errorId={sentryErrorId ?? browserSentryErrorId} statusCode={statusCode} />
+  return (
+    <ErrorPage
+      error={err ?? undefined}
+      message={message}
+      errorId={sentryErrorId ?? browserSentryErrorId}
+      statusCode={statusCode}
+    />
+  )
 }
 
-CustomError.getInitialProps = async ({ res, err, asPath }: AugmentedNextPageContext) => {
+CustomError.getInitialProps = async ({
+  res,
+  err,
+  asPath,
+}: AugmentedNextPageContext) => {
   const errorInitialProps = (await NextErrorComponent.getInitialProps({
     res,
     err,
@@ -79,7 +96,10 @@ CustomError.getInitialProps = async ({ res, err, asPath }: AugmentedNextPageCont
   errorInitialProps.hasGetInitialPropsRun = true
 
   // Returning early because we don't want to log ignored errors to Sentry.
-  if (typeof res?.statusCode === 'number' && sentryIgnoredStatusCodes.includes(res.statusCode)) {
+  if (
+    typeof res?.statusCode === 'number' &&
+    sentryIgnoredStatusCodes.includes(res.statusCode)
+  ) {
     return errorInitialProps
   }
 
@@ -107,7 +127,9 @@ CustomError.getInitialProps = async ({ res, err, asPath }: AugmentedNextPageCont
   // If this point is reached, getInitialProps was called without any
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
-  errorInitialProps.sentryErrorId = sentryCaptureException(new Error(`_error.js getInitialProps missing data at path: ${asPath}`))
+  errorInitialProps.sentryErrorId = sentryCaptureException(
+    new Error(`_error.js getInitialProps missing data at path: ${asPath}`)
+  )
   await sentryFlushServerSide(1_500)
   return errorInitialProps
 }

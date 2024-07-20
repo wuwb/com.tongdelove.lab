@@ -9,7 +9,11 @@ import { MicrosoftClarity } from '@/components/metrics/MicrosoftClarity'
 import { ThemeProvider, ThemeToggle } from '@tongdelove/ui/theme'
 import { Toaster } from '@tongdelove/ui/toast'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>

@@ -12,11 +12,11 @@ export class SearchPoemsQuery {
   }
 
   private mapToResult = (rows: SearchPoems) => {
-    return rows.map(poem => {
+    return rows.map((poem) => {
       const { createdAt, updatedAt, keywords, ...rest } = poem
       return {
         ...rest,
-        keywords: keywords.map(keyword => keyword.keyword.name),
+        keywords: keywords.map((keyword) => keyword.keyword.name),
       }
     })
   }
@@ -40,7 +40,7 @@ export class SearchPoemsQuery {
         },
         orderBy: { author: 'desc' },
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error({
           message: `Poems can't be retrieved`,
           cause: e instanceof Error ? e : undefined,

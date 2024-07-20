@@ -1,6 +1,9 @@
 import { useEffect, useRef, DependencyList, EffectCallback } from 'react'
 
-export const useUpdateEffect: typeof useEffect = (effect: EffectCallback, deps: DependencyList = []) => {
+export const useUpdateEffect: typeof useEffect = (
+  effect: EffectCallback,
+  deps: DependencyList = []
+) => {
   const isMounted = useRef(false)
 
   // useEffect(() => {

@@ -1,11 +1,18 @@
 import React from 'react'
-import { Table, TableTr, TableTd, TableTh, TableThead, TableTbody } from '@mantine/core'
+import {
+  Table,
+  TableTr,
+  TableTd,
+  TableTh,
+  TableThead,
+  TableTbody,
+} from '@mantine/core'
 
 import { data } from './data'
 
 // https://danjuanapp.com/djapi/fund/order/
 export default function DenseTable() {
-  const Items = data.map(item => {
+  const Items = data.map((item) => {
     if (item.status_desc === '交易失败') {
       return false
     }

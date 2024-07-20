@@ -1,5 +1,12 @@
 import { AppleGuide } from '@/features/AppleGuide'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@tongdelove/ui/breadcrumb'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@tongdelove/ui/breadcrumb'
 import { Input } from '@tongdelove/ui/input'
 
 const AppleGuidePage = () => {
@@ -33,11 +40,14 @@ const AppleGuidePage = () => {
         <aside className="w-2/7">
           <div className="ml-4 space-y-3">
             <div>
-              <Input type="text" value="https://lab.printlake.com/tool/apple-guide" disabled />
+              <Input
+                type="text"
+                value="https://lab.printlake.com/tool/apple-guide"
+                disabled
+              />
             </div>
           </div>
         </aside>
-
       </div>
     </div>
   )

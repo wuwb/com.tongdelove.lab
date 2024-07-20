@@ -4,11 +4,11 @@ function wrapPromise(promise: Promise<any>) {
   let status = 'pending'
   let result: any
   const suspender = promise.then(
-    r => {
+    (r) => {
       status = 'success'
       result = r
     },
-    e => {
+    (e) => {
       status = 'error'
       result = e
     }

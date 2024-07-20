@@ -14,7 +14,17 @@ export const pageview = (url: string) => {
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: { action: any; category: any; label: any; value: any }) => {
+export const event = ({
+  action,
+  category,
+  label,
+  value,
+}: {
+  action: any
+  category: any
+  label: any
+  value: any
+}) => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,

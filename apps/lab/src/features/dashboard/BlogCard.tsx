@@ -8,12 +8,20 @@ const blogs = [
   {
     img: user1,
     title: 'Super awesome, Angular 12 is coming soon!',
-    subtitle: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    subtitle:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
     btncolor: 'error',
   },
 ]
 
-type ButtonColor = 'error' | 'warning' | 'primary' | 'inherit' | 'secondary' | 'success' | 'info'
+type ButtonColor =
+  | 'error'
+  | 'warning'
+  | 'primary'
+  | 'inherit'
+  | 'secondary'
+  | 'success'
+  | 'info'
 
 const BlogCard: FC = () => {
   return (

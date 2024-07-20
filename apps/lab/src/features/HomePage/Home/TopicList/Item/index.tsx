@@ -21,7 +21,9 @@ function Item(props) {
           <div>置顶</div>
         </div>
         <div>
-          <a href="">最热</a>•<a href="">{author}</a>•<span>1年前发布</span>•<span>3分钟前更新</span>•<span>最后回复来自</span>•<a href="">xxxxxx</a>
+          <a href="">最热</a>•<a href="">{author}</a>•<span>1年前发布</span>•
+          <span>3分钟前更新</span>•<span>最后回复来自</span>•
+          <a href="">xxxxxx</a>
         </div>
       </div>
       <div

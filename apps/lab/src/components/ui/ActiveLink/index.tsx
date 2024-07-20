@@ -7,7 +7,11 @@ type ActiveLinkProps = LinkProps & {
   activeClassName: string
 }
 
-export const ActiveLink = ({ children, activeClassName, ...props }: ActiveLinkProps) => {
+export const ActiveLink = ({
+  children,
+  activeClassName,
+  ...props
+}: ActiveLinkProps) => {
   const { asPath, isReady } = useRouter()
 
   const child = Children.only(children)
@@ -19,18 +23,33 @@ export const ActiveLink = ({ children, activeClassName, ...props }: ActiveLinkPr
     if (isReady) {
       // Dynamic route will be matched via props.as
       // Static route will be matched via props.href
-      const linkPathname = new URL((props.as || props.href) as string, location.href).pathname
+      const linkPathname = new URL(
+        (props.as || props.href) as string,
+        location.href
+      ).pathname
 
       // Using URL().pathname to get rid of query and hash
       const activePathname = new URL(asPath, location.href).pathname
 
-      const newClassName = linkPathname === activePathname ? `${childClassName} ${activeClassName}`.trim() : childClassName
+      const newClassName =
+        linkPathname === activePathname
+          ? `${childClassName} ${activeClassName}`.trim()
+          : childClassName
 
       if (newClassName !== className) {
         setClassName(newClassName)
       }
     }
-  }, [asPath, isReady, props.as, props.href, childClassName, activeClassName, setClassName, className])
+  }, [
+    asPath,
+    isReady,
+    props.as,
+    props.href,
+    childClassName,
+    activeClassName,
+    setClassName,
+    className,
+  ])
 
   return (
     <Link {...props}>

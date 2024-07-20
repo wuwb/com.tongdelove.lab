@@ -1,4 +1,8 @@
-import type { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+} from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 /**
@@ -7,9 +11,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
  *
  * export const getServerSideProps = buildI18NServerSideProps(({req}) => {...})
  */
-export function buildI18NServerSideProps<Props extends Record<string, any>>(fn?: GetServerSideProps<Partial<Props>>) {
-  const getServerSideProps = async (context: GetServerSidePropsContext): Promise<GetServerSidePropsResult<Props>> => {
-    const translationProps = await serverSideTranslations(context.locale ?? 'en', ['translation'])
+export function buildI18NServerSideProps<Props extends Record<string, any>>(
+  fn?: GetServerSideProps<Partial<Props>>
+) {
+  const getServerSideProps = async (
+    context: GetServerSidePropsContext
+  ): Promise<GetServerSidePropsResult<Props>> => {
+    const translationProps = await serverSideTranslations(
+      context.locale ?? 'en',
+      ['translation']
+    )
 
     if (!fn) {
       return {

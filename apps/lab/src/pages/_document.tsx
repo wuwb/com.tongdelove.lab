@@ -1,4 +1,11 @@
-import { default as Document, type DocumentProps, Html, Main, Head, NextScript } from 'next/document'
+import {
+  default as Document,
+  type DocumentProps,
+  Html,
+  Main,
+  Head,
+  NextScript,
+} from 'next/document'
 import nextI18NextConfig from '../../next-i18next.config'
 import { ColorSchemeScript } from '@mantine/core'
 
@@ -11,28 +18,55 @@ const defaultLocale = 'en'
 
 export default function MyDocument(props) {
   const locale = props.locale ?? defaultLocale
-  const currentLocale = props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale
+  const currentLocale =
+    props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale
 
   return (
     <Html lang={locale}>
       <Head>
         <meta charSet="utf-8" />
         <meta name="emotion-insertion-point" content="" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon/favicon-16x16.png"
+        />
         <link rel="manifest" href="/images/favicon/site.webmanifest" />
-        <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+        <link
+          rel="mask-icon"
+          href="/images/favicon/safari-pinned-tab.svg"
+          color="#5bbad5"
+        />
         <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-config" content="/images/favicon/browserconfig.xml" />
+        <meta
+          name="msapplication-config"
+          content="/images/favicon/browserconfig.xml"
+        />
         <meta name="theme-color" content="#ffffff" />
         <meta name="google-site-verification" content="" />
-        <link rel="alternate" hrefLang="x-default" href={`https://${currentLocale}.vercel.app`} />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={`https://${currentLocale}.vercel.app`}
+        />
         <ColorSchemeScript defaultColorScheme="auto" />
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             var _hmt = _hmt || [];
             (function() {
               var hm = document.createElement("script");
@@ -40,11 +74,18 @@ export default function MyDocument(props) {
               var s = document.getElementsByTagName("script")[0]; 
               s.parentNode.insertBefore(hm, s);
             })();
-          `}} />
+          `,
+          }}
+        />
       </Head>
       <body>
         <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
         </noscript>
         <Main />
         <NextScript data-sprig-preview />
@@ -55,7 +96,7 @@ export default function MyDocument(props) {
 
 // Remove this method if not needed. Allows emotion to output the inlined css at insertion point (head)
 // only useful when you need some way to override theme/styles (ie: using mui, mantine, chakra...).
-MyDocument.getInitialProps = async ctx => {
+MyDocument.getInitialProps = async (ctx) => {
   if (!ctx.req) {
     return ctx.defaultGetInitialProps(ctx)
   }

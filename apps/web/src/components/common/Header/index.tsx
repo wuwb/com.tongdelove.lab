@@ -10,7 +10,7 @@ import { useAuth } from '@/contexts/auth'
 // import { useTranslation, Trans } from 'next-i18next';
 // import LocaleSwitch from '@/components/common/Header';
 
-const Header = props => {
+const Header = (props) => {
   const { children } = props
   // const { t } = useTranslation('common')
 
@@ -35,7 +35,7 @@ const Header = props => {
           <div>设置</div>
           <div>
             <a
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault()
                 auth.logout()
               }}
