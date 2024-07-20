@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/legacy/image'
 import SidebarBlock from '@/components/common/SidebarBlock'
 
-function HotNodes() {
+export const HotNodes = () => {
   const data = [
     {
       title: '今日推荐',
@@ -31,5 +31,3 @@ function HotNodes() {
     </SidebarBlock>
   )
 }
-
-export default HotNodes

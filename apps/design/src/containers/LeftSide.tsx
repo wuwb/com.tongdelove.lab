@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import clsx from "clsx";
+import clsx from 'clsx';
 import BackgroundPanel from "../components/Panel/BackgroundPanel";
 import FontPanel from "../components/Panel/FontPanel";
 import MaterialPanel from "../components/Panel/MaterialPanel";

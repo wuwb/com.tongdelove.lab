@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Head from 'next/head';
-import TinyNav from '@/components/TinyNav';
-import { Button, Row, Col } from 'antd';
-import { Layout } from '@/components/common';
-import s from './Team.module.css';
+import Link from 'next/link'
+import Head from 'next/head'
+import TinyNav from '@/components/TinyNav'
+import { Button, Row, Col } from 'antd'
+import { Layout } from '@/components/common'
+import s from './Team.module.css'
 
 const Page = () => (
   <>
@@ -49,8 +49,8 @@ const Page = () => (
       </Row>
     </div>
   </>
-);
+)
 
-Page.Layout = Layout;
+Page.Layout = Layout
 
-export default Page;
+export default Page

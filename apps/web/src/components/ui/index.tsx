@@ -1,4 +1,4 @@
-export { default as Hero } from './Hero';
-export { default as Container } from './Container';
-export { default as Marquee } from './Marquee';
-export { default as Logo } from './Logo';
+export * from './Hero'
+export * from './Container'
+export * from './Marquee'
+export * from './Logo'

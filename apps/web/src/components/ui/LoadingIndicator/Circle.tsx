@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from 'react'
+import styled from '@emotion/styled'
 
-const Circle = (props) => {
+const Circle = props => {
   const CirclePrimitive = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    ${props.rotate && 
+    ${props.rotate &&
     `
       -webkit-transform: rotate(${props.rotate}deg);
       -ms-transform: rotate(${props.rotate}deg);
@@ -27,8 +27,8 @@ const Circle = (props) => {
         animation-delay: ${props.delay}s;
       `};
     }
-  `;
-  return <CirclePrimitive />;
-};
+  `
+  return <CirclePrimitive />
+}
 
-export default Circle;
+export default Circle

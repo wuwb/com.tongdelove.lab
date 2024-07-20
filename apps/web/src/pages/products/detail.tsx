@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Breadcrumb, Rate, Radio } from 'antd';
-import Style from './detail.module.css';
-import { Layout } from '@/components/common';
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { Breadcrumb, Rate, Radio } from 'antd'
+import Style from './detail.module.css'
+import { Layout } from '@/components/common'
 
 interface Props {
-  name?: string;
-  subtitle: string;
-  price: string;
-  stock: string;
-  detail: string;
+  name?: string
+  subtitle: string
+  price: string
+  stock: string
+  detail: string
 }
 
 const product = {
@@ -39,9 +39,27 @@ const product = {
     },
   ],
   colors: [
-    { label: 'Apple', value: 'Apple', name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { label: 'Pear', value: 'Pear', name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { label: 'Orange', value: 'Orange', name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+    {
+      label: 'Apple',
+      value: 'Apple',
+      name: 'White',
+      class: 'bg-white',
+      selectedClass: 'ring-gray-400',
+    },
+    {
+      label: 'Pear',
+      value: 'Pear',
+      name: 'Gray',
+      class: 'bg-gray-200',
+      selectedClass: 'ring-gray-400',
+    },
+    {
+      label: 'Orange',
+      value: 'Orange',
+      name: 'Black',
+      class: 'bg-gray-900',
+      selectedClass: 'ring-gray-900',
+    },
   ],
   sizes: [
     { name: 'XXS', inStock: false },
@@ -63,7 +81,7 @@ const product = {
   ],
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-};
+}
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -71,68 +89,68 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
-
   function handleChange(data) {
-    setSelectedColor(data);
+    setSelectedColor(data)
   }
-  
+
   return (
     <div className="bg-white">
       <div className="pt-6">
-        <div className="max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+        <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <Breadcrumb>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item href="">Catalog</Breadcrumb.Item>
-          <Breadcrumb.Item>Page</Breadcrumb.Item>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item href="">Catalog</Breadcrumb.Item>
+            <Breadcrumb.Item>Page</Breadcrumb.Item>
           </Breadcrumb>
         </div>
 
         {/* Image gallery */}
-        <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
-          <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
+        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+          <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
             <Image
               src={product.images[0].src}
               alt={product.images[0].alt}
-              className="w-full h-full object-center object-cover"
+              className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-            <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
+            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
               <Image
                 src={product.images[1].src}
                 alt={product.images[1].alt}
-                className="w-full h-full object-center object-cover"
+                className="h-full w-full object-cover object-center"
               />
             </div>
-            <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
+            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
               <Image
                 src={product.images[2].src}
                 alt={product.images[2].alt}
-                className="w-full h-full object-center object-cover"
+                className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
-          <div className="aspect-w-4 aspect-h-5 sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4">
+          <div className="aspect-w-4 aspect-h-5 lg:aspect-w-3 lg:aspect-h-4 sm:overflow-hidden sm:rounded-lg">
             <Image
               src={product.images[3].src}
               alt={product.images[3].alt}
-              className="w-full h-full object-center object-cover"
+              className="h-full w-full object-cover object-center"
             />
           </div>
         </div>
 
         {/* Product info */}
-        <div className="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
+        <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+              {product.name}
+            </h1>
           </div>
 
           {/* Options */}
-          <div className="mt-4 lg:mt-0 lg:row-span-3">
-
+          <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h1 className={Style['p-name']}>{name}</h1>
             <p className={Style['p-subtitle']}>{subtitle}</p>
-            
+
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl text-gray-900">{product.price}</p>
 
@@ -143,8 +161,12 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
             <div className={`${Style['p-info-item']}, ${Style['p-count-con']}`}>
               <span className={Style['label']}>数量:</span>
               <input className={Style['p-count']} value="1" />
-              <span className={`${Style['p-count-btn']} ${Style['plus']}`}>+</span>
-              <span className={`${Style['p-count-btn']} ${Style['minus']}`}>-</span>
+              <span className={`${Style['p-count-btn']} ${Style['plus']}`}>
+                +
+              </span>
+              <span className={`${Style['p-count-btn']} ${Style['minus']}`}>
+                -
+              </span>
             </div>
 
             {/* Reviews */}
@@ -152,12 +174,13 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
                 <div className="flex items-center">
-                  <Rate 
-                    disabled allowHalf defaultValue={reviews.average}
-                  />
+                  <Rate disabled allowHalf defaultValue={reviews.average} />
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
-                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a
+                  href={reviews.href}
+                  className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   {reviews.totalCount} reviews
                 </a>
               </div>
@@ -166,39 +189,39 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
             <form className="mt-10">
               {/* Colors */}
               <div>
-                <h3 className="text-sm text-gray-900 font-medium">Color</h3>
+                <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
                 <Radio.Group
                   options={product.colors}
                   value={selectedColor}
                   onChange={handleChange}
-                  className="mt-4">
-                </Radio.Group>
-
+                  className="mt-4"
+                ></Radio.Group>
               </div>
 
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm text-gray-900 font-medium">Size</h3>
-                  <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  <h3 className="text-sm font-medium text-gray-900">Size</h3>
+                  <a
+                    href="#"
+                    className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  >
                     Size guide
                   </a>
                 </div>
-
-                
               </div>
 
               <button
                 type="submit"
-                className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 加入购物车
               </button>
             </form>
           </div>
 
-          <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
             {/* Description and details */}
             <div>
               <h3 className="sr-only">Description</h3>
@@ -212,8 +235,8 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
               <div className="mt-4">
-                <ul role="list" className="pl-4 list-disc text-sm space-y-2">
-                  {product.highlights.map((highlight) => (
+                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                  {product.highlights.map(highlight => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>
                     </li>
@@ -233,19 +256,19 @@ const DetailPage = ({ name, subtitle, price, stock, detail }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-DetailPage.Layout = Layout;
+DetailPage.Layout = Layout
 
-DetailPage.getInitialProps = async (ctx) => {
+DetailPage.getInitialProps = async ctx => {
   return {
     name: 'Corrugated Mailer Boxes',
     subtitle: 'Completely custom die-cut box with a tuck-front flap.',
     price: '10',
     stock: '1000',
     detail: '1213123123',
-  };
-};
+  }
+}
 
-export default DetailPage;
+export default DetailPage

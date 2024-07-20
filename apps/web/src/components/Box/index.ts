@@ -1,2 +1,1 @@
-export { Normal } from './Normal';
-
+export { Normal } from './Normal'

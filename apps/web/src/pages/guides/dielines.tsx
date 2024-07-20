@@ -1,12 +1,5 @@
-
 const GuidesDielinesPage = () => {
-  return (
-    <div>
-## 参考
-
-https://www.lumi.com/guides/dielines#introduction
-    </div>
-  );
+  return <div>## 参考 https://www.lumi.com/guides/dielines#introduction</div>
 }
 
-export default GuidesDielinesPage;
+export default GuidesDielinesPage

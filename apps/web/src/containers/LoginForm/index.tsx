@@ -1,12 +1,5 @@
-import React from 'react';
-import cx from 'classnames';
+import React from 'react'
 
-const LoginForm = () => {
-    return (
-        <div className="">
-
-        </div>
-    );
-};
-
-export default LoginForm;
+export const LoginForm = () => {
+  return <div className=""></div>
+}

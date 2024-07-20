@@ -1,25 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import { Avatar, Button } from 'antd';
-import s from './Heading.module.css';
+import React from 'react'
+import Link from 'next/link'
+import { Avatar, Button } from 'antd'
+import s from './Heading.module.css'
 
-const Heading = () => {
+export const Heading = () => {
   return (
     <div className={s.root}>
       <div className={s.content}>
-        <Avatar
-          alt="Your Avatar"
-          size={100}
-          className="mr-10"
-          src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180" />
+        <Avatar alt="Your Avatar" size={100} className="mr-10" src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180" />
         <div className={s.name}>
           <div className={s.title}>
-            <h2 className={s.username}>
-              Evil Rabbit
-            </h2>
-            <Button className={s.createProjectButton}>
-              Create Project
-            </Button>
+            <h2 className={s.username}>Evil Rabbit</h2>
+            <Button className={s.createProjectButton}>Create Project</Button>
           </div>
           <div>
             <p className={s.integrationsTitle}>Git Integrations</p>
@@ -34,7 +26,5 @@ const Heading = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export default Heading;
+  )
+}

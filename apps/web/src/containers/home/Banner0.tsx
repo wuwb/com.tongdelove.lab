@@ -1,15 +1,15 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import { isImg } from '@/utils/utils';
+import React from 'react'
+import Image from 'next/image'
+import { Button } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
+import { isImg } from '@/utils/utils'
 
 class Banner extends React.PureComponent<any, any> {
   render() {
-    const { ...currentProps }: any = this.props;
-    const { dataSource } = currentProps;
-    delete currentProps.dataSource;
-    delete currentProps.isMobile;
+    const { ...currentProps }: any = this.props
+    const { dataSource } = currentProps
+    delete currentProps.dataSource
+    delete currentProps.isMobile
 
     return (
       <div {...currentProps} {...dataSource.wrapper}>
@@ -22,7 +22,12 @@ class Banner extends React.PureComponent<any, any> {
           <div key="title" {...dataSource.title}>
             {typeof dataSource.title.children === 'string' &&
             dataSource.title.children.match(isImg) ? (
-                <Image src={dataSource.title.children} className="w-full" width="100" alt="img" />
+              <Image
+                src={dataSource.title.children}
+                className="w-full"
+                width="100"
+                alt="img"
+              />
             ) : (
               dataSource.title.children
             )}
@@ -36,8 +41,8 @@ class Banner extends React.PureComponent<any, any> {
         </div>
         <DownOutlined />
       </div>
-    );
+    )
   }
 }
 
-export default Banner;
+export default Banner

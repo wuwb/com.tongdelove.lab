@@ -1,16 +1,16 @@
 .pageHeading {
-    padding: 120px;
-    text-align: center;
+  padding: 120px;
+  text-align: center;
 }
 .pageTitle {
-    margin-bottom: 1rem;
-    font-size: 32px;
-    text-align: center;
+  margin-bottom: 1rem;
+  font-size: 32px;
+  text-align: center;
 }
 .pageHeading p {
-    font-size: 18px;
+  font-size: 18px;
 }
 .action {
-    @apply mt-10;
-    color: #0044e4;
+  @apply mt-10;
+  color: #0044e4;
 }

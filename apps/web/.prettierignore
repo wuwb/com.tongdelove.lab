@@ -1,3 +1,7 @@
-node_modules
-.next
+node_modules.next
 public
+_posts.editorconfig.eslintrc.js
+dist
+storybook-static
+pnpm-lock.yaml
+src/types/growthbook.ts.gitignore

@@ -1,7 +1,7 @@
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 
-function ProductCard({ product }) {
+export const ProductCard = ({ product }) => {
   return (
     <div className="w-80 border shadow hover:shadow-xl">
       <Link href={`/products/${product.id}`}>
@@ -14,5 +14,3 @@ function ProductCard({ product }) {
     </div>
   )
 }
-
-export default ProductCard

@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import NextHead from 'next/head';
-import { DefaultSeo } from 'next-seo';
-import config from '@/config/seo';
+import { FC } from 'react'
+import NextHead from 'next/head'
+import { DefaultSeo } from 'next-seo'
+import config from '@/config/seo'
 
-const Head: FC = (props) => {
+const Head: FC = props => {
   return (
     <>
       <DefaultSeo {...config} />
@@ -18,7 +18,10 @@ const Head: FC = (props) => {
         <meta httpEquiv="cleartype" content="on" />
 
         {/* viewport minium-ui */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
         <meta name="keywords" content="包装,印刷" />
         <link
@@ -46,7 +49,10 @@ const Head: FC = (props) => {
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+        <meta
+          name="msapplication-config"
+          content="/favicon/browserconfig.xml"
+        />
         <meta name="theme-color" content="#000000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
@@ -57,11 +63,11 @@ const Head: FC = (props) => {
         {/* <script src="/vendor/popper/1.14.6/popper.min.js"></script> */}
         {/* <script src="/vendor/bootstrap/4.2.1/bootstrap.min.js"></script> */}
         {/* <script src="/common/js/index.js"></script> */}
-      
+
         <link rel="manifest" href="/site.webmanifest" key="site-manifest" />
       </NextHead>
     </>
-  );
-};
+  )
+}
 
-export default Head;
+export default Head

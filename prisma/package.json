@@ -8,7 +8,7 @@
   "scripts": {
     "build:force": "tsup",
     "clean": "rimraf ./dist ./coverage ./tsconfig.tsbuildinfo",
-    "debug-test-e2e": "cross-env DEBUG=testcontainers vitest run $@",
+    "debug-test-e2e": "DEBUG=testcontainers vitest run $@",
     "dev": "tsup --watch",
     "fix-all-files": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs --fix",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs --cache --cache-location ../../.cache/eslint/prisma.eslintcache",
@@ -35,8 +35,6 @@
     "@types/node": "^20.12.8",
     "@vegardit/prisma-generator-nestjs-dto": "^1.5.1",
     "@vitest/coverage-v8": "1.2.2",
-    "cross-env": "7.0.3",
-    "eslint": "^8.56.0",
     "graphql": "16.8.1",
     "is-port-reachable": "4.0.0",
     "keyword-extractor": "0.0.27",

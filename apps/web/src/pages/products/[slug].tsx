@@ -1,4 +1,4 @@
-import { Layout } from '@/components/common';
+import { Layout } from '@/components/common'
 
 const Slug = () => {
   return (
@@ -15,13 +15,11 @@ const Slug = () => {
         <div>certification options</div>
         <div>Quality control policies</div>
       </div>
-      <div>
-        Related products  
-      </div> 
+      <div>Related products</div>
     </div>
-  );
+  )
 }
 
-Slug.Layout = Layout;
+Slug.Layout = Layout
 
-export default Slug;
+export default Slug

@@ -4,18 +4,13 @@
  */
 
 /** @type {import("eslint").Linter.Config} */
-const config = {
+module.exports = {
   root: true,
 
   parser: '@typescript-eslint/parser',
-  // parserOptions: {
-  //   project: './tsconfig.json',
-  //   // ecmaVersion: 12,
-  //   // sourceType: 'module',
-  //   tsconfigRootDir: __dirname,
-  // },
   plugins: ['@typescript-eslint', 'prettier', 'testing-library'],
   extends: [
+    '@flowgpt/eslint-config/nextjs.js',
     // ct3
     'next/core-web-vitals',
     // 'plugin:@typescript-eslint/recommended-type-checked',
@@ -187,5 +182,3 @@ const config = {
   // The ".eslintignore" file is no longer supported.
   ignorePatterns: ['.next', '.out', 'node_modules', 'dist/*'],
 }
-
-module.exports = config

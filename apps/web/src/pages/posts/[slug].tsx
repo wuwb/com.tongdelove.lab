@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { CMS_NAME } from '@/config/constant';
-import { Layout } from '@/components/common';
-import WPAPI from 'wpapi';
-import { PostService } from '@/services';
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { CMS_NAME } from '@/config/constant'
+import { Layout } from '@/components/common'
+import WPAPI from 'wpapi'
+import { PostService } from '@/services'
 
 const PostsPage = () => {
   const router = useRouter()
@@ -19,22 +19,19 @@ const PostsPage = () => {
 
   useEffect(() => {
     PostService.post(slug).then(data => {
-      setPost(data);
-    });
+      setPost(data)
+    })
     return () => {
-        // Your cleanup code, including removeEventListeners
+      // Your cleanup code, including removeEventListeners
     }
-}, [slug]);
+  }, [slug])
 
   if (!post) {
     return <div>Loading…</div>
   }
 
   const heroUrl =
-    post._embedded &&
-    post._embedded['wp:featuredmedia'] &&
-    post._embedded['wp:featuredmedia'][0] &&
-    post._embedded['wp:featuredmedia'][0].source_url
+    post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0] && post._embedded['wp:featuredmedia'][0].source_url
       ? post._embedded['wp:featuredmedia'][0].source_url
       : false
 
@@ -67,9 +64,9 @@ const PostsPage = () => {
   )
 }
 
-PostsPage.Layout = Layout;
+PostsPage.Layout = Layout
 
-export default PostsPage;
+export default PostsPage
 
 // // get date from marked
 // export async function getStaticProps({

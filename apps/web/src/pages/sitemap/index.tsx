@@ -1,9 +1,5 @@
 const SitemapPage = () => {
-  return (
-    <div>
-      - pages
-    </div>
-  );
+  return <div>- pages</div>
 }
 
-export default SitemapPage;
+export default SitemapPage

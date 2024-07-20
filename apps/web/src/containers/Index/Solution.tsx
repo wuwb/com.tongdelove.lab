@@ -15,17 +15,13 @@ const Home = () => {
     }
   `
   return (
-    <Container className="introduce-block container clearfix text-center">
+    <Container className="introduce-block clearfix container text-center">
       <div className="client-block-hd">
-        <h3>
-          提供一整套解决方案
-        </h3>
-        <p>
-          从需求设计到产品出货
-        </p>
+        <h3>提供一整套解决方案</h3>
+        <p>从需求设计到产品出货</p>
       </div>
-      <div className="grid grid-cols-12 container mx-auto">
-        <div className="col-span-4 content-primary float-left text-left">
+      <div className="container mx-auto grid grid-cols-12">
+        <div className="content-primary col-span-4 float-left text-left">
           <dl>
             <dt>
               <p className="text-lg font-bold">在线报价</p>
@@ -57,17 +53,12 @@ const Home = () => {
             <dd>32 年持续耕耘，品质可靠稳定</dd>
           </dl>
         </div>
-        <div className="col-span-8 content-secondly float-right">
-          <Image
-            width={1000}
-            height={420}
-            src="/assets/front-page/1.jpg"
-            alt="印刷机械设备"
-          />
+        <div className="content-secondly col-span-8 float-right">
+          <Image width={1000} height={420} src="/assets/front-page/1.jpg" alt="印刷机械设备" />
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

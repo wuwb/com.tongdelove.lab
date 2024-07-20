@@ -1,8 +1,8 @@
-import { Row, Col } from 'antd';
-import Image from 'next/image';
+import { Row, Col } from 'antd'
+import Image from 'next/image'
 import Link from 'next/link'
 
-const Home = () => {
+export const Home = () => {
   return (
     <div className="product-block clearfix">
       <div className="product-head">
@@ -21,10 +21,7 @@ const Home = () => {
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <Link
-                  href="/products/corrugated-mailer-boxes"
-                  className="action-hover"
-                >
+                <Link href="/products/corrugated-mailer-boxes" className="action-hover">
                   咖啡管式盒
                 </Link>
               </h4>
@@ -38,10 +35,7 @@ const Home = () => {
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <Link
-                  href="/products/corrugated-mailer-boxes"
-                  className="action-hover"
-                >
+                <Link href="/products/corrugated-mailer-boxes" className="action-hover">
                   咖啡管式盒
                   <br />
                 </Link>
@@ -56,10 +50,7 @@ const Home = () => {
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <Link
-                  href="/products/corrugated-mailer-boxes"
-                  className="action-hover"
-                >
+                <Link href="/products/corrugated-mailer-boxes" className="action-hover">
                   咖啡管式盒
                   <br />
                 </Link>
@@ -74,10 +65,7 @@ const Home = () => {
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <Link
-                  href="/products/corrugated-mailer-boxes"
-                  className="action-hover"
-                >
+                <Link href="/products/corrugated-mailer-boxes" className="action-hover">
                   咖啡管式盒
                   <br />
                 </Link>
@@ -92,10 +80,7 @@ const Home = () => {
             </div>
             <div className="product-detail">
               <h4 className="box-title">
-                <Link
-                  href="/products/corrugated-mailer-boxes"
-                  className="action-hover"
-                >
+                <Link href="/products/corrugated-mailer-boxes" className="action-hover">
                   咖啡管式盒
                   <br />
                 </Link>
@@ -105,7 +90,5 @@ const Home = () => {
         </Row>
       </div>
     </div>
-  );
-};
-
-export default Home;
+  )
+}

@@ -1,6 +1,6 @@
-import Layout from '@/components/common/Layout';
-import { DaohangCard } from '@/containers/Daohang';
-import s from './Daohang.module.css';
+import Layout from '@/components/common/Layout'
+import { DaohangCard } from '@/containers/Daohang'
+import s from './Daohang.module.css'
 
 // 资讯网站
 const info_sites = [
@@ -52,14 +52,14 @@ const company_sites = [
 
 const DaohangPage = () => (
   <div className="bg-gray-50 py-10">
-    <div className="max-w-2xl lg:max-w-7xl mx-auto">
+    <div className="mx-auto max-w-2xl lg:max-w-7xl">
       <div className="row">
         <DaohangCard
           title="网址导航"
           links={[
             {
               link: 'https://top.chinaz.com/hangye/index_qiye_yinshua.html#obj_1',
-              title: '包装行业网站排行'
+              title: '包装行业网站排行',
             },
           ]}
         />
@@ -226,9 +226,7 @@ const DaohangPage = () => (
             {
               link: 'http://www.scpack.cn/',
               title: '四川包装网',
-              children: [
-                { link: 'http://www.bz028.com/', title: '成都包装网' },
-              ],
+              children: [{ link: 'http://www.bz028.com/', title: '成都包装网' }],
             },
             { link: 'http://www.ynpack.org', title: '云南包装网' },
             {
@@ -342,7 +340,8 @@ const DaohangPage = () => (
             { link: 'http://www.ppzhan.com/', title: '中国包装印刷产业网' },
             { link: 'http://pack.vogel.com.cn/', title: '食品工程网' },
             {
-              link: 'http://www.chinafpma.org/index.html', title: '中国食品和包装机械工业协会',
+              link: 'http://www.chinafpma.org/index.html',
+              title: '中国食品和包装机械工业协会',
             },
             { link: 'http://www.cnppa.org/', title: '中国医药包装协会' },
           ]}
@@ -511,7 +510,8 @@ const DaohangPage = () => (
           title="包装院校"
           links={[
             {
-              link: 'http://www.tsinghua.edu.cn/publish/ad/2843/index.html', title: '清华大学美术学院',
+              link: 'http://www.tsinghua.edu.cn/publish/ad/2843/index.html',
+              title: '清华大学美术学院',
             },
             {
               link: 'http://ysbz.bigc.edu.cn/',
@@ -519,24 +519,28 @@ const DaohangPage = () => (
             },
             { link: 'http://www.cafa.edu.cn/', title: '中央美术学院' },
             {
-              link: 'Http://www.sust.edu.cn', title: '陕西科技大学设计与艺术学院&nbsp;',
+              link: 'Http://www.sust.edu.cn',
+              title: '陕西科技大学设计与艺术学院&nbsp;',
             },
             {
               link: 'http://www.sust.edu.cn/',
               title: '河南科技大学艺术设计系',
             },
             {
-              link: 'http://art.ncu.edu.cn/default.aspx', title: '南昌大学艺术与设计学院',
+              link: 'http://art.ncu.edu.cn/default.aspx',
+              title: '南昌大学艺术与设计学院',
             },
             {
               link: 'http://ccad.usst.edu.cn/',
               title: '上海理工大学出版印刷与艺术设计学院',
             },
             {
-              link: 'http://www.xaut.edu.cn/about.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=6197', title: '西安理工大学印刷包装与数字媒体学院',
+              link: 'http://www.xaut.edu.cn/about.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=6197',
+              title: '西安理工大学印刷包装与数字媒体学院',
             },
             {
-              link: 'http://pps.whu.edu.cn/yxgk/yxjj/2013-11-15/436.html', title: '武汉大学印刷与包装工程系',
+              link: 'http://pps.whu.edu.cn/yxgk/yxjj/2013-11-15/436.html',
+              title: '武汉大学印刷与包装工程系',
             },
             { link: 'http://www.jci.edu.cn/', title: '景德镇陶瓷学院' },
             { link: 'http://www.sdada.edu.cn/', title: '山东工艺美术学院' },
@@ -545,7 +549,8 @@ const DaohangPage = () => (
               title: '上海理工大学出版印刷与设计艺术学院',
             },
             {
-              link: 'http://byxy.tust.edu.cn/main/index.html', title: '天津科技大学包装与印刷工程学院',
+              link: 'http://byxy.tust.edu.cn/main/index.html',
+              title: '天津科技大学包装与印刷工程学院',
             },
             {
               link: 'http://cailiao.syuct.edu.cn/',
@@ -593,7 +598,7 @@ const DaohangPage = () => (
             },
             {
               link: 'http://www.bigc.edu.cn/',
-              title: '北京印刷学院'
+              title: '北京印刷学院',
             },
             {
               link: 'http://mse.njit.edu.cn/',
@@ -628,7 +633,10 @@ const DaohangPage = () => (
             { link: 'http://www.gbpack.com/', title: '中国包装标准网' },
             { link: 'http://www.bz.365cgw.com/', title: '365包装采购网' },
             { link: 'http://www.bz-e.com/', title: '包装e线' },
-            { link: 'http://www.packjour.cn/jzy/index.aspx', title: '包装工程' },
+            {
+              link: 'http://www.packjour.cn/jzy/index.aspx',
+              title: '包装工程',
+            },
             { link: 'http://www.bz800.com/', title: '东方包装网' },
             { link: 'http://www.bz800.com/', title: '东方包装网' },
             { link: 'http://www.gbpack.com/', title: '中国包装标准网' },
@@ -638,8 +646,8 @@ const DaohangPage = () => (
       </div>
     </div>
   </div>
-);
+)
 
-DaohangPage.Layout = Layout;
+DaohangPage.Layout = Layout
 
-export default DaohangPage;
+export default DaohangPage

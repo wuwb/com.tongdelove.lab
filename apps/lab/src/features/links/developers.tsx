@@ -1,7 +1,7 @@
 import { Link } from '@/components/ui'
 import { Table } from '@mantine/core'
 
-const Home = () => {
+export const Home = () => {
   // {
   //   name: '',
   //   site: '',
@@ -58,5 +58,3 @@ const Home = () => {
 
   return <Table />
 }
-
-export default Home

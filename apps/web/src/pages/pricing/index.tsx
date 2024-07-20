@@ -1,6 +1,6 @@
-import { Row, Col, Table, Button } from 'antd';
-import Head from 'next/head';
-import { Layout } from '@/components/common';
+import { Row, Col, Table, Button } from 'antd'
+import Head from 'next/head'
+import { Layout } from '@/components/common'
 
 const Home = () => {
   const columns = [
@@ -19,7 +19,7 @@ const Home = () => {
       dataIndex: 'us',
       key: 'us',
     },
-  ];
+  ]
 
   const networkData = [
     {
@@ -58,7 +58,7 @@ const Home = () => {
       other: '✓',
       us: '✓',
     },
-  ];
+  ]
 
   const softwarePlatformData = [
     {
@@ -115,7 +115,7 @@ const Home = () => {
       other: '-',
       us: '✓',
     },
-  ];
+  ]
 
   const expertServicesData = [
     {
@@ -166,32 +166,21 @@ const Home = () => {
       other: '✓',
       us: '✓',
     },
-  ];
+  ]
 
   return (
     <div title="价格">
       <div className="container mx-auto">
-        <div className="banner text-center py-10">
+        <div className="banner py-10 text-center">
           <h1 className="title text-2xl font-bold">匹配你的业务需求的定价方案。</h1>
           <p className="desc text-md mt-5">
-            We believe that a healthy supply chain operates on a foundation of
-            trust. That's why our business model is transparent from the ground
-            up.
+            We believe that a healthy supply chain operates on a foundation of trust. That's why our business model is transparent from the ground up.
           </p>
           <Button className="mt-10">开始 →</Button>
-          <div className="grid grid-cols-3 gap-20 mt-20">
-            <div className="col-span-1 px-36">
-              Price transparency We do not hide behind opaque margins. Lumi
-              shows you the true costs from every manufacturer.
-            </div>
-            <div className="col-span-1 px-36">
-              Save as you scale Pricing scales predictably based on your
-              company's packaging usage, so you lower costs as you grow.
-            </div>
-            <div className="col-span-1 px-20">
-              Unbundled costs No recurring fees for non-recurring work. You
-              always know exactly what you're paying for.
-            </div>
+          <div className="mt-20 grid grid-cols-3 gap-20">
+            <div className="col-span-1 px-36">Price transparency We do not hide behind opaque margins. Lumi shows you the true costs from every manufacturer.</div>
+            <div className="col-span-1 px-36">Save as you scale Pricing scales predictably based on your company's packaging usage, so you lower costs as you grow.</div>
+            <div className="col-span-1 px-20">Unbundled costs No recurring fees for non-recurring work. You always know exactly what you're paying for.</div>
           </div>
         </div>
         <div className="content">
@@ -199,63 +188,40 @@ const Home = () => {
             <Col span={16}>
               <h3 className="title text-xl font-bold">海维包装提供哪些服务?</h3>
               <div className="section mt-5">
-                <div className="title text-lg mb-2">工厂网络</div>
-                <Table
-                  columns={columns}
-                  dataSource={networkData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <div className="title mb-2 text-lg">工厂网络</div>
+                <Table columns={columns} dataSource={networkData} pagination={false} bordered={true} size="small" />
               </div>
               <div className="section mt-10">
-                <div className="title text-lg mb-2">软件平台</div>
-                <Table
-                  columns={columns}
-                  dataSource={softwarePlatformData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <div className="title mb-2 text-lg">软件平台</div>
+                <Table columns={columns} dataSource={softwarePlatformData} pagination={false} bordered={true} size="small" />
               </div>
               <div className="section mt-10">
-                <div className="title text-lg mb-2">专业服务</div>
-                <Table
-                  columns={columns}
-                  dataSource={expertServicesData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <div className="title mb-2 text-lg">专业服务</div>
+                <Table columns={columns} dataSource={expertServicesData} pagination={false} bordered={true} size="small" />
               </div>
             </Col>
             <Col span={8} className="py-32">
               <div className="more-service-1">
-                Additional services are available directly in the platform with
-                flat rate pricing. <br />
-                Packaging engineering Custom dielines ISTA/ASTM testing On-site
-                quality control Short run prototyping Factory auditing Learn
-                more
+                Additional services are available directly in the platform with flat rate pricing. <br />
+                Packaging engineering Custom dielines ISTA/ASTM testing On-site quality control Short run prototyping Factory auditing Learn more
               </div>
               <div className="more-service-2 mt-10">
-                A network of partners is available to help you integrate Lumi
-                into your supply chain. <br />
-                Inventory tracking Inventory planning Just-in-time delivery
-                ERP/WMS integrations
+                A network of partners is available to help you integrate Lumi into your supply chain. <br />
+                Inventory tracking Inventory planning Just-in-time delivery ERP/WMS integrations
               </div>
             </Col>
           </Row>
 
-          <div className="text-center py-36">
-            <p className="font-bold text-2xl">来看看海维包装如何优化你的供应链吧。</p>
+          <div className="py-36 text-center">
+            <p className="text-2xl font-bold">来看看海维包装如何优化你的供应链吧。</p>
             <Button className="mt-10">Get started →</Button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-Home.Layout = Layout;
+Home.Layout = Layout
 
-export default Home;
+export default Home

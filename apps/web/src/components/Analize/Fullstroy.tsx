@@ -1,2 +1,2 @@
-const Fullstroy = () => {};
-export default Fullstroy;
+const Fullstroy = () => {}
+export default Fullstroy

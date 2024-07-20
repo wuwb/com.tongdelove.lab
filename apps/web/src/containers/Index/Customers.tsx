@@ -1,5 +1,5 @@
-import { Space } from 'antd';
-import styled from '@emotion/styled';
+import { Space } from 'antd'
+import styled from '@emotion/styled'
 
 const Home = () => {
   const customers = [
@@ -42,7 +42,7 @@ const Home = () => {
     '志愿食品',
     '大一潘拉面',
     '班花串串香',
-    '麻辣串奇',    
+    '麻辣串奇',
     '1号鲜',
     '背锅侠火锅',
     '燚火锅',
@@ -69,44 +69,40 @@ const Home = () => {
     '怪噜羊肉粉',
     '馋了侬食品',
     '山呷呷食品',
-    '趣商互动'
+    '趣商互动',
   ]
 
-  const overseaCustomers = [
-    'Mama Vege',
-    'Serveat',
-    'Cramer',
-  ]
+  const overseaCustomers = ['Mama Vege', 'Serveat', 'Cramer']
 
-  function makeGridDom (data) {
-    return data.map((item => {
-      return <div className="border px-4 py-2 cursor-pointer text-center hover:text-white hover:bg-black" key={item}>{item}</div>
-    }));
+  function makeGridDom(data) {
+    return data.map(item => {
+      return (
+        <div className="cursor-pointer border px-4 py-2 text-center hover:bg-black hover:text-white" key={item}>
+          {item}
+        </div>
+      )
+    })
   }
 
-  const customersDom = makeGridDom(customers) 
-  const overseaCustomersDom = makeGridDom(overseaCustomers) 
+  const customersDom = makeGridDom(customers)
+  const overseaCustomersDom = makeGridDom(overseaCustomers)
 
   return (
-    <div className="text-center max-w-2xl lg:max-w-7xl my-10 mx-auto">
+    <div className="mx-auto my-10 max-w-2xl text-center lg:max-w-7xl">
       <div className="client-block-hd">
-        <h3 className="text-lg">
-          深受客户信赖
-        </h3>
-        <p className="text-base">
-          无数的客户坚定的选择了我们
-        </p>
+        <h3 className="text-lg">深受客户信赖</h3>
+        <p className="text-base">无数的客户坚定的选择了我们</p>
       </div>
-      <Space wrap className="max-w-2xl lg:max-w-7xl justify-center">
+      <Space wrap className="max-w-2xl justify-center lg:max-w-7xl">
         {customersDom}
       </Space>
 
-      <h4 className="text-base mt-5">海外客户</h4>
-      <Space wrap className="max-w-2xl lg:max-w-7xl justify-center">
+      <h4 className="mt-5 text-base">海外客户</h4>
+      <Space wrap className="max-w-2xl justify-center lg:max-w-7xl">
         {overseaCustomersDom}
       </Space>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

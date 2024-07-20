@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-export default function useDeviceOS(): string {
-  const [os, setOS] = useState('');
+export const useDeviceOS = () => {
+  const [os, setOS] = useState('')
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent
 
     if (userAgent.indexOf('Windows') > -1) {
-      setOS('windows');
+      setOS('windows')
     } else if (userAgent.indexOf('Mac OS') > -1) {
-      setOS('mac');
+      setOS('mac')
     } else if (userAgent.indexOf('Linux') > -1) {
-      setOS('linux');
+      setOS('linux')
     } else {
-      setOS('other');
+      setOS('other')
     }
-  }, []);
+  }, [])
 
-  return os;
+  return os
 }

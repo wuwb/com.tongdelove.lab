@@ -1,2 +1,2 @@
-const Feedback = () => {};
-export default Feedback;
+const Feedback = () => {}
+export default Feedback

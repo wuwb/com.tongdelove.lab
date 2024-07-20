@@ -6,7 +6,7 @@
       "script": "analyze",
       "problemMatcher": [],
       "label": "npm: analyze",
-      "detail": "cross-env ANALYZE=true next build"
+      "detail": "ANALYZE=true next build"
     }
   ]
 }

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { Component } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 class Page extends Component {
   render() {
@@ -588,8 +588,8 @@ class Page extends Component {
           </div>
         </div>
       </>
-    );
+    )
   }
 }
 
-export default Page;
+export default Page

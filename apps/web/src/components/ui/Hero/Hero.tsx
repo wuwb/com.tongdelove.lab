@@ -10,7 +10,7 @@ const Block = styled.div`
   h3 {
     margin-bottom: 1rem;
   }
-`;
+`
 
 interface HeroProps {
   className?: string
@@ -19,7 +19,7 @@ interface HeroProps {
   children?: any
 }
 
-const Hero: FC<HeroProps> = ({
+export const Hero: FC<HeroProps> = ({
   headline = '没找到你所需要的产品？',
   description = '寻求报价',
   children = null,
@@ -36,5 +36,3 @@ const Hero: FC<HeroProps> = ({
     </Block>
   )
 }
-
-export default Hero

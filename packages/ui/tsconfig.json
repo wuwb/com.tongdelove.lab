@@ -1,5 +1,5 @@
 {
-  "extends": "@tongdelove/tsconfig/internal-package.json",
+  "extends": "@tongdelove/typescript-config/internal-package.json",
   "compilerOptions": {
     "lib": [
       "dom",

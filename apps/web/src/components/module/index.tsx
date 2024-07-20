@@ -1,1 +1,1 @@
-export { default as ProductDemoList } from './ProductDemoList';
+export { default as ProductDemoList } from './ProductDemoList'

@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 
 export default function DateFormatter({ dateString }) {
-  const date = dayjs(dateString);
-  return <time dateTime={dateString}>{date.format('MMMM D, YYYY')}</time>;
+  const date = dayjs(dateString)
+  return <time dateTime={dateString}>{date.format('MMMM D, YYYY')}</time>
 }

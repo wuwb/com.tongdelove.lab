@@ -1,4 +1,4 @@
-import classNames from "classnames"
+import classNames from 'clsx'
 
 const FeatureRowsGroup = ({ data }) => {
   return (
@@ -7,16 +7,16 @@ const FeatureRowsGroup = ({ data }) => {
         <div
           className={classNames(
             // Common classes
-            "flex flex-col justify-start md:justify-between md:items-center gap-10",
+            'flex flex-col justify-start gap-10 md:items-center md:justify-between',
             {
-              "lg:flex-row": index % 2 === 0,
-              "lg:flex-row-reverse": index % 2 === 1,
+              'lg:flex-row': index % 2 === 0,
+              'lg:flex-row-reverse': index % 2 === 1,
             }
           )}
           key={feature.id}
         >
           {/* Text section */}
-          <div className="w-full lg:w-6/12 lg:pr-6 text-lg">
+          <div className="w-full text-lg lg:w-6/12 lg:pr-6">
             <h3 className="title">{feature.title}</h3>
             <p className="my-6">{feature.description}</p>
             {/*<CustomLink link={feature.link}>*/}
@@ -26,15 +26,11 @@ const FeatureRowsGroup = ({ data }) => {
             {/*</CustomLink>*/}
           </div>
           {/* Media section */}
-          <div className="w-full sm:9/12 lg:w-4/12 max-h-full">
+          <div className="sm:9/12 max-h-full w-full lg:w-4/12">
             {/* Images */}
-            {feature.media.mime.startsWith("image") && (
-              <div className="w-full h-auto">
-                image here
-              </div>
-            )}
+            {feature.media.mime.startsWith('image') && <div className="h-auto w-full">image here</div>}
             {/* Videos */}
-            {feature.media.mime.startsWith("video") && (
+            {feature.media.mime.startsWith('video') && (
               // <Video
               //   media={feature.media}
               //   className="w-full h-auto"

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
-import cn from 'clsx'
+import clsx from 'clsx'
 
 export default function Menu() {
   const {
@@ -10,7 +10,7 @@ export default function Menu() {
   } = useAppContext()
   return (
     <Button
-      className={cn('fixed left-2 top-2', {
+      className={clsx('fixed left-2 top-2', {
         hidden: displayNavigation,
       })}
       onClick={() => {

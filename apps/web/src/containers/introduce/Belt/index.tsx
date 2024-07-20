@@ -1,1 +1,1 @@
-export { default } from './Belt';
+export { default } from './Belt'

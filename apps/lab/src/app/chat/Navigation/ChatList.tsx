@@ -1,7 +1,5 @@
 import type { Chat } from '@/types/chat'
-import { TbMessageCircle } from 'react-icons/tb'
 import { useMemo, useState } from 'react'
-import cn from 'clsx'
 import { groupByDate } from '@/utils/helpers/chat'
 import ChatItem from './ChatItem'
 

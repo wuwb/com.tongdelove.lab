@@ -1,12 +1,8 @@
-module.exports = {
-    trailingComma: 'all',
-    tabWidth: 4,
-    semi: true,
-    singleQuote: true,
-    arrowParens: 'avoid',
-    endOfLine: 'auto',
-    printWidth: 140,
-    bracketSpacing: true,
-    jsxBracketSameLine: false,
-    parser: 'babel'
-};
+const baseConfig = require('../../prettier.config.cjs')
+
+baseConfig.plugins = [
+  require.resolve('prettier-plugin-packagejson'),
+]
+
+/** @type {import("prettier").Config} */
+module.exports = baseConfig

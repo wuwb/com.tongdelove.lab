@@ -1,11 +1,11 @@
-import React, { Component, useState, memo } from 'react';
-import ReactKonva, { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva';
-import Konva from 'konva';
-import { Pa, PMain, PSide } from '../../Slice';
+import React, { Component, useState, memo } from 'react'
+import ReactKonva, { Stage, Layer, Rect, Text, Line, Group, Transformer } from 'react-konva'
+import Konva from 'konva'
+import { Pa, PMain, PSide } from '../../Slice'
 
 export const Normal = memo(() => {
   const [state, setState] = useState({
-    dashStyle: [ 3, 3 ],
+    dashStyle: [3, 3],
 
     pThickness: 0.05,
 
@@ -31,49 +31,43 @@ export const Normal = memo(() => {
 
     pdWidth: 10,
     pdLength: 9,
-  });
+  })
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     setState({
       ...state,
-      paWidth: Number(e.currentTarget.value)
-    });
+      paWidth: Number(e.currentTarget.value),
+    })
   }
 
-  let pThickness = 0.05;
-  let paddingLeft =  10;
-  let paddingTop = 10;
+  let pThickness = 0.05
+  let paddingLeft = 10
+  let paddingTop = 10
 
-  let pLength = 80;
-  let pDeepth =  100;
-  let pWidth = 30;
+  let pLength = 80
+  let pDeepth = 100
+  let pWidth = 30
 
-  let paType = 1;
-  let pbType = 1;
-  let pcType = 1;
+  let paType = 1
+  let pbType = 1
+  let pcType = 1
 
-  let paHeight = 15;
-  let paWidth = 20;
+  let paHeight = 15
+  let paWidth = 20
 
-  let pbHeight = 15;
-  let pbWidth = 20;
+  let pbHeight = 15
+  let pbWidth = 20
 
-  let pcHeight = 10;
-  let pcRadius = 5;
+  let pcHeight = 10
+  let pcRadius = 5
 
-  let pdWidth = 10;
-  let pdLength = 90;
+  let pdWidth = 10
+  let pdLength = 90
 
-  const origin = [
-      paddingLeft,
-      paddingTop
-  ];
+  const origin = [paddingLeft, paddingTop]
 
   return (
-    <Group
-      x={paddingLeft}
-      y={paddingTop}
-    >
+    <Group x={paddingLeft} y={paddingTop}>
       <Pa options={state}></Pa>
       <PMain options={state}></PMain>
       <PSide options={state}></PSide>
@@ -81,7 +75,7 @@ export const Normal = memo(() => {
         <Pa options={state}></Pa>
       </Transformer>
     </Group>
-  );
+  )
 })
 
 Normal.displayName = 'Normal'

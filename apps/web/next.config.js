@@ -1,6 +1,6 @@
 // @ts-check
-const withPlugins = require('next-compose-plugins');
-const withAntdLess = require('next-plugin-antd-less');
+const withPlugins = require('next-compose-plugins')
+const withAntdLess = require('next-plugin-antd-less')
 // const { i18n } = require('./next-i18next.config');
 
 const pluginAntdLess = withAntdLess({
@@ -16,14 +16,12 @@ const pluginAntdLess = withAntdLess({
   // localIdentName: '[hash:2]',
   // },
   // },
-});
+})
 
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = withPlugins([
-  [pluginAntdLess]
-], {
+module.exports = withPlugins([[pluginAntdLess]], {
   // i18n,
   // reactStrictMode: true,
   // trailingSlash: true,
@@ -68,6 +66,6 @@ module.exports = withPlugins([
   // webpack(config, options) {
   //   return config;
   // }
-});
+})
 
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))

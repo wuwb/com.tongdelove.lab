@@ -4,10 +4,9 @@ import React from 'react'
 interface LinkProps {
   to: string
   children: React.ReactNode
-  [string]: any
 }
 
-export const Link: React.FC<LinkProps> = (props: LinkProps) => {
+export const Link = (props: LinkProps) => {
   const { to, children } = props
 
   let isOutLink = false

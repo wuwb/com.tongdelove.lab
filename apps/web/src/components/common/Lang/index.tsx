@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-const Home = (props) => {
-  const { title } = props;
+const Home = props => {
+  const { title } = props
 
   const changeLangs = () => {
     // const lang = getLocale();
@@ -10,7 +10,7 @@ const Home = (props) => {
     // // setLocale('zh-TW', true);
     // // 不刷新页面
     // setLocale(change, false);
-  };
+  }
 
   // const intl = useIntl();
 
@@ -18,8 +18,8 @@ const Home = (props) => {
     <div>
       <a onClick={changeLangs}>切换语言</a>
     </div>
-  );
-};
+  )
+}
 
 // Home.getInitialProps = async ({ store, isServer, history, match, route }) => {
 //   if (!isServer) {
@@ -30,4 +30,4 @@ const Home = (props) => {
 //   return { test };
 // };
 
-export default Home;
+export default Home

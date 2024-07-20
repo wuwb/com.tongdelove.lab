@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/legacy/image'
 import { Link } from '@/components/ui/'
 
-function Profile() {
+export const Profile = () => {
   return (
     <div className="mb-4 bg-white">
       <div className="bg-white p-4">
@@ -27,5 +27,3 @@ function Profile() {
     </div>
   )
 }
-
-export default Profile

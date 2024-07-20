@@ -1,12 +1,12 @@
-import Head from 'next/head';
-import MoreStories from '@/components/components/more-stories';
-import HeroPost from '@/components/components/hero-post';
-import { Layout } from '@/components/common';
-import { CMS_NAME } from '@/config/constant';
+import Head from 'next/head'
+import MoreStories from '@/components/components/more-stories'
+import HeroPost from '@/components/components/hero-post'
+import { Layout } from '@/components/common'
+import { CMS_NAME } from '@/config/constant'
 
 export default function Index({ allPosts: { edges }, preview }) {
-  const heroPost = edges[0]?.node;
-  const morePosts = edges.slice(1);
+  const heroPost = edges[0]?.node
+  const morePosts = edges.slice(1)
 
   return (
     <>
@@ -16,20 +16,13 @@ export default function Index({ allPosts: { edges }, preview }) {
         </Head>
         <div>
           {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.featuredImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
+            <HeroPost title={heroPost.title} coverImage={heroPost.featuredImage} date={heroPost.date} author={heroPost.author} slug={heroPost.slug} excerpt={heroPost.excerpt} />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
       </Layout>
     </>
-  );
+  )
 }
 
 // export async function getStaticProps({ preview = false }) {

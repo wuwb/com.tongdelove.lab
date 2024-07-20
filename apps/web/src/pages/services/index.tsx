@@ -1,30 +1,17 @@
 import Link from 'next/link'
-import { List, Typography } from 'antd';
-import { Layout } from '@/components/common';
+import { List, Typography } from 'antd'
+import { Layout } from '@/components/common'
 
 const Page = () => {
-  const data = [
-    '采购',
-    '产品管理',
-    '工厂审核',
-    '生产管理',
-    '物流管理',
-    'ISTA / ASTM 测试',
-    '现场质量控制',
-    '即时库存',
-    '可持续发展策略',
-    'ERP / WMS 集成',
-  ];
+  const data = ['采购', '产品管理', '工厂审核', '生产管理', '物流管理', 'ISTA / ASTM 测试', '现场质量控制', '即时库存', '可持续发展策略', 'ERP / WMS 集成']
 
   return (
-    <div className="services pt-10 pb-10">
+    <div className="services pb-10 pt-10">
       <div>
         <div className="banner">
           <h3>包装工程</h3>
           <p>我们的专家可以帮助您设计，实现和测试可用于生产的解决方案。</p>
-          <Link href="/">
-            <a href="">了解更多→</a>
-          </Link>
+          <Link href="/">了解更多→</Link>
         </div>
         <dl>
           <dt>艺术设计</dt>
@@ -42,20 +29,14 @@ const Page = () => {
       <div className="more-service">
         <div className="title">
           <h3>联系我们的团队获取更多的服务</h3>
-          <Link href="/">
-            <a href="">开始→</a>
-          </Link>
+          <Link href="/">开始→</Link>
         </div>
-        <List
-          className="list"
-          dataSource={data}
-          renderItem={item => <List.Item>{item}</List.Item>}
-        />
+        <List className="list" dataSource={data} renderItem={item => <List.Item>{item}</List.Item>} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-Page.Layout = Layout;
+Page.Layout = Layout
 
-export default Page;
+export default Page

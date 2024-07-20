@@ -1,2 +1,2 @@
-const Google = () => {};
-export default Google;
+const Google = () => {}
+export default Google

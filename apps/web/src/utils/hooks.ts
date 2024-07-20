@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 // Got from https://usehooks.com/useLockBodyScroll/
 export function useLockBodyScroll() {
@@ -12,13 +12,13 @@ export function useLockBodyScroll() {
     // Re-enable scrolling when component unmounts
     return () => {
       document.body.style.overflow = originalStyle
-    };
+    }
   }, []) // Empty array ensures effect is only run on mount and unmount
 }
 
 export function useOnClickOutside(ref, handler) {
   useEffect(() => {
-    const listener = (event) => {
+    const listener = event => {
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
         return

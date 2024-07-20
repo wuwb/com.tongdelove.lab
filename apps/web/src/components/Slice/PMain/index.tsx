@@ -1,94 +1,94 @@
-import React, { Component, useState } from 'react';
-import { Stage, Layer, Rect, Text, Line, Shape } from 'react-konva';
-import Konva from 'konva';
+import React, { Component, useState } from 'react'
+import { Stage, Layer, Rect, Text, Line, Shape } from 'react-konva'
+import Konva from 'konva'
 
 interface Props {
-  options: any;
-  origin?: [number, number];
+  options: any
+  origin?: [number, number]
 }
 
 const Pa = (props: Props) => {
-    let { origin, options } = props;
-    let {
-      pThickness,
+  let { origin, options } = props
+  let {
+    pThickness,
 
-      paddingLeft,
-      paddingTop,
+    paddingLeft,
+    paddingTop,
 
-      pLength,
-      pDeepth,
-      pWidth,
+    pLength,
+    pDeepth,
+    pWidth,
 
-      paType,
-      pbType,
-      pcType,
+    paType,
+    pbType,
+    pcType,
 
-      paHeight,
-      paWidth,
+    paHeight,
+    paWidth,
 
-      pbHeight,
-      pbWidth,
+    pbHeight,
+    pbWidth,
 
-      pcHeight,
-      pcRadius,
+    pcHeight,
+    pcRadius,
 
-      pdWidth,
-      pdLength,
+    pdWidth,
+    pdLength,
 
-      dashStyle
-    } = options;
+    dashStyle,
+  } = options
 
-    let startPoint: [number, number] = [0, 0];
-    startPoint[0] =  pWidth;
-    startPoint[1] = (pWidth + pcHeight + pcRadius + pThickness);
+  let startPoint: [number, number] = [0, 0]
+  startPoint[0] = pWidth
+  startPoint[1] = pWidth + pcHeight + pcRadius + pThickness
 
-    let SecondPoint: [number, number] = [0, 0];
-    SecondPoint[0] = startPoint[0] + pLength;
-    SecondPoint[1] = startPoint[1];
+  let SecondPoint: [number, number] = [0, 0]
+  SecondPoint[0] = startPoint[0] + pLength
+  SecondPoint[1] = startPoint[1]
 
-    let ThirdPoint: [number, number] = [0, 0];
-    ThirdPoint[0] = SecondPoint[0];
-    ThirdPoint[1] = startPoint[1] + pDeepth;
+  let ThirdPoint: [number, number] = [0, 0]
+  ThirdPoint[0] = SecondPoint[0]
+  ThirdPoint[1] = startPoint[1] + pDeepth
 
-    let FourthPoint: [number, number] = [0, 0];
-    FourthPoint[0] = startPoint[0];
-    FourthPoint[1] = ThirdPoint[1];
+  let FourthPoint: [number, number] = [0, 0]
+  FourthPoint[0] = startPoint[0]
+  FourthPoint[1] = ThirdPoint[1]
 
-    return (
-      <Shape
-          sceneFunc={(ctx, shape) => {
-            ctx.beginPath();
-            ctx.moveTo(...startPoint);
-            ctx.lineTo(...SecondPoint);
-            ctx.stroke();
-            ctx.closePath();
+  return (
+    <Shape
+      sceneFunc={(ctx, shape) => {
+        ctx.beginPath()
+        ctx.moveTo(...startPoint)
+        ctx.lineTo(...SecondPoint)
+        ctx.stroke()
+        ctx.closePath()
 
-            ctx.beginPath();
-            ctx.setLineDash(dashStyle);
-            ctx.moveTo(...SecondPoint);
-            ctx.lineTo(...ThirdPoint);
-            ctx.stroke();
-            ctx.closePath();
+        ctx.beginPath()
+        ctx.setLineDash(dashStyle)
+        ctx.moveTo(...SecondPoint)
+        ctx.lineTo(...ThirdPoint)
+        ctx.stroke()
+        ctx.closePath()
 
-            ctx.beginPath();
-            ctx.setLineDash(dashStyle);
-            ctx.moveTo(...ThirdPoint);
-            ctx.lineTo(...FourthPoint);
-            ctx.stroke();
-            ctx.closePath();
+        ctx.beginPath()
+        ctx.setLineDash(dashStyle)
+        ctx.moveTo(...ThirdPoint)
+        ctx.lineTo(...FourthPoint)
+        ctx.stroke()
+        ctx.closePath()
 
-            ctx.beginPath();
-            ctx.setLineDash(dashStyle);
-            ctx.moveTo(...FourthPoint);
-            ctx.lineTo(...startPoint);
-            ctx.stroke();
-            ctx.closePath();
+        ctx.beginPath()
+        ctx.setLineDash(dashStyle)
+        ctx.moveTo(...FourthPoint)
+        ctx.lineTo(...startPoint)
+        ctx.stroke()
+        ctx.closePath()
 
-            // (!) Konva specific method, it is very important
-            ctx.fillStrokeShape(shape);
-          }}
-      />
-    );
+        // (!) Konva specific method, it is very important
+        ctx.fillStrokeShape(shape)
+      }}
+    />
+  )
 }
 
-export default Pa;
+export default Pa

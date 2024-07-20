@@ -1,172 +1,192 @@
-import FootNav from './FootNav';
+import FootNav from './FootNav'
 
-const Footer = (props) => {
+const Footer = props => {
   return (
     <div>
-      <div className="justify-center flex gap-2 flex-wrap">
+      <div className="flex flex-wrap justify-center gap-2">
         <div className="">
-          <FootNav title="无物" navs={[
-            {
-              name: '开始',
-              href: '/choose'
-            },
-            {
-              name: '无物 ID',
-              href: '/pages/id'
-            },
-            {
-              name: '服务',
-              href: '/services'
-            },
-            {
-              name: '价格',
-              href: '/pricing'
-            },
-            {
-              name: '参考案例',
-              href: '/customers'
-            },
-            {
-              name: '更新记录',
-              href: '/updates'
-            },
-          ]} />
+          <FootNav
+            title="无物"
+            navs={[
+              {
+                name: '开始',
+                href: '/choose',
+              },
+              {
+                name: '无物 ID',
+                href: '/pages/id',
+              },
+              {
+                name: '服务',
+                href: '/services',
+              },
+              {
+                name: '价格',
+                href: '/pricing',
+              },
+              {
+                name: '参考案例',
+                href: '/customers',
+              },
+              {
+                name: '更新记录',
+                href: '/updates',
+              },
+            ]}
+          />
         </div>
         <div>
-          <FootNav title="平台" navs={[
-            {
-              name: '概述',
-              href: '/features'
-            },
-            {
-              name: '规范',
-              href: '/features/manage'
-            },
-            {
-              name: '协作',
-              href: '/features/collaborate'
-            },
-            {
-              name: '采购',
-              href: '/features/source'
-            },
-            {
-              name: '交易',
-              href: '/features/order'
-            },
-            {
-              name: '生产',
-              href: '/features/produce'
-            },
-            {
-              name: '分析',
-              href: '/features/analyze'
-            }
-          ]} />
+          <FootNav
+            title="平台"
+            navs={[
+              {
+                name: '概述',
+                href: '/features',
+              },
+              {
+                name: '规范',
+                href: '/features/manage',
+              },
+              {
+                name: '协作',
+                href: '/features/collaborate',
+              },
+              {
+                name: '采购',
+                href: '/features/source',
+              },
+              {
+                name: '交易',
+                href: '/features/order',
+              },
+              {
+                name: '生产',
+                href: '/features/produce',
+              },
+              {
+                name: '分析',
+                href: '/features/analyze',
+              },
+            ]}
+          />
         </div>
         <div>
-          <FootNav title="探索" navs={[
+          <FootNav
+            title="探索"
+            navs={[
               {
                 name: '产品',
-                href: '/products'
+                href: '/products',
               },
               {
                 name: '可持续性',
-                href: '/properties'
+                href: '/properties',
               },
               {
                 name: '原料',
-                href: '/materials'
+                href: '/materials',
               },
               {
                 name: '加工',
-                href: '/processes'
+                href: '/processes',
               },
               {
                 name: '成本降低',
-                href: '/insights/reduce-your-packaging-costs'
+                href: '/insights/reduce-your-packaging-costs',
               },
-            ]} />
+            ]}
+          />
         </div>
         <div>
-          <FootNav title="主编" navs={[
+          <FootNav
+            title="主编"
+            navs={[
               {
                 name: '博客',
-                href: '/blog'
+                href: '/blog',
               },
               {
                 name: '播客',
-                href: '/wellmade'
+                href: '/wellmade',
               },
               {
                 name: '视频',
-                href: '/shippingthings'
+                href: '/shippingthings',
               },
               {
                 name: '在线研讨会',
-                href: '/events'
+                href: '/events',
               },
               {
                 name: '照片墙',
-                href: '/image-wall'
+                href: '/image-wall',
               },
               {
                 name: '开发博客',
-                href: '/studio'
+                href: '/studio',
               },
-            ]} />
+            ]}
+          />
         </div>
         <div>
-          <FootNav title="企业" navs={[
-            {
-              name: '关于',
-              href: '/about'
-            },
-            {
-              name: '报道',
-              href: '/press'
-            },
-            {
-              name: '领导层',
-              href: '/team'
-            },
-            {
-              name: '职业生涯',
-              href: '/jobs'
-            },
-          ]}>
+          <FootNav
+            title="企业"
+            navs={[
+              {
+                name: '关于',
+                href: '/about',
+              },
+              {
+                name: '报道',
+                href: '/press',
+              },
+              {
+                name: '领导层',
+                href: '/team',
+              },
+              {
+                name: '职业生涯',
+                href: '/jobs',
+              },
+            ]}
+          >
             <li>
-              <a target="_blank" rel="noreferrer" href="https://cptech.taobao.com">淘宝店铺</a>
+              <a target="_blank" rel="noreferrer" href="https://cptech.taobao.com">
+                淘宝店铺
+              </a>
             </li>
           </FootNav>
         </div>
         <div>
-          <FootNav title="资源" navs={[
-            {
-              name: '帮助文档',
-              href: '/features'
-            },
-            {
-              name: '状态',
-              href: '/status'
-            },
-            {
-              name: '质量标准',
-              href: '/quality'
-            },
-            {
-              name: '配送计划',
-              href: '/delivery-schedule'
-            },
-            {
-              name: '服务协议',
-              href: '/terms'
-            },
-            {
-              name: '隐私协议',
-              href: '/privacy'
-            }
-          ]} />
+          <FootNav
+            title="资源"
+            navs={[
+              {
+                name: '帮助文档',
+                href: '/features',
+              },
+              {
+                name: '状态',
+                href: '/status',
+              },
+              {
+                name: '质量标准',
+                href: '/quality',
+              },
+              {
+                name: '配送计划',
+                href: '/delivery-schedule',
+              },
+              {
+                name: '服务协议',
+                href: '/terms',
+              },
+              {
+                name: '隐私协议',
+                href: '/privacy',
+              },
+            ]}
+          />
         </div>
       </div>
 
@@ -356,7 +376,7 @@ const Footer = (props) => {
         </div>
       </div> */}
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

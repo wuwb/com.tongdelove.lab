@@ -1,1 +1,1 @@
-export { default as DaohangCard } from './DaohangCard';
+export { default as DaohangCard } from './DaohangCard'

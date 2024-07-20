@@ -12,7 +12,9 @@ type Props = {
 
 export const NotFoundPage: FC<Props> = props => {
   const { t } = useTranslation(systemConfig.i18nNamespaces)
+
   const title = props.title ?? t('system:notFound.title')
+
   return (
     <>
       <Head>

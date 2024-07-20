@@ -1,5 +1,3 @@
-'use client'
-
 import { Link } from '@/components/ui/'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
@@ -61,7 +59,7 @@ export function MenuItems({ items, depthLevel }: any) {
             {items.icon ? <div className="">icon</div> : null}
             {items.description ? (
               <div
-                className={cx({
+                  className={clsx({
                   'ml-3': items.icon,
                 })}
               >

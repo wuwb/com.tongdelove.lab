@@ -1,36 +1,34 @@
-import { FC, PropsWithChildren } from 'react';
-import Link from 'next/link';
-import s from './Navbar.module.css';
-import NavbarRoot from './NavbarRoot';
+import { FC, PropsWithChildren } from 'react'
+import Link from 'next/link'
+import s from './Navbar.module.css'
+import NavbarRoot from './NavbarRoot'
 // import { Logo, Container } from '@/components/ui';
 // import { Searchbar, UserNav } from '@/components/common';
 
 interface Link {
-  href: string;
-  label: string;
+  href: string
+  label: string
 }
 interface NavbarProps extends PropsWithChildren {
-  links?: Link[];
+  links?: Link[]
 }
 
 const Navbar: FC<NavbarProps> = ({ links }) => (
   <NavbarRoot>
     <div>
       <div className={s.nav}>
-        <div className="flex items-center flex-1">
-          <Link href="/">
-            <a className={s.logo} aria-label="Logo">
-              {/* <Logo /> */}
-              Logo
-            </a>
+        <div className="flex flex-1 items-center">
+          <Link href="/" className={s.logo} aria-label="Logo">
+            {/* <Logo /> */}
+            Logo
           </Link>
           <nav className={s.navMenu}>
-            <Link href="/search">
-              <a className={s.link}>All</a>
+            <Link href="/search" className={s.link}>
+              All
             </Link>
-            {links?.map((l) => (
-              <Link href={l.href} key={l.href}>
-                <a className={s.link}>{l.label}</a>
+            {links?.map(l => (
+              <Link href={l.href} key={l.href} className={s.link}>
+                {l.label}
               </Link>
             ))}
           </nav>
@@ -51,6 +49,6 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
       )} */}
     </div>
   </NavbarRoot>
-);
+)
 
-export default Navbar;
+export default Navbar

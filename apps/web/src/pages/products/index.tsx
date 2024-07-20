@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { Layout } from '@/components/common';
-import {
-  Collapse, Radio, Input, Space, Checkbox,
-  Menu, Dropdown, Button, message, Tooltip, Drawer
-} from 'antd';
-import { DownOutlined, UserOutlined, FilterOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { ProductCard } from '@/containers/product';
-import s from './index.module.css';
+import React, { useState } from 'react'
+import { Layout } from '@/components/common'
+import { Collapse, Radio, Input, Space, Checkbox, Menu, Dropdown, Button, message, Tooltip, Drawer } from 'antd'
+import { DownOutlined, UserOutlined, FilterOutlined, AppstoreOutlined } from '@ant-design/icons'
+import { ProductCard } from '@/containers/product'
+import s from './index.module.css'
 import { useRouter } from 'next/router'
 
-const { Panel } = Collapse;
+const { Panel } = Collapse
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -17,35 +14,35 @@ const sortOptions = [
   { name: 'Newest', href: '#', current: false },
   { name: 'Price: Low to High', href: '#', current: false },
   { name: 'Price: High to Low', href: '#', current: false },
-];
+]
 
 const Page = () => {
-  const [minimumQuantity, setMiniumQuantity] = useState(0);
-  const [category, setCategory] = useState(0);
-  const router = useRouter();
+  const [minimumQuantity, setMiniumQuantity] = useState(0)
+  const [category, setCategory] = useState(0)
+  const router = useRouter()
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
-  console.log('router: ', router);
+  console.log('router: ', router)
 
   function handleMiniumQuantityChange(e) {
-    setMiniumQuantity(e.target.value);
+    setMiniumQuantity(e.target.value)
   }
 
   function handleCategoryChange(e) {
-    setCategory(e.target.value);
+    setCategory(e.target.value)
   }
 
   function onChange(checkedValues) {
-    console.log('checked = ', checkedValues);
+    console.log('checked = ', checkedValues)
   }
 
   function handleMenuClick(e) {
-    message.info('Click on menu item.');
-    console.log('click', e);
+    message.info('Click on menu item.')
+    console.log('click', e)
   }
 
   function handleCloseDrawer() {
-    setMobileFiltersOpen(false);
+    setMobileFiltersOpen(false)
   }
 
   const materialsOptions = [
@@ -64,7 +61,7 @@ const Page = () => {
     { label: 'PET Film', value: '' },
     { label: 'PP Film', value: '' },
     { label: 'PVC Film', value: '' },
-  ];
+  ]
 
   const sustainabilityOptions = [
     { label: 'Bildegradable', value: '' },
@@ -80,7 +77,7 @@ const Page = () => {
     { label: 'Returnable', value: '' },
     { label: 'Reusable', value: '' },
     { label: 'Sustainable inks', value: '' },
-  ];
+  ]
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -94,7 +91,7 @@ const Page = () => {
         3rd menu item
       </Menu.Item>
     </Menu>
-  );
+  )
 
   return (
     <>
@@ -104,11 +101,7 @@ const Page = () => {
       <div className="flex flex-row">
         <div className={s.leftSidebar}>
           <div className={s.sidebarPanel}>
-            <Collapse 
-              defaultActiveKey={['1', '2', '3', '4']} 
-              ghost
-              expandIconPosition="right"
-            >
+            <Collapse defaultActiveKey={['1', '2', '3', '4']} ghost expandIconPosition="right">
               <Panel header="最小起订量" key="1">
                 <Radio.Group onChange={handleMiniumQuantityChange} value={minimumQuantity}>
                   <Space direction="vertical" size={0}>
@@ -139,26 +132,16 @@ const Page = () => {
                 </Radio.Group>
               </Panel>
               <Panel header="材质" key="3">
-                <Checkbox.Group
-                  className="flex flex-col"
-                  options={materialsOptions}
-                  defaultValue={[]}
-                  onChange={onChange}
-                />
+                <Checkbox.Group className="flex flex-col" options={materialsOptions} defaultValue={[]} onChange={onChange} />
               </Panel>
               <Panel header="环保标准" key="4">
-                <Checkbox.Group
-                  className="flex flex-col"
-                  options={sustainabilityOptions}
-                  defaultValue={[]}
-                  onChange={onChange}
-                />
+                <Checkbox.Group className="flex flex-col" options={sustainabilityOptions} defaultValue={[]} onChange={onChange} />
               </Panel>
             </Collapse>
           </div>
         </div>
         <div className={s.mainPanel}>
-          <div className="relative z-10 flex items-baseline justify-between pt-6 pb-6 border-b border-gray-200">
+          <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pb-6 pt-6">
             <div className={s.mainTitle}>包装产品分类</div>
             <div className="flex items-center">
               <Dropdown overlay={menu} trigger={['click']}>
@@ -166,39 +149,31 @@ const Page = () => {
                   Sort <DownOutlined />
                 </a>
               </Dropdown>
-              <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
+              <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
                 <span className="sr-only">View grid</span>
-                <AppstoreOutlined className="w-5 h-5" aria-hidden="true" />
+                <AppstoreOutlined className="h-5 w-5" aria-hidden="true" />
               </button>
-              <button
-                type="button"
-                className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
-                onClick={() => setMobileFiltersOpen(true)}
-              >
+              <button type="button" className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden" onClick={() => setMobileFiltersOpen(true)}>
                 <span className="sr-only">Filters</span>
-                <FilterOutlined className="w-5 h-5" aria-hidden="true" />
+                <FilterOutlined className="h-5 w-5" aria-hidden="true" />
               </button>
-          </div>
-
+            </div>
           </div>
           <div className={s.mainContent}>
             <ul className={s.productGrid}>
-              {
-                [1,2,3,4,5,6,7].map(i => (
-                    <li key={i}>
-                      <ProductCard 
-                        product={{
-                          id: 1,
-                        }} 
-                        imgProps={{
-                          width: 480,
-                          height: 480,
-                        }}
-                      />
-                    </li>
-                  )
-                )
-              }
+              {[1, 2, 3, 4, 5, 6, 7].map(i => (
+                <li key={i}>
+                  <ProductCard
+                    product={{
+                      id: 1,
+                    }}
+                    imgProps={{
+                      width: 480,
+                      height: 480,
+                    }}
+                  />
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -211,9 +186,9 @@ const Page = () => {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-Page.Layout = Layout;
+Page.Layout = Layout
 
-export default Page;
+export default Page

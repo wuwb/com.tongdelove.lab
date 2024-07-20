@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useRef,
 } from "react";
-import clsx from "clsx";
+import clsx from 'clsx';
 import { ActionCreators } from "redux-undo";
 import HeaderComponent from "../components/Header";
 import CanvasControl from "../components/CanvasControl";

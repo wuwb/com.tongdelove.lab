@@ -1,13 +1,13 @@
-import Container from '@/components/ui/Container';
-import cx from 'classnames';
-import { EXAMPLE_PATH } from '@/config/constant';
+import { Container } from '@/components/ui/Container'
+import clsx from 'clsx'
+import { EXAMPLE_PATH } from '@/config/constant'
 
-export default function Alert({ preview }) {
+export const Alert = ({ preview }) => {
   return (
     <div
-      className={cx('border-b flex item-center justify-center', {
-        'bg-accent-7 border-accent-7 text-white': preview,
-        'bg-accent-1 border-accent-2': !preview,
+      className={clsx('item-center flex justify-center border-b', {
+        'border-accent-7 bg-accent-7 text-white': preview,
+        'border-accent-2 bg-accent-1': !preview,
       })}
     >
       <Container>
@@ -15,10 +15,7 @@ export default function Alert({ preview }) {
           {preview ? (
             <>
               This is page is a preview.{' '}
-              <a
-                href="/api/exit-preview"
-                className="underline hover:text-cyan duration-200 transition-colors"
-              >
+              <a href="/api/exit-preview" className="underline transition-colors duration-200 hover:text-cyan">
                 Click here
               </a>{' '}
               to exit preview mode.
@@ -26,10 +23,7 @@ export default function Alert({ preview }) {
           ) : (
             <>
               The source code for this blog is{' '}
-              <a
-                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-                className="underline hover:text-success duration-200 transition-colors"
-              >
+              <a href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`} className="hover:text-success underline transition-colors duration-200">
                 available on GitHub
               </a>
               .

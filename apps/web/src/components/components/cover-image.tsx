@@ -1,13 +1,13 @@
-import cn from 'classnames'
+import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function CoverImage({ title, src, slug }) {
+export const CoverImage = ({ title, src, slug }) => {
   const image = (
     <Image
       src={src}
       alt={`Cover Image for ${title}`}
-      className={cn('shadow-small', {
+      className={clsx('shadow-small', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
     />

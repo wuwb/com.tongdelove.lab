@@ -1,13 +1,9 @@
-import { Layout } from '@/components/common';
+import { Layout } from '@/components/common'
 
 const Home = () => {
-  return (
-    <div>
-      join
-    </div>
-  );
-};
+  return <div>join</div>
+}
 
-Home.Layout = Layout;
+Home.Layout = Layout
 
-export default Home;
+export default Home

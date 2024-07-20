@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/legacy/image'
 import SidebarBlock from '@/components/common/SidebarBlock'
 
-function NewNodes() {
+export const NewNodes = () => {
   const data = [
     {
       title: '今日推荐',
@@ -31,5 +31,3 @@ function NewNodes() {
     </SidebarBlock>
   )
 }
-
-export default NewNodes

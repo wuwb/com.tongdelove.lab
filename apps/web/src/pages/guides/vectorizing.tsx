@@ -1,7 +1,5 @@
 const GuidesVectorizingPage = () => {
-  return (
-    <div>GuidesVectorizingPage</div>
-  );
+  return <div>GuidesVectorizingPage</div>
 }
 
-export default GuidesVectorizingPage;
+export default GuidesVectorizingPage

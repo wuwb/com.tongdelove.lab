@@ -1,53 +1,48 @@
-import React from 'react';
-import { Carousel as AntCarousel, Row, Col } from 'antd';
-
+import React from 'react'
+import { Carousel as AntCarousel, Row, Col } from 'antd'
 
 class Feature6 extends React.PureComponent<any, any> {
-  carouselRef: any;
+  carouselRef: any
   constructor(props) {
-    super(props);
-    this.carouselRef = React.createRef();
+    super(props)
+    this.carouselRef = React.createRef()
     this.state = {
       current: 0,
-    };
+    }
   }
 
   onTitleClick = (_, i) => {
-    const carouselRef = this.carouselRef.current.childRefs.carousel;
-    carouselRef.goTo(i);
-  };
+    const carouselRef = this.carouselRef.current.childRefs.carousel
+    carouselRef.goTo(i)
+  }
 
   onBeforeChange = (_, newIndex) => {
     this.setState({
       current: newIndex,
-    });
-  };
+    })
+  }
 
-  getChildrenToRender = (dataSource) => {
-    const { current }: any = this.state;
-    const { Carousel } = dataSource;
+  getChildrenToRender = dataSource => {
+    const { current }: any = this.state
+    const { Carousel } = dataSource
     const {
       titleWrapper,
       children: childWrapper,
       wrapper,
       ...carouselProps
-    } = Carousel;
+    } = Carousel
 
-    const {
-      barWrapper,
-      title: titleChild,
-      ...titleWrapperProps
-    } = titleWrapper;
-    const titleToRender = [];
+    const { barWrapper, title: titleChild, ...titleWrapperProps } = titleWrapper
+    const titleToRender = []
 
     const childrenToRender = childWrapper.map((item, ii) => {
-      const { title, children, ...itemProps } = item;
+      const { title, children, ...itemProps } = item
       titleToRender.push(
         <div
           {...title}
           key={ii.toString()}
-          onClick={(e) => {
-            this.onTitleClick(e, ii);
+          onClick={e => {
+            this.onTitleClick(e, ii)
           }}
           className={
             ii === current ? `${title.className || ''} active` : title.className
@@ -55,11 +50,11 @@ class Feature6 extends React.PureComponent<any, any> {
         >
           {title.children}
         </div>
-      );
+      )
       const childrenItem = children.map(($item, i) => {
-        const { number, children: child, ...childProps } = $item;
-        const numberChild = number.children.replace(/[^0-9.-]/g, '');
-        const { unit, toText, ...numberProps } = number;
+        const { number, children: child, ...childProps } = $item
+        const numberChild = number.children.replace(/[^0-9.-]/g, '')
+        const { unit, toText, ...numberProps } = number
         return (
           <Col {...childProps} key={i.toString()}>
             <div
@@ -86,18 +81,18 @@ class Feature6 extends React.PureComponent<any, any> {
             {unit && <span {...unit}>{unit.children}</span>}
             <p {...child}>{child.children}</p>
           </Col>
-        );
-      });
+        )
+      })
       return (
         <div key={ii.toString()}>
           <div type="bottom" component={Row} {...itemProps}>
             {childrenItem}
           </div>
         </div>
-      );
-    });
+      )
+    })
 
-    const width = 100 / childrenToRender.length;
+    const width = 100 / childrenToRender.length
     return (
       <div
         key="queue"
@@ -130,21 +125,19 @@ class Feature6 extends React.PureComponent<any, any> {
           {childrenToRender}
         </AntCarousel>
       </div>
-    );
-  };
+    )
+  }
 
   render() {
-    const { dataSource, isMobile, ...props }: any = this.props;
+    const { dataSource, isMobile, ...props }: any = this.props
     return (
       <div {...props} {...dataSource.wrapper}>
         <div>
-          <div {...dataSource.div}>
-            {this.getChildrenToRender(dataSource)}
-          </div>
+          <div {...dataSource.div}>{this.getChildrenToRender(dataSource)}</div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Feature6;
+export default Feature6

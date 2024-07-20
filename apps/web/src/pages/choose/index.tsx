@@ -1,12 +1,12 @@
-import Head from 'next/head';
-import NextLink from 'next/link';
-import { Card, Space } from 'antd';
-import Layout from '@/components/common/Layout';
-import s from './Choose.module.css';
+import Head from 'next/head'
+import NextLink from 'next/link'
+import { Card, Space } from 'antd'
+import Layout from '@/components/common/Layout'
+import s from './Choose.module.css'
 
 const Home = () => {
   return (
-    <div className="mx-auto my-20 max-w-2xl lg:max-w-7xl flex justify-center">
+    <div className="mx-auto my-20 flex max-w-2xl justify-center lg:max-w-7xl">
       <Space>
         <NextLink href="/join">
           <a href="">
@@ -26,9 +26,9 @@ const Home = () => {
         </NextLink>
       </Space>
     </div>
-  );
-};
+  )
+}
 
-Home.Layout = Layout;
+Home.Layout = Layout
 
-export default Home;
+export default Home

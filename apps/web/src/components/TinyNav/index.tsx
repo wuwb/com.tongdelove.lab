@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styled from '@emotion/styled';
+import Link from 'next/link'
+import styled from '@emotion/styled'
 
 const StyledTinyNav = styled.div`
   text-align: center;
@@ -19,10 +19,10 @@ const StyledTinyNav = styled.div`
   a:hover {
     color: #000;
   }
-`;
+`
 
-const TinyNav = (props) => {
-  const { navs } = props;
+const TinyNav = props => {
+  const { navs } = props
 
   return (
     <StyledTinyNav>
@@ -32,7 +32,7 @@ const TinyNav = (props) => {
         </Link>
       ))}
     </StyledTinyNav>
-  );
-};
+  )
+}
 
-export default TinyNav;
+export default TinyNav

@@ -1,5 +1,5 @@
-const path = require('path');
-const { initReactI18next } = require('react-i18next');
+const path = require('path')
+const { initReactI18next } = require('react-i18next')
 
 module.exports = {
   // debug: process.env.NODE_ENV === 'development',
@@ -31,8 +31,8 @@ module.exports = {
   contextSeparator: '——',
 
   serializeConfig: false,
-  use: [ initReactI18next ],
+  use: [initReactI18next],
   react: {
     useSuspense: false,
-  }
-};
+  },
+}

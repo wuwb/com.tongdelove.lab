@@ -1,29 +1,31 @@
+import React from 'react'
+import { Button } from 'antd'
+import axios from 'axios'
+import {
+  POSTS_API_URL,
+  AUTHORS_API_URL,
+  MEDIA_API_URL,
+} from '@/config/constant'
+import SiteConfig from '@/config/site'
 
-import React from 'react';
-import { Button } from 'antd';
-import axios from 'axios';
-import { POSTS_API_URL, AUTHORS_API_URL, MEDIA_API_URL } from '@/config/constant';
-import SiteConfig from '@/config/site';
-
-export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/;
+export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/
 export const getChildrenToRender = (item, i) => {
-  let tag = item.name.indexOf('title') === 0 ? 'h1' : 'div';
-  tag = item.href ? 'a' : tag;
-  let children = typeof item.children === 'string' && item.children.match(isImg)
-    ? React.createElement('img', { src: item.children, alt: 'img' })
-    : item.children;
+  let tag = item.name.indexOf('title') === 0 ? 'h1' : 'div'
+  tag = item.href ? 'a' : tag
+  let children =
+    typeof item.children === 'string' && item.children.match(isImg)
+      ? React.createElement('img', { src: item.children, alt: 'img' })
+      : item.children
   if (item.name.indexOf('button') === 0 && typeof item.children === 'object') {
     children = React.createElement(Button, {
-      ...item.children
-    });
+      ...item.children,
+    })
   }
-  return React.createElement(tag, { key: i.toString(), ...item }, children);
-};
+  return React.createElement(tag, { key: i.toString(), ...item }, children)
+}
 
-
-
-const labels = SiteConfig.labels || {};
-const layouts = SiteConfig.layouts || {};
+const labels = SiteConfig.labels || {}
+const layouts = SiteConfig.layouts || {}
 
 export const Configs = {
   author: SiteConfig.author || 'Wenbin',
@@ -32,7 +34,9 @@ export const Configs = {
 
   email: SiteConfig.email ? `mailto:${SiteConfig.email}` : null,
   github: SiteConfig.github ? `https://github.com/${SiteConfig.github}` : null,
-  twitter: SiteConfig.twitter ? `https://twitter.com/${SiteConfig.twitter}` : null,
+  twitter: SiteConfig.twitter
+    ? `https://twitter.com/${SiteConfig.twitter}`
+    : null,
 
   enableViews: SiteConfig.enableViews || false,
   latestLimit: SiteConfig.latestLimit || 5,
@@ -50,7 +54,7 @@ export const Configs = {
   },
 }
 
-export const isServer = typeof window === "undefined";
+export const isServer = typeof window === 'undefined'
 
 // Removes empty query parameters from the query object
 export const filterQuery = (query: any) => {
@@ -65,33 +69,33 @@ export const filterQuery = (query: any) => {
 export const getAllPostsFromServer = async () => {
   //   get all posts from Server
   try {
-    const { data } = await axios.get(POSTS_API_URL);
-    return data;
+    const { data } = await axios.get(POSTS_API_URL)
+    return data
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
-export const getAuthor = async (id) => {
+export const getAuthor = async id => {
   try {
     const {
       data: { name },
-    } = await axios.get(`${AUTHORS_API_URL}/${id}`);
-    return name;
+    } = await axios.get(`${AUTHORS_API_URL}/${id}`)
+    return name
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
-export const getFeaturedImage = async (id) => {
+export const getFeaturedImage = async id => {
   try {
-    const res = await axios.get(`${MEDIA_API_URL}/${id}`);
-    return res.data.guid.rendered;
+    const res = await axios.get(`${MEDIA_API_URL}/${id}`)
+    return res.data.guid.rendered
   } catch (error) {
-    console.log(error);
-    return '';
+    console.log(error)
+    return ''
   }
-};
+}
 
 export const getDNSPrefetchValue = domain => {
   if (!domain) return null

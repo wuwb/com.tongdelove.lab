@@ -1,24 +1,25 @@
-import React from 'react';
-import Link from 'next/link';
-import { Button, Card, Tag } from 'antd';
-import cx from 'classnames';
-import s from './ProjectCard.module.css';
+import React from 'react'
+import Link from 'next/link'
+import { Button, Card, Tag } from 'antd'
+import clsx from 'clsx'
+import s from './ProjectCard.module.css'
 
 interface Props {
-  projectId: string;
-  created: string;
-  repo: string;
+  projectId: string
+  created: string
+  repo: string
 }
 
-const ProjectCard = ({ projectId, created, repo }: Props) => {
+export const ProjectCard = ({ projectId, created, repo }: Props) => {
   return (
-    <Card className={cx(s.card, 'p-0')}
+    <Card
+      className={clsx(s.card, 'p-0')}
       actions={[
         <Link key="rope" href={`https://github.com/${repo}`}>
           <a href="" className={s.footer}>
-            <p className="mr-3 font-medium text-base">{repo}</p>
+            <p className="mr-3 text-base font-medium">{repo}</p>
           </a>
-        </Link>
+        </Link>,
       ]}
     >
       <div className={s.title}>
@@ -29,19 +30,15 @@ const ProjectCard = ({ projectId, created, repo }: Props) => {
       </div>
       <div className={s.content}>
         <div className={s.dot}>
-          <Link href={`https://${projectId}.now.sh`}>
-            {projectId}.now.sh
-          </Link>
+          <Link href={`https://${projectId}.now.sh`}>{projectId}.now.sh</Link>
           <Tag className={s.tag} color="green">
             Production
           </Tag>
           <span className={s.created}>{created}</span>
         </div>
         <div className={s.dot}>
-          <Link href={`https://${projectId}.now.sh`} >
-            <a rel="noopener">
-              {projectId}-oa71gi2.now.sh
-            </a>
+          <Link href={`https://${projectId}.now.sh`}>
+            <a rel="noopener">{projectId}-oa71gi2.now.sh</a>
           </Link>
           <Tag className={s.tag} color="blue">
             Latest
@@ -50,7 +47,5 @@ const ProjectCard = ({ projectId, created, repo }: Props) => {
         </div>
       </div>
     </Card>
-  );
-};
-
-export default ProjectCard;
+  )
+}

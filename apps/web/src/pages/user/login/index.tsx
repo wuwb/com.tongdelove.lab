@@ -1,99 +1,104 @@
-import React, {useEffect, useState } from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
-import { Form, Input, Button, Checkbox, notification } from 'antd';
-import { useRouter } from 'next/router';
-import { UserService } from "@/services";
-import { useAuth  } from '@/contexts/auth';
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
+import { Form, Input, Button, Checkbox, notification } from 'antd'
+import { useRouter } from 'next/router'
+import { UserService } from '@/services'
+import { useAuth } from '@/contexts/auth'
 
-const UserLoginPage = (props) => {
-  const [username, setUsername] = useState();
-  const [error, setError] = useState();
-  const [waitTime, setWaitTime] = useState<any>();
-  const [twoFactor, setTwoFactor] = useState(false);
-  const [verifing, setVerifing] = useState(false);
-  const [loginInfo, setLoginInfo] = useState<any>();
-  const router = useRouter();
-  const auth = useAuth();
+const UserLoginPage = props => {
+  const [username, setUsername] = useState()
+  const [error, setError] = useState()
+  const [waitTime, setWaitTime] = useState<any>()
+  const [twoFactor, setTwoFactor] = useState(false)
+  const [verifing, setVerifing] = useState(false)
+  const [loginInfo, setLoginInfo] = useState<any>()
+  const router = useRouter()
+  const auth = useAuth()
 
   useEffect(() => {
     if ((UserService as any).userValue) {
-      router.push('/');
+      router.push('/')
     }
-  }, []);
+  }, [])
 
   const onFinish = async values => {
-    console.log('Success:', values);
+    console.log('Success:', values)
 
     try {
-      const data = await auth.login(values.username, values.password);
-      console.log('res: ', data);
-      router.push('/');
+      const data = await auth.login(values.username, values.password)
+      console.log('res: ', data)
+      router.push('/')
     } catch (err) {
       notification.error({
         message: err.message,
-      });
-      return;
+      })
+      return
     }
-  };
+  }
 
   const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   return (
     <>
       <Head>
         <title>登录</title>
       </Head>
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">登录账号</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              登录账号
+            </h2>
           </div>
 
           <Form
-          layout="vertical"
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}>
-            <Form.Item label="用户名" name="username" rules={[{ required: true }]}>
+            layout="vertical"
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+            <Form.Item
+              label="用户名"
+              name="username"
+              rules={[{ required: true }]}
+            >
               <Input autoFocus />
             </Form.Item>
-            <Form.Item label="密码" name="password" rules={[{ required: true }]}>
+            <Form.Item
+              label="密码"
+              name="password"
+              rules={[{ required: true }]}
+            >
               <Input.Password />
             </Form.Item>
             <Form.Item name="remember" valuePropName="checked">
               <div className="flex items-center justify-between">
                 <Checkbox>记住账号</Checkbox>
-                <Link href="/user/forget">
-                  <a>忘记密码了</a>
-                </Link>
+                <Link href="/user/forget">忘记密码了</Link>
               </div>
             </Form.Item>
             <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="w-full"
-              >
+              <Button type="primary" htmlType="submit" className="w-full">
                 登录
               </Button>
             </Form.Item>
           </Form>
 
-          <div className="bg-white rounded-t-lg p-8">
-            <p className="text-center text-sm text-gray-400 font-light">Sign in with</p>
+          <div className="rounded-t-lg bg-white p-8">
+            <p className="text-center text-sm font-light text-gray-400">
+              Sign in with
+            </p>
             <div>
-              <div className="flex items-center justify-center space-x-4 mt-3">
-                <button
-                  className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                >
+              <div className="mt-3 flex items-center justify-center space-x-4">
+                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
-                    className="w-6 h-6 mr-3"
+                    className="mr-3 h-6 w-6"
                   >
                     <path
                       fillRule="evenodd"
@@ -102,12 +107,10 @@ const UserLoginPage = (props) => {
                   </svg>
                   Github
                 </button>
-                <button
-                  className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                >
+                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 mr-3"
+                    className="mr-3 h-6 w-6"
                     viewBox="0 0 48 48"
                   >
                     <path
@@ -132,12 +135,10 @@ const UserLoginPage = (props) => {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default UserLoginPage;
+export default UserLoginPage

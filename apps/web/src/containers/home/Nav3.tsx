@@ -1,31 +1,31 @@
-import React from 'react';
-import Image from 'next/image';
-import { Menu } from 'antd';
-import { getChildrenToRender } from '@/utils/utils';
+import React from 'react'
+import Image from 'next/image'
+import { Menu } from 'antd'
+import { getChildrenToRender } from '@/utils/utils'
 
-const { Item, SubMenu } = Menu;
+const { Item, SubMenu } = Menu
 
 class Header3 extends React.Component<any, any> {
   constructor(props: any) {
-    super(props);
+    super(props)
     this.state = {
       phoneOpen: undefined,
-    };
+    }
   }
 
   phoneClick = () => {
-    const phoneOpen = !this.state.phoneOpen;
+    const phoneOpen = !this.state.phoneOpen
     this.setState({
       phoneOpen,
-    });
-  };
+    })
+  }
 
   render() {
-    const { dataSource, isMobile, ...props }: any = this.props;
-    const { phoneOpen } = this.state;
-    const navData = dataSource.Menu.children;
-    const navChildren = navData.map((item) => {
-      const { children: a, subItem, ...itemProps } = item;
+    const { dataSource, isMobile, ...props }: any = this.props
+    const { phoneOpen } = this.state
+    const navData = dataSource.Menu.children
+    const navChildren = navData.map(item => {
+      const { children: a, subItem, ...itemProps } = item
       if (subItem) {
         return (
           <SubMenu
@@ -42,7 +42,7 @@ class Header3 extends React.Component<any, any> {
             popupClassName="header3-item-child"
           >
             {subItem.map(($item, ii) => {
-              const { children: childItem } = $item;
+              const { children: childItem } = $item
               const child = childItem.href ? (
                 <a {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
@@ -51,15 +51,15 @@ class Header3 extends React.Component<any, any> {
                 <div {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
                 </div>
-              );
+              )
               return (
                 <Item key={$item.name || ii.toString()} {...$item}>
                   {child}
                 </Item>
-              );
+              )
             })}
           </SubMenu>
-        );
+        )
       }
       return (
         <Item key={item.name} {...itemProps}>
@@ -67,9 +67,9 @@ class Header3 extends React.Component<any, any> {
             {a.children.map(getChildrenToRender)}
           </a>
         </Item>
-      );
-    });
-    const moment = phoneOpen === undefined ? 300 : null;
+      )
+    })
+    const moment = phoneOpen === undefined ? 300 : null
     return (
       <div
         component="header"
@@ -79,19 +79,23 @@ class Header3 extends React.Component<any, any> {
       >
         <div
           {...dataSource.page}
-          className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
+          className={`${dataSource.page.className}${phoneOpen ? 'open' : ''}`}
         >
           <div
             animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
             {...dataSource.logo}
           >
-            <Image className="w-full" src={dataSource.logo.children} alt="img" />
+            <Image
+              className="w-full"
+              src={dataSource.logo.children}
+              alt="img"
+            />
           </div>
           {isMobile && (
             <div
               {...dataSource.mobileMenu}
               onClick={() => {
-                this.phoneClick();
+                this.phoneClick()
               }}
             >
               <em />
@@ -109,7 +113,7 @@ class Header3 extends React.Component<any, any> {
                     duration: 300,
                     onComplete: (e: any) => {
                       if (this.state.phoneOpen) {
-                        e.target.style.height = 'auto';
+                        e.target.style.height = 'auto'
                       }
                     },
                     ease: 'easeInOutQuad',
@@ -129,8 +133,8 @@ class Header3 extends React.Component<any, any> {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Header3;
+export default Header3

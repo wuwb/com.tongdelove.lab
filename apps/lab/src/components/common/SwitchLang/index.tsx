@@ -1,9 +1,8 @@
 import { TbWorld, TbChevronDown } from 'react-icons/tb'
-import { Menu, MenuItem, Button, Text, rem } from '@mantine/core'
+import { Menu, MenuItem, Button } from '@mantine/core'
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { setCookie } from 'cookies-next'
 
 // https://headlessui.dev/react/menu#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {

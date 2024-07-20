@@ -1,2 +1,2 @@
-const Baidu = () => {};
-export default Baidu;
+const Baidu = () => {}
+export default Baidu

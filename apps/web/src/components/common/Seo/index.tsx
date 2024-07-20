@@ -1,8 +1,10 @@
-import React from "react";
-import {DefaultSeo, NextSeo} from "next-seo";
+import React from 'react'
+import { DefaultSeo, NextSeo } from 'next-seo'
 
-const Seo = (props) => {
-  {/* Global site metadata */}
+const Seo = props => {
+  {
+    /* Global site metadata */
+  }
   return (
     <DefaultSeo
       titleTemplate={`%s`}
@@ -12,7 +14,7 @@ const Seo = (props) => {
         // Title and description are mandatory
         title: '',
         description: '',
-        images: Object.values([]).map((image) => {
+        images: Object.values([]).map(image => {
           return {
             url: '',
             width: 0,
@@ -25,7 +27,7 @@ const Seo = (props) => {
         handle: '',
       }}
     />
-  );
+  )
 }
 
-export default Seo;
+export default Seo

@@ -1,5 +1,5 @@
-import classNames from "classnames"
-import { useState } from "react"
+import classNames from 'clsx'
+import { useState } from 'react'
 // import NextImage from "../elements/image"
 // import CustomLink from "../elements/custom-link"
 
@@ -9,21 +9,21 @@ const TestimonialsGroup = ({ data }) => {
   const selectedTestimonial = data.testimonials[selectedTestimonialIndex]
 
   return (
-    <section className="text-center text-lg bg-gray-200 pt-12 pb-16">
+    <section className="bg-gray-200 pb-16 pt-12 text-center text-lg">
       <h2 className="title mb-4">{data.title}</h2>
-      <p className="text-gray-700 mb-4">{data.description}</p>
+      <p className="mb-4 text-gray-700">{data.description}</p>
       {/*<CustomLink link={data.link}>*/}
       {/*  <span className="with-arrow text-blue-700 hover:underline">*/}
       {/*    {data.link.text}*/}
       {/*  </span>*/}
       {/*</CustomLink>*/}
       {/* Current testimonial card */}
-      <div className="max-w-5xl w-8/12 sm:w-8/12 bg-white shadow-md sm:shadow-xl mx-auto flex flex-col sm:flex-row mt-10 text-left">
-        <div className="w-full md:w-4/12 flex-shrink-0">
+      <div className="mx-auto mt-10 flex w-8/12 max-w-5xl flex-col bg-white text-left shadow-md sm:w-8/12 sm:flex-row sm:shadow-xl">
+        <div className="w-full flex-shrink-0 md:w-4/12">
           {/*<NextImage media={selectedTestimonial.picture} />*/}
           image here
         </div>
-        <div className="px-4 py-4 sm:px-12 sm:pt-12 sm:pb-4 flex flex-col justify-between">
+        <div className="flex flex-col justify-between px-4 py-4 sm:px-12 sm:pb-4 sm:pt-12">
           <div>
             {/*<NextImage*/}
             {/*  width="120"*/}
@@ -31,15 +31,9 @@ const TestimonialsGroup = ({ data }) => {
             {/*  media={selectedTestimonial.logo}*/}
             {/*/>*/}
             image here
-            <p className="italic mb-6">
-              &quot;{selectedTestimonial.text}&quot;
-            </p>
-            <p className="font-bold text-base sm:text-sm">
-              {selectedTestimonial.authorName}
-            </p>
-            <p className="text-base sm:text-sm">
-              {selectedTestimonial.authorTitle}
-            </p>
+            <p className="mb-6 italic">&quot;{selectedTestimonial.text}&quot;</p>
+            <p className="text-base font-bold sm:text-sm">{selectedTestimonial.authorName}</p>
+            <p className="text-base sm:text-sm">{selectedTestimonial.authorTitle}</p>
           </div>
           {/*<CustomLink*/}
           {/*  link={{*/}
@@ -57,16 +51,16 @@ const TestimonialsGroup = ({ data }) => {
       </div>
       {/* Change selected testimonial (only if there is more than one) */}
       {data.testimonials.length > 1 && (
-        <div className="flex flex-row gap-4 mt-10 justify-center">
+        <div className="mt-10 flex flex-row justify-center gap-4">
           {data.testimonials.map((testimonial, index) => (
             <button
               onClick={() => setSelectedTestimonialIndex(index)}
               className={classNames(
                 // Common classes
-                "rounded-full h-3 w-3",
+                'h-3 w-3 rounded-full',
                 {
-                  "bg-gray-500": index !== selectedTestimonialIndex,
-                  "bg-primary-600": index === selectedTestimonialIndex,
+                  'bg-gray-500': index !== selectedTestimonialIndex,
+                  'bg-primary-600': index === selectedTestimonialIndex,
                 }
               )}
               key={testimonial.id}
@@ -75,7 +69,7 @@ const TestimonialsGroup = ({ data }) => {
         </div>
       )}
       {/* Logos list */}
-      <div className="flex flex-row flex-wrap items-center gap-6 sm:gap-20 justify-center mt-10 px-6 sm:px-0 ">
+      <div className="mt-10 flex flex-row flex-wrap items-center justify-center gap-6 px-6 sm:gap-20 sm:px-0">
         {data.logos.map((logo, index) => (
           // <NextImage key={logo.id} width="120" height="33" media={logo.logo} />
           <div key={index}>image here</div>

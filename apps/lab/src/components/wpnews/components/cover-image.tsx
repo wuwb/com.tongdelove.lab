@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 
-interface Props {
+interface CoverImageProps {
   title: string
   coverImage: {
     node: {
@@ -12,7 +12,7 @@ interface Props {
   slug?: string
 }
 
-export const CoverImage = ({ title, coverImage, slug }: Props) => {
+export const CoverImage = ({ title, coverImage, slug }: CoverImageProps) => {
   const image = (
     <Image
       width={2000}

@@ -3,10 +3,10 @@
   min-width: 220px;
   overflow-x: hidden;
   overflow-y: scroll;
-  @apply pt-1 hidden sm:block;
+  @apply hidden pt-1 sm:block;
 }
 .sidebarPanel {
-  padding: 0 .5vw 2rem 1vw;
+  padding: 0 0.5vw 2rem 1vw;
   max-width: 300px;
 }
 .mainPanel {
@@ -20,7 +20,7 @@
   @apply text-4xl font-extrabold tracking-tight text-gray-900;
 }
 .mainContent {
-  @apply pt-0 pb-4;
+  @apply pb-4 pt-0;
   padding-top: 1rem;
   border-top: var(--stroke-thin) solid var(--color-outline);
 }

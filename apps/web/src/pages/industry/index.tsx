@@ -1,13 +1,9 @@
-import { Layout } from "@/components/common";
+import { Layout } from '@/components/common'
 
 const IndustryPage = () => {
-  return (
-    <div>
-      IndustryPage
-    </div>
-  );
+  return <div>IndustryPage</div>
 }
 
-IndustryPage.Layout = Layout;
+IndustryPage.Layout = Layout
 
-export default IndustryPage;
+export default IndustryPage

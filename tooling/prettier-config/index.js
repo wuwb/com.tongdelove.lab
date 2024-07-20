@@ -1,11 +1,6 @@
-import { fileURLToPath } from "url";
+const { fileURLToPath } = require('url')
 
-/** @typedef {import("prettier").Config} PrettierConfig */
-/** @typedef {import("prettier-plugin-tailwindcss").PluginOptions} TailwindConfig */
-/** @typedef {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig */
-
-/** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
-const config = {
+module.exports = {
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",

@@ -1,27 +1,21 @@
-import React from "react";
+import React from 'react'
 import { Button } from './Button'
-import styles from "./ToolbarButton.module.css";
+import styles from './ToolbarButton.module.css'
 
-type IButtonType = "button" | "submit" | "reset";
+type IButtonType = 'button' | 'submit' | 'reset'
 
 const ToolbarButton = ({
-  title = "",
-  type = "button" as IButtonType,
+  title = '',
+  type = 'button' as IButtonType,
   disabled = false,
   children,
   onClick,
 }) => {
   return (
-    <Button
-      title={title}
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <Button title={title} type={type} disabled={disabled} onClick={onClick}>
       {children}
     </Button>
-  );
-};
+  )
+}
 
-export default ToolbarButton;
-
+export default ToolbarButton

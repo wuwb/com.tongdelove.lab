@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import s from './GlobalNav.module.css';
+import Link from 'next/link'
+import s from './GlobalNav.module.css'
 
 const GlobalNav = () => {
   const isServer = typeof window === 'undefined'

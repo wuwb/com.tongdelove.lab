@@ -35,9 +35,7 @@
 }
 /* This compound selector will still work in IE 11 because :focus-within isn't mixed in */
 .menuItem:hover > .subMenu,
-.menuItem .subMenu:hover
-.menuItem .subMenu:focus
-{
+.menuItem .subMenu:hover .menuItem .subMenu:focus {
   visibility: visible;
   opacity: 1;
   display: block;
@@ -53,6 +51,6 @@
 }
 
 .menuItem .subMenu .subMenuItem:hover,
-.menuItem .subMenu .subMenuItem:focus-within{
+.menuItem .subMenu .subMenuItem:focus-within {
   background: #ddd;
 }

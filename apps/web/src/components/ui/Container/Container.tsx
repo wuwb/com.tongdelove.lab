@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import clsx from 'clsx'
 import React, { FC } from 'react'
 
 interface ContainerProps {
@@ -8,13 +8,13 @@ interface ContainerProps {
   clean?: boolean
 }
 
-const Container: FC<ContainerProps> = ({
+export const Container: FC<ContainerProps> = ({
   children,
   className,
   el = 'div',
   clean,
 }) => {
-  const rootClassName = cn(className, {
+  const rootClassName = clsx(className, {
     'mx-auto max-w-8xl px-6': !clean,
   })
 
@@ -23,5 +23,3 @@ const Container: FC<ContainerProps> = ({
 
   return <Component className={rootClassName}>{children}</Component>
 }
-
-export default Container

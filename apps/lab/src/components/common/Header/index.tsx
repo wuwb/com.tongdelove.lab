@@ -3,7 +3,7 @@ import { Logo } from '../Logo'
 import styles from './Header.module.scss'
 import { Navbar } from './Navbar'
 
-function MenuIcon() {
+const MenuIcon = () => {
   const handleMobileMenu = () => {
     //
   }
@@ -16,7 +16,7 @@ function MenuIcon() {
   )
 }
 
-export function Header() {
+export const Header = () => {
   return (
     <>
       {/* pc端菜单 */}

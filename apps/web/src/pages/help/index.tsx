@@ -1,12 +1,9 @@
-
-import { Layout } from '@/components/common';
+import { Layout } from '@/components/common'
 
 const HelpPage = () => {
-  return (
-    <div>HelpPage</div>
-  );
-};
+  return <div>HelpPage</div>
+}
 
-HelpPage.Layout = Layout;
+HelpPage.Layout = Layout
 
-export default HelpPage;
+export default HelpPage

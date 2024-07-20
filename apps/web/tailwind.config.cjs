@@ -15,9 +15,7 @@ module.exports = {
   //     },
   //   },
   // },
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       maxWidth: {
@@ -58,8 +56,7 @@ module.exports = {
       },
       boxShadow: {
         'outline-normal': '0 0 0 2px var(--accent-2)',
-        magical:
-          'rgba(0, 0, 0, 0.02) 0px 30px 30px, rgba(0, 0, 0, 0.03) 0px 0px 8px, rgba(0, 0, 0, 0.05) 0px 1px 0px',
+        magical: 'rgba(0, 0, 0, 0.02) 0px 30px 30px, rgba(0, 0, 0, 0.03) 0px 0px 8px, rgba(0, 0, 0, 0.05) 0px 1px 0px',
       },
       lineHeight: {
         'extra-loose': '2.2',
@@ -74,9 +71,9 @@ module.exports = {
   plugins: [
     // from 3.3, include default
     // require('@tailwindcss/line-clamp'),
-    require("@tailwindcss/typography"),
+    require('@tailwindcss/typography'),
   ],
   corePlugins: {
     preflight: true,
-  }
+  },
 }

@@ -1,13 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
+import React from 'react'
+import Image from 'next/image'
 
-import { Row, Col } from 'antd';
+import { Row, Col } from 'antd'
 
 function Content1(props) {
-  const { ...tagProps }: any = props;
-  const { dataSource, isMobile } = tagProps;
-  delete tagProps.dataSource;
-  delete tagProps.isMobile;
+  const { ...tagProps }: any = props
+  const { dataSource, isMobile } = tagProps
+  delete tagProps.dataSource
+  delete tagProps.isMobile
   const animType = {
     queue: isMobile ? 'bottom' : 'right',
     one: isMobile
@@ -23,13 +23,18 @@ function Content1(props) {
           type: 'from',
           ease: 'easeOutQuad',
         },
-  };
+  }
   return (
     <div {...tagProps} {...dataSource.wrapper}>
       <Row>
-          <span {...dataSource.img}>
-          <Image src={dataSource.img.children} className="w-full" width="100" alt="img" />
-          </span>
+        <span {...dataSource.img}>
+          <Image
+            src={dataSource.img.children}
+            className="w-full"
+            width="100"
+            alt="img"
+          />
+        </span>
         <div
           key="text"
           type={animType.queue}
@@ -51,7 +56,7 @@ function Content1(props) {
         </div>
       </Row>
     </div>
-  );
+  )
 }
 
-export default Content1;
+export default Content1

@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown'
 
 const markdown = `
 # 转运
@@ -105,14 +105,14 @@ const markdown = `
 粉末状物品比如打印机耗材碳粉；
 假发，手机贴膜，隐形眼镜都是敏感货；
 任何含有电池的物品也都是敏感货比如蓝牙鼠标和计算器;
-`;
+`
 
 const Home = () => {
   return (
     <div>
       <ReactMarkdown>{markdown}</ReactMarkdown>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
