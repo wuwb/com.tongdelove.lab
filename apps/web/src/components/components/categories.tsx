@@ -1,4 +1,4 @@
-const Categories = ({ categories }) => {
+export const Categories = ({ categories }) => {
   return (
     <span className="ml-1">
       under
@@ -14,5 +14,3 @@ const Categories = ({ categories }) => {
     </span>
   )
 }
-
-export default Categories

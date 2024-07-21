@@ -4,21 +4,23 @@ import { Button, Card, Tag } from 'antd'
 import clsx from 'clsx'
 import s from './ProjectCard.module.css'
 
-interface Props {
+interface ProjectCardProps {
   projectId: string
   created: string
   repo: string
 }
 
-export const ProjectCard = ({ projectId, created, repo }: Props) => {
+export const ProjectCard = ({ projectId, created, repo }: ProjectCardProps) => {
   return (
     <Card
       className={clsx(s.card, 'p-0')}
       actions={[
-        <Link key="rope" href={`https://github.com/${repo}`}>
-          <a href="" className={s.footer}>
-            <p className="mr-3 text-base font-medium">{repo}</p>
-          </a>
+        <Link
+          key="rope"
+          href={`https://github.com/${repo}`}
+          className={s.footer}
+        >
+          <p className="mr-3 text-base font-medium">{repo}</p>
         </Link>,
       ]}
     >
@@ -37,8 +39,8 @@ export const ProjectCard = ({ projectId, created, repo }: Props) => {
           <span className={s.created}>{created}</span>
         </div>
         <div className={s.dot}>
-          <Link href={`https://${projectId}.now.sh`}>
-            <a rel="noopener">{projectId}-oa71gi2.now.sh</a>
+          <Link href={`https://${projectId}.now.sh`} rel="noopener">
+            {projectId}
           </Link>
           <Tag className={s.tag} color="blue">
             Latest

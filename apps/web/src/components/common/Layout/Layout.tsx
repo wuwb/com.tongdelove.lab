@@ -1,25 +1,11 @@
-import dynamic from 'next/dynamic'
-import { Spin } from 'antd'
-import { Navbar } from '@/components/common'
-import Header from '@/components/common/Header'
-import Footer from '@/components/common/Footer'
-import GlobalNav from '../GlobalNav'
-import TopMenu from '@/components/common/TopMenu'
-import { useAcceptCookies } from '@/hooks/useAcceptCookies'
 import { Button } from 'antd'
-import NotificationBanner from '../NotificationBanner'
 import { useState } from 'react'
+import { Header } from '@/components/common/Header'
+import { Footer } from '@/components/common/Footer'
+import { useAcceptCookies } from '@/hooks/useAcceptCookies'
+import { FeatureBar } from '@/components/common/FeatureBar'
 
-const FeatureBar = dynamic(() => import('@/components/common/FeatureBar'), {
-  loading: () => (
-    <div className="flex h-80 w-80 items-center justify-center p-3 text-center">
-      <Spin />
-    </div>
-  ),
-  ssr: true,
-})
-
-const Layout = (props) => {
+export const Layout = (props) => {
   const { children, pageContext } = props
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   const [bannerIsShown, setBannerIsShown] = useState(true)
@@ -31,6 +17,7 @@ const Layout = (props) => {
     },
   ]
   const notificationBanner = {}
+
   return (
     <div>
       {/*{notificationBanner && bannerIsShown && (*/}
@@ -57,5 +44,3 @@ const Layout = (props) => {
     </div>
   )
 }
-
-export default Layout

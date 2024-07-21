@@ -1,6 +1,3 @@
-import { DeptBaseVO } from "./DeptBaseVO";
+import { DeptBaseVO } from './DeptBaseVO'
 
-
-export class DeptCreateReqVO extends DeptBaseVO {
-
-}
+export class DeptCreateReqVO extends DeptBaseVO {}

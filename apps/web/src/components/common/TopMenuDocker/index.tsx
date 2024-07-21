@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { Collapse } from 'antd'
 import clsx from 'clsx'
-import { MenuOutlined } from '@ant-design/icons'
+import { AiOutlineMenu } from 'react-icons/ai'
 import s from './TopMenuDocker.module.css'
 
 const { Panel } = Collapse
@@ -22,7 +22,7 @@ export const TopMenuDocker = (props) => {
         aria-label="Menu"
         onClick={handleClick}
       >
-        <MenuOutlined />
+        <AiOutlineMenu />
       </div>
       {
         <div
@@ -31,7 +31,7 @@ export const TopMenuDocker = (props) => {
             hidden: !showContent,
           })}
         >
-          <Collapse defaultActiveKey={['1']} ghost expandIconPosition="right">
+          <Collapse defaultActiveKey={['1']} ghost expandIconPosition="end">
             <Panel header="产品" key="1">
               <ul>
                 <li>
@@ -51,8 +51,8 @@ export const TopMenuDocker = (props) => {
             </Panel>
           </Collapse>
           <div>
-            <Link href="/about">
-              <a className="block px-4 py-3 text-sm">关于</a>
+            <Link href="/about" className="block px-4 py-3 text-sm">
+              关于
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import { UnauthorizedException } from '@nestjs/common';
-import { TMessage } from '@/shared/interfaces/http.interface';
-import * as TEXT from '@/common/constants/text.constant';
+import { UnauthorizedException } from '@nestjs/common'
+import { TMessage } from '@/shared/interfaces/http.interface'
+import * as TEXT from '@/common/constants/text.constant'
 
 /**
  * @class HttpUnauthorizedError
@@ -9,7 +9,7 @@ import * as TEXT from '@/common/constants/text.constant';
  * @example new HttpUnauthorizedError('错误信息', new Error())
  */
 export class HttpUnauthorizedError extends UnauthorizedException {
-    constructor(message?: TMessage, error?: any) {
-        super(message || TEXT.HTTP_UNAUTHORIZED_TEXT_DEFAULT, error);
-    }
+  constructor(message?: TMessage, error?: any) {
+    super(message || TEXT.HTTP_UNAUTHORIZED_TEXT_DEFAULT, error)
+  }
 }

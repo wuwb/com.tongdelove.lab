@@ -1,6 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 
-function SvgWishlist(props) {
+export const SvgWishlist = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,5 +15,3 @@ function SvgWishlist(props) {
     </svg>
   )
 }
-
-export default SvgWishlist

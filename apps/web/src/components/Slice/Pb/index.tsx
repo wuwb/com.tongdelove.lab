@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Stage, Layer, Rect, Text, Line, Shape } from 'react-konva'
 import Konva from 'konva'
 
-interface Props {
+interface PbProps {
   options: any
   origin?: [number, number]
 }
 
-const Pb = (props: Props) => {
+export const Pb = (props: PbProps) => {
   let { origin = [0, 0], options } = props
   let {
     pThickness,
@@ -86,5 +86,3 @@ const Pb = (props: Props) => {
     />
   )
 }
-
-export default Pb

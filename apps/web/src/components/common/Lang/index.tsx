@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = (props) => {
+export const Lang = (props) => {
   const { title } = props
 
   const changeLangs = () => {
@@ -29,5 +29,3 @@ const Home = (props) => {
 //   const { test } = store.getState();
 //   return { test };
 // };
-
-export default Home

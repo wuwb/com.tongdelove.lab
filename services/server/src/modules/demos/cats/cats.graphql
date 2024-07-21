@@ -5,25 +5,25 @@ type Foo {
 }
 
 type Query {
-    getCats: [Cat]
-    cat(id: ID!): Cat
+  getCats: [Cat]
+  cat(id: ID!): Cat
 }
 
 type Mutation {
-    createCat(createCatInput: CreateCatInput): Cat
+  createCat(createCatInput: CreateCatInput): Cat
 }
 
 type Subscription {
-    catCreated: Cat
+  catCreated: Cat
 }
 
 type Cat {
-    id: Int
-    name: String
-    age: Int
+  id: Int
+  name: String
+  age: Int
 }
 
 input CreateCatInput {
-    name: String
-    age: Int
+  name: String
+  age: Int
 }

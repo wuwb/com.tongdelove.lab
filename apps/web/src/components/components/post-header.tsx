@@ -1,16 +1,10 @@
 // import Avatar from '../components/avatar';
-import DateFormater from '../components/date-formater'
-import CoverImage from '../components/cover-image'
+import { DateFormater } from '../components/date-formater'
+import { CoverImage } from '../components/cover-image'
 import { Card } from 'antd'
-import Categories from './categories'
+import { Categories } from './categories'
 
-export default function PostHeader({
-  title,
-  coverImage,
-  date,
-  author,
-  categories,
-}) {
+export const PostHeader = ({ title, coverImage, date, author, categories }) => {
   return (
     <>
       <div>{title}</div>

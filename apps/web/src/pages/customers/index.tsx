@@ -43,13 +43,11 @@ const Home = () => {
           <div className="grid grid-cols-2 gap-10">
             <div className="case-item col-span-1 h-40">
               <Link href="/customers/weisinong">
-                <a>
-                  <div className="case-item-title">味司浓</div>
-                  <div className="case-item-desc">
-                    通过海维包装来降低成本和提升质量，为义务的持续增长提供保障。
-                    Uses to improve costs and quality control for rapid growth.
-                  </div>
-                </a>
+                <div className="case-item-title">味司浓</div>
+                <div className="case-item-desc">
+                  通过海维包装来降低成本和提升质量，为义务的持续增长提供保障。
+                  Uses to improve costs and quality control for rapid growth.
+                </div>
               </Link>
             </div>
             <div className="case-item col-span-1 h-40">

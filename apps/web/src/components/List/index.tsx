@@ -1,11 +1,11 @@
 import React from 'react'
 
-interface Props {
+interface ListProps {
   component: any
   items?: any[]
 }
 
-function List(props: Props) {
+export const List = (props: ListProps) => {
   const ComponentToRender = props.component
   let content: any = <div />
 
@@ -44,5 +44,3 @@ function List(props: Props) {
     </div>
   )
 }
-
-export default List

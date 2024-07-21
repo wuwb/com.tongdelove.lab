@@ -36,7 +36,12 @@ module.exports = withPlugins([[pluginAntdLess]], {
    */
   images: {
     disableStaticImages: false,
-    domains: ['via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+    ],
   },
   staticPageGenerationTimeout: 1000,
   // webpack(config) {
@@ -67,5 +72,3 @@ module.exports = withPlugins([[pluginAntdLess]], {
   //   return config;
   // }
 })
-
-console.log('next.config.js', JSON.stringify(module.exports, null, 2))

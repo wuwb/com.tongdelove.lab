@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Row, Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 
-class Content3 extends React.PureComponent<any, any> {
+export class Content3 extends React.PureComponent<any, any> {
   getDelay = (e, b) => (e % b) * 100 + Math.floor(e / b) * 100 + b * 100
 
   render() {
@@ -88,5 +88,3 @@ class Content3 extends React.PureComponent<any, any> {
     )
   }
 }
-
-export default Content3

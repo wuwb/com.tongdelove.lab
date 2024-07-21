@@ -1,6 +1,6 @@
-import axiosInstance from '../utils/axios'
+import { instance as axiosInstance } from '../utils/axios'
 
-class PostService {
+export class PostService {
   static async post(slug) {
     try {
       const response = await axiosInstance.get(`/post/${slug}`)
@@ -10,5 +10,3 @@ class PostService {
 
   posts() {}
 }
-
-export default PostService

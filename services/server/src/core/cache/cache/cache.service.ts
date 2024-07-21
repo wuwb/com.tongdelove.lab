@@ -1,176 +1,167 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { ConfigService } from '@nestjs/config';
-import { Cache } from 'cache-manager';
-import { isEmptyByAllTypes, isEmpty } from '@/utils/type';
-import { USER_USERINFO_KEY } from '@/common/constants/redis.constant';
-import { User } from '@prisma/client';
+import { Inject, Injectable, Logger } from '@nestjs/common'
+import { CACHE_MANAGER } from '@nestjs/cache-manager'
+import { ConfigService } from '@nestjs/config'
+import { Cache } from 'cache-manager'
+import { isEmptyByAllTypes, isEmpty } from '@/utils/type'
+import { USER_USERINFO_KEY } from '@/common/constants/redis.constant'
+import { User } from '@prisma/client'
 
-type unitType = 'h' | 'm' | 's' | 'ms';
+type unitType = 'h' | 'm' | 's' | 'ms'
 
 class CacheKeys {
-    readonly user: string = 'user:%d';
-    readonly signupCode: string = 'signupcode:%s';
-    readonly userToken: string = 'usertoken:%d';
-    readonly publishArticle: string = 'publisharticle:%d';
-    readonly categories: string = 'categories';
+  readonly user: string = 'user:%d'
+  readonly signupCode: string = 'signupcode:%s'
+  readonly userToken: string = 'usertoken:%d'
+  readonly publishArticle: string = 'publisharticle:%d'
+  readonly categories: string = 'categories'
 }
 
 @Injectable()
 export class CacheService {
+  private readonly cacheKeys: CacheKeys
+  private readonly logger = new Logger(CacheService.name)
 
-    private readonly cacheKeys: CacheKeys;
-    private readonly logger = new Logger(CacheService.name)
+  constructor(
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache,
+    private readonly configService: ConfigService
+  ) {
+    this.cacheKeys = new CacheKeys()
+  }
 
-    constructor(
-        @Inject(CACHE_MANAGER)
-        private readonly cacheManager: Cache,
-        private readonly configService: ConfigService,
-    ) {
-        this.cacheKeys = new CacheKeys();
+  async getUser(id: string) {
+    const userInfoKey = `${USER_USERINFO_KEY}:${id}`
+    let user = await this.cacheManager.get<string>(userInfoKey)
+    if (!user) {
+      return
+    }
+    try {
+      user = JSON.parse(user)
+      console.log(user)
+      return user
+    } catch (err) {
+      console.error(err)
+      return
+    }
+  }
+
+  async setUser(data) {
+    console.log('setUser data: ', data)
+    const { avatar, email, id, isSuper, mobile, platform, status, username } =
+      data
+    const userinfo = {
+      avatar,
+      email,
+      id,
+      isSuper,
+      mobile,
+      platform,
+      status,
+      username,
     }
 
-    async getUser(id: string) {
-        const userInfoKey = `${USER_USERINFO_KEY}:${id}`;
-        let user = await this.cacheManager.get<string>(userInfoKey);
-        if (!user) {
-            return;
-        }
-        try {
-            user = JSON.parse(user);
-            console.log(user);
-            return user;
-        } catch (err) {
-            console.error(err);
-            return;
-        }
+    const userInfoKey = `${USER_USERINFO_KEY}:${userinfo.id}`
+    console.log('userInfoKey: ', userInfoKey)
+    return this.cacheManager.set(
+      userInfoKey,
+      JSON.stringify(userinfo),
+      60 * 60 * 24
+    )
+  }
+
+  async getSignupCode(phone: string) {}
+  async setSignupCode(phone: string, code: string) {}
+
+  async getUserToken(userId: string) {
+    return ''
+  }
+  async setUserToken(userId: string, token: string) {}
+
+  // global function
+
+  getPrefixKey(key: string): string {
+    const prifixName = this.configService.get('redis.prefixName')
+    return `${prifixName}${key}`
+  }
+
+  async has(key: string): Promise<boolean> {
+    return this.get(key)
+  }
+
+  /**
+   * 设置字符串类型缓存
+   *
+   * @param {string} key 缓存标识
+   * @param {any}    value 缓存的数据
+   * @param {number} time 缓存过期时间
+   * @param {string} unit 指定时间单位 （h/m/s/ms）默认为 s
+   */
+  async set(key: string, value: any, time: number = 0, unit: unitType = 's') {
+    let t = Number(time)
+
+    if (isEmptyByAllTypes(key) || isEmpty(value) || Number.isNaN(time)) {
+      throw new Error('key is empty')
     }
 
-    async setUser(data) {
-        console.log('setUser data: ', data);
-        const {
-            avatar,
-            email,
-            id,
-            isSuper,
-            mobile,
-            platform,
-            status,
-            username,
-        } = data;
-        const userinfo = {
-            avatar,
-            email,
-            id,
-            isSuper,
-            mobile,
-            platform,
-            status,
-            username,
-        }
+    // 为了能传入 object、array 这类的值，所以这里转换成 json
+    const data = JSON.stringify(value)
+    let un = unit
 
-        const userInfoKey = `${USER_USERINFO_KEY}:${userinfo.id}`;
-        console.log('userInfoKey: ', userInfoKey);
-        return this.cacheManager.set(userInfoKey, JSON.stringify(userinfo), 60 * 60 * 24);
+    if (time) {
+      // 转换为小写
+      un = un.toLowerCase() as unitType
+
+      // 判断时间单位
+      switch (un) {
+        case 'h':
+          t *= 3600
+          break
+        case 'm':
+          t *= 60
+          break
+        case 's':
+          break
+        case 'ms':
+          break
+        default:
+          return this.abortError('时间单位只能是：h/m/s/ms')
+      }
+
+      return this.cacheManager.set(this.getPrefixKey(key), data, time)
     }
 
-    async getSignupCode(phone: string) { }
-    async setSignupCode(phone: string, code: string) { }
+    return this.cacheManager.set(this.getPrefixKey(key), data)
+  }
 
-    async getUserToken(userId: string) {
-        return '';
+  /**
+   * 获取缓存
+   *
+   * @param {string} key 缓存标识
+   * @param {any} def 当缓存不存在的时候, 返回的默认值
+   */
+  async get(key: string, def: any = null): Promise<any> {
+    try {
+      const result = await this.cacheManager.get<string>(this.getPrefixKey(key))
+
+      if (result) {
+        return JSON.parse(result)
+      } else {
+        return def
+      }
+    } catch (error) {
+      await this.abortError('get 方法只能获取 string 类型缓存')
     }
-    async setUserToken(userId: string, token: string) { }
+  }
 
-    // global function
+  async del(key: string) {
+    return this.cacheManager.del(this.getPrefixKey(key))
+  }
 
-    getPrefixKey(key: string): string {
-        const prifixName = this.configService.get('redis.prefixName');
-        return `${prifixName}${key}`;
-    }
+  async abortError(message: string, code = 422) {
+    const error: any = new Error(`[cache]: ${message}`)
+    error.status = code
+    error.name = 'CacheException'
 
-    async has(key: string): Promise<boolean> {
-        return this.get(key);
-    }
-
-    /**
-     * 设置字符串类型缓存
-     *
-     * @param {string} key 缓存标识
-     * @param {any}    value 缓存的数据
-     * @param {number} time 缓存过期时间
-     * @param {string} unit 指定时间单位 （h/m/s/ms）默认为 s
-     */
-    async set(key: string, value: any, time: number = 0, unit: unitType = 's') {
-        let t = Number(time);
-
-        if (
-            isEmptyByAllTypes(key) ||
-            isEmpty(value) ||
-            Number.isNaN(time)
-        ) {
-            throw new Error('key is empty');
-        }
-
-        // 为了能传入 object、array 这类的值，所以这里转换成 json
-        const data = JSON.stringify(value);
-        let un = unit;
-
-        if (time) {
-            // 转换为小写
-            un = un.toLowerCase() as unitType;
-
-            // 判断时间单位
-            switch (un) {
-                case 'h':
-                    t *= 3600;
-                    break;
-                case 'm':
-                    t *= 60;
-                    break;
-                case 's':
-                    break;
-                case 'ms':
-                    break;
-                default:
-                    return this.abortError('时间单位只能是：h/m/s/ms');
-            }
-
-            return this.cacheManager.set(this.getPrefixKey(key), data, time);
-        }
-
-        return this.cacheManager.set(this.getPrefixKey(key), data);
-    }
-
-    /**
-     * 获取缓存
-     *
-     * @param {string} key 缓存标识
-     * @param {any} def 当缓存不存在的时候, 返回的默认值
-     */
-    async get(key: string, def: any = null): Promise<any> {
-        try {
-            const result = await this.cacheManager.get<string>(this.getPrefixKey(key));
-
-            if (result) {
-                return JSON.parse(result);
-            } else {
-                return def;
-            }
-        } catch (error) {
-            await this.abortError('get 方法只能获取 string 类型缓存');
-        }
-    }
-
-    async del(key: string) {
-        return this.cacheManager.del(this.getPrefixKey(key));
-    }
-
-    async abortError(message: string, code = 422) {
-        const error: any = new Error(`[cache]: ${message}`);
-        error.status = code;
-        error.name = 'CacheException';
-
-        throw error;
-    }
+    throw error
+  }
 }

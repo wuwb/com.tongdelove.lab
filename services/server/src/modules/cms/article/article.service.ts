@@ -1,22 +1,19 @@
-import { PrismaService } from '@/core/database/prisma/prisma.service';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 
 @Injectable()
 export class ArticleService {
+  constructor(private readonly prisma: PrismaService) {}
 
-    constructor(
-        private readonly prisma: PrismaService,
-    ) { }
+  async findMany() {
+    //
+  }
 
-    async findMany() {
-        // 
-    }
+  async findInCategory(categoryId: string) {
+    this.prisma.article.findMany()
+  }
 
-    async findInCategory(categoryId: string,) {
-        this.prisma.article.findMany()
-    }
-
-    async allVerifyFail(id: string) {
-        // 
-    }
+  async allVerifyFail(id: string) {
+    //
+  }
 }

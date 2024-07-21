@@ -10,14 +10,19 @@ import {
   CallHandler,
   Inject,
   RequestMethod,
-} from '@nestjs/common';
-import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { HttpAdapterHost, Reflector } from '@nestjs/core';
-import { CacheService } from '@/core/cache/cache/cache.service';
-import { HTTP_CACHE_DISABLE, HTTP_CACHE_KEY_METADATA, HTTP_CACHE_TTL_METADATA, REFLECTOR } from '../constants/meta.constant';
-import { getNestExecutionContextRequest } from '../transformers/get-req.transformer';
-import { ConfigService } from '@/config/config.service';
+} from '@nestjs/common'
+import { Observable, of } from 'rxjs'
+import { tap } from 'rxjs/operators'
+import { HttpAdapterHost, Reflector } from '@nestjs/core'
+import { CacheService } from '@/core/cache/cache/cache.service'
+import {
+  HTTP_CACHE_DISABLE,
+  HTTP_CACHE_KEY_METADATA,
+  HTTP_CACHE_TTL_METADATA,
+  REFLECTOR,
+} from '../constants/meta.constant'
+import { getNestExecutionContextRequest } from '../transformers/get-req.transformer'
+import { ConfigService } from '@/config/config.service'
 
 /**
  * @class HttpCacheInterceptor
@@ -29,14 +34,13 @@ export class CacheInterceptor implements NestInterceptor {
     private readonly configService: ConfigService,
     private readonly cacheManager: CacheService,
     @Inject(REFLECTOR) private readonly reflector: Reflector,
-    private readonly httpAdapterHost: HttpAdapterHost,
-  ) {
-  }
+    private readonly httpAdapterHost: HttpAdapterHost
+  ) {}
 
   // 自定义装饰器，修饰 ttl 参数
   async intercept(
     context: ExecutionContext,
-    next: CallHandler<any>,
+    next: CallHandler<any>
   ): Promise<Observable<any>> {
     // 如果想彻底禁用缓存服务，则直接返回 -> return call$;
     const call$ = next.handle()
@@ -71,11 +75,11 @@ export class CacheInterceptor implements NestInterceptor {
       return value
         ? of(value)
         : call$.pipe(
-          tap(
-            (response) =>
-              response && this.cacheManager.set(key, response, ttl),
-          ),
-        )
+            tap(
+              (response) =>
+                response && this.cacheManager.set(key, response, ttl)
+            )
+          )
     } catch (error) {
       console.error(error)
 
@@ -96,7 +100,7 @@ export class CacheInterceptor implements NestInterceptor {
       httpServer.getRequestMethod(request) === RequestMethod[RequestMethod.GET]
     const cacheKey = this.reflector.get(
       HTTP_CACHE_KEY_METADATA,
-      context.getHandler(),
+      context.getHandler()
     )
     const isMatchedCache = isHttpApp && isGetRequest && cacheKey
     return isMatchedCache ? cacheKey : undefined

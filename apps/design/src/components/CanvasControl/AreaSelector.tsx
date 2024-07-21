@@ -1,5 +1,5 @@
 import Popover from '@mui/material/Popover';
-import React from 'react';
+import React from 'react'
 
 const AreaSelector = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

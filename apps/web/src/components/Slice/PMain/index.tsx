@@ -2,12 +2,12 @@ import React, { Component, useState } from 'react'
 import { Stage, Layer, Rect, Text, Line, Shape } from 'react-konva'
 import Konva from 'konva'
 
-interface Props {
+interface PMainProps {
   options: any
   origin?: [number, number]
 }
 
-const Pa = (props: Props) => {
+export const PMain = (props: PMainProps) => {
   let { origin, options } = props
   let {
     pThickness,
@@ -90,5 +90,3 @@ const Pa = (props: Props) => {
     />
   )
 }
-
-export default Pa

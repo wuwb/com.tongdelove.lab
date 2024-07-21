@@ -1,5 +1,1 @@
-
-
-export class PostRepository {
-
-}
+export class PostRepository {}

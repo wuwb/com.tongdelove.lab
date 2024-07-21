@@ -6,7 +6,7 @@ import {
   AUTHORS_API_URL,
   MEDIA_API_URL,
 } from '@/config/constant'
-import SiteConfig from '@/config/site'
+import { SiteConfig } from '@/config/site'
 
 export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/
 export const getChildrenToRender = (item, i) => {

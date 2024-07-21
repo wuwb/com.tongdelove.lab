@@ -8,7 +8,6 @@ import ReactKonva, {
   Group,
   Transformer,
 } from 'react-konva'
-import Konva from 'konva'
 import { Pa, PMain, PSide } from '../../Slice'
 
 export const Normal = memo(() => {

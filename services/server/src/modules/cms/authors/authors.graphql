@@ -1,22 +1,22 @@
 type Author {
-    id: Int!
-    firstName: String
-    lastName: String
-    post: [Post]
+  id: Int!
+  firstName: String
+  lastName: String
+  post: [Post]
 }
 
 type Post {
-    id: Int!
-    title: String
-    votes: Int
+  id: Int!
+  title: String
+  votes: Int
 }
 
 type Query {
-    author(id: Int!): Author
+  author(id: Int!): Author
 }
 
 type Mutation {
-    upvotePost(postId: Int!): Post
+  upvotePost(postId: Int!): Post
 }
 
 # type Subscription {

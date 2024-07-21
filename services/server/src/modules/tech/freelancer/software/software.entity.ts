@@ -1,43 +1,49 @@
-import { PrimaryGeneratedColumn, PrimaryColumn, Column, Entity, BeforeUpdate, ManyToOne, OneToMany, JoinColumn } from "typeorm";
+import {
+  PrimaryGeneratedColumn,
+  PrimaryColumn,
+  Column,
+  Entity,
+  BeforeUpdate,
+  ManyToOne,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm'
 
 @Entity()
 export class Organization {
+  @PrimaryGeneratedColumn('uuid')
+  id: string
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column()
+  avatar_url: string
 
-    @Column()
-    avatar_url: string;
+  @Column()
+  description: string
 
-    @Column()
-    description: string;
+  @Column()
+  name: string
 
-    @Column()
-    name: string;
+  @Column()
+  download_url: string
 
-    @Column()
-    download_url: string;
+  @Column()
+  source_url: string
 
-    @Column()
-    source_url: string;
+  @Column()
+  url: string
 
-    @Column()
-    url: string;
+  @Column()
+  category: string
 
-    @Column()
-    category: string;
+  @Column()
+  platform: string
 
-    @Column()
-    platform: string;
+  @Column()
+  recommend: boolean
 
-    @Column()
-    recommend: boolean;
+  @Column({ name: 'create_at' })
+  createdAt: string
 
-    @Column({ name: 'create_at' })
-    createdAt: string;
-
-    @Column({ name: 'update_at' })
-    updatedAt: string;
-
-
+  @Column({ name: 'update_at' })
+  updatedAt: string
 }

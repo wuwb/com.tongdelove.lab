@@ -1,5 +1,3 @@
-import Pa from './Pa'
-import PMain from './PMain'
-import PSide from './PSide'
-
-export { Pa, PMain, PSide }
+export * from './Pa'
+export * from './PMain'
+export * from './PSide'

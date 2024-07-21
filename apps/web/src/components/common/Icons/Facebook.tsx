@@ -1,6 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 
-function SvgFacebook(props) {
+export const SvgFacebook = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function SvgFacebook(props) {
     </svg>
   )
 }
-
-export default SvgFacebook

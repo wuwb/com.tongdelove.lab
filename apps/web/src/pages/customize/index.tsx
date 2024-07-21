@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Button, Tabs, List, Collapse, Radio } from 'antd'
-import Layout from '@/components/common/Layout'
-import s from './index.module.css'
+import { Layout } from '@/components/common/Layout'
 
 const { TabPane } = Tabs
 const { Panel } = Collapse
@@ -202,7 +201,7 @@ const Home = () => {
           var red = data[(imageObj.width * y + x) * 4]
           var green = data[(imageObj.width * y + x) * 4 + 1]
           var blue = data[(imageObj.width * y + x) * 4 + 2]
-          var color: any = 'rgb(' + red + ',' + green + ',' + blue + ')'
+          var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
           drawColorSquare(canvas, color, imageObj)
         }
       },

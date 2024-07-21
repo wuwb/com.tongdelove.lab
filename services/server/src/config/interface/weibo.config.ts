@@ -1,18 +1,18 @@
-import { BaseConfig } from './base.config';
+import { BaseConfig } from './base.config'
 
 export class WeiboConfig extends BaseConfig {
-    readonly appKey: string;
-    readonly appSecret: string;
-    readonly state: string;
-    readonly redirectURL: string;
-    readonly authorizeURL: string;
-    readonly accessTokenURL: string;
-    readonly userInfoURL: string;
+  readonly appKey: string
+  readonly appSecret: string
+  readonly state: string
+  readonly redirectURL: string
+  readonly authorizeURL: string
+  readonly accessTokenURL: string
+  readonly userInfoURL: string
 
-    private serverURL: string;
+  private serverURL: string
 
-    constructor(cfg) {
-        super(cfg);
-        this.redirectURL = this.serverURL + this.redirectURL;
-    }
+  constructor(cfg) {
+    super(cfg)
+    this.redirectURL = this.serverURL + this.redirectURL
+  }
 }

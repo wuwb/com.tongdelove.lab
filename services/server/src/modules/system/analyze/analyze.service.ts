@@ -1,26 +1,24 @@
-import { Injectable } from "@nestjs/common";
-
-
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class AnalyzeService {
-    constructor() { }
+  constructor() {}
 
-    async getCallTime() { }
+  async getCallTime() {}
 
-    async cleanAnalyzeRange() { }
+  async cleanAnalyzeRange() {}
 
-    async getIpAndPvAggregate() { }
+  async getIpAndPvAggregate() {}
 
-    async getRangeAnalyzeData(
-        from = new Date(+new Date() - 365 * 24 * 60 * 60 * 1000),
-        to = new Date(),
-        options
-    ) { }
+  async getRangeAnalyzeData(
+    from = new Date(+new Date() - 365 * 24 * 60 * 60 * 1000),
+    to = new Date(),
+    options
+  ) {}
 
-    async getRangeOfTopPathVisitor() { }
+  async getRangeOfTopPathVisitor() {}
 
-    async getTodayAccessIp(): Promise<string[]> {
-        return Promise.resolve(['']);
-    }
+  async getTodayAccessIp(): Promise<string[]> {
+    return Promise.resolve([''])
+  }
 }

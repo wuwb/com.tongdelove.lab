@@ -86,7 +86,6 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
       <a className="nav-link" href="/product">商务印刷</a>
       <a className="nav-link" href="/product">数码快印</a> */}
       <li className={s.menuItem}>
-        {' '}
         <Link href="/industry">行业</Link>
       </li>
       <li className={s.menuItem}>
@@ -103,7 +102,6 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
       <a className="nav-link" href="/news">新闻</a>
       <a className="nav-link" href="/policy">政策</a> */}
       <li className={s.menuItem}>
-        {' '}
         <Link href="/about">关于</Link>
       </li>
     </ul>

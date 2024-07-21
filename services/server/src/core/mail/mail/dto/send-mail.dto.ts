@@ -1,30 +1,30 @@
-import { Type } from 'class-transformer';
-import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer'
+import { IsDefined, IsNotEmpty, IsString } from 'class-validator'
 
 export class MailRecipient {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  name: string
 
   @IsNotEmpty()
   @IsString()
-  email: string;
+  email: string
 }
 
 export class SendMailDto {
   @IsDefined()
   @Type(() => MailRecipient)
-  from: MailRecipient;
+  from: MailRecipient
 
   @IsDefined()
   @Type(() => MailRecipient)
-  to: MailRecipient;
+  to: MailRecipient
 
   @IsString()
   @IsNotEmpty()
-  subject: string;
+  subject: string
 
   @IsString()
   @IsNotEmpty()
-  message: string;
+  message: string
 }

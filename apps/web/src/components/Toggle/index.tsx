@@ -8,7 +8,7 @@ import React from 'react'
 
 import ToggleOption from '../ToggleOption'
 
-function Toggle(props) {
+export const Toggle = (props) => {
   let content = <option>--</option>
 
   // If we have items, render them
@@ -24,5 +24,3 @@ function Toggle(props) {
     </select>
   )
 }
-
-export default Toggle

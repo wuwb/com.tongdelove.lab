@@ -1,58 +1,59 @@
-import { Injectable, ExecutionContext } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { JwtDto, EnumTokenType } from '../dto/jwt.dto';
-import { AuthService } from '../auth.service';
-import { HttpUnauthorizedError } from '@/common/errors/unauthorized.error';
-import { ConfigService } from '@nestjs/config';
-import { IAuthStrategy } from '../interface/IAuthStrategy';
-import { UserInfo } from '../interface/UserInfo';
-import { Payload } from '../interface/login.interface';
-import { TokenService } from '../token.service';
+import { Injectable, ExecutionContext } from '@nestjs/common'
+import { PassportStrategy } from '@nestjs/passport'
+import { ExtractJwt, Strategy } from 'passport-jwt'
+import { JwtDto, EnumTokenType } from '../dto/jwt.dto'
+import { AuthService } from '../auth.service'
+import { HttpUnauthorizedError } from '@/common/errors/unauthorized.error'
+import { ConfigService } from '@nestjs/config'
+import { IAuthStrategy } from '../interface/IAuthStrategy'
+import { UserInfo } from '../interface/UserInfo'
+import { Payload } from '../interface/login.interface'
+import { TokenService } from '../token.service'
 // import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'myjwt')
-    implements IAuthStrategy {
+export class JwtStrategy
+  extends PassportStrategy(Strategy, 'myjwt')
+  implements IAuthStrategy
+{
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService,
+    private readonly tokenService: TokenService
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: configService.get('jwt.secret'),
+      passReqToCallback: true, //设置回调的第一个参数是  request
+    })
+  }
 
-    constructor(
-        private readonly authService: AuthService,
-        private readonly configService: ConfigService,
-        private readonly tokenService: TokenService,
+  // JWT验证 - Step 4: 被守卫调用
+  async validate(request: Request, payload: Payload): Promise<UserInfo> {
+    console.log('payload: ', payload)
+
+    const { userId, pv } = payload
+    const token = (request.headers as any).authorization.slice(7)
+
+    // 验证通过直接返回 userId
+    await this.tokenService.validateToken(userId, pv, token)
+
+    // todo 判断 payload 类型，是 ApiToken 的话，进行验证
+    const user = await this.authService.validateAuthData(payload)
+
+    if (!user) {
+      throw new HttpUnauthorizedError()
+    }
+
+    if (
+      !Array.isArray(user.roles) ||
+      typeof user.roles !== 'object' ||
+      user.roles === null
     ) {
-        super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            ignoreExpiration: false,
-            secretOrKey: configService.get('jwt.secret'),
-            passReqToCallback: true, //设置回调的第一个参数是  request
-        });
+      throw new Error('User roles is not a valid value')
     }
 
-    // JWT验证 - Step 4: 被守卫调用
-    async validate(request: Request, payload: Payload): Promise<UserInfo> {
-        console.log('payload: ', payload);
-
-        const { userId, pv } = payload;
-        const token = (request.headers as any).authorization.slice(7);
-
-        // 验证通过直接返回 userId
-        await this.tokenService.validateToken(userId, pv, token);
-
-        // todo 判断 payload 类型，是 ApiToken 的话，进行验证
-        const user = await this.authService.validateAuthData(payload);
-
-        if (!user) {
-            throw new HttpUnauthorizedError();
-        }
-
-        if (
-            !Array.isArray(user.roles) ||
-            typeof user.roles !== "object" ||
-            user.roles === null
-        ) {
-            throw new Error("User roles is not a valid value");
-        }
-
-        return { ...user, roles: user.roles as string[] };
-    }
+    return { ...user, roles: user.roles as string[] }
+  }
 }

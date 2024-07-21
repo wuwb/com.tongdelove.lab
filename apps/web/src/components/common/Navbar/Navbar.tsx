@@ -1,9 +1,6 @@
-import { FC, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import Link from 'next/link'
-import s from './Navbar.module.css'
-import NavbarRoot from './NavbarRoot'
-// import { Logo, Container } from '@/components/ui';
-// import { Searchbar, UserNav } from '@/components/common';
+import { NavbarRoot } from './NavbarRoot'
 
 interface Link {
   href: string
@@ -13,21 +10,32 @@ interface NavbarProps extends PropsWithChildren {
   links?: Link[]
 }
 
-const Navbar: FC<NavbarProps> = ({ links }) => (
+export const Navbar = ({ links }: NavbarProps) => (
   <NavbarRoot>
     <div>
-      <div className={s.nav}>
+      <div className="relative flex flex-row justify-between py-4 md:py-4">
         <div className="flex flex-1 items-center">
-          <Link href="/" className={s.logo} aria-label="Logo">
+          <Link
+            href="/"
+            className="hover:scale(1.05) transform cursor-pointer rounded-full border duration-100 ease-in-out hover:shadow-md"
+            aria-label="Logo"
+          >
             {/* <Logo /> */}
             Logo
           </Link>
-          <nav className={s.navMenu}>
-            <Link href="/search" className={s.link}>
+          <nav className="ml-6 hidden space-x-4 lg:block">
+            <Link
+              href="/search"
+              className="inline-flex cursor-pointer items-center leading-6 text-accent-5 transition duration-75 ease-in-out hover:text-accent-9 focus:text-accent-8 focus:outline-none"
+            >
               All
             </Link>
             {links?.map((l) => (
-              <Link href={l.href} key={l.href} className={s.link}>
+              <Link
+                href={l.href}
+                key={l.href}
+                className="inline-flex cursor-pointer items-center leading-6 text-accent-5 transition duration-75 ease-in-out hover:text-accent-9 focus:text-accent-8 focus:outline-none"
+              >
                 {l.label}
               </Link>
             ))}
@@ -50,5 +58,3 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
     </div>
   </NavbarRoot>
 )
-
-export default Navbar

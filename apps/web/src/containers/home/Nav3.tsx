@@ -5,7 +5,7 @@ import { getChildrenToRender } from '@/utils/utils'
 
 const { Item, SubMenu } = Menu
 
-class Header3 extends React.Component<any, any> {
+export class Header3 extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -136,5 +136,3 @@ class Header3 extends React.Component<any, any> {
     )
   }
 }
-
-export default Header3

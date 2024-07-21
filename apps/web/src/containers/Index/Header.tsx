@@ -1,28 +1,22 @@
 import Link from 'next/link'
-import { Button, Space, Popover } from 'antd'
+import { Button, Space } from 'antd'
 import styled from '@emotion/styled'
 
 const popoverContent = () => (
   <>
     <p>
-      <Link href="/apps/daohang">
-        <a>导航</a>
-      </Link>
+      <Link href="/apps/daohang">导航</Link>
     </p>
     <p>
-      <Link href="/">
-        <a>GitHub</a>
-      </Link>
+      <Link href="/">GitHub</Link>
     </p>
     <p>
-      <Link href="/">
-        <a>Logout</a>
-      </Link>
+      <Link href="/">Logout</Link>
     </p>
   </>
 )
 
-const Menu = ({ toggleDarkMode }: any) => {
+export const Menu = ({ toggleDarkMode }: any) => {
   const Header = styled('div')`
     width: 100%;
     max-width: 100%;
@@ -73,9 +67,7 @@ const Menu = ({ toggleDarkMode }: any) => {
             </svg>
 
             <HeaderTitle>
-              <Link href="/">
-                <a>海维包装</a>
-              </Link>
+              <Link href="/">海维包装</Link>
             </HeaderTitle>
           </div>
           <Sidebar>
@@ -104,5 +96,3 @@ const Menu = ({ toggleDarkMode }: any) => {
     </div>
   )
 }
-
-export default Menu

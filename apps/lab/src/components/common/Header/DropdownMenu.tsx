@@ -1,11 +1,19 @@
 import clsx from 'clsx'
-import styles from './DropdownMenu.module.scss'
 import { MenuItems } from './MenuItems'
+import styles from './DropdownMenu.module.scss'
 
-export function DropdownMenu({ submenus, dropdown, depthLevel }: any) {
+interface DropdownMenuProps {
+  submenus: any
+  dropdown: any
+  depthLevel: any
+}
+
+export const DropdownMenu = ({ submenus, dropdown, depthLevel }: DropdownMenuProps) => {
   depthLevel = depthLevel + 1
+
   const dropdownClass = depthLevel > 1 ? styles['dropdown-submenu'] : ''
   const hoverClass = dropdown ? styles['dropdown-menu-hover'] : ''
+
   return (
     <div className={clsx(styles['dropdown-menu'], dropdownClass, hoverClass)}>
       <div className={styles['dropdown-menu-inner']}>

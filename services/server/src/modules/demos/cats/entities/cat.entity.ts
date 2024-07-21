@@ -1,28 +1,28 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IsOptional, IsDefined, IsString, IsNumber } from 'class-validator';
-import { CrudValidationGroups } from '@nestjsx/crud';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { IsOptional, IsDefined, IsString, IsNumber } from 'class-validator'
+import { CrudValidationGroups } from '@nestjsx/crud'
 
-const { CREATE, UPDATE } = CrudValidationGroups;
+const { CREATE, UPDATE } = CrudValidationGroups
 
 @Entity()
 export class Cat {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @IsString({ always: true })
   @Column({ length: 500 })
-  name: string;
+  name: string
 
   @Column('text')
-  description: string;
+  description: string
 
   @IsOptional({ always: true })
   @Column()
-  filename: string;
+  filename: string
 
   @Column('int')
-  views: number;
+  views: number
 
   @Column()
-  isPublished: boolean;
+  isPublished: boolean
 }

@@ -1,17 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 // import { User } from './user/user.entity';
 
 @Entity()
 export class Avatar {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string
 
-    @Column()
-    filename: string;
+  @Column()
+  filename: string
 
-    @Column()
-    mimetype: string;
+  @Column()
+  mimetype: string
 
-    // @ManyToOne(type => User, user => user.avatar, { nullable: false })
-    // user: User;
+  // @ManyToOne(type => User, user => user.avatar, { nullable: false })
+  // user: User;
 }

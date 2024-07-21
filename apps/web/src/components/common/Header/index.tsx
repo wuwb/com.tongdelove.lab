@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react'
-import Head from 'next/head'
+import React from 'react'
 import Link from 'next/link'
-import { Space, Button, Avatar, Popover } from 'antd'
+import { Space, Avatar, Popover } from 'antd'
 import { Logo } from '../../ui'
-import TopMenu from '../TopMenu'
-import TopMenuDocker from '../TopMenuDocker'
+import { TopMenu } from '../TopMenu'
+import { TopMenuDocker } from '../TopMenuDocker'
 import s from './Header.module.css'
 import { useAuth } from '@/contexts/auth'
 // import { useTranslation, Trans } from 'next-i18next';
 // import LocaleSwitch from '@/components/common/Header';
 
-const Header = (props) => {
+export const Header = (props) => {
   const { children } = props
   // const { t } = useTranslation('common')
 
@@ -86,5 +85,3 @@ const Header = (props) => {
     </div>
   )
 }
-
-export default Header

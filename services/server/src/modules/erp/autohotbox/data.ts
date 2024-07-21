@@ -1,7 +1,7 @@
 export const BOX = [
-    {
-        id: 1,
-        code: 'A',
-        btcode: '',
-    },
-];
+  {
+    id: 1,
+    code: 'A',
+    btcode: '',
+  },
+]

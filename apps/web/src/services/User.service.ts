@@ -1,13 +1,7 @@
-import { useLocalStorage } from 'react-use'
 import Router from 'next/router'
-import axiosInstance from '../utils/axios'
+import { instance as axiosInstance } from '../utils/axios'
 
-// const [accessToken, setAccessToken] = useLocalStorage('access_token');
-// if (accessToken) {
-//   config.headers.Authorization = `Bearer ${accessToken}`;
-// }
-
-class UserService {
+export class UserService {
   static get userValue() {
     return localStorage.getItem('user')
   }
@@ -39,5 +33,3 @@ class UserService {
     return []
   }
 }
-
-export default UserService

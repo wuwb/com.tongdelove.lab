@@ -1,36 +1,49 @@
-import { SourceEnum } from '@prisma/client';
-import { Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsNumberString, IsOptional, IsString, IsUrl, MaxLength, ValidateIf, ValidateNested } from 'class-validator';
+import { SourceEnum } from '@prisma/client'
+import { Type } from 'class-transformer'
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumberString,
+  IsOptional,
+  IsString,
+  IsUrl,
+  MaxLength,
+  ValidateIf,
+  ValidateNested,
+} from 'class-validator'
 
-type source = 'codemart';
+type source = 'codemart'
 
 class Wehbook {
-    @IsUrl({}, {
-        message: 'webhook 需要是 https url 链接。'
-    })
-    @ValidateIf(e => e.webhook !== '')
-    webhook: string;
+  @IsUrl(
+    {},
+    {
+      message: 'webhook 需要是 https url 链接。',
+    }
+  )
+  @ValidateIf((e) => e.webhook !== '')
+  webhook: string
 
-    @IsString()
-    @IsOptional()
-    secret?: string;
+  @IsString()
+  @IsOptional()
+  secret?: string
 }
 
 export class CreateSubscribeDto {
-    @MaxLength(20, {
-        each: true,
-    })
-    source: SourceEnum[];
+  @MaxLength(20, {
+    each: true,
+  })
+  source: SourceEnum[]
 
-    @Type(() => Wehbook)
-    @ValidateNested()
-    dingdingWebhook: Wehbook;
+  @Type(() => Wehbook)
+  @ValidateNested()
+  dingdingWebhook: Wehbook
 
-    @Type(() => Wehbook)
-    @ValidateNested()
-    feishuWebhook: Wehbook;
+  @Type(() => Wehbook)
+  @ValidateNested()
+  feishuWebhook: Wehbook
 
-    @Type(() => Wehbook)
-    @ValidateNested()
-    wechatWebhook: Wehbook;
+  @Type(() => Wehbook)
+  @ValidateNested()
+  wechatWebhook: Wehbook
 }

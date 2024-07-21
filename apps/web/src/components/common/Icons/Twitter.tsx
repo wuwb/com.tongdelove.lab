@@ -1,6 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 
-function SvgTwitter(props) {
+export const SvgTwitter = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function SvgTwitter(props) {
     </svg>
   )
 }
-
-export default SvgTwitter

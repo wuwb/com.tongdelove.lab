@@ -1,2 +1,1 @@
-const Baidu = () => {}
-export default Baidu
+export const Baidu = () => {}

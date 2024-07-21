@@ -21,21 +21,22 @@ const SubNav = styled.div`
   }
 `
 
-const TinyNav = ({ navs }) => {
+export const TinyNav = ({ navs }) => {
   const router = useRouter()
   return (
     <SubNav className="text-center">
       {navs.map((item) => {
         return (
-          <Link href={item.href} key={item.href} passHref>
-            <a className={router.pathname === item.href ? 'active' : ''}>
-              {item.name}
-            </a>
+          <Link
+            href={item.href}
+            key={item.href}
+            passHref
+            className={router.pathname === item.href ? 'active' : ''}
+          >
+            {item.name}
           </Link>
         )
       })}
     </SubNav>
   )
 }
-
-export default TinyNav

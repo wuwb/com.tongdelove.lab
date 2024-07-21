@@ -1,27 +1,25 @@
-import { IsInt, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, MaxLength } from 'class-validator'
 
 export class LoginLogCreateReqDTO {
+  traceId: string
 
-    traceId: string;
+  userId: string
 
-    userId: string;
+  userType: string
 
-    userType: string;
+  @MaxLength(30, {
+    message: '用户账号长度不能超过30个字符',
+  })
+  username: string
 
-    @MaxLength(30, {
-        message: '用户账号长度不能超过30个字符'
-    })
-    username: string;
+  @IsNotEmpty()
+  ip
 
-    @IsNotEmpty()
-    ip;
+  result
 
-    result;
+  @IsString()
+  userAgent: string
 
-    @IsString()
-    userAgent: string;
-
-    @IsInt()
-    logType: number;
-
+  @IsInt()
+  logType: number
 }

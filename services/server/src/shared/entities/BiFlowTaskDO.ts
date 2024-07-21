@@ -1,5 +1,3 @@
-
-
 // static final long serialVersionUID = 3909642559323982733L;
 // Integer id;//自增id
 // String task;//hive表名_日期（yyyyMMddHHmmss）
@@ -8,4 +6,4 @@
 // String ddl;// 数据库ddl 语句
 // Integer created;//创建时间
 // Integer updated;//更新时间
-export const BiFlowTaskDO = {};
+export const BiFlowTaskDO = {}

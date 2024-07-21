@@ -1,4 +1,4 @@
-const Home = (props) => {
+export const BannerWrap = (props) => {
   return (
     <div
       className="py-10 text-center"
@@ -10,5 +10,3 @@ const Home = (props) => {
     </div>
   )
 }
-
-export default Home

@@ -1,6 +1,9 @@
-import { Injectable, Inject } from "@nestjs/common";
-import AliOSS, { Bucket } from "ali-oss";
-import { OPTIONS_PROVIDER, ALI_OSS_CLIENT_PROVIDER } from "../constants/common.constant";
+import { Injectable, Inject } from '@nestjs/common'
+import AliOSS, { Bucket } from 'ali-oss'
+import {
+  OPTIONS_PROVIDER,
+  ALI_OSS_CLIENT_PROVIDER,
+} from '../constants/common.constant'
 
 @Injectable()
 export class AliOSSBucketService {
@@ -14,7 +17,7 @@ export class AliOSSBucketService {
    * @returns bucket信息
    */
   async getInfo(): Promise<Bucket> {
-    return this.aliOSSClient.getBucketInfo(this.options.bucket);
+    return this.aliOSSClient.getBucketInfo(this.options.bucket)
   }
 
   /**
@@ -22,7 +25,7 @@ export class AliOSSBucketService {
    * @returns bucket location信息
    */
   async getLocation(): Promise<string> {
-    return this.aliOSSClient.getBucketLocation(this.options.bucket);
+    return this.aliOSSClient.getBucketLocation(this.options.bucket)
   }
 
   /**
@@ -31,6 +34,6 @@ export class AliOSSBucketService {
    * @returns ACL信息
    */
   async getACL(options?: any): Promise<string> {
-    return this.aliOSSClient.getBucketACL(this.options.bucket, options);
+    return this.aliOSSClient.getBucketACL(this.options.bucket, options)
   }
 }

@@ -1,18 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "@/core/database/prisma/prisma.service";
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '@/core/database/prisma/prisma.service'
 
 @Injectable()
 export class HealthService {
-    constructor(
-        protected readonly prisma: PrismaService
-    ) { }
+  constructor(protected readonly prisma: PrismaService) {}
 
-    async isDbReady(): Promise<boolean> {
-        try {
-            await this.prisma.$queryRaw`SELECT 1`;
-            return true;
-        } catch (error) {
-            return false;
-        }
+  async isDbReady(): Promise<boolean> {
+    try {
+      await this.prisma.$queryRaw`SELECT 1`
+      return true
+    } catch (error) {
+      return false
     }
+  }
 }

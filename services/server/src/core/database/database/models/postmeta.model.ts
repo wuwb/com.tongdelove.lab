@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm'
 
 // CREATE TABLE `wp_postmeta` (
 //     `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -12,9 +12,9 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity({ name: 'comments' })
 export class Comment {
-    @PrimaryColumn('uuid', {})
-    meta_id: string;
+  @PrimaryColumn('uuid', {})
+  meta_id: string
 
-    @Column()
-    comment_post_ID: string;
+  @Column()
+  comment_post_ID: string
 }

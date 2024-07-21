@@ -1,3 +1,1 @@
-export class RedisConfigServices {
-
-}
+export class RedisConfigServices {}

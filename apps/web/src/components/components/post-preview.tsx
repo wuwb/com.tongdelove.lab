@@ -1,17 +1,17 @@
 import Image from 'next/image'
 import { Card, Avatar } from 'antd'
-import DateFormater from '../components/date-formater'
-import CoverImage from './cover-image'
+import { DateFormater } from '../components/date-formater'
+import { CoverImage } from './cover-image'
 import Link from 'next/link'
 
-export default function PostPreview({
+export const PostPreview = ({
   title,
   coverImage,
   date,
   excerpt,
   author,
   slug,
-}) {
+}) => {
   return (
     <div>
       <div className="mb-5">
@@ -26,8 +26,12 @@ export default function PostPreview({
         </Card>
       </div>
       <h3 className="mb-3 text-3xl leading-snug">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a className="hover:underline">{title}</a>
+        <Link
+          as={`/posts/${slug}`}
+          href="/posts/[slug]"
+          className="hover:underline"
+        >
+          {title}
         </Link>
       </h3>
       <div className="mb-4 text-lg">

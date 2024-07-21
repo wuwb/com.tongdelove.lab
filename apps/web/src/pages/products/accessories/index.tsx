@@ -227,31 +227,28 @@ const Page = () => {
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/">
-                        <a>珍珠棉卷</a>
-                      </Link>
+                      <Link href="/">珍珠棉卷</Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
                   <div className="product">
-                    <Link href="/" passHref>
-                      <a href="" className="action-hover">
-                        <Image
-                          alt=""
-                          width="100"
-                          height="100"
-                          src="/assets/products/accessories/2.jpg"
-                        />
-                      </a>
+                    <Link href="/" passHref className="action-hover">
+                      <Image
+                        alt=""
+                        width="100"
+                        height="100"
+                        src="/assets/products/accessories/2.jpg"
+                      />
                     </Link>
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          填充料
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        填充料
                       </Link>
                     </h4>
                   </div>
@@ -290,264 +287,253 @@ const Page = () => {
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          空气垫
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        空气垫
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/5.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/5.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          空气填充料
-                        </a>
-                      </Link>
-                    </h4>
-                  </div>
-                </div>
-
-                <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/6.jpg"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-detail">
-                    <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          胶带
-                        </a>
-                      </Link>
-                    </h4>
-                  </div>
-                </div>
-                <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/7.jpg"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-detail">
-                    <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          气泡卷
-                        </a>
-                      </Link>
-                    </h4>
-                  </div>
-                </div>
-                <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/8.jpg"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-detail">
-                    <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          背胶袋
-                        </a>
-                      </Link>
-                    </h4>
-                  </div>
-                </div>
-                <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/9.jpg"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-detail">
-                    <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          打包带
-                        </a>
-                      </Link>
-                    </h4>
-                  </div>
-                </div>
-                <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/10.jpg"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-detail">
-                    <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          包裹辅料
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        空气填充料
                       </Link>
                     </h4>
                   </div>
                 </div>
 
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/11.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/6.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          封箱辅料
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        胶带
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/12.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/7.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          缠绕膜
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        气泡卷
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/13.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/8.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          封箱器
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        背胶袋
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/14.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/9.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          捆扎辅料
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        打包带
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/15.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/10.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          标签
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        包裹辅料
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="product-wrap">
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/11.jpg"
+                    />
+                  </div>
+                  <div className="product-detail">
+                    <h4 className="box-title">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        封箱辅料
                       </Link>
                     </h4>
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product">
-                    <a href="" className="action-hover">
-                      <Image
-                        alt=""
-                        width="100"
-                        height="100"
-                        src="/assets/products/accessories/16.jpg"
-                      />
-                    </a>
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/12.jpg"
+                    />
                   </div>
                   <div className="product-detail">
                     <h4 className="box-title">
-                      <Link href="/products/corrugated-mailer-boxes">
-                        <a href="" className="action-hover">
-                          空气柱
-                        </a>
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        缠绕膜
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
+                <div className="product-wrap">
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/13.jpg"
+                    />
+                  </div>
+                  <div className="product-detail">
+                    <h4 className="box-title">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        封箱器
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
+                <div className="product-wrap">
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/14.jpg"
+                    />
+                  </div>
+                  <div className="product-detail">
+                    <h4 className="box-title">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        捆扎辅料
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
+                <div className="product-wrap">
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/15.jpg"
+                    />
+                  </div>
+                  <div className="product-detail">
+                    <h4 className="box-title">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        标签
+                      </Link>
+                    </h4>
+                  </div>
+                </div>
+                <div className="product-wrap">
+                  <div className="product" className="action-hover">
+                    <Image
+                      alt=""
+                      width="100"
+                      height="100"
+                      src="/assets/products/accessories/16.jpg"
+                    />
+                  </div>
+                  <div className="product-detail">
+                    <h4 className="box-title">
+                      <Link
+                        href="/products/corrugated-mailer-boxes"
+                        className="action-hover"
+                      >
+                        空气柱
                       </Link>
                     </h4>
                   </div>

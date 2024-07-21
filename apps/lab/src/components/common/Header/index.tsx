@@ -1,7 +1,7 @@
 import { Link } from '@/components/ui/'
 import { Logo } from '../Logo'
-import styles from './Header.module.scss'
 import { Navbar } from './Navbar'
+import styles from './Header.module.scss'
 
 const MenuIcon = () => {
   const handleMobileMenu = () => {

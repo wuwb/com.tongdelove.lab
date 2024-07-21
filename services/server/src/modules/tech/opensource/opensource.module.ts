@@ -1,1 +1,1 @@
-export class OpensourceModule { }
+export class OpensourceModule {}

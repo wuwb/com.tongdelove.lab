@@ -1,17 +1,17 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger'
 
 export class AccountRoleListResDto {
   @ApiProperty({ required: true, description: '账号ID' })
-  accountId?: string;
+  accountId?: string
 
   @ApiProperty({ required: true, description: '角色ID' })
-  roleId?: string;
+  roleId?: string
 }
 
 export class RoleAccountListDto {
   @ApiProperty({ required: true, description: '角色ID' })
-  id: string;
+  id: string
 
   @ApiProperty({ required: true, description: '角色名称' })
-  name: string;
+  name: string
 }

@@ -1,13 +1,10 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { Injectable, Logger } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm'
 
 @Injectable()
 export class TypeormService implements TypeOrmOptionsFactory {
-
-  constructor(
-    private readonly configService: ConfigService,
-  ) { }
+  constructor(private readonly configService: ConfigService) {}
 
   // {
   //   host: this.configService.get('database.host'),  // '127.0.0.1',
@@ -42,16 +39,10 @@ export class TypeormService implements TypeOrmOptionsFactory {
       database: 'lab',
       synchronize: true,
       logging: true,
-      entities: [
-        __dirname + '/**/*.entity{.ts,.js}',
-      ],
-      migrations: [
-        'src/migration/**/*.ts',
-      ],
-      subscribers: [
-        'src/subscriber/**/*.ts',
-      ],
-    };
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      migrations: ['src/migration/**/*.ts'],
+      subscribers: ['src/subscriber/**/*.ts'],
+    }
 
     // if (this.configService.DB_TYPE === 'mysql') {
     options = {
@@ -63,14 +54,14 @@ export class TypeormService implements TypeOrmOptionsFactory {
         // https://stackoverflow.com/questions/35553432/error-handshake-inactivity-timeout-in-node-js-mysql-module
         keepConnectionAlive: true,
 
-        // Ignoring invalid configuration option passed to Connection: acquireTimeout. 
-        // This is currently a warning, but in future versions of MySQL2, 
+        // Ignoring invalid configuration option passed to Connection: acquireTimeout.
+        // This is currently a warning, but in future versions of MySQL2,
         // an error will be thrown if you pass an invalid configuration option to a Connection
         // acquireTimeout: 20 * 1000, // 20s
       },
-    };
+    }
     //   }
 
-    return options;
+    return options
   }
 }

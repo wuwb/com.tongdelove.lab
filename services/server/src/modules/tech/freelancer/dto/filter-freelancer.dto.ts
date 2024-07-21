@@ -1,2 +1,1 @@
-
-export class FilterFreelancerDto { }
+export class FilterFreelancerDto {}

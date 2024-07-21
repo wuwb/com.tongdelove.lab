@@ -1,4 +1,4 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config'
 
 export default registerAs('database', () => ({
   type: process.env.DATABASE_TYPE || 'postgres',
@@ -9,4 +9,4 @@ export default registerAs('database', () => ({
   password: process.env.DATABASE_PASSWORD,
   synchronize: process.env.DATABASE_SYNCHRONIZE === 'true' ? true : false,
   logging: process.env.DATABASE_LOGGING === 'true' ? true : false,
-}));
+}))

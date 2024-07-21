@@ -2,13 +2,13 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import s from './FootNav.module.css'
 
-interface Props {
+interface FootNavProps {
   title: string
   navs: any[]
   children?: ReactNode
 }
 
-const Home = ({ title, navs, children }: Props) => {
+export const FootNav = ({ title, navs, children }: FootNavProps) => {
   return (
     <ul className={s.footNav}>
       <>
@@ -27,5 +27,3 @@ const Home = ({ title, navs, children }: Props) => {
     </ul>
   )
 }
-
-export default Home

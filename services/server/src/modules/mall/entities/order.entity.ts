@@ -1,5 +1,3 @@
-
-
 // sn: DataTypes.STRING,
 // checkoutPrice: DataTypes.INTEGER,
 // shipping_fee: DataTypes.INTEGER,
@@ -16,4 +14,4 @@
 // UserId: DataTypes.INTEGER,
 // CouponId: DataTypes.INTEGER,
 // DiscountId: DataTypes.INTEGER
-export { }
+export {}

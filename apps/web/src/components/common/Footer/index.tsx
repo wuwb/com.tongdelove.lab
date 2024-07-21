@@ -1,6 +1,6 @@
-import FootNav from './FootNav'
+import { FootNav } from './FootNav'
 
-const Footer = (props) => {
+export const Footer = (props) => {
   return (
     <div>
       <div className="flex flex-wrap justify-center gap-2">
@@ -382,5 +382,3 @@ const Footer = (props) => {
     </div>
   )
 }
-
-export default Footer

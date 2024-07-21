@@ -1,4 +1,2 @@
-
-
 // name
-export { }
+export {}

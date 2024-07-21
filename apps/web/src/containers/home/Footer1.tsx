@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import { Row, Col } from 'antd'
+import { Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 import { isImg } from '@/utils/utils'
 
-class Footer extends React.Component<any, any> {
+export class Footer extends React.Component<any, any> {
   static defaultProps = {
     className: 'footer1',
   }
@@ -48,5 +48,3 @@ class Footer extends React.Component<any, any> {
     )
   }
 }
-
-export default Footer

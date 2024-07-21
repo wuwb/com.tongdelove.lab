@@ -1,7 +1,7 @@
 import { Card } from 'antd'
-import PostPreview from '../components/post-preview'
+import { PostPreview } from '../components/post-preview'
 
-export default function MoreStories({ posts }) {
+export const MoreStories = ({ posts }) => {
   return (
     <>
       <h2>More Stories</h2>

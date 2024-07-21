@@ -1,11 +1,11 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config'
 
 export interface GraphqlConfig {
-  autoSchemaFile: string;
-  sortSchema: boolean;
-  installSubscriptionHandlers: boolean;
-  debug: boolean;
-  playground: boolean;
+  autoSchemaFile: string
+  sortSchema: boolean
+  installSubscriptionHandlers: boolean
+  debug: boolean
+  playground: boolean
 }
 
 export default registerAs('graphql', (): GraphqlConfig => {
@@ -15,5 +15,5 @@ export default registerAs('graphql', (): GraphqlConfig => {
     installSubscriptionHandlers: true,
     debug: true,
     playground: true,
-  };
-});
+  }
+})

@@ -1,8 +1,7 @@
 {
-  "name": "@tongdelove/lab",
+  "name": "lab",
   "version": "1.0.0",
   "private": true,
-  "license": "UNLICENSE",
   "scripts": {
     "build": "pnpm -r --filter lab... build && pnpm run build:repo",
     "build:repo": "next build && if [ \"$VERCEL_ENV\" = 'production' ]; then prisma migrate deploy; fi",
@@ -278,12 +277,6 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
   },
-  "publishConfig": {
-    "access": "restricted"
-  },
-  "ct3aMetadata": {
-    "initVersion": "7.30.2"
-  },
   "devDependencies2": {
     "apexcharts": "3.41.0",
     "cookies-next": "^4.0.0",
@@ -323,6 +316,13 @@
     "stripe": "^12.0.0",
     "sanitize-html": "^2.10.0"
   },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.30.2"
+  },
+
   "prisma": {
     "schema": "../../prisma/prisma/schema.prisma"
   }

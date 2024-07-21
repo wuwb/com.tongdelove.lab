@@ -1,1 +1,1 @@
-export { Normal } from './Normal'
+export * from './Normal'

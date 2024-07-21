@@ -14,4 +14,4 @@
 // private String features;//其他附加信息
 // private Integer created;//创建时间
 // private Integer updated;//更新时间
-export const MetaInfoDO = {};
+export const MetaInfoDO = {}

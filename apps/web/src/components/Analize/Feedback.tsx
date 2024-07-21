@@ -1,2 +1,1 @@
-const Feedback = () => {}
-export default Feedback
+export const Feedback = () => {}

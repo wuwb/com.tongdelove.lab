@@ -1,4 +1,4 @@
-const Config = {
+export const Config = {
   title: 'ACME Storefront | Powered by Next.js Commerce',
   titleTemplate: '%s - ACME Storefront',
   description: 'Next.js Commerce - https://www.nextjs.org/commerce',
@@ -28,5 +28,3 @@ const Config = {
     creator: '',
   },
 }
-
-export default Config

@@ -1,7 +1,6 @@
 import Markdown from 'react-markdown'
-// import ButtonLink from "../elements/button-link"
 
-const Hero = ({ data }) => {
+export const Hero = ({ data }) => {
   return (
     <main className="container flex flex-col items-center justify-between py-12 md:flex-row">
       {/* Left column for content */}
@@ -35,5 +34,3 @@ const Hero = ({ data }) => {
     </main>
   )
 }
-
-export default Hero

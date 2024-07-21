@@ -1,9 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger'
 
 export class AllApiResDto {
   @ApiProperty({ description: '主键ID' })
-  id: string;
+  id: string
 
   @ApiProperty({ description: 'API名称' })
-  apiName: string;
+  apiName: string
 }

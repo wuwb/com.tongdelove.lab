@@ -1,9 +1,7 @@
-import Image from 'next/image'
-import styled from '@emotion/styled'
 import { DaohangBlock } from './DaohangBlock'
 import s from './DaohangCard.module.css'
 
-const DaohangCard = (props) => {
+export const DaohangCard = (props) => {
   return (
     <div className={s.part} data-title={props.title}>
       <h2 className="has_link">
@@ -20,5 +18,3 @@ const DaohangCard = (props) => {
     </div>
   )
 }
-
-export default DaohangCard

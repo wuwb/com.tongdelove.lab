@@ -1,14 +1,14 @@
-import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Injectable, NestMiddleware, Logger } from '@nestjs/common'
+import { Request, Response, NextFunction } from 'express'
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-  private readonly logger = new Logger(LoggerMiddleware.name);
+  private readonly logger = new Logger(LoggerMiddleware.name)
 
   use(req: Request, res: Response, next: NextFunction) {
-    const { method, path, body, query, params } = req;
+    const { method, path, body, query, params } = req
 
-    this.logger.log(`接口地址：${method} ${path}`);
+    this.logger.log(`接口地址：${method} ${path}`)
 
     // if (JSON.stringify(body) !== '{}') {
     //   this.logger.log(JSON.stringify(body, null, '\t\n'));
@@ -20,6 +20,6 @@ export class LoggerMiddleware implements NestMiddleware {
     //   this.logger.log(`params参数：${JSON.stringify(params)}`);
     // }
 
-    next();
+    next()
   }
 }

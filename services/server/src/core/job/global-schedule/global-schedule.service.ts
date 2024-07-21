@@ -1,8 +1,8 @@
-import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service';
-import { CodemartService } from '@/modules/tech/spider/tasks/catcher/codemart.service';
-import { OschinaService } from '@/modules/tech/spider/tasks/catcher/oschina.service';
-import { Injectable, Logger } from '@nestjs/common';
-import { Cron, Interval, Timeout } from '@nestjs/schedule';
+import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
+import { CodemartService } from '@/modules/tech/spider/tasks/catcher/codemart.service'
+import { OschinaService } from '@/modules/tech/spider/tasks/catcher/oschina.service'
+import { Injectable, Logger } from '@nestjs/common'
+import { Cron, Interval, Timeout } from '@nestjs/schedule'
 
 // 定时统计每一个用户获得的点赞数
 // 统计每一个用户的关注数、粉丝数
@@ -10,28 +10,28 @@ import { Cron, Interval, Timeout } from '@nestjs/schedule';
 
 @Injectable()
 export class GlobalScheduleService {
-    private readonly logger = new Logger(GlobalScheduleService.name);
+  private readonly logger = new Logger(GlobalScheduleService.name)
 
-    constructor(
-        public readonly freelancerService: FreelancerService,
-        private readonly codemartService: CodemartService,
-        private readonly oschinaService: OschinaService,
-    ) { }
+  constructor(
+    public readonly freelancerService: FreelancerService,
+    private readonly codemartService: CodemartService,
+    private readonly oschinaService: OschinaService
+  ) {}
 
-    // @Cron('45 * * * * *')
-    async handleGetGithubOrganization() {
-        this.logger.debug('Called when the current second is 45');
-    }
+  // @Cron('45 * * * * *')
+  async handleGetGithubOrganization() {
+    this.logger.debug('Called when the current second is 45')
+  }
 
-    // @Cron('*/10 * * * *') // 10分钟执行一次
-    async handlespiderCodemart() {
-        this.logger.log('执行 handlespiderCodemart');
-        // await this.codemartService.spiderCodemart();
-    }
+  // @Cron('*/10 * * * *') // 10分钟执行一次
+  async handlespiderCodemart() {
+    this.logger.log('执行 handlespiderCodemart')
+    // await this.codemartService.spiderCodemart();
+  }
 
-    // @Cron('*/10 * * * *')
-    async handlespiderOschina() {
-        this.logger.log('执行 handlespiderOschina');
-        // await this.oschinaService.spider();
-    }
+  // @Cron('*/10 * * * *')
+  async handlespiderOschina() {
+    this.logger.log('执行 handlespiderOschina')
+    // await this.oschinaService.spider();
+  }
 }

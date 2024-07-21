@@ -1,2 +1,1 @@
-const Fullstroy = () => {}
-export default Fullstroy
+export const Fullstroy = () => {}

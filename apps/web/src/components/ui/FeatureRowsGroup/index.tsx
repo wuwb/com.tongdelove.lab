@@ -1,11 +1,11 @@
-import classNames from 'clsx'
+import clsx from 'clsx'
 
-const FeatureRowsGroup = ({ data }) => {
+export const FeatureRowsGroup = ({ data }) => {
   return (
     <div className="container flex flex-col gap-12 py-12">
       {data.features.map((feature, index) => (
         <div
-          className={classNames(
+          className={clsx(
             // Common classes
             'flex flex-col justify-start gap-10 md:items-center md:justify-between',
             {
@@ -47,5 +47,3 @@ const FeatureRowsGroup = ({ data }) => {
     </div>
   )
 }
-
-export default FeatureRowsGroup

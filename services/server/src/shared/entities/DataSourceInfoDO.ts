@@ -7,4 +7,4 @@
 // private Integer status;//数据源状态（具体状态同DataStatus）
 // private Integer created;//创建时间
 // private Integer updated;//更新时间
-export const DataSourceInfoDO = {};
+export const DataSourceInfoDO = {}

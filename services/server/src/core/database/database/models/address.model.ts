@@ -1,19 +1,19 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm'
 
 @Entity({ name: 'address' })
 export class Address {
-    @PrimaryColumn()
-    uuid: string;
+  @PrimaryColumn()
+  uuid: string
 
-    @Column()
-    name: string;
+  @Column()
+  name: string
 
-    @Column()
-    sex: number;
+  @Column()
+  sex: number
 
-    @Column({ name: 'create_time' })
-    createTime: Date;
+  @Column({ name: 'create_time' })
+  createTime: Date
 
-    @Column({ name: 'update_time' })
-    updateTime: Date;
+  @Column({ name: 'update_time' })
+  updateTime: Date
 }

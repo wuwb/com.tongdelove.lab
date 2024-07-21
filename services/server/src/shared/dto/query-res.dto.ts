@@ -1,11 +1,10 @@
 export class QueryResDto {
+  // 主键id
+  id?: string
 
-    // 主键id
-    id?: string;
+  // 创建时间
+  createdAt?: Date | string
 
-    // 创建时间
-    createdAt?: Date | string;
-
-    // 更新时间
-    updatedAt?: Date | string;
+  // 更新时间
+  updatedAt?: Date | string
 }

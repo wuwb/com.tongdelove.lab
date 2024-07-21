@@ -1,16 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class AuditUserService {
-  async findeAuditUserByType() {
+  async findeAuditUserByType() {}
 
-  }
+  async createAuditUser() {}
 
-  async createAuditUser() {
-
-  }
-
-  async removeAduitUser() {
-
-  }
+  async removeAduitUser() {}
 }

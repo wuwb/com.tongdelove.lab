@@ -1,13 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class AuditService {
+  async findAllUserRoleByUserId() {}
 
-  async findAllUserRoleByUserId() {
-
-  }
-
-  async findAllUserPermissionByUserId() {
-
-  }
+  async findAllUserPermissionByUserId() {}
 }

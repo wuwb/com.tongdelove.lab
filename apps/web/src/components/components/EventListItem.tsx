@@ -1,13 +1,17 @@
 import React from 'react'
 import { Avatar } from 'antd'
 
-interface Props {
+interface EventListItemProps {
   username: string
   created: string
   children: string | React.ReactNode
 }
 
-const EventListItem = ({ children, username, created }: Props) => {
+export const EventListItem = ({
+  children,
+  username,
+  created,
+}: EventListItemProps) => {
   return (
     <div className="item-center border-bottom flex py-5 text-base">
       <Avatar
@@ -21,5 +25,3 @@ const EventListItem = ({ children, username, created }: Props) => {
     </div>
   )
 }
-
-export default EventListItem

@@ -1,2 +1,1 @@
-const Google = () => {}
-export default Google
+export const Google = () => {}

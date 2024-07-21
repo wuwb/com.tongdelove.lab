@@ -5,15 +5,11 @@ const AboutPage = (props) => {
   return (
     <div title="关于">
       <div className="sub-nav">
-        <Link href="/about" passHref>
-          <a className="active">关于</a>
+        <Link href="/about" passHref className="active">
+          关于
         </Link>
-        <Link href="/jobs">
-          <a>招聘</a>
-        </Link>
-        <Link href="/team">
-          <a>团队</a>
-        </Link>
+        <Link href="/jobs">招聘</Link>
+        <Link href="/team">团队</Link>
         <a href="">招聘</a>
       </div>
       <div className="mx-auto max-w-2xl lg:max-w-7xl">

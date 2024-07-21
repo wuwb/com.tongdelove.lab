@@ -1,14 +1,18 @@
-import { Injectable, Inject } from '@nestjs/common';
-import OSS, { STS } from 'ali-oss';
-import { OPTIONS_PROVIDER, ALI_OSS_CLIENT_PROVIDER, ALI_STS_CLIENT_PROVIDER } from '../constants/common.constant';
-import { AliOSSModuleOptions } from '../interfaces/options.interface';
+import { Injectable, Inject } from '@nestjs/common'
+import OSS, { STS } from 'ali-oss'
+import {
+  OPTIONS_PROVIDER,
+  ALI_OSS_CLIENT_PROVIDER,
+  ALI_STS_CLIENT_PROVIDER,
+} from '../constants/common.constant'
+import { AliOSSModuleOptions } from '../interfaces/options.interface'
 
 @Injectable()
 export class AliOSSAuthService {
   constructor(
     @Inject(OPTIONS_PROVIDER) private readonly options: AliOSSModuleOptions,
     @Inject(ALI_OSS_CLIENT_PROVIDER) private readonly aliOSSClient: OSS,
-    @Inject(ALI_STS_CLIENT_PROVIDER) private readonly aliSTSClient: STS,
+    @Inject(ALI_STS_CLIENT_PROVIDER) private readonly aliSTSClient: STS
   ) {}
 
   /**
@@ -25,29 +29,33 @@ export class AliOSSAuthService {
     resourcePath?: string,
     expirationSeconds?: number,
     session?: string,
-    options?: any,
+    options?: any
   ): Promise<any> {
-    if (!this.options.sts || !this.aliSTSClient) throw Error('未配置STS信息！');
+    if (!this.options.sts || !this.aliSTSClient) throw Error('未配置STS信息！')
     const resource = resourcePath
-      ? this.options.bucket + '/' + resourcePath.replace(/^\//, '').replace(/\/$/, '')
-      : this.options.bucket;
+      ? this.options.bucket +
+        '/' +
+        resourcePath.replace(/^\//, '').replace(/\/$/, '')
+      : this.options.bucket
     const policy = {
       Version: '1',
       Statement: [
         {
           Effect: 'Allow',
-          Action: actionList ? actionList : ['oss:ListObjects', 'oss:GetObject', 'oss:PutObject'],
+          Action: actionList
+            ? actionList
+            : ['oss:ListObjects', 'oss:GetObject', 'oss:PutObject'],
           Resource: [`acs:oss:*:*:${resource}`, `acs:oss:*:*:${resource}/*`],
         },
       ],
-    };
+    }
     const { credentials } = await this.aliSTSClient.assumeRole(
       this.options.sts.roleARN,
       policy,
       expirationSeconds || 30 * 60,
       session,
-      options,
-    );
-    return credentials;
+      options
+    )
+    return credentials
   }
 }

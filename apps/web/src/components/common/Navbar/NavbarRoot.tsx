@@ -1,11 +1,10 @@
-import { FC, useState, useEffect, PropsWithChildren } from 'react'
-import throttle from 'lodash.throttle'
+import { useState, useEffect, PropsWithChildren } from 'react'
+import { throttle } from 'lodash-es'
 import clsx from 'clsx'
-import s from './Navbar.module.css'
 
 interface NavbarRootProps extends PropsWithChildren {}
 
-const NavbarRoot: FC<NavbarRootProps> = ({ children }) => {
+export const NavbarRoot = ({ children }: NavbarRootProps) => {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
@@ -26,10 +25,13 @@ const NavbarRoot: FC<NavbarRootProps> = ({ children }) => {
   }, [hasScrolled])
 
   return (
-    <div className={clsx(s.root, { 'shadow-magical': hasScrolled })}>
+    <div
+      className={clsx(
+        'sticky top-0 z-40 min-h-[74px] bg-primary transition-all duration-150',
+        { 'shadow-magical': hasScrolled }
+      )}
+    >
       {children}
     </div>
   )
 }
-
-export default NavbarRoot

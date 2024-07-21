@@ -1,15 +1,15 @@
 import React from 'react'
-import List from '../List'
-import ListItem from '../ListItem'
+import { List } from '../List'
+import { ListItem } from '../ListItem'
 import LoadingIndicator from '@/components/ui/LoadingIndicator'
 
-interface Props {
+interface ReposListProps {
   loading: boolean
   error: any
   repos: any
 }
 
-function ReposList({ loading, error, repos }: Props) {
+export const ReposList = ({ loading, error, repos }: ReposListProps) => {
   if (loading) {
     return <List component={LoadingIndicator} />
   }
@@ -27,5 +27,3 @@ function ReposList({ loading, error, repos }: Props) {
 
   return null
 }
-
-export default ReposList

@@ -1,10 +1,12 @@
-import { Injectable, Inject } from '@nestjs/common';
-import OSS from 'ali-oss';
-import { ALI_OSS_CLIENT_PROVIDER } from '../constants/common.constant';
+import { Injectable, Inject } from '@nestjs/common'
+import OSS from 'ali-oss'
+import { ALI_OSS_CLIENT_PROVIDER } from '../constants/common.constant'
 
 @Injectable()
 export class AliOSSService {
-  constructor(@Inject(ALI_OSS_CLIENT_PROVIDER) private readonly aliOSSClient: OSS) {}
+  constructor(
+    @Inject(ALI_OSS_CLIENT_PROVIDER) private readonly aliOSSClient: OSS
+  ) {}
 
   /**
    * put方式上传文件到OSS上
@@ -13,8 +15,12 @@ export class AliOSSService {
    * @param options 上传参数
    * @returns 上传结果
    */
-  async putUpload(remotePath: string, localPath: string, options?: OSS.PutObjectOptions): Promise<OSS.PutObjectResult> {
-    return this.aliOSSClient.put(remotePath, localPath, options);
+  async putUpload(
+    remotePath: string,
+    localPath: string,
+    options?: OSS.PutObjectOptions
+  ): Promise<OSS.PutObjectResult> {
+    return this.aliOSSClient.put(remotePath, localPath, options)
   }
 
   /**
@@ -24,9 +30,13 @@ export class AliOSSService {
    * @param options 拷贝参数
    * @returns 拷贝结果
    */
-  async copy(source: string, target: string, options?: OSS.CopyObjectOptions): Promise<boolean> {
-    const { res } = await this.aliOSSClient.copy(target, source, options);
-    return res.status === 200;
+  async copy(
+    source: string,
+    target: string,
+    options?: OSS.CopyObjectOptions
+  ): Promise<boolean> {
+    const { res } = await this.aliOSSClient.copy(target, source, options)
+    return res.status === 200
   }
 
   /**
@@ -36,10 +46,10 @@ export class AliOSSService {
    * @returns 移动结果
    */
   async move(source: string, target: string): Promise<boolean> {
-    const copyResult = await this.copy(source, target);
-    if (!copyResult) return false;
-    await this.delete(source);
-    return true;
+    const copyResult = await this.copy(source, target)
+    if (!copyResult) return false
+    await this.delete(source)
+    return true
   }
 
   /**
@@ -48,9 +58,12 @@ export class AliOSSService {
    * @param remotePath oss中文件路径
    * @param options 删除参数
    */
-  async delete(remotePath: string, options?: OSS.DeleteObjectOptions): Promise<void> {
-    if (!(await this.fileExist(remotePath))) throw `文件${remotePath}不存在`;
-    this.aliOSSClient.delete(remotePath, options);
+  async delete(
+    remotePath: string,
+    options?: OSS.DeleteObjectOptions
+  ): Promise<void> {
+    if (!(await this.fileExist(remotePath))) throw `文件${remotePath}不存在`
+    this.aliOSSClient.delete(remotePath, options)
   }
 
   /**
@@ -59,13 +72,16 @@ export class AliOSSService {
    * @param options 附加参数
    * @returns 检验结果
    */
-  async fileExist(remotePath: string, options?: OSS.HeadObjectOptions): Promise<boolean> {
+  async fileExist(
+    remotePath: string,
+    options?: OSS.HeadObjectOptions
+  ): Promise<boolean> {
     try {
-      await this.aliOSSClient.head(remotePath, options);
-      return true;
+      await this.aliOSSClient.head(remotePath, options)
+      return true
     } catch (error: any) {
-      if (error.code === 'NoSuchKey') return false;
-      throw error;
+      if (error.code === 'NoSuchKey') return false
+      throw error
     }
   }
 }

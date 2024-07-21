@@ -1,39 +1,45 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, UnprocessableEntityException } from "@nestjs/common";
-import { PageService } from "./page.service";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Query,
+  UnprocessableEntityException,
+} from '@nestjs/common'
+import { PageService } from './page.service'
 
 @Controller('pages')
 export class PageController {
-  constructor(
-    private readonly pageService: PageService,
-  ) {
-  }
+  constructor(private readonly pageService: PageService) {}
 
   @Get()
   async getPagesSummary(@Query() query) {
-    const { size, select, page, sortBy, sortOrder } = query;
+    const { size, select, page, sortBy, sortOrder } = query
 
     return this.pageService.model.findMany({
-      where: {
-
-      }
-    });
+      where: {},
+    })
   }
 
   @Get('/:id')
   async getPage(@Param() params) {
-    const { id } = params;
+    const { id } = params
 
     const result = this.pageService.model.findUnique({
       where: {
-        id
-      }
-    });
+        id,
+      },
+    })
 
     if (!result) {
-      throw new Error('Page not found');
+      throw new Error('Page not found')
     }
 
-    return result;
+    return result
   }
 
   @Get('/slug/:slug')
@@ -45,31 +51,31 @@ export class PageController {
     const result = this.pageService.model.findUnique({
       where: {
         slug,
-      }
-    });
+      },
+    })
 
     if (!result) {
-      throw new Error('Page not found');
+      throw new Error('Page not found')
     }
 
-    return result;
+    return result
   }
 
   @Post()
   async createPage(@Body() body) {
-    return this.pageService.model.create(body);
+    return this.pageService.model.create(body)
   }
 
   @Put(':id')
   async modifyPage(@Param() params, @Body() body) {
-    const { id } = params;
-    await this.pageService.updatePageById(id, body);
+    const { id } = params
+    await this.pageService.updatePageById(id, body)
 
     return this.pageService.model.findUnique({
       where: {
         id,
-      }
-    });
+      },
+    })
   }
 
   @Patch(':id')
@@ -82,6 +88,6 @@ export class PageController {
 
   @Delete(':id')
   async deletePage(@Param() params) {
-    return this.pageService.deletePageById(params.id);
+    return this.pageService.deletePageById(params.id)
   }
 }

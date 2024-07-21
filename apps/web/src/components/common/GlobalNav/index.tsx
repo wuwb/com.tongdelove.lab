@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import s from './GlobalNav.module.css'
 
-const GlobalNav = () => {
+export const GlobalNav = () => {
   const isServer = typeof window === 'undefined'
 
   return (
@@ -31,5 +31,3 @@ const GlobalNav = () => {
     </div>
   )
 }
-
-export default GlobalNav

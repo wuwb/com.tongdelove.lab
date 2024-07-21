@@ -1,12 +1,12 @@
-import { BaseConfig } from './base.config';
+import { BaseConfig } from './base.config'
 
 export class GeetestCaptchaConfig extends BaseConfig {
-    readonly geetest_id: string;
-    readonly geetest_key: string;
-    readonly disabled: boolean;
+  readonly geetest_id: string
+  readonly geetest_key: string
+  readonly disabled: boolean
 
-    constructor(cfg) {
-        super(cfg);
-        this.disabled = !(this.geetest_id && this.geetest_key);
-    }
+  constructor(cfg) {
+    super(cfg)
+    this.disabled = !(this.geetest_id && this.geetest_key)
+  }
 }

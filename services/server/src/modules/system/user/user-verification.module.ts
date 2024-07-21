@@ -1,20 +1,12 @@
-import { forwardRef, Module } from '@nestjs/common';
-import { MailModule } from '@/core/mail/mail/mail.module';
-import { UserVerificationService } from './user-verification.service';
-import { UserModule } from './user.module';
+import { forwardRef, Module } from '@nestjs/common'
+import { MailModule } from '@/core/mail/mail/mail.module'
+import { UserVerificationService } from './user-verification.service'
+import { UserModule } from './user.module'
 
 @Module({
-    imports: [
-        MailModule,
-        UserModule,
-    ],
-    controllers: [
-    ],
-    providers: [
-        UserVerificationService
-    ],
-    exports: [
-        UserVerificationService,
-    ],
+  imports: [MailModule, UserModule],
+  controllers: [],
+  providers: [UserVerificationService],
+  exports: [UserVerificationService],
 })
-export class UserVerificationModule { }
+export class UserVerificationModule {}

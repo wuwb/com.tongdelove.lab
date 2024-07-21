@@ -1,122 +1,121 @@
 import {
-    CanActivate,
-    ExecutionContext,
-    Injectable,
-    HttpException,
-    HttpStatus,
-    Logger,
-    UnauthorizedException,
-} from '@nestjs/common';
-import * as assert from 'assert';
-import { getUrlQuery } from '@/utils';
-import { CodeEnum, CodeMessage } from '@/common/enums/code.enum';
-import { API_AUTH_KEY } from '@/common/constants/auth.constant';
-import { AuthService } from '@/modules/system/auth/auth.service';
-import { CacheService } from '@/core/cache/cache/cache.service';
-import { ConfigService } from '@nestjs/config/dist/config.service';
-import { TokenService } from '@/modules/system/auth/token.service';
-import { USER_TOKEN_KEY } from '../constants/redis.constant';
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  HttpException,
+  HttpStatus,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common'
+import * as assert from 'assert'
+import { getUrlQuery } from '@/utils'
+import { CodeEnum, CodeMessage } from '@/common/enums/code.enum'
+import { API_AUTH_KEY } from '@/common/constants/auth.constant'
+import { AuthService } from '@/modules/system/auth/auth.service'
+import { CacheService } from '@/core/cache/cache/cache.service'
+import { ConfigService } from '@nestjs/config/dist/config.service'
+import { TokenService } from '@/modules/system/auth/token.service'
+import { USER_TOKEN_KEY } from '../constants/redis.constant'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    private readonly logger = new Logger(AuthGuard.name);
+  private readonly logger = new Logger(AuthGuard.name)
 
-    constructor(
-        private readonly authService: AuthService,
-        private readonly cacheService: CacheService,
-        private readonly configService: ConfigService,
-        private readonly tokenService: TokenService,
-    ) { }
+  constructor(
+    private readonly authService: AuthService,
+    private readonly cacheService: CacheService,
+    private readonly configService: ConfigService,
+    private readonly tokenService: TokenService
+  ) {}
 
-    async canActivate(context: ExecutionContext): Promise<boolean> {
-        this.logger.log('start auth guard');
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    this.logger.log('start auth guard')
 
-        const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest()
 
-        console.log('request.headers: ', request.headers);
+    console.log('request.headers: ', request.headers)
 
-        let token = context.switchToRpc().getData().headers.token ||
-            request.headers.authorization ||
-            context.switchToHttp().getRequest().body.token ||
-            getUrlQuery(request.url, 'token');
+    let token =
+      context.switchToRpc().getData().headers.token ||
+      request.headers.authorization ||
+      context.switchToHttp().getRequest().body.token ||
+      getUrlQuery(request.url, 'token')
 
-        this.logger.debug(`当前的token: ${token}`);
+    this.logger.debug(`当前的token: ${token}`)
 
-        const methodAuth = Reflect.getMetadata(API_AUTH_KEY, context.getHandler());
-        const classAuth = Reflect.getMetadata(API_AUTH_KEY, context.getClass());
+    const methodAuth = Reflect.getMetadata(API_AUTH_KEY, context.getHandler())
+    const classAuth = Reflect.getMetadata(API_AUTH_KEY, context.getClass())
 
-        this.logger.debug(`methodAuth: ${methodAuth}`);
-        this.logger.debug(`classAuth: ${classAuth}`);
+    this.logger.debug(`methodAuth: ${methodAuth}`)
+    this.logger.debug(`classAuth: ${classAuth}`)
 
-        if (!token) {
-            throw new UnauthorizedException(
-                JSON.stringify({
-                    code: CodeEnum.NO_TOKEN,
-                    message: CodeMessage[CodeEnum.NO_TOKEN]
-                }),
-            );
-        }
-
-        [, token] = token.trim().split(' ');
-
-        try {
-            const user = await this.validateRequest(token);
-            this.logger.debug(user, '当前用户');
-            if (user) {
-                request.user = user;
-                if (methodAuth || classAuth) {
-                    this.logger.debug('走资源守卫');
-                    const method = request.method;
-                    const url = request.url;
-                    return true; // this.apiAuthService.apiAuth(user, method, url);
-                } else {
-                    this.logger.debug('不走资源守卫');
-                    return true;
-                }
-            } else {
-                throw new HttpException(
-                    JSON.stringify({
-                        code: CodeEnum.TOKEN_ERROR,
-                        message: CodeMessage[CodeEnum.TOKEN_ERROR],
-                    }),
-                    HttpStatus.OK,
-                );
-            }
-        } catch (err) {
-            this.logger.error(err);
-            throw new HttpException('auth error', HttpStatus.FORBIDDEN);
-        }
-
+    if (!token) {
+      throw new UnauthorizedException(
+        JSON.stringify({
+          code: CodeEnum.NO_TOKEN,
+          message: CodeMessage[CodeEnum.NO_TOKEN],
+        })
+      )
     }
 
-    /**
-     * 校验用户传递过来的 token
-     */
-    private async validateRequest(token: string): Promise<any> {
-        // 根据 token 解出 payload
-        const payload = await this.tokenService.verifyToken(token);
-        console.log('payload: ', payload);
+    ;[, token] = token.trim().split(' ')
 
-        // 根据 payload 从redis 获取 token
-        console.log('token key: ', `${USER_TOKEN_KEY}:${payload.sub}`);
-        const redisToken = await this.cacheService.get(`${USER_TOKEN_KEY}:${payload.sub}`);
-
-        console.log('token: ', token);
-        console.log('redisToken: ', redisToken);
-
-        // 验证是否为最新的 token，判断是否过期
-        assert.ok(
-            token === redisToken,
-            new Error('Authentication Failed'),
-        );
-
-        // 根据 payload 获取用户信息
-        const userInfo = await this.cacheService.getUser(payload.sub);
-
-        if (!userInfo) {
-            throw new Error('Authentication Failed2')
+    try {
+      const user = await this.validateRequest(token)
+      this.logger.debug(user, '当前用户')
+      if (user) {
+        request.user = user
+        if (methodAuth || classAuth) {
+          this.logger.debug('走资源守卫')
+          const method = request.method
+          const url = request.url
+          return true // this.apiAuthService.apiAuth(user, method, url);
+        } else {
+          this.logger.debug('不走资源守卫')
+          return true
         }
-
-        return userInfo;
+      } else {
+        throw new HttpException(
+          JSON.stringify({
+            code: CodeEnum.TOKEN_ERROR,
+            message: CodeMessage[CodeEnum.TOKEN_ERROR],
+          }),
+          HttpStatus.OK
+        )
+      }
+    } catch (err) {
+      this.logger.error(err)
+      throw new HttpException('auth error', HttpStatus.FORBIDDEN)
     }
+  }
+
+  /**
+   * 校验用户传递过来的 token
+   */
+  private async validateRequest(token: string): Promise<any> {
+    // 根据 token 解出 payload
+    const payload = await this.tokenService.verifyToken(token)
+    console.log('payload: ', payload)
+
+    // 根据 payload 从redis 获取 token
+    console.log('token key: ', `${USER_TOKEN_KEY}:${payload.sub}`)
+    const redisToken = await this.cacheService.get(
+      `${USER_TOKEN_KEY}:${payload.sub}`
+    )
+
+    console.log('token: ', token)
+    console.log('redisToken: ', redisToken)
+
+    // 验证是否为最新的 token，判断是否过期
+    assert.ok(token === redisToken, new Error('Authentication Failed'))
+
+    // 根据 payload 获取用户信息
+    const userInfo = await this.cacheService.getUser(payload.sub)
+
+    if (!userInfo) {
+      throw new Error('Authentication Failed2')
+    }
+
+    return userInfo
+  }
 }

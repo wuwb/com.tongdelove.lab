@@ -1,7 +1,4 @@
-import { Space } from 'antd'
-import styled from '@emotion/styled'
-
-const Home = () => {
+export const Customers = () => {
   const customers = [
     '博通包装',
     '皓康食品',
@@ -96,16 +93,14 @@ const Home = () => {
         <h3 className="text-lg">深受客户信赖</h3>
         <p className="text-base">无数的客户坚定的选择了我们</p>
       </div>
-      <Space wrap className="max-w-2xl justify-center lg:max-w-7xl">
+      <div className="flex max-w-2xl flex-wrap justify-center gap-1 lg:max-w-7xl">
         {customersDom}
-      </Space>
+      </div>
 
       <h4 className="mt-5 text-base">海外客户</h4>
-      <Space wrap className="max-w-2xl justify-center lg:max-w-7xl">
+      <div className="flex max-w-2xl flex-wrap justify-center gap-1 lg:max-w-7xl">
         {overseaCustomersDom}
-      </Space>
+      </div>
     </div>
   )
 }
-
-export default Home

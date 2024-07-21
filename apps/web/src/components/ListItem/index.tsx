@@ -1,10 +1,10 @@
 import React from 'react'
 
-interface Props {
+interface ListItemProps {
   item: any
 }
 
-function ListItem(props: Props) {
+export const ListItem = (props: ListItemProps) => {
   //   const Wrapper = styled.li`
   //   width: 100%;
   //   height: 3em;
@@ -32,5 +32,3 @@ function ListItem(props: Props) {
     </div>
   )
 }
-
-export default ListItem

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Point(props) {
+export const Point = (props) => {
   const { data, size, position, type, stroke } = props
   const children = data
     .map((item) => {

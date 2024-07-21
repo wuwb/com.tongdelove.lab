@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styled from '@emotion/styled'
 
-const Home = () => {
+export const Solution = () => {
   const Container = styled.div`
     margin-top: 60px;
     & .content .content-primary {
@@ -65,5 +65,3 @@ const Home = () => {
     </Container>
   )
 }
-
-export default Home

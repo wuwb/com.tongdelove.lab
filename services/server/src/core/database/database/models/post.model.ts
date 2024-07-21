@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm'
 
 // CREATE TABLE `wp_posts` (
 //     `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -34,71 +34,71 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 @Entity({ name: 'post' })
 export class Post {
   @PrimaryColumn('uuid', {})
-  ID: string;
+  ID: string
 
   @Column({ type: 'bigint' })
-  post_author: number;
+  post_author: number
 
   @Column()
-  post_date: Date;
+  post_date: Date
 
   @Column()
-  post_date_gmt: Date;
+  post_date_gmt: Date
 
   @Column()
-  post_content: string;
+  post_content: string
 
   @Column()
-  post_title: string;
+  post_title: string
 
   @Column()
-  post_excerpt: string;
+  post_excerpt: string
 
   @Column()
-  post_status: string;
+  post_status: string
 
   @Column()
-  comment_status: string;
+  comment_status: string
 
   @Column()
-  ping_status: string;
+  ping_status: string
 
   @Column()
-  post_password: string;
+  post_password: string
 
   @Column()
-  post_name: string;
+  post_name: string
 
   @Column()
-  to_ping: string;
+  to_ping: string
 
   @Column()
-  pinged: string;
+  pinged: string
 
   @Column()
-  post_modified: Date;
+  post_modified: Date
 
   @Column()
-  post_modified_gmt: Date;
+  post_modified_gmt: Date
 
   @Column()
-  post_content_filtered: number;
+  post_content_filtered: number
 
   @Column()
-  post_parent: number;
+  post_parent: number
 
   @Column()
-  guid: string;
+  guid: string
 
   @Column({ type: 'int' })
-  menu_order: number;
+  menu_order: number
 
   @Column()
-  post_type: string;
+  post_type: string
 
   @Column()
-  post_mime_type: string;
+  post_mime_type: string
 
   @Column({ type: 'bigint' })
-  comment_count: number;
+  comment_count: number
 }

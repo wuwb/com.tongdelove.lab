@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Row, Col, Divider } from 'antd'
+import { Row, Col } from 'antd'
 
-const UsgCate = () => {
+export const UsgCate = () => {
   return (
     <div className="product-block clearfix">
       <div className="product-head">
@@ -133,5 +133,3 @@ const UsgCate = () => {
     </div>
   )
 }
-
-export default UsgCate

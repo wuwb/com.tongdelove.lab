@@ -1,11 +1,11 @@
-import { applyDecorators } from "@nestjs/common";
+import { applyDecorators } from '@nestjs/common'
 import {
   ApiExtraModels,
   ApiQuery,
   ApiQueryOptions,
   getSchemaPath,
-} from "@nestjs/swagger";
-import "reflect-metadata";
+} from '@nestjs/swagger'
+import 'reflect-metadata'
 
 const generateApiQueryObject = (
   prop: any,
@@ -17,64 +17,64 @@ const generateApiQueryObject = (
     return {
       required,
       name: prop,
-      style: "deepObject",
+      style: 'deepObject',
       explode: true,
-      type: "number",
+      type: 'number',
       isArray,
-    };
+    }
   } else if (propType === String) {
     return {
       required,
       name: prop,
-      style: "deepObject",
+      style: 'deepObject',
       explode: true,
-      type: "string",
+      type: 'string',
       isArray,
-    };
+    }
   } else {
     return {
       required,
       name: prop,
-      style: "deepObject",
+      style: 'deepObject',
       explode: true,
-      type: "object",
+      type: 'object',
       isArray,
       schema: {
         $ref: getSchemaPath(propType),
       },
-    };
+    }
   }
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types,@typescript-eslint/naming-convention
 export function ApiNestedQuery(query: Function) {
-  const constructor = query.prototype;
+  const constructor = query.prototype
   const properties = Reflect.getMetadata(
-    "swagger/apiModelPropertiesArray",
+    'swagger/apiModelPropertiesArray',
     constructor
-  ).map((prop: any) => prop.slice(1));
+  ).map((prop: any) => prop.slice(1))
 
   const decorators = properties
     .map((property: any) => {
       const { required, isArray } = Reflect.getMetadata(
-        "swagger/apiModelProperties",
+        'swagger/apiModelProperties',
         constructor,
         property
-      );
+      )
       const propertyType = Reflect.getMetadata(
-        "design:type",
+        'design:type',
         constructor,
         property
-      );
+      )
       const typedQuery = generateApiQueryObject(
         property,
         propertyType,
         required,
         isArray
-      );
-      return [ApiExtraModels(propertyType), ApiQuery(typedQuery)];
+      )
+      return [ApiExtraModels(propertyType), ApiQuery(typedQuery)]
     })
-    .flat();
+    .flat()
 
-  return applyDecorators(...decorators);
+  return applyDecorators(...decorators)
 }

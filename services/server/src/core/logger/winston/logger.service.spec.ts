@@ -1,30 +1,30 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { MyLogger } from './logger.service';
+import { Test, TestingModule } from '@nestjs/testing'
+import { MyLogger } from './logger.service'
 
 describe('MyLogger', () => {
-  let service: MyLogger;
+  let service: MyLogger
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [MyLogger],
-    }).compile();
+    }).compile()
 
-    service = await module.resolve<MyLogger>(MyLogger);
-  });
+    service = await module.resolve<MyLogger>(MyLogger)
+  })
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+    expect(service).toBeDefined()
+  })
 
   it('log', () => {
-    const consoleSpy = jest.spyOn(global.console, 'log');
-    service.log("hello", {});
-    expect(consoleSpy).toBeCalledWith('hello');
-  });
+    const consoleSpy = jest.spyOn(global.console, 'log')
+    service.log('hello', {})
+    expect(consoleSpy).toBeCalledWith('hello')
+  })
 
   it('log with prefix', () => {
-    const consoleSpy = jest.spyOn(global.console, 'log');
-    service.log("hello", {});
-    expect(consoleSpy).toBeCalledWith('[H] hello');
-  });
-});
+    const consoleSpy = jest.spyOn(global.console, 'log')
+    service.log('hello', {})
+    expect(consoleSpy).toBeCalledWith('[H] hello')
+  })
+})

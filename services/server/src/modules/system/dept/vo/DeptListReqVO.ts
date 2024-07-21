@@ -1,5 +1,4 @@
-
 export class DeptListReqVO {
-    name: string;
-    status: number;
+  name: string
+  status: number
 }

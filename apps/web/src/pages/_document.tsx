@@ -1,12 +1,8 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-} from 'next/document'
-
-class MyDocument extends Document {
+import React from 'react'
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+import type { DocumentContext } from 'next/document'
+const MyDocument = () => {
   // static async getInitialProps(ctx: DocumentContext) {
   //   const initialProps = await Document.getInitialProps(ctx);
   //   const styles = extractCritical(initialProps.html)
@@ -27,13 +23,12 @@ class MyDocument extends Document {
   //   };
   // }
 
-  render() {
-    return (
-      <Html lang="zh-cn">
-        <Head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+  return (
+    <Html lang="zh-cn">
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
                 (function(){
                   if (!window.localStorage) return
                   if (window.localStorage.getItem('theme') === 'dark') {
@@ -42,11 +37,11 @@ class MyDocument extends Document {
                   };
                 })()
               `,
-            }}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
                 var _hmt = _hmt || [];
                 (function() {
                   var hm = document.createElement("script");
@@ -55,15 +50,41 @@ class MyDocument extends Document {
                   s.parentNode.insertBefore(hm, s);
                 })();
               `,
-            }}
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
+          }}
+        />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}
+
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const cache = createCache()
+  const originalRenderPage = ctx.renderPage
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App) => (props) => (
+        <StyleProvider cache={cache}>
+          <App {...props} />
+        </StyleProvider>
+      ),
+    })
+
+  const initialProps = await Document.getInitialProps(ctx)
+  const style = extractStyle(cache, true)
+
+  return {
+    ...initialProps,
+    styles: (
+      <>
+        {initialProps.styles}
+        <style dangerouslySetInnerHTML={{ __html: style }} />
+      </>
+    ),
   }
 }
 

@@ -1,10 +1,10 @@
-import { QueryResDto } from '@/shared/dto/query-res.dto';
-import { ApiProperty } from '@nestjs/swagger';
+import { QueryResDto } from '@/shared/dto/query-res.dto'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class RoleAccessResDto extends QueryResDto {
-    @ApiProperty({ description: '主键ID' })
-    id: string;
+  @ApiProperty({ description: '主键ID' })
+  id: string
 
-    @ApiProperty({ description: '资源ID' })
-    accessId: string;
+  @ApiProperty({ description: '资源ID' })
+  accessId: string
 }

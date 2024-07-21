@@ -1,13 +1,12 @@
-import { IsString, IsEmail, IsOptional } from 'class-validator';
+import { IsString, IsEmail, IsOptional } from 'class-validator'
 
 export class CreateLinkDTO {
+  @IsString()
+  readonly title: string
 
-    @IsString()
-    readonly title: string;
+  @IsString()
+  readonly description: string
 
-    @IsString()
-    readonly description: string;
-
-    @IsString()
-    readonly url: string;
+  @IsString()
+  readonly url: string
 }

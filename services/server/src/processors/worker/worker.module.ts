@@ -1,6 +1,1 @@
-
-
-
-export class WorkerModule {
-
-}
+export class WorkerModule {}

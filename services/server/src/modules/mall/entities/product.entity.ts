@@ -1,5 +1,3 @@
-
-
 // 产品
 // name: DataTypes.STRING,
 // image: DataTypes.STRING,
@@ -10,4 +8,4 @@
 // sell_price: DataTypes.INTEGER,
 // product_status: DataTypes.BOOLEAN,
 // CategoryId: DataTypes.INTEGER
-export { }
+export {}

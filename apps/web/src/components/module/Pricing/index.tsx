@@ -1,13 +1,13 @@
-import classNames from 'clsx'
+import clsx from 'clsx'
 
-const Pricing = ({ data }) => {
+export const Pricing = ({ data }) => {
   return (
     <div className="container py-12">
       <h1 className="text-center text-4xl">{data.title}</h1>
       <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:justify-center">
         {data.plans.map((plan) => (
           <div
-            className={classNames(
+            className={clsx(
               // Common classes
               'md:w-lg flex-1 rounded-md border-2 px-4 py-4',
               // Normal plan
@@ -25,7 +25,7 @@ const Pricing = ({ data }) => {
           >
             <h2 className="text-2xl">{plan.name}</h2>
             <p
-              className={classNames('mt-4 text-lg', {
+              className={clsx('mt-4 text-lg', {
                 'text-primary-700': plan.isRecommended,
                 'text-gray-700': !plan.isRecommended,
               })}
@@ -53,5 +53,3 @@ const Pricing = ({ data }) => {
     </div>
   )
 }
-
-export default Pricing

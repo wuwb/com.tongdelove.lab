@@ -1,13 +1,7 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "sourceMap": false,
-    },
-    "exclude": [
-        "node_modules",
-        "prisma",
-        "test",
-        "dist",
-        "**/*spec.ts",
-    ]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": false
+  },
+  "exclude": ["node_modules", "prisma", "test", "dist", "**/*spec.ts"]
 }

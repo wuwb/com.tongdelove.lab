@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import styled from '@emotion/styled'
 import s from './DaohangLink.module.css'
 
 export const DaohangLink = (props) => {

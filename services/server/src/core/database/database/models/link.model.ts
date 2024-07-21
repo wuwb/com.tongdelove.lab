@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm'
 
 // CREATE TABLE `wp_links` (
 //     `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,9 +20,9 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity({ name: 'comments' })
 export class Comment {
-    @PrimaryColumn('uuid')
-    comment_ID: string;
+  @PrimaryColumn('uuid')
+  comment_ID: string
 
-    @Column()
-    comment_post_ID: string;
+  @Column()
+  comment_post_ID: string
 }

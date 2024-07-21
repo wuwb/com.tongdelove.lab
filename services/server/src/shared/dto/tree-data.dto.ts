@@ -1,10 +1,10 @@
 export class TreeDataDto {
-    /* id值 */
-    id: number;
+  /* id值 */
+  id: number
 
-    /* 名称 */
-    name: string;
+  /* 名称 */
+  name: string
 
-    /* 子项数组 */
-    children?: TreeDataDto[];
+  /* 子项数组 */
+  children?: TreeDataDto[]
 }

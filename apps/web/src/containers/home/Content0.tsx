@@ -1,10 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
-
 import { Row, Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 
-class Content extends React.PureComponent<any, any> {
+export class Content extends React.PureComponent<any, any> {
   render() {
     const { dataSource, isMobile, ...props }: any = this.props
     const {
@@ -39,5 +37,3 @@ class Content extends React.PureComponent<any, any> {
     )
   }
 }
-
-export default Content

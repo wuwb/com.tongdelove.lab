@@ -2,7 +2,7 @@
 
 ## TODO
 
--   项目启动的时候向 posthog.com 发送统计信息
+- 项目启动的时候向 posthog.com 发送统计信息
 
 ### 请求处理流程
 
@@ -65,41 +65,41 @@ validation.pipe 用于验证所有基于 class-validate 的验证类
 
 ### 业务模块 modules
 
--   公告
--   文章
--   分类
--   标签
--   评论
--   配置
--   Auth：全局鉴权、Token、用户（Admin）
--   Like：点赞评论、文章、主站
--   Archive：全站数据缓存
--   扩展模块
-    -   统计：业务数据统计业务
-    -   备份：数据库备份业务（定时、手动）
-    -   其他：其他第三方 token 等服务
+- 公告
+- 文章
+- 分类
+- 标签
+- 评论
+- 配置
+- Auth：全局鉴权、Token、用户（Admin）
+- Like：点赞评论、文章、主站
+- Archive：全站数据缓存
+- 扩展模块
+  - 统计：业务数据统计业务
+  - 备份：数据库备份业务（定时、手动）
+  - 其他：其他第三方 token 等服务
 
 ### 核心辅助模块 processors
 
--   数据库
-    -   连接数据库和异常自动重试
--   缓存 / Redis
-    -   基本的缓存数据 Set、Get
-    -   扩展的 Promise 工作模式（双向同步/被动更新）
-    -   扩展的 Interval 工作模式（超时更新/定时更新）
--   辅助 / Helper
-    -   搜索引擎实时更新服务：根据入参主动提交搜索引擎收录，支持百度、Google 服务；分别会在动态数据 进行 CUD 的时候调用对应方法
-    -   评论过滤服务：使用 akismet 过滤 spam；暴露三个方法：校验 spam、提交 spam、提交 ham
-    -   邮件服务：根据入参发送邮件；程序启动时会自动校验客户端有效性，校验成功则根据入参发送邮件
-    -   IP 地理查询服务：根据入参查询 IP 物理位置；控制器内优先使用阿里云 IP 查询服务，当服务无效，使用本地 GEO 库查询，使用 ip.cn 等备用方案
-    -   第三方云存储服务：生成云存储上传 Token（目前服务为 Aliyun OSS），后期可以添加 SDK 的更多支持，比如管理文件
-    -   Google 证书（鉴权）服务：用于生成各 Google 应用的服务端证书
+- 数据库
+  - 连接数据库和异常自动重试
+- 缓存 / Redis
+  - 基本的缓存数据 Set、Get
+  - 扩展的 Promise 工作模式（双向同步/被动更新）
+  - 扩展的 Interval 工作模式（超时更新/定时更新）
+- 辅助 / Helper
+  - 搜索引擎实时更新服务：根据入参主动提交搜索引擎收录，支持百度、Google 服务；分别会在动态数据 进行 CUD 的时候调用对应方法
+  - 评论过滤服务：使用 akismet 过滤 spam；暴露三个方法：校验 spam、提交 spam、提交 ham
+  - 邮件服务：根据入参发送邮件；程序启动时会自动校验客户端有效性，校验成功则根据入参发送邮件
+  - IP 地理查询服务：根据入参查询 IP 物理位置；控制器内优先使用阿里云 IP 查询服务，当服务无效，使用本地 GEO 库查询，使用 ip.cn 等备用方案
+  - 第三方云存储服务：生成云存储上传 Token（目前服务为 Aliyun OSS），后期可以添加 SDK 的更多支持，比如管理文件
+  - Google 证书（鉴权）服务：用于生成各 Google 应用的服务端证书
 
 ## 参考
 
 - https://github.com/surmon-china/nodepress
 - https://github.com/kuangshp/nestjs-mysql-api
-    - 推荐
+  - 推荐
 - https://github.com/hantsy/nestjs-rest-sample.git
 - https://github.com/shen100/mili
 - https://github.com/EvertonSerpa/Fullstack-Modulo5-Bootcamp-BackEnd

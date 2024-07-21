@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,7 +7,7 @@ import { useRouter } from 'next/router'
 // import { I18nWidget } from '@/components/common'
 import s from './Footer.module.css'
 
-interface Props {
+interface FooterProps {
   className?: string
   children?: any
   pages?: any[]
@@ -21,7 +20,7 @@ const links = [
   },
 ]
 
-const Footer: FC<Props> = ({ className, pages }) => {
+const Footer = ({ className, pages }: FooterProps) => {
   const { sitePages } = usePages(pages)
   const rootClassName = clsx(s.root, className)
 

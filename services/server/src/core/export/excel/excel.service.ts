@@ -1,29 +1,17 @@
-import { Injectable } from "@nestjs/common";
-import xlsx from 'node-xlsx';
+import { Injectable } from '@nestjs/common'
+import xlsx from 'node-xlsx'
 
 @Injectable()
 export class ExcelService {
-    constructor(
+  constructor() {}
 
-    ) { }
+  async export() {}
 
-    async export() {
+  async import() {}
 
-    }
+  async importTempalte() {}
 
-    async import() {
+  private async formatExport() {}
 
-    }
-
-    async importTempalte() {
-
-    }
-
-    private async formatExport() {
-
-    }
-
-    private async formatImport() {
-
-    }
+  private async formatImport() {}
 }

@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import MoreStories from '@/components/components/more-stories'
-import HeroPost from '@/components/components/hero-post'
+import { MoreStories } from '@/components/components/more-stories'
+import { HeroPost } from '@/components/components/hero-post'
 import { Layout } from '@/components/common'
 import { CMS_NAME } from '@/config/constant'
 

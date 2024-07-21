@@ -1,7 +1,7 @@
 import React from 'react'
-import { DefaultSeo, NextSeo } from 'next-seo'
+import { DefaultSeo } from 'next-seo'
 
-const Seo = (props) => {
+export const Seo = (props) => {
   {
     /* Global site metadata */
   }
@@ -29,5 +29,3 @@ const Seo = (props) => {
     />
   )
 }
-
-export default Seo

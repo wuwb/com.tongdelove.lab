@@ -21,7 +21,7 @@ const StyledTinyNav = styled.div`
   }
 `
 
-const TinyNav = (props) => {
+export const TinyNav = (props) => {
   const { navs } = props
 
   return (
@@ -34,5 +34,3 @@ const TinyNav = (props) => {
     </StyledTinyNav>
   )
 }
-
-export default TinyNav

@@ -1,5 +1,5 @@
 export function getConfig() {
-    return {
-        plugins: [],
-    };
+  return {
+    plugins: [],
+  }
 }

@@ -20,12 +20,14 @@ export const Heading = () => {
           </div>
           <div>
             <p className={s.integrationsTitle}>Git Integrations</p>
-            <Link href="https://github.com/ofekashery">
-              <a href="" target="_blank" rel="noopener">
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <p className={s.integrationsUsername}>ofekashery</p>
-                </div>
-              </a>
+            <Link
+              href="https://github.com/ofekashery"
+              target="_blank"
+              rel="noopener"
+            >
+              <div className="flex items-center">
+                <p className={s.integrationsUsername}>ofekashery</p>
+              </div>
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const Home = () => {
+export const Ready = () => {
   return (
     <div style={{ textAlign: 'center', padding: '100px' }}>
       <h3 className="text-xl">准备好让你的生产过程变得更加智能了吗？</h3>

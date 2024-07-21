@@ -6,7 +6,7 @@ import WorldIcon from '../Icons/svgs/world'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { useOnClickOutside } from '@/utils/hooks'
 
-const LocaleSwitch = ({ pageContext }) => {
+export const LocaleSwitch = ({ pageContext }) => {
   const isMounted = useRef(false)
   const select = useRef()
   const router = useRouter()
@@ -87,5 +87,3 @@ const LocaleSwitch = ({ pageContext }) => {
     </div>
   )
 }
-
-export default LocaleSwitch

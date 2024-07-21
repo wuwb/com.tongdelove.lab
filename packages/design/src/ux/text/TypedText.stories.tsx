@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import type { StoryObj, Meta } from '@storybook/react';
-import React from 'react';
+import React from 'react'
 import { TypedText } from './TypedText';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

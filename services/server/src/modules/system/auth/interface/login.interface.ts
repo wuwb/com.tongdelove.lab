@@ -1,4 +1,4 @@
 export interface Payload {
-    userId: string;
-    pv: number;
+  userId: string
+  pv: number
 }

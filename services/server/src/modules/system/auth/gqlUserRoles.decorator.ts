@@ -1,5 +1,5 @@
-import { createParamDecorator, ExecutionContext } from "@nestjs/common";
-import { GqlExecutionContext } from "@nestjs/graphql";
+import { createParamDecorator, ExecutionContext } from '@nestjs/common'
+import { GqlExecutionContext } from '@nestjs/graphql'
 
 /**
  * Access the user roles from the request object i.e `req.user.roles`.
@@ -9,11 +9,11 @@ import { GqlExecutionContext } from "@nestjs/graphql";
  */
 export const UserRoles = createParamDecorator(
   (data: string, context: ExecutionContext) => {
-    const ctx = GqlExecutionContext.create(context);
-    const request = ctx.getContext<{ req: { user: any } }>().req;
+    const ctx = GqlExecutionContext.create(context)
+    const request = ctx.getContext<{ req: { user: any } }>().req
     if (!request.user) {
-      return null;
+      return null
     }
-    return data ? request.user[data] : request.user.roles;
+    return data ? request.user[data] : request.user.roles
   }
-);
+)

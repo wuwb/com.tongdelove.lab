@@ -33,8 +33,8 @@ const Home = () => {
                   我们将您的项目从孤立的电子邮件，分散的电子表格中带入协作的在线空间。
                 </p>
                 <p>我们的包装专家是您团队的延伸。</p>
-                <Link href="/features/collaborate">
-                  <a className="mt-5 block">有关协作的更多信息→</a>
+                <Link href="/features/collaborate" className="mt-5 block">
+                  有关协作的更多信息→
                 </Link>
               </div>
             </div>
@@ -58,8 +58,8 @@ const Home = () => {
                   每年在寻找最优惠的价格上节省数百小时的时间。我们直接从最适合您需求的工厂那里获取报价。
                 </p>
                 <p>我们的包装专家是您团队的延伸。</p>
-                <Link href="/features/source">
-                  <a className="mt-5 block">有关采购的更多信息→</a>
+                <Link href="/features/source" className="mt-5 block">
+                  有关采购的更多信息→
                 </Link>
               </div>
             </Col>
@@ -72,8 +72,8 @@ const Home = () => {
                 <p className="mt-5">
                   轻松将一个订单拆分到多个工厂，多个发货地址进行生产，从而节省大量时间。
                 </p>
-                <Link href="/features/order">
-                  <a className="mt-5 block">有关购买的更多信息→</a>
+                <Link href="/features/order" className="mt-5 block">
+                  有关购买的更多信息→
                 </Link>
               </div>
             </Col>
@@ -93,8 +93,8 @@ const Home = () => {
                   在开始生产之前，请确保每个细节都是正确的。
                   我们对打样审批流程进行了标准化，以帮助您避免错误发生。
                 </p>
-                <Link href="/features/source">
-                  <a className="mt-5 block">有关打样的更多信息→</a>
+                <Link href="/features/source" className="mt-5 block">
+                  有关打样的更多信息→
                 </Link>
               </div>
             </Col>
@@ -107,8 +107,8 @@ const Home = () => {
                 <p className="mt-5">
                   提供实时了解包装状态的能力。随着生产和运输进度，跟踪每个阶段的状态更新。
                 </p>
-                <Link href="/features/produce">
-                  <a className="mt-5 block">有关生产的更多信息→</a>
+                <Link href="/features/produce" className="mt-5 block">
+                  有关生产的更多信息→
                 </Link>
               </div>
             </Col>
@@ -132,8 +132,8 @@ const Home = () => {
                   发现季节性模式，验证战略变更并预测您的需求。
                   我们的分析功能可帮助您分析包装支出和使用情况。
                 </p>
-                <Link href="/features/analyze">
-                  <a className="mt-5 block">有关分析的更多信息→</a>
+                <Link href="/features/analyze" className="mt-5 block">
+                  有关分析的更多信息→
                 </Link>
               </div>
             </Col>
@@ -147,8 +147,8 @@ const Home = () => {
                   我们使您的团队可以集中访问公司使用的每个包装组件。
                 </p>
                 <p>在统一的地方查看产品价格，规格，素材和订单历史记录。</p>
-                <Link href="/features/produce">
-                  <a className="mt-5 block">有关数据管理的更多信息→</a>
+                <Link href="/features/produce" className="mt-5 block">
+                  有关数据管理的更多信息→
                 </Link>
               </div>
             </Col>
@@ -165,9 +165,7 @@ const Home = () => {
       <div className="p-36 text-center">
         <h3>准备升级您的供应链了吗？ 让我们向您展示我们可以做什么。</h3>
         <Link href="/join" passHref>
-          <a>
-            <Button className="mt-5">开始→</Button>
-          </a>
+          <Button className="mt-5">开始→</Button>
         </Link>
       </div>
     </>

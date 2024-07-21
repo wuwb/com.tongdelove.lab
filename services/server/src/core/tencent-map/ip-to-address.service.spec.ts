@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { IpToAddressService } from './ip-to-address.service';
+import { Test, TestingModule } from '@nestjs/testing'
+import { IpToAddressService } from './ip-to-address.service'
 
 describe('IpToAddressService', () => {
-  let service: IpToAddressService;
+  let service: IpToAddressService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [IpToAddressService],
-    }).compile();
+    }).compile()
 
-    service = module.get<IpToAddressService>(IpToAddressService);
-  });
+    service = module.get<IpToAddressService>(IpToAddressService)
+  })
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+    expect(service).toBeDefined()
+  })
+})

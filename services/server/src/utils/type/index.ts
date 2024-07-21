@@ -1,60 +1,62 @@
-const toString = Object.prototype.toString;
+const toString = Object.prototype.toString
 /**
  * Strict object type check. Only returns true
  * for plain JavaScript objects.
  */
 export const isObject = (obj: any) => {
-    return Object.is(toString.call(obj), '[object Object]');
-};
+  return Object.is(toString.call(obj), '[object Object]')
+}
 
 export const isRegExp = (v: any) => {
-    return Object.is(toString.call(v), '[object RegExp]');
-};
+  return Object.is(toString.call(v), '[object RegExp]')
+}
 
 /**
  * Check if val is a valid array index.
  */
 export const isValidArrayIndex = (val: number) => {
-    const n = parseFloat(String(val));
-    return n >= 0 && Math.floor(n) === n && isFinite(val);
-};
+  const n = parseFloat(String(val))
+  return n >= 0 && Math.floor(n) === n && isFinite(val)
+}
 
 export const isString = (str: any) => {
-    return Object.is(toString.call(str), '[object String]');
-};
+  return Object.is(toString.call(str), '[object String]')
+}
 
 // 判断是否为uuid
 export const isUUID = (str: string) => {
-    return /\w{8}(-\w{4}){3}-\w{12}/.test(str);
-};
+  return /\w{8}(-\w{4}){3}-\w{12}/.test(str)
+}
 
-export const isType = <T>(type: string) => (value: any): value is T => (
-    value !== null && Object.prototype.toString.call(value) === `[object ${type}]`
-);
+export const isType =
+  <T>(type: string) =>
+  (value: any): value is T =>
+    value !== null &&
+    Object.prototype.toString.call(value) === `[object ${type}]`
 
-export const isFn = isType<(...args: any[]) => any>('Function');
+export const isFn = isType<(...args: any[]) => any>('Function')
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
-export const isArr = Array.isArray || isType<unknown[]>('Array');
+export const isArr = Array.isArray || isType<unknown[]>('Array')
 
-export const isObj = isType<object>('Object');
+export const isObj = isType<object>('Object')
 
-export const isStr = isType<string>('String');
+export const isStr = isType<string>('String')
 
-export const isNum = isType<number>('Number');
+export const isNum = isType<number>('Number')
 
 export const isEmpty = (value: any) => value === null || value === undefined
 
 export const isEmptyByAllTypes = (value: any): boolean => {
-    return isEmpty(value) ||
-        value === '' ||
-        Number.isNaN(value) ||
-        value === 0 ||
-        (
-            isObj(value)
-                ? !Object.keys(value).length
-                : isArr(value)
-                    ? !value.length
-                    : false
-        );
+  return (
+    isEmpty(value) ||
+    value === '' ||
+    Number.isNaN(value) ||
+    value === 0 ||
+    (isObj(value)
+      ? !Object.keys(value).length
+      : isArr(value)
+        ? !value.length
+        : false)
+  )
 }

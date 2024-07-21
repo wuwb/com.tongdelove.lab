@@ -1,2 +1,2 @@
 export * from './Button'
-export { default as ToolbarButton } from './ToolbarButton'
+export * from './ToolbarButton'

@@ -1,13 +1,11 @@
-
-
 export class TenantContextHolder {
-    static tenantId;
+  static tenantId
 
-    static setTenantId(id) {
-        TenantContextHolder.tenantId = id;
-    }
+  static setTenantId(id) {
+    TenantContextHolder.tenantId = id
+  }
 
-    static getTenantId() {
-        return TenantContextHolder.tenantId;
-    }
+  static getTenantId() {
+    return TenantContextHolder.tenantId
+  }
 }

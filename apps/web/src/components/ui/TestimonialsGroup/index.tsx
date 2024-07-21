@@ -1,9 +1,7 @@
-import classNames from 'clsx'
+import clsx from 'clsx'
 import { useState } from 'react'
-// import NextImage from "../elements/image"
-// import CustomLink from "../elements/custom-link"
 
-const TestimonialsGroup = ({ data }) => {
+export const TestimonialsGroup = ({ data }) => {
   // Only show one testimonial at a time
   const [selectedTestimonialIndex, setSelectedTestimonialIndex] = useState(0)
   const selectedTestimonial = data.testimonials[selectedTestimonialIndex]
@@ -61,7 +59,7 @@ const TestimonialsGroup = ({ data }) => {
           {data.testimonials.map((testimonial, index) => (
             <button
               onClick={() => setSelectedTestimonialIndex(index)}
-              className={classNames(
+              className={clsx(
                 // Common classes
                 'h-3 w-3 rounded-full',
                 {
@@ -84,5 +82,3 @@ const TestimonialsGroup = ({ data }) => {
     </section>
   )
 }
-
-export default TestimonialsGroup

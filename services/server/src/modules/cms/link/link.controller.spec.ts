@@ -1,20 +1,20 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { LinkController } from './link.controller';
-import { LinkService } from './link.service';
+import { Test, TestingModule } from '@nestjs/testing'
+import { LinkController } from './link.controller'
+import { LinkService } from './link.service'
 
 describe('LinkController', () => {
-  let controller: LinkController;
+  let controller: LinkController
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [LinkController],
       providers: [LinkService],
-    }).compile();
+    }).compile()
 
-    controller = module.get<LinkController>(LinkController);
-  });
+    controller = module.get<LinkController>(LinkController)
+  })
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+    expect(controller).toBeDefined()
+  })
+})

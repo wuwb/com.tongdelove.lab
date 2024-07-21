@@ -11,4 +11,4 @@
 // private Integer created;
 // private Integer updated;
 
-export const TableInfoDO = {};
+export const TableInfoDO = {}

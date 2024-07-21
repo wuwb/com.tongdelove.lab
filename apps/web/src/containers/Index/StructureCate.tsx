@@ -2,7 +2,7 @@ import { Row, Col } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const Home = () => {
+export const StructureCate = () => {
   return (
     <div className="product-block clearfix">
       <div className="product-head">

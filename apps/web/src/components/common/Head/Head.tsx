@@ -1,9 +1,8 @@
-import { FC } from 'react'
 import NextHead from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import config from '@/config/seo'
 
-const Head: FC = (props) => {
+export const Head = (props) => {
   return (
     <>
       <DefaultSeo {...config} />
@@ -69,5 +68,3 @@ const Head: FC = (props) => {
     </>
   )
 }
-
-export default Head

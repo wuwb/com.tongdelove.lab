@@ -1,10 +1,10 @@
-import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
-import { OPTIONS_PROVIDER } from './constants/common.constant';
-import { createAliOSSClientProvider } from './providers/ali-oss-client.provider';
-import { createAliSTSClientProvider } from './providers/ali-sts-client.provider';
-import { AliOSSService } from './services/ali-oss.service';
-import { AliOSSAuthService } from './services/auth.service';
-import { AliOSSBucketService } from './services/bucket.service';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common'
+import { OPTIONS_PROVIDER } from './constants/common.constant'
+import { createAliOSSClientProvider } from './providers/ali-oss-client.provider'
+import { createAliSTSClientProvider } from './providers/ali-sts-client.provider'
+import { AliOSSService } from './services/ali-oss.service'
+import { AliOSSAuthService } from './services/auth.service'
+import { AliOSSBucketService } from './services/bucket.service'
 
 @Global()
 @Module({})
@@ -26,7 +26,7 @@ export class AliOSSCoreModule {
         AliOSSAuthService,
       ],
       exports: [AliOSSService, AliOSSBucketService, AliOSSAuthService],
-    };
+    }
   }
 
   /**
@@ -35,7 +35,7 @@ export class AliOSSCoreModule {
    * @returns 动态模块
    */
   static forRootAsync(options): DynamicModule {
-    const asyncProviders = this.createAsyncProviders(options);
+    const asyncProviders = this.createAsyncProviders(options)
     return {
       module: AliOSSCoreModule,
       imports: [...(options.imports || [])],
@@ -48,7 +48,7 @@ export class AliOSSCoreModule {
         AliOSSAuthService,
       ],
       exports: [AliOSSService, AliOSSBucketService, AliOSSAuthService],
-    };
+    }
   }
 
   /**
@@ -58,16 +58,16 @@ export class AliOSSCoreModule {
    */
   private static createAsyncProviders(options): Provider[] {
     if (options.useExisting || options.useFactory) {
-      return [this.createAsyncOptionsProvider(options)];
+      return [this.createAsyncOptionsProvider(options)]
     }
-    const useClass = options.useClass!;
+    const useClass = options.useClass!
     return [
       this.createAsyncOptionsProvider(options),
       {
         provide: useClass,
         useClass,
       },
-    ];
+    ]
   }
 
   /**
@@ -81,13 +81,14 @@ export class AliOSSCoreModule {
         provide: OPTIONS_PROVIDER,
         useFactory: options.useFactory,
         inject: options.inject || [],
-      };
+      }
     }
-    const inject = [options.useClass || options.useExisting];
+    const inject = [options.useClass || options.useExisting]
     return {
       provide: OPTIONS_PROVIDER,
-      useFactory: async (optionsFactory) => await optionsFactory.createMpOptions(),
+      useFactory: async (optionsFactory) =>
+        await optionsFactory.createMpOptions(),
       inject,
-    };
+    }
   }
 }

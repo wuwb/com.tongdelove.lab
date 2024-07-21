@@ -1,6 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 
-function SvgYoutube(props) {
+export const SvgYoutube = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function SvgYoutube(props) {
     </svg>
   )
 }
-
-export default SvgYoutube

@@ -1,2 +1,2 @@
-export { default as UserService } from './User.service'
-export { default as PostService } from './Post.service'
+export * from './User.service'
+export * from './Post.service'

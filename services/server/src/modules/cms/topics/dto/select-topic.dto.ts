@@ -1,31 +1,31 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { ApiProperty } from '@nestjs/swagger';
+import { Field, ObjectType } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
 
 @ObjectType()
 export class SelectTopicDto {
   @Field()
   @ApiProperty()
-  uid: string;
+  uid: string
 
   @Field()
   @ApiProperty({
     description: 'The name of the tag',
     default: '标签名',
   })
-  name: string;
+  name: string
 
   @Field()
   @ApiProperty({
     description: 'The useCount of the tag',
     default: '标签使用次数',
   })
-  useCount: number;
+  useCount: number
 
   @Field()
   @ApiProperty()
-  createdAt: Date;
+  createdAt: Date
 
   @Field()
   @ApiProperty()
-  updatedAt: Date;
+  updatedAt: Date
 }

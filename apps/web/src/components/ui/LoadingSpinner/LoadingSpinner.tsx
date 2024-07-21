@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './LoadingSpinner.module.css'
 
-const LoadingSpinner = () => (
+export const LoadingSpinner = () => (
   <div className={style.loading_spinnerWrap}>
     <svg
       className={style.loading_spinner}
@@ -16,5 +16,3 @@ const LoadingSpinner = () => (
     </svg>
   </div>
 )
-
-export default LoadingSpinner

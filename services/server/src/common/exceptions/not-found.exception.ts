@@ -1,6 +1,6 @@
 import { sample } from 'lodash-es'
 import { NotFoundException as NotFoundExceptionBase } from '@nestjs/common'
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger'
 
 export const NotFoundMessage = [
   '真不巧, 内容走丢了 o(╥﹏╥)o',
@@ -16,8 +16,8 @@ export class NotFoundException extends NotFoundExceptionBase {
   }
 
   @ApiProperty()
-  statusCode!: number;
+  statusCode!: number
 
   @ApiProperty()
-  message!: string;
+  message!: string
 }

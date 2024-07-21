@@ -22,4 +22,4 @@
 //  * 最后修改时间
 //  */
 // private Integer updated;
-export const MetaGroupMapperDO = {};
+export const MetaGroupMapperDO = {}

@@ -1,14 +1,12 @@
 import Head from 'next/head'
 import { Row, Col } from 'antd'
-// import 'antd/lib/row/style/css';
-// import 'antd/lib/col/style/css';
 import { Banner, Col4Demo } from '@/containers/Index'
-import Solution from '@/containers/Index/Solution'
-import Customers from '@/containers/Index/Customers'
-import Ready from '@/containers/Index/Ready'
+import { Solution } from '@/containers/Index/Solution'
+import { Customers } from '@/containers/Index/Customers'
+import { Ready } from '@/containers/Index/Ready'
 import { Layout } from '@/components/common'
 
-const Home = (props) => {
+const IndexPage = (props) => {
   return (
     <>
       <Head>
@@ -37,6 +35,6 @@ const Home = (props) => {
   )
 }
 
-Home.Layout = Layout
+IndexPage.Layout = Layout
 
-export default Home
+export default IndexPage

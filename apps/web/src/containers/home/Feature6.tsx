@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel as AntCarousel, Row, Col } from 'antd'
 
-class Feature6 extends React.PureComponent<any, any> {
+export class Feature6 extends React.PureComponent<any, any> {
   carouselRef: any
   constructor(props) {
     super(props)
@@ -139,5 +139,3 @@ class Feature6 extends React.PureComponent<any, any> {
     )
   }
 }
-
-export default Feature6

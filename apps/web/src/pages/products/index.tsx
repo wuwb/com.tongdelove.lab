@@ -3,25 +3,22 @@ import { Layout } from '@/components/common'
 import {
   Collapse,
   Radio,
-  Input,
   Space,
   Checkbox,
   Menu,
   Dropdown,
-  Button,
   message,
-  Tooltip,
   Drawer,
 } from 'antd'
 import {
-  DownOutlined,
-  UserOutlined,
-  FilterOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons'
+  AiOutlineDown,
+  AiOutlineUser,
+  AiOutlineFilter,
+  AiOutlineAppstore,
+} from 'react-icons/ai'
+
 import { ProductCard } from '@/containers/product'
 import s from './index.module.css'
-import { useRouter } from 'next/router'
 
 const { Panel } = Collapse
 
@@ -36,10 +33,7 @@ const sortOptions = [
 const Page = () => {
   const [minimumQuantity, setMiniumQuantity] = useState(0)
   const [category, setCategory] = useState(0)
-  const router = useRouter()
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-
-  console.log('router: ', router)
 
   function handleMiniumQuantityChange(e) {
     setMiniumQuantity(e.target.value)
@@ -98,13 +92,13 @@ const Page = () => {
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1" icon={<UserOutlined />}>
+      <Menu.Item key="1" icon={<AiOutlineUser />}>
         1st menu item
       </Menu.Item>
-      <Menu.Item key="2" icon={<UserOutlined />}>
+      <Menu.Item key="2" icon={<AiOutlineUser />}>
         2nd menu item
       </Menu.Item>
-      <Menu.Item key="3" icon={<UserOutlined />}>
+      <Menu.Item key="3" icon={<AiOutlineUser />}>
         3rd menu item
       </Menu.Item>
     </Menu>
@@ -116,7 +110,7 @@ const Page = () => {
         title="Basic Drawer"
         placement="right"
         onClose={handleCloseDrawer}
-        visible={mobileFiltersOpen}
+        open={mobileFiltersOpen}
       >
         sidebar content
       </Drawer>
@@ -188,7 +182,7 @@ const Page = () => {
                   className="ant-dropdown-link"
                   onClick={(e) => e.preventDefault()}
                 >
-                  Sort <DownOutlined />
+                  Sort <AiOutlineDown />
                 </a>
               </Dropdown>
               <button
@@ -196,7 +190,7 @@ const Page = () => {
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
               >
                 <span className="sr-only">View grid</span>
-                <AppstoreOutlined className="h-5 w-5" aria-hidden="true" />
+                <AiOutlineAppstore className="h-5 w-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -204,7 +198,7 @@ const Page = () => {
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
-                <FilterOutlined className="h-5 w-5" aria-hidden="true" />
+                <AiOutlineFilter className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </div>

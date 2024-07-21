@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { DropdownMenu } from './DropdownMenu'
 import styles from './MenuItems.module.scss'
 
-export function MenuItems({ items, depthLevel }: any) {
+export const MenuItems = ({ items, depthLevel }: any) => {
   const [dropdown, setDropdown] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 

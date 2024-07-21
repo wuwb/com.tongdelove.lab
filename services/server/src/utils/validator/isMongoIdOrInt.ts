@@ -16,6 +16,6 @@ export function IsBooleanOrString(validationOptions?: ValidationOptions) {
   return validatorFactory((value) => isInt(value) || isMongoId(value))(
     merge<ValidationOptions, ValidationOptions>(validationOptions || {}, {
       message: '类型必须为 MongoId or Int',
-    }),
+    })
   )
 }

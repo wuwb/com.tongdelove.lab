@@ -9,13 +9,13 @@ interface FeatureBarProps {
   action?: React.ReactNode
 }
 
-const FeatureBar: React.FC<FeatureBarProps> = ({
+export const FeatureBar = ({
   title,
   description,
   className,
   action,
   hide,
-}) => {
+}: FeatureBarProps) => {
   const rootClassName = clsx(
     s.root,
     {
@@ -35,5 +35,3 @@ const FeatureBar: React.FC<FeatureBarProps> = ({
     </div>
   )
 }
-
-export default FeatureBar

@@ -1,5 +1,4 @@
-import { Octokit, App } from "octokit";
-
+import { Octokit, App } from 'octokit'
 
 // Compare: https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
 // const {
@@ -16,18 +15,17 @@ import { Octokit, App } from "octokit";
 // })
 
 // export async function getGithubOrganization(org: string) {
-const octokit = new Octokit({ auth: `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` });
+const octokit = new Octokit({
+  auth: `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`,
+})
 
 const data = await octokit.request(`GET /orgs/alibaba`)
-console.log('data: ', data);
-    // return data;
+console.log('data: ', data)
+// return data;
 // }
 
 // getGithubOrganization('alibaba')
 
-
-
 // /users/{username}/orgs 获取一个用户的组织
 
 // /orgs/{org}/members 获取组织的成员
-

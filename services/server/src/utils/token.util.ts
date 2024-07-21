@@ -1,11 +1,10 @@
-import { InternalServerErrorException } from '@nestjs/common';
-import { JwtService } from '@/core/auth/jwt/jwt.service';
-
+import { InternalServerErrorException } from '@nestjs/common'
+import { JwtService } from '@/core/auth/jwt/jwt.service'
 
 class TokenException extends InternalServerErrorException {
-    constructor(err) {
-        super(err);
-    }
+  constructor(err) {
+    super(err)
+  }
 }
 
 /**
@@ -18,12 +17,22 @@ class TokenException extends InternalServerErrorException {
  * @return token
  * @throws Exception
  */
-export const produce = (issuer: string, appSecret: string, audience: string, expirationTimeMinutesInTheFuture: number) => {
-    try {
-        return JwtService.produce(issuer, appSecret, audience, expirationTimeMinutesInTheFuture);
-    } catch (err) {
-        throw new TokenException(err);
-    }
+export const produce = (
+  issuer: string,
+  appSecret: string,
+  audience: string,
+  expirationTimeMinutesInTheFuture: number
+) => {
+  try {
+    return JwtService.produce(
+      issuer,
+      appSecret,
+      audience,
+      expirationTimeMinutesInTheFuture
+    )
+  } catch (err) {
+    throw new TokenException(err)
+  }
 }
 /**
  * token校验
@@ -35,6 +44,18 @@ export const produce = (issuer: string, appSecret: string, audience: string, exp
  * @param allowedClockSkewSeconds 允许的时钟偏差单位为秒
  * @return 是否有效
  */
-export const consume = (token: string, issuer: string, appSecret: string, audience: string, allowedClockSkewSeconds: number) => {
-    return JwtService.consume(token, issuer, appSecret, audience, allowedClockSkewSeconds);
+export const consume = (
+  token: string,
+  issuer: string,
+  appSecret: string,
+  audience: string,
+  allowedClockSkewSeconds: number
+) => {
+  return JwtService.consume(
+    token,
+    issuer,
+    appSecret,
+    audience,
+    allowedClockSkewSeconds
+  )
 }

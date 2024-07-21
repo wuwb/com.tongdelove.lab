@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { IpToAddressService } from './ip-to-address.service';
+import { Module } from '@nestjs/common'
+import { IpToAddressService } from './ip-to-address.service'
 
 @Module({
   providers: [IpToAddressService],

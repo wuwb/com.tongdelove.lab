@@ -12,6 +12,6 @@ export interface UserRegisterParams {
   prefix: string
 }
 
-export async function fakeRegister(params: UserRegisterParams) {
+export const fakeRegister = async (params: UserRegisterParams) => {
   return {}
 }

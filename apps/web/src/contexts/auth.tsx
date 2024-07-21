@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import Router, { useRouter } from 'next/router'
-import api from '../utils/axios'
+import { instance as api } from '@/utils/axios'
 
 const AuthContext = createContext({} as any)
 
@@ -28,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     loadUserFromCookies()
   }, [])
 
-  const login = async (username, password) => {
+  const login = async (username: string, password: string) => {
     const { data: token } = await api.post('auth/login', { username, password })
     if (token) {
       Cookies.set('token', token.token, { expires: 60 })
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const logout = (username, password) => {
+  const logout = (username: string, password: string) => {
     Cookies.remove('token')
     setUser(null)
     delete api.defaults.headers['Authorization']
@@ -48,7 +47,13 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated: !!user, user, login, loading, logout }}
+      value={{
+        isAuthenticated: !!user,
+        user,
+        login,
+        loading,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

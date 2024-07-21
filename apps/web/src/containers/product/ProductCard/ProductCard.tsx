@@ -4,8 +4,6 @@ import styled from '@emotion/styled'
 
 const Product = styled.div`
   background: var(--color-background);
-  width: 100%;
-  height: 0;
   padding-bottom: 99%;
   padding-bottom: calc(100% - 2px);
   border-radius: var(--radius-big);
@@ -20,30 +18,24 @@ const ProductDetail = styled.div`
   }
 `
 
-const ProductCard = ({ product, variant = 'default', imgProps }) => {
+export const ProductCard = ({ product, variant = 'default', imgProps }) => {
   return (
-    <>
-      <Link href="/product/id" passHref>
-        <a>
-          {variant === 'default' && (
-            <div className="product-wrap">
-              <Product className="overflow-hidden text-left">
-                <Image
-                  width="800"
-                  height="800"
-                  src="/assets/products/accessories/1.jpg"
-                  alt=""
-                />
-              </Product>
-              <ProductDetail>
-                <h4 className="box-title text-center">珍珠棉卷</h4>
-              </ProductDetail>
-            </div>
-          )}
-        </a>
-      </Link>
-    </>
+    <Link href="/product/id" passHref>
+      {variant === 'default' && (
+        <div className="product-wrap">
+          <Product className="h-0 w-full overflow-hidden text-left">
+            <Image
+              width="800"
+              height="800"
+              src="/assets/products/accessories/1.jpg"
+              alt=""
+            />
+          </Product>
+          <ProductDetail>
+            <h4 className="box-title text-center">珍珠棉卷</h4>
+          </ProductDetail>
+        </div>
+      )}
+    </Link>
   )
 }
-
-export default ProductCard

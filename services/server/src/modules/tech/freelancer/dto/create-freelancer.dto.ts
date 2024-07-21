@@ -1,3 +1,3 @@
 export class CreateFreelancerDto {
-    id: string;
+  id: string
 }

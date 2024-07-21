@@ -1,9 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-
 import { Row, Col } from 'antd'
 
-function Content1(props) {
+export const Content1 = (props) => {
   const { ...tagProps }: any = props
   const { dataSource, isMobile } = tagProps
   delete tagProps.dataSource
@@ -58,5 +57,3 @@ function Content1(props) {
     </div>
   )
 }
-
-export default Content1

@@ -4,16 +4,18 @@ import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
-import SiteConfig from '@/config/site'
+import { SiteConfig } from '@/config/site'
 import { AuthProvider } from '@/contexts/auth'
 import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
 import nextI18NextConfig from '../../next-i18next.config'
 import '@/styles/globals.css'
+import { ConfigProvider } from 'antd'
+import { theme } from '../styles/themeConfig'
 
 const Noop = ({ children }) => <>{children}</>
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
   const Layout = (Component as any).Layout || Noop
 
@@ -30,32 +32,34 @@ function MyApp({ Component, pageProps }: AppProps) {
   // }, []);
 
   return (
-    <AuthProvider>
-      <Head>
-        <title>{SiteConfig.title}</title>
-        {/* {domain && <link rel="dns-prefetch" href={domain} />} */}
+    <ConfigProvider theme={theme}>
+      <AuthProvider>
+        <Head>
+          <title>{SiteConfig.title}</title>
+          {/* {domain && <link rel="dns-prefetch" href={domain} />} */}
 
-        <meta name="copyright" content={SiteConfig.domain} />
-        <meta name="renderer" content="webkit" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="google" content="notranslate" />
-        <meta name="referrer" content="strict-origin" />
-        <meta name="generator" content={SiteConfig.domain} />
-        <meta name="author" content={SiteConfig.author} />
-        <meta
-          name="viewport"
-          content="initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
+          <meta name="copyright" content={SiteConfig.domain} />
+          <meta name="renderer" content="webkit" />
+          <meta name="theme-color" content="#000000" />
+          <meta name="google" content="notranslate" />
+          <meta name="referrer" content="strict-origin" />
+          <meta name="generator" content={SiteConfig.domain} />
+          <meta name="author" content={SiteConfig.author} />
+          <meta
+            name="viewport"
+            content="initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
+          />
+        </Head>
+        <NextNProgress
+          height={1}
+          color="rgb(156, 163, 175, 0.9)"
+          options={{ showSpinner: false }}
         />
-      </Head>
-      <NextNProgress
-        height={1}
-        color="rgb(156, 163, 175, 0.9)"
-        options={{ showSpinner: false }}
-      />
-      <Layout pageProps={pageProps}>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthProvider>
+        <Layout pageProps={pageProps}>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthProvider>
+    </ConfigProvider>
   )
 }
 

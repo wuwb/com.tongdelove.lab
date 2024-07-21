@@ -1,14 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class DeliverPermissionService {
   // 转移用户去权限
-  async deliverUserPermission() {
-
-  }
+  async deliverUserPermission() {}
 
   // 转移用户角色
-  async deliverRoleUser() {
-
-  }
+  async deliverRoleUser() {}
 }

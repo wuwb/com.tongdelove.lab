@@ -1,8 +1,6 @@
-import { Injectable, Module } from "@nestjs/common";
-
+import { Injectable, Module } from '@nestjs/common'
 
 @Module({
-    imports: [],
+  imports: [],
 })
-export class ArticleModule {
-}
+export class ArticleModule {}

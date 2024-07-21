@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   server:
@@ -8,7 +8,7 @@ services:
         NPM_LOG_LEVEL: notice
       dockerfile: Dockerfile
     ports:
-      - "${SERVER_PORT}:7001"
+      - '${SERVER_PORT}:7001'
     environment:
       - BCRYPT_SALT=${BCRYPT_SALT}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}

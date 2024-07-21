@@ -1,9 +1,5 @@
-// import { ExclamationIcon, InformationCircleIcon } from '@heroicons/react/outline';
-import * as React from 'react'
-
+import React from 'react'
 import { Button } from '@/components/ui/Button'
-// import { Dialog, DialogTitle } from '@/components/Elements/Dialog';
-// import { useDisclosure } from '@/hooks/useDisclosure';
 
 export type ConfirmationDialogProps = {
   triggerButton: React.ReactElement

@@ -1,5 +1,3 @@
-import { Inject } from "@nestjs/common";
+import { Inject } from '@nestjs/common'
 
-export class BullService {
-
-}
+export class BullService {}

@@ -1,19 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ProductsGqlResolver } from './products-gql.resolver';
-import { ProductsGqlService } from './products-gql.service';
+import { Test, TestingModule } from '@nestjs/testing'
+import { ProductsGqlResolver } from './products-gql.resolver'
+import { ProductsGqlService } from './products-gql.service'
 
 describe('ProductsGqlResolver', () => {
-  let resolver: ProductsGqlResolver;
+  let resolver: ProductsGqlResolver
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [ProductsGqlResolver, ProductsGqlService],
-    }).compile();
+    }).compile()
 
-    resolver = module.get<ProductsGqlResolver>(ProductsGqlResolver);
-  });
+    resolver = module.get<ProductsGqlResolver>(ProductsGqlResolver)
+  })
 
   it('should be defined', () => {
-    expect(resolver).toBeDefined();
-  });
-});
+    expect(resolver).toBeDefined()
+  })
+})

@@ -171,8 +171,8 @@ const Page = () => {
                 <div className="dashboard__features">
                   <h3 className="title">
                     从源头到交付, 海维包装优化了您的包装供应链
-                    <Link href="/features">
-                      <a className="action">了解更多</a>
+                    <Link href="/features" className="action">
+                      了解更多
                     </Link>
                   </h3>
 

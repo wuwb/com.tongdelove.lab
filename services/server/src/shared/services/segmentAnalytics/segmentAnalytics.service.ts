@@ -1,57 +1,57 @@
-import { Injectable, Inject } from "@nestjs/common";
-import Analytics from "analytics-node";
-import { SegmentAnalyticsOptions } from "./segmentAnalytics.interfaces";
+import { Injectable, Inject } from '@nestjs/common'
+import Analytics from 'analytics-node'
+import { SegmentAnalyticsOptions } from './segmentAnalytics.interfaces'
 
 export enum EnumEventType {
-  Signup = "Signup",
-  WorkspacePlanUpgradeRequest = "WorkspacePlanUpgradeRequest",
-  WorkspacePlanDowngradeRequest = "WorkspacePlanDowngradeRequest",
+  Signup = 'Signup',
+  WorkspacePlanUpgradeRequest = 'WorkspacePlanUpgradeRequest',
+  WorkspacePlanDowngradeRequest = 'WorkspacePlanDowngradeRequest',
 }
 
 export type IdentifyData = {
-  userId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  createdAt: Date;
-};
+  userId: string
+  firstName: string
+  lastName: string
+  email: string
+  createdAt: Date
+}
 
 export type TrackData = {
-  userId: string;
-  event: EnumEventType;
+  userId: string
+  event: EnumEventType
   properties?:
     | {
-        [key: string]: unknown;
+        [key: string]: unknown
       }
-    | undefined;
-};
+    | undefined
+}
 
 @Injectable()
 export class SegmentAnalyticsService {
-  private analytics: Analytics;
+  private analytics: Analytics
 
   constructor(
-    @Inject("SEGMENT_ANALYTICS_OPTIONS")
+    @Inject('SEGMENT_ANALYTICS_OPTIONS')
     private options: SegmentAnalyticsOptions
   ) {
     if (options && options.segmentWriteKey && options.segmentWriteKey.length) {
-      this.analytics = new Analytics(this.options.segmentWriteKey);
+      this.analytics = new Analytics(this.options.segmentWriteKey)
     }
   }
 
   public async identify(data: IdentifyData): Promise<void> {
-    if (!this.analytics) return;
+    if (!this.analytics) return
 
-    const { userId, ...rest } = data;
+    const { userId, ...rest } = data
 
     this.analytics.identify({
       userId: userId,
       traits: rest,
-    });
+    })
   }
 
   public async track(data: TrackData): Promise<void> {
-    if (!this.analytics) return;
-    this.analytics.track(data);
+    if (!this.analytics) return
+    this.analytics.track(data)
   }
 }

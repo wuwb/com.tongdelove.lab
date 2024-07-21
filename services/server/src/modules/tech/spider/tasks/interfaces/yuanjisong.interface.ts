@@ -1,4 +1,2 @@
 // html 接口
-export interface YuanjisongTask {
-
-}
+export interface YuanjisongTask {}

@@ -1,11 +1,8 @@
-
-
-
 /**
  * 自身属性中是否具有指定的属性（也就是是否有指定的键）
  */
-export const hasOwnProperty = (obj: object, property: string) => Object.prototype.hasOwnProperty.call(obj, property);
-
+export const hasOwnProperty = (obj: object, property: string) =>
+  Object.prototype.hasOwnProperty.call(obj, property)
 
 /**
  * 简单取交集
@@ -15,6 +12,9 @@ export const hasOwnProperty = (obj: object, property: string) => Object.prototyp
  *
  * @returns {Array<string | number>}
  */
-export const intersection = (source: (string | number)[], comparison: (string | number)[]) => {
-    return comparison.filter(item => source.includes(item));
+export const intersection = (
+  source: (string | number)[],
+  comparison: (string | number)[]
+) => {
+  return comparison.filter((item) => source.includes(item))
 }

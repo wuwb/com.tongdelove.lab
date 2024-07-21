@@ -1,9 +1,9 @@
-export const APIPrefix = '';
+export const APIPrefix = ''
 
-export const CONNECTION = 'Connection';
+export const CONNECTION = 'Connection'
 
-export const API_ROOT_PATH = 'api';
+export const API_ROOT_PATH = 'api'
 
 export class UserConstants {
-    static readonly USERNAME_MAX_LENGTH: number = 16;
+  static readonly USERNAME_MAX_LENGTH: number = 16
 }

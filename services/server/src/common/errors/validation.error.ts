@@ -1,5 +1,5 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
-import * as TEXT from '@/common/constants/text.constant';
+import { HttpException, HttpStatus } from '@nestjs/common'
+import * as TEXT from '@/common/constants/text.constant'
 
 /**
  * @class ValidationError
@@ -9,6 +9,6 @@ import * as TEXT from '@/common/constants/text.constant';
  */
 export class ValidationError extends HttpException {
   constructor(error?: any) {
-    super(error || TEXT.VALIDATION_ERROR_DEFAULT, HttpStatus.BAD_REQUEST);
+    super(error || TEXT.VALIDATION_ERROR_DEFAULT, HttpStatus.BAD_REQUEST)
   }
 }

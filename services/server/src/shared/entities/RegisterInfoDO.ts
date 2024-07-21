@@ -52,4 +52,4 @@
 //   * 修改时间
 //   */
 //  private Integer updated;
-export const RegisterInfoDO = {};
+export const RegisterInfoDO = {}

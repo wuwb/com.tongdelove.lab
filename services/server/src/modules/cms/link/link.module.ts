@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { LinkService } from './link.service';
-import { LinkController } from './link.controller';
+import { Module } from '@nestjs/common'
+import { LinkService } from './link.service'
+import { LinkController } from './link.controller'
 
 @Module({
   controllers: [LinkController],
-  providers: [LinkService]
+  providers: [LinkService],
 })
 export class LinkModule {}

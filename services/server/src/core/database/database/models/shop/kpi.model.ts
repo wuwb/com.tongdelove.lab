@@ -26,10 +26,10 @@
 // | tag_rebuy_rate | FLOAT | | 行业复购率 |
 // | visit_date_i | INT | 1 | Hbase日期分区字段 |
 // | visit_date | VARCHAR | | NULL |
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm'
 
 @Entity({ name: 'shop_kpi' })
 export class ShopKpi {
-    @PrimaryColumn()
-    uuid: string;
+  @PrimaryColumn()
+  uuid: string
 }

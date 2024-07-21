@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const Home = () => {
+export const Category = () => {
   return (
     <ul className="primary-nav">
       <li className="nav-item active">
@@ -412,5 +412,3 @@ const Home = () => {
     </ul>
   )
 }
-
-export default Home

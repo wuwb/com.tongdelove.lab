@@ -42,4 +42,4 @@
 //    * 修改时间
 //    */
 //   private Integer updated;
-export const SubscribeInfoDO = {};
+export const SubscribeInfoDO = {}

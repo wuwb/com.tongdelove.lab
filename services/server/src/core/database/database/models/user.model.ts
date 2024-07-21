@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 // CREATE TABLE `wp_users` (
 //     `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -19,44 +19,94 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class User {
-    @PrimaryGeneratedColumn({ type: 'bigint' })
-    ID: string;
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  ID: string
 
-    @Column({ name: 'user_login', type: 'varchar', length: 60, nullable: false, default: '' })
-    userLogin: string;
+  @Column({
+    name: 'user_login',
+    type: 'varchar',
+    length: 60,
+    nullable: false,
+    default: '',
+  })
+  userLogin: string
 
-    @Column({ name: 'user_pass', type: 'varchar', length: 255, nullable: false, default: '' })
-    userPass: string;
+  @Column({
+    name: 'user_pass',
+    type: 'varchar',
+    length: 255,
+    nullable: false,
+    default: '',
+  })
+  userPass: string
 
-    @Column({ name: 'user_nicename', type: 'varchar', length: 50, nullable: false, default: '' })
-    userNicename: string;
+  @Column({
+    name: 'user_nicename',
+    type: 'varchar',
+    length: 50,
+    nullable: false,
+    default: '',
+  })
+  userNicename: string
 
-    @Column({ name: 'user_email', type: 'varchar', length: 100, nullable: false, default: '' })
-    userEmail: string;
+  @Column({
+    name: 'user_email',
+    type: 'varchar',
+    length: 100,
+    nullable: false,
+    default: '',
+  })
+  userEmail: string
 
-    @Column({ name: 'user_url', type: 'varchar', length: 100, nullable: false, default: '' })
-    userUrl: string;
+  @Column({
+    name: 'user_url',
+    type: 'varchar',
+    length: 100,
+    nullable: false,
+    default: '',
+  })
+  userUrl: string
 
-    @Column({
-        name: 'user_registered', type: 'datetime', nullable: false
-        // asExpression: 'ADD COLUMN `user_registered` datetime NOT NULL DEFAULT `0000-00-00 00:00:00`',
-    })
-    userRegistered: Date;
+  @Column({
+    name: 'user_registered',
+    type: 'datetime',
+    nullable: false,
+    // asExpression: 'ADD COLUMN `user_registered` datetime NOT NULL DEFAULT `0000-00-00 00:00:00`',
+  })
+  userRegistered: Date
 
-    @Column({ name: 'user_activation_key', type: 'varchar', length: 255, nullable: false, default: '' })
-    userActivationKey: string;
+  @Column({
+    name: 'user_activation_key',
+    type: 'varchar',
+    length: 255,
+    nullable: false,
+    default: '',
+  })
+  userActivationKey: string
 
-    @Column({ type: 'int', width: 11, name: 'user_status', nullable: false, default: 0 })
-    userStatus: number;
+  @Column({
+    type: 'int',
+    width: 11,
+    name: 'user_status',
+    nullable: false,
+    default: 0,
+  })
+  userStatus: number
 
-    @Column({ name: 'display_name', type: 'varchar', length: 250, nullable: false, default: '' })
-    displayName: string;
+  @Column({
+    name: 'display_name',
+    type: 'varchar',
+    length: 250,
+    nullable: false,
+    default: '',
+  })
+  displayName: string
 
-    // custom columns
+  // custom columns
 
-    @Column({ type: 'tinyint', nullable: false, default: 0 })
-    spam: number;
+  @Column({ type: 'tinyint', nullable: false, default: 0 })
+  spam: number
 
-    @Column({ type: 'tinyint', nullable: false, default: 0 })
-    deleted: number;
+  @Column({ type: 'tinyint', nullable: false, default: 0 })
+  deleted: number
 }

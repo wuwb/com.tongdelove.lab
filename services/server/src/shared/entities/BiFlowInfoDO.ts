@@ -1,5 +1,3 @@
-
-
 // class BiFlowInfoDO {
 //     Integer id;//自增id
 //     String task;//hive表名_日期（yyyyMMddHHmmss）
@@ -22,4 +20,4 @@
 //     Integer created;//创建时间
 //     Integer updated;//更新时间
 // }
-export const BiFlowInfoDO = {};
+export const BiFlowInfoDO = {}

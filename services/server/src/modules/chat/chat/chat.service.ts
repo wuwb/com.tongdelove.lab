@@ -6,13 +6,10 @@ import fs from 'fs'
 export class ChatService {
   private client: ClientProxy
 
-  constructor(
-  ) {
-  }
+  constructor() {}
 
   // https://www.lepton.ai/playground/sdxl?model=open-dalle
   generateLeptonImage() {
-
     const LEPTON_API_TOKEN = 'e3is0bssxn38sq9szero28k23qhecinb' // process.env.LEPTON_API_TOKEN
 
     const data = JSON.stringify({
@@ -23,8 +20,8 @@ export class ChatService {
       seed: 151886915,
       steps: 35,
       use_refiner: false,
-      scheduler: "KDPM2Discret",
-      prompt: "Astronaut on Mars During sunset",
+      scheduler: 'KDPM2Discret',
+      prompt: 'Astronaut on Mars During sunset',
     })
 
     const options = {
@@ -34,12 +31,12 @@ export class ChatService {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': data.length,
-        'Authorization': `Bearer ${LEPTON_API_TOKEN}`
-      }
+        Authorization: `Bearer ${LEPTON_API_TOKEN}`,
+      },
     }
 
     const req = https.request(options, (res) => {
-      const file = fs.createWriteStream("output_image.png")
+      const file = fs.createWriteStream('output_image.png')
       res.pipe(file)
     })
     req.on('error', (error) => {

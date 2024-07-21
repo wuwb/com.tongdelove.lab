@@ -1,10 +1,10 @@
 import Markdown from 'react-markdown'
-import classNames from 'clsx'
+import clsx from 'clsx'
 
-const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
+export const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
   return (
     <div
-      className={classNames(
+      className={clsx(
         // Common classes
         'px-2 py-2 text-white',
         {
@@ -26,5 +26,3 @@ const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
     </div>
   )
 }
-
-export default NotificationBanner

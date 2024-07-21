@@ -1,6 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 
-function SvgTailwindIcon(props) {
+export const SvgTailwindIcon = (props) => {
   return (
     <svg
       className="tailwind-icon_svg__fill-current tailwind-icon_svg__h-8 tailwind-icon_svg__w-8 tailwind-icon_svg__mr-2"
@@ -13,5 +13,3 @@ function SvgTailwindIcon(props) {
     </svg>
   )
 }
-
-export default SvgTailwindIcon

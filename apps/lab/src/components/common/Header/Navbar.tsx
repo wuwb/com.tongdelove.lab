@@ -1,7 +1,7 @@
 import { menuData } from './menuData'
 import { MenuItems } from './MenuItems'
 
-export function Navbar() {
+export const Navbar = () => {
   return (
     <div className="ml-6 hidden flex-1 items-center text-sm font-medium text-gray-800 md:flex">
       {menuData.map((menu, index) => {

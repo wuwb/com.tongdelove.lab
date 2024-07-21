@@ -1,8 +1,8 @@
 import { Button, message, Space } from 'antd'
 import {
-  ExclamationCircleOutlined,
-  CheckCircleOutlined,
-} from '@ant-design/icons'
+  AiOutlineExclamationCircle,
+  AiOutlineCheckCircle,
+} from 'react-icons/ai'
 import { Layout } from '@/components/common'
 
 const SolutionsBackedFishPage = () => {
@@ -49,16 +49,16 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">待定</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 高档
               </li>
               <li className="flex items-center">
-                <ExclamationCircleOutlined style={{ marginRight: '5px' }} />脆
+                <AiOutlineExclamationCircle style={{ marginRight: '5px' }} />脆
               </li>
               <li className="flex items-center">
-                <ExclamationCircleOutlined style={{ marginRight: '5px' }} />
+                <AiOutlineExclamationCircle style={{ marginRight: '5px' }} />
                 盒子上有注塑点
               </li>
             </ul>
@@ -72,19 +72,19 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">9元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 质量好
               </li>
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 高档
               </li>
               <li className="flex items-center">
-                <ExclamationCircleOutlined style={{ marginRight: '5px' }} />贵
+                <AiOutlineExclamationCircle style={{ marginRight: '5px' }} />贵
               </li>
             </ul>
           </div>
@@ -100,13 +100,13 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">9.3元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 便宜
               </li>
               <li className="flex items-center">
-                <ExclamationCircleOutlined style={{ marginRight: '5px' }} />
+                <AiOutlineExclamationCircle style={{ marginRight: '5px' }} />
                 中档
               </li>
             </ul>
@@ -120,19 +120,19 @@ const SolutionsBackedFishPage = () => {
             <div className="p-2">8元</div>
             <ul className="p-2 text-left">
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 便宜
               </li>
               <li className="flex items-center">
-                <CheckCircleOutlined
+                <AiOutlineCheckCircle
                   style={{ color: 'red', marginRight: '5px' }}
                 />
                 印刷美观
               </li>
               <li className="flex items-center">
-                <ExclamationCircleOutlined style={{ marginRight: '5px' }} />
+                <AiOutlineExclamationCircle style={{ marginRight: '5px' }} />
                 稳定性差
               </li>
             </ul>

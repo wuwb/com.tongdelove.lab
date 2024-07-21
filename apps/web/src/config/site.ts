@@ -1,4 +1,4 @@
-const SiteConfig: any = {
+export const SiteConfig = {
   author: 'Wenbin',
   title: '海维网络',
   description:
@@ -28,5 +28,3 @@ const SiteConfig: any = {
     pageWidthMobile: '88vw',
   },
 }
-
-export default SiteConfig

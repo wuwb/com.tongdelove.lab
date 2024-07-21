@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import cx from 'clsx'
 
 import styles from './Button.module.css'

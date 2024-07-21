@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { makeUseAxios } from 'axios-hooks'
-import { UserService } from '@/services'
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -8,7 +7,7 @@ const serverUrl = isDev
   ? 'http://localhost:7001/api/'
   : 'https://api.tongdelove.com/api'
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: serverUrl,
   timeout: 1000,
   headers: {
@@ -77,5 +76,3 @@ instance.interceptors.response.use(
 export const useAxios = makeUseAxios({
   axios: instance,
 })
-
-export default instance

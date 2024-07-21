@@ -1,4 +1,4 @@
-import DateFormater from '../components/date-formater'
+import { DateFormater } from '../components/date-formater'
 import { CoverImage } from '../components/cover-image'
 import Link from 'next/link'
 
@@ -18,8 +18,12 @@ export const HeroPost = ({
       <div className="md:col-gap-16 lg:col-gap-8 mb-20 md:mb-28 md:grid md:grid-cols-2">
         <div>
           <h3 className="mb-4 text-4xl leading-tight lg:text-6xl">
-            <Link as={`/posts/${slug}`} href="/posts/[slug]">
-              <a className="hover:underline">{title}</a>
+            <Link
+              as={`/posts/${slug}`}
+              href="/posts/[slug]"
+              className="hover:underline"
+            >
+              {title}
             </Link>
           </h3>
           <div className="mb-4 text-lg md:mb-0">

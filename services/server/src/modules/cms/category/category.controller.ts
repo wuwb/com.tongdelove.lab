@@ -1,19 +1,12 @@
-import { Controller, Get } from "@nestjs/common";
-
+import { Controller, Get } from '@nestjs/common'
 
 @Controller('categories')
 export class CategoryController {
-  constructor(
-
-  ) {}
+  constructor() {}
 
   @Get('/')
-  async getCategories() {
-
-  }
+  async getCategories() {}
 
   @Get('/:query')
-  async getCategoryById() {
-
-  }
+  async getCategoryById() {}
 }

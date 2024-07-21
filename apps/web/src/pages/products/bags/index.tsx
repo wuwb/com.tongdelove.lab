@@ -215,95 +215,85 @@ const ProductsBagsPage = () => {
             <div className="col-xl-10">
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/1.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/1.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        常规塑料袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      常规塑料袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/2.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/2.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        防锈袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      防锈袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/3.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/3.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        气泡膜袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      气泡膜袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/4.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/4.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        立体袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      立体袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/5.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/5.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        膜片
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      膜片
                     </Link>
                   </h4>
                 </div>
@@ -311,95 +301,85 @@ const ProductsBagsPage = () => {
 
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/6.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/6.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        平口袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      平口袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/7.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/7.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        常规塑胶袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      常规塑胶袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/8.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/8.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        自封袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      自封袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/9.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/9.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        铝箔袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      铝箔袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/10.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/10.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        珍珠棉袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      珍珠棉袋
                     </Link>
                   </h4>
                 </div>
@@ -407,76 +387,68 @@ const ProductsBagsPage = () => {
 
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/11.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/11.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        气泡袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      气泡袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/12.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/12.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        塑料袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      塑料袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/13.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/13.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        屏蔽袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      屏蔽袋
                     </Link>
                   </h4>
                 </div>
               </div>
               <div className="product-wrap">
                 <div className="product">
-                  <Link href="">
-                    <a href="" className="action-hover">
-                      <Image alt="" src="/assets/products/bags/14.jpg" />
-                    </a>
+                  <Link href="" className="action-hover">
+                    <Image alt="" src="/assets/products/bags/14.jpg" />
                   </Link>
                 </div>
                 <div className="product-detail">
                   <h4 className="box-title">
-                    <Link href="/products/corrugated-mailer-boxes">
-                      <a href="" className="action-hover">
-                        电子防静电袋
-                        <br />
-                      </a>
+                    <Link
+                      href="/products/corrugated-mailer-boxes"
+                      className="action-hover"
+                    >
+                      电子防静电袋
                     </Link>
                   </h4>
                 </div>

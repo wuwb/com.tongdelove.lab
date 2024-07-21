@@ -1,22 +1,23 @@
-import { UnauthorizedException } from "@nestjs/common";
-import { PassportStrategy } from "@nestjs/passport";
-import { BasicStrategy as Strategy } from "passport-http";
-import { AuthService } from "../auth.service";
-import { IAuthStrategy } from "../interface/IAuthStrategy";
-import { UserInfo } from "../interface/UserInfo";
+import { UnauthorizedException } from '@nestjs/common'
+import { PassportStrategy } from '@nestjs/passport'
+import { BasicStrategy as Strategy } from 'passport-http'
+import { AuthService } from '../auth.service'
+import { IAuthStrategy } from '../interface/IAuthStrategy'
+import { UserInfo } from '../interface/UserInfo'
 
-export class BasicStrategy extends PassportStrategy(Strategy)
-    implements IAuthStrategy {
+export class BasicStrategy
+  extends PassportStrategy(Strategy)
+  implements IAuthStrategy
+{
+  constructor(protected readonly authService: AuthService) {
+    super()
+  }
 
-    constructor(protected readonly authService: AuthService) {
-        super();
+  async validate(username: string, password: string): Promise<UserInfo> {
+    const user = await this.authService.validateUser(username, password)
+    if (!user) {
+      throw new UnauthorizedException()
     }
-
-    async validate(username: string, password: string): Promise<UserInfo> {
-        const user = await this.authService.validateUser(username, password);
-        if (!user) {
-            throw new UnauthorizedException();
-        }
-        return user;
-    }
+    return user
+  }
 }

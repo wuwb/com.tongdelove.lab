@@ -6,10 +6,10 @@ const QDRANT_KEY = ''
 
 @Injectable()
 export class QdrantService extends QdrantClient {
-    constructor() {
-        super({
-            url: QDRANT_URL,
-            apiKey: QDRANT_KEY,
-        })
-    }
+  constructor() {
+    super({
+      url: QDRANT_URL,
+      apiKey: QDRANT_KEY,
+    })
   }
+}
