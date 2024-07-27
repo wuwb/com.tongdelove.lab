@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Tab extends Component<any, any> {
+export class Tab extends Component<any, any> {
   // static propTypes = {
   //   activeTab: PropTypes.string.isRequired,
   //   label: PropTypes.string.isRequired,
@@ -31,5 +31,3 @@ class Tab extends Component<any, any> {
     )
   }
 }
-
-export default Tab

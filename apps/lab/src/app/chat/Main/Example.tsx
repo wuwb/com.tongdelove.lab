@@ -1,9 +1,10 @@
+'use client'
+
 import { MdOutlineTipsAndUpdates } from 'react-icons/md'
 import examples from '@/data/examples.json'
 import { Button } from '@tongdelove/ui/Button'
 import { useMemo, useState } from 'react'
-
-const Example = () => {
+export const Example = () => {
   const [showFull, setShowFull] = useState(false)
 
   const list = useMemo(() => {
@@ -48,5 +49,3 @@ const Example = () => {
     </>
   )
 }
-
-export default Example

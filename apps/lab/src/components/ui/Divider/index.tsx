@@ -1,8 +1,7 @@
-import { FC } from 'react'
-import type { WithChildren } from '@/helper/WithChildren'
+interface DividerProps {
+  children: React.ReactNode
+}
 
-type Props = any
-
-export const Divider: FC = (props: Props & WithChildren) => {
+export const Divider = (props: DividerProps) => {
   return <div className="my-4 h-px w-full">{props.children}</div>
 }

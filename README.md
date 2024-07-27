@@ -238,3 +238,18 @@ Error
 - https://github.com/kingsleydon/heybox-wfa
 - https://github.com/KelvinMitaki/Apollo-Stack.git
 - https://github.com/taozhi1010/nest-admin
+
+
+### Tech stacks
+
+- Shadcn UI framework based on Tailwind.
+- Supabase Managed postgres database.
+- Drizzle Database ORM.
+- Logto.io Fully open sourced Auth solution.
+- Triggerdev v2.0 Background jobs.
+- Resend Email service.
+- React Email Write emails without pain.
+- ScreenshotOne Screenshot Api.
+- Cloudflare R2 Image storage.
+- Umami Website Analytics
+- Koyeb Paas Service.

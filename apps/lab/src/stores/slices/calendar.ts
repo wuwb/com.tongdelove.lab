@@ -13,7 +13,7 @@ const initialState: CalendarState = {
   events: [],
 }
 
-const slice = createSlice({
+export const slice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
@@ -74,4 +74,3 @@ export const deleteEvent =
     dispatch(slice.actions.deleteEvent(eventId))
   }
 
-export default slice

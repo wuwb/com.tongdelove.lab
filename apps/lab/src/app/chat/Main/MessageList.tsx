@@ -1,8 +1,8 @@
-import Markdown from '@/components/common/Markdown'
+import { Markdown } from '@/components/common/Markdown'
 import { Message } from '@/types/chat'
 import { SiOpenai } from 'react-icons/si'
 
-export default function MessageList() {
+export function MessageList() {
   const messageList: Message[] = [
     {
       id: '1',

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Image } from '../../ui/Image'
-import SectionHeading from '../../common/SectionHeading'
+import { SectionHeading } from '../../common/SectionHeading'
 
-function Solutions() {
+export function Solutions() {
   return (
     <div>
       <SectionHeading
@@ -95,5 +95,3 @@ function Solutions() {
     </div>
   )
 }
-
-export default Solutions

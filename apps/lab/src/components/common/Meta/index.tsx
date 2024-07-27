@@ -11,7 +11,7 @@ type IMetaProps = {
   site_name?: string
 }
 
-const Meta = (props: IMetaProps) => {
+export const Meta = (props: IMetaProps) => {
   return (
     <>
       <meta charSet="utf-8" />
@@ -86,5 +86,3 @@ const Meta = (props: IMetaProps) => {
     </>
   )
 }
-
-export { Meta }

@@ -21,7 +21,7 @@ export function useEventBusContext() {
   return useContext(EventBusContext)
 }
 
-export default function EventBusContextProvider({
+export function EventBusContextProvider({
   children,
 }: {
   children: ReactNode

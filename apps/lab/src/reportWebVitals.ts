@@ -1,6 +1,6 @@
 import { onLCP, onFID, onCLS, onFCP, onTTFB } from 'web-vitals'
 
-const reportWebVitals = (onPerfEntry?) => {
+export const reportWebVitals = (onPerfEntry?) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     onCLS(onPerfEntry)
     onFID(onPerfEntry)
@@ -9,5 +9,3 @@ const reportWebVitals = (onPerfEntry?) => {
     onTTFB(onPerfEntry)
   }
 }
-
-export default reportWebVitals

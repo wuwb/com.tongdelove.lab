@@ -1,5 +1,5 @@
 // 图片加载方法
-function LoadImage(url, callback) {
+export function LoadImage(url, callback) {
   const img = new Image() //创建一个Image对象，实现图片的预下载
   img.src = url
   if (img.complete) {

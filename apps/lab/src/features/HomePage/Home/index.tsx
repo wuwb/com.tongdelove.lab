@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageWrapper } from '@/components/ui/PageWrapper/PageWrapper'
-import TopicList from './TopicList'
-import Sidebar from './Sidebar'
+import { TopicList } from './TopicList'
+import { Sidebar } from './Sidebar'
 
 export const Home: React.FC<any> = (props) => {
   return (

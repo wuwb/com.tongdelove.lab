@@ -6,7 +6,7 @@ type IHeroOneButtonProps = {
   button: ReactNode
 }
 
-const HeroOneButton = (props: IHeroOneButtonProps) => (
+export const HeroOneButton = (props: IHeroOneButtonProps) => (
   <header className="text-center">
     <h1 className="leading-hero whitespace-pre-line text-5xl font-bold text-gray-900">
       {props.title}
@@ -16,5 +16,3 @@ const HeroOneButton = (props: IHeroOneButtonProps) => (
     {props.button}
   </header>
 )
-
-export { HeroOneButton }

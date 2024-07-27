@@ -1,7 +1,7 @@
 import React from 'react'
-import SidebarBlock from '@/components/common/SidebarBlock'
+import { SidebarBlock } from '@/components/common/SidebarBlock'
 
-function Status() {
+export function Status() {
   return (
     <SidebarBlock className="mb-4" title="社区运行状况">
       <ul>
@@ -26,5 +26,3 @@ function Status() {
     </SidebarBlock>
   )
 }
-
-export default Status

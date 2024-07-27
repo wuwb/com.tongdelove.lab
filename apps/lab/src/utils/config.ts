@@ -1,5 +1,4 @@
 import { notification } from 'antd'
-
 import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
 import {
   ConfigFile,

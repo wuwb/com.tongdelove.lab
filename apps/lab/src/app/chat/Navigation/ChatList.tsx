@@ -1,4 +1,6 @@
-import type { Chat } from '@/types/chat'
+'use client'
+
+import { Chat } from '@/types/chat'
 import { useMemo, useState } from 'react'
 import { groupByDate } from '@/utils/helpers/chat'
 import { ChatItem } from './ChatItem'

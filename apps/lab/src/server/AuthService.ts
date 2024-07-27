@@ -1,6 +1,6 @@
 import axios from '@/utils/axios'
 
-class AuthService {
+export class AuthService {
   login(email: string, password: string) {
     return axios
       .post('/auth/login', {
@@ -35,5 +35,3 @@ class AuthService {
     return null
   }
 }
-
-export default AuthService

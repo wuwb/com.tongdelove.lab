@@ -4,7 +4,11 @@ import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-function Markdown({ children, className = '', ...props }: Options) {
+export const Markdown = memo(({
+  children,
+  className = '',
+  ...props
+}: Options) => {
   return (
     <ReactMarkdown
       components={{
@@ -33,6 +37,4 @@ function Markdown({ children, className = '', ...props }: Options) {
       {children}
     </ReactMarkdown>
   )
-}
-
-export default memo(Markdown)
+})

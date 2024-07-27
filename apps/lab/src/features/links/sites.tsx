@@ -1,4 +1,4 @@
-const HomeSites = () => {
+export const HomeSites = () => {
   const data = [
     {
       name: 'saber',

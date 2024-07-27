@@ -1,7 +1,8 @@
+
 import type { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 import type { FC, PropsWithChildren } from 'react'
-import AppContextProvider from '@/contexts/AppContext'
+import { AppContextProvider } from '@/contexts/AppContext'
 import { MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import { TooltipProvider } from '@tongdelove/ui/tooltip'

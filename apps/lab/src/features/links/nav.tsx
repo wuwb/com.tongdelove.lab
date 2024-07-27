@@ -1,7 +1,4 @@
-/**
- * @crated 2014-08-11 19:41:54
- */
-import develop from './develop'
+import { develop } from './develop'
 
 let navs = [
   {

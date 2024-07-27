@@ -1,8 +1,5 @@
 /**
  * Build a path string from a path and a hash/search object
- * @param path
- * @param hash
- * @param search
  */
 export const pathString = (
   path: string,

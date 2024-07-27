@@ -1,8 +1,7 @@
 import React from 'react'
-
 import { Card, CardContent, Divider, Box, Text, Chip } from '@mantine/core'
 
-const BaseCard = (props) => {
+export const BaseCard = (props) => {
   return (
     <Card>
       <Box p={2} display="flex">
@@ -12,5 +11,3 @@ const BaseCard = (props) => {
     </Card>
   )
 }
-
-export default BaseCard

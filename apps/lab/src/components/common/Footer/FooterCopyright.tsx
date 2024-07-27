@@ -1,4 +1,4 @@
-const FooterCopyright = () => (
+export const FooterCopyright = () => (
   <div className="footer-copyright text-primary-500">
     © Copyright {new Date().getFullYear()} app title. Powered with{' '}
     <span role="img" aria-label="Love">
@@ -16,5 +16,3 @@ const FooterCopyright = () => (
      */}
   </div>
 )
-
-export { FooterCopyright }

@@ -1,12 +1,12 @@
 import React from 'react'
-import Profile from './Profile'
-import Today from './Today'
-import HotNodes from './HotNodes'
-import NewNodes from './NewDodes'
-import Status from './Status'
-import Ads from './Ads'
+import { Profile } from './Profile'
+import { Today } from './Today'
+import { HotNodes } from './HotNodes'
+import { NewNodes } from './NewDodes'
+import { Status } from './Status'
+import { Ads } from './Ads'
 
-function Sidebar() {
+export function Sidebar() {
   return (
     <div>
       <Profile />
@@ -18,5 +18,3 @@ function Sidebar() {
     </div>
   )
 }
-
-export default Sidebar

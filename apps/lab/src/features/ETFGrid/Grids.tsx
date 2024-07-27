@@ -1,5 +1,5 @@
 import { useGrids, GearType, toFixedString } from '@/hooks/useGrids'
-import LazyDownload from './Download'
+import { Download } from './Download'
 
 import {
   Table,
@@ -30,7 +30,7 @@ export function Grids() {
 
   return (
     <div>
-      <LazyDownload />
+      <Download />
       <Table id="table-list">
         <TableCaption>操作示意表</TableCaption>
         <TableHeader>

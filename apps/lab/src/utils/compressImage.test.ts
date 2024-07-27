@@ -1,4 +1,4 @@
-import compressImage from './compressImage'
+import { compressImage } from './compressImage'
 
 const getContextSpy = vi.spyOn(global.HTMLCanvasElement.prototype, 'getContext')
 const drawImageSpy = vi.spyOn(CanvasRenderingContext2D.prototype, 'drawImage')

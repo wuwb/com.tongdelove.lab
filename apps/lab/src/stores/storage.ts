@@ -10,6 +10,4 @@ const createNoopStorage = () => ({
   },
 })
 
-const storage = typeof window !== 'undefined' ? null : createNoopStorage()
-
-export default storage
+export const storage = typeof window !== 'undefined' ? null : createNoopStorage()

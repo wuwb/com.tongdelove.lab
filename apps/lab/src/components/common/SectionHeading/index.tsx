@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SectionHeading({ title, subTitle }) {
+export function SectionHeading({ title, subTitle }) {
   return (
     <div>
       <h2 className="text-center text-[2.635em] font-black">{title}</h2>
@@ -8,5 +8,3 @@ function SectionHeading({ title, subTitle }) {
     </div>
   )
 }
-
-export default SectionHeading

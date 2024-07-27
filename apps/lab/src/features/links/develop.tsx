@@ -1,4 +1,4 @@
-const develop = [
+export const develop = [
   {
     name: '常用推荐',
     children: [
@@ -935,5 +935,3 @@ const develop = [
     ],
   },
 ]
-
-export default develop

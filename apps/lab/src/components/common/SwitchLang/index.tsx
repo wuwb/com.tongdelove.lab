@@ -24,7 +24,7 @@ const localeText = (locale: string): string => {
   }
 }
 
-const SwitchLang = () => {
+export const SwitchLang = () => {
   const { locales, pathname, query, asPath } = useRouter()
   console.log('locales: ', locales)
 
@@ -91,5 +91,3 @@ const SwitchLang = () => {
     </div>
   )
 }
-
-export default SwitchLang

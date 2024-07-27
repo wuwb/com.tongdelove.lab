@@ -1,6 +1,4 @@
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash-es'
 import { select, takeLatest } from 'redux-saga/effects'
 
-function* syncSaga() {}
-
-export default syncSaga
+export function* syncSaga() { }

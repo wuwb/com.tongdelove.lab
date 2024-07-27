@@ -1,4 +1,4 @@
-const compressImage = ({
+export const compressImage = ({
   img,
   type = 'image/webp',
 }: {
@@ -31,5 +31,3 @@ const compressImage = ({
 
   return canvas.toDataURL(type)
 }
-
-export default compressImage

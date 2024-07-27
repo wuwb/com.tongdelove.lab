@@ -9,7 +9,7 @@ type Props = {
   onLinkClick: () => void
 }
 
-const SmoothScroll = ({
+export const SmoothScroll = ({
   className,
   children,
   to,
@@ -80,5 +80,3 @@ const SmoothScroll = ({
     </a>
   )
 }
-
-export default SmoothScroll

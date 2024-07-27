@@ -2,7 +2,7 @@ import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 import { PiLightningFill, PiShootingStarFill } from 'react-icons/pi'
 
-export default function ModelSelect() {
+export function ModelSelect() {
   const models = [
     {
       id: 'gpt-3.5-turbo',

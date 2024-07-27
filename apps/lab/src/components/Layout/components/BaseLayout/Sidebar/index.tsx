@@ -10,7 +10,7 @@ import { ImLab } from 'react-icons/im'
 import styles from './Sidebar.module.css'
 import { UnstyledButton, Button, Tooltip, Title, rem } from '@mantine/core'
 
-const NavItem = ({
+export const NavItem = ({
   isCollapsed,
   icon,
   activeIcon,

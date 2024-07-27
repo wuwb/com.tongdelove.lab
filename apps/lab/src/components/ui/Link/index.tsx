@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const NextLinkComposed = React.forwardRef(function NextLinkComposed(
+export const NextLinkComposed = React.forwardRef(function NextLinkComposed(
   props: any,
   ref
 ) {
@@ -37,7 +37,7 @@ const NextLinkComposed = React.forwardRef(function NextLinkComposed(
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link
-const Links = React.forwardRef(function Link(props: any, ref) {
+export const Links = React.forwardRef(function Link(props: any, ref) {
   const {
     activeClassName = 'active',
     as: linkAs,
@@ -84,7 +84,7 @@ const Links = React.forwardRef(function Link(props: any, ref) {
   )
 })
 
-function Link({ href, children, ...props }: any) {
+export function Link({ href, children, ...props }: any) {
   const { className, ...rest } = props
 
   return (
@@ -93,5 +93,3 @@ function Link({ href, children, ...props }: any) {
     </NextLink>
   )
 }
-
-export { Link, Links, NextLinkComposed }

@@ -13,7 +13,7 @@ interface LabelProps {
   children?: ReactNode
 }
 
-const Label: FC<LabelProps> = ({
+export const Label: FC<LabelProps> = ({
   className,
   color = 'secondary',
   children,
@@ -26,4 +26,3 @@ const Label: FC<LabelProps> = ({
   )
 }
 
-export default Label

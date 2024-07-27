@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Text } from '@mantine/core'
 
-export default function Copyright() {
+export function Copyright() {
   return (
     <Text variant="body2" color="textSecondary" align="center">
       {'Copyright © '}

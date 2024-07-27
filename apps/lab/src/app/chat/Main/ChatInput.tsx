@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@mantine/core'
 import { MdRefresh } from 'react-icons/md'
 import { PiLightningFill } from 'react-icons/pi'
@@ -5,7 +7,7 @@ import { FiSend } from 'react-icons/fi'
 import TextareaAutoSize from 'react-textarea-autosize'
 import { useState } from 'react'
 
-export default function ChatInput() {
+export function ChatInput() {
   const [messageText, setMessageText] = useState('')
 
   async function send() {

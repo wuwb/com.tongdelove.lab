@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { CustomLink } from '../CustomLink'
 
-const ButtonContent = ({ button, appearance, compact }) => {
+export const ButtonContent = ({ button, appearance, compact }) => {
   return (
     <div
       className={clsx(
@@ -49,5 +49,3 @@ const ButtonLink = ({ button, appearance, compact = false }) => {
     </CustomLink>
   )
 }
-
-export default ButtonLink

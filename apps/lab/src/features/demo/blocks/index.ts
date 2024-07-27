@@ -1,1 +1,1 @@
-export { Jumbotron } from './jumbotron/Jumbotron'
+export * from './jumbotron/Jumbotron'

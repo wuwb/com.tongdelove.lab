@@ -1,5 +1,6 @@
 import styles from './toolbar.module.scss'
+import clsx from 'clsx'
 
-export default function Toolbar({ children }) {
-  return <div className={styles.toolbar}>{children}</div>
+export function Toolbar({ children }) {
+  return <div className={clsx('border', styles.toolbar)}>{children}</div>
 }

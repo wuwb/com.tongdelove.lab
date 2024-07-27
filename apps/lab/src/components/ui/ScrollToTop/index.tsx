@@ -37,7 +37,7 @@ const ScrollToTop = () => {
 
   return (
     <div
-      className={clsx(styles.container, {
+      className={clsx('fixed', styles.container, {
         hidden: !showScroll,
       })}
       onClick={scrollUp}
@@ -47,4 +47,4 @@ const ScrollToTop = () => {
   )
 }
 
-export default ScrollToTop
+export ScrollToTop

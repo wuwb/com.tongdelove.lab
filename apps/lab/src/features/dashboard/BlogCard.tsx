@@ -23,7 +23,7 @@ type ButtonColor =
   | 'success'
   | 'info'
 
-const BlogCard: FC = () => {
+export const BlogCard: FC = () => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {blogs.map((blog, index) => (
@@ -75,5 +75,3 @@ const BlogCard: FC = () => {
     </div>
   )
 }
-
-export default BlogCard

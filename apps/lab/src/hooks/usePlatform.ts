@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-
 import { getBrowser, getPlatform } from '@/utils/platform'
 
 export const usePlatform = () => {

@@ -1,3 +1,3 @@
-export { CtaBlock } from './cta/CtaBlock'
-export { HeroBlock } from './hero/HeroBlock'
-export { FeaturesBlock } from './features/FeaturesBlock'
+export * from './cta/CtaBlock'
+export * from './hero/HeroBlock'
+export * from './features/FeaturesBlock'

@@ -141,13 +141,13 @@ const config = {
     // },
   },
 
-  sentry: {
-    hideSourceMaps: true,
-    // To disable the automatic instrumentation of API route handlers and server-side data fetching functions
-    // In other words, disable if you prefer to explicitly handle sentry per api routes (ie: wrapApiHandlerWithSentry)
-    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#configure-server-side-auto-instrumentation
-    autoInstrumentServerFunctions: false,
-  },
+  // sentry: {
+  //   hideSourceMaps: true,
+  //   // To disable the automatic instrumentation of API route handlers and server-side data fetching functions
+  //   // In other words, disable if you prefer to explicitly handle sentry per api routes (ie: wrapApiHandlerWithSentry)
+  //   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#configure-server-side-auto-instrumentation
+  //   autoInstrumentServerFunctions: false,
+  // },
 
   // @link https://nextjs.org/docs/basic-features/image-optimization
   images: {
@@ -160,14 +160,14 @@ const config = {
     disableStaticImages: false,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // @decarated changed to remotePatterns
-    domains: [
-      'www.gravatar.com',
-      // 加入 wordpress 相关域名
-      'blog.tongdelove.com',
-      '127.0.0.1',
-      'localhost',
-      'via.placeholder.com',
-    ],
+    // domains: [
+    //   'www.gravatar.com',
+    //   // 加入 wordpress 相关域名
+    //   'blog.tongdelove.com',
+    //   '127.0.0.1',
+    //   'localhost',
+    //   'via.placeholder.com',
+    // ],
     remotePatterns: [
       {
         protocol: 'https',

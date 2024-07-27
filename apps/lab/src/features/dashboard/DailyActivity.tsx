@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseCard from '@/components/module/baseCard/BaseCard'
+import { BaseCard } from '@/components/module/baseCard/BaseCard'
 
 const activities = [
   {
@@ -29,7 +29,7 @@ const activities = [
   },
 ]
 
-const DailyActivity = () => {
+export const DailyActivity = () => {
   return (
     <BaseCard title="Daily Activity">
       <div>
@@ -66,5 +66,3 @@ const DailyActivity = () => {
     </BaseCard>
   )
 }
-
-export default DailyActivity

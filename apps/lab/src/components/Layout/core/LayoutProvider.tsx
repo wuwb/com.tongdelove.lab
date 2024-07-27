@@ -1,12 +1,12 @@
 import { FC, createContext, useContext, useState, useEffect } from 'react'
 
-const LayoutContext = createContext({
+export const LayoutContext = createContext({
   classes: {
     footerContainer: [],
   },
 })
 
-const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
+export const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   const [classes, setClasses] = useState({
     footerContainer: [],
   })
@@ -23,4 +23,3 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export { LayoutProvider, LayoutContext }

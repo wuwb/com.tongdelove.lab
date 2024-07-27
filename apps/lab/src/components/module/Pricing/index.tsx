@@ -1,6 +1,6 @@
 type IPricingProps = any
 
-const Pricing = (props: IPricingProps) => {
+export const Pricing = (props: IPricingProps) => {
   const pricing = {
     title: 'Pricing',
     items: [
@@ -128,5 +128,3 @@ const Pricing = (props: IPricingProps) => {
     </section>
   )
 }
-
-export default Pricing

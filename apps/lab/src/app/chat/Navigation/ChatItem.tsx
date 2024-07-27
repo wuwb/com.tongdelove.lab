@@ -1,4 +1,6 @@
-import type { Chat } from '@/types/chat'
+'use client'
+
+import { Chat } from '@/types/chat'
 import { useEffect, useState } from 'react'
 
 import { AiOutlineEdit } from 'react-icons/ai'

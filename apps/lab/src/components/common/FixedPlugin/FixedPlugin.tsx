@@ -1,3 +1,3 @@
-export default function FixedPlugin(props) {
+export function FixedPlugin(props) {
   return <div></div>
 }

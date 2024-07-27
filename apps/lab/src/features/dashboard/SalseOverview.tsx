@@ -1,7 +1,7 @@
 import React from 'react'
-import BaseCard from '@/components/module/baseCard/BaseCard'
+import { BaseCard } from '@/components/module/baseCard/BaseCard'
 
-const SalesOverview = () => {
+export const SalesOverview = () => {
   const optionssalesoverview = {
     grid: {
       show: true,
@@ -102,5 +102,3 @@ const SalesOverview = () => {
   ]
   return <BaseCard title="Sales Overview"></BaseCard>
 }
-
-export default SalesOverview

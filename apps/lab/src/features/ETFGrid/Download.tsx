@@ -22,7 +22,7 @@ const delay = (ms: number) => {
   })
 }
 
-export default function Download() {
+export function Download() {
   const { portal, togglePortal } = usePortal(<Loading />)
   const callback = useCallback(async () => {
     const input = document.getElementById('fund-input')

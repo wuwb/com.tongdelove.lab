@@ -1,4 +1,4 @@
-class TokenService {
+export class TokenService {
   getLocalRefreshToken() {
     const user = JSON.parse(localStorage.getItem('user'))
     return user?.refreshToken
@@ -8,5 +8,3 @@ class TokenService {
     return user?.accessToken
   }
 }
-
-export default TokenService

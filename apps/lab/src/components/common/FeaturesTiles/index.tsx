@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import SectionHeader from '../SectionHeader'
+import { SectionHeader } from '../SectionHeader'
 import Image from 'next/legacy/image'
 
-const FeaturesTiles = ({
+export const FeaturesTiles = ({
   className,
   topOuterDivider,
   bottomOuterDivider,
@@ -201,5 +201,3 @@ const FeaturesTiles = ({
     </section>
   )
 }
-
-export default FeaturesTiles

@@ -1,16 +1,17 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren, FC } from 'react'
+import React from 'react'
 
-interface PageWrapperProps extends PropsWithChildren {
+interface PageWrapperProps {
   className: string
-  style: string
+  style?: React.CSSProperties
+  children: React.ReactNode
 }
 
-export const PageWrapper: FC<PageWrapperProps> = ({
+export const PageWrapper = ({
   className,
   style,
   children,
-}) => {
+}: PageWrapperProps) => {
   return (
     <div className={clsx('relative', className)} style={style}>
       {children}

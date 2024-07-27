@@ -11,7 +11,7 @@ import {
   Stack,
 } from '@mantine/core'
 
-export default function SplitScreen() {
+export function SplitScreen() {
   return (
     <Stack>
       <Flex p={8} align="center" justify="center">

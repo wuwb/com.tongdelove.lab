@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image'
 
-function Item(props) {
+export function Item(props) {
   const { title, image, author } = props
   return (
     <div className="flex">
@@ -37,5 +37,3 @@ function Item(props) {
     </div>
   )
 }
-
-export default Item

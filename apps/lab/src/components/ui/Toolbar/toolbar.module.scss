@@ -1,9 +1,6 @@
 .toolbar {
-  // display: flex;
-  @include border();
   background: scale-color($black, $lightness: 3%);
   font-size: $goldenPercent;
-  // margin: $margin;
 
   button {
     margin: 0;

@@ -1,13 +1,13 @@
 import React, { Component, ReactNode } from 'react'
-import Tab from './Tab'
+import { Tab } from './Tab'
 import './Tabs.module.scss'
 
 type ITabsProps = {
   activeChild: any
-  children: any[]
+  children: ReactNode[]
 }
 
-class Tabs extends Component<ITabsProps, any> {
+export class Tabs extends Component<ITabsProps, any> {
   constructor(props: any) {
     super(props)
 
@@ -60,5 +60,3 @@ class Tabs extends Component<ITabsProps, any> {
     )
   }
 }
-
-export default Tabs

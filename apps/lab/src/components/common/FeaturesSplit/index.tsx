@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import SectionHeader from '../SectionHeader'
+import { SectionHeader } from '../SectionHeader'
 import Image from 'next/legacy/image'
 
-const FeaturesSplit = ({
+export const FeaturesSplit = ({
   className,
   topOuterDivider,
   bottomOuterDivider,
@@ -152,5 +152,3 @@ const FeaturesSplit = ({
     </section>
   )
 }
-
-export default FeaturesSplit

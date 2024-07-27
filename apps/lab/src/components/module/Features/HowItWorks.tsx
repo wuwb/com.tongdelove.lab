@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionHeading from '../../common/SectionHeading'
+import { SectionHeading } from '../../common/SectionHeading'
 
 export function HowItWorks() {
   return (

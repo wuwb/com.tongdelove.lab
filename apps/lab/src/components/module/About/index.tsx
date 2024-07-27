@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/legacy/image'
 
-const About = () => {
+export const About = () => {
   const { company, about } = {
     company: {
       name: 'React landing page 2021',
@@ -126,5 +126,3 @@ const About = () => {
     </div>
   )
 }
-
-export default About

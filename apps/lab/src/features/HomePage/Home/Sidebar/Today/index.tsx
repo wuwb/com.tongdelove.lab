@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/legacy/image'
-import SidebarBlock from '@/components/common/SidebarBlock'
+import { SidebarBlock } from '@/components/common/SidebarBlock'
 
 export const Today = () => {
   const data = [

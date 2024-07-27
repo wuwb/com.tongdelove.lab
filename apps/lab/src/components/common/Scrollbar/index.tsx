@@ -7,7 +7,7 @@ interface ScrollbarProps {
   children?: ReactNode
 }
 
-const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
+export const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
   return (
     <Scrollbars
       autoHide
@@ -21,5 +21,3 @@ const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
     </Scrollbars>
   )
 }
-
-export default Scrollbar

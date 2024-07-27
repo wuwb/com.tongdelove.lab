@@ -9,7 +9,7 @@ import {
   Box,
   Table,
 } from '@mantine/core'
-import BaseCard from '@/components/module/baseCard/BaseCard'
+import { BaseCard } from '@/components/module/baseCard/BaseCard'
 
 const products = [
   {
@@ -50,7 +50,7 @@ const products = [
   },
 ]
 
-const ProductPerfomance = () => {
+export const ProductPerfomance = () => {
   return (
     <BaseCard title="Product Perfomance">
       <Table
@@ -138,5 +138,3 @@ const ProductPerfomance = () => {
     </BaseCard>
   )
 }
-
-export default ProductPerfomance

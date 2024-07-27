@@ -6,7 +6,7 @@ type ICTABannerProps = {
   button: ReactNode
 }
 
-const CTABanner = (props: ICTABannerProps) => (
+export const CTABanner = (props: ICTABannerProps) => (
   <div className="bg-primary-100 flex flex-col rounded-md p-4 text-center sm:flex-row sm:items-center sm:justify-between sm:p-12 sm:text-left">
     <div className="text-2xl font-semibold">
       <div className="text-gray-900">{props.title}</div>
@@ -18,5 +18,3 @@ const CTABanner = (props: ICTABannerProps) => (
     </div>
   </div>
 )
-
-export { CTABanner }

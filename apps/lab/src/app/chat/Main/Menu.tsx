@@ -3,7 +3,7 @@ import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 import clsx from 'clsx'
 
-export default function Menu() {
+export function Menu() {
   const {
     state: { displayNavigation },
     dispatch,

@@ -1,7 +1,7 @@
 import React from 'react'
-import Item from './Item'
+import { Item } from './Item'
 
-function TopicList() {
+export function TopicList() {
   const items = [
     {
       id: 1,
@@ -31,5 +31,3 @@ function TopicList() {
     </div>
   )
 }
-
-export default TopicList

@@ -1,6 +1,5 @@
 import pc from 'picocolors'
 import { z } from 'zod'
-
 export const isDev = process.env.NODE_ENV === 'development'
 const isRunningInNode = process !== undefined
 const isTestEnv = process.env.NODE_ENV === 'test'

@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core'
+import { UnstyledButton, Tooltip, rem } from '@mantine/core'
 import {
   TbHome2,
   TbGauge,
@@ -10,7 +12,7 @@ import {
   TbSettings,
 } from 'react-icons/tb'
 import classes from './Navbar.module.css'
-import Navigation from '../Navigation'
+import { Navigation } from '../Navigation'
 
 const mainLinksMockdata = [
   { icon: TbHome2, label: 'Home' },
@@ -53,7 +55,7 @@ export function Navbar() {
         className={classes.mainLink}
         data-active={link.label === active || undefined}
       >
-        <link.icon style={{ width: rem(22), height: rem(22) }} stroke={1.5} />
+        <link.icon style={{ width: rem(22), height: rem(22) }} />
       </UnstyledButton>
     </Tooltip>
   ))
@@ -75,7 +77,7 @@ export function Navbar() {
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.wrapper}>
+      <div className="flex flex-1 h-full overflow-hidden">
         <div className={classes.aside}>
           <div className={classes.logo}>LOGO</div>
           {mainLinks}

@@ -9,7 +9,7 @@ import {
 
 import styles from './SocialLinks.module.scss'
 
-const SocialLinks = () => {
+export const SocialLinks = () => {
   return (
     <ul className={styles.socialLinks}>
       <li>
@@ -41,5 +41,3 @@ const SocialLinks = () => {
     </ul>
   )
 }
-
-export default SocialLinks

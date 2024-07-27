@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
-import SectionHeader from '../SectionHeader'
+import { SectionHeader } from '../SectionHeader'
 
-const Testimonial = ({
+export const Testimonial = ({
   className,
   topOuterDivider,
   bottomOuterDivider,
@@ -119,5 +119,3 @@ const Testimonial = ({
     </section>
   )
 }
-
-export default Testimonial

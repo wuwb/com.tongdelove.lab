@@ -306,7 +306,7 @@ export function HeaderMegaMenu() {
   )
 }
 
-export default function WithSubnavigation() {
+export function WithSubnavigation() {
   const [isOpen, { toggle, open }] = useDisclosure(false)
 
   return (
