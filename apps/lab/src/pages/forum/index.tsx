@@ -1,6 +1,6 @@
 // import Bar from 'bar';
 import { Footer } from '@/components/common/Footer'
-import { Home } from '@/features/HomePage/Home'
+import { Home } from '@/components/HomePage/Home'
 import { Container } from '@mantine/core'
 import Router from 'next/router'
 

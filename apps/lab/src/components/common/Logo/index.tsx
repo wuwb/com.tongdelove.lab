@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@/i18n'
 
 export function Logo(props) {
   const { t } = useTranslation()

@@ -6,21 +6,24 @@ import {
   type State,
   reducer,
 } from '@/reducers/AppReducer'
-import type { Dispatch, ReactNode } from 'react'
 import { createContext, useContext, useMemo, useReducer } from 'react'
 
 type AppContextProps = {
   state: State
-  dispatch: Dispatch<Action>
+  dispatch: React.Dispatch<Action>
 }
 
-const AppContext = createContext<AppContextProps>(null!)
+export const AppContext = createContext<AppContextProps>(null!)
 
 export function useAppContext() {
   return useContext(AppContext)
 }
 
-export const AppContextProvider = ({ children }: { children: ReactNode }) => {
+export const AppContextProvider = ({
+  children
+}: {
+  children: React.ReactNode
+}) => {
   const [state, dispatch] = useReducer(reducer, initState)
 
   const contextValue = useMemo(() => {

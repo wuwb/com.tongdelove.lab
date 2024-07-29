@@ -1,4 +1,4 @@
-import { ErrorPage } from '@/features/system/pages'
+import { ErrorPage } from '@/components/system/pages'
 
 const exampleError = new Error('ErrorPage example error')
 

@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
-import { homeConfig } from '@/features/HomePage/home.config'
-import { HomePage } from '@/features/HomePage/pages'
+import { homeConfig } from '@/components/HomePage/home.config'
+import { HomePage } from '@/components/HomePage/pages'
 
 type Props = {}
 

@@ -1,4 +1,4 @@
-import { AppleGuide } from '@/features/AppleGuide'
+import { AppleGuide } from '@/components/AppleGuide'
 import {
   Breadcrumb,
   BreadcrumbItem,

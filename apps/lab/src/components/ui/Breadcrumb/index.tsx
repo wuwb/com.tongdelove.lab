@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { TbHome, TbChevronRight } from 'react-icons/tb'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@/i18n'
 
 const HomeCrumb = () => {
   const { t } = useTranslation()

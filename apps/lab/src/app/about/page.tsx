@@ -1,4 +1,4 @@
-export const About = (props) => {
+export default function About(props) {
   // useEffect(() => {
   //     // 百度地图API功能
   //     let map = new BMapGL.Map('baidu_map'); // 创建Map实例

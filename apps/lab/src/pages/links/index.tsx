@@ -1,4 +1,4 @@
-import { Daohang } from '@/features/links/Links'
+import { Daohang } from '@/components/links/Links'
 import {
   Accordion,
   AccordionContent,

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { serialize } from 'superjson'
-import { SearchPoemsQuery } from '@/server/backend/features/poem/SearchPoems'
+import { SearchPoemsQuery } from '@/server/backend/components/poem/SearchPoems'
 import { prisma } from '@/server/db/prisma'
 
 const searchPoem = new SearchPoemsQuery(prisma)
