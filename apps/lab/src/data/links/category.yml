@@ -1,0 +1,13 @@
+
+- taxonomy: 友情链接
+  icon: fa fa-solid fa-arrow-left
+  links: 
+    - title: 我爱吃包子
+      url: http://aibaozi.site/
+      description: 小学弟
+    - title: 芋道源码
+      url: http://www.iocoder.cn/
+      description: 老同学
+    - title: 也就这样，
+      url: http://type.so/cool-tools.htm
+      description: 老同事

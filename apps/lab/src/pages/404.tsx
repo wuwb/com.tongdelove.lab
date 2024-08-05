@@ -5,7 +5,7 @@ import { systemConfig } from '@/components/system/system.config'
 import { Button } from '@mantine/core'
 import Image from 'next/image'
 import React from 'react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@/i18n'
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { locale = 'en' } = context

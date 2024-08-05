@@ -17,7 +17,7 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@tongdelove/eslint-config-base": "workspace:^",
+    "@tongdelove/eslint-config": "workspace:^",
     "@types/node": "^20.12.8",
     "rimraf": "5.0.5",
     "typescript": "^5.4.5"

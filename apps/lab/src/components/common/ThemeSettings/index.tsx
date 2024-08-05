@@ -13,7 +13,7 @@ import {
 } from '@mantine/core'
 
 import { TbChecks, TbCubeUnfolded } from 'react-icons/tb'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@/i18n'
 import { Link } from '@tongdelove/ui/Link'
 
 export const ThemeSettings = () => {

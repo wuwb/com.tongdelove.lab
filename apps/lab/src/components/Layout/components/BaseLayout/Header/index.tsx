@@ -115,8 +115,8 @@ export function HeaderMegaMenu() {
   ))
 
   return (
-    <Box>
-      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <div className="flex justify-end items-center h-14 border-b border-soild">
+      <header className="sticky top-0 z-30 flex items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 h-[60px]">
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -261,6 +261,7 @@ export function HeaderMegaMenu() {
         </div>
         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
       </header>
+
       <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
@@ -302,7 +303,7 @@ export function HeaderMegaMenu() {
           )}
         </ScrollArea>
       </Drawer>
-    </Box>
+    </div>
   )
 }
 

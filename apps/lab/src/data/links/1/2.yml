@@ -1,0 +1,23 @@
+- taxonomy: 科研办公
+  icon: fas fa-flask fa-lg
+  list:
+    - term: 生物信息
+      links:
+        - title: NCBI
+          logo: ncbi.jpg
+          url: https://www.ncbi.nlm.nih.gov/
+          description: National Center for Biotechnology Information.
+        - title: Bioconda
+          logo: bioconda.jpg
+          url: https://anaconda.org/bioconda/
+          description: "Bioconda :: Anaconda.org."
+    - term: 云服务器
+      links:
+        - title: 阿里云
+          logo: 阿里云.jpg
+          url: https://www.aliyun.com/
+          description: 上云就上阿里云。
+        - title: 腾讯云
+          logo: 腾讯云.jpg
+          url: https://cloud.tencent.com/
+          description: 产业智变，云启未来。

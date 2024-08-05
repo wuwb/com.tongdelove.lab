@@ -170,6 +170,9 @@ const config = {
     // ],
     remotePatterns: [
       {
+        hostname: 'assets.lummi.ai',
+      },
+      {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
@@ -198,6 +201,9 @@ const config = {
 
   experimental: {
     forceSwcTransforms: true,
+
+    // https://vercel.com/docs/observability/otel-overview
+    instrumentationHook: true,
 
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
@@ -452,6 +458,18 @@ const config = {
     //         },
     //     ],
     // })
+
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      oneOf: [
+        {
+          resourceQuery: /stream/,
+          options: { asStream: true },
+          loader: 'yaml-loader'
+        },
+        { loader: 'yaml-loader' }
+      ]
+    })
 
     //   const rules = config.module.rules.find(r => !!r.oneOf);
     //   rules.oneOf.forEach(loaders => {

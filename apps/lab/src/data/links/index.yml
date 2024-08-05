@@ -1,0 +1,104 @@
+# ---
+# title: 链接
+# date: 2014-08-11 19:41:54
+# updated: 2019-10-21 14:11:15
+# sidebar: auto
+# ---
+
+- taxonomy: 友情链接
+  icon: fa fa-solid fa-arrow-left
+  links: 
+    - title: 我爱吃包子
+      url: http://aibaozi.site/
+      description: 小学弟
+    - title: 芋道源码
+      url: http://www.iocoder.cn/
+      description: 老同学
+    - title: 也就这样，
+      url: http://type.so/cool-tools.htm
+      description: 老同事
+
+- taxonomy: 常用推荐
+  icon: fa fa-solid fa-arrow-left
+  links: 
+    - title: 语雀
+      logo: 语雀.webp
+      url: https://www.yuque.com/
+      description: 专业的云端知识库。
+    - title: QQ 邮箱
+      logo: qq邮箱.png
+      url: http://mail.qq.com/
+      description: 腾讯 QQ 邮箱。
+    - title: 开源中国
+      logo: 开源中国.jpg
+      url: https://www.oschina.net/
+      description: 中文开源技术交流社区。
+    - title: 公众号平台
+      logo: 微信公众号.png
+      url: https://mp.weixin.qq.com/
+      description: 再小的个体也有自己的品牌。
+    - title: GitHub
+      logo: github.png
+      url: https://github.com/
+      description: GitHub 开源社区。
+    - title: 搜狗微信
+      logo: 搜狗微信.jpg
+      url: https://weixin.sogou.com/
+      description: 搜狗微信搜索，一搜即达。
+    - title: 知乎
+      logo: 知乎.png
+      url: https://www.zhihu.com/
+      description: 知乎社区。
+    - title: V2EX
+      logo: v2ex.jpg
+      url: https://www.v2ex.com/
+      description: V2EX 创意工作者的社区。
+    - title: 关注我们
+      logo: 关注.jpg
+      url: https://www.bioitee.com
+      qrcode: qrcode.jpg
+      description: 微信公众号：BioIT 爱好者！
+
+- taxonomy: 大厂
+  icon: fa fa-solid fa-arrow-left
+  list:
+    - term: 腾讯
+      links:
+        - title: HenryGuo's Blog（郭亨的技术博客）
+          url: http://www.webryan.net/
+    - term: 百度
+      links:
+        - title: jkisjk
+          url: http://www.cnblogs.com/jkisjk/
+    - term: 360
+      links:
+        - title: 屈光宇
+          url: https://www.imququ.com/
+    - term: 其他
+      links:
+        - title: hax
+          url: http://hax.iteye.com/blog/
+        - title: 三水清
+          url: http://js8.in/
+        - title: kylinbl
+          url: http://blog.csdn.net/kylinbl/
+        - title: oilbeater
+          url: http://oilbeater.com/
+        - title: ha97
+          url: http://www.ha97.com/
+        - title: im87
+          url: http://www.im87.net/
+        - title: Wizzer 一米阳光。
+          url: http://www.wizzer.cn/
+        - title: 姜糖水
+          url: http://www.cnphp6.com/
+
+- taxonomy: IOS
+  icon: fa fa-solid fa-arrow-left
+  links: 
+    - title: Dabin1988
+      url: http://www.cnblogs.com/vincent-lu/
+      description: Bio & IT 网址导航
+    - title: 张智清
+      url: http://www.cnblogs.com/lovecode/
+   

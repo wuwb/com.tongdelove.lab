@@ -3,6 +3,7 @@ import { RiAppleFill, RiStockLine } from 'react-icons/ri'
 import { IconType } from 'react-icons'
 import { RxAvatar } from 'react-icons/rx'
 import { RiLinksLine } from 'react-icons/ri'
+import { useTranslation } from '@/i18n'
 
 const ToolCard: React.FC<{
   title: string
@@ -54,10 +55,11 @@ const ToolCard: React.FC<{
 }
 
 const ToolPage = (props) => {
+  const { t } = useTranslation()
   return (
     <Container>
       <div className="w-full pt-3">
-        <div className="flex gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <ToolCard
             Icon={RiStockLine}
             index={2}
@@ -85,6 +87,43 @@ const ToolPage = (props) => {
             href="https://umijs.org/docs/introduce/introduce"
             title="节日头像制作"
             desc="节日头像制作，国庆节、圣诞节、春节头像。"
+          />
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/category"
+            title="分类导航"
+            desc="行业分类导航"
+          />
+
+
+
+
+        </div>
+      </div>
+
+      <div className="w-full pt-3">
+        <div>{t('开发中')}</div>
+        <div className="grid grid-cols-4 gap-4">
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/category"
+            title="Retro Card Generator"
+            desc="行业分类导航"
+          />
+        </div>
+      </div>
+
+      <div className="w-full pt-3">
+        <div>{t('待开发')}</div>
+        <div className="grid grid-cols-4 gap-4">
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/category"
+            title="Retro Card Generator"
+            desc="行业分类导航"
           />
         </div>
       </div>

@@ -1,0 +1,79 @@
+
+- title: 自然
+  slug: nature
+  list:
+    - title: 数学
+      slug: math
+    - title: 物理
+      slug: physics
+    - title: 化学
+      slug: chemistry
+    - title: 天文
+      slug: astronomy
+    - title: 地理
+      slug: geography
+- title: 生命
+  slug: life
+  list:
+    - title: 生物 - 生态
+      slug: biology
+    - title: 医学
+      slug: medicine
+- title: 工业
+  slug: industry
+  list:
+    - title: 土木
+      slug: civil-engineering
+    - title: 建筑
+      slug: architecture
+    - title: 机械
+      slug: mechanical
+    - title: 电气
+      slug: electrical
+    - title: 海洋 - 船舶
+      slug: marine
+    - title: 矿山 - 采矿
+      slug: mine
+    - title: 化工
+      slug: Chemicals
+    - title: 制造
+      slug: Manufacturing
+    - title: 生活
+      slug: Life
+- title: 农业
+  slug: agriculture
+  list:
+    - title: 农业
+      slug: agriculture
+    - title: 牧业
+      slug: animal husbandry
+    - title: 渔业
+      slug: fishery
+    - title: 林业
+      slug: forestry
+- title: 人文
+  slug: humanities
+  list:
+    - title: 文学
+      slug: literature
+    - title: 哲学
+      slug: philosophy
+    - title: 艺术
+      slug: art
+- title: 社会
+  slug: society
+  list:
+    - title: 军事
+      slug: military
+    - title: 政治
+      slug: politics
+    - title: 法律
+      slug: law
+    - title: 经济
+      slug: economy
+    - title: 教育
+      slug: education
+    - title: 管理
+      slug: management
+    - title: 宗教
+      slug: religion
