@@ -1,9 +1,7 @@
 import { CategoryDetailPage } from '@/components/CategoryDetailPage'
 
 const CategoryDetail = () => {
-  return (
-    <CategoryDetailPage />
-  )
+  return <CategoryDetailPage />
 }
 
 export default CategoryDetail

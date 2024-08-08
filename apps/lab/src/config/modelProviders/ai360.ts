@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://ai.360.cn/platform/docs/overview
 const Ai360: ModelProviderCard = {
@@ -33,6 +33,6 @@ const Ai360: ModelProviderCard = {
   id: 'ai360',
   modelList: { showModelFetcher: true },
   name: '360智脑',
-};
+}
 
-export default Ai360;
+export default Ai360

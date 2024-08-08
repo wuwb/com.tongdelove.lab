@@ -95,10 +95,6 @@ const ToolPage = (props) => {
             title="分类导航"
             desc="行业分类导航"
           />
-
-
-
-
         </div>
       </div>
 

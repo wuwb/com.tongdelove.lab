@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://help.aliyun.com/zh/dashscope/developer-reference/api-details
 const Qwen: ModelProviderCard = {
@@ -12,7 +12,8 @@ const Qwen: ModelProviderCard = {
       tokens: 8000,
     },
     {
-      description: '通义千问超大规模语言模型增强版，支持中文、英文等不同语言输入',
+      description:
+        '通义千问超大规模语言模型增强版，支持中文、英文等不同语言输入',
       displayName: 'Qwen Plus',
       enabled: true,
       functionCall: true,
@@ -78,6 +79,6 @@ const Qwen: ModelProviderCard = {
   id: 'qwen',
   modelList: { showModelFetcher: true },
   name: 'Qwen',
-};
+}
 
-export default Qwen;
+export default Qwen

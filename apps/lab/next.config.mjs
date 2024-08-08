@@ -465,10 +465,10 @@ const config = {
         {
           resourceQuery: /stream/,
           options: { asStream: true },
-          loader: 'yaml-loader'
+          loader: 'yaml-loader',
         },
-        { loader: 'yaml-loader' }
-      ]
+        { loader: 'yaml-loader' },
+      ],
     })
 
     //   const rules = config.module.rules.find(r => !!r.oneOf);

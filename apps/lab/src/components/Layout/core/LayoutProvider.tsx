@@ -22,4 +22,3 @@ export const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
     <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
   )
 }
-

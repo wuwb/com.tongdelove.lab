@@ -1,8 +1,7 @@
 ---
-
 - taxonomy: Development
   icon: fa-star
-  links: 
+  links:
     - title: BioIT爱好者
       url: https://bioitee.com/
       description: Bio & IT 网址导航
@@ -14,7 +13,7 @@
 
 - taxonomy: 台湾转运
   icon: fa-star
-  links: 
+  links:
     - title: 巧巧郎
     - url: https://www.kkren.com.tw
     - description: 台湾转运
@@ -31,7 +30,7 @@
         - title: Bioconda
           logo: bioconda.jpg
           url: https://anaconda.org/bioconda/
-          description: "Bioconda :: Anaconda.org."
+          description: 'Bioconda :: Anaconda.org.'
         - title: CPAN
           logo: cpan.jpg
           url: https://metacpan.org/
@@ -92,7 +91,6 @@
           logo: ProcessOn.png
           url: https://www.processon.com/
           description: 免费在线作图、实时协作。
-        
 
 - taxonomy: 悠闲娱乐
   icon: fa-film fa-lg
@@ -133,8 +131,7 @@
           logo: 战地之王.png
           url: https://ava.mangot5.com/ava/index
           description: 台服 AVA 战地之王。
-   
-      
+
 - taxonomy: 素材资源
   icon: fa-folder-open fa-lg
   list:
@@ -343,12 +340,11 @@
         - title: Abstract Fonts
           url: http://www.abstractfonts.com/
           logo: abstractfonts.png
-          description: Abstract Fonts (13,866 free fonts).      
-      
+          description: Abstract Fonts (13,866 free fonts).
 
 - taxonomy: 开发设计
   icon: fa-tools fa-lg
-  list: 
+  list:
     - term: 图形创意
       links:
         - title: photoshop
@@ -426,7 +422,7 @@
         - title: webgradients
           url: https://webgradients.com/
           logo: webgradients.png
-          description: WebGradients is a free collection of 180 linear gradients that you can use as content backdrops in any part of your website. 
+          description: WebGradients is a free collection of 180 linear gradients that you can use as content backdrops in any part of your website.
         - title: grabient
           url: https://www.grabient.com/
           logo: grabient.png
@@ -497,7 +493,7 @@
           url: https://www.gaoding.com
           logo: gaoding.png
           description: 免费在线抠图软件,图片快速换背景-抠白底图。
-        
+
     - term: 谷歌插件
       links:
         - title: wappalyzer
@@ -525,10 +521,9 @@
           logo: mustsee.png
           description: Discover the world's most beautiful places at every opened tab.
 
-
 - taxonomy: 资讯学习
   icon: fa-pencil-alt fa-lg
-  list: 
+  list:
     - term: 资讯书籍
       links:
         - title: 微信读书
@@ -570,7 +565,7 @@
         - title: Awesome design systems
           url: https://github.com/alexpate/awesome-design-systems
           logo: awesome_design_systems.png
-          description:  A collection of awesome design systems.
+          description: A collection of awesome design systems.
         - title: Material Design
           url: https://material.io/guidelines/
           logo: Material_Design.png

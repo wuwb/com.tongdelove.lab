@@ -1,7 +1,6 @@
-
 - taxonomy: 友情链接
   icon: fa fa-solid fa-arrow-left
-  links: 
+  links:
     - title: 我爱吃包子
       url: http://aibaozi.site/
       description: 小学弟

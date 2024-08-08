@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://console.groq.com/docs/models
 const Groq: ModelProviderCard = {
@@ -83,6 +83,6 @@ const Groq: ModelProviderCard = {
   proxyUrl: {
     placeholder: 'https://api.groq.com/openai/v1',
   },
-};
+}
 
-export default Groq;
+export default Groq

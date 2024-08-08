@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://openrouter.ai/docs#models
 const OpenRouter: ModelProviderCard = {
@@ -120,6 +120,6 @@ const OpenRouter: ModelProviderCard = {
   id: 'openrouter',
   modelList: { showModelFetcher: true },
   name: 'OpenRouter',
-};
+}
 
-export default OpenRouter;
+export default OpenRouter

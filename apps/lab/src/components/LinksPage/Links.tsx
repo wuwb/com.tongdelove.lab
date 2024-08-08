@@ -1,8 +1,6 @@
 import { DaohangCard } from './DaohangCard'
 import { navs } from './nav'
 
-
-
 function renderNav() {
   return navs.map((list) => {
     return (

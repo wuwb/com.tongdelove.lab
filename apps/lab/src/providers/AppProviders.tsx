@@ -1,4 +1,3 @@
-
 import type { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 import type { FC, PropsWithChildren } from 'react'
@@ -18,6 +17,7 @@ type Props = PropsWithChildren<{
 
 export const AppProviders: FC<Props> = (props) => {
   const { children, session } = props
+
   return (
     <SessionProvider
       session={session}

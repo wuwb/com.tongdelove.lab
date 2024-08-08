@@ -25,4 +25,3 @@ export const Label: FC<LabelProps> = ({
     </span>
   )
 }
-

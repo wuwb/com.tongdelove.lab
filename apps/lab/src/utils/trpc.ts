@@ -10,6 +10,7 @@ import { type AppRouter } from '@/server/trpc/root'
 import { createTRPCNext } from '@trpc/next'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
 import superjson from 'superjson'
+import { queryClient, queryClientContext } from '@/clients/cache'
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
@@ -21,8 +22,67 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}` // dev SSR should use localhost
 }
 
+const linksConfig = [
+  loggerLink({
+    enabled: (opts) =>
+      (process.env.NODE_ENV === 'development' &&
+        typeof window !== 'undefined') ||
+      (opts.direction === 'down' && opts.result instanceof Error),
+  }),
+  splitLink({
+    condition(op) {
+      // check for context property `skipBatch`
+      return op.context.skipBatch === true
+    },
+    // when condition is true, use normal request
+    true: httpLink({
+      url: `${getBaseUrl()}/api/trpc`,
+    }),
+    // when condition is false, use batching
+    false: httpBatchLink({
+      url: `${getBaseUrl()}/api/trpc`,
+    }),
+  }),
+
+  httpBatchLink({
+    /**
+     * Transformer used for data de-serialization from the server.
+     *
+     * @see https://trpc.io/docs/data-transformers
+     */
+    transformer: superjson,
+    // The server needs to know your app's full url
+    url: `${getBaseUrl()}/api/trpc`,
+    /**
+     * Set custom request headers on every request from tRPC
+     * @link https://trpc.io/docs/v10/header
+     */
+    // headers() {
+    //   if (ctx?.req) {
+    //     // To use SSR properly, you need to forward the client's headers to the server
+    //     // This is so you can pass through things like cookies when we're server-side rendering
+
+    //     // If you're using Node 18, omit the "connection" header
+    //     const {
+    //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    //       connection: _connection,
+    //       ...headers
+    //     } = ctx.req.headers;
+    //     return {
+    //       ...headers,
+    //       // Optional: inform server that it's an SSR request
+    //       "x-ssr": "1",
+    //     };
+    //   }
+    //   return {};
+    // },
+  }),
+]
+
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const trpc = createTRPCNext<AppRouter>({
+  reactQueryContext: queryClientContext,
+
   config({ ctx }) {
     // if (typeof window !== "undefined") {
     //   // during client requests
@@ -68,6 +128,7 @@ export const trpc = createTRPCNext<AppRouter>({
     // }
 
     return {
+      queryClient,
       /**
        * Transformer used for data de-serialization from the server.
        * optional - adds superjson serialization
@@ -80,63 +141,7 @@ export const trpc = createTRPCNext<AppRouter>({
        *
        * @see https://trpc.io/docs/links
        */
-      links: [
-        loggerLink({
-          enabled: (opts) =>
-            process.env.NODE_ENV === 'development' ||
-            (opts.direction === 'down' && opts.result instanceof Error),
-        }),
-        httpBatchLink({
-          /**
-           * Transformer used for data de-serialization from the server.
-           *
-           * @see https://trpc.io/docs/data-transformers
-           */
-          transformer: superjson,
-          // The server needs to know your app's full url
-          url: `${getBaseUrl()}/api/trpc`,
-          /**
-           * Set custom request headers on every request from tRPC
-           * @link https://trpc.io/docs/v10/header
-           */
-          // headers() {
-          //   if (ctx?.req) {
-          //     // To use SSR properly, you need to forward the client's headers to the server
-          //     // This is so you can pass through things like cookies when we're server-side rendering
-
-          //     // If you're using Node 18, omit the "connection" header
-          //     const {
-          //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          //       connection: _connection,
-          //       ...headers
-          //     } = ctx.req.headers;
-          //     return {
-          //       ...headers,
-          //       // Optional: inform server that it's an SSR request
-          //       "x-ssr": "1",
-          //     };
-          //   }
-          //   return {};
-          // },
-        }),
-        loggerLink({
-          enabled: (_) => false,
-        }),
-        splitLink({
-          condition(op) {
-            // check for context property `skipBatch`
-            return op.context.skipBatch === true
-          },
-          // when condition is true, use normal request
-          true: httpLink({
-            url: `${getBaseUrl()}/api/trpc`,
-          }),
-          // when condition is false, use batching
-          false: httpBatchLink({
-            url: `${getBaseUrl()}/api/trpc`,
-          }),
-        }),
-      ],
+      links: linksConfig,
       /**
        * Query client configuration
        * @see https://tanstack.com/query/v4/docs/react/reference/QueryClient
@@ -159,7 +164,7 @@ export const trpc = createTRPCNext<AppRouter>({
    * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
    */
   ssr: false,
-  transformer: superjson,
+  // transformer: superjson,
 })
 
 /**

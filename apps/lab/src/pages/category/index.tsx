@@ -1,9 +1,7 @@
 import { CategoryPage } from '@/components/CategoryPage'
 
 const Category = (props) => {
-  return (
-    <CategoryPage />
-  )
+  return <CategoryPage />
 }
 
 export default Category

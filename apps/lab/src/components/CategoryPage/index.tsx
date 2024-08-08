@@ -1,9 +1,9 @@
-
 import { Daohang } from '@/components/LinksPage/Links'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import { CategoryLayout } from './CategoryLayout'
 import Link from 'next/link'
+import { LinksPage } from '../LinksPage'
 
 export const CategoryPage = () => {
   const router = useRouter()
@@ -11,7 +11,11 @@ export const CategoryPage = () => {
   const [links, setLinks] = useState<any>([])
 
   const fetchLinks = async (router) => {
-    const links = (await import(`@/data/links/${router.query.level1}/${router.query.level2}.yml`)).default
+    const links = (
+      await import(
+        `@/data/links/${router.query.level1}/${router.query.level2}.yml`
+      )
+    ).default
     setLinks(links)
   }
 
@@ -23,8 +27,8 @@ export const CategoryPage = () => {
   }, [router])
 
   return (
-    <CategoryLayout>
-      category homepage
-    </CategoryLayout >
+    <CategoryLayout>category homepage
+      <LinksPage />
+    </CategoryLayout>
   )
 }

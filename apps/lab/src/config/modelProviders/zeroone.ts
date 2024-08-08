@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://platform.lingyiwanwu.com/docs#%E6%A8%A1%E5%9E%8B
 const ZeroOne: ModelProviderCard = {
@@ -20,7 +20,8 @@ const ZeroOne: ModelProviderCard = {
       tokens: 32_768,
     },
     {
-      description: '中型尺寸模型升级微调，能力均衡，性价比高。深度优化指令遵循能力。',
+      description:
+        '中型尺寸模型升级微调，能力均衡，性价比高。深度优化指令遵循能力。',
       displayName: 'Yi Medium',
       enabled: true,
       id: 'yi-medium',
@@ -55,7 +56,8 @@ const ZeroOne: ModelProviderCard = {
       tokens: 16_384,
     },
     {
-      description: '超高性价比、卓越性能。根据性能和推理速度、成本，进行平衡性高精度调优。',
+      description:
+        '超高性价比、卓越性能。根据性能和推理速度、成本，进行平衡性高精度调优。',
       displayName: 'Yi Large Turbo',
       enabled: true,
       id: 'yi-large-turbo',
@@ -73,6 +75,6 @@ const ZeroOne: ModelProviderCard = {
   disableBrowserRequest: true,
   id: 'zeroone',
   name: '01.AI',
-};
+}
 
-export default ZeroOne;
+export default ZeroOne

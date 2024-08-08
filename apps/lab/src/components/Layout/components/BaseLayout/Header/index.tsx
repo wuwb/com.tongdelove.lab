@@ -115,8 +115,8 @@ export function HeaderMegaMenu() {
   ))
 
   return (
-    <div className="flex justify-end items-center h-14 border-b border-soild">
-      <header className="sticky top-0 z-30 flex items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 h-[60px]">
+    <div className="border-soild flex h-14 items-center justify-end border-b">
+      <header className="sticky top-0 z-30 flex h-[60px] items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
         <Sheet>
           <SheetTrigger asChild>
             <Button

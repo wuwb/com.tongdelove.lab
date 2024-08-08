@@ -5,13 +5,11 @@ import { trpc } from '@/utils/trpc'
 
 export const AppleGuide = () => {
   const [selectedCategory, setSelectedCategory] = useState(0)
-  const [target, setTarget] = useState < number > 0
+  const [target, setTarget] = useState<number>(0)
 
   const [enableScrollIntoView, setEnableScrollIntoView] = useState(false)
 
   const { data = [] } = trpc.appleGuide.getAll.useQuery()
-
-  console.log('data: ', data)
 
   const appleGuidedata = data.map((item, index) => JSON.parse(item.data))
 
@@ -29,7 +27,6 @@ export const AppleGuide = () => {
           </div>
         )}
       </div>
-
       <Indexes
         data={appleGuidedata}
         selectedCategory={selectedCategory}

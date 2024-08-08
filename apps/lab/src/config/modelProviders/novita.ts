@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 const Novita: ModelProviderCard = {
   chatModels: [
@@ -86,6 +86,6 @@ const Novita: ModelProviderCard = {
   id: 'novita',
   modelList: { showModelFetcher: true },
   name: 'Novita',
-};
+}
 
-export default Novita;
+export default Novita

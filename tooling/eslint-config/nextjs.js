@@ -1,45 +1,93 @@
-const { resolve } = require("node:path");
+/**
+ * Specific eslint rules for this app/package, extends the base rules
+ * @see https://github.com/belgattitude/nextjs-monorepo-example/blob/main/docs/about-linters.md
+ */
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const { resolve } = require('node:path');
 
-/** @type {import("eslint").Linter.Config} */
+const project = resolve(process.cwd(), 'tsconfig.json');
+
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  env: {
+  parser: '@typescript-eslint/parser',
+  env: { 
     browser: true,
-    node: true
+    node: true,
+    "cypress/globals": true
   },
-  plugins: [
-    '@next/eslint-plugin-next',
-    "@typescript-eslint",
-    "testing-library",
-  ],
-  extends: [
-    "./base.js",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:react/jsx-runtime",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/strict",
-    "plugin:storybook/recommended",
-    "plugin:prettier/recommended",
-  ],
+  globals: {
+    React: 'readonly',
+    JSX: true,
+  },
   settings: {
-    "import/resolver": {
+    react: {
+      version: 'detect',
+    },
+    'import/resolver': {
       typescript: {
         project,
       },
     },
   },
+  plugins: [
+    'testing-library',
+    'cypress',
+    'storybook',
+    'prettier',
+  ],
+  extends: [
+    './lib/typescript-eslint',
+    'eslint:recommended',
+    'next/core-web-vitals',
+    'plugin:prettier/recommended',
+  ],
   overrides: [
     {
-      files: ["**/test/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-      extends: ["plugin:testing-library/react"]
+      files: ['**/?(*.)+(spec|test|cy).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+    {
+      files: ["*.stories.*"],
+      extends: ["plugin:storybook/recommended"],
     }
   ],
   rules: {
-    // TypeError: context.getAncestors is not a function
-    "@next/next/no-duplicate-head": "off",
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        'argsIgnorePattern': '^_',
+        'varsIgnorePattern': '^_'
+      }
+    ],
+    'no-unused-vars': [
+      'error',
+      {
+        'argsIgnorePattern': '^_',
+        'varsIgnorePattern': '^_'
+      }
+    ],
+ 
+    'no-restricted-syntax': [
+      'error',
+      'AwaitExpression > AwaitExpression.argument'
+    ],
+    'react/jsx-curly-brace-presence': [
+      'warn',
+      {
+        'props': 'never',
+        'children': 'never'
+      }
+    ],
+    'react-hooks/exhaustive-deps': 'off',
+    'import/newline-after-import': 'error',
+    '@next/next/no-img-element': 'off',
+    'no-useless-escape': 'off',
+    'no-extra-boolean-cast': 'off',
+    'no-constant-condition': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/space-before-function-paren': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
+    'valid-typeof': 'warn'
   },
 }

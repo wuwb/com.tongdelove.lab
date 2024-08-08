@@ -208,7 +208,6 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.24.8",
     "@cypress-audit/lighthouse": "^1.4.2",
     "@cypress/webpack-preprocessor": "^6.0.2",
     "@next/bundle-analyzer": "^14.2.5",
@@ -234,7 +233,9 @@
     "@testing-library/user-event": "^14.5.2",
     "@tongdelove/eslint-config": "workspace:^",
     "@tongdelove/typescript-config": "workspace:^",
+    "@tongdelove/prettier-config": "workspace:^",
     "@types/cors": "^2.8.16",
+    "@types/eslint": "^9.6.0",
     "@types/file-saver": "^2.0.5",
     "@types/fs-extra": "^11.0.4",
     "@types/is-ci": "^3.0.4",
@@ -282,7 +283,7 @@
     "postcss-preset-mantine": "1.15.0",
     "postcss-simple-vars": "7.0.1",
     "prettier-plugin-organize-imports": "^3.2.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "prisma": "^5.16.2",
     "react-apexcharts": "^1.4.0",
     "react-cookie": "^4.1.1",

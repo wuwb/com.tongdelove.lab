@@ -11,7 +11,13 @@ type Props = {
   className?: string
 }
 
-export const SectionHeader = ({ className, data, children, tag, ...props }: Props) => {
+export const SectionHeader = ({
+  className,
+  data,
+  children,
+  tag,
+  ...props
+}: Props) => {
   const classes = clsx('section-header', className)
   const Component = tag
 

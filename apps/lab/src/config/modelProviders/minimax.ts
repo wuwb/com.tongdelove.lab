@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://www.minimaxi.com/document/guides/chat-model/pro/api
 const Minimax: ModelProviderCard = {
@@ -45,6 +45,6 @@ const Minimax: ModelProviderCard = {
   checkModel: 'abab5.5s-chat',
   id: 'minimax',
   name: 'Minimax',
-};
+}
 
-export default Minimax;
+export default Minimax

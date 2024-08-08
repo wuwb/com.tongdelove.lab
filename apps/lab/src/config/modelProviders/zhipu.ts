@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://open.bigmodel.cn/dev/howuse/model
 // api https://open.bigmodel.cn/dev/api#language
@@ -15,7 +15,8 @@ const ZhiPu: ModelProviderCard = {
       tokens: 128_000,
     },
     {
-      description: '智谱当前最先进最智能的模型，指令遵从能力大幅提升18.6%，发布于20240605',
+      description:
+        '智谱当前最先进最智能的模型，指令遵从能力大幅提升18.6%，发布于20240605',
       displayName: 'GLM-4-0520',
       enabled: true,
       functionCall: true,
@@ -23,7 +24,8 @@ const ZhiPu: ModelProviderCard = {
       tokens: 128_000,
     },
     {
-      description: '发布于20240116的最智能版本模型，目前已被 GLM-4-0520 版本超越',
+      description:
+        '发布于20240116的最智能版本模型，目前已被 GLM-4-0520 版本超越',
       displayName: 'GLM-4',
       functionCall: true,
       id: 'glm-4',
@@ -80,6 +82,6 @@ const ZhiPu: ModelProviderCard = {
   checkModel: 'glm-4-flash',
   id: 'zhipu',
   name: 'ZhiPu',
-};
+}
 
-export default ZhiPu;
+export default ZhiPu

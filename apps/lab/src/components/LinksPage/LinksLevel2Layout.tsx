@@ -35,13 +35,13 @@ export const LinksLevel2Layout = (props) => {
             </div>
           )
         })}
-
       </div>
     )
   }
 
   const fetchLinks = async (router) => {
-    const links = (await import(`@/data/links/${router.query.level1}/menu.yml`)).default
+    const links = (await import(`@/data/links/${router.query.level1}/menu.yml`))
+      .default
     setLinks(links)
   }
 
@@ -57,31 +57,29 @@ export const LinksLevel2Layout = (props) => {
       <div className="w-[120px] shrink-0 border-r">
         <div className="sidebar-scroll">
           <div className="sidebar-menu-inner">
-            <div className="rounded px-2 py-1 bg-gray-100 m-1">{t('领域')}</div>
+            <div className="m-1 rounded bg-gray-100 px-2 py-1">{t('领域')}</div>
             <ul>
-              {
-                indexData?.map((item, index) => {
-                  return (
-                    <li key={index} className="px-3 py-2 hover:bg-gray-100">
-                      <Link className="smooth change-href"
-                        href={{
-                          pathname: '/links/[leve1]/[level2]',
-                          query: {
-                            leve1: 1,
-                            level2: 2,
-                          },
-                        }}
-                      >
-                        <span className={clsx(item.icon)}></span>
-                        <span>{item?.taxonomy}</span>
-                      </Link>
-                    </li>
-                  )
-                })
-              }
+              {indexData?.map((item, index) => {
+                return (
+                  <li key={index} className="px-3 py-2 hover:bg-gray-100">
+                    <Link
+                      className="smooth change-href"
+                      href={{
+                        pathname: '/links/[leve1]/[level2]',
+                        query: {
+                          leve1: 1,
+                          level2: 2,
+                        },
+                      }}
+                    >
+                      <span className={clsx(item.icon)}></span>
+                      <span>{item?.taxonomy}</span>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
             {renderSidebar()}
-
           </div>
         </div>
       </div>

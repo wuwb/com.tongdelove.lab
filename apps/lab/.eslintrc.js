@@ -1,16 +1,9 @@
-/**
- * Specific eslint rules for this app/package, extends the base rules
- * @see https://github.com/belgattitude/nextjs-monorepo-example/blob/main/docs/about-linters.md
- */
-
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier', 'testing-library'],
   extends: [
-    '@flowgpt/eslint-config/nextjs.js',
+    '@tongdelove/eslint-config/nextjs.js',
+
     // ct3
     'next/core-web-vitals',
     // 'plugin:@typescript-eslint/recommended-type-checked',
@@ -22,7 +15,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/strict',
-    'plugin:storybook/recommended',
 
     // custom
     // '@tongdelove/eslint-config-base/typescript',
@@ -44,9 +36,6 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-  },
-  globals: {
-    React: 'readonly',
   },
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
@@ -186,5 +175,5 @@ module.exports = {
     },
   ],
   // The ".eslintignore" file is no longer supported.
-  ignorePatterns: ['.next', '.out', 'node_modules', 'dist/*'],
+  ignorePatterns: ['.next', '.out', 'node_modules', 'dist'],
 }

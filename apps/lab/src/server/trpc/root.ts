@@ -37,7 +37,7 @@ export const appRouter = createTRPCRouter({
   poemAuthor: poemAuthorRouter,
   poemCard: poemCardRouter,
   poemTag: poemTagRouter,
-  // appleGuide: appleGuideRouter,
+  appleGuide: appleGuideRouter,
 })
 
 // export type definition of API

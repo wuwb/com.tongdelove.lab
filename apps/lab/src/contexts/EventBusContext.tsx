@@ -21,11 +21,7 @@ export function useEventBusContext() {
   return useContext(EventBusContext)
 }
 
-export function EventBusContextProvider({
-  children,
-}: {
-  children: ReactNode
-}) {
+export function EventBusContextProvider({ children }: { children: ReactNode }) {
   const [listeners, setListeners] = useState<Record<string, EventListener[]>>(
     {}
   )

@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://ai-maas.wair.ac.cn/#/doc
 const Taichu: ModelProviderCard = {
@@ -16,6 +16,6 @@ const Taichu: ModelProviderCard = {
   id: 'taichu',
   modelList: { showModelFetcher: true },
   name: 'Taichu',
-};
+}
 
-export default Taichu;
+export default Taichu

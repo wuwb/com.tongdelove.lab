@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://platform.stepfun.com/docs/llm/text
 const Stepfun: ModelProviderCard = {
@@ -36,6 +36,6 @@ const Stepfun: ModelProviderCard = {
   id: 'stepfun',
   modelList: { showModelFetcher: true },
   name: '阶跃星辰',
-};
+}
 
-export default Stepfun;
+export default Stepfun

@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://docs.anthropic.com/claude/docs/models-overview#model-comparison
 const Anthropic: ModelProviderCard = {
@@ -75,6 +75,6 @@ const Anthropic: ModelProviderCard = {
   proxyUrl: {
     placeholder: 'https://api.anthropic.com',
   },
-};
+}
 
-export default Anthropic;
+export default Anthropic

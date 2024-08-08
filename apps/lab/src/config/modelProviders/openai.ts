@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref:
 // https://platform.openai.com/docs/models
@@ -149,6 +149,6 @@ const OpenAI: ModelProviderCard = {
   id: 'openai',
   modelList: { showModelFetcher: true },
   name: 'OpenAI',
-};
+}
 
-export default OpenAI;
+export default OpenAI

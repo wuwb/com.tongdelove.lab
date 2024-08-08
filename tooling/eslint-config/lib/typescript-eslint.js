@@ -1,0 +1,56 @@
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+  ],
+  rules: {
+    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+
+    // TODO: temp change to warn
+    '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/prefer-literal-enum-member': 'warn',
+    '@typescript-eslint/no-unsafe-argument': 'warn',
+    '@typescript-eslint/non-nullable-type-assertion-style': 'warn',
+    '@typescript-eslint/unbound-method': 'warn',
+    '@typescript-eslint/prefer-optional-chain': 'warn',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-assignment': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'warn',
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'warn',
+    '@typescript-eslint/no-misused-promises': 'warn',
+    '@typescript-eslint/no-empty-interface': 'warn',
+    '@typescript-eslint/no-inferrable-types': 'warn',
+    '@typescript-eslint/require-await': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
+    '@typescript-eslint/no-duplicate-enum-values': 'warn',
+    '@typescript-eslint/prefer-for-of': 'warn',
+    '@typescript-eslint/no-var-requires': 'warn',
+    '@typescript-eslint/no-unsafe-enum-comparison': 'warn',
+    '@typescript-eslint/no-base-to-string': 'warn',
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/restrict-plus-operands': 'warn',
+    '@typescript-eslint/await-thenable': 'warn',
+    '@typescript-eslint/ban-types': 'warn',
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
+  },
+  ignorePatterns: [
+    'dist',
+    'node_modules',
+  ]
+}

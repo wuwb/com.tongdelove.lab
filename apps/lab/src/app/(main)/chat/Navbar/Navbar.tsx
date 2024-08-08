@@ -78,9 +78,11 @@ export function Navbar() {
 
   return (
     <nav className={classes.navbar}>
-      <div className="flex flex-1 h-full overflow-hidden">
+      <div className="flex h-full flex-1 overflow-hidden">
         <div className={classes.aside}>
-          <div className={clsx('flex w-full jutifiy-center', classes.logo)}>X</div>
+          <div className={clsx('jutifiy-center flex w-full', classes.logo)}>
+            X
+          </div>
           {mainLinks}
         </div>
         <div className={classes.main}>

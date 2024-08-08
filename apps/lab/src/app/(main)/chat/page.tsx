@@ -8,10 +8,7 @@ import clsx from 'clsx'
 
 export default function Chat() {
   const {
-    state: {
-      displayNavigation,
-      themeMode
-    },
+    state: { displayNavigation, themeMode },
     dispatch,
   } = useAppContext()
 

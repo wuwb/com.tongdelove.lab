@@ -1,41 +1,43 @@
-import { Container, Title, Accordion } from '@mantine/core';
+import { Container, Title, Accordion } from '@mantine/core'
+import { useTranslation } from '@/i18n'
 
-const placeholder =
-  'It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.It was born from sludge on the ocean floor. In a sterile environment, the germs within its body can’t multiply, and it dies.It has no eyeballs, so it can’t see. It checks its surroundings via the ultrasonic waves it emits from its mouth.';
 
-export function Faq() {
+interface FaqProps {
+  data: {
+    question: string
+    answer: string
+  }[]
+}
+export function Faq({
+  data
+}: FaqProps) {
+  const { t } = useTranslation()
+
+
+
   return (
-    <Container size="sm" className="pt-2 pb-2 min-h-[650px]">
+    <Container size="sm" className="min-h-[650px] w-[800px] pb-2 pt-2">
       <Title ta="center" className="mb-2">
-        Frequently Asked Questions
+        {t('常见问题')}
       </Title>
-
       <Accordion variant="separated">
-        <Accordion.Item className="rounded-md mb-2 border border-solid" value="reset-password">
-          <Accordion.Control>How can I reset my password?</Accordion.Control>
-          <Accordion.Panel>{placeholder}</Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item className="rounded-md mb-2 border border-solid" value="another-account">
-          <Accordion.Control>Can I create more that one account?</Accordion.Control>
-          <Accordion.Panel>{placeholder}</Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item className="rounded-md mb-2 border border-solid" value="newsletter">
-          <Accordion.Control>How can I subscribe to monthly newsletter?</Accordion.Control>
-          <Accordion.Panel>{placeholder}</Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item className="rounded-md mb-2 border border-solid" value="credit-card">
-          <Accordion.Control>Do you store credit card information securely?</Accordion.Control>
-          <Accordion.Panel>{placeholder}</Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item className="rounded-md mb-2 border border-solid" value="payment">
-          <Accordion.Control>What payment systems to you work with?</Accordion.Control>
-          <Accordion.Panel>{placeholder}</Accordion.Panel>
-        </Accordion.Item>
+        {
+          data.map((item, index) => (
+            <Accordion.Item
+              key={index}
+              className="mb-2 rounded-md border border-solid"
+              value={item.question}
+            >
+              <Accordion.Control className="px-4">
+                {item.question}
+              </Accordion.Control>
+              <Accordion.Panel>
+                {item.answer}
+              </Accordion.Panel>
+            </Accordion.Item>
+          ))
+        }
       </Accordion>
     </Container>
-  );
+  )
 }

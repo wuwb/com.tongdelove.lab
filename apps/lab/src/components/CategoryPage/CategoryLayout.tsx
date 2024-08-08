@@ -9,9 +9,7 @@ export const CategoryLayout = (props: CategoryLayoutProps) => {
     <div className="flex">
       <div className="flex">
         <LinksSidebar />
-        <div className="w-full grow p-2">
-          {props.children}
-        </div>
+        <div className="w-full grow p-2">{props.children}</div>
       </div>
     </div>
   )

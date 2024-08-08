@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://docs.together.ai/docs/inference-models
 const TogetherAI: ModelProviderCard = {
@@ -74,6 +74,6 @@ const TogetherAI: ModelProviderCard = {
   id: 'togetherai',
   modelList: { showModelFetcher: true },
   name: 'Together AI',
-};
+}
 
-export default TogetherAI;
+export default TogetherAI

@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://platform.deepseek.com/api-docs/pricing
 const DeepSeek: ModelProviderCard = {
@@ -24,6 +24,6 @@ const DeepSeek: ModelProviderCard = {
   id: 'deepseek',
   modelList: { showModelFetcher: true },
   name: 'DeepSeek',
-};
+}
 
-export default DeepSeek;
+export default DeepSeek

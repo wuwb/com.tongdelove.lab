@@ -20,7 +20,7 @@ export function useAppContext() {
 }
 
 export const AppContextProvider = ({
-  children
+  children,
 }: {
   children: React.ReactNode
 }) => {

@@ -27,24 +27,26 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   return (
-    <AppProviders session={session}>
+    <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <NextNProgress
-        color="#fff"
-        startPosition={0.3}
-        stopDelayMs={200}
-        height={3}
-        showOnShallow={false}
-      />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <AppProviders session={session}>
+        <NextNProgress
+          color="#fff"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={3}
+          showOnShallow={false}
+        />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
 
-      <Analytics />
-      <SpeedInsights />
-    </AppProviders>
+        <Analytics />
+        <SpeedInsights />
+      </AppProviders>
+    </>
   )
 }
 

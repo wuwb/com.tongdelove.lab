@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://docs.mistral.ai/getting-started/models/
 const Mistral: ModelProviderCard = {
@@ -44,6 +44,6 @@ const Mistral: ModelProviderCard = {
   checkModel: 'open-mistral-7b',
   id: 'mistral',
   name: 'Mistral',
-};
+}
 
-export default Mistral;
+export default Mistral

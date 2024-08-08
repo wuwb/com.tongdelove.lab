@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models
 const Azure: ModelProviderCard = {
@@ -40,6 +40,6 @@ const Azure: ModelProviderCard = {
   defaultShowBrowserRequest: true,
   id: 'azure',
   name: 'Azure',
-};
+}
 
-export default Azure;
+export default Azure

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { getScroll } from '@/utils/getWindow'
 import styles from './ScrollToTop.module.scss'
 
-const ScrollToTop = () => {
+export const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false)
 
   const checkScrollTop = useCallback(
@@ -46,5 +46,3 @@ const ScrollToTop = () => {
     </div>
   )
 }
-
-export ScrollToTop

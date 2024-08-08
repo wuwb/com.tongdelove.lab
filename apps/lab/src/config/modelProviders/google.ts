@@ -1,11 +1,12 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://ai.google.dev/models/gemini
 // api https://ai.google.dev/api/rest/v1beta/models/list
 const Google: ModelProviderCard = {
   chatModels: [
     {
-      description: 'Fast and versatile multimodal model for scaling across diverse tasks',
+      description:
+        'Fast and versatile multimodal model for scaling across diverse tasks',
       displayName: 'Gemini 1.5 Flash',
       enabled: true,
       functionCall: true,
@@ -15,7 +16,8 @@ const Google: ModelProviderCard = {
       vision: true,
     },
     {
-      description: 'Fast and versatile multimodal model for scaling across diverse tasks',
+      description:
+        'Fast and versatile multimodal model for scaling across diverse tasks',
       displayName: 'Gemini 1.5 Flash 001',
       functionCall: true,
       id: 'gemini-1.5-flash-001',
@@ -24,7 +26,8 @@ const Google: ModelProviderCard = {
       vision: true,
     },
     {
-      description: 'Mid-size multimodal model that supports up to 1 million tokens',
+      description:
+        'Mid-size multimodal model that supports up to 1 million tokens',
       displayName: 'Gemini 1.5 Pro',
       enabled: true,
       functionCall: true,
@@ -34,7 +37,8 @@ const Google: ModelProviderCard = {
       vision: true,
     },
     {
-      description: 'Mid-size multimodal model that supports up to 1 million tokens',
+      description:
+        'Mid-size multimodal model that supports up to 1 million tokens',
       displayName: 'Gemini 1.5 Pro 001',
       functionCall: true,
       id: 'gemini-1.5-pro-001',
@@ -74,6 +78,6 @@ const Google: ModelProviderCard = {
   proxyUrl: {
     placeholder: 'https://generativelanguage.googleapis.com',
   },
-};
+}
 
-export default Google;
+export default Google

@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.3.0",
   "files": [
-    "./base.js",
-    "./library.js",
+    "./lib/base.js",
+    "./index.js",
     "./nextjs.js",
     "./react.js"
   ],
@@ -13,7 +13,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "tsc --noEmit"
   },
-  "devDependencies": {
+  "dependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
     "typescript-eslint": "^7.6.0",
     "eslint-config-turbo": "^1.13.2",
@@ -32,7 +32,12 @@
     "eslint": "^8.57.0",
     "@tongdelove/prettier-config": "workspace:*",
     "@tongdelove/typescript-config": "workspace:^",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
     "eslint": "^8.57.0",

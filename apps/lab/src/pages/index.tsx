@@ -8,6 +8,14 @@ import { getServerTranslations } from '@/server/backend/i18n/getServerTranslatio
 import { homeConfig } from '@/components/HomePage/home.config'
 import { HomePage } from '@/components/HomePage/pages'
 import { NextSeo } from 'next-seo'
+import { Toaster } from '@/components/StickerPage/components/sonner'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'AI Sticker Generator',
+  description: 'Generate Cool stickers using AI ✨',
+  metadataBase: new URL('https://lab.printlake.com/sticker'),
+}
 
 type Props = {}
 
@@ -40,6 +48,7 @@ const Index = (
         description="See https://github.com/belgattitude/nextjs-monorepo-example"
       />
       <HomePage />
+      <Toaster richColors />
     </>
   )
 }

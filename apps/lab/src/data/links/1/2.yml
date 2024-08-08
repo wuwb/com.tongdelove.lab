@@ -10,7 +10,7 @@
         - title: Bioconda
           logo: bioconda.jpg
           url: https://anaconda.org/bioconda/
-          description: "Bioconda :: Anaconda.org."
+          description: 'Bioconda :: Anaconda.org.'
     - term: 云服务器
       links:
         - title: 阿里云

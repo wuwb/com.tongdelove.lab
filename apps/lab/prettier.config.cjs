@@ -1,9 +1,9 @@
-const baseConfig = require('../../prettier.config.cjs')
+const tongdelovePrettierConfig = require("@tongdelove/prettier-config") 
 
-baseConfig.plugins = [
-  require.resolve('prettier-plugin-tailwindcss'),
-  require.resolve('prettier-plugin-packagejson'),
+tongdelovePrettierConfig.plugins = [
+  require('prettier-plugin-tailwindcss'),
+  require('prettier-plugin-packagejson'),
 ]
 
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
-module.exports = baseConfig
+module.exports = tongdelovePrettierConfig

@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://docs.perplexity.ai/docs/model-cards
 const Perplexity: ModelProviderCard = {
@@ -47,6 +47,6 @@ const Perplexity: ModelProviderCard = {
   proxyUrl: {
     placeholder: 'https://api.perplexity.ai',
   },
-};
+}
 
-export default Perplexity;
+export default Perplexity

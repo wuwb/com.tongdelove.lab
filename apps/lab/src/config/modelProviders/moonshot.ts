@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://platform.moonshot.cn/docs/intro#模型列表
 const Moonshot: ModelProviderCard = {
@@ -28,6 +28,6 @@ const Moonshot: ModelProviderCard = {
   checkModel: 'moonshot-v1-8k',
   id: 'moonshot',
   name: 'Moonshot',
-};
+}
 
-export default Moonshot;
+export default Moonshot

@@ -8,7 +8,11 @@ interface DropdownMenuProps {
   depthLevel: any
 }
 
-export const DropdownMenu = ({ submenus, dropdown, depthLevel }: DropdownMenuProps) => {
+export const DropdownMenu = ({
+  submenus,
+  dropdown,
+  depthLevel,
+}: DropdownMenuProps) => {
   depthLevel = depthLevel + 1
 
   const dropdownClass = depthLevel > 1 ? styles['dropdown-submenu'] : ''

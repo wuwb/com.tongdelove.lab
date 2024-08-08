@@ -7,7 +7,7 @@
 
 - taxonomy: 友情链接
   icon: fa fa-solid fa-arrow-left
-  links: 
+  links:
     - title: 我爱吃包子
       url: http://aibaozi.site/
       description: 小学弟
@@ -20,7 +20,7 @@
 
 - taxonomy: 常用推荐
   icon: fa fa-solid fa-arrow-left
-  links: 
+  links:
     - title: 语雀
       logo: 语雀.webp
       url: https://www.yuque.com/
@@ -95,10 +95,9 @@
 
 - taxonomy: IOS
   icon: fa fa-solid fa-arrow-left
-  links: 
+  links:
     - title: Dabin1988
       url: http://www.cnblogs.com/vincent-lu/
       description: Bio & IT 网址导航
     - title: 张智清
       url: http://www.cnblogs.com/lovecode/
-   

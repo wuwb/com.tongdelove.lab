@@ -1,4 +1,4 @@
-import { ModelProviderCard } from '@/types/llm';
+import { ModelProviderCard } from '@/types/llm'
 
 // ref https://ollama.com/library
 const Ollama: ModelProviderCard = {
@@ -218,6 +218,6 @@ const Ollama: ModelProviderCard = {
   modelList: { showModelFetcher: true },
   name: 'Ollama',
   showApiKey: false,
-};
+}
 
-export default Ollama;
+export default Ollama

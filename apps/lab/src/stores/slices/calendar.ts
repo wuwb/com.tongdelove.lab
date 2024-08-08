@@ -73,4 +73,3 @@ export const deleteEvent =
     await calendar.deleteEvent(eventId)
     dispatch(slice.actions.deleteEvent(eventId))
   }
-
