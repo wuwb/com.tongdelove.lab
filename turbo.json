@@ -1,5 +1,5 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
       "dependsOn": [
@@ -8,7 +8,11 @@
       "outputs": [
         "dist/**",
         ".next/**",
-        "!.next/cache/**"
+        "!.next/cache/**",
+        "next-env.d.ts",
+        ".expo/**",
+        ".output/**",
+        ".vercel/output/**"
       ]
     },
     "build-request": {
@@ -36,40 +40,17 @@
     "dev": {
       "persistent": true,
       "cache": false
-    }
-  },
-  "experimentalUI": true,
-  "globalDependencies": [
-    "**/.env"
-  ],
-  "pipeline": {
+    },
+
     "topo": {
       "dependsOn": [
         "^topo"
       ]
     },
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "next-env.d.ts",
-        ".expo/**",
-        ".output/**",
-        ".vercel/output/**"
-      ]
-    },
-    "dev": {
-      "persistent": true,
-      "cache": false
-    },
     "format": {
       "outputs": [
         "node_modules/.cache/.prettiercache"
-      ],
-      "outputMode": "new-only"
+      ]
     },
     "lint": {
       "dependsOn": [
@@ -89,11 +70,11 @@
     },
     "clean": {
       "cache": false
-    },
-    "//#clean": {
-      "cache": false
     }
   },
+  "globalDependencies": [
+    "**/.env"
+  ],
   "globalEnv": [
     "DATABASE_URL",
     "AUTH_DISCORD_ID",

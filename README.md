@@ -243,6 +243,8 @@ Error
 ### Tech stacks
 
 - Shadcn UI framework based on Tailwind.
+- tinybird
+- turso
 - Supabase Managed postgres database.
 - Drizzle Database ORM.
 - Logto.io Fully open sourced Auth solution.
@@ -253,3 +255,4 @@ Error
 - Cloudflare R2 Image storage.
 - Umami Website Analytics
 - Koyeb Paas Service.
+

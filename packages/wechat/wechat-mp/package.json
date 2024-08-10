@@ -18,11 +18,11 @@
   "author": "",
   "license": "UNLICENSE",
   "dependencies": {
-    "@nestjs/common": "6.2.2",
-    "@nestjs/core": "6.2.2",
-    "reflect-metadata": "0.1.12",
-    "rimraf": "2.6.3",
-    "rxjs": "6.5.2",
+    "@nestjs/common": "^6.2.2",
+    "@nestjs/common": "^6.2.2",
+    "reflect-metadata": "^0.1.12",
+    "rimraf": "^2.6.3",
+    "rxjs": "^6.5.2",
     "snyk": "^1.1183.0",
     "typescript": "^5.4.5"
   },

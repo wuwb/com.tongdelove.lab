@@ -5,7 +5,6 @@ packages:
   - 'prisma'
   - 'packages/schema'
   - 'packages/utils'
-  - 'packages/api-gateway'
   - 'packages/hooks'
   # - 'packages/api'
   # - 'packages/auth'
