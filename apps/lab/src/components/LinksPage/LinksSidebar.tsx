@@ -1,6 +1,7 @@
 import { Accordion } from '@mantine/core'
 import Link from 'next/link'
 import categoryDate from '@/data/config/category.yml'
+
 export const LinksSidebar = () => {
   const data: any = []
 

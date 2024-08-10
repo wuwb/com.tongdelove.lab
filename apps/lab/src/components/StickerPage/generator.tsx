@@ -12,6 +12,7 @@ import { useTranslation } from '@/i18n'
 import img1 from './assets/placeholder.png'
 import qrcode from './assets/qrcode.png'
 import { HoverCard } from '@mantine/core'
+
 export default function Generator() {
   const { t } = useTranslation()
 

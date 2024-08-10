@@ -5,6 +5,7 @@ export function DaohangCard(props) {
       <div className="url-body default">
         <a
           href={item.path}
+          rel="noreferrer"
           target="_blank"
           className="group mb-4 block h-[60px] rounded border-0 bg-white shadow-md transition duration-300 ease-in-out"
           style={{

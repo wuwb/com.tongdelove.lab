@@ -20,7 +20,7 @@ export const FooterNav = (props: {
       )}
       style={props.style}
     >
-      <div className={styles['copyright']}>
+      <div className={styles.copyright}>
         © {new Date().getFullYear()}
         <a href="/" target="_blank" rel="noreferrer">
           appName

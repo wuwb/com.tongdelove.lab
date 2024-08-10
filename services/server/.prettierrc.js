@@ -1,4 +1,4 @@
-const baseConfig = require('../../prettier.config.cjs')
+const baseConfig = require("@tongdelove/prettier-config") 
 
 baseConfig.plugins = [require.resolve('prettier-plugin-packagejson')]
 

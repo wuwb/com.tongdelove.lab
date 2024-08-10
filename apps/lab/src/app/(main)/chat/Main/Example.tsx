@@ -4,6 +4,7 @@ import { MdOutlineTipsAndUpdates } from 'react-icons/md'
 import examples from '@/data/examples.json'
 import { Button } from '@tongdelove/ui/Button'
 import { useMemo, useState } from 'react'
+
 export const Example = () => {
   const [showFull, setShowFull] = useState(false)
 

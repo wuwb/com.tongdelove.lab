@@ -8,13 +8,6 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   environment: process.env.NODE_ENV,
   denyUrls: ['http://localhost:3000'],
-  // Adjust this value in production, or use tracesSampler for greater control
-  // @see https://develop.sentry.dev/sdk/performance/
-  tracesSampleRate: ['false', '0'].includes(
-    process.env.NEXTJS_SENTRY_TRACING ?? ''
-  )
-    ? undefined
-    : 0.05,
 
   // ...
   // Note: if you want to override the automatic release value, do not set a
@@ -49,6 +42,7 @@ Sentry.init({
   ],
 
   // Adjust this value in production, or use tracesSampler for greater control
+  // @see https://develop.sentry.dev/sdk/performance/
   tracesSampleRate: 0.2,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.

@@ -4,7 +4,7 @@ import { Button, LoadingOverlay } from '@mantine/core'
 import download from 'downloadjs'
 import { usePortal } from '@/hooks/usePortal'
 
-function Loading() {
+function Loading(visible: boolean = true) {
   return (
     <>
       <LoadingOverlay

@@ -2,6 +2,12 @@
 module.exports = {
   root: true,
   extends: ['@tongdelove/eslint-config/nextjs.js'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+  },
   rules: {
     'jsx-a11y/alt-text': 0,
     'react/display-name': 0,

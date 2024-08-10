@@ -33,7 +33,7 @@ export const Navbar = ({
                     { 'text-white': selected === index }
                   )}
                 >
-                  {T(item.name)}
+                  {t(item.name)}
                 </div>
               ))}
             </div>
