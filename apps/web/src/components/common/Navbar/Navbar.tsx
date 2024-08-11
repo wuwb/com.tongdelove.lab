@@ -2,12 +2,12 @@ import { PropsWithChildren } from 'react'
 import Link from 'next/link'
 import { NavbarRoot } from './NavbarRoot'
 
-interface Link {
+interface ILink {
   href: string
   label: string
 }
 interface NavbarProps extends PropsWithChildren {
-  links?: Link[]
+  links?: ILink[]
 }
 
 export const Navbar = ({ links }: NavbarProps) => (

@@ -34,7 +34,7 @@ const passwordProgressMap: {
   poor: 'exception',
 }
 
-export const UserRegisterPage = (props) => {
+const UserRegisterPage = (props) => {
   const [count, setCount]: [number, any] = useState(0)
   const [visible, setVisible]: [boolean, any] = useState(false)
   const [prefix, setPrefix]: [string, any] = useState('86')
@@ -273,3 +273,5 @@ export const UserRegisterPage = (props) => {
     </div>
   )
 }
+
+export default UserRegisterPage

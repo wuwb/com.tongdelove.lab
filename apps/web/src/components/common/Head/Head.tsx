@@ -1,11 +1,11 @@
 import NextHead from 'next/head'
 import { DefaultSeo } from 'next-seo'
-import config from '@/config/seo'
+import { Config } from '@/config/seo'
 
 export const Head = (props) => {
   return (
     <>
-      <DefaultSeo {...config} />
+      <DefaultSeo {...Config} />
       <NextHead>
         <meta charSet="utf-8" />
 

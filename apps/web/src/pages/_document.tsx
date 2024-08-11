@@ -2,6 +2,7 @@ import React from 'react'
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import type { DocumentContext } from 'next/document'
+
 const MyDocument = () => {
   // static async getInitialProps(ctx: DocumentContext) {
   //   const initialProps = await Document.getInitialProps(ctx);

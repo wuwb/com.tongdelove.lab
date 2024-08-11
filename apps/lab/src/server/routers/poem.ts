@@ -1,4 +1,4 @@
-import { type Poem } from '@prisma/client'
+import { type Poem, Author } from '@prisma/client'
 import { z } from 'zod'
 import { publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'

@@ -1,4 +1,4 @@
-import Layout from '@/components/common/Layout'
+import { Layout } from '@/components/common/Layout'
 import { DaohangCard } from '@/containers/Daohang'
 import s from './Daohang.module.css'
 

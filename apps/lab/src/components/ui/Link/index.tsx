@@ -56,7 +56,7 @@ export const Links = React.forwardRef(function Link(props: any, ref) {
 
   const isExternal =
     typeof href === 'string' &&
-    (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0)
+    (href.startsWith('http') || href.startsWith('mailto:'))
 
   if (isExternal) {
     if (noLinkStyle) {

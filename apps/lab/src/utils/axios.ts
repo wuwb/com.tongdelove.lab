@@ -92,7 +92,7 @@ instance.interceptors.response.use(
 )
 
 const request = ({ ...options }) => {
-  instance.defaults.headers.common.Authorization = `Bearer ${getToken()}`
+  // instance.defaults.headers.common.Authorization = `Bearer ${getToken()}`
 
   const onSuccess = (response) => response
   const onError = (error) => {

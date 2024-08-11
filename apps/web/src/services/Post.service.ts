@@ -5,7 +5,9 @@ export class PostService {
     try {
       const response = await axiosInstance.get(`/post/${slug}`)
       return response.data
-    } catch (err) {}
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   posts() {}

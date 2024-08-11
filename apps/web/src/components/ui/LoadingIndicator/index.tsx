@@ -1,5 +1,5 @@
 import { Circle } from './Circle'
-import Wrapper from './Wrapper'
+import { Wrapper } from './Wrapper'
 
 export const LoadingIndicator = () => (
   <Wrapper>

@@ -1,13 +1,13 @@
 import { useState, ReactNode, createContext } from 'react'
 
-type SidebarContext = {
+type SidebarContextProps = {
   sidebarToggle: boolean
   toggleSidebar: () => void
   closeSidebar: () => void
 }
 
-export const SidebarContext = createContext<SidebarContext>(
-  {} as SidebarContext
+export const SidebarContext = createContext<SidebarContextProps>(
+  {} as SidebarContextProps
 )
 
 type Props = {

@@ -8,7 +8,7 @@ import { useOnClickOutside } from '@/utils/hooks'
 
 export const LocaleSwitch = ({ pageContext }) => {
   const isMounted = useRef(false)
-  const select = useRef()
+  const select = useRef(null)
   const router = useRouter()
   const [locale, setLocale] = useState<string>()
   const [showing, setShowing] = useState(false)

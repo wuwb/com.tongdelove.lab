@@ -1,6 +1,11 @@
 import React from 'react'
 
-export const Home = (props) => {
+interface BannerTitleProps {
+  children: React.ReactNode
+  desc?: string
+}
+
+export const BannerTitle = (props: BannerTitleProps) => {
   return (
     <div>
       <h3 className="banner-title text-center text-lg">{props.children}</h3>

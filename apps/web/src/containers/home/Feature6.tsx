@@ -33,7 +33,7 @@ export class Feature6 extends React.PureComponent<any, any> {
     } = Carousel
 
     const { barWrapper, title: titleChild, ...titleWrapperProps } = titleWrapper
-    const titleToRender = []
+    const titleToRender: JSX.Element[] = []
 
     const childrenToRender = childWrapper.map((item, ii) => {
       const { title, children, ...itemProps } = item

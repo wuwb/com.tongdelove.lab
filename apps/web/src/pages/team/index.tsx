@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import TinyNav from '@/components/TinyNav'
+import { TinyNav } from '@/components/TinyNav'
 import { Button, Row, Col } from 'antd'
 import { Layout } from '@/components/common'
 import s from './Team.module.css'

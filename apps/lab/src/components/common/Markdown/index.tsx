@@ -36,3 +36,5 @@ export const Markdown = memo(
     )
   }
 )
+
+Markdown.displayName = 'Markdown'

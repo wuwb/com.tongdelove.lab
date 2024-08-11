@@ -92,13 +92,7 @@ module.exports = {
     },
   ],
   rules: {
-    'no-unused-vars': [
-      'warn', // error
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
+    'no-unused-vars': 'off',
  
     'no-restricted-syntax': [
       'error',

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { Card, Space } from 'antd'
-import Layout from '@/components/common/Layout'
+import { Layout } from '@/components/common/Layout'
 import s from './Choose.module.css'
 
 const Home = () => {

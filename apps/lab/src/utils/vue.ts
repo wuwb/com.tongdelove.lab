@@ -1,3 +1,5 @@
+import hljs from 'highlight.js'
+
 export const registerDirective = (Vue) => {
   if (!Vue.directive('clickoutside')) {
     Vue.directive('clickoutside', {

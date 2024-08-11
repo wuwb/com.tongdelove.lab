@@ -1,5 +1,6 @@
 import { DataType } from '@/client'
 import { cn } from '@/utils'
+import { useTranslation } from '@/i18n'
 
 export const Navbar = ({
   data,
@@ -10,6 +11,8 @@ export const Navbar = ({
   selected: number
   setCategory: (category: number) => void
 }) => {
+  const { t } = useTranslation()
+
   return (
     <div className="fixed bottom-0 h-32 w-full bg-gradient-to-t from-white to-white/0">
       <div className="absolute bottom-11 left-0 right-0 m-auto grid place-content-center">

@@ -1,4 +1,4 @@
-import TinyNav from '@/components/TinyNav'
+import { TinyNav } from '@/components/TinyNav'
 import Head from 'next/head'
 import { Layout } from '@/components/common'
 

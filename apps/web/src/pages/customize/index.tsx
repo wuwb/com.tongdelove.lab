@@ -56,8 +56,8 @@ const Home = () => {
   }
 
   function shadeColor(color, percent) {
-    color = color.substr(1)
-    var num = parseInt(color, 16),
+    const newColor = color.substr(1)
+    var num = parseInt(newColor, 16),
       amt = Math.round(2.55 * percent),
       R = (num >> 16) + amt,
       G = ((num >> 8) & 0x00ff) + amt,
@@ -177,7 +177,7 @@ const Home = () => {
       'mousemove',
       function (evt) {
         var mousePos = getMousePos(canvas, evt)
-        var color = undefined
+        let newColor: string
 
         if (
           mouseDown &&
@@ -201,8 +201,8 @@ const Home = () => {
           var red = data[(imageObj.width * y + x) * 4]
           var green = data[(imageObj.width * y + x) * 4 + 1]
           var blue = data[(imageObj.width * y + x) * 4 + 2]
-          var color = 'rgb(' + red + ',' + green + ',' + blue + ')'
-          drawColorSquare(canvas, color, imageObj)
+          newColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
+          drawColorSquare(canvas, newColor, imageObj)
         }
       },
       false

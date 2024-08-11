@@ -12,7 +12,7 @@ const PostsPage = () => {
   // console.log('router: ', router);
 
   const { slug } = router.query
-  const [post, setPost] = useState(null)
+  const [post, setPost] = useState<any | null>(null)
 
   const wp = new WPAPI({ endpoint: 'http://blog.tongdelove.com/wp-json' })
   let apiMethod = wp.posts()

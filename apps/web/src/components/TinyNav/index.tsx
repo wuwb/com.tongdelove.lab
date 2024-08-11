@@ -2,8 +2,6 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 
 const StyledTinyNav = styled.div`
-  text-align: center;
-  border-bottom: 1px solid #e6e5e3;
   a {
     display: inline-block;
     margin: 0 20px -1px 0;
@@ -25,7 +23,7 @@ export const TinyNav = (props) => {
   const { navs } = props
 
   return (
-    <StyledTinyNav>
+    <StyledTinyNav className="text-center border-b border-[#e6e5e3]">
       {navs.map((item) => (
         <Link href={item.href} key={item.name}>
           {item.name}

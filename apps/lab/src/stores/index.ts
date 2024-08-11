@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import { rootReducer } from './rootReducer'
-import syncSaga from './sagas/sync'
-import storage from './storage'
+import { syncSaga } from './sagas/sync'
 
 const sagaMiddleware = createSagaMiddleware()
 

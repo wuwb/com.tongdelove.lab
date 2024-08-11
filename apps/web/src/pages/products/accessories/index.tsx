@@ -297,7 +297,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -318,7 +318,7 @@ const Page = () => {
                 </div>
 
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -338,7 +338,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -358,7 +358,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -378,7 +378,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -398,7 +398,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -419,7 +419,7 @@ const Page = () => {
                 </div>
 
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -439,7 +439,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -459,7 +459,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -479,7 +479,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -499,7 +499,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"
@@ -519,7 +519,7 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="product-wrap">
-                  <div className="product" className="action-hover">
+                  <div className="product action-hover">
                     <Image
                       alt=""
                       width="100"

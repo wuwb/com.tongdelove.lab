@@ -3,7 +3,7 @@ import { UserService } from '@/services'
 import { Layout } from '@/components/common'
 
 const UserProfilePage = () => {
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState<any>()
 
   useEffect(() => {
     UserService.getAll().then((users) => setUsers(users))

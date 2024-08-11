@@ -1,7 +1,7 @@
 import React from 'react'
 import { List } from '../List'
 import { ListItem } from '../ListItem'
-import LoadingIndicator from '@/components/ui/LoadingIndicator'
+import { LoadingIndicator } from '@/components/ui/LoadingIndicator'
 
 interface ReposListProps {
   loading: boolean

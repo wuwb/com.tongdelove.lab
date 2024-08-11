@@ -1,4 +1,4 @@
-import React, { Component, useState, memo } from 'react'
+import React, { useState, memo } from 'react'
 import ReactKonva, {
   Stage,
   Layer,

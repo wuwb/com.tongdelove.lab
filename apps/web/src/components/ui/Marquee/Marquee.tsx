@@ -15,10 +15,10 @@ export const Marquee: FC<MarqueeProps> = ({
   variant = 'primary',
 }) => {
   const rootClassName = clsx(
-    s.root,
+    'relative flex w-full min-w-full flex-row items-center overflow-hidden py-0 max-h-[320px]',
     {
-      [s.primary]: variant === 'primary',
-      [s.secondary]: variant === 'secondary',
+      'bg-accent-0': variant === 'primary',
+      'bg-accent-9': variant === 'secondary',
     },
     className
   )

@@ -1,4 +1,4 @@
-import TopMenu from '@/components/common/TopMenu'
+import { TopMenu } from '@/components/common/TopMenu'
 
 const Home = () => {
   return (

@@ -30,10 +30,15 @@ const UserLoginPage = (props) => {
       console.log('res: ', data)
       router.push('/')
     } catch (err) {
-      notification.error({
-        message: err.message,
-      })
-      return
+      if (err instanceof Error) {
+        notification.error({
+          message: err.message,
+        })
+      } else {
+        notification.error({
+          message: 'Error',
+        })
+      }
     }
   }
 

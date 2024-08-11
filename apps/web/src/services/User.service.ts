@@ -10,7 +10,7 @@ export class UserService {
       const response = await axiosInstance.get('/users/user')
       return response.data
     } catch (err) {
-      throw err
+      console.error(err)
     }
   }
   static async login(username, password) {
@@ -22,7 +22,7 @@ export class UserService {
       })
       return response.data
     } catch (err) {
-      throw err
+      console.error(err)
     }
   }
   static async logout() {

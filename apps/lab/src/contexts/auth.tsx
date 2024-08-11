@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import Router, { useRouter } from 'next/navigation'
 import axios from '@/utils/axios'
+import { setCookie, deleteCookie } from 'cookies-next'
 
 const AuthContext = createContext({} as any)
 
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       password,
     })
     if (token) {
-      Cookies.set('token', token.token, { expires: 60 })
+      setCookie('token', token.token, { expires: 60 })
       axios.defaults.headers['Authorization'] = `Bearer ${token.token}`
       const { data: user } = await axios.get('user/profile')
       setUser(user)
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = (username, password) => {
-    Cookies.remove('token')
+    deleteCookie('token')
     setUser(null)
     delete axios.defaults.headers.Authorization
     window.location.pathname = '/login'

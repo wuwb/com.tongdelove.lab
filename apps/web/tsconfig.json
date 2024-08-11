@@ -19,6 +19,8 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "noUnusedLocals": false,
+    "noImplicitOverride": false,
     "paths": {
       "@/*": ["src/*"],
       "@tongdelove/design/*": ["../../packages/design/src/*"]

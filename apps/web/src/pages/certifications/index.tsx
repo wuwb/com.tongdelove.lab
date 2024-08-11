@@ -1,4 +1,4 @@
-import Layout from '@/components/common/Layout'
+import { Layout } from '@/components/common/Layout'
 
 const Home = () => (
   <div>

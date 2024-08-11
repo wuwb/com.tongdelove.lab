@@ -1,9 +1,13 @@
 ## 运营数据
 
-https://lunarcrush.com/
-https://app.santiment.net/#screeners
-https://www.similarweb.com/zh/
+- title: lunarcrush
+  url: https://lunarcrush.com/
+- title: santiment
+  url: https://app.santiment.net/#screeners
+- title: similarweb
+  url: https://www.similarweb.com/zh/
 
 ## 圆圈拉线成图算法
 
-https://github.com/jiang1997/image2seq
+- title: image2seq
+  url: https://github.com/jiang1997/image2seq
