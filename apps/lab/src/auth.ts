@@ -12,6 +12,7 @@ import GithubProvider from 'next-auth/providers/github'
 import { z } from 'zod'
 import jwt from 'jsonwebtoken'
 import { customSendVerificationRequest } from '@/pages/api/auth/signinemail'
+import Resend from "next-auth/providers/resend"
 
 const OneDayInSeconds = 86400
 const JWT_EXPIRY = OneDayInSeconds * 7 // 7 days
@@ -120,6 +121,11 @@ const providers = [
     maxAge: OneDayInSeconds, // Email link will expire in 24 hours
     sendVerificationRequest: customSendVerificationRequest,
   },
+  Resend({
+    // If your environment variable is named differently than default
+    apiKey: env.AUTH_RESEND_KEY,
+    from: "no-reply@company.com"
+  }),
   // @see https://github.com/settings/applications/2443205
   // @see https://next-auth.js.org/providers/github
   GithubProvider({

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "pnpm -r --filter lab... build && pnpm run build:repo",
-    "build:repo": "next build && if [ \"$VERCEL_ENV\" = 'production' ]; then prisma migrate deploy; fi",
+    "build:repo": "next build",
+    "build:repo:backup": "next build && if [ \"$VERCEL_ENV\" = 'production' ]; then prisma migrate deploy; fi",
     "build-fast": "NEXT_BUILD_ENV_SENTRY_ENABLED=0 NEXT_BUILD_ENV_SOURCEMAPS=0 NEXT_BUILD_ENV_TYPECHECK=0 NEXT_BUILD_ENV_LINT=0 next build",
     "bundle-analyze": "ANALYZE=true NEXT_BUILD_ENV_SENTRY_ENABLED=1 NEXT_BUILD_ENV_SENTRY_UPLOAD_DRY_RUN=1 NEXT_BUILD_ENV_TYPECHECK=0 NEXT_BUILD_ENV_LINT=0 pnpm build",
     "check-dist": "es-check -v",

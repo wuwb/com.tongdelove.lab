@@ -5,8 +5,8 @@
  */
 import createJiti from 'jiti'
 import { fileURLToPath } from 'node:url'
-import { withSentryConfig } from '@sentry/nextjs' // https://docs.sentry.io/platforms/javascript/guides/nextjs/
-import { createSecureHeaders } from 'next-secure-headers'
+// import { withSentryConfig } from '@sentry/nextjs' // https://docs.sentry.io/platforms/javascript/guides/nextjs/
+// import { createSecureHeaders } from 'next-secure-headers'
 import pc from 'picocolors'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -15,15 +15,14 @@ import withBundleAnalyzer from '@next/bundle-analyzer'
 import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.mjs'
 
-const jiti = createJiti(fileURLToPath(import.meta.url))
+// const jiti = createJiti(fileURLToPath(import.meta.url))
 
 // validate during build
-jiti('./src/env/client')
-jiti('./src/env/server')
+// jiti('./src/env/client')
+// jiti('./src/env/server')
 
-const { tsconfigPath } = nextUtils.loadCustomBuildParams()
-
-const isProd = process.env.NODE_ENV === 'production'
+// const { tsconfigPath } = nextUtils.loadCustomBuildParams()
+// const isProd = process.env.NODE_ENV === 'production'
 
 const workspaceRoot = path.resolve(
   path.dirname(url.fileURLToPath(import.meta.url)),

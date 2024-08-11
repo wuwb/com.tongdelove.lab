@@ -26,6 +26,7 @@ export const env = createEnv({
     JWT_PRIVATE_KEY: z.string().optional(),
     EMAIL_SERVER: z.string().url(),
     EMAIL_FROM: z.string().min(1),
+    AUTH_RESEND_KEY: z.string().optional(),
     DISCORD_CLIENT_ID: z.string().optional(),
     DISCORD_CLIENT_SECRET: z.string().optional(),
     GOOGLE_CLIENT_ID: z.string().optional(),
