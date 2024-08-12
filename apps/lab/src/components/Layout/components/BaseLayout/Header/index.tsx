@@ -59,17 +59,18 @@ import {
   DropdownMenuTrigger,
 } from '@tongdelove/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
+import { useTranslation } from '@/i18n'
 
 const mockdata = [
   {
     icon: TbCode,
     title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
+    description: `This Pokémon’s cry is very loud and distracting`,
   },
   {
     icon: TbCoin,
     title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
+    description: `The fluid of Smeargle’s tail secretions changes`,
   },
   {
     icon: TbBook,
@@ -79,11 +80,13 @@ const mockdata = [
 ]
 
 export function HeaderMegaMenu() {
+  const { t } = useTranslation()
+  const theme = useMantineTheme()
+  const { data: session } = useSession()
+
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false)
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
-  const theme = useMantineTheme()
-  const { data: session } = useSession()
 
   const handleClick = () => {
     if (session) {
@@ -226,18 +229,16 @@ export function HeaderMegaMenu() {
                   />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Test Actions</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+                <DropdownMenuContent align="end">
                 <DropdownMenuItem>
-                  <Button variant="default">Log in</Button>
+                    {t('Sign up')}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Button>Sign up</Button>
+                    <div onClick={() => signIn('github')}>
+                      {t('Github 登录')}
+                    </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <button onClick={() => signIn('github')}>Github 登录</button>
-                </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <button
                     onClick={() =>
@@ -247,12 +248,12 @@ export function HeaderMegaMenu() {
                       })
                     }
                   >
-                    账号登录
+                      {t('Email 登录')}
                   </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <button onClick={handleClick}>
-                    {session ? 'Sign out' : 'Sign in'}
+                      {session ? t('Sign out') : t('Sign in')}
                   </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>

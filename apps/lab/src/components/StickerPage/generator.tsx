@@ -11,38 +11,77 @@ import { Input } from './components/input'
 import { useTranslation } from '@/i18n'
 import img1 from './assets/placeholder.png'
 import qrcode from './assets/qrcode.png'
-import { HoverCard } from '@mantine/core'
+import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
+import { RiInformationLine } from "react-icons/ri"
+import { randomInt } from 'es-toolkit'
 
 export default function Generator() {
   const { t } = useTranslation()
 
-  const animal = useRef<HTMLInputElement>(null)
-  const color = useRef<HTMLInputElement>(null)
-  const accessory = useRef<HTMLInputElement>(null)
-  const doing = useRef<HTMLInputElement>(null)
-  const style = useRef<HTMLInputElement>(null)
+  const [animal, setAnimal] = useState<string>('')
+  const [color, setColor] = useState<string>('')
+  const [accessory, setAccessory] = useState<string>('')
+  const [doing, setDoing] = useState<string>('')
+  const [style, setStyle] = useState<string>('')
+
   const [loading, setLoading] = useState(false)
   const [imgUrl, setImgUrl] = useState('')
   const [tperformance, setPerformance] = useState(0)
   const url = 'https://ai-image-api.xeven.workers.dev/img'
+
+  const animals = [
+    [t('小狗'), 'dog'],
+    [t('小猫'), 'cat'],
+    [t('小鸟'), 'bird'],
+    [t('狮子'), 'lion'],
+  ]
+  const objectItems = [
+    [t('小汽车'), 'car'],
+    [t('雪糕'), 'icecream'],
+  ]
+  const colors = [
+    [t('红色'), 'red'],
+    [t('金色', 'golden')],
+    [t('蓝色'), 'blue'],
+    [t('绿色'), 'green'],
+    [t('粉色'), 'pink'],
+  ]
+  const accessories = [
+    [t('帽子'), 'hat'],
+    [t('眼镜'), 'glasses'],
+    [t('领带'), 'tie'],
+    [t('围巾'), 'scarf'],
+    [t('夹克'), 'jacket'],
+  ]
+  const doingItems = [
+    [t('跳舞'), 'dance'],
+    [t('微笑'), 'smiling'],
+    [t('坐'), 'sitting'],
+  ]
+  const styleItems = [
+    [t('素描'), 'sketch'],
+    [t('黑白'), 'b&w'],
+    [t('像素'), 'pixel'],
+    [t('三维'), '3d'],
+  ]
 
   async function generateImage() {
     try {
       setLoading(true)
 
       const basePrompt =
-        animal.current?.value +
+        animal +
         ', vivid, cute, friendly, bright, simple sticker in Pixar style, clear background with' +
-        color.current?.value +
+        color +
         'color theme and border, with a' +
-        accessory.current?.value +
+        accessory +
         'accessory and doing ' +
-        doing.current?.value +
+        doing +
         'and in ' +
-        style.current?.value +
+        style +
         'style'
 
-      if (animal.current !== null) {
+      if (animal !== '') {
         const newUrl = url + '?prompt=' + basePrompt
 
         const t1 = performance.now()
@@ -70,6 +109,46 @@ export default function Generator() {
     }
   }
 
+  const handleAnimalClick = (animal: string) => {
+    setAnimal(animal)
+  }
+
+  const handleColorClick = (color: string) => {
+    setColor(color)
+  }
+
+  const handleAccessoryClick = (accessory: string) => {
+    setAccessory(accessory)
+  }
+
+  const handleDoingClick = (doing: string) => {
+    setDoing(doing)
+  }
+
+  const handleStyleClick = (style: string) => {
+    setStyle(style)
+  }
+
+  const handleRandom = () => {
+    const randomObjectTarget = [...animals, ...objectItems]
+    const randomObjectIndex = randomInt(randomObjectTarget.length)
+    const randomObject = randomObjectTarget[randomObjectIndex]?.[1]
+    setAnimal(randomObject)
+
+    setColor(colors[randomInt(colors.length)]?.[1])
+    setAccessory(accessories[randomInt(accessories.length)]?.[1])
+    setDoing(doingItems[randomInt(doingItems.length)]?.[1])
+    setStyle(styleItems[randomInt(styleItems.length)]?.[1])
+  }
+
+  const renderQuickAction = (objects, action) => {
+    return objects.map((item) => {
+      return (
+        <MantineButton size="compact-xs" key={item[1]} onClick={() => action(item[1])}>{item[0]}</MantineButton>
+      )
+    })
+  }
+
   return (
     <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 py-8 md:grid-cols-2 md:gap-24 md:py-12">
       <div className="flex flex-col gap-6">
@@ -83,35 +162,56 @@ export default function Generator() {
           <p className="text-md">{t('请用英文输入相关关键词')}</p>
         </div>
         <div className="grid gap-4">
-          <Label htmlFor="animal">{t('动物 / 对象')}</Label>
+          <Label htmlFor="animal" className="flex justify-between">
+            <div className="flex gap-2">
+              <span>{t('动物 / 对象')}</span>
+              <span className="text-xs">{t('请使用英文单数形式')}</span>
+            </div>
+            <div>
+              <MantineButton size="compact-xs" onClick={handleRandom}>{t('随机')}</MantineButton>
+            </div>
+          </Label>
           <Input
             required
-            ref={animal}
             id="animal"
             name="animal"
+            value={animal}
+            onChange={(event) => setAnimal(event.target.value)}
             placeholder="dog, cat, bird, cars, lion, icecream...."
           />
+          <div className="flex gap-0.5">
+            {renderQuickAction(animals, handleAnimalClick)}
+            {renderQuickAction(objectItems, handleAnimalClick)}
+          </div>
         </div>
         <div className="flex flex-row gap-4">
           <div className="grid flex-1 gap-4">
             <Label htmlFor="color">{t('颜色')}</Label>
             <Input
               required
-              ref={color}
               id="color"
               name="color"
+              value={color}
+              onChange={(event) => setColor(event.target.value)}
               placeholder="blue, golden, red..."
             />
+            <div className="flex gap-0.5">
+              {renderQuickAction(colors, handleColorClick)}
+            </div>
           </div>
           <div className="grid flex-1 gap-4">
             <Label htmlFor="accessory">{t('配饰')}</Label>
             <Input
               required
-              ref={accessory}
               id="accessory"
               name="accessory"
+              value={accessory}
+              onChange={(event) => setAccessory(event.target.value)}
               placeholder="hat, sunglasses, jacket..."
             />
+            <div className="flex gap-0.5">
+              {renderQuickAction(accessories, handleAccessoryClick)}
+            </div>
           </div>
         </div>
         <div className="flex flex-row gap-4">
@@ -119,21 +219,31 @@ export default function Generator() {
             <Label htmlFor="doing">{t('在做什么')}</Label>
             <Input
               required
-              ref={doing}
               id="doing"
               name="doing"
+              value={doing}
+              onChange={(event) => setDoing(event.target.value)}
               placeholder="sitting, dance, smiling..."
             />
+            <div className="flex gap-0.5">
+              {renderQuickAction(doingItems, handleDoingClick)}
+            </div>
+
           </div>
           <div className="grid flex-1 gap-4">
             <Label htmlFor="style">{t('样式')}</Label>
             <Input
               required
-              ref={style}
               id="style"
               name="style"
+              value={style}
+              onChange={(event) => setStyle(event.target.value)}
               placeholder="sketch, b&w, pixel, 3d..."
             />
+            <div className="flex gap-0.5">
+              {renderQuickAction(styleItems, handleStyleClick)}
+            </div>
+
           </div>
         </div>
 

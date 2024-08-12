@@ -13,6 +13,8 @@ import Head from 'next/head'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 // import { env } from '../env.js'
 import { ViewTransitions } from 'next-view-transitions'
+import { DefaultSeo } from 'next-seo'
+import { config } from '../../next-seo.config'
 
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect (and its warnings) when not running in a browser
@@ -31,6 +33,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+      <DefaultSeo {...config} />
       <AppProviders session={session}>
         <NextNProgress
           color="#fff"
@@ -42,7 +45,6 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <Layout>
           <Component {...pageProps} />
         </Layout>
-
         <Analytics />
         <SpeedInsights />
       </AppProviders>
