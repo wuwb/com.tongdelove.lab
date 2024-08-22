@@ -1,0 +1,20 @@
+
+- taxonomy: AI
+  icon: fas fa-flask fa-lg
+  list:
+    - term: ai tools
+      links:
+        - title: patreon
+          logo: ncbi.jpg
+          url: https://civitai.com/
+          description: 
+
+- taxonomy: AI
+  icon: fas fa-flask fa-lg
+  list:
+    - term: ai tools
+      links:
+        - title: patreon
+          logo: ncbi.jpg
+          url: https://www.patreon.com
+          description: 

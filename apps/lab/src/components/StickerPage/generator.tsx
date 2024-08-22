@@ -14,6 +14,7 @@ import qrcode from './assets/qrcode.png'
 import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
 import { RiInformationLine } from "react-icons/ri"
 import { randomInt } from 'es-toolkit'
+import { trpc } from '@/utils/trpc'
 
 export default function Generator() {
   const { t } = useTranslation()
@@ -27,7 +28,12 @@ export default function Generator() {
   const [loading, setLoading] = useState(false)
   const [imgUrl, setImgUrl] = useState('')
   const [tperformance, setPerformance] = useState(0)
+
+  const [uploadedImage, setUploadedImage] = useState<string>('')
   const url = 'https://ai-image-api.xeven.workers.dev/img'
+
+  const s3Mutation = trpc.s3.getPresignedUrl.useMutation()
+  // const 
 
   const animals = [
     [t('小狗'), 'dog'],
@@ -41,7 +47,7 @@ export default function Generator() {
   ]
   const colors = [
     [t('红色'), 'red'],
-    [t('金色', 'golden')],
+    [t('金色'), 'golden'],
     [t('蓝色'), 'blue'],
     [t('绿色'), 'green'],
     [t('粉色'), 'pink'],
@@ -65,7 +71,7 @@ export default function Generator() {
     [t('三维'), '3d'],
   ]
 
-  async function generateImage() {
+  const generateImage = async () => {
     try {
       setLoading(true)
 
@@ -91,11 +97,42 @@ export default function Generator() {
         })
 
         if (response.ok) {
+          console.log('response: ', response)
+
           const t2 = performance.now()
           setPerformance(t2 - t1 - 300)
           const blob = await response.blob()
           const objectUrl = URL.createObjectURL(blob)
           setImgUrl(objectUrl)
+
+          // 生成链接
+          const key = `stickers/${Date.now()}`
+          const presignedUrl = await s3Mutation.mutateAsync({
+            key,
+            contentType: 'image/png',
+            bucket: `lab-sticker`,
+          })
+          console.log('presignedUrl: ', presignedUrl)
+
+          try {
+            // 上传
+            await fetch(presignedUrl, {
+              method: 'PUT',
+              body: new File([blob], 'generated.png', {
+                type: 'image/png',
+              }),
+            })
+
+            const imageUrl = `https://${presignedUrl.split('/')[2]}/${key}`
+
+            console.log('imageUrl: ', imageUrl)
+
+            setUploadedImage(imageUrl)
+
+          } catch (err) {
+            console.error(err)
+          }
+
           toast.success('Image generated successfully!')
         } else {
           toast.error('An error occurred while generating the image.')
@@ -142,9 +179,9 @@ export default function Generator() {
   }
 
   const renderQuickAction = (objects, action) => {
-    return objects.map((item) => {
+    return objects.map((item, index) => {
       return (
-        <MantineButton size="compact-xs" key={item[1]} onClick={() => action(item[1])}>{item[0]}</MantineButton>
+        <MantineButton size="compact-xs" key={item[1] + index} onClick={() => action(item[1])}>{item[0]}</MantineButton>
       )
     })
   }
@@ -179,7 +216,7 @@ export default function Generator() {
             onChange={(event) => setAnimal(event.target.value)}
             placeholder="dog, cat, bird, cars, lion, icecream...."
           />
-          <div className="flex gap-0.5">
+          <div className="flex gap-0.5 flex-wrap">
             {renderQuickAction(animals, handleAnimalClick)}
             {renderQuickAction(objectItems, handleAnimalClick)}
           </div>
@@ -195,7 +232,7 @@ export default function Generator() {
               onChange={(event) => setColor(event.target.value)}
               placeholder="blue, golden, red..."
             />
-            <div className="flex gap-0.5">
+            <div className="flex gap-0.5 flex-wrap">
               {renderQuickAction(colors, handleColorClick)}
             </div>
           </div>
@@ -209,7 +246,7 @@ export default function Generator() {
               onChange={(event) => setAccessory(event.target.value)}
               placeholder="hat, sunglasses, jacket..."
             />
-            <div className="flex gap-0.5">
+            <div className="flex gap-0.5 flex-wrap">
               {renderQuickAction(accessories, handleAccessoryClick)}
             </div>
           </div>
@@ -225,7 +262,7 @@ export default function Generator() {
               onChange={(event) => setDoing(event.target.value)}
               placeholder="sitting, dance, smiling..."
             />
-            <div className="flex gap-0.5">
+            <div className="flex gap-0.5 flex-wrap">
               {renderQuickAction(doingItems, handleDoingClick)}
             </div>
 
@@ -240,10 +277,9 @@ export default function Generator() {
               onChange={(event) => setStyle(event.target.value)}
               placeholder="sketch, b&w, pixel, 3d..."
             />
-            <div className="flex gap-0.5">
+            <div className="flex gap-0.5 flex-wrap">
               {renderQuickAction(styleItems, handleStyleClick)}
             </div>
-
           </div>
         </div>
 
@@ -251,7 +287,7 @@ export default function Generator() {
           <Button
             size="lg"
             className="w-9/12"
-            onClick={() => generateImage()}
+            onClick={generateImage}
             disabled={loading}
           >
             {t('生成贴纸')}
@@ -270,6 +306,8 @@ export default function Generator() {
             </HoverCard.Target>
             <HoverCard.Dropdown>
               <Image src={qrcode} alt={t('微信二维码')} />
+              <div>50mm * 50mm 100张，40元</div>
+              <div>100mm * 100mm 100张，50元</div>
             </HoverCard.Dropdown>
           </HoverCard>
         </div>
@@ -321,11 +359,11 @@ export default function Generator() {
         )}
 
         <p className="my-2">
-          Time taken:{' '}
+          {t('Time taken:')}
           <span className="text-primary">
             {(tperformance / 1000).toFixed(2)}
           </span>{' '}
-          secs
+          {t('secs')}
         </p>
       </div>
     </div>

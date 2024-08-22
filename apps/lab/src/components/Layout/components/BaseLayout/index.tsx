@@ -10,7 +10,7 @@ export const BaseLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <Sidebar />
-      <div className="flex flex-col pl-14">
+      <div className="flex flex-col md:pl-14">
         <HeaderMegaMenu />
         {children}
       </div>

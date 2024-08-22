@@ -1,9 +1,14 @@
 import { useAuth } from '@/contexts/auth'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tongdelove/ui/tabs'
 import { Separator } from '@tongdelove/ui/separator'
+import { useSession, signIn, signOut } from "next-auth/react" 
 
 function ProfilePage(): any {
   const { user } = useAuth()
+
+  const { data: session, status } = useSession()
+  console.log('session: ', session, status)
+
 
   return (
     <div className="box max-w-screen-3xl container mx-auto w-full max-w-[1680px]">
@@ -77,14 +82,13 @@ function ProfilePage(): any {
                 This is how others will see you on the site.
               </p>
             </div>
-
             <Separator />
           </div>
           <form className="space-y-8">
             <div className="space-y-2">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for=":rhk:-form-item"
+                htmlFor=":rhk:-form-item"
               >
                 Username
               </label>
@@ -107,7 +111,7 @@ function ProfilePage(): any {
             <div className="space-y-2">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for=":rhl:-form-item"
+                htmlFor=":rhl:-form-item"
               >
                 Email
               </label>
@@ -127,7 +131,7 @@ function ProfilePage(): any {
               >
                 <span>Select a verified email to display</span>
               </button>
-              <select aria-hidden="true" tabindex="-1">
+              <select aria-hidden="true" tabIndex={-1}>
                 <option value=""></option>
                 <option value="m@example.com">m@example.com</option>
               </select>
@@ -142,7 +146,7 @@ function ProfilePage(): any {
             <div className="space-y-2">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for=":rhn:-form-item"
+                htmlFor=":rhn:-form-item"
               >
                 Bio
               </label>
@@ -153,9 +157,9 @@ function ProfilePage(): any {
                 id=":rhn:-form-item"
                 aria-describedby=":rhn:-form-item-description"
                 aria-invalid="false"
-              >
-                I own a computer.
-              </textarea>
+                value="I own a computer."
+                onChange={() => { }}
+              />
               <p
                 id=":rhn:-form-item-description"
                 className="text-[0.8rem] text-muted-foreground"
@@ -168,7 +172,7 @@ function ProfilePage(): any {
               <div className="space-y-2">
                 <label
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for=":rho:-form-item"
+                  htmlFor=":rho:-form-item"
                 >
                   URLs
                 </label>
@@ -185,12 +189,14 @@ function ProfilePage(): any {
                   aria-invalid="false"
                   value="https://shadcn.com"
                   name="urls.0.value"
+                  onChange={() => { }}
+
                 />
               </div>
               <div className="space-y-2">
                 <label
                   className="sr-only text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for=":rhp:-form-item"
+                  htmlFor=":rhp:-form-item"
                 >
                   URLs
                 </label>
@@ -207,6 +213,8 @@ function ProfilePage(): any {
                   aria-invalid="false"
                   value="http://twitter.com/shadcn"
                   name="urls.1.value"
+                  onChange={() => { }}
+
                 />
               </div>
               <button

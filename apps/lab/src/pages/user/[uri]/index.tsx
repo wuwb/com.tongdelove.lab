@@ -1,8 +1,14 @@
 // import { authOptions } from '@/server/auth'
 // import { getServerSession } from 'next-auth/next'
-// import { auth } from "@/auth"
+import { useSession } from "next-auth/react"
+import { useState } from "react"
+
 const Profile = ({ user }) => {
-  // Show the user. No loading state is required
+  const { data: session, update } = useSession()
+  const [name, setName] = useState(session?.user?.name ?? "")
+
+  if (!session?.user) return null
+
   return (
     <div>
       <h1>Your Profile</h1>

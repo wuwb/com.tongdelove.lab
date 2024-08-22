@@ -17,6 +17,7 @@ import {
   rem,
   useMantineTheme,
   ActionIcon,
+  VisuallyHidden,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
@@ -28,7 +29,7 @@ import {
   TbX,
   TbChevronRight,
 } from 'react-icons/tb'
-import { useSession, signOut, signIn } from 'next-auth/react'
+import { signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import classes from './HeaderMegaMenu.module.css'
 import Image from 'next/image'
@@ -60,17 +61,20 @@ import {
 } from '@tongdelove/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
 import { useTranslation } from '@/i18n'
+import { useSession } from "next-auth/react"
+import { MainNav } from '@/components/auth-test/main-nav'
+import UserButton from '@/components/auth-test/user-button'
 
 const mockdata = [
   {
     icon: TbCode,
     title: 'Open source',
-    description: `This Pokémon’s cry is very loud and distracting`,
+    description: `This Pokémon's cry is very loud and distracting`,
   },
   {
     icon: TbCoin,
     title: 'Free for everyone',
-    description: `The fluid of Smeargle’s tail secretions changes`,
+    description: `The fluid of Smeargle's tail secretions changes`,
   },
   {
     icon: TbBook,
@@ -79,14 +83,77 @@ const mockdata = [
   },
 ]
 
+interface NavItem {
+  label: string
+  subLabel?: string
+  children?: Array<NavItem>
+  href?: string
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: 'Inspiration',
+    children: [
+      {
+        label: 'Explore Design Work',
+        subLabel: 'Trending Design to inspire you',
+        href: '#',
+      },
+      {
+        label: 'New & Noteworthy',
+        subLabel: 'Up-and-coming Designers',
+        href: '#',
+      },
+    ],
+  },
+  {
+    label: 'Find Work',
+    children: [
+      {
+        label: 'Job Board',
+        subLabel: 'Find your dream design job',
+        href: '#',
+      },
+      {
+        label: 'Freelance Projects',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
+    ],
+  },
+  {
+    label: 'Learn Design',
+    href: '#',
+  },
+  {
+    label: 'Hire Designers',
+    href: '#',
+  },
+  {
+    label: '小工具',
+    children: [
+      {
+        label: '聊天记录生成器',
+        subLabel: '生成各种聊天软件的聊天记录',
+        href: '#/tool/chat-log-generator',
+      },
+      {
+        label: 'ETF 网格工具',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
+    ],
+  },
+]
+
 export function HeaderMegaMenu() {
   const { t } = useTranslation()
   const theme = useMantineTheme()
-  const { data: session } = useSession()
+  const { data: session, update } = useSession()
 
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false)
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(true)
 
   const handleClick = () => {
     if (session) {
@@ -117,166 +184,179 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ))
 
+  console.log('links: ', links)
+
   return (
     <div className="border-soild flex h-14 items-center justify-end border-b">
-      <header className="sticky top-0 z-30 flex h-[60px] items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="outline"
-              className="shrink-0 sm:hidden"
-            >
-              <PanelLeft className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="sm:max-w-xs">
-            <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="#"
-                className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+
+      <header className="sticky top-0 z-30 flex h-[60px] items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 justify-between w-full">
+        <div className="flex items-center justify-center px-2">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                size="icon"
+                variant="outline"
+                className="shrink-0 sm:hidden"
               >
-                <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                <span className="sr-only">Tongdelove Inc</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Home className="h-5 w-5" />
-                Home
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Orders
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-foreground"
-              >
-                <Package className="h-5 w-5" />
-                Products
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Users2 className="h-5 w-5" />
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <LineChart className="h-5 w-5" />
-                Settings
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
-        <div className="flex w-full justify-end">
-          {session ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full"
+                <PanelLeft className="h-6 w-6" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="sm:max-w-xs">
+              <nav className="grid gap-6 text-lg font-medium">
+                <Link
+                  href="#"
+                  className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                 >
-                  <Image
-                    src="/images/avatars/3.jpg"
-                    width={36}
-                    height={36}
-                    alt="Avatar"
-                    className="overflow-hidden rounded-full"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link href="/profile">账号设置</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => signOut()}
-                  className="cursor-pointer"
+                  <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
+                  <span className="sr-only">Tongdelove Inc</span>
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
-                  退出
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full"
+                  <Home className="h-5 w-5" />
+                  Home
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
-                  <Image
-                    src="/images/avatars/8.jpg"
-                    width={36}
-                    height={36}
-                    alt="Avatar"
-                    className="overflow-hidden rounded-full"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                    {t('Sign up')}
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <div onClick={() => signIn('github')}>
-                      {t('Github 登录')}
-                    </div>
-                </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <button
-                    onClick={() =>
-                      signIn('credentials', {
-                        email: 'bin2302@gmail.com',
-                        password: '123456',
-                      })
-                    }
-                  >
-                      {t('Email 登录')}
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <button onClick={handleClick}>
-                      {session ? t('Sign out') : t('Sign in')}
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+                  <ShoppingCart className="h-5 w-5" />
+                  Orders
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 px-2.5 text-foreground"
+                >
+                  <Package className="h-5 w-5" />
+                  Products
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <Users2 className="h-5 w-5" />
+                  Customers
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <LineChart className="h-5 w-5" />
+                  Settings
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-        <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+        <div className="flex gap-2">
+          <div className="flex w-full justify-end">
+            {session ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="overflow-hidden rounded-full shrink-0"
+                  >
+                    <img
+                      className="h-8 w-8 rounded-full"
+                      src={session.user?.image ?? ''}
+                      alt="avator"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/profile">账号设置</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => signOut()}
+                    className="cursor-pointer"
+                  >
+                    {t('退出')}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="overflow-hidden rounded-full"
+                  >
+                    <Image
+                      src="/images/avatars/8.jpg"
+                      width={36}
+                      height={36}
+                      alt="Avatar"
+                      className="overflow-hidden rounded-full"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuItem>
+                    {t('Sign up')}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <button onClick={() => signIn('github')}>
+                        {t('Github 登录')}
+                      </button>
+                    </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                    {/* <button
+                      onClick={() =>
+                        signIn('credentials', {
+                          email: 'bin2302@gmail.com',
+                          password: '123456',
+                        })
+                      }
+                      >
+                    </button> */}
+                    {/* <Link href="/auth/login">{t('邮箱登录')}</Link> */}
+                    {/* <button onClick={() => signIn()}>Sign in</button> */}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <button onClick={handleClick}>
+                      {session ? t('Sign out') : t('Sign in')}
+                    </button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
+          <div className="flex items-center justify-center sm:hidden">
+            <Burger size="sm" opened={drawerOpened} onClick={toggleDrawer} aria-label="Toggle navigation" />
+          </div>
+        </div>
       </header>
 
       <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
-        size="100%"
+        size="90%"
         padding="md"
         title="Navigation"
         hiddenFrom="sm"
         zIndex={1000000}
+        position="right"
       >
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
-          <Collapse in={linksOpened}>{links}</Collapse>
-          123
+          <Collapse in={linksOpened}>
+            <div className="px-2">
+              {links}
+            </div>
+          </Collapse>
           <Divider my="sm" />
+          <div className="px-2">
           {session ? (
             <div className="flex items-center space-x-3">
               <img
@@ -284,17 +364,14 @@ export function HeaderMegaMenu() {
                 src={session.user?.image ?? ''}
                 alt="avator"
               />
-              <Link href="/me">
-                <a className="font-medium text-blue-600">
+                <Link href="/me">
                   {session.user?.name}
-                </a>
               </Link>
-              <button
-                className="rounded bg-blue-500 px-3 py-2 text-white"
-                onClick={() => signOut()}
-              >
-                登出
-              </button>
+                <div>
+                  <button onClick={() => signOut()}>
+                    {t('退出')}
+                  </button>
+                </div>
             </div>
           ) : (
             <Group justify="center" grow pb="xl" px="md">
@@ -302,6 +379,7 @@ export function HeaderMegaMenu() {
               <Button>Sign up</Button>
             </Group>
           )}
+          </div>
         </ScrollArea>
       </Drawer>
     </div>
@@ -382,7 +460,6 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Text>{subLabel}</Text>
         </Box>
         <Flex
-          transform="translateX(-10px)"
           opacity={0}
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
           justify="flex-end"
@@ -430,65 +507,4 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
   )
 }
 
-interface NavItem {
-  label: string
-  subLabel?: string
-  children?: Array<NavItem>
-  href?: string
-}
 
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'Inspiration',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Find Work',
-    children: [
-      {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '#',
-      },
-      {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Learn Design',
-    href: '#',
-  },
-  {
-    label: 'Hire Designers',
-    href: '#',
-  },
-  {
-    label: '小工具',
-    children: [
-      {
-        label: '聊天记录生成器',
-        subLabel: '生成各种聊天软件的聊天记录',
-        href: '#/tool/chat-log-generator',
-      },
-      {
-        label: 'ETF 网格工具',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
-  },
-]

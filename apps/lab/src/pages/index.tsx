@@ -20,8 +20,6 @@ const Index = (
   const { t } = useTranslation()
   const { data: session } = useSession()
 
-  console.log('session: ', session)
-
   // const { data: hello, isLoading } = trpc.example.hello.useQuery({
   //   text: 'from tRPC',
   // })

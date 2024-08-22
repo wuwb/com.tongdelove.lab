@@ -3,6 +3,7 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { type NextRequest, NextResponse } from 'next/server'
 import { locales, defaultLocale } from './i18n/config'
+export { auth as middleware } from "@/auth"
 
 type MiddlewareEnabledRouteMatchers = (typeof config.matcher)[number]
 
@@ -29,39 +30,36 @@ function getLocale(request) {
   return match(languages, locales, defaultLocale) // -> 'en-US'
 }
 
-export function middleware(request: NextRequest) {
-  // request.auth
-  console.log('request path: ', request.nextUrl.href)
+// export function middleware(request: NextRequest) {
+//   // request.auth
+//   console.log('request path: ', request.nextUrl.href)
 
-  // if (request.nextUrl.pathname.startsWith('/_next/image')) {
-  //     const url = request.nextUrl.clone()
-  //     url.pathname = '/logo_white.png'
-  //     url.search = ''
-  //     return NextResponse.rewrite(url)
-  // }
+//   // if (request.nextUrl.pathname.startsWith('/_next/image')) {
+//   //     const url = request.nextUrl.clone()
+//   //     url.pathname = '/logo_white.png'
+//   //     url.search = ''
+//   //     return NextResponse.rewrite(url)
+//   // }
 
-  const { pathname } = request.nextUrl
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
+//   const { pathname } = request.nextUrl
+//   const pathnameHasLocale = locales.some(
+//     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+//   )
 
-  if (pathnameHasLocale) return
+//   if (pathnameHasLocale) return
 
-  // Redirect if there is no locale
-  const locale = getLocale(request)
-  request.nextUrl.pathname = `/${locale}${pathname}`
-  // return NextResponse.redirect(request.nextUrl)
+//   // Redirect if there is no locale
+//   const locale = getLocale(request)
+//   request.nextUrl.pathname = `/${locale}${pathname}`
+//   // return NextResponse.redirect(request.nextUrl)
 
-  return NextResponse.next()
-}
+//   return NextResponse.next()
+// }
 
+// Read more: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next).*)',
-
     '/admin/:path*',
-    '/((?!api|_next/static|_next/image|.*\\.png$).*)',
-    // '/profile/:path*'
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)',
   ],
 }

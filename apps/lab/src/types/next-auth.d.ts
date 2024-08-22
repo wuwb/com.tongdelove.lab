@@ -11,16 +11,17 @@ declare module 'next-auth' {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
-  interface Session extends DefaultSession {
-    user?: User
+  interface Session {
+    user: {
+      id: string
+    } & DefaultSession["user"]
     token: JWT
-    error?: string
+    access_token?: string
+  } 
 
-    refreshTokenExpires?: number
-    accessTokenExpires?: string
-    refreshToken?: string
+  interface User {
+
   }
-
   /**
    * Usually contains information about the provider being used
    * and also extends `TokenSet`, which is different tokens returned by OAuth Providers.
@@ -45,12 +46,13 @@ declare module 'next-auth' {
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
   interface JWT {
-    refreshTokenExpires?: number
-    accessTokenExpires?: number
-    refreshToken?: string
-    token: string
-    exp?: number
-    iat?: number
-    jti?: string
+    name: string
+    email: string
+    picture: string
+    sub: string,
+    access_token?: string,
+    iat: number
+    exp: number
+    jti: string
   }
 }

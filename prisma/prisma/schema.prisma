@@ -214,12 +214,15 @@ enum UserPermissionRole {
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique @map(name: "session_token") @db.Text
-  userId       String   @unique @map(name: "user_id")
+  sessionToken String   @unique @map(name: "session_token")
+  userId       String   @map(name: "user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map(name: "session")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "sessions")
 }
 
 model Link {
@@ -1022,27 +1025,30 @@ model Access {
 // @see https://next-auth.js.org/schemas/models
 model Account {
   id                String    @id @default(cuid())
-  userId            String    @unique @map(name: "user_id")
-  type              String
-  provider          String    @db.VarChar(63) // email、google
-  providerAccountId String    @unique @map(name: "provider_account_id")
-  refreshToken      String?   @map(name: "refresh_token") 
-  accessToken       String?   @map(name: "access_token") 
-  expiresAt         Int?      @map(name: "expires_at")
-  tokenType         String?   @map(name: "token_type")
-  scope             String?
-  idToken           String?   @map(name: "id_token") 
-  sessionState      String?   @map(name: "session_state")
+  userId            String    @map(name: "user_id")
+  type              String    // oauth
+  provider          String    // email, google, github
+  providerAccountId String    @map(name: "provider_account_id")
+  refresh_token     String?   
+  access_token      String?  
+  expires_at        Int?     
+  token_type        String?   // bearer
+  scope             String?   // read:user, user:email
+  id_token          String?   
+  session_state     String? 
+
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt         DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
-  updatedAt         DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+
+  createdAt         DateTime  @default(now()) @map(name: "created_at") 
+  updatedAt         DateTime  @updatedAt @map(name: "updated_at")
+  
   isDeleted         Boolean   @default(false) @map(name: "is_deleted") // 是否删除
 
   // for github @see https://next-auth.js.org/providers/github
   refresh_token_expires_in Int?
 
   @@unique([provider, providerAccountId])
-  @@map(name: "account")
+  @@map(name: "accounts")
 }
 
 model AccountLastLogin {
@@ -1270,8 +1276,12 @@ enum UserLanguageCode {
 model User {
   id                String            @id @default(cuid())
   name              String?
-  email             String?           @unique @map(name: "user_email")
+  email             String            @unique     
   emailVerified     DateTime?         @map(name: "email_verified")
+  image             String?         
+  accounts          Account[]
+  sessions          Session[]
+
   about             String?           @default("")
   interests         String?           @default("")
   isPublic          Boolean           @default(true)
@@ -1283,22 +1293,20 @@ model User {
   stripeCustomerId  String?           @default("")
   subscriptionId    String?           @default("")
   language          UserLanguageCode?
-  image             String?           @default("")
-  accounts          Account[]
-  sessions          Session[]
-  username          String?           @unique @db.VarChar(50) // 用户名
+
+  username          String?           @unique // 用户名
   gender            Int               @default(0)
   birthday          DateTime?
   last_login_time   DateTime?
   last_login_ip     String            @default("")
   level             Int               @default(0) // 用户等级
   // 用户名
-  login             String?           @unique @map(name: "user_login") // 用户名
+  login             String?            @map(name: "user_login") // 用户名
   pass              String?           @map(name: "user_pass") // 密码
   password          String? // 添加到 LocalAuth 表中
   // 名称
   // 自动生成一个内部 id，比如京东的  JD_JDLKFJSDLFJ
-  nicename          String?           @unique @default("") @map(name: "user_nicename") // 昵称
+  nicename          String?            @default("") @map(name: "user_nicename") // 昵称
   url               String?           @default("") @map(name: "user_url") // 网址
   // 通过代码保证唯一性
   activationKey     String?           @map(name: "user_activation_key") // 激活码
@@ -1339,9 +1347,11 @@ model User {
   article           Article[]
   comment           Comment[]
   CreditTransaction CreditTransaction[]
+  Authenticator Authenticator[]
+  Sticker Sticker[]
 
   @@index([login, phone, email])
-  @@map(name: "user")
+  @@map(name: "users")
 }
 
 model LocalAuth {
@@ -1411,13 +1421,28 @@ model Client {
 }
 
 model VerificationToken {
-  id         String   @id @default(cuid())
-  identifier String   @db.Text
-  token      String   @unique @db.Text
+  identifier String   
+  token      String  
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verification_token")
+  @@map("verificationtokens")
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([userId, credentialID])
 }
 
 model Options {
@@ -2092,4 +2117,19 @@ enum TransactionStatus {
   PENDING
   SUCCESS
   FAILED
+}
+
+model Sticker {
+  id        String   @id @default(cuid())
+  object String
+  color String?
+  accessory String?
+  doing String?
+  style String?
+  url String
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "stickers")
 }

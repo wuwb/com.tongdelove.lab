@@ -24,7 +24,6 @@
   "license": "UNLICENSE",
   "dependencies": {
     "@nestjs/common": "^6.2.2",
-    "@nestjs/common": "^6.2.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.3",
     "rxjs": "^6.5.2",
@@ -40,7 +39,6 @@
     "nodemon": "1.19.0",
     "supertest": "4.0.2",
     "ts-loader": "6.0.1",
-    "ts-node": "8.1.0",
     "tsconfig-paths": "3.8.0",
     "@nestjs/common": "^5.5.0",
     "@nestjs/core": "^5.5.0",

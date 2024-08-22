@@ -1,22 +1,20 @@
 import { Container, Title, Accordion } from '@mantine/core'
 import { useTranslation } from '@/i18n'
 
-
 interface FaqProps {
   data: {
     question: string
     answer: string
   }[]
 }
+
 export function Faq({
   data
 }: FaqProps) {
   const { t } = useTranslation()
 
-
-
   return (
-    <Container size="sm" className="min-h-[650px] w-[800px] pb-2 pt-2">
+    <Container size="sm" className="min-h-[650px] max-w-[800px] w-full pb-2 pt-2">
       <Title ta="center" className="mb-2">
         {t('常见问题')}
       </Title>

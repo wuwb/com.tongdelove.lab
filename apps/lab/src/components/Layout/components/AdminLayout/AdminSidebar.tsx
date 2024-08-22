@@ -1,10 +1,10 @@
-import { useSession } from 'next-auth/react'
-import type { FC } from 'react'
+import { useSession } from "next-auth/react"
 import { TextAvatar } from '@/components/avatar/TextAvatar'
 
-export const AdminSidebar: FC = () => {
+export const AdminSidebar = async () => {
   // @todo better to use middleware or https://next-auth.js.org/getting-started/client#custom-client-session-handling
-  const { data: session, status } = useSession()
+  const { data: session, update } = useSession()
+
   const user = session?.user
 
   return (

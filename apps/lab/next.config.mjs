@@ -199,6 +199,8 @@ const config = {
     : {}),
 
   experimental: {
+
+
     forceSwcTransforms: true,
 
     // https://vercel.com/docs/observability/otel-overview
@@ -256,7 +258,11 @@ const config = {
     // @link {https://github.com/vercel/next.js/pull/22867|Original PR}
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
     externalDir: true,
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    // https://github.com/mantinedev/mantine/issues/5306
+    // optimizePackageImports: [
+    //   '@mantine/core',
+    //   '@mantine/hooks',
+    // ],
     // Google fonts
     // removeConsole: {
     //   exclude: ['error'],

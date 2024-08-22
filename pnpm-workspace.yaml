@@ -12,7 +12,6 @@ packages:
   - 'packages/ui'
   - 'packages/validators'
   - 'tasks/jobs/apple-guide-spider'
-  - 'tooling/eslint-config-base'
   - 'tooling/eslint-config'
   - 'tooling/github-config'
   - 'tooling/prettier-config'

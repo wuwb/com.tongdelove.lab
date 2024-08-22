@@ -68,25 +68,30 @@ export const createTRPCRouter = t.router
  */
 export const publicProcedure = t.procedure
 
-// /**
-//  * @see https://trpc.io/docs/v10/middlewares
-//  */
+/**
+ * @see https://trpc.io/docs/v10/middlewares
+ */
 // export const middleware = t.middleware;
 
-// /**
-//  * @see https://trpc.io/docs/v10/merging-routers
-//  */
+/**
+ * @see https://trpc.io/docs/v10/merging-routers
+ */
 // export const mergeRouters = t.mergeRouters;
 
 /** Reusable middleware that enforces users are logged in before running the procedure. */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
+  console.log('enforceUserIsAuthed ctx:')
+
   if (!ctx.session?.user) {
     throw new TRPCError({ code: 'UNAUTHORIZED' })
   }
+
   return next({
     ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
+      session: {
+        ...ctx.session,
+        user: ctx.session.user
+      },
     },
   })
 })

@@ -1,0 +1,11 @@
+
+
+
+- taxonomy: Blog
+  icon: fas fa-flask fa-lg
+  list:
+    - term: developer
+      links:
+        - title: phodal
+          url: https://www.phodal.com/
+          description: 

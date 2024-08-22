@@ -2,6 +2,9 @@ import { CtaBlock, HeroBlock } from '../blocks'
 import { useTranslation } from '@/i18n'
 import { Faq } from '@/components/Faq/Faq'
 import Generator from '@/components/StickerPage/generator'
+import { trpc } from '@/utils/trpc'
+import { notifications } from '@mantine/notifications';
+import '@mantine/notifications/styles.css';
 
 export const HomePage = () => {
   const { t } = useTranslation()
@@ -43,7 +46,27 @@ export const HomePage = () => {
       question: t('如何追踪我的订单状态？'),
       answer: t('目前还未完善订单系统，交付运单号后，如果还有追踪订单状态需求，可以联系客服。')
     },
+    {
+      question: t('关于生成图案的版权'),
+      answer: t('生成图片版权归平台所有。下单印刷后，自动获取图案版权。')
+    },
   ]
+
+  const mutation = trpc.sticker.create.useMutation()
+
+  const handleAddSticker = async () => {
+    try {
+      const result = await mutation.mutateAsync()
+      console.log('result: ', result)
+    } catch (error) {
+      console.log('====================')
+      console.log('notifications: ', notifications)
+      notifications.show({
+        title: 'Default notification',
+        message: 'Do not forget to star Mantine on GitHub! 🌟',
+      })
+    }
+  }
 
   return (
     <>
@@ -51,6 +74,9 @@ export const HomePage = () => {
       {/* <HeroBlock /> */}
       {/* <FeaturesBlock /> */}
       {/* <CtaBlock /> */}
+
+      <div onClick={handleAddSticker}> 添加</div>
+
       <Generator />
       <Faq data={faqData} />
     </>

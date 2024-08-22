@@ -4,8 +4,8 @@ import { Button } from '@tongdelove/ui/button'
 import { Input } from '@tongdelove/ui/input'
 import { Label } from '@tongdelove/ui/label'
 import { Loader2 } from 'lucide-react'
-import { signIn } from 'next-auth/react'
 import { useTranslation } from '@/i18n'
+import { useSession } from "next-auth/react"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -27,8 +27,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     setEmail(event.target.value)
   }
 
-  const handleLogin = () => {
-    signIn('email', { email })
+  async function handleLogin() {
+  // await signIn('email', { email })
   }
 
   return (
@@ -37,7 +37,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
-              Email
+              {t('Email')}
             </Label>
             <Input
               id="email"
@@ -64,7 +64,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            {t('Or continue with')}
           </span>
         </div>
       </div>
@@ -74,10 +74,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         ) : (
           <div></div>
         )}{' '}
-        Github
+        {t('Github')}
       </Button>
       <button className="transform rounded border border-transparent bg-white px-4 py-2 text-sm font-medium uppercase shadow-md transition hover:flex hover:-translate-y-0.5 hover:justify-center hover:border-transparent hover:text-gray-700 hover:shadow-lg">
-        Google
+        {t('Google')}
       </button>
     </div>
   )

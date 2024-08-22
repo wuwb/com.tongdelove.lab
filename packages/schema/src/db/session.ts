@@ -6,6 +6,8 @@ export const SessionModelSchema = z.object({
   sessionToken: z.string(),
   userId: z.string(),
   expires: z.date(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
 })
 
 export interface CompleteSession extends z.infer<typeof SessionModelSchema> {

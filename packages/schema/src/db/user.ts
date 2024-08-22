@@ -1,12 +1,13 @@
 import * as z from "zod"
 import { UserLanguageCode, UserPermissionRole } from "@prisma/client"
-import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema } from "./index"
+import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema, CompleteAuthenticator, RelatedAuthenticatorModelSchema, CompleteSticker, RelatedStickerModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
   id: z.string(),
   name: z.string().nullish(),
-  email: z.string().nullish(),
+  email: z.string(),
   emailVerified: z.date().nullish(),
+  image: z.string().nullish(),
   about: z.string().nullish(),
   interests: z.string().nullish(),
   isPublic: z.boolean(),
@@ -18,7 +19,6 @@ export const UserModelSchema = z.object({
   stripeCustomerId: z.string().nullish(),
   subscriptionId: z.string().nullish(),
   language: z.nativeEnum(UserLanguageCode).nullish(),
-  image: z.string().nullish(),
   username: z.string().nullish(),
   gender: z.number().int(),
   birthday: z.date().nullish(),
@@ -70,6 +70,8 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   article: CompleteArticle[]
   comment: CompleteComment[]
   CreditTransaction: CompleteCreditTransaction[]
+  Authenticator: CompleteAuthenticator[]
+  Sticker: CompleteSticker[]
 }
 
 /**
@@ -96,4 +98,6 @@ export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => Us
   article: RelatedArticleModelSchema.array(),
   comment: RelatedCommentModelSchema.array(),
   CreditTransaction: RelatedCreditTransactionModelSchema.array(),
+  Authenticator: RelatedAuthenticatorModelSchema.array(),
+  Sticker: RelatedStickerModelSchema.array(),
 }))

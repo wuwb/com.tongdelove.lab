@@ -9,7 +9,6 @@ import {
   TbUser,
   TbSettings,
 } from 'react-icons/tb'
-// import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './DoubleNavbar.module.css'
 import { NavbarNested } from './NavbarNested'
 import clsx from 'clsx'
