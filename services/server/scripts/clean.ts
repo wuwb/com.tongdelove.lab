@@ -3,7 +3,6 @@
  */
 
 import { PrismaClient } from '@prisma/client'
-import { Sql } from '@prisma/client/runtime'
 
 if (require.main === module) {
   clean().catch((error) => {

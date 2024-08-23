@@ -291,56 +291,56 @@ const ToolAvatarPage = (props) => {
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/1.jpg"
+              src="http://localhost:3000/images/avatars/1.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/2.jpg"
+              src="http://localhost:3000/images/avatars/2.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/3.jpg"
+              src="http://localhost:3000/images/avatars/3.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/4.jpg"
+              src="http://localhost:3000/images/avatars/4.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/5.jpg"
+              src="http://localhost:3000/images/avatars/5.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/6.jpg"
+              src="http://localhost:3000/images/avatars/6.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/7.jpg"
+              src="http://localhost:3000/images/avatars/7.jpg"
               alt=""
             />
             <Image
               className="w-10"
               width="96"
               height="96"
-              src="http://127.0.0.1:3000/images/avatars/8.jpg"
+              src="http://localhost:3000/images/avatars/8.jpg"
               alt=""
             />
           </div>

@@ -15,10 +15,16 @@ const client = new S3Client({
   },
 })
 
-export async function generatePresignedUrlUserImage(
+export async function generatePresignedUrlUserImage({
+  key,
+  contentType,
+  bucket,
+}: {
   key: string,
   contentType: string,
   bucket: string
+  }
+
 ) {
   const command = new PutObjectCommand({
     Bucket: bucket,

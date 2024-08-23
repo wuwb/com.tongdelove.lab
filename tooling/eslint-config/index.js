@@ -13,7 +13,6 @@ module.exports = {
   ],
   extends: [
     './lib/base',
-    'love',
     'plugin:prettier/recommended',
   ],
   ignorePatterns: [

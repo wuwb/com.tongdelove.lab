@@ -1348,7 +1348,6 @@ model User {
   comment           Comment[]
   CreditTransaction CreditTransaction[]
   Authenticator Authenticator[]
-  Sticker Sticker[]
 
   @@index([login, phone, email])
   @@map(name: "users")
@@ -2128,8 +2127,8 @@ model Sticker {
   style String?
   url String
 
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deviceId String?
+  userId String?
 
   @@map(name: "stickers")
 }

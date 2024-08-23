@@ -17,11 +17,11 @@ export const s3Router = router({
       })
     )
     .mutation(({ input }) => {
-      return generatePresignedUrlUserImage(
-        input.key,
-        input.contentType,
-        input.bucket
-      )
+      return generatePresignedUrlUserImage({
+        key: input.key,
+        contentType: input.contentType,
+        bucket: input.bucket
+      })
     }),
   listFilesInBucket: protectedProcedure
     .input(

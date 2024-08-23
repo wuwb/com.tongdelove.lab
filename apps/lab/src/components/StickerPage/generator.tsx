@@ -1,5 +1,3 @@
-'use client'
-
 import { toast } from 'sonner'
 import { useRef, useState } from 'react'
 import Image from 'next/image'
@@ -15,9 +13,13 @@ import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
 import { RiInformationLine } from "react-icons/ri"
 import { randomInt } from 'es-toolkit'
 import { trpc } from '@/utils/trpc'
+import { useDeviceId } from '@tongdelove/hooks'
+import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
 
 export default function Generator() {
   const { t } = useTranslation()
+
+  const deviceId = useDeviceId()
 
   const [animal, setAnimal] = useState<string>('')
   const [color, setColor] = useState<string>('')
@@ -30,9 +32,9 @@ export default function Generator() {
   const [tperformance, setPerformance] = useState(0)
 
   const [uploadedImage, setUploadedImage] = useState<string>('')
-  const url = 'https://ai-image-api.xeven.workers.dev/img'
 
   const s3Mutation = trpc.s3.getPresignedUrl.useMutation()
+  const createStickerMutation = trpc.sticker.create.useMutation()
   // const 
 
   const animals = [
@@ -88,9 +90,20 @@ export default function Generator() {
         'style'
 
       if (animal !== '') {
-        const newUrl = url + '?prompt=' + basePrompt
+        const newUrl = STICKER_ENDPOINT + '?prompt=' + basePrompt
 
         const t1 = performance.now()
+
+
+        // const result = await createStickerMutation.mutateAsync({
+        //   object: animal,
+        //   color,
+        //   accessory,
+        //   doing,
+        //   style,
+        // })
+
+        // console.log('result: ', result)
 
         const response = await fetch(newUrl, {
           method: 'get',
@@ -112,7 +125,6 @@ export default function Generator() {
             contentType: 'image/png',
             bucket: `lab-sticker`,
           })
-          console.log('presignedUrl: ', presignedUrl)
 
           try {
             // 上传
@@ -128,6 +140,16 @@ export default function Generator() {
             console.log('imageUrl: ', imageUrl)
 
             setUploadedImage(imageUrl)
+
+            createStickerMutation.mutateAsync({
+              object: animal,
+              color,
+              accessory,
+              doing,
+              style,
+              deviceId,
+              url: imageUrl,
+            })
 
           } catch (err) {
             console.error(err)
@@ -306,8 +328,8 @@ export default function Generator() {
             </HoverCard.Target>
             <HoverCard.Dropdown>
               <Image src={qrcode} alt={t('微信二维码')} />
-              <div>50mm * 50mm 100张，40元</div>
-              <div>100mm * 100mm 100张，50元</div>
+              <div>{t('50mm * 50mm 100张，40元')}</div>
+              <div>{t('100mm * 100mm 100张，50元')}</div>
             </HoverCard.Dropdown>
           </HoverCard>
         </div>

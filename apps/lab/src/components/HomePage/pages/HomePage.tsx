@@ -52,31 +52,12 @@ export const HomePage = () => {
     },
   ]
 
-  const mutation = trpc.sticker.create.useMutation()
-
-  const handleAddSticker = async () => {
-    try {
-      const result = await mutation.mutateAsync()
-      console.log('result: ', result)
-    } catch (error) {
-      console.log('====================')
-      console.log('notifications: ', notifications)
-      notifications.show({
-        title: 'Default notification',
-        message: 'Do not forget to star Mantine on GitHub! 🌟',
-      })
-    }
-  }
-
   return (
     <>
       {/* <Banner /> */}
       {/* <HeroBlock /> */}
       {/* <FeaturesBlock /> */}
       {/* <CtaBlock /> */}
-
-      <div onClick={handleAddSticker}> 添加</div>
-
       <Generator />
       <Faq data={faqData} />
     </>

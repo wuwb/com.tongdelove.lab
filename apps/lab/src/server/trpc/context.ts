@@ -10,6 +10,7 @@
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
 import { type Session } from 'next-auth'
 import { prisma } from '@/server/db/prisma'
+import { auth } from "@/auth"
 
 /**
  * 1. CONTEXT
@@ -46,11 +47,14 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: {
-  headers: Headers
-  session: Session | null
-}) => {
-  const session = opts.session
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
+  const { req, res } = opts;
+
+  console.log('req, res: ', req, res)
+
+  const session = await auth(req, res)
+
+  // const session = opts.session
   // const source = opts.headers.get('x-trpc-source') ?? 'unknown'
 
   // console.log('>>> tRPC Request from', source, 'by', session?.user)

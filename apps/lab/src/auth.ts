@@ -147,16 +147,28 @@ const config = {
   adapter: PrismaAdapter(prisma),
   providers,
   // secret: env.NEXTAUTH_SECRET,
-  session: {
-    strategy: 'jwt',
-    //   maxAge: JWT_EXPIRY,
-    //   updateAge: OneDayInSeconds, // 24 hours
-      // When using `"database"`, the session cookie will only contain a `sessionToken` value,
-      // which is used to look up the session in the database.
-      // Seconds - Throttle how frequently to write to database to extend a session.
-      // Use it to limit write operations. Set to 0 to always update the database.
-      // Note: This option is ignored if using JSON Web Tokens
-  },
+  // session: {
+  //   strategy: 'jwt',
+  //   maxAge: JWT_EXPIRY,
+  //   updateAge: OneDayInSeconds,
+  //   // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+  //   // which is used to look up the session in the database.
+  //   // Seconds - Throttle how frequently to write to database to extend a session.
+  //   // Use it to limit write operations. Set to 0 to always update the database.
+  //   // Note: This option is ignored if using JSON Web Tokens
+  // },
+  // jwt: {
+  //   // The maximum age of the NextAuth.js issued JWT in seconds.
+  //   // Defaults to `session.maxAge`.
+  //   maxAge: OneDayInSeconds * 30,
+  //   // You can define your own encode/decode functions for signing and encryption
+  //   // async encode({ secret, token }) {
+  //   //   return jwt.sign(token, secret)
+  //   // },
+  //   // async decode({ secret, token }) {
+  //   //   return jwt.verify(token, secret)
+  //   // },
+  // },
   callbacks: {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl
@@ -167,13 +179,13 @@ const config = {
     },
     // If you want to pass data such as an Access Token or User ID to the browser when using JSON Web Tokens, you can persist the data in the token when the jwt callback is called，
     async jwt(data) {
-      console.log('================================================')
+      // console.log('================================================')
       const { token, user, account, profile, trigger, isNewUser } = data
-      console.log('jwt data 1: ', token, user, account, profile, trigger, isNewUser)
-      console.log('--------------------------------')
+      // console.log('jwt data 1: ', token, user, account, profile, trigger, isNewUser)
+      // console.log('--------------------------------')
       const { session } = data
-      console.log('jwt data 2: ', token, session)
-      console.log('--------------------------------')
+      // console.log('jwt data 2: ', token, session)
+      // console.log('--------------------------------')
       const mockData = {
         token: {
           name: 'Wu Wenbin',
@@ -342,7 +354,6 @@ const config = {
         },
         session: undefined
       }
-      console.log('================================================')
       // query user
       //   if (trigger === 'signUp') {
       //     // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
@@ -418,8 +429,8 @@ const config = {
     // adapter 适配后，返回 user 数据，直接赋值给 session
     // pass the data through to the browser in the session callback.
     async session(data) {
-      console.log('================================================')
-      console.log('session data: ', data)
+      // console.log('================================================')
+      // console.log('session data: ', data)
       const { session, token, } = data
       const { user, newSession, trigger } = data
       const mockData = {
@@ -439,14 +450,13 @@ const config = {
           iat: 1723737880
         }
       }
-      console.log('================================================')
 
       if (token?.access_token) {
         session.access_token = token.access_token
       }
 
       if (session?.user) {
-        session.user.id = token.sub
+        session.user.id = token?.sub
 
         // session.user.name = token.name
         // session.user.email = token.email
@@ -487,20 +497,9 @@ const config = {
     //   return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
     // },
   },
-  // jwt: {
-  //   // The maximum age of the NextAuth.js issued JWT in seconds.
-  //   // Defaults to `session.maxAge`.
-  //   maxAge: OneDayInSeconds * 30,
-  //   // You can define your own encode/decode functions for signing and encryption
-  //   // async encode({ secret, token }) {
-  //   //   return jwt.sign(token, secret)
-  //   // },
-  //   // async decode({ secret, token }) {
-  //   //   return jwt.verify(token, secret)
-  //   // },
-  // },
 
-  // pages: {
+
+  pages: {
   // signIn: '/auth/login',
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
@@ -509,8 +508,8 @@ const config = {
   // },
   // experimental: {
   //   enableWebAuthn: true,
-  // },
-  debug: process.env.NODE_ENV !== "production" ? true : false,
+  },
+  debug: false,
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth((req) => {

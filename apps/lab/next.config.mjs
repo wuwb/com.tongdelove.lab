@@ -163,7 +163,7 @@ const config = {
     //   'www.gravatar.com',
     //   // 加入 wordpress 相关域名
     //   'blog.tongdelove.com',
-    //   '127.0.0.1',
+    //   'localhost',
     //   'localhost',
     //   'via.placeholder.com',
     // ],
@@ -188,8 +188,7 @@ const config = {
     // '@tongdelove/api',
     // '@tongdelove/auth',
     // '@tongdelove/db',
-    '@tongdelove/ui',
-    '@tongdelove/validators',
+    '@tongdelove',
   ],
 
   // Standalone build
@@ -199,8 +198,6 @@ const config = {
     : {}),
 
   experimental: {
-
-
     forceSwcTransforms: true,
 
     // https://vercel.com/docs/observability/otel-overview
@@ -253,7 +250,7 @@ const config = {
     // Prefer loading of ES Modules over CommonJS
     // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
     // @link {https://github.com/vercel/next.js/discussions/27876|Discussion}
-    esmExternals: true,
+    esmExternals: 'loose', // true,
     // Experimental monorepo support
     // @link {https://github.com/vercel/next.js/pull/22867|Original PR}
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
@@ -267,6 +264,7 @@ const config = {
     // removeConsole: {
     //   exclude: ['error'],
     // },
+    swcPlugins: [['next-superjson-plugin', {}]],
   },
 
   serverRuntimeConfig: {

@@ -1,5 +1,5 @@
 {
-  "extends": "@tongdelove/typescript-config/internal-package.json",
+  "extends": "@tongdelove/typescript-config/library.json",
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "esnext",

@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { UserLanguageCode, UserPermissionRole } from "@prisma/client"
-import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema, CompleteAuthenticator, RelatedAuthenticatorModelSchema, CompleteSticker, RelatedStickerModelSchema } from "./index"
+import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema, CompleteAuthenticator, RelatedAuthenticatorModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
   id: z.string(),
@@ -71,7 +71,6 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   comment: CompleteComment[]
   CreditTransaction: CompleteCreditTransaction[]
   Authenticator: CompleteAuthenticator[]
-  Sticker: CompleteSticker[]
 }
 
 /**
@@ -99,5 +98,4 @@ export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => Us
   comment: RelatedCommentModelSchema.array(),
   CreditTransaction: RelatedCreditTransactionModelSchema.array(),
   Authenticator: RelatedAuthenticatorModelSchema.array(),
-  Sticker: RelatedStickerModelSchema.array(),
 }))

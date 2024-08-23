@@ -1,6 +1,6 @@
 import axios from '@/utils/axios'
 
-const SERVER_URL = 'http://127.0.0.1:3001'
+const SERVER_URL = 'http://localhost:3001'
 
 export async function getProduct(id) {
   const { data } = await axios(`${SERVER_URL}/topics/${id}`)

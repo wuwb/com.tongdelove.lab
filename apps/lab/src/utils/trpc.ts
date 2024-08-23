@@ -11,6 +11,7 @@ import { createTRPCNext } from '@trpc/next'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
 import superjson from 'superjson'
 import { queryClient, queryClientContext } from '@/clients/cache'
+import fetchPonyfill from 'fetch-ponyfill'
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
@@ -23,12 +24,6 @@ const getBaseUrl = () => {
 }
 
 const linksConfig = [
-  loggerLink({
-    enabled: (opts) =>
-      (process.env.NODE_ENV === 'development' &&
-        typeof window !== 'undefined') ||
-      (opts.direction === 'down' && opts.result instanceof Error),
-  }),
   splitLink({
     condition(op) {
       // check for context property `skipBatch`
@@ -36,14 +31,16 @@ const linksConfig = [
     },
     // when condition is true, use normal request
     true: httpLink({
+      // vercel issue with fetch undici
+      fetch: fetchPonyfill().fetch,
       url: `${getBaseUrl()}/api/trpc`,
     }),
     // when condition is false, use batching
     false: httpBatchLink({
+      fetch: fetchPonyfill().fetch,
       url: `${getBaseUrl()}/api/trpc`,
     }),
   }),
-
   httpBatchLink({
     /**
      * Transformer used for data de-serialization from the server.
@@ -76,6 +73,12 @@ const linksConfig = [
     //   }
     //   return {};
     // },
+  }),
+  loggerLink({
+    enabled: (opts) =>
+      (process.env.NODE_ENV === 'development' &&
+        typeof window !== 'undefined') ||
+      (opts.direction === 'down' && opts.result instanceof Error),
   }),
 ]
 
