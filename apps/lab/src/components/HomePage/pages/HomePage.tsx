@@ -5,6 +5,7 @@ import Generator from '@/components/StickerPage/generator'
 import { trpc } from '@/utils/trpc'
 import { notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
+import { toast } from 'sonner'
 
 export const HomePage = () => {
   const { t } = useTranslation()

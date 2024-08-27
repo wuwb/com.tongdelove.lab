@@ -95,7 +95,8 @@
     "syncpack": "^12.4.0",
     "turbo": "^2.0.6",
     "typescript": "^5.4.5",
-    "zod-prisma": "^0.5.4"
+    "zod-prisma": "^0.5.4",
+    "vitest": "^2.0.5"
   },
   "config": {
     "commitizen": {

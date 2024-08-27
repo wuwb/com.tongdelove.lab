@@ -1,13 +1,12 @@
-import { PageContainer } from '@ant-design/pro-components'
-import { Card, Image } from 'antd'
+import Image from 'next/image'
 
 function Page() {
   return (
-    <PageContainer>
-      <Card>
+    <div>
+      <div>
         <Image src="/printed-size.jpg" alt="" />
-      </Card>
-    </PageContainer>
+      </div>
+    </div>
   )
 }
 

@@ -1,20 +1,17 @@
 {
   "extends": "@tongdelove/typescript-config/library.json",
   "compilerOptions": {
+    "outDir": "dist",
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ESNext",
     "lib": ["ESNext"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
     "noEmit": false,
     "incremental": true,
-    "resolveJsonModule": true,
-    "paths": {},
-    "types": ["jest", "vitest/globals"]
+    "resolveJsonModule": true
   },
-  "exclude": ["**/node_modules", "**/.*/*", "dist"],
   "include": [
     ".eslintrc.*",
     "**/*.ts",
@@ -25,5 +22,10 @@
     "**/*.mjs",
     "**/*.jsx",
     "**/*.json"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/.*/*",
+    "dist"
   ]
 }

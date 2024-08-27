@@ -1,9 +1,29 @@
 {
   "name": "@tongdelove/utils",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput --sourcemap",
+    "prepare": "tsc",
+    "lint": "pnpm lint:prettier && pnpm lint:eslint",
+    "lint:eslint": "eslint . --ext .ts",
+    "lint:prettier": "prettier --check \"src/**/*.ts\"",
+    "prettier": "prettier --write --cache .",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
-  "license": "UNLICENSE"
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.5",
+    "@types/bcryptjs": "^2.4.6",
+    "vite-tsconfig-paths": "^5.0.1",
+    "@tongdelove/typescript-config": "workspace:^",
+    "@tongdelove/eslint-config": "workspace:^",
+    "typescript": "^5.4.5"
+  }
 }

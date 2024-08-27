@@ -1,23 +1,23 @@
-import * as bcrypt from 'bcryptjs';
-import * as crypto from 'crypto';
+import bcrypt from 'bcryptjs';
+import { createHash, randomBytes, pbkdf2Sync, createHmac, Encoding, BinaryToTextEncoding } from 'node:crypto';
 
-export const md5 = (data: string, inputEncoding, encoding) => {
+export const md5 = (data: string, inputEncoding: Encoding, encoding: BinaryToTextEncoding) => {
   if (!data) {
     return '';
   }
   inputEncoding = inputEncoding || 'utf-8';
   encoding = encoding || 'hex';
-  const hash = crypto.createHash('md5');
+  const hash = createHash('md5');
   return hash.update(data, inputEncoding).digest(encoding);
 };
 
-export const sha1 = (data: string, inputEncoding, encoding) => {
+export const sha1 = (data: string, inputEncoding: Encoding, encoding: BinaryToTextEncoding) => {
   if (!data) {
     return '';
   }
   inputEncoding = inputEncoding || 'utf-8';
   encoding = encoding || 'hex';
-  const hash = crypto.createHash('sha1');
+  const hash = createHash('sha1');
   return hash.update(data, inputEncoding).digest(encoding);
 };
 
@@ -44,7 +44,7 @@ export async function checkPassword(password: string, passwordHash: string): Pro
  * Make salt
  */
 export function makeSalt(): string {
-  return crypto.randomBytes(3).toString('base64');
+  return randomBytes(3).toString('base64');
 }
 
 /**
@@ -59,14 +59,14 @@ export function encryptPasswordWithSalt(password: string, salt: string): string 
   const tempSalt = Buffer.from(salt, 'base64');
   return (
     // 10000 代表迭代次数 16代表长度
-    crypto.pbkdf2Sync(password, tempSalt, 10000, 16, 'sha1').toString('base64')
+    pbkdf2Sync(password, tempSalt, 10000, 16, 'sha1').toString('base64')
   );
 }
 
 export const hmacSHA1 = (key: string, data: string) => {
   // hmac.digest([encoding])
   // If encoding is provided a string is returned; otherwise a Buffer is returned;
-  return crypto.createHmac('sha1', key).update(data).digest().toString('base64');
+  return createHmac('sha1', key).update(data).digest().toString('base64');
 };
 
 export const base64Encode = (str: string) => {

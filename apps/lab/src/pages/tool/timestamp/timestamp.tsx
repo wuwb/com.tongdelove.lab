@@ -1,10 +1,8 @@
-import { Collapse, Layout, Table } from 'antd'
 import { useEffect, useState } from 'react'
-
-const { Panel } = Collapse
+import { Accordion, Table } from '@mantine/core';
 
 const TimestampPage = (props) => {
-  const [currentTimestamp, setCurrentTimestamp] = useState(+new Date())
+  const [currentTimestamp, setCurrentTimestamp] = useState(0)
 
   useEffect(() => {
     setInterval(() => {
@@ -443,7 +441,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
   ]
 
   return (
-    <Layout.Content>
+    <div>
       <div>
         <div>当前时间：{currentTimestamp} 毫秒</div>
         <div>当前时间：{parseInt(currentTimestamp / 1000, 10)} 秒</div>
@@ -452,29 +450,44 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
         {/* <div>当前时间：{currentTimestamp^0} 毫秒</div> */}
         {/* <div>当前时间：{currentTimestamp<<0} 毫秒</div> */}
         <div>
-          <Collapse ghost>
-            <Panel header="获取时间长" key="1">
-              <Table
-                dataSource={dataSource1}
-                columns={columns}
-                pagination={false}
-              />
-            </Panel>
-            <Panel header="字符串转时间戳" key="2">
-              <Table
-                dataSource={dataSource2}
-                columns={columns}
-                pagination={false}
-              />
-            </Panel>
-            <Panel header="时间戳转字符串" key="3">
-              <Table
-                dataSource={dataSource3}
-                columns={columns}
-                pagination={false}
-              />
-            </Panel>
-          </Collapse>
+          <Accordion defaultValue="1">
+            <Accordion.Item key={1} value="1">
+              <Accordion.Control>获取时间长</Accordion.Control>
+              <Accordion.Panel>
+
+                <Table
+                  data={{
+                    head: columns.map((item) => item.title),
+                    body: dataSource1.map((item) => [item.key, item.language, item.code])
+                  }}
+                />
+              </Accordion.Panel>
+            </Accordion.Item>
+            <Accordion.Item key={2} value="2">
+              <Accordion.Control >字符串转时间戳</Accordion.Control>
+              <Accordion.Panel>
+
+                <Table
+                  data={{
+                    head: columns.map((item) => item.title),
+                    body: dataSource2.map((item) => [item.key, item.language, item.code])
+                  }}
+                />
+              </Accordion.Panel>
+            </Accordion.Item>
+            <Accordion.Item key={3} value="3">
+              <Accordion.Control >时间戳转字符串</Accordion.Control>
+              <Accordion.Panel>
+
+                <Table
+                  data={{
+                    head: columns.map((item) => item.title),
+                    body: dataSource3.map((item) => [item.key, item.language, item.code])
+                  }}
+                />
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
         </div>
         <div>
           <h3>什么是Unix时间戳？</h3>
@@ -492,7 +505,7 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
           />
         </div>
       </div>
-    </Layout.Content>
+    </div>
   )
 }
 

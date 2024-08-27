@@ -1,5 +1,5 @@
 import { type PoemTag, type Poem } from '@prisma/client'
-import { mapKeys, pick } from 'lodash-es'
+import { mapKeys, pick } from 'es-toolkit'
 import { z } from 'zod'
 import { locales } from '@/i18n/config'
 

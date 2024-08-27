@@ -6,6 +6,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "noUnusedParameters": false,
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,

@@ -7,7 +7,7 @@ import {
 import { Suggestion } from '@/components/ui/Suggestion/Suggestion'
 import { FundDataItem } from '@/server/service'
 import { useAppState, useDispatch } from '@/server/store'
-import { noop } from 'lodash-es'
+import { noop } from 'es-toolkit'
 import { useCallback, useState } from 'react'
 
 export const Fund = () => {

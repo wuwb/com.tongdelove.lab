@@ -1,4 +1,4 @@
-import { notification } from 'antd'
+import { notifications } from '@mantine/notifications';
 import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
 import {
   ConfigFile,

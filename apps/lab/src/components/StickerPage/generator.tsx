@@ -10,7 +10,6 @@ import { useTranslation } from '@/i18n'
 import img1 from './assets/placeholder.png'
 import qrcode from './assets/qrcode.png'
 import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
-import { RiInformationLine } from "react-icons/ri"
 import { randomInt } from 'es-toolkit'
 import { trpc } from '@/utils/trpc'
 import { useDeviceId } from '@tongdelove/hooks'
@@ -162,7 +161,6 @@ export default function Generator() {
       }
     } catch (error) {
       toast.error('An error occurred while generating the image.')
-      console.error(error)
     } finally {
       setLoading(false)
     }

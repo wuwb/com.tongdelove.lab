@@ -95,6 +95,20 @@ const ToolPage = (props) => {
             title="分类导航"
             desc="行业分类导航"
           />
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/tool/timestamp/timestamp"
+            title="时间戳工具"
+            desc=""
+          />
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/tool/book-thickness"
+            title="计算书本厚度"
+            desc=""
+          />
         </div>
       </div>
 

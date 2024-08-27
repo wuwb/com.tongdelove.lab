@@ -1,4 +1,4 @@
-import { getRandomInt } from '../random/index';
+import { getRandomInt } from '../random';
 import type { NonEmptyArray } from '../types';
 
 export class ArrayUtils {

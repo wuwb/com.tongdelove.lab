@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'
-import { pick } from 'lodash-es'
+import { pick } from 'es-toolkit'
 import { type PoemAuthor, type PrismaClient } from '@prisma/client'
 import { type Locale } from '@/i18n/config'
 
