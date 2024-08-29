@@ -11,23 +11,17 @@ import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
 import type { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
+import { StickerExplorePage } from '@/components/StickerExplorePage/index'
+import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
+import { PageContainer } from '@/components/Layout/PageContainer'
 
-type IndexProps = {}
+type StickerExploreProps = {}
 
-const Index = (
+const StickerExplore = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const { t } = useTranslation()
   const { data: session } = useSession()
-
-  // const { data: hello, isLoading } = trpc.example.hello.useQuery({
-  //   text: 'from tRPC',
-  // })
-  // const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
-
-  // const { data: links = [] } = trpc.link.getLinks.useQuery()
-
-  // console.log('links: ', links)
 
   return (
     <>
@@ -37,17 +31,20 @@ const Index = (
           `Discover the fun and creativity of our AI Sticker Generator! Transform your ideas into unique, custom stickers effortlessly. With our advanced AI technology, you can create personalized stickers for any occasion. Whether it's for personal use or to enhance your brand, our platform offers endless possibilities. Get started today and bring your concepts to life!`
         )}
       />
-      <HomePage />
+      <PageContainer>
+        <HeaderMegaMenu />
+        <StickerExplorePage />
+      </PageContainer>
       <Toaster richColors />
     </>
   )
 }
 
-export default Index
+export default StickerExplore
 
-export const getServerSideProps: GetServerSideProps<IndexProps> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps<
+  StickerExploreProps
+> = async (context) => {
   const { locale = 'en' } = context
 
   if (locale === undefined) {

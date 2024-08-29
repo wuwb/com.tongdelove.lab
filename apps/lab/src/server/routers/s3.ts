@@ -20,7 +20,7 @@ export const s3Router = router({
       return generatePresignedUrlUserImage({
         key: input.key,
         contentType: input.contentType,
-        bucket: input.bucket
+        bucket: input.bucket,
       })
     }),
   listFilesInBucket: protectedProcedure

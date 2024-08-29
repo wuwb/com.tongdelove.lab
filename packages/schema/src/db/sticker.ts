@@ -10,4 +10,6 @@ export const StickerModelSchema = z.object({
   url: z.string(),
   deviceId: z.string().nullish(),
   userId: z.string().nullish(),
+  createdAt: z.date(),
+  live: z.boolean(),
 })

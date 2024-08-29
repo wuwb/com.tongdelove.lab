@@ -19,15 +19,6 @@ export async function createSticker({
   deviceId?: string
   userId?: string
 }) {
-  console.log({
-    object,
-    color,
-    accessory,
-    doing,
-    style,
-    url,
-    userId,
-  })
   const result = await prisma.sticker.create({
     data: {
       object,
@@ -38,7 +29,36 @@ export async function createSticker({
       url,
       deviceId,
       userId,
-    }
+    },
   })
+  return result
+}
+
+export async function listStickers({
+  page,
+  take = 10,
+}: {
+  page: number
+  take: number
+}) {
+  const result = await prisma.sticker.findMany({
+    skip: (page - 1) * take,
+    take: take,
+    where: {
+      live: true,
+    },
+    select: {
+      id: true,
+      url: true,
+      createdAt: true,
+      object: true,
+    },
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+    ],
+  })
+
   return result
 }

@@ -24,20 +24,20 @@ import nextUtils from './next-utils.config.mjs'
 // const { tsconfigPath } = nextUtils.loadCustomBuildParams()
 // const isProd = process.env.NODE_ENV === 'production'
 
-const workspaceRoot = path.resolve(
-  path.dirname(url.fileURLToPath(import.meta.url)),
-  '..',
-  '..'
-)
+// const workspaceRoot = path.resolve(
+//   path.dirname(url.fileURLToPath(import.meta.url)),
+//   '..',
+//   '..'
+// )
 
 /**
  * Once supported replace by node / eslint / ts and out of experimental, replace by
  * `import packageJson from './package.json' assert { type: 'json' };`
  * @type {import('type-fest').PackageJson}
  */
-const packageJson = JSON.parse(
-  readFileSync(new URL('./package.json', import.meta.url)).toString('utf-8')
-)
+// const packageJson = JSON.parse(
+//   readFileSync(new URL('./package.json', import.meta.url)).toString('utf-8')
+// )
 
 if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
   console.log(
@@ -180,6 +180,10 @@ const config = {
         port: '',
         hostname: 'via.placeholder.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'lab-sticker.s3.us-east-2.amazonaws.com',
+      },
     ],
     unoptimized: false,
   },
@@ -204,9 +208,9 @@ const config = {
     instrumentationHook: true,
 
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
-    ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
-      ? { outputFileTracingRoot: workspaceRoot }
-      : {}),
+    // ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
+    //   ? { outputFileTracingRoot: workspaceRoot }
+    //   : {}),
 
     // Useful in conjunction with to `output: 'standalone'` and `outputFileTracing: true`
     // to keep lambdas sizes / docker images low when vercel/nft isn't able to
@@ -500,8 +504,8 @@ const config = {
   },
 
   env: {
-    APP_NAME: packageJson.name ?? 'not-in-package.json',
-    APP_VERSION: packageJson.version ?? 'not-in-package.json',
+    // APP_NAME: packageJson.name ?? 'not-in-package.json',
+    // APP_VERSION: packageJson.version ?? 'not-in-package.json',
     BUILD_TIME: new Date().toISOString(),
   },
 }

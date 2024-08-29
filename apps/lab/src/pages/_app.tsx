@@ -19,28 +19,28 @@ import { theme } from '../theme'
 import '@/styles/globals.css'
 
 /* @import "@mantine/core/styles.layer.css"; */
-import '@mantine/core/styles.css';
+import '@mantine/core/styles.css'
 
 /* Mantine foundational components */
-import '@mantine/core/styles/ScrollArea.css';
-import '@mantine/core/styles/UnstyledButton.css';
-import '@mantine/core/styles/VisuallyHidden.css';
-import '@mantine/core/styles/Paper.css';
-import '@mantine/core/styles/Popover.css';
-import '@mantine/core/styles/CloseButton.css';
-import '@mantine/core/styles/Group.css';
-import '@mantine/core/styles/Loader.css';
-import '@mantine/core/styles/Overlay.css';
-import '@mantine/core/styles/ModalBase.css';
-import '@mantine/core/styles/Input.css';
-import '@mantine/core/styles/Flex.css';
+import '@mantine/core/styles/ScrollArea.css'
+import '@mantine/core/styles/UnstyledButton.css'
+import '@mantine/core/styles/VisuallyHidden.css'
+import '@mantine/core/styles/Paper.css'
+import '@mantine/core/styles/Popover.css'
+import '@mantine/core/styles/CloseButton.css'
+import '@mantine/core/styles/Group.css'
+import '@mantine/core/styles/Loader.css'
+import '@mantine/core/styles/Overlay.css'
+import '@mantine/core/styles/ModalBase.css'
+import '@mantine/core/styles/Input.css'
+import '@mantine/core/styles/Flex.css'
 
 /* Mantine components */
-import '@mantine/core/styles/Button.css';
+import '@mantine/core/styles/Button.css'
 
-import '@mantine/dates/styles.css';
-import '@mantine/notifications/styles.css';
-import '@mantine/carousel/styles.css';
+import '@mantine/dates/styles.css'
+import '@mantine/notifications/styles.css'
+import '@mantine/carousel/styles.css'
 import { Notifications } from '@mantine/notifications'
 
 if (typeof window === 'undefined') {
@@ -64,18 +64,18 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <AppProviders session={session}>
         <MantineProvider theme={theme}>
           <Notifications />
-        <NextNProgress
-          color="#fff"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={3}
-          showOnShallow={false}
-        />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <Analytics />
-        <SpeedInsights />
+          <NextNProgress
+            color="#fff"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow={false}
+          />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <Analytics />
+          <SpeedInsights />
         </MantineProvider>
       </AppProviders>
     </>

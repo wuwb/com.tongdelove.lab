@@ -27,7 +27,8 @@ export const CategoryPage = () => {
   }, [router])
 
   return (
-    <CategoryLayout>category homepage
+    <CategoryLayout>
+      category homepage
       <LinksPage />
     </CategoryLayout>
   )

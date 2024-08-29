@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react"
-import { SignIn, SignOut } from "./auth-components"
+import { useSession } from 'next-auth/react'
+import { SignIn, SignOut } from './auth-components'
 
 export default function UserButton() {
   const { data: session } = useSession()
@@ -10,19 +10,14 @@ export default function UserButton() {
 
   return (
     <div>
-      <button className="relative w-8 h-8 rounded-full">
+      <button className="relative h-8 w-8 rounded-full">
         {session.user.image && (
-          <img
-            src={session.user.image}
-            alt={session.user.name ?? ""}
-          />
+          <img src={session.user.image} alt={session.user.name ?? ''} />
         )}
         <div>{session.user.email}</div>
       </button>
       <div className="flex flex-col space-y-1">
-        <p className="text-sm font-medium leading-none">
-          {session.user.name}
-        </p>
+        <p className="text-sm font-medium leading-none">{session.user.name}</p>
         <p className="text-xs leading-none text-muted-foreground">
           {session.user.email}
         </p>

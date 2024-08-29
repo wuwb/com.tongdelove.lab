@@ -27,9 +27,7 @@ export const AppProviders: FC<Props> = (props) => {
       {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
       {/* <ReactQueryClientProvider> */}
       <TooltipProvider>
-        <AppContextProvider>
-          {children}
-        </AppContextProvider>
+        <AppContextProvider>{children}</AppContextProvider>
       </TooltipProvider>
 
       {/* </ReactQueryClientProvider> */}

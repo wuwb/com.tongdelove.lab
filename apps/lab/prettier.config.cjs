@@ -1,4 +1,4 @@
-const tongdelovePrettierConfig = require("@tongdelove/prettier-config") 
+const tongdelovePrettierConfig = require('@tongdelove/prettier-config')
 
 tongdelovePrettierConfig.plugins = [
   require('prettier-plugin-tailwindcss'),

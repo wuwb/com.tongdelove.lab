@@ -1,14 +1,13 @@
 import { useAuth } from '@/contexts/auth'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tongdelove/ui/tabs'
 import { Separator } from '@tongdelove/ui/separator'
-import { useSession, signIn, signOut } from "next-auth/react" 
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 function ProfilePage(): any {
   const { user } = useAuth()
 
   const { data: session, status } = useSession()
   console.log('session: ', session, status)
-
 
   return (
     <div className="box max-w-screen-3xl container mx-auto w-full max-w-[1680px]">
@@ -158,7 +157,7 @@ function ProfilePage(): any {
                 aria-describedby=":rhn:-form-item-description"
                 aria-invalid="false"
                 value="I own a computer."
-                onChange={() => { }}
+                onChange={() => {}}
               />
               <p
                 id=":rhn:-form-item-description"
@@ -189,8 +188,7 @@ function ProfilePage(): any {
                   aria-invalid="false"
                   value="https://shadcn.com"
                   name="urls.0.value"
-                  onChange={() => { }}
-
+                  onChange={() => {}}
                 />
               </div>
               <div className="space-y-2">
@@ -213,8 +211,7 @@ function ProfilePage(): any {
                   aria-invalid="false"
                   value="http://twitter.com/shadcn"
                   name="urls.1.value"
-                  onChange={() => { }}
-
+                  onChange={() => {}}
                 />
               </div>
               <button

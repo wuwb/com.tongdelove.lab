@@ -1,11 +1,11 @@
 // import { authOptions } from '@/server/auth'
 // import { getServerSession } from 'next-auth/next'
-import { useSession } from "next-auth/react"
-import { useState } from "react"
+import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 
 const Profile = ({ user }) => {
   const { data: session, update } = useSession()
-  const [name, setName] = useState(session?.user?.name ?? "")
+  const [name, setName] = useState(session?.user?.name ?? '')
 
   if (!session?.user) return null
 

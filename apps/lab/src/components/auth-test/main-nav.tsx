@@ -1,8 +1,6 @@
-import Link from "next/link"
-import React from "react"
+import Link from 'next/link'
+import React from 'react'
 
 export function MainNav() {
-  return (
-
-  )
+  return <div></div>
 }

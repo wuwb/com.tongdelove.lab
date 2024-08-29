@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Accordion, Table } from '@mantine/core';
+import { Accordion, Table } from '@mantine/core'
 
 const TimestampPage = (props) => {
   const [currentTimestamp, setCurrentTimestamp] = useState(0)
@@ -454,35 +454,44 @@ local timezone: SELECT datetime(epoch_to_convert, 'unixepoch', 'localtime')
             <Accordion.Item key={1} value="1">
               <Accordion.Control>获取时间长</Accordion.Control>
               <Accordion.Panel>
-
                 <Table
                   data={{
                     head: columns.map((item) => item.title),
-                    body: dataSource1.map((item) => [item.key, item.language, item.code])
+                    body: dataSource1.map((item) => [
+                      item.key,
+                      item.language,
+                      item.code,
+                    ]),
                   }}
                 />
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item key={2} value="2">
-              <Accordion.Control >字符串转时间戳</Accordion.Control>
+              <Accordion.Control>字符串转时间戳</Accordion.Control>
               <Accordion.Panel>
-
                 <Table
                   data={{
                     head: columns.map((item) => item.title),
-                    body: dataSource2.map((item) => [item.key, item.language, item.code])
+                    body: dataSource2.map((item) => [
+                      item.key,
+                      item.language,
+                      item.code,
+                    ]),
                   }}
                 />
               </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item key={3} value="3">
-              <Accordion.Control >时间戳转字符串</Accordion.Control>
+              <Accordion.Control>时间戳转字符串</Accordion.Control>
               <Accordion.Panel>
-
                 <Table
                   data={{
                     head: columns.map((item) => item.title),
-                    body: dataSource3.map((item) => [item.key, item.language, item.code])
+                    body: dataSource3.map((item) => [
+                      item.key,
+                      item.language,
+                      item.code,
+                    ]),
                   }}
                 />
               </Accordion.Panel>

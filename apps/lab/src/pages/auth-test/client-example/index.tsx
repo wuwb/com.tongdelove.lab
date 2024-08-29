@@ -1,6 +1,6 @@
-import { ClientExample } from "@/components/auth-test/client-example"
-import { useSession } from "next-auth/react"
-import { SessionProvider } from "next-auth/react"
+import { ClientExample } from '@/components/auth-test/client-example'
+import { useSession } from 'next-auth/react'
+import { SessionProvider } from 'next-auth/react'
 
 export default function ClientPage() {
   const { data: session } = useSession()

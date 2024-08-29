@@ -19,7 +19,7 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-export const Layout: FC<LayoutProps> = ({ children }) => {
+export const Layout = ({ children }: LayoutProps) => {
   const router = useRouter()
 
   const asPath = decodeURIComponent(router.asPath)

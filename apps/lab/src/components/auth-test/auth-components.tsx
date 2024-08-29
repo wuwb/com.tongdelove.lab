@@ -1,9 +1,6 @@
-import { signIn, signOut } from "next-auth/react"
+import { signIn, signOut } from 'next-auth/react'
 
-export function SignIn({
-  provider,
-  ...props
-}) {
+export function SignIn({ provider, ...props }) {
   return (
     <button onClick={() => signIn()} {...props}>
       Sign In
@@ -16,7 +13,7 @@ export function SignOut(props) {
     <button
       onClick={() => signOut()}
       variant="ghost"
-      className="p-0 w-full"
+      className="w-full p-0"
       {...props}
     >
       Sign Out

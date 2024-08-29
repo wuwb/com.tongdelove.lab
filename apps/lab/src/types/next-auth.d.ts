@@ -14,14 +14,12 @@ declare module 'next-auth' {
   interface Session {
     user: {
       id: string
-    } & DefaultSession["user"]
+    } & DefaultSession['user']
     token: JWT
     access_token?: string
-  } 
-
-  interface User {
-
   }
+
+  interface User {}
   /**
    * Usually contains information about the provider being used
    * and also extends `TokenSet`, which is different tokens returned by OAuth Providers.
@@ -49,8 +47,8 @@ declare module 'next-auth/jwt' {
     name: string
     email: string
     picture: string
-    sub: string,
-    access_token?: string,
+    sub: string
+    access_token?: string
     iat: number
     exp: number
     jti: string

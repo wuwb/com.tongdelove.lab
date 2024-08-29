@@ -1,12 +1,10 @@
-import { NumberInput, NativeSelect, TextInput } from '@mantine/core';
+import { NumberInput, NativeSelect, TextInput } from '@mantine/core'
 
 function CommonPlatemakingSize() {
   return (
     <div>
       <div>
-        <NumberInput
-          label="书籍页数"
-        />
+        <NumberInput label="书籍页数" />
         <NativeSelect
           label="纸张克重"
           data={[
@@ -16,10 +14,7 @@ function CommonPlatemakingSize() {
             },
           ]}
         />
-        <TextInput
-          label="书籍厚度"
-          disabled
-        />
+        <TextInput label="书籍厚度" disabled />
       </div>
     </div>
   )

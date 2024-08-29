@@ -41,7 +41,10 @@ export const LinksLevel2Page = () => {
 
               <div className="grid grid-cols-4 gap-4">
                 {link.links.map((link, index) => (
-                  <div key={index} className="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
+                  <div
+                    key={index}
+                    className="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a"
+                  >
                     <div className="url-body default">
                       <a
                         href={link.url}

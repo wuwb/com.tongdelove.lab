@@ -3,7 +3,7 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { type NextRequest, NextResponse } from 'next/server'
 import { locales, defaultLocale } from './i18n/config'
-export { auth as middleware } from "@/auth"
+export { auth as middleware } from '@/auth'
 
 type MiddlewareEnabledRouteMatchers = (typeof config.matcher)[number]
 

@@ -20,12 +20,10 @@ export async function generatePresignedUrlUserImage({
   contentType,
   bucket,
 }: {
-  key: string,
-  contentType: string,
+  key: string
+  contentType: string
   bucket: string
-  }
-
-) {
+}) {
   const command = new PutObjectCommand({
     Bucket: bucket,
     Key: key,

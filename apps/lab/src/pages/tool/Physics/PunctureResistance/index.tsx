@@ -18,11 +18,7 @@ const PunctureResistance = (): React.ReactNode => {
         <div>计算公式：PET=0.0054×纸板耐破强度+2.1635</div>
         <div>纸箱耐破强度</div>
         <div style={{ marginBottom: 16 }}>
-          <input
-            value={param}
-            defaultValue=""
-            onChange={cal}
-          />
+          <input value={param} defaultValue="" onChange={cal} />
           Kpa
         </div>
         <div>瓦楞纸版戳穿强度计算结果</div>

@@ -61,7 +61,7 @@ import {
 } from '@tongdelove/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
 import { useTranslation } from '@/i18n'
-import { useSession } from "next-auth/react"
+import { useSession } from 'next-auth/react'
 import { MainNav } from '@/components/auth-test/main-nav'
 import UserButton from '@/components/auth-test/user-button'
 
@@ -188,8 +188,7 @@ export function HeaderMegaMenu() {
 
   return (
     <div className="border-soild flex h-14 items-center justify-end border-b">
-
-      <header className="sticky top-0 z-30 flex h-[60px] items-center bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 justify-between w-full">
+      <header className="sticky top-0 z-30 flex h-[60px] w-full items-center justify-between bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
         <div className="flex items-center justify-center px-2">
           <Sheet>
             <SheetTrigger asChild>
@@ -258,7 +257,7 @@ export function HeaderMegaMenu() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="overflow-hidden rounded-full shrink-0"
+                    className="shrink-0 overflow-hidden rounded-full"
                   >
                     <img
                       className="h-8 w-8 rounded-full"
@@ -301,16 +300,14 @@ export function HeaderMegaMenu() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                    {t('Sign up')}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <button onClick={() => signIn('github')}>
-                        {t('Github 登录')}
-                      </button>
-                    </DropdownMenuItem>
+                  <DropdownMenuItem>{t('Sign up')}</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <button onClick={() => signIn('github')}>
+                      {t('Github 登录')}
+                    </button>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                  <DropdownMenuItem>
                     {/* <button
                       onClick={() =>
                         signIn('credentials', {
@@ -322,9 +319,9 @@ export function HeaderMegaMenu() {
                     </button> */}
                     {/* <Link href="/auth/login">{t('邮箱登录')}</Link> */}
                     {/* <button onClick={() => signIn()}>Sign in</button> */}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <button onClick={handleClick}>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <button onClick={handleClick}>
                       {session ? t('Sign out') : t('Sign in')}
                     </button>
                   </DropdownMenuItem>
@@ -333,7 +330,12 @@ export function HeaderMegaMenu() {
             )}
           </div>
           <div className="flex items-center justify-center sm:hidden">
-            <Burger size="sm" opened={drawerOpened} onClick={toggleDrawer} aria-label="Toggle navigation" />
+            <Burger
+              size="sm"
+              opened={drawerOpened}
+              onClick={toggleDrawer}
+              aria-label="Toggle navigation"
+            />
           </div>
         </div>
       </header>
@@ -351,34 +353,28 @@ export function HeaderMegaMenu() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
           <Collapse in={linksOpened}>
-            <div className="px-2">
-              {links}
-            </div>
+            <div className="px-2">{links}</div>
           </Collapse>
           <Divider my="sm" />
           <div className="px-2">
-          {session ? (
-            <div className="flex items-center space-x-3">
-              <img
-                className="h-12 w-12 rounded-full"
-                src={session.user?.image ?? ''}
-                alt="avator"
-              />
-                <Link href="/me">
-                  {session.user?.name}
-              </Link>
+            {session ? (
+              <div className="flex items-center space-x-3">
+                <img
+                  className="h-12 w-12 rounded-full"
+                  src={session.user?.image ?? ''}
+                  alt="avator"
+                />
+                <Link href="/me">{session.user?.name}</Link>
                 <div>
-                  <button onClick={() => signOut()}>
-                    {t('退出')}
-                  </button>
+                  <button onClick={() => signOut()}>{t('退出')}</button>
                 </div>
-            </div>
-          ) : (
-            <Group justify="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
-          )}
+              </div>
+            ) : (
+              <Group justify="center" grow pb="xl" px="md">
+                <Button variant="default">Log in</Button>
+                <Button>Sign up</Button>
+              </Group>
+            )}
           </div>
         </ScrollArea>
       </Drawer>
@@ -506,5 +502,3 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   )
 }
-
-

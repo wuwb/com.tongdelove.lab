@@ -23,7 +23,7 @@ module.exports = {
     es2021: true,
   },
   rules: {
-    "@next/next/no-html-link-for-pages": "off"
+    '@next/next/no-html-link-for-pages': 'off',
   },
   // The ".eslintignore" file is no longer supported.
   ignorePatterns: ['.next', '.out', 'node_modules', 'dist'],

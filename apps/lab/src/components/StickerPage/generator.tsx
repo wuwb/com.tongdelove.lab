@@ -34,7 +34,7 @@ export default function Generator() {
 
   const s3Mutation = trpc.s3.getPresignedUrl.useMutation()
   const createStickerMutation = trpc.sticker.create.useMutation()
-  // const 
+  // const
 
   const animals = [
     [t('小狗'), 'dog'],
@@ -93,7 +93,6 @@ export default function Generator() {
 
         const t1 = performance.now()
 
-
         // const result = await createStickerMutation.mutateAsync({
         //   object: animal,
         //   color,
@@ -149,7 +148,6 @@ export default function Generator() {
               deviceId,
               url: imageUrl,
             })
-
           } catch (err) {
             console.error(err)
           }
@@ -201,7 +199,13 @@ export default function Generator() {
   const renderQuickAction = (objects, action) => {
     return objects.map((item, index) => {
       return (
-        <MantineButton size="compact-xs" key={item[1] + index} onClick={() => action(item[1])}>{item[0]}</MantineButton>
+        <MantineButton
+          size="compact-xs"
+          key={item[1] + index}
+          onClick={() => action(item[1])}
+        >
+          {item[0]}
+        </MantineButton>
       )
     })
   }
@@ -225,7 +229,9 @@ export default function Generator() {
               <span className="text-xs">{t('请使用英文单数形式')}</span>
             </div>
             <div>
-              <MantineButton size="compact-xs" onClick={handleRandom}>{t('随机')}</MantineButton>
+              <MantineButton size="compact-xs" onClick={handleRandom}>
+                {t('随机')}
+              </MantineButton>
             </div>
           </Label>
           <Input
@@ -236,7 +242,7 @@ export default function Generator() {
             onChange={(event) => setAnimal(event.target.value)}
             placeholder="dog, cat, bird, cars, lion, icecream...."
           />
-          <div className="flex gap-0.5 flex-wrap">
+          <div className="flex flex-wrap gap-0.5">
             {renderQuickAction(animals, handleAnimalClick)}
             {renderQuickAction(objectItems, handleAnimalClick)}
           </div>
@@ -252,7 +258,7 @@ export default function Generator() {
               onChange={(event) => setColor(event.target.value)}
               placeholder="blue, golden, red..."
             />
-            <div className="flex gap-0.5 flex-wrap">
+            <div className="flex flex-wrap gap-0.5">
               {renderQuickAction(colors, handleColorClick)}
             </div>
           </div>
@@ -266,7 +272,7 @@ export default function Generator() {
               onChange={(event) => setAccessory(event.target.value)}
               placeholder="hat, sunglasses, jacket..."
             />
-            <div className="flex gap-0.5 flex-wrap">
+            <div className="flex flex-wrap gap-0.5">
               {renderQuickAction(accessories, handleAccessoryClick)}
             </div>
           </div>
@@ -282,10 +288,9 @@ export default function Generator() {
               onChange={(event) => setDoing(event.target.value)}
               placeholder="sitting, dance, smiling..."
             />
-            <div className="flex gap-0.5 flex-wrap">
+            <div className="flex flex-wrap gap-0.5">
               {renderQuickAction(doingItems, handleDoingClick)}
             </div>
-
           </div>
           <div className="grid flex-1 gap-4">
             <Label htmlFor="style">{t('样式')}</Label>
@@ -297,7 +302,7 @@ export default function Generator() {
               onChange={(event) => setStyle(event.target.value)}
               placeholder="sketch, b&w, pixel, 3d..."
             />
-            <div className="flex gap-0.5 flex-wrap">
+            <div className="flex flex-wrap gap-0.5">
               {renderQuickAction(styleItems, handleStyleClick)}
             </div>
           </div>
@@ -313,14 +318,16 @@ export default function Generator() {
             {t('生成贴纸')}
             {loading && <Loader2 size={20} className="ml-2 animate-spin" />}
           </Button>
-          <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}
+          <HoverCard
+            width={320}
+            shadow="md"
+            withArrow
+            openDelay={200}
+            closeDelay={400}
             position="top"
           >
             <HoverCard.Target>
-              <Button
-                size="lg"
-                className="w-3/12"
-              >
+              <Button size="lg" className="w-3/12">
                 {t('联系客服下单')}
               </Button>
             </HoverCard.Target>

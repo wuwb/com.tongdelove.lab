@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession, NextAuthConfig } from 'next-auth'
-import { PrismaAdapter } from "@auth/prisma-adapter"
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import GoogleProvider from 'next-auth/providers/google'
 import LinkedinProvider from 'next-auth/providers/linkedin'
 import TwitterProvider from 'next-auth/providers/twitter'
@@ -12,9 +12,9 @@ import Github from 'next-auth/providers/github'
 import { ZodError, z } from 'zod'
 import jwt from 'jsonwebtoken'
 import { customSendVerificationRequest } from '@/pages/api/auth/signinemail'
-import Resend from "next-auth/providers/resend"
+import Resend from 'next-auth/providers/resend'
 import type { Adapter } from 'next-auth/adapters'
-import { JWT } from "next-auth/jwt"
+import { JWT } from 'next-auth/jwt'
 
 const OneDayInSeconds = 86400
 const JWT_EXPIRY = OneDayInSeconds * 7 // 7 days
@@ -141,7 +141,7 @@ const providers = [
 
 const config = {
   theme: {
-    logo: "https://authjs.dev/img/logo-sm.png",
+    logo: 'https://authjs.dev/img/logo-sm.png',
     colorScheme: 'auto',
   },
   adapter: PrismaAdapter(prisma),
@@ -172,7 +172,7 @@ const config = {
   callbacks: {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl
-      if (pathname === "/middleware-example") {
+      if (pathname === '/middleware-example') {
         return !!auth
       }
       return true
@@ -191,7 +191,7 @@ const config = {
           name: 'Wu Wenbin',
           email: '541330190@qq.com',
           picture: 'https://avatars.githubusercontent.com/u/510080?v=4',
-          sub: 'clzvgrma20001m0d62jctdynr'
+          sub: 'clzvgrma20001m0d62jctdynr',
         },
         user: {
           id: 'clzvgrma20001m0d62jctdynr',
@@ -239,7 +239,7 @@ const config = {
           role: 'USER',
           deptId: null,
           weixin_openid: '',
-          session_key: ''
+          session_key: '',
         },
         account: {
           access_token: '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',
@@ -247,7 +247,7 @@ const config = {
           scope: 'read:user,user:email',
           provider: 'github',
           type: 'oauth',
-          providerAccountId: '510080'
+          providerAccountId: '510080',
         },
         profile: {
           login: 'wuwb',
@@ -258,14 +258,17 @@ const config = {
           url: 'https://api.github.com/users/wuwb',
           html_url: 'https://github.com/wuwb',
           followers_url: 'https://api.github.com/users/wuwb/followers',
-          following_url: 'https://api.github.com/users/wuwb/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/wuwb/following{/other_user}',
           gists_url: 'https://api.github.com/users/wuwb/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/wuwb/starred{/owner}{/repo}',
+          starred_url:
+            'https://api.github.com/users/wuwb/starred{/owner}{/repo}',
           subscriptions_url: 'https://api.github.com/users/wuwb/subscriptions',
           organizations_url: 'https://api.github.com/users/wuwb/orgs',
           repos_url: 'https://api.github.com/users/wuwb/repos',
           events_url: 'https://api.github.com/users/wuwb/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/wuwb/received_events',
+          received_events_url:
+            'https://api.github.com/users/wuwb/received_events',
           type: 'User',
           site_admin: false,
           name: 'Wu Wenbin',
@@ -274,7 +277,8 @@ const config = {
           location: 'Hangzhou, China',
           email: '541330190@qq.com',
           hireable: true,
-          bio: '\r\n' +
+          bio:
+            '\r\n' +
             '    Web PC & Mobile | Hybrid | Cloud Native | Full Stack Developer | JS/TS\r\n',
           twitter_username: 'wuwb_',
           notification_email: '541330190@qq.com',
@@ -294,11 +298,11 @@ const config = {
             name: 'free',
             space: 976562499,
             collaborators: 0,
-            private_repos: 10000
-          }
+            private_repos: 10000,
+          },
         },
         isNewUser: false,
-        trigger: 'signIn'
+        trigger: 'signIn',
       }
       const mockData2 = {
         token: {
@@ -350,9 +354,9 @@ const config = {
           deptId: null,
           weixin_openid: '',
           session_key: '',
-          iat: 1723774358
+          iat: 1723774358,
         },
-        session: undefined
+        session: undefined,
       }
       // query user
       //   if (trigger === 'signUp') {
@@ -363,7 +367,7 @@ const config = {
       //     // token.role = user.role
       //   }
 
-      if (trigger === "update") {
+      if (trigger === 'update') {
         token.name = session.user.name
       }
 
@@ -381,7 +385,7 @@ const config = {
       // } else if (Date.now() < token.expires_at * 1000) {
       //   // Subsequent logins, but the `access_token` is still valid
       //   return token
-      // } 
+      // }
       // else {
       //   if (!token.refresh_token) {
       //     throw new TypeError("Missing refresh_token")
@@ -416,7 +420,6 @@ const config = {
       //       token.refresh_token = newTokens.refresh_token
       //     return token
 
-
       //   } catch (error) {
       //     console.error("Error refreshing access_token", error)
       //     // If we fail to refresh the token, return an error so we can handle it on the page
@@ -431,24 +434,24 @@ const config = {
     async session(data) {
       // console.log('================================================')
       // console.log('session data: ', data)
-      const { session, token, } = data
+      const { session, token } = data
       const { user, newSession, trigger } = data
       const mockData = {
         session: {
           user: {
             name: 'Wu Wenbin',
             email: '541330190@qq.com',
-            image: 'https://avatars.githubusercontent.com/u/510080?v=4'
+            image: 'https://avatars.githubusercontent.com/u/510080?v=4',
           },
-          expires: '2024-08-22T16:04:41.648Z'
+          expires: '2024-08-22T16:04:41.648Z',
         },
         token: {
           name: 'Wu Wenbin',
           email: '541330190@qq.com',
           picture: 'https://avatars.githubusercontent.com/u/510080?v=4',
           sub: 'clzvgrma20001m0d62jctdynr',
-          iat: 1723737880
-        }
+          iat: 1723737880,
+        },
       }
 
       if (token?.access_token) {
@@ -464,7 +467,7 @@ const config = {
         // session.error = token.error // 用于处理 token 失效
         // session.user.accessToken = token.accessToken
         // session.user.refreshToken = token.refreshToken
-        
+
         //   const jwtClaims = {
         //     id: session.user?.id?.toString(),
         //     email: session.user?.email,
@@ -498,16 +501,15 @@ const config = {
     // },
   },
 
-
   pages: {
-  // signIn: '/auth/login',
+    // signIn: '/auth/login',
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request',  // (used for check email message)
     // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-  // },
-  // experimental: {
-  //   enableWebAuthn: true,
+    // },
+    // experimental: {
+    //   enableWebAuthn: true,
   },
   debug: false,
 }
