@@ -5,7 +5,7 @@ import { generatePresignedUrlUserImage } from '../api/s3'
 import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
 
 export const stickerRouter = router({
-  create: protectedProcedure
+  create: publicProcedure
     .input(
       z.object({
         object: z.string(),
