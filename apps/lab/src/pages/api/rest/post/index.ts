@@ -2,6 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PostRepositorySsr } from '@/server/backend/api/rest/post-repository.ssr'
 import { prisma } from '@/server/db/prisma'
 
+export const config = {
+  runtime: 'nodejs',
+}
+
 const handleListPosts = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     const postRepo = new PostRepositorySsr(prisma)

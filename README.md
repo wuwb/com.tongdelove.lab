@@ -55,6 +55,10 @@ https://mantine.dev/core/action-icon/
   Fully responsive, and works across all modern/supported browsers
   Fully documented​
 
+
+### 数据库
+https://supabase.com/dashboard/project/bnzvhmuwewoopoctsvbc
+
 ### 页面
 
 **文档**
@@ -256,3 +260,5 @@ Error
 - Umami Website Analytics
 - Koyeb Paas Service.
 
+## 资源
+- https://docs.google.com/spreadsheets/u/0/d/1Ky8NU5nhSi_zYHBbvxvofOmMRZf0r3MwiM0apoe8Pvk/htmlview?pli=1#

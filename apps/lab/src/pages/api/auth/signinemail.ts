@@ -1,6 +1,10 @@
 import { Theme } from 'next-auth'
 import { SendVerificationRequestParams } from 'next-auth/providers'
 
+export const config = {
+  runtime: 'nodejs',
+}
+
 const createTransport = (server: string) => {
   return {
     sendMail: (data: any) => {},

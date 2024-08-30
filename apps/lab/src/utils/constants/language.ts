@@ -191,5 +191,4 @@ export const popularUserLanguages = [
     rawName: 'Ukrainian',
     code639: 'ukr',
   },
-
 ] as UserLanguageType[]

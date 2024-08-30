@@ -9,8 +9,8 @@ export const env = createEnv({
    */
   server: {
     // database
-    LAB_TONGDELOVE_PRISMA_URL: z.string(),
-    LAB_TONGDELOVE_URL_NON_POOLING: z.string(),
+    DATABASE_URL: z.string(),
+    DIRECT_URL: z.string(),
 
     // nextjs auth
     AUTH_URL: z

@@ -25,15 +25,3 @@ const HomePage = (props) => {
 
 export default HomePage
 
-export async function getServerSideProps() {
-  try {
-    const res = await getRencentTasks()
-    return {
-      props: {
-        tasks: res.data,
-      },
-    }
-  } catch (error) {
-    return {}
-  }
-}

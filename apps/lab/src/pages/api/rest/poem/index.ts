@@ -5,6 +5,10 @@ import { prisma } from '@/server/db/prisma'
 
 const searchPoem = new SearchPoemsQuery(prisma)
 
+export const config = {
+  runtime: 'nodejs',
+}
+
 const handleListPoems = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {

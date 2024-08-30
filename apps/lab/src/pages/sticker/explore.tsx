@@ -43,20 +43,3 @@ const StickerExplore = (
 }
 
 export default StickerExplore
-
-export const getServerSideProps: GetServerSideProps<
-  StickerExploreProps
-> = async (context) => {
-  const { locale = 'en' } = context
-
-  if (locale === undefined) {
-    throw new Error('locale is missing')
-  }
-
-  const { i18nNamespaces } = homeConfig
-  return {
-    props: {
-      ...(await getServerTranslations(locale, i18nNamespaces)),
-    },
-  }
-}

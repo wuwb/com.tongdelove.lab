@@ -43,20 +43,3 @@ const MyStickers = (
 }
 
 export default MyStickers
-
-export const getServerSideProps: GetServerSideProps<MyStickersProps> = async (
-  context
-) => {
-  const { locale = 'en' } = context
-
-  if (locale === undefined) {
-    throw new Error('locale is missing')
-  }
-
-  const { i18nNamespaces } = homeConfig
-  return {
-    props: {
-      ...(await getServerTranslations(locale, i18nNamespaces)),
-    },
-  }
-}

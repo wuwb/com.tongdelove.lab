@@ -178,19 +178,3 @@ const HomePage = (props) => {
 }
 
 export default HomePage
-
-export const getServerSideProps = async (context) => {
-  //     try {
-  //         // 获取账号对应的订阅状态
-  //     } catch (error) {
-  //         console.error(error);
-  //         return {
-  //             props: {
-  //                 data: 0,
-  //             },
-  //         };
-  //     }
-  return {
-    props: {},
-  }
-}

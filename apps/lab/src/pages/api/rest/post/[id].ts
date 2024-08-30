@@ -2,6 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PostRepositorySsr } from '@/server/backend/api/rest/post-repository.ssr'
 import { prisma } from '@/server/db/prisma'
 
+export const config = {
+  runtime: 'nodejs',
+}
+
 const handleGetPost = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query

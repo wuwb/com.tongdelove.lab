@@ -1,8 +1,8 @@
 datasource db {
   // sqlite, postgresql, mysql, sqlserver, mongodb
   provider  = "postgresql"
-  url       = env("LAB_TONGDELOVE_PRISMA_URL") // uses connection pooling
-  directUrl = env("LAB_TONGDELOVE_URL_NON_POOLING") // uses a direct connection
+  url       = env("DATABASE_URL") // uses connection pooling
+  directUrl = env("DIRECT_URL") // uses a direct connection
 
   // local sqlite
   // provider = "sqlite"
@@ -22,7 +22,7 @@ generator client {
   provider        = "prisma-client-js"
   // jsonProtocol 已经实现，不用 preview
   // interactiveTransactions 已经实现，不用 preview
-  previewFeatures = ["metrics", "fullTextSearch", "driverAdapters"]
+  previewFeatures = ["metrics", "fullTextSearch"]
   // output   = "../node_modules/.prisma/client"
   // binaryTargets   = ["native"]
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Metadata } from 'next'
+import { useTranslation } from '@/i18n'
 
 export const metadata: Metadata = {
   title: '软件推荐',
@@ -24,11 +24,3 @@ function SofewarePage(): any {
 }
 
 export default SofewarePage
-
-export async function getServerSideProps({ locale, defaultLocale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-    },
-  }
-}

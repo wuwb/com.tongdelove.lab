@@ -47,7 +47,6 @@ export const getServerSideProps = async (context) => {
 
   try {
     const { data } = await axios.get(`/freelancer/tasks/${id}`)
-    console.log('data: ', data.data)
     return {
       props: {
         ...data.data,

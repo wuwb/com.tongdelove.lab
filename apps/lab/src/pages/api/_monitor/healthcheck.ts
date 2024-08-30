@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+export const config = {
+  runtime: 'nodejs',
+}
+
 export type HealthCheckApiPayload = {
   status: 'ok' | 'error'
   message: string

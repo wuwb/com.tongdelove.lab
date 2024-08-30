@@ -184,8 +184,6 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ))
 
-  console.log('links: ', links)
-
   return (
     <div className="border-soild flex h-14 items-center justify-end border-b">
       <header className="sticky top-0 z-30 flex h-[60px] w-full items-center justify-between bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -250,7 +248,7 @@ export function HeaderMegaMenu() {
           </Sheet>
         </div>
         <div className="flex gap-2">
-          <div className="flex w-full justify-end">
+          <div className="flex w-full justify-end gap-1">
             {session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -261,7 +259,7 @@ export function HeaderMegaMenu() {
                   >
                     <img
                       className="h-8 w-8 rounded-full"
-                      src={session.user?.image ?? ''}
+                      src={session.user.image ?? ''}
                       alt="avator"
                     />
                   </Button>
@@ -273,9 +271,8 @@ export function HeaderMegaMenu() {
                     <Link href="/sticker/my">{t('我的贴纸')}</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/profile">账号设置</Link>
+                    <Link href="/profile">{t('账号设置')}</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>Support</DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={() => signOut()}
@@ -289,17 +286,10 @@ export function HeaderMegaMenu() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="outline"
-                    size="icon"
+                      variant="outline"
                     className="overflow-hidden rounded-full"
                   >
-                    <Image
-                      src="/images/avatars/8.jpg"
-                      width={36}
-                      height={36}
-                      alt="Avatar"
-                      className="overflow-hidden rounded-full"
-                    />
+                      {t('登录')}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
@@ -331,6 +321,15 @@ export function HeaderMegaMenu() {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
+
+            <Link href="https://txc.qq.com/products/430271">
+              <Button
+                variant="outline"
+                className="overflow-hidden rounded-full"
+              >
+                {t('反馈')}
+              </Button>
+            </Link>
           </div>
           <div className="flex items-center justify-center sm:hidden">
             <Burger

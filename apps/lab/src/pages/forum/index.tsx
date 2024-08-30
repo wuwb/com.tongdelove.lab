@@ -1,25 +1,18 @@
-// import Bar from 'bar';
 import { Footer } from '@/components/common/Footer'
 import { Home } from '@/components/HomePage/Home'
 import { Container } from '@mantine/core'
-import Router from 'next/router'
 
-function ForumPage(props): any {
-  const handleRedirectToDashboards = () => {
-    Router.push('/admin/dashboard')
-  }
-
+function Forum(props): any {
   return (
-    <Container maxWidth="lg">
+    <Container >
       <Home />
-      {/* <Bar /> */}
       {props.stars}
       <Footer />
     </Container>
   )
 }
 
-export default ForumPage
+export default Forum
 
 export async function getServerSideProps() {
   try {

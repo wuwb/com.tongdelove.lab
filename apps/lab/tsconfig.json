@@ -64,9 +64,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "composite": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "noErrorTruncation": true,
     "allowImportingTsExtensions": false
   },
@@ -87,9 +85,7 @@
     "../../prettier.config.js",
     "scripts/*.mts"
   ],
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node",
