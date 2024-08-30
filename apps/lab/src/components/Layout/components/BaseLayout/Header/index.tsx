@@ -270,6 +270,9 @@ export function HeaderMegaMenu() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
+                    <Link href="/sticker/my">{t('我的贴纸')}</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
                     <Link href="/profile">账号设置</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>Support</DropdownMenuItem>

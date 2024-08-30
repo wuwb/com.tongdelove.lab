@@ -3,6 +3,8 @@ import createSagaMiddleware from 'redux-saga'
 import { rootReducer } from './rootReducer'
 import { syncSaga } from './sagas/sync'
 
+export { useUserStore } from './useUserStore'
+
 const sagaMiddleware = createSagaMiddleware()
 
 export const store = configureStore({

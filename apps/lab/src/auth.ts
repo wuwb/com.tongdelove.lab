@@ -139,31 +139,34 @@ const providers = [
   // }),
 ]
 
-const config = {
+const config: NextAuthConfig = {
   theme: {
     logo: 'https://authjs.dev/img/logo-sm.png',
     colorScheme: 'auto',
+    buttonText: '登录',
+    brandColor: '#333',
   },
-  adapter: PrismaAdapter(prisma),
+  // https://github.com/nextauthjs/next-auth/issues/9493
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers,
-  // secret: env.NEXTAUTH_SECRET,
-  // session: {
-  //   strategy: 'jwt',
-  //   maxAge: JWT_EXPIRY,
-  //   updateAge: OneDayInSeconds,
-  //   // When using `"database"`, the session cookie will only contain a `sessionToken` value,
-  //   // which is used to look up the session in the database.
-  //   // Seconds - Throttle how frequently to write to database to extend a session.
-  //   // Use it to limit write operations. Set to 0 to always update the database.
-  //   // Note: This option is ignored if using JSON Web Tokens
-  // },
+  // secret: env.AUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+    maxAge: JWT_EXPIRY,
+    // updateAge: OneDayInSeconds,
+    // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+    // which is used to look up the session in the database.
+    // Seconds - Throttle how frequently to write to database to extend a session.
+    // Use it to limit write operations. Set to 0 to always update the database.
+    // Note: This option is ignored if using JSON Web Tokens
+  },
   // jwt: {
   //   // The maximum age of the NextAuth.js issued JWT in seconds.
   //   // Defaults to `session.maxAge`.
   //   maxAge: OneDayInSeconds * 30,
-  //   // You can define your own encode/decode functions for signing and encryption
-  //   // async encode({ secret, token }) {
-  //   //   return jwt.sign(token, secret)
+  // // You can define your own encode/decode functions for signing and encryption
+  // // async encode({ secret, token }) {
+  // //   return jwt.sign(token, secret)
   //   // },
   //   // async decode({ secret, token }) {
   //   //   return jwt.verify(token, secret)
@@ -179,13 +182,21 @@ const config = {
     },
     // If you want to pass data such as an Access Token or User ID to the browser when using JSON Web Tokens, you can persist the data in the token when the jwt callback is called，
     async jwt(data) {
-      // console.log('================================================')
+      console.log('================================================')
       const { token, user, account, profile, trigger, isNewUser } = data
-      // console.log('jwt data 1: ', token, user, account, profile, trigger, isNewUser)
-      // console.log('--------------------------------')
+      console.log(
+        'jwt data 1: ',
+        token,
+        user,
+        account,
+        profile,
+        trigger,
+        isNewUser
+      )
+      console.log('--------------------------------')
       const { session } = data
-      // console.log('jwt data 2: ', token, session)
-      // console.log('--------------------------------')
+      console.log('jwt data 2: ', token, session)
+      console.log('--------------------------------')
       const mockData = {
         token: {
           name: 'Wu Wenbin',
@@ -358,14 +369,16 @@ const config = {
         },
         session: undefined,
       }
-      // query user
-      //   if (trigger === 'signUp') {
-      //     // See examples: https://github.com/nextauthjs/next-auth/issues/7658#issuecomment-1565248630
-      //   }
-      //   if (user) {
-      //     token.id = user.id
-      //     // token.role = user.role
-      //   }
+      if (user) {
+        // User is available during sign-in
+        token.sub = user.id
+      }
+
+      if (trigger === 'signIn') {
+      }
+
+      if (trigger === 'signUp') {
+      }
 
       if (trigger === 'update') {
         token.name = session.user.name
@@ -375,65 +388,12 @@ const config = {
         ...token,
         access_token: account?.access_token,
       }
-
-      // if (account) {
-      //   //   token.id = profile?.id
-      //   return {
-      //     ...token,
-      //     access_token: account.access_token,
-      //   }
-      // } else if (Date.now() < token.expires_at * 1000) {
-      //   // Subsequent logins, but the `access_token` is still valid
-      //   return token
-      // }
-      // else {
-      //   if (!token.refresh_token) {
-      //     throw new TypeError("Missing refresh_token")
-      //   }
-      //   try {
-      //     const response = await fetch("https://oauth2.googleapis.com/token", {
-      //       method: "POST",
-      //       body: new URLSearchParams({
-      //         client_id: env.AUTH_GOOGLE_ID!,
-      //         client_secret: env.AUTH_GOOGLE_SECRET!,
-      //         grant_type: "refresh_token",
-      //         refresh_token: token.refresh_token!,
-      //       }),
-      //     })
-
-      //     const tokensOrError = await response.json()
-
-      //     if (!response.ok) throw tokensOrError
-
-      //     const newTokens = tokensOrError as {
-      //       access_token: string
-      //       expires_in: number
-      //       refresh_token?: string
-      //     }
-
-      //     token.access_token = newTokens.access_token
-      //     token.expires_at = Math.floor(
-      //       Date.now() / 1000 + newTokens.expires_in
-      //     )
-      //     // Some providers only issue refresh tokens once, so preserve if we did not get a new one
-      //     if (newTokens.refresh_token)
-      //       token.refresh_token = newTokens.refresh_token
-      //     return token
-
-      //   } catch (error) {
-      //     console.error("Error refreshing access_token", error)
-      //     // If we fail to refresh the token, return an error so we can handle it on the page
-      //     token.error = "RefreshTokenError"
-      //     return token
-      //   }
-      // }
     },
-
     // adapter 适配后，返回 user 数据，直接赋值给 session
     // pass the data through to the browser in the session callback.
     async session(data) {
-      // console.log('================================================')
-      // console.log('session data: ', data)
+      console.log('================================================')
+      console.log('session data: ', data)
       const { session, token } = data
       const { user, newSession, trigger } = data
       const mockData = {
@@ -459,7 +419,9 @@ const config = {
       }
 
       if (session?.user) {
-        session.user.id = token?.sub
+        // jwt strategy: token.id
+        // session strategy: user.id
+        session.user.id = token.sub ?? user.id
 
         // session.user.name = token.name
         // session.user.email = token.email
@@ -483,24 +445,20 @@ const config = {
         // session.user.encodeToken = encodedToken
       }
 
+      session.error = token.error
+
       return session
     },
-
-    // async signIn({ user, account, profile, email, credentials }) {
-    //   return true
-    // },
-
-    /*
     async signIn({ user, account, profile, email, credentials }) {
-        return true;
+      if (profile?.email?.endsWith('@example.com')) {
+        return false
+      }
+      return true
     },
-    */
-    // async redirect({ url, baseUrl }) {
-    // // return baseUrl
-    //   return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
-    // },
+    async redirect({ url, baseUrl }) {
+      return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl)
+    },
   },
-
   pages: {
     // signIn: '/auth/login',
     // signOut: '/auth/signout',

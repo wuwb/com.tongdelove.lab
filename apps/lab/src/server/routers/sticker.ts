@@ -1,8 +1,9 @@
-import { createSticker, listStickers } from '@/server/api/sticker'
+import { createSticker, listStickers, hideSticker } from '@/server/api/sticker'
 import { protectedProcedure, router, publicProcedure } from '@/server/trpc/trpc'
 import { z } from 'zod'
 import { generatePresignedUrlUserImage } from '../api/s3'
 import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
+import { isAdmin } from '../api/user'
 
 export const stickerRouter = router({
   create: publicProcedure
@@ -75,7 +76,7 @@ export const stickerRouter = router({
         style: input.style,
         url: input.url,
         deviceId: input.deviceId,
-        userId: ctx.session.user.id,
+        userId: ctx.session?.user.id,
       })
     }),
   listHomePage: publicProcedure
@@ -92,6 +93,39 @@ export const stickerRouter = router({
       return listStickers({
         page: input.page,
         take: input.take,
+        live: true,
+      })
+    }),
+  listMyStickers: protectedProcedure
+    .input(
+      z.object({
+        page: z.number(),
+        take: z.number(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      if (input.take > 200) {
+        throw new Error('too many takes')
+      }
+      return listStickers({
+        userId: ctx.session.user.id,
+        page: input.page,
+        take: input.take,
+      })
+    }),
+  hide: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const hasAdminRole = await isAdmin(ctx.session.user.id)
+      if (!hasAdminRole) {
+        throw new Error('You are not authorized to perform this action')
+      }
+      return hideSticker({
+        id: input.id,
       })
     }),
 })

@@ -37,14 +37,15 @@ export default function Generator() {
   // const
 
   const animals = [
-    [t('小狗'), 'dog'],
-    [t('小猫'), 'cat'],
-    [t('小鸟'), 'bird'],
-    [t('狮子'), 'lion'],
+    [t('小狗'), 'a dog'],
+    [t('小猫'), 'a cat'],
+    [t('小鸟'), 'a bird'],
+    [t('狮子'), 'a lion'],
+    [t('拜登'), 'Joe Biden'],
   ]
   const objectItems = [
-    [t('小汽车'), 'car'],
-    [t('雪糕'), 'icecream'],
+    [t('小汽车'), 'a car'],
+    [t('雪糕'), 'an icecream'],
   ]
   const colors = [
     [t('红色'), 'red'],
@@ -223,16 +224,24 @@ export default function Generator() {
           <p className="text-md">{t('请用英文输入相关关键词')}</p>
         </div>
         <div className="grid gap-4">
-          <Label htmlFor="animal" className="flex justify-between">
-            <div className="flex gap-2">
+          <Label htmlFor="animal" className="">
+            <div className="flex  gap-2">
               <span>{t('动物 / 对象')}</span>
               <span className="text-xs">{t('请使用英文单数形式')}</span>
             </div>
             <div>
-              <MantineButton size="compact-xs" onClick={handleRandom}>
-                {t('随机')}
-              </MantineButton>
+              {t(
+                '为了避免生成多个对象，可以加入 a/an 等限定词，其他需要的描述也可以加这里'
+              )}
             </div>
+
+            <MantineButton
+              className="float-right w-10"
+              size="compact-xs"
+              onClick={handleRandom}
+            >
+              {t('随机')}
+            </MantineButton>
           </Label>
           <Input
             required

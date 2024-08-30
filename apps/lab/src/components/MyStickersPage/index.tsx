@@ -7,8 +7,9 @@ import { Button, Image } from '@mantine/core'
 import { useIsAdmin } from '@/hooks/user/useIsAdmin'
 import { notifications } from '@mantine/notifications'
 
-export const StickerExplorePage = () => {
+export const MyStickersPage = () => {
   const { t } = useTranslation()
+
   const [page, setPage] = useState(1)
   const [take, setTake] = useState(20)
   const [data, setData] = useState<any[]>([])
@@ -16,7 +17,7 @@ export const StickerExplorePage = () => {
   const isAdmin = useIsAdmin()
 
   const { fullData, hasMore, current } = usePaginationInfiniteQuery(
-    trpc.sticker.listHomePage.useQuery({
+    trpc.sticker.listMyStickers.useQuery({
       page,
       take,
     }),
@@ -69,15 +70,21 @@ export const StickerExplorePage = () => {
         <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {data.map((item, index) => (
             <div key={item.id + index} className="relative">
-              {isAdmin && (
-                <Button
-                  size="xs"
-                  className="!absolute right-0.5 top-0.5"
-                  onClick={() => handleHideSticker(item)}
-                >
-                  {t('hide')}
-                </Button>
-              )}
+              {}
+              {isAdmin &&
+                (item.live ? (
+                  <Button
+                    size="xs"
+                    className="!absolute right-0.5 top-0.5"
+                    onClick={() => handleHideSticker(item)}
+                  >
+                    {t('隐藏')}
+                  </Button>
+                ) : (
+                  <Button size="xs" className="!absolute left-0.5 top-0.5">
+                    {t('已隐藏')}
+                  </Button>
+                ))}
               <Image
                 className="transition-all duration-300 ease-in-out"
                 width="300"

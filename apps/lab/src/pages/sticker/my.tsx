@@ -11,13 +11,13 @@ import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
 import type { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
-import { StickerExplorePage } from '@/components/StickerExplorePage/index'
+import { MyStickersPage } from '@/components/MyStickersPage/index'
 import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
 import { PageContainer } from '@/components/Layout/PageContainer'
 
-type StickerExploreProps = {}
+type MyStickersProps = {}
 
-const StickerExplore = (
+const MyStickers = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const { t } = useTranslation()
@@ -35,18 +35,18 @@ const StickerExplore = (
       />
       <PageContainer>
         <HeaderMegaMenu />
-        <StickerExplorePage />
+        <MyStickersPage />
       </PageContainer>
       <Toaster richColors />
     </>
   )
 }
 
-export default StickerExplore
+export default MyStickers
 
-export const getServerSideProps: GetServerSideProps<
-  StickerExploreProps
-> = async (context) => {
+export const getServerSideProps: GetServerSideProps<MyStickersProps> = async (
+  context
+) => {
   const { locale = 'en' } = context
 
   if (locale === undefined) {

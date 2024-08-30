@@ -13,16 +13,16 @@ export const env = createEnv({
     LAB_TONGDELOVE_URL_NON_POOLING: z.string(),
 
     // nextjs auth
-    NEXTAUTH_URL: z
+    AUTH_URL: z
       .preprocess(
-        // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
+        // This makes Vercel deployments not fail if you don't set AUTH_URL
         // Since NextAuth.js automatically uses the VERCEL_URL if present.
         (str) => process.env.VERCEL_URL ?? str,
         // VERCEL_URL doesn't include `https` so it cant be validated as a URL
         process.env.VERCEL ? z.string().min(1) : z.string().url()
       )
       .optional(),
-    NEXTAUTH_SECRET: z.string().optional(),
+    AUTH_SECRET: z.string().optional(),
     JWT_PRIVATE_KEY: z.string().optional(),
     EMAIL_SERVER: z.string().url(),
     EMAIL_FROM: z.string().min(1),
@@ -59,6 +59,8 @@ export const env = createEnv({
     // QDRANT_URL: z.string(),
     // QDRANT_KEY: z.string(),
     // OPENAI_API_KEY: z.string(),
+
+    ENABLE_TRPC_LOGGER: z.string().optional(),
   },
   runtimeEnv: process.env,
   isServer: typeof window === 'undefined',

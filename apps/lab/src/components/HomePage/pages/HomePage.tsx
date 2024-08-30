@@ -7,6 +7,7 @@ import { notifications } from '@mantine/notifications'
 import '@mantine/notifications/styles.css'
 import { toast } from 'sonner'
 import { Shows } from '@/components/StickerPage/Shows'
+import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
 
 export const HomePage = () => {
   const { t } = useTranslation()
@@ -74,6 +75,8 @@ export const HomePage = () => {
       {/* <HeroBlock /> */}
       {/* <FeaturesBlock /> */}
       {/* <CtaBlock /> */}
+
+      <HeaderMegaMenu />
       <Generator />
       <Shows />
       <Faq data={faqData} />

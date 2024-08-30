@@ -4,11 +4,11 @@ import { env } from '@/env/server'
 const isDev = env.NODE_ENV === 'development'
 
 export const getPrismaClientDbMain: () => PrismaClientDbMain = () => {
-  const url = env?.PRISMA_DATABASE_URL ?? null
+  const url = env?.DATABASE_URL ?? null
 
   if (!url) {
     throw new Error(
-      `[Error] Cannot create prisma client instance, missing env variable PRISMA_DATABASE_URL.`
+      `[Error] Cannot create prisma client instance, missing env variable DATABASE_URL.`
     )
   }
 

@@ -16,13 +16,12 @@
 
   },
   "dependencies": {
-    "@auth/core": "0.30.0"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tailwind-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@tongdelove/eslint-config": "workspace:*",
+    "@tongdelove/prettier-config": "workspace:*",
+    "@tongdelove/tailwind-config": "workspace:*",
+    "@tongdelove/tsconfig": "workspace:*",
     "@types/node": "^20.12.8",
     "h3": "^1.11.1",
     "nitropack": "^2.9.6",

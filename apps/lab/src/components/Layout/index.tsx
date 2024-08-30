@@ -1,8 +1,8 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { LayoutProvider } from './core/LayoutProvider'
 import { BaseLayout } from './components/BaseLayout'
 import { FullLayout } from './components/FullLayout'
+import { useGlobalInit } from './useGlobalInit'
 
 // import {} './components/DefaultLayout' // 头部
 // import {} './components/FullLayout' // 侧边
@@ -20,6 +20,8 @@ type LayoutProps = {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+  useGlobalInit()
+
   const router = useRouter()
 
   const asPath = decodeURIComponent(router.asPath)

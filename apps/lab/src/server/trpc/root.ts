@@ -11,6 +11,7 @@ import { poemTagRouter } from '../routers/poemTag'
 import { appleGuideRouter } from '../routers/appleGuide'
 import { s3Router } from '../routers/s3'
 import { stickerRouter } from '../routers/sticker'
+import { userRouter } from '../routers/user'
 
 /**
  * This is the primary router for your server.
@@ -42,6 +43,7 @@ export const appRouter = createTRPCRouter({
   appleGuide: appleGuideRouter,
   s3: s3Router,
   sticker: stickerRouter,
+  user: userRouter,
 })
 
 // export type definition of API

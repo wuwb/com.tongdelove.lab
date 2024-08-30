@@ -1,5 +1,5 @@
-import { DefaultSession } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
+import { DefaultSession, User } from 'next-auth'
+import { DefaultJWT, JWT } from 'next-auth/jwt'
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -14,12 +14,12 @@ declare module 'next-auth' {
   interface Session {
     user: {
       id: string
-    } & DefaultSession['user']
+    } & CustomUser
     token: JWT
     access_token?: string
+    error?: 'RefreshTokenError'
   }
 
-  interface User {}
   /**
    * Usually contains information about the provider being used
    * and also extends `TokenSet`, which is different tokens returned by OAuth Providers.
@@ -35,22 +35,26 @@ declare module 'next-auth' {
    * The shape of the user object returned by the OAuth providers' `profile` callback,
    * or the second parameter of the `session` callback, when using a database.
    */
-  interface User extends DefaultSession {
-    id?: string
-    encodeToken?: string
+  interface CustomUser extends DefaultSession {
+    user?: User
+    expires: string
   }
 }
 
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-  interface JWT {
-    name: string
-    email: string
-    picture: string
-    sub: string
+  interface JWT extends DefaultJWT {
+    name?: string | null
+    email?: string | null
+    picture?: string | null
+    sub?: string
+    iat?: number
+    exp?: number
+    jti?: string
+
     access_token?: string
-    iat: number
-    exp: number
-    jti: string
+    expires_at?: number
+    refresh_token?: string
+    error?: 'RefreshTokenError'
   }
 }

@@ -1,0 +1,17 @@
+export const DEFAULT_USER_DATA = {
+  id: '',
+  name: '',
+  email: '',
+  image: '',
+  about: null,
+  interests: null,
+  tagline: null,
+  location: null,
+  username: null,
+  user_nicename: null,
+  user_url: null,
+  display_name: null,
+  first_name: null,
+  last_name: null,
+  role: 'user',
+}

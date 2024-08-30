@@ -35,23 +35,29 @@ export async function createSticker({
 }
 
 export async function listStickers({
+  userId,
   page,
   take = 10,
+  live,
 }: {
+  userId?: string
   page: number
   take: number
+  live?: boolean
 }) {
   const result = await prisma.sticker.findMany({
     skip: (page - 1) * take,
     take: take,
     where: {
-      live: true,
+      live,
+      userId,
     },
     select: {
       id: true,
       url: true,
       createdAt: true,
       object: true,
+      live: true,
     },
     orderBy: [
       {
@@ -60,5 +66,20 @@ export async function listStickers({
     ],
   })
 
+  return result
+}
+
+export const hideSticker = async ({ id }: { id: string }) => {
+  const result = await prisma.sticker.update({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+    },
+    data: {
+      live: false,
+    },
+  })
   return result
 }
