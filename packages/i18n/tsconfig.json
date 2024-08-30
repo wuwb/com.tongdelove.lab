@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "exclude": [
+    "node_modules",
+    "**/test/*.test.ts",
+    "test",
+    "dist"
+  ],
+  "include": [
+    "src"
+  ],
+  "extends": "@tongdelove/typescript-config/library.json"
+}

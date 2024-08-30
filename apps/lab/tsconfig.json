@@ -23,6 +23,7 @@
       "es6",
       "scripthost"
     ],
+    "outDir": "dist",
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -63,8 +64,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "composite": true,
-    "types": ["cypress", "node", "cypress-real-events"],
-    "noErrorTruncation": true
+    "types": [
+      "node"
+    ],
+    "noErrorTruncation": true,
+    "allowImportingTsExtensions": false
   },
   "include": [
     ".eslintrc.*",
@@ -83,5 +87,12 @@
     "../../prettier.config.js",
     "scripts/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true
+  }
 }

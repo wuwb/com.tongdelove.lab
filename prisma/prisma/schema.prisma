@@ -1267,12 +1267,6 @@ model Profile {
   @@map(name: "profile")
 }
 
-enum UserLanguageCode {
-  en
-  zh
-  all
-}
-
 model User {
   id                String            @id @default(cuid())
   name              String?
@@ -2135,4 +2129,67 @@ model Sticker {
   live Boolean @default(true) // 是否显示
 
   @@map(name: "stickers")
+}
+
+
+enum UserLanguageCode {
+  en
+  zh
+  de
+  es
+  fr
+  ja
+  pt
+  ru
+  ko
+  tr
+  it
+  nl
+  pl
+  sv
+  id
+  hu
+  el
+  cs
+  ro
+  vi
+  th
+  ms
+  bg
+  fi
+  hi
+  hr
+  lt
+  uk
+  ar
+  bn
+  en_US
+  es_ES
+  fr_FR
+  it_IT
+  pt_PT
+  de_DE
+  tr_TR
+  pl_PL
+  ru_RU
+  id_ID
+  zh_CN
+  zh_TW
+  ja_JP
+  ko_KR
+  th_TH
+  vi_VN
+  bg_BG
+  cs_CZ
+  el_GR
+  fi_FI
+  hi_IN
+  hr_HR
+  hu_HU
+  lt_LT
+  nl_NL
+  ro_RO
+  sv_SE
+  uk_UA
+  ms_MY
 }

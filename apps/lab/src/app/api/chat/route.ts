@@ -1,6 +1,8 @@
 import { sleep } from '@/utils'
 import type { NextRequest } from 'next/server'
 
+export const runtime = 'nodejs'
+
 export async function POST(request: NextRequest) {
   const { messageText } = (await request.json()) as {
     messageText: string

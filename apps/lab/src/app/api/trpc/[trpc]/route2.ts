@@ -14,6 +14,7 @@ const createContext = async (req: NextRequest) => {
     headers: req.headers,
   })
 }
+export const runtime = 'nodejs'
 
 const handler = (req: NextRequest) => {
   return fetchRequestHandler({

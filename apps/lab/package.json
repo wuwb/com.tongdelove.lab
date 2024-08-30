@@ -48,7 +48,10 @@
     "versionup": "standard-version -r patch",
     "versionup:minor": "standard-version -r minor",
     "versionup:major": "standard-version -r major",
-    "versionup:init": "standard-version --first-release"
+    "versionup:init": "standard-version --first-release",
+    "translation": "pnpm script -- ./scripts/translation/build_translation.mts",
+    "translation:scan": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm script -- ./scripts/scan_translation.mts",
+    "translation:csv": "pnpm script -- ./scripts/translation/generate_translation_csv.mts"
   },
   "browserslist": {
     "production": [
@@ -213,6 +216,7 @@
     "@tongdelove/eslint-config": "workspace:^",
     "@tongdelove/prettier-config": "workspace:^",
     "@tongdelove/typescript-config": "workspace:^",
+    "@tongdelove/i18n": "workspace:^",
     "@types/cors": "^2.8.16",
     "@types/eslint": "^9.6.0",
     "@types/file-saver": "^2.0.5",
