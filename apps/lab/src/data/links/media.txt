@@ -1,0 +1,806 @@
+1
+Name	Website	Category	DA (Domain Authority)	Impact
+2
+Product Hunt	https://www.producthunt.com/	Launch Platform	89	High Impact
+3
+TechCrunch	https://techcrunch.com/	Media	93	High Impact
+4
+HackerNews	https://news.ycombinator.com/showhn.html	Forum	89	High Impact
+5
+Crunchbase	crunchbase.com	Directory	91	High Impact
+6
+Betalist	http://betalist.com/	Directory	60	High Impact
+7
+All top startups	http://alltopstartups.com/submit-startup/	Directory	72	Medium Impact
+8
+Mashable	http://mashable.com/	Media	93	High impact
+9
+Stripe	https://stripe.com/en-in/partner-proqram	Partner Program	91	High Impact
+10
+Forbes Technology	http://www.forbes.com/technology/	Media	94	high impact
+11
+Growth Hackers	growthhackers.com	Community	66	Low impact
+12
+Peerlist	https://peerlist.io/	Directory	32	Medium Impact
+13
+YourStory	https://yourstory.com/	Media	86	High Impact
+14
+Hashnode	http://hashnode.com/	Blogging Platform	61	High Impact
+15
+Wellfound	https://wellfound.com/	Jobs	86	High Impact
+16
+Capterra	Capterra.com	Review Website	78	High Impact
+17
+Beta Bound	betabound.com	Directory	49	Medium Impact
+18
+Android Authority	androidauthority.com	Media	91	High Impact
+19
+Foundr	Foundr.com	Media	64	Medium Impact
+20
+Biggerpockets.com	Biggerpockets.com	Community	79	High Impact
+21
+CrozDesk	Crozdesk.com	Review Website	46	Medium Impact
+22
+Entrepreneur	Entrepreneur.com	Media	92	High Impact
+23
+Geekwire	Geekwire.com	Directory	88	High Impact
+24
+AlternativeTo	http://alternativeto.net/	Directory	87	Medium Impact
+25
+Behance	http://behance.net/	Creative	92	High Impact
+26
+BostInno Startups, Tech News and Events
+bizjournals.com	Media	92	High Impact
+27
+Digg	digg.com	Media	92	High Impact
+28
+FinancesOnline.com	FinancesOnline.com	Media	72	High Impact
+29
+Launching Next	http://launchingnext.com/	Directory	39	Medium Impact
+30
+Healthline	healthline.com	Media	91	High Impact
+31
+Alternative.me	http://alternative.me/	Directory	55	High Impact
+32
+Android United	http://android-united.community/	Community	25	Low impact
+33
+Appiod.com	http://appiod.com/submit-app-for-review/	Directory	20	Low impact
+34
+AppsThunder	http://appsthunder.com/submit-your-app/	Directory	14	Low impact
+35
+Changelog	https://changelog.com/news/submit	Media	54	medium Impact
+36
+Creative Tribes	http://creativetribes.co/	Community	29	Low impact
+37
+DEV Community	http://dev.to/	Community	84	high impact
+38
+FeedMyStartup	http://feedmystartup.com/	Media	15	Low impact
+39
+Front-End Developers	http://frontenddevelopers.org/	Community	28	Low impact
+40
+GeekWire	http://geekwire.com/startup-list/	Directory	88	High Impact
+41
+Atlassian	
+https://www.atlassian.com/blog/trello/trello-collection-atlassian-community
+Community	89	Medium Impact
+42
+Microsoft Dev Chat	http://msdev.chat/	Community	12	Low impact
+43
+Netted	http://netted.net/contact-us/	Media	49	medium impact
+44
+New Startups	http://new-startups.com/	Media	33	medium impact
+45
+SaaS Directory	http://saasdirectory.com/	Directory	13	low impact
+46
+SaaSHub	http://saashub.com/	Directory	40	medium impact
+47
+SaaSworthy	http://saasworthy.com/	Review Site	40	medium impact
+48
+Silicon Prairie Tech	http://siliconprairietech.com/invite	Community	7	low impact
+49
+Mind the product	http://slack.mindtheproduct.com/	Community	56	medium impact
+50
+Slant	http://slant.co	Community	58	medium impact
+51
+SoftwareSuggest	http://softwaresuggest.com/vendors	Review Site	52	medium impact
+52
+Startupbeat	http://startupbeat.com/	Media	44	medium impact
+53
+Startup Buffer	http://startupbuffer.com/	Directory	44	medium impact
+54
+Startup Collections	http://startupcollections.com/	Launch site	28	low impact
+55
+Startup Europe	http://startupeurope.net/	Directory	16	low impact
+56
+Inspiration gallery for startups
+http://startupinspire.com/startups	Directory	29	low impact
+57
+Startup Roulette	http://startuproulette.com/	Directory	11	low impact
+58
+Startuptabs	http://startuptabs.com/	Directory	29	low impact
+59
+Tech directory	http://techdirectory.io/get-listed	Directory	55	medium impact
+60
+Techendo	http://techendo.com/beta	Directory	29	low impact
+61
+Submit A Startup	http://thetechpanda.com/submit-a-startup/	Media	37	medium impact
+62
+Robin Good's Tools	http://tools.robingood.com/	Directory	33	medium impact
+63
+Trustpilot	http://trustpilot.com/	Review Site	93	high impact
+64
+TrustRadius	http://trustradius.com/	Review Site	70	high impact
+65
+Venture Village	http://venturevillage.eu/	Media	54	medium impact
+66
+Webrazzi	http://webrazzi.com/en/startup-form/	Media	58	medium impact
+67
+Web Tools Weekly	http://webtoolsweekly.com/submit	Directory	37	medium impact
+68
+Women in Technology	http://witchat.github.io/	Slack Community	35	medium impact
+69
+AppsMirror	
+http://www.appsmirror.com/submit-your-app-for-review
+Review Site	22	low impact
+70
+Engadget	http://www.engadget.com/	Media	93	high impact
+71
+Fastcompany	http://www.fastcompany.com/	Media	92	high impact
+72
+Gizmodo	http://www.gizmodo.com/	Media	93	high impact
+73
+Huffingtonpost	http://www.huffingtonpost.com/	Media	94	high impact
+74
+KillerStartup	http://www.killerstartups.com/	Media	55	medium impact
+75
+Mac Stories	http://www.macstories.net/	Media	82	high impact
+76
+MakeUseOf	http://www.makeuseof.com/	Media	90	high impact
+77
+Similar Sites	http://www.similarsites.com/	Review Site	68	high impact
+78
+Superb Crew	http://www.superbcrew.com/	Media	41	medium impact
+79
+TechPluto	http://www.techpluto.com/submit-a-startup/	Media	40	medium impact
+80
+Guardian Technology	http://www.theguardian.com/uk/technology	Media	94	high impact
+81
+The Register UK	http://www.theregister.co.uk/	Media	89	high impact
+82
+Top Similar Sites	http://www.topsimilarsites.com/add.aspx	Similar sites	34	medium impact
+83
+Wired	http://www.wired.com/	Media	93	high impact
+84
+1000 Tools	https://1000.tools/	Directory	15	Medium Impact
+85
+10Words	https://10words.io/	Newsletter	20	low impact
+86
+All my faves	https://allmyfaves.com/	Tools	60	high impact
+87
+All Top	https://alltop.com/	Directory	69	high impact
+88
+AllTopStartups	https://alltopstartups.com/	Media	72	high impact
+89
+AlphaDigits	https://alphadigits.com/	Review Site	57	medium impact
+90
+Angellist	https://angel.co/	Jobs site	87	high impact
+91
+Apprater	https://apprater.net/add/	Launch Platform	16	Medium Impact
+92
+AwesomeIndie	https://awesomeindie.com/	Launch Platform	20	Low Impact
+93
+Betabound	https://betabound.com/	Beta testing	49	medium impact
+94
+PitchWall	https://pitchwall.co/	Directory	48	medium impact
+95
+Real World Beta Testing	https://betatesting.com/beta-testing	Beta testing	43	medium impact
+96
+Broadwise.org	https://broadwise.org/	Community	14	Low Impact
+97
+Clutch	https://clutch.co/review	Review site	69	medium impact
+98
+CoFoundersLab	https://cofounderslab.com/	Community	51	medium impact
+99
+Growth hackers	https://community.growthhackers.com/	Forum	67	Medium Impact
+100
+CtrlAltCC	https://ctrlalt.cc/	Launch Platform	18	Medium Impact
+101
+DevDojo	https://devdojo.com/	Dev Community	50	medium Impact
+102
+Devpost	https://devpost.com/software	Community	84	High Impact
+103
+devRant	https://devrant.com/	Community	48	Medium Impact
+104
+Dribbble	https://dribbble.com/	Design	92	High Impact
+105
+e27	https://e27.co/	Media	77	High Impact
+106
+Elpha	https://elpha.com	Community	47	Medium Impact
+107
+Softonic	https://en.softonic.com/android	Directory	92	High Impact
+108
+Finances Online	https://financesonline.com/	Review site	72	High Impact
+109
+Firebase	https://firebase-community.appspot.com/	Community	20	Low Impact
+110
+FreeCodeCamp	https://forum.freecodecamp.org/	Forum	88	High Impact
+111
+Future Startup	https://futurestartup.com/	Publication	41	Medium Impact
+112
+Worm	https://getworm.com/submit-startup	Directory	29	Low Impact
+113
+HackerNoon	https://hackernoon.com/	Media	88	High Impact
+114
+Hackers Pad	https://hackerspad.net/	Community	12	Low Impact
+115
+Mashable India	https://in.mashable.com/	Media	93	High Impact
+116
+Inc42	https://inc42.com/startup-submission/	Media	78	High Impact
+117
+iOS Developers	https://ios-developers.io/	Slack community	32	Medium Impact
+118
+Land Book	https://land-book.com	Design	44	Medium Impact
+119
+Launched!	https://launched.io/	Community	22	Low Impact
+120
+Lobsters	https://lobste.rs/	Launch Platform	48	Medium Impact
+121
+NextBigWhat	https://nextbigwhat.com/	Media	55	Medium Impact
+122
+One Thing Well	https://onethingwell.org/	Blog	47	Medium Impact
+123
+Online Geniuses	https://onlinegeniuses.com/marketplace	Slack community	42	Medium Impact
+124
+Open Startup List	https://openstartuplist.com/	List	18	Low Impact
+125
+Owwly	https://owwly.com/	Directory	25	Low Impact
+126
+Promotehour	https://promotehour.com/	Directory	33	Low Impact
+127
+Public API	https://publicapis.dev/	Directory	17	Medium Impact
+128
+Read.cv	https://read.cv/	Platform	44	Medium Impact
+129
+Resource FYI	https://resource.fyi/	Directory	13	Low Impact
+130
+AppSumo	https://sell.appsumo.com/	Launch Platform	61	High Impact
+131
+G2	http://g2.com/products/new	Directory	80	High Impact
+132
+SiliconANGLE	https://siliconangle.com/	Media	85	Medium impact
+133
+Babel Slack	https://slack.babeljs.io/	Slack community	73	medium Impact
+134
+Cloud Foundry	https://slack.cloudfoundry.org/	Slack community	61	Medium Impact
+135
+Cloud Native Computing Foundation
+https://slack.cncf.io/	Slack community	70	High Impact
+136
+Slate	https://slate.com/pitch	Media	92	High Impact
+137
+The Best Startup Newsletters for Founders AND Investors
+https://smash.vc/startup-newsletter/	Newsletter	40	Medium Impact
+138
+SourceForge	https://sourceforge.net/software/vendors/new	Directory	93	High Impact
+139
+Starticorn	https://starticorn.com/	List	9	Low impact
+140
+Startup88	https://startup88.com/	Media	34	Medium Impact
+141
+Startupbase	https://startupbase.io/	Directory	24	Low Impact
+142
+StartUp Beat	https://startupbeat.com/	Media	44	Medium Impact
+143
+Snap Munk	https://startups.snapmunk.com/	Directory	50	Medium Impact
+144
+Startup Stash	https://startupstash.com/add-listing/	Directory	48	High Impact
+145
+Startup Tile	https://startuptile.com/	Launch Platform	9	Low Impact
+146
+Startup Tracker	https://startuptracker.io/	Directory	34	Medium Impact
+147
+Tech.co	https://tech.co/	Media	82	High Impact
+148
+EU Tech	https://tech.eu/	Media	71	High Impact
+149
+Techboard	https://techboard.com.au/	startup data	35	Medium Impact
+150
+Techli	https://techli.com/	Media	50	Medium Impact
+151
+Tech Pluto	https://techpluto.com/	Media	40	Medium Impact
+152
+Hive Index	https://thehiveindex.com/submit/	Directory	31	Medium Impact
+153
+Startup Pitch	https://thestartuppitch.com/post-a-pitch/	Blog	36	Medium Impact
+154
+Thingtesting	https://thingtesting.com/submit-brand	Directory	45	Medium Impact
+155
+Tidy Repo	https://tidyrepo.com/	Review site	59	Medium Impact
+156
+Tech | Time	https://time.com/section/tech/	Media	94	High Impact
+157
+RobinGood	https://tools.robingood.com/	Directory	33	Low Impact
+158
+ToolSalad	https://toolsalad.com/submit/	Directory	14	Low impact
+159
+Towards Data Science	https://towardsdatascience.com/	Publication	85	High Impact
+160
+Tracxn	https://tracxn.com/	Startup platform	53	Medium Impact
+161
+UX Design Weekly	https://uxdesignweekly.com/	Newsletter	39	Medium Impact
+162
+Vator	https://vator.tv	Media	72	Medium Impact
+163
+Venture Beat	https://venturebeat.com/	Media	91	High Impact
+164
+Webthat	https://webthat.io/	Blog	14	Medium Impact
+165
+Web Tools Weekly	https://webtoolsweekly.com/	Newsletter	37	Medium Impact
+166
+We Work Remotely	https://weworkremotely.com/	Jobs	65	Medium Impact
+167
+WP Newsify	https://wpnewsify.com/	Media	55	Medium Impact
+168
+9Sites.net	https://www.9sites.net/addurl.php	Directory	28	Low Impact
+169
+Addictive Tips	https://www.addictivetips.com/tip-us/	media	85	High Impact
+170
+Admire The Web	https://www.admiretheweb.com/	Design	35	Medium Impact
+171
+AffordHunt	https://www.affordhunt.com/	Directory	14	Medium Impact
+172
+Android Central	https://www.androidcentral.com/	Media	91	High Impact
+173
+Android Headlines	https://www.androidheadlines.com/	Media	85	High Impact
+174
+Buffer apps	https://www.bufferapps.com/	Directory	43	Low Impact
+175
+Built in Chicago	
+https://www.builtinchicago.org/contact/send_us_tip
+Media	70	High Impact
+176
+Business Insider India	https://www.businessinsider.in/	Media	90	High Impact
+177
+Capterra - For Vendors	https://www.capterra.com/vendors/	Review site	78	High Impact
+178
+Classical Finance	https://www.classicalfinance.com/your-story/	Media	36	Medium Impact
+179
+CNET	https://www.cnet.com/news/	Media	93	High Impact
+180
+CodeProject	https://www.codeproject.com/	Platform	84	High Impact
+181
+Crazy About Startups	https://www.crazyaboutstartups.com/	Media	36	Low impact
+182
+Data Quest	https://www.dataquest.io/chat	Community	56	Medium Impact
+183
+EU-Startups Database	https://www.eu-startups.com/directory/	Directory	67	Medium Impact
+184
+F6S	https://www.f6s.com/	Community	72	High Impact
+185
+Fast Company	https://www.fastcompany.com/	Media	92	High Impact
+186
+Featured Customers	https://www.featuredcustomers.com/	Review site	48	Medium Impact
+187
+Feedough	https://www.feedough.com/submit-'	Review site	50	Medium Impact
+188
+Fuse.kiwi	https://www.fuse.kiwi/	Design	22	Low impact
+189
+GetApp	
+https://www.gartner.com/en/digital-markets/basic-listing
+Directory	91	High Impact
+190
+Getting Smart	https://www.gettingsmart.com/	Media	75	High Impact
+191
+All Software Categories - GoodFirms
+https://www.goodfirms.co/directories/software	Directory	55	High Impact
+192
+GrowthBoosters	https://www.growthboosters.com/	List	12	Low impact
+193
+HuffPost	https://www.huffpost.com/	Media	94	High Impact
+194
+Inc. Magazine	https://www.inc.com/	Media	91	High Impact
+195
+Indiehacker tools	https://www.indiehacker.tools/	Directory	6	Low Impact
+196
+Indiehackers	https://www.indiehackers.com/	Forum	54	High Impact
+197
+InfoWorld	https://www.infoworld.com/	Media	86	high Impact
+198
+Insanely cool tools	https://www.insanelycooltools.com/	Directory	17	Medium Impact
+199
+Joinly	https://www.joinly.xyz/	Launch Platform	15	Low Impact
+200
+KillerStartup	https://www.killerstartups.com/	Blog	55	Medium Impact
+201
+Landing Folio	https://www.landingfolio.com	Directory	40	medium Impact
+202
+Make Use of	https://www.makeuseof.com/contributor/	Media	90	high Impact
+203
+MarketingProfs	https://www.marketingprofs.com/	Online course	81	low impact
+204
+Microstartups	https://www.microstartups.co/	Directory	13	Low impact
+205
+Nocode Devs	
+https://www.nocodedevs.com/browse-the-directory
+Directory	22	High Impact
+206
+PCMag	https://www.pcmag.com/	Media	92	high Impact
+207
+PC World	https://www.pcworld.com/	Media	91	High Impact
+208
+Product HQ	
+https://www.productmanagerhq.com/join-the-community/
+Community	42	Low Impact
+209
+Psychology Today	https://www.psychologytoday.com/us	Media	93	High Impact
+210
+r/advancedentrepreneur/	https://www.reddit.com/r/advancedentrepreneur/	Subreddit	-	High Impact
+211
+r/ArtificialInteligence/	https://www.reddit.com/r/ArtificialInteligence/	Subreddit	-	High Impact
+212
+r/design_critiques/	https://www.reddit.com/r/design_critiques/	Subreddit	-	Low Impact
+213
+r/EntrepreneurRideAlong/	https://www.reddit.com/r/EntrepreneurRideAlong/	Subreddit	-	High Impact
+214
+r/GrowthHacking/	https://www.reddit.com/r/GrowthHacking/	Subreddit	-	Low Impact
+215
+r/IMadeThis/	https://www.reddit.com/r/IMadeThis/	Subreddit	-	High Impact
+216
+r/indiebiz/	https://www.reddit.com/r/indiebiz/	Subreddit	-	Low Impact
+217
+r/indiehackers/	https://www.reddit.com/r/indiehackers/	Subreddit	-	Low Impact
+218
+r/InternetIsBeautiful/	https://www.reddit.com/r/InternetIsBeautiful/	Subreddit	-	High Impact
+219
+r/ladybusiness/	https://www.reddit.com/r/ladybusiness/	Subreddit	-	Low Impact
+220
+r/microsaas/	https://www.reddit.com/r/microsaas/	Subreddit	-	Low Impact
+221
+r/NicheWebsites/	https://www.reddit.com/r/NicheWebsites/	Subreddit	-	Low Impact
+222
+r/betatests	https://www.reddit.com/r/betatests/	Subreddit	-	Low Impact
+223
+r/nocode/	https://www.reddit.com/r/nocode/	Subreddit	-	Low Impact
+224
+r/ProductHunters/	https://www.reddit.com/r/ProductHunters/	Subreddit	-	Low Impact
+225
+r/roastmystartup/	https://www.reddit.com/r/roastmystartup/	Subreddit	-	Low Impact
+226
+r/SaaS/	https://www.reddit.com/r/SaaS/	Subreddit	-	High Impact
+227
+/r/Plugyourproduct/	https://www.reddit.com/r/plugyourproduct	Subreddit	-	Low Impact
+228
+r/sideproject	https://www.reddit.com/r/sideproject	Subreddit	-	High Impact
+229
+r/Startup_Ideas/	https://www.reddit.com/r/Startup_Ideas/	Subreddit	-	Medium Impact
+230
+r/startups/	https://www.reddit.com/r/startups/	Subreddit	-	High Impact
+231
+Remote Tools	https://www.remote.tools/	Community	43	Medium Impact
+232
+SaaS Genius	https://www.saasgenius.com/	Directory	41	Medium Impact
+233
+saashub.com/	https://www.saashub.com/	Review site	40	Medium Impact
+234
+SaaS Worthy	https://www.saasworthy.com/	Directory	40	High Impact
+235
+SideProjectors	https://www.sideprojectors.com/	Directory	46	Medium Impact
+236
+SitePoint Forums	https://www.sitepoint.com/community/	Community	86	High Impact
+237
+Smashing Magazine	https://www.smashingmagazine.com/	Media	89	High Impact
+238
+Software Suggest	https://www.softwaresuggest.com/vendors	Directory	52	High Impact
+239
+SoftwareWorld	https://www.softwareworld.co/	Review site	38	medium Impact
+240
+Starter Story	https://www.starterstory.com/	Interviews	48	Medium Impact
+241
+StartupBlink	https://www.startupblink.com/	Map	56	Medium Impact
+242
+Startup inspiration	https://www.startupinspire.com/	Directory	29	Low Impact
+243
+The Startup Project	https://www.startupproject.org/	Interviews	25	Low impact
+244
+Startup Ranking	https://www.startupranking.com/	Launch Platform	73	Medium Impact
+245
+Startups List	https://www.startups-list.com/	List	34	Medium Impact
+246
+Startups FYI	https://www.startups.fyi/	Directory	19	High Impact
+247
+Tech in Asia	https://www.techinasia.com/companies/create	Directory	88	High Impact
+248
+MIT Technology Review	https://www.technologyreview.com/	Media	91	High Impact
+249
+TechRepublic	https://www.techrepublic.com/	Forums	88	High Impact
+250
+Startup Digest: More Than Just a Newsletter | Techstars
+https://www.techstars.com/communities/startup-digest
+Events	76	High Impact
+251
+The Startup INC	https://www.thestartupinc.com/	media	24	Low impact
+252
+The Verge	https://www.theverge.com/	Media	93	High Impact
+253
+Uneed	https://www.uneed.best/submit-a-tool	Directory	20	High Impact
+254
+Unita	https://www.unita.co/	Community reviews	25	Medium Impact
+255
+Website Hunt	https://www.websitehunt.co/	Launch Platform	13	Low impact
+256
+The Wall Street Journal	https://www.wsj.com/	Media	93	High Impact
+257
+Quora	www.quora.com	Q&A platform	93	Medium Impact
+258
+r/design	reddit.com/r/design	Subreddit	-	Medium Impact
+259
+r/entrepreneurship	reddit.com/r/entrepreneurship	Subreddit	-	Medium Impact
+260
+r/frontend	reddit.com/r/frontend	Subreddit	-	Low impact
+261
+r/programming	reddit.com/r/programming	Subreddit	-	High Impact
+262
+r/saas	reddit.com/r/saas	Subreddit	-	High Impact
+263
+r/technology	reddit.com/r/technology	Subreddit	-	High Impact
+264
+r/userexperience	reddit.com/r/userexperience	Subreddit	-	Low Impact
+265
+r/webdesign	reddit.com/r/webdesign	Subreddit	-	Low Impact
+266
+/r/thesidehustle/	reddit.com//r/thesidehustle/	Subreddit	-	Low Impact
+267
+r/Advertising	reddit.com/r/Advertising	Subreddit	-	Medium Impact
+268
+r/AskMarketing	reddit.com/r/AskMarketing	Subreddit	-	Medium Impact
+269
+r/Business_Ideas	reddit.com/r/Business_Ideas/	Subreddit	-	Low impact
+270
+r/Businessideas	reddit.com/r/Businessideas/	Subreddit	-	medium Impact
+271
+r/coupons	Reddit.com/r/coupons/	Subreddit	-	Low impact
+272
+r/eCommerce	reddit.com/r/eCommerce	Subreddit	-	Medium Impact
+273
+r/EmailMarketing	reddit.com/r/EmailMarketing	Subreddit	-	Medium Impact
+274
+r/GrowthHacking	reddit.com/r/GrowthHacking/	Subreddit	-	High Impact
+275
+r/Marketing	reddit.com/r/marketing	Subreddit	-	High Impact
+276
+r/NoCodeSaaS/	reddit.com/r/NoCodeSaaS/	Subreddit	-	Low impact
+277
+r/Plugyourproduct	reddit.com/r/Plugyourproduct	Subreddit	-	Low impact
+278
+r/Retail	reddit.com/r/Retail	Subreddit	-	Low impact
+279
+r/Sales	reddit.com/r/Sales	Subreddit	-	High Impact
+280
+r/startup_resources	reddit.com/r/startup_resources/	Subreddit	-	High Impact
+281
+r/startup	reddit.com/r/startup/	Subreddit	-	High Impact
+282
+r/streetwearstartup	reddit.com/r/streetwearstartup/	Subreddit	-	Medium Impact
+283
+r/VentureCapital	reddit.com/r/VentureCapital/	Subreddit	-	Medium Impact
+284
+r/VenturedCapital	reddit.com/r/VenturedCapital	Subreddit	-	Low impact
+285
+r/WebMarketing	reddit.com/r/WebMarketing	Subreddit	-	Low impact
+286
+SaaS Hub	Saashub.com	Directory	40	Medium Impact
+287
+Online Geniuses	https://onlinegeniuses.com/	Slack Community	42	Medium Impact
+288
+TechLondon	https://techlondon.io/	Slack Community	27	Low impact
+289
+Growmance	https://audienti.com/growmance/	Slack Community	32	Low Impact
+290
+Indie London	https://www.indielondon.co/	Slack Community	15	Low impact
+291
+People Ops & HR Community	https://lattice.com/community/rfh	Slack Community	58	Medium Impact
+292
+Landscape	https://www.landscape.vc/community	Slack Community	26	Low impact
+293
+Product School	
+https://www.productschool.com/slack-community/
+Slack Community	54	Medium Impact
+294
+#TechMasters	https://techmasters.chat/	Community	22	Low impact
+295
+Startup Resources	https://startupresources.io/	Newsletter	39	Medium Impact
+296
+Snowball club	https://snowballclub.com/	Community	10	Low impact
+297
+eCommerceFuel	https://www.ecommercefuel.com/	Community	47	Medium Impact
+298
+Startup Grind	https://www.startupgrind.com/	Slack Community	65	Medium Impact
+299
+Product-Led Alliance	https://www.productledalliance.com/	Slack Community	32	Low impact
+300
+No Code Founders	https://nocodefounders.com/startups	Slack Community	33	Medium impact
+301
+Fastlane Forum	https://www.thefastlaneforum.com/community/	Community	45	Medium Impact
+302
+WeAreNoCode	https://www.wearenocode.com/	Community	16	Low impact
+303
+buildspace	https://sage.buildspace.so/	Platform	38	Medium Impact
+304
+Kernal	https://kern.al/	Idea platform	22	Low impact
+305
+founderio	https://www.founderio.com/	Community	29	Low impact
+306
+FoundersList	https://founderslist.com/	Community	17	Low impact
+307
+r/SweatyStartup	https://www.reddit.com/r/sweatystartup/	Subreddit	-	Medium Impact
+308
+Startup Resources	https://www.reddit.com/r/startup_resources/	Subreddit	-	Low impact
+309
+r/Socialpreneur	https://www.reddit.com/r/Socialpreneur/	Subreddit	-	Low impact
+310
+r/AlphaandBetausers	https://www.reddit.com/r/alphaandbetausers/	Subreddit	-	Low impact
+311
+r/growinpublic	https://www.reddit.com/r/growinpublic/	Subreddit	-	Low impact
+312
+r/testmyapp	https://www.reddit.com/r/TestMyApp/	Subreddit	-	Medium Impact
+313
+r/GrowMyBusiness	https://www.reddit.com/r/growmybusiness/	Subreddit	-	Low impact
+314
+r/DotCom	https://www.reddit.com/r/DotCom/	Subreddit	-	Low impact
+315
+Furlough	https://discord.com/invite/UrFqwSwxvN	Discord Community	-	Medium Impact
+316
+Tech Startup Community	https://discord.com/invite/gyUKVDGGC6	Discord Community	-	Low Impact
+317
+Makers HQ	https://discord.com/invite/zvE8QjdWaf	Discord Community	-	Medium Impact
+318
+Founderopedia	https://founderopedia.com/	Slack Community	7	Low impact
+319
+Startup Chat	https://community.startup.foundation/c/latest	Community		Low impact
+320
+Entrepreneur's network	https://www.linkedin.com/groups/91749/	LinkedIn Group	-	Low impact
+321
+Band of Entrepreneurs	https://www.linkedin.com/groups/1789386/	LinkedIn Group	-	Low impact
+322
+Startup Specialists Group	https://www.linkedin.com/groups/56766/	LinkedIn Group	-	Low impact
+323
+Executive Suite	https://www.linkedin.com/groups/1426/	LinkedIn Group	-	Low impact
+324
+GenZ VCs	https://www.genzvcs.com/join-us	Slack Community	31	Medium Impact
+325
+Stripe Discord Server	https://discord.gg/stripe	Discord Community	-	Low impact
+326
+OpenAI discord Server	https://discord.gg/openai	Discord Community	-	Low impact
+327
+Retool Discord Server	https://discord.com/invite/aEHwpVd7yF	Discord Community	-	Low impact
+328
+SEOUL Startups	https://www.seoulstartups.com/	Slack Community	21	Low impact
+329
+Remotely One	https://www.remotelyone.com/	Slack Community	24	Low impact
+330
+Belkins B2B Sales	https://blkns.co/	Slack Community	8	Low impact
+331
+Outreach Desk	https://outreachdesk.com/	Slack Community	14	Low impact
+332
+Loqol Startup Community	https://discord.gg/79X3j8NHGE	Discord Community	-	Low impact
+333
+Makers Community	https://discord.gg/zvE8QjdWaf	Discord Community	-	Low impact
+334
+Startup India	https://discord.gg/jtESvh9Pg5	Discord Community	-	Low impact
+335
+Makerspace	https://discord.gg/GvTmqCZygz	Discord Community	-	Low impact
+336
+On Startups	https://www.linkedin.com/groups/2877/	LinkedIn Group	-	Low impact
+337
+Dev Hunt	https://devhunt.org/	Launch Platform	22	Low impact
+338
+Dang.ai	https://dang.ai/	Directory	35	Low impact
+339
+Venture Radar	https://www.ventureradar.com/database/	Directory	45	Low impact
+340
+SaaSBaba	https://saasbaba.com/	AI directory	6	Low impact
+341
+aitools.fyi	https://aitools.fyi/	AI directory	27	Low impact
+342
+Easy With AI	https://easywithai.com/	AI directory	27	Low impact
+343
+SaaS AI Tools	https://saasaitools.com/	AI directory	22	Low impact
+344
+TEXTIFY	https://textify.ai/directory/	AI directory	20	Low impact
+345
+AI Tools Directory	https://www.startupaitools.com/	AI directory	17	Low impact
+346
+ToolPilot AI	https://www.toolpilot.ai/	AI directory	22	Low impact
+347
+AI Stash	https://www.aistash.co/	AI directory	16	Low impact
+348
+aiwizard	https://www.aiwizard.ai/	AI directory	18	Low impact
+349
+GPTE	https://gpte.ai/	AI directory	21	Low impact
+350
+AI Finder	https://ai-finder.net/	AI directory	21	Low impact
+351
+300+ Best AI Tools	https://www.insidr.ai/ai-tools/	AI directory	23	Low impact
+352
+Ben Bites News	https://news.bensbites.com/	AI directory	20	Low impact
+353
+Igniter AI	https://www.igniter.ai/	AI directory	19	Low impact
+354
+Futurepedia	https://www.futurepedia.io/	AI directory	40	Medium Impact
+355
+Discover the best artificial intelligence tools
+https://www.toolsnocode.com/ai	AI directory	7	Low impact
+356
+Future AGI Tools	https://www.futureagitools.com/	AI directory	8	Low impact
+357
+AI Depot	https://aidepot.co/	AI directory	17	Low impact
+358
+AI Startups	https://www.marsx.dev/ai-startups	AI directory	17	Low impact
+359
+Mad Genius	https://madgenius.co/	AI directory	9	Low impact
+360
+The AI Warehouse	https://www.thewarehouse.ai/	AI directory	12	Low impact
+361
+Ai Tool Hunt	https://www.aitoolhunt.com/	AI directory	24	Low impact
+362
+AI ToolBoard	https://aitoolboard.com/	AI directory	14	Low impact
+363
+AI Marketing Directory	https://aimarketing.directory/	AI directory	6	Low impact
+364
+NextPedia	https://nextpedia.io/	AI directory	8	Low impact
+365
+Tool Scout	https://toolscout.ai/	AI directory	20	Low impact
+366
+The Ultimate ChatGPT Database
+https://www.chataiapps.com/	AI directory	11	Low impact
+367
+AI Tools Directory	https://aitoolsdirectory.com/	AI directory	28	Low impact
+368
+AI Tool Details	https://chatgptdemo.com/	AI directory	15	Low impact
+369
+AI Awesome	https://www.aiawesome.com/	AI directory	18	Low impact
+370
+TopAI.tools	https://topai.tools/	AI directory	37	Medium Impact
+371
+Toolify	https://www.toolify.ai/	AI directory	34	Low impact
+372
+Supertools	https://supertools.therundown.ai/	AI directory	38	Medium Impact
+373
+AI Scout	https://aiscout.net/	AI directory	25	Low impact
+374
+Postmake	https://postmake.io/submit	Blog	23	Low impact
+375
+Romanian Startups	https://www.romanianstartups.com/	Directory	34	Medium Impact
+376
+Serchen	https://www.serchen.com/get-listed/	Directory	49	Medium Impact
+377
+List Your Software & Get Qualified Leads
+https://www.softwareadvice.com/vendors/	MarketPlace	66	Medium Impact
+378
+Startups.watch	https://startups.watch/	MarketPlace	29	Low impact
+379
+Web3Canvas	https://web3canvas.com/submit/	Blog	41	Medium Impact
+380
+Tech Tools Directory	https://www.nocode.tech/tools	Directory	38	Medium Impact
+381
+Vccircle	https://www.vccircle.com/company/directory	Directory	73	High Impact
+382
+Unboxing Startups	https://unboxingstartups.com/contact/	Blog	62	Medium Impact
+383
+unita	https://unita.co/	Directory	25	Low impact
+384
+There's An AI For That	https://theresanaiforthat.com/	Directory	44	Medium Impact
+385
+MicroLaunch	https://microlaunch.net/	Directory	17	Low impact
+386
+Google Business Profile	https://www.google.com/business/	MarketPlace	100	High Impact
+387
+Startupxplore	https://startupxplore.com/en/startups	Directory	59	Medium Impact
+388
+Pocket-lint	https://www.pocket-lint.com/	Blog	86	High Impact
+389
+BuzzFeed News	https://www.buzzfeednews.com/	Blog	87	High Impact
+390
+Sitejabber	https://www.sitejabber.com/	Directory	74	High Impact
+391
+SaasGenius	https://www.saasgenius.com/get-listed/	Directory	41	Medium Impact
