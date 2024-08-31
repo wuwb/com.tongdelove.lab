@@ -135,6 +135,7 @@
     "jiti": "^1.21.6",
     "jsonwebtoken": "^9.0.2",
     "langchain": "0.2.16",
+    "lemonsqueezy.ts": "^0.1.7",
     "lucide-react": "^0.429.0",
     "mixpanel-browser": "^2.53.0",
     "negotiator": "^0.6.3",

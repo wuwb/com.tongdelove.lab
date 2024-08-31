@@ -720,6 +720,9 @@ importers:
       langchain:
         specifier: 0.2.16
         version: 0.2.16(@aws-sdk/client-s3@3.458.0)(@langchain/google-genai@0.0.26)(axios@1.7.4)(ioredis@5.4.1)(ws@8.18.0)
+      lemonsqueezy.ts:
+        specifier: ^0.1.7
+        version: 0.1.7
       lucide-react:
         specifier: ^0.429.0
         version: 0.429.0(react@18.3.1)
@@ -30887,6 +30890,13 @@ packages:
   /lead@4.0.0:
     resolution: {integrity: sha512-DpMa59o5uGUWWjruMp71e6knmwKU3jRBBn1kjuLWN9EeIOxNeSAwvHf03WIl8g/ZMR2oSQC9ej3yeLBwdDc/pg==}
     engines: {node: '>=10.13.0'}
+    dev: false
+
+  /lemonsqueezy.ts@0.1.7:
+    resolution: {integrity: sha512-7COfsFaPVsz4ik6+b5hVI/PMyu6FE+PmrbNvk1G89P826XVRRnidVhDAes+Ed42RLyigc8bBHFbuUZSglPTO0g==}
+    engines: {node: '>=16.*'}
+    dependencies:
+      undici: 5.28.4
     dev: false
 
   /less-loader@12.2.0(less@4.2.0)(webpack@5.91.0):

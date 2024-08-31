@@ -1,14 +1,16 @@
 // @link https://nextjs.org/docs/app/building-your-application/routing/middleware
-// @link https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-// export { auth as middleware } from '@/auth'
+import { authConfig } from "./auth.config"
 
-export const config = {
-  runtime: 'nodejs',
-  matcher: [
-    '/admin/:path*',
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)',
-  ],
-}
+import NextAuth from "next-auth"
+export const { auth: middleware } = NextAuth(authConfig)
+
+// export const config = {
+//   runtime: 'nodejs',
+//   matcher: [
+//     '/admin/:path*',
+//     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)',
+//   ],
+// }
 
 // export function middleware(request: NextRequest) {
 //   // request.auth
