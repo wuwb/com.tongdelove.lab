@@ -1,6 +1,10 @@
-.github
 .changeset
+.devcontainer
+.github
 .husky
+.vscode
+infrasturcture
+scripts
 docker
 README.md
 CHANGELOG.md
