@@ -1,7 +1,7 @@
 // @link https://nextjs.org/docs/app/building-your-application/routing/middleware
-import { authConfig } from "./auth.config"
+import { authConfig } from './auth.config'
 
-import NextAuth from "next-auth"
+import NextAuth from 'next-auth'
 export const { auth: middleware } = NextAuth(authConfig)
 
 // export const config = {

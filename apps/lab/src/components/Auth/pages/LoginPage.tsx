@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
-import { authConfig } from '@/components/auth/auth.config'
 import { LoginForm } from '@/components/auth/components/LoginForm'
 import { useTranslation } from '@/i18n'
 

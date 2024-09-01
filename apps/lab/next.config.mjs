@@ -153,7 +153,7 @@ const config = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 432000,
-    formats: ['image/webp'],
+    formats: ['image/webp', 'image/avif'],
     loader: 'default',
     dangerouslyAllowSVG: false,
     disableStaticImages: false,
@@ -184,6 +184,11 @@ const config = {
         protocol: 'https',
         hostname: 'lab-sticker.s3.us-east-2.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        pathname: '/s/files/**',
+      },
     ],
     unoptimized: false,
   },
@@ -202,7 +207,8 @@ const config = {
     : {}),
 
   experimental: {
-    forceSwcTransforms: true,
+    // forceSwcTransforms: true, // To use Turbopack, remove the following configuration options:
+    // esmExternals: true,
 
     // https://vercel.com/docs/observability/otel-overview
     instrumentationHook: true,
@@ -254,7 +260,7 @@ const config = {
     // Prefer loading of ES Modules over CommonJS
     // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
     // @link {https://github.com/vercel/next.js/discussions/27876|Discussion}
-    esmExternals: 'loose', // true,
+    // esmExternals: 'loose', // true,
     // Experimental monorepo support
     // @link {https://github.com/vercel/next.js/pull/22867|Original PR}
     // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}

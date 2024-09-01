@@ -5,14 +5,13 @@ import { prisma } from '@/server/db/prisma'
 // import Credentials from 'next-auth/providers/credentials'
 // import { env } from '@/env/server'
 // import { createHttpUnauthorized } from '@/lib/auth/error'
-import { authConfig } from "./auth.config"
+import { authConfig } from './auth.config'
 // import { customSendVerificationRequest } from '@/pages/api/auth/signinemail'
 // import Resend from 'next-auth/providers/resend'
 // import type { Adapter } from 'next-auth/adapters'
 
 const OneDayInSeconds = 86400
 const JWT_EXPIRY = OneDayInSeconds * 7 // 7 days
-
 
 const config: NextAuthConfig = {
   theme: {
@@ -37,7 +36,7 @@ const config: NextAuthConfig = {
 
   ...authConfig,
   debug: false,
-} 
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth((req) => {
   if (req) {

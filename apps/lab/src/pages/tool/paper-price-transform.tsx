@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from '@tongdelove/ui/select'
 
-function CommonPlatemakingSize() {
+function PaperPricTransformTool() {
   return (
     <div className="box max-w-screen-3xl container mx-auto w-full max-w-[1680px]">
       <div className="flex flex-col justify-between gap-2">
@@ -66,4 +66,4 @@ function CommonPlatemakingSize() {
   )
 }
 
-export default CommonPlatemakingSize
+export default PaperPricTransformTool

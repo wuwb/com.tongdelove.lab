@@ -2,8 +2,11 @@ import { useAuth } from '@/contexts/auth'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tongdelove/ui/tabs'
 import { Separator } from '@tongdelove/ui/separator'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import Link from 'next/link'
+import { useTranslation } from '@/i18n'
 
 function ProfilePage(): any {
+  const { t } = useTranslation()
   const { user } = useAuth()
 
   const { data: session, status } = useSession()
@@ -25,49 +28,55 @@ function ProfilePage(): any {
           <nav className="flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md bg-muted px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms"
+              href="/profile"
             >
               资料
             </a>
+            <Link
+              className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md bg-muted px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              href="/profile/billing"
+            >
+              {t('Billing')}
+            </Link>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/account"
+              href="/profile/account"
             >
               账号
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/appearance"
+              href="/profile/appearance"
             >
               积分
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/appearance"
+              href="/profile/appearance"
             >
               记录
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/appearance"
+              href="/profile/appearance"
             >
               邀请
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/appearance"
+              href="/profile/appearance"
             >
               Appearance
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/notifications"
+              href="/profile/notifications"
             >
               Notifications
             </a>
             <a
               className="inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-transparent hover:text-accent-foreground hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-              href="/examples/forms/display"
+              href="/profile/display"
             >
               Display
             </a>
@@ -139,7 +148,7 @@ function ProfilePage(): any {
                 className="text-[0.8rem] text-muted-foreground"
               >
                 You can manage verified email addresses in your{' '}
-                <a href="/examples/forms">email settings</a>.
+                <a href="/profile">email settings</a>.
               </p>
             </div>
             <div className="space-y-2">

@@ -5,14 +5,14 @@
  *
  * We also create a few inference helpers for input and output types.
  */
-import { httpBatchLink, httpLink, loggerLink, splitLink } from '@trpc/client'
+import { env } from '@/env/client'
+import { queryClient, queryClientContext } from '@/lib/cache'
 import { type AppRouter } from '@/server/trpc/root'
+import { httpBatchLink, httpLink, loggerLink, splitLink } from '@trpc/client'
 import { createTRPCNext } from '@trpc/next'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
-import superjson from 'superjson'
-import { queryClient, queryClientContext } from '@/clients/cache'
 import fetchPonyfill from 'fetch-ponyfill'
-import { env } from '@/env/client'
+import superjson from 'superjson'
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') {

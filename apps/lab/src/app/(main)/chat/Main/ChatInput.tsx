@@ -6,8 +6,10 @@ import { PiLightningFill } from 'react-icons/pi'
 import { FiSend } from 'react-icons/fi'
 import TextareaAutoSize from 'react-textarea-autosize'
 import { useState } from 'react'
+import { useTranslation } from '@/i18n'
 
 export function ChatInput() {
+  const { t } = useTranslation()
   const [messageText, setMessageText] = useState('')
 
   async function send() {
@@ -42,8 +44,9 @@ export function ChatInput() {
   return (
     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-[rgba(255,255,255,0)] from-[13.94%] to-[#fff] to-[54.73%] pt-10 dark:from-[rgba(53,55,64,0)] dark:to-[#353740] dark:to-[58.85%]">
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-4 px-4">
-        <Button icon={MdRefresh} variant="primary" className="font-medium">
-          重新生成
+        <Button variant="primary" className="font-medium">
+          <MdRefresh />
+          {t('重新生成')}
         </Button>
         <div className="flex w-full items-end rounded-lg border border-black/10 bg-white py-4 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:border-gray-800/50 dark:bg-gray-700">
           <div className="text-primary-500 mx-3 mb-2.5">
@@ -58,12 +61,10 @@ export function ChatInput() {
               setMessageText(e.target.value)
             }}
           />
-          <Button
-            className="mx-3 !rounded-lg"
-            icon={FiSend}
-            variant="primary"
-            onClick={send}
-          />
+          <Button className="mx-3 !rounded-lg" variant="primary" onClick={send}>
+            <FiSend />
+            {t('发送')}
+          </Button>
         </div>
       </div>
     </div>

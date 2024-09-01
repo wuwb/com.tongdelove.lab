@@ -7,7 +7,15 @@
       "ES2022"
     ],
     "jsx": "preserve",
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    "incremental": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "*.ts",

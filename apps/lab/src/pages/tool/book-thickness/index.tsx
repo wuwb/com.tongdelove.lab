@@ -1,6 +1,6 @@
 import { NumberInput, NativeSelect, TextInput } from '@mantine/core'
 
-function CommonPlatemakingSize() {
+function BookThicknessTool() {
   return (
     <div>
       <div>
@@ -20,4 +20,4 @@ function CommonPlatemakingSize() {
   )
 }
 
-export default CommonPlatemakingSize
+export default BookThicknessTool

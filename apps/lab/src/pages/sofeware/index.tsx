@@ -1,5 +1,4 @@
 import React from 'react'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
 
@@ -13,11 +12,11 @@ function SofewarePage(): any {
   return (
     <>
       <div className="box mx-auto max-w-screen-lg p-2">
-        Tuxera Disk Manager ZeroTier
+        {t('Tuxera Disk Manager ZeroTier')}
       </div>
       <div>
-        论坛 https://github.com/flarum/flarum/ 网盘
-        https://github.com/Xhofe/alist
+        <div>论坛 https://github.com/flarum/flarum/</div>
+        <div>网盘 https://github.com/Xhofe/alist</div>
       </div>
     </>
   )

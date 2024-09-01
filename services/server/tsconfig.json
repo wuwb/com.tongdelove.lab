@@ -56,7 +56,9 @@
     "strict": true,
     "paths": {
       "@/scripts/*": ["scripts/*"],
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
   "include": ["**/*", "src/**/*", "tests/**/*", "scripts/**/*"],

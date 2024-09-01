@@ -286,10 +286,10 @@ export function HeaderMegaMenu() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                      variant="outline"
+                    variant="outline"
                     className="overflow-hidden rounded-full"
                   >
-                      {t('登录')}
+                    {t('登录')}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

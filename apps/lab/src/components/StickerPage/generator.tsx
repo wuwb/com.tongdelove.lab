@@ -12,7 +12,7 @@ import qrcode from './assets/qrcode.png'
 import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
 import { randomInt } from 'es-toolkit'
 import { trpc } from '@/utils/trpc'
-import { useDeviceId } from '@tongdelove/hooks'
+import { useDeviceId } from '@/hooks/useDeviceId'
 import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
 
 export default function Generator() {

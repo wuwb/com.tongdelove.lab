@@ -1,14 +1,7 @@
-import { UserLanguageCode, PromptLanguageCode } from '@prisma/client'
+import { UserLanguageCode } from '@prisma/client'
 
 interface UserLanguageType {
   code: UserLanguageCode
-  name: string
-  rawName: string
-  code639: string
-}
-
-interface PromptLanguageType {
-  code: PromptLanguageCode
   name: string
   rawName: string
   code639: string

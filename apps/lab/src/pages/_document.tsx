@@ -9,14 +9,13 @@ import {
 import nextI18NextConfig from '../../next-i18next.config'
 import { ColorSchemeScript } from '@mantine/core'
 
-type Props = DocumentProps & {
-  // add custom document props
+type MyDocumentProps = DocumentProps & {
   emotionStyleTags?: string[]
 }
 
 const defaultLocale = 'en'
 
-export default function MyDocument(props) {
+export default function MyDocument(props: MyDocumentProps) {
   const locale = props.locale ?? defaultLocale
   const currentLocale =
     props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale

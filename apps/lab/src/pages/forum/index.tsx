@@ -4,7 +4,7 @@ import { Container } from '@mantine/core'
 
 function Forum(props): any {
   return (
-    <Container >
+    <Container>
       <Home />
       {props.stars}
       <Footer />

@@ -1,3 +1,2 @@
-export const sayHello = (name: string): string => {
-  return `I'm the @tongdelove/ui-lib component telling ${name} !`;
-};
+export { usePromise } from './hooks/use-promise.ts';
+export { useDeepCompareMemoize } from './hooks/use-deep-compare-memoize.ts';

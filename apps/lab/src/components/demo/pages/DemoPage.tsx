@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 import { MainLayout } from '@/layouts/main'
 import { Jumbotron } from '../blocks'
-import { demoConfig } from '../demo.config'
 import { useTranslation } from '@/i18n'
 
 export const DemoPage: FC = () => {

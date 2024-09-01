@@ -45,13 +45,17 @@ export async function listStickers({
   take: number
   live?: boolean
 }) {
+  const where: any = {}
+  if (userId) {
+    where.userId = userId
+  }
+  if (live) {
+    where.live = live
+  }
   const result = await prisma.sticker.findMany({
     skip: (page - 1) * take,
     take: take,
-    where: {
-      live,
-      userId,
-    },
+    where: where,
     select: {
       id: true,
       url: true,

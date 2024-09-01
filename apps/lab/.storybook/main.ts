@@ -1,5 +1,6 @@
 import { dirname, join } from 'path'
 import type { StorybookConfig } from '@storybook/nextjs'
+import { env as t3Env } from '../src/env/client'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -15,6 +16,10 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/nextjs'),
     options: {},
   },
+  env: (config) => ({
+    ...config,
+    ...t3Env,
+  }),
   async webpackFinal(config, { configType }) {
     if (config.experiments) {
       config.experiments.asyncWebAssembly = true

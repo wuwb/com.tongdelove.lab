@@ -1,13 +1,9 @@
 import { buildTranslationFile, defaultTransform } from '@tongdelove/i18n'
 import path from 'path'
-// import nextI18NextConfig from '../next-i18next.config'
-const nextI18NextConfig = await import('../next-i18next.config.js').then(
+
+const nextI18NextConfig = await import('../../next-i18next.config.js').then(
   (m) => m.default
 )
-
-/**
- * Call with pnpm translation
- */
 
 const args = process.argv
 const scriptArgs = args.slice(2)

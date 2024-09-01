@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { UserLanguageCode, UserPermissionRole } from "@prisma/client"
-import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema, CompleteAuthenticator, RelatedAuthenticatorModelSchema } from "./index"
+import { CompleteAccount, RelatedAccountModelSchema, CompleteSession, RelatedSessionModelSchema, CompleteAuthenticator, RelatedAuthenticatorModelSchema, CompleteRole, RelatedRoleModelSchema, CompleteLink, RelatedLinkModelSchema, CompleteDept, RelatedDeptModelSchema, CompletePost, RelatedPostModelSchema, CompleteOrder, RelatedOrderModelSchema, CompletePayMehod, RelatedPayMehodModelSchema, CompleteTelephone, RelatedTelephoneModelSchema, CompleteCart, RelatedCartModelSchema, CompleteBook, RelatedBookModelSchema, CompleteBookChapter, RelatedBookChapterModelSchema, CompleteBookStar, RelatedBookStarModelSchema, CompleteHandBook, RelatedHandBookModelSchema, CompleteHandBookChapter, RelatedHandBookChapterModelSchema, CompleteArticle, RelatedArticleModelSchema, CompleteComment, RelatedCommentModelSchema, CompleteCreditTransaction, RelatedCreditTransactionModelSchema } from "./index"
 
 export const UserModelSchema = z.object({
   id: z.string(),
@@ -17,7 +17,6 @@ export const UserModelSchema = z.object({
   credit: z.number(),
   subscriptionStart: z.date().nullish(),
   stripeCustomerId: z.string().nullish(),
-  subscriptionId: z.string().nullish(),
   language: z.nativeEnum(UserLanguageCode).nullish(),
   username: z.string().nullish(),
   gender: z.number().int(),
@@ -49,11 +48,16 @@ export const UserModelSchema = z.object({
   deptId: z.string().nullish(),
   weixin_openid: z.string(),
   session_key: z.string(),
+  subscriptionId: z.string().nullish(),
+  customerId: z.string().nullish(),
+  variantId: z.number().int().nullish(),
+  currentPeriodEnd: z.number().int().nullish(),
 })
 
 export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   accounts: CompleteAccount[]
   sessions: CompleteSession[]
+  Authenticator: CompleteAuthenticator[]
   roles: CompleteRole[]
   link: CompleteLink[]
   dept?: CompleteDept | null
@@ -70,7 +74,6 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   article: CompleteArticle[]
   comment: CompleteComment[]
   CreditTransaction: CompleteCreditTransaction[]
-  Authenticator: CompleteAuthenticator[]
 }
 
 /**
@@ -81,6 +84,7 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
 export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => UserModelSchema.extend({
   accounts: RelatedAccountModelSchema.array(),
   sessions: RelatedSessionModelSchema.array(),
+  Authenticator: RelatedAuthenticatorModelSchema.array(),
   roles: RelatedRoleModelSchema.array(),
   link: RelatedLinkModelSchema.array(),
   dept: RelatedDeptModelSchema.nullish(),
@@ -97,5 +101,4 @@ export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => Us
   article: RelatedArticleModelSchema.array(),
   comment: RelatedCommentModelSchema.array(),
   CreditTransaction: RelatedCreditTransactionModelSchema.array(),
-  Authenticator: RelatedAuthenticatorModelSchema.array(),
 }))

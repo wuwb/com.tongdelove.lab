@@ -4,7 +4,7 @@
     /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "target": "es5",
+    "target": "es2017",
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
@@ -17,11 +17,9 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "es2022",
       "esnext",
-      "WebWorker",
-      "es6",
-      "scripthost"
+      "WebWorker"
+      // "scripthost"
     ],
     "outDir": "dist",
     "noEmit": true,
@@ -66,7 +64,8 @@
     "composite": true,
     "types": ["node"],
     "noErrorTruncation": true,
-    "allowImportingTsExtensions": false
+    "allowImportingTsExtensions": false,
+    "downlevelIteration": true
   },
   "include": [
     ".eslintrc.*",

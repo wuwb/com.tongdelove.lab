@@ -6,18 +6,28 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "strict": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@/config/*": ["./config/*"],
-      "@/public/*": ["./public/*"],
-      "@@/*": ["./src/.umi/*"],
-      "@@test/*": ["./src/.umi-test/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@/config/*": [
+        "config/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ],
+      "@@/*": [
+        "src/.umi/*"
+      ],
+      "@@test/*": [
+        "src/.umi-test/*"
+      ]
     },
     "declaration": true,
     "outDir": "build/dist",

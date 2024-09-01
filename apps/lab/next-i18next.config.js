@@ -1,4 +1,5 @@
 const path = require('path')
+const crc32 = require('crc').crc32
 
 const isDev = process.env.NODE_ENV !== 'production'
 const debugI18n = ['true', 1].includes(
@@ -16,15 +17,20 @@ const nextI18NextConfig = {
   i18n: {
     defaultLocale: 'zh',
     locales: [
-      'zh', // 中文
-      'en', // 英文
-      // 'ja', // 日文
-      // 'ru', // 俄文
+      'zh',
+      'en',
+      'zh-CN',
+      'de-DE',
+      'es-ES',
+      'fr-FR',
+      'ja-JP',
+      'pt-BR',
+      'ru-RU',
     ],
     localeDetection: false,
   },
   serializeConfig: false,
-  // defaultNS: 'translation',
+  defaultNS: 'translation',
   reloadOnPrerender: process?.env?.NODE_ENV === 'development',
   /** To avoid issues when deploying to some paas (vercel...) */
   localePath:
@@ -34,6 +40,10 @@ const nextI18NextConfig = {
   react: {
     transSupportBasicHtmlNodes: false,
     useSuspense: false,
+    hashTransKey(defaultValue) {
+      // return a key based on defaultValue or if you prefer to just remind you should set a key return false and throw an error
+      return `k${crc32(defaultValue).toString(16)}`
+    },
   },
 
   saveMissing: false,

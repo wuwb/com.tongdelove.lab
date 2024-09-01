@@ -5,6 +5,7 @@ import { UserPermissionRole } from '@prisma/client'
 import { DEFAULT_USER_DATA } from '@/utils/constants/user'
 
 interface UserStore {
+  isAuthenticated: boolean
   userData: UserData | null | undefined
   userRole: UserPermissionRole
   setUserData: (userData: UserData) => void
@@ -14,10 +15,12 @@ interface UserStore {
 export const useUserStore = create<UserStore>()(
   persist(
     (set, get) => ({
+      isAuthenticated: false,
       userData: DEFAULT_USER_DATA,
       userRole: UserPermissionRole.USER,
       setUserData: async (userData: UserData) => {
         set({
+          isAuthenticated: !!userData,
           userData,
         })
       },

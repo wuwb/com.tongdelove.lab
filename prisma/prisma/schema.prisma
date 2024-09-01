@@ -1029,12 +1029,12 @@ model Account {
   type              String    // oauth
   provider          String    // email, google, github
   providerAccountId String    @map(name: "provider_account_id")
-  refresh_token     String?   
-  access_token      String?  
+  refresh_token     String?   @db.Text
+  access_token      String?   @db.Text
   expires_at        Int?     
   token_type        String?   // bearer
   scope             String?   // read:user, user:email
-  id_token          String?   
+  id_token          String?   @db.Text
   session_state     String? 
 
   createdAt         DateTime  @default(now()) @map(name: "created_at") 
@@ -1291,8 +1291,7 @@ model User {
   credit            Float             @default(0)
   subscriptionStart DateTime?
   stripeCustomerId  String?           @default("")
-  subscriptionId    String?           @default("")
-  language          UserLanguageCode?
+    language          UserLanguageCode?
 
   username          String?           @unique // 用户名
   gender            Int               @default(0)
@@ -1347,6 +1346,12 @@ model User {
   article           Article[]
   comment           Comment[]
   CreditTransaction CreditTransaction[]
+
+  // lemonsqueezy
+  subscriptionId   String?
+  customerId       String?
+  variantId        Int?
+  currentPeriodEnd Int?
 
   @@index([login, phone, email])
   @@map(name: "users")

@@ -1,27 +1,10 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
 import { NotFoundPage } from '@/components/system/pages'
-import { systemConfig } from '@/components/system/system.config'
 import { Button } from '@mantine/core'
 import Image from 'next/image'
 import React from 'react'
 import { useTranslation } from '@/i18n'
-
-export const getStaticProps = async (context: GetStaticPropsContext) => {
-  const { locale = 'en' } = context
-
-  const inlinedTranslation = await getServerTranslations(
-    locale,
-    systemConfig.i18nNamespaces
-  )
-
-  return {
-    props: {
-      locale: locale,
-      ...inlinedTranslation,
-    },
-  }
-}
 
 export default function Custom404(
   _props: InferGetStaticPropsType<typeof getStaticProps>
@@ -63,4 +46,20 @@ export default function Custom404(
       </div>
     </>
   )
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const { locale = 'en' } = context
+
+  const inlinedTranslation = await getServerTranslations(
+    locale,
+    systemConfig.i18nNamespaces
+  )
+
+  return {
+    props: {
+      locale: locale,
+      ...inlinedTranslation,
+    },
+  }
 }

@@ -1,15 +1,8 @@
-import { trpc } from '@/utils/trpc'
-import { Container } from '@/components/common'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
-import Head from 'next/head'
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getServerTranslations } from '@/server/backend/i18n/getServerTranslations'
-import { homeConfig } from '@/components/HomePage/home.config'
+import { useSession } from 'next-auth/react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { HomePage } from '@/components/HomePage/pages'
 import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
-import type { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
 
 type IndexProps = {}
@@ -19,15 +12,6 @@ const Index = (
 ) => {
   const { t } = useTranslation()
   const { data: session } = useSession()
-
-  // const { data: hello, isLoading } = trpc.example.hello.useQuery({
-  //   text: 'from tRPC',
-  // })
-  // const { data: secretMessage } = trpc.example.getSecretMessage.useQuery()
-
-  // const { data: links = [] } = trpc.link.getLinks.useQuery()
-
-  // console.log('links: ', links)
 
   return (
     <>
@@ -48,16 +32,8 @@ export default Index
 export const getServerSideProps: GetServerSideProps<IndexProps> = async (
   context
 ) => {
-  const { locale = 'en' } = context
 
-  if (locale === undefined) {
-    throw new Error('locale is missing')
-  }
-
-  const { i18nNamespaces } = homeConfig
   return {
-    props: {
-      ...(await getServerTranslations(locale, i18nNamespaces)),
-    },
+    props: {},
   }
 }

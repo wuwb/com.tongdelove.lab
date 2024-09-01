@@ -26,7 +26,6 @@ const localeText = (locale: string): string => {
 
 export const SwitchLang = () => {
   const { locales, pathname, query, asPath } = useRouter()
-  console.log('locales: ', locales)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

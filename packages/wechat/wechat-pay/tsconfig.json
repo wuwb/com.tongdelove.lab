@@ -14,7 +14,9 @@
       "rootDir": ".",
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "@/*": [
+          "src/*"
+        ]
       }
     },
     "include": [

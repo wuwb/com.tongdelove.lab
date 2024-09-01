@@ -19,6 +19,6 @@
     "@tongdelove/typescript-config": "workspace:^"
   },
   "peerDependencies": {
-    "@prisma/client": "^5.16.2"
+    "@prisma/client": "^5.19.0"
   }
 }

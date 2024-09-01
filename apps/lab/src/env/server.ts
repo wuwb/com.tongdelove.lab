@@ -61,8 +61,10 @@ export const env = createEnv({
     // OPENAI_API_KEY: z.string(),
 
     ENABLE_TRPC_LOGGER: z.string().optional(),
+
+    LEMON_SQUEEZY_API_KEY: z.string().optional(),
   },
-  runtimeEnv: process.env,
+  experimental__runtimeEnv: process.env,
   isServer: typeof window === 'undefined',
   // Extend the Vercel preset.
   extends: [vercel()],

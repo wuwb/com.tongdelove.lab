@@ -8,6 +8,7 @@ packages:
   - 'packages/hooks'
   - 'packages/utils'
   - 'packages/i18n'
+  - 'packages/design'
   - 'packages/ui'
   - 'packages/validators'
   - 'tasks/jobs/apple-guide-spider'
