@@ -6,7 +6,7 @@ import { FreelancerTaskMapType } from './freelancer-map-type.class'
 
 @Injectable()
 export class FreelancerCrudService extends CrudService<
-  Prisma.FreelancerTaskDelegate<undefined>,
+  Prisma.FreelancerTaskDelegate<any>,
   FreelancerTaskMapType
 > {
   constructor(private readonly prisma: PrismaService) {

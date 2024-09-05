@@ -6,8 +6,6 @@ module.exports = {
     project: 'tsconfig.json',
   },
   extends: [
-    './src/bases/typescript',
-    './src/bases/prettier-plugin',
-    './src/bases/mdx',
+    './lib/typescript-eslint',
   ],
-};
+}

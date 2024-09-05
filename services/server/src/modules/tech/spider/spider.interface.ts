@@ -1,4 +1,3 @@
-import { FreelancerTaskCreateInput } from '@/generated/prisma-nestjs-graphql/freelancer-task'
 import { SourceEnum, Prisma } from '@prisma/client'
 
 export enum SourceType {
@@ -23,7 +22,7 @@ export enum ISourceType {
   rrkf = 9, // ok
 }
 
-export interface SpiderTask extends FreelancerTaskCreateInput {
+export interface SpiderTask {
   source: SourceEnum
   sourceId: string
 

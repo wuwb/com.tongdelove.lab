@@ -1,7 +1,7 @@
 import { SetMetadata } from '@nestjs/common'
 import { CacheKey, CacheTTL } from '@nestjs/cache-manager'
 import * as META from '@/common/constants/meta.constant'
-import lodash from 'lodash-es'
+import { isObject } from 'lodash'
 
 // 缓存器配置
 interface ICacheOption {
@@ -22,7 +22,7 @@ export function HttpCache(key: string, ttl?: number): MethodDecorator
 export function HttpCache(option: ICacheOption): MethodDecorator
 export function HttpCache(...args) {
   const option = args[0]
-  const isOption = (value): value is ICacheOption => lodash.isObject(value)
+  const isOption = (value): value is ICacheOption => isObject(value)
   const key: string = isOption(option) ? option.key : option
   const ttl: number = isOption(option) ? option.ttl : args[1] || null
   const disable: number = isOption(option) ? option.disable : args[1] || null

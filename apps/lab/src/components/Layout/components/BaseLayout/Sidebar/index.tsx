@@ -93,7 +93,7 @@ export const Sidebar = () => {
           icon={RiChat3Line}
           activeIcon={RiChat3Fill}
           active={pathname === '/chat'}
-          title={t('对话')}
+          title={t('Chat')}
           href="/chat"
         ></NavItem>
 

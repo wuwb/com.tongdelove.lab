@@ -1,5 +1,4 @@
 import { useAuth } from '@/contexts/auth'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tongdelove/ui/tabs'
 import { Separator } from '@tongdelove/ui/separator'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -10,7 +9,6 @@ function ProfilePage(): any {
   const { user } = useAuth()
 
   const { data: session, status } = useSession()
-  console.log('session: ', session, status)
 
   return (
     <div className="box max-w-screen-3xl container mx-auto w-full max-w-[1680px]">

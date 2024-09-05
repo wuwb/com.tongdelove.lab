@@ -1,4 +1,4 @@
-import lodash from 'lodash-es'
+import { isUndefined, isString, merge, isObject, isInteger, difference } from 'lodash'
 import { createParamDecorator } from '@nestjs/common'
 import { HttpForbiddenError } from '@/common/errors/forbidden.error'
 import { HttpBadRequestError } from '@/common/errors/bad-request.error'
@@ -75,10 +75,10 @@ export const QueryParams = createParamDecorator(
     // 合并配置
     if (customConfig) {
       customConfig.forEach((field) => {
-        if (lodash.isString(field)) {
+        if (isString(field)) {
           transformConfig[field] = true
         }
-        if (lodash.isObject(field)) {
+        if (isObject(field)) {
           Object.assign(transformConfig, field)
         }
       })
@@ -91,7 +91,7 @@ export const QueryParams = createParamDecorator(
     const options: any = {}
 
     // 路径参数
-    const params = lodash.merge({ url: request.url }, request.params)
+    const params = merge({ url: request.url }, request.params)
 
     // 初始参数
     const date = request.query.date
@@ -129,7 +129,7 @@ export const QueryParams = createParamDecorator(
         name: '排序/sort',
         field: EQueryParamsField.Sort,
         isAllowed:
-          lodash.isUndefined(sort) ||
+          isUndefined(sort) ||
           [ESortType.Asc, ESortType.Desc, ESortType.Hot].includes(sort),
         isIllegal: false,
         setValue() {
@@ -142,8 +142,8 @@ export const QueryParams = createParamDecorator(
         name: '目标页/page',
         field: EQueryParamsField.Page,
         isAllowed:
-          lodash.isUndefined(page) ||
-          (lodash.isInteger(page) && Number(page) > 0),
+          isUndefined(page) ||
+          (isInteger(page) && Number(page) > 0),
         isIllegal: false,
         setValue() {
           if (page != null) {
@@ -155,8 +155,8 @@ export const QueryParams = createParamDecorator(
         name: '每页数量/per_page',
         field: EQueryParamsField.PerPage,
         isAllowed:
-          lodash.isUndefined(per_page) ||
-          (lodash.isInteger(per_page) && Number(per_page) > 0),
+          isUndefined(per_page) ||
+          (isInteger(per_page) && Number(per_page) > 0),
         isIllegal: false,
         setValue() {
           if (per_page != null) {
@@ -168,7 +168,7 @@ export const QueryParams = createParamDecorator(
         name: '日期查询/date',
         field: EQueryParamsField.Date,
         isAllowed:
-          lodash.isUndefined(date) ||
+          isUndefined(date) ||
           new Date(date).toString() !== 'Invalid Date',
         isIllegal: false,
         setValue() {
@@ -185,7 +185,7 @@ export const QueryParams = createParamDecorator(
         name: '发布状态/state', // 评论或其他数据
         field: EQueryParamsField.State,
         isAllowed:
-          lodash.isUndefined(state) ||
+          isUndefined(state) ||
           (transformConfig[EQueryParamsField.CommentState]
             ? [
                 ECommentState.Auditing,
@@ -223,7 +223,7 @@ export const QueryParams = createParamDecorator(
         name: '公开状态/public',
         field: EQueryParamsField.Public,
         isAllowed:
-          lodash.isUndefined(ppublic) ||
+          isUndefined(ppublic) ||
           [
             EPublicState.Public,
             EPublicState.Password,
@@ -249,7 +249,7 @@ export const QueryParams = createParamDecorator(
         name: '来源状态/origin',
         field: EQueryParamsField.Origin,
         isAllowed:
-          lodash.isUndefined(origin) ||
+          isUndefined(origin) ||
           [
             EOriginState.Original,
             EOriginState.Hybrid,
@@ -293,7 +293,7 @@ export const QueryParams = createParamDecorator(
     // 配置允许的字段
     const allAllowFields = Object.keys(transformConfig)
     // 剩余的待处理字段 = 配置允许的字段 - 已处理字段
-    const todoFields = lodash.difference(allAllowFields, isProcessedFields)
+    const todoFields = difference(allAllowFields, isProcessedFields)
     // 将所有待处理字段循环，将值循环至 querys
     todoFields.forEach((field) => {
       const targetValue = request.query[field]

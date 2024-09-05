@@ -1,4 +1,3 @@
-import { formatLogToString } from 'langchain/agents/format_scratchpad/log'
 import { PromptTemplate } from 'langchain/prompts'
 import {
   AgentAction,
@@ -14,7 +13,29 @@ import { RunnableSequence } from 'langchain/schema/runnable'
 import { AgentExecutor } from 'langchain/agents'
 import { ModelName } from './constant'
 
-/** Create the prefix prompt */
+/**
+ * Construct the scratchpad that lets the agent continue its thought process.
+ * @param intermediateSteps
+ * @param observationPrefix
+ * @param llmPrefix
+ * @returns a string with the formatted observations and agent logs
+ */
+export function formatLogToString(
+  intermediateSteps: AgentStep[],
+  observationPrefix = "Observation: ",
+  llmPrefix = "Thought: "
+): string {
+  const formattedSteps = intermediateSteps.reduce(
+    (thoughts, { action, observation }) =>
+      thoughts +
+      [action.log, `\n${observationPrefix}${observation}`, llmPrefix].join(
+        "\n"
+      ),
+    ""
+  );
+  return formattedSteps;
+}
+
 const PREFIX = `
 Assistant is a large language model trained by OpenAI.
 
@@ -42,7 +63,6 @@ Observation: the result of the action
 Thought: I now know the final answer
 Final Answer: the final answer to the original input question`
 
-/** Create the suffix prompt */
 const SUFFIX = `Begin!
 
 Previous conversation history:
@@ -106,25 +126,31 @@ export const generateFormatMessages = (tools: Tool[]) => {
   }
 }
 
-/** Define the custom output parser */
+/**
+ * 解析LLM的输出文本，返回AgentAction或AgentFinish。
+ * 
+ * @param text - 要解析的 LLM 输出文本。
+ * @returns AgentAction | AgentFinish - 解析结果。
+ * 
+ * 此函数主要执行两个操作：
+ * 1. 如果文本包含"Final Answer:"，将其视为最终响应并返回AgentFinish。
+ * 2. 否则，尝试使用正则表达式从文本中解析动作及其输入。
+ * 
+ * 如果两个条件都不满足，则抛出错误，表示无法解析LLM输出。
+ */
 export function customOutputParser(text: string): AgentAction | AgentFinish {
-  /** If the input includes "Final Answer" return as an instance of `AgentFinish` */
+  /** 如果输入包含"Final Answer"，则作为AgentFinish的实例返回 */
   if (text.includes('Final Answer:')) {
     const parts = text.split('Final Answer:')
     const input = parts[parts.length - 1].trim()
     const finalAnswers = { output: input }
     return { log: text, returnValues: finalAnswers }
   }
-  // console.log(text)
-  /** Use regex to extract any actions and their values */
+  /** 使用正则表达式提取任何动作及其值 */
   const match = /Action: (.*)\nAction Input: (.*)/s.exec(text)
   if (!match) {
-    throw new Error(`Could not parse LLM output: ${text}`)
+    throw new Error(`无法解析 LLM 输出: ${text}`)
   }
-  // console.log('action')
-  // console.log(match[1].trim())
-  // console.log(match[2].trim().replace(/^"+|"+$/g, ''))
-  /** Return as an instance of `AgentAction` */
   return {
     tool: match[1].trim(),
     toolInput: text,

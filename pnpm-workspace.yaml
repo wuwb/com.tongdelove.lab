@@ -11,6 +11,7 @@ packages:
   - 'packages/design'
   - 'packages/ui'
   - 'packages/validators'
+  - 'services/server'
   - 'tasks/jobs/apple-guide-spider'
   - 'tooling/eslint-config'
   - 'tooling/github-config'

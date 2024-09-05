@@ -6,8 +6,7 @@ const project = resolve(process.cwd(), "tsconfig.json");
 module.exports = {
   parser: '@typescript-eslint/parser',
   env: {
-    browser: true,
-    "cypress/globals": true
+    browser: true
   },
   plugins: [
     'import',

@@ -285,17 +285,6 @@ const route = [
         ],
       },
       {
-        name: 'physics',
-        path: '/tools/physics',
-        routes: [
-          {
-            name: 'puncture-resistance',
-            path: '/tools/physics/puncture-resistance',
-            component: './Tool/Physics/PunctureResistance',
-          },
-        ],
-      },
-      {
         name: 'printed-size',
         path: '/tools/printed-size',
         component: './Tool/PrintedSize',

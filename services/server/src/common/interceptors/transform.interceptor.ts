@@ -12,7 +12,7 @@ import { Request } from 'express'
 import { GqlExecutionContext } from '@nestjs/graphql'
 import { instanceToPlain } from 'class-transformer'
 import { RESPONSE_PASSTHROUGH_METADATA } from '../constants/meta.constant'
-import { isArrayLike, isObjectLike } from 'lodash-es'
+import { isArrayLike, isObjectLike } from 'lodash'
 import snakecaseKeys from 'snakecase-keys'
 
 export interface Response<T> {

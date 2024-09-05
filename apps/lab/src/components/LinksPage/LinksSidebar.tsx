@@ -5,8 +5,6 @@ import categoryDate from '@/data/config/category.yml'
 export const LinksSidebar = () => {
   const data: any = []
 
-  console.log('categoryDate: ', categoryDate)
-
   return (
     <div className="sidebar-nav fade animate-nav sticky w-[170px] shrink-0 border-r border-solid">
       <div className="modal-dialog h-100 sidebar-nav-inner">

@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common'
 import { validate } from 'class-validator'
 import { plainToClassFromExist } from 'class-transformer'
-import { values } from 'lodash-es'
+import { values } from 'lodash'
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {

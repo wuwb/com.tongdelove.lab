@@ -1,9 +1,5 @@
 {
-  "extends": "@tongdelove/tsconfig/base.json",
-  "ts-node": {
-    // Do not forget to `npm i -D tsconfig-paths`
-    "require": ["tsconfig-paths/register"]
-  },
+  "extends": "@tongdelove/typescript-config/base.json",
   "compilerOptions": {
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
@@ -11,15 +7,12 @@
     "module": "commonjs",
     "declaration": true,
     "strictPropertyInitialization": false,
-    "sourceMap": false,
-    "pretty": true,
-    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2022", //
-    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+    "target": "es2022",
+    "outDir": "./dist",
     "noLib": false,
     "rootDir": ".",
     "baseUrl": ".",
@@ -29,27 +22,25 @@
     "noEmitOnError": false,
     "noEmitHelpers": true,
     "incremental": false, // 避免打包失败
-    "skipLibCheck": true,
     "lib": [
-      "ES2020",
-      "esnext.array",
-      "esnext.asynciterable",
+      "dom",
       "dom.iterable",
-      "esnext",
-      "dom"
+      "esnext"
     ],
-    "jsx": "react-jsx",
+    // 支持
     "resolveJsonModule": true,
+    // 允许
     "allowUnusedLabels": true,
-    "noImplicitUseStrict": false,
-    "noImplicitAny": true,
+    // 不允许
+    "noImplicitAny": false,
+    "noImplicitOverride": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "moduleResolution": "node",
     "noUnusedParameters": false,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写，默认为 true
     "noImplicitReturns": false,
     "noUnusedLocals": false,
     "allowJs": true,
@@ -62,5 +53,14 @@
     }
   },
   "include": ["**/*", "src/**/*", "tests/**/*", "scripts/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "esm": true,
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
 }

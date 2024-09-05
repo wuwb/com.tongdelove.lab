@@ -2,6 +2,7 @@
   "name": "lab",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://lab.printlake.com",
   "scripts": {
     "build": "pnpm -r --filter lab... build && pnpm run build:repo",
     "build:repo": "next build",

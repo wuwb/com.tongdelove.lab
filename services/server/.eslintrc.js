@@ -1,33 +1,27 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
     tsconfigRootDir: __dirname,
-    ecmaVersion: 'latest', // 2018, 2020
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-  root: true,
   env: {
-    browser: true,
+    browser: false,
     node: true,
   },
-  plugins: ['@typescript-eslint', 'jest', 'prettier', 'unused-imports'],
+  plugins: ['@typescript-eslint', 'prettier', 'unused-imports'],
   extends: [
-    '@tongdelove/eslint-config/nextjs.js',
+    '@tongdelove/eslint-config',
     // typescript 的 eslint 插件
     'plugin:@typescript-eslint/recommended',
 
-    // 整合typescript-eslint与prettier
+    // 整合 typescript-eslint 与 prettier
     'plugin:prettier/recommended',
 
-    // 支持jest
-    'plugin:jest/recommended',
-
-    // 使用prettier格式化代码
+    // 使用 prettier 格式化代码
     'prettier',
   ],
   ignorePatterns: ['.eslintrc.js'],

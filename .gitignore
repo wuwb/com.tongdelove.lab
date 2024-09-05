@@ -81,3 +81,5 @@ dist/
 
 # turbo
 .turbo
+
+apps/signgen/

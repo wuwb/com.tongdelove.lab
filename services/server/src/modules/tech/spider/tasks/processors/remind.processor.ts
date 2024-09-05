@@ -3,7 +3,7 @@ import { JOB_REF, OnQueueActive, Process, Processor } from '@nestjs/bull'
 import { Inject, Logger } from '@nestjs/common'
 import { FreelancerTask } from '@prisma/client'
 import { Job } from 'bull'
-import { format } from 'dayjs'
+import dayjs from 'dayjs'
 
 @Processor('remind')
 export class RemindProcessor {
@@ -20,8 +20,7 @@ export class RemindProcessor {
   async transcode(job: Job<FreelancerTask>) {
     this.logger.debug('Start transcoding...')
     this.logger.debug(job.data)
-    job.data.date = format(
-      new Date(job.data.date),
+    job.data.date = dayjs(job.data.date).format(
       'YYYY-MM-DD HH:ss'
     ) as unknown as Date
     this.freelancerService.remind(job.data)

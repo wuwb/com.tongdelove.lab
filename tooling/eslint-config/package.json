@@ -9,9 +9,12 @@
     "./react.js"
   ],
   "scripts": {
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "rm -rf .turbo node_modules ./dist ./coverage ./tsconfig.tsbuildinfo",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/eslint-config-base.eslintcache",
+    "fix-all-files": "eslint  --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
+    "check-dist": "es-check -v"
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
@@ -20,8 +23,8 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^12.1.1",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-next": "^14.2.5",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.13.2",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-import": "^2.29.1",
@@ -33,10 +36,27 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-storybook": "^0.8.0",
-    "eslint-plugin-testing-library": "^6.2.0",
+    "eslint-plugin-testing-library": "^6.2.2",
     "prettier": "^3.3.3",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.6.0"
+    "typescript-eslint": "^7.6.0",
+    "@rushstack/eslint-patch": "^1.4.0",
+    "@tanstack/eslint-plugin-query": "^4.34.1",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-playwright": "^0.16.0",
+    "eslint-plugin-regexp": "^1.15.0",
+    "eslint-plugin-sonarjs": "^0.21.0",
+    "eslint-plugin-functional": "^6.6.3",
+    "eslint-plugin-tailwindcss": "^3.17.4",
+    "eslint-plugin-qwik": "^1.4.3",
+    "eslint-plugin-mdx": "^2.0.5",
+    "@testing-library/react": "^14.2.1",
+    "es-check": "7.1.1",
+    "graphql": "16.8.1",
+    "react": "^18.3.1",
+    "react-dom": "18.3.1",
+    "rimraf": "5.0.5",
+    "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
     "@types/eslint": "^9.6.0",

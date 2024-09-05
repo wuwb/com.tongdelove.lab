@@ -8,7 +8,7 @@
  */
 import { ValidationOptions } from 'class-validator'
 import { isString } from 'class-validator'
-import { isBoolean, merge } from 'lodash-es'
+import { isBoolean, merge } from 'lodash'
 
 import { validatorFactory } from './simpleValidatorFactory'
 

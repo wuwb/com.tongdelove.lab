@@ -2,7 +2,7 @@ import { SetMetadata, HttpStatus } from '@nestjs/common'
 import { ResponseMessage } from '@/shared/interfaces/http.interface'
 import * as META from '@/common/constants/meta.constant'
 import * as TEXT from '@/common/constants/text.constant'
-import lodash from 'lodash-es'
+import { isObject } from 'lodash'
 
 // 构造器参数
 interface DecoratorBuilderOption {
@@ -87,7 +87,7 @@ export function handle(args: HandleOptionConfig): MethodDecorator
 export function handle(...args) {
   const option = args[0]
   const isOption = (value: HandleOptionConfig): value is HandleOption =>
-    lodash.isObject(value)
+    isObject(value)
   const message: ResponseMessage = isOption(option) ? option.message : option
   const errMessage: ResponseMessage = message + TEXT.HTTP_ERROR_SUFFIX
   const successMessage: ResponseMessage = message + TEXT.HTTP_SUCCESS_SUFFIX

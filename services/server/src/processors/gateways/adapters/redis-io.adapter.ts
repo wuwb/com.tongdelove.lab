@@ -9,7 +9,7 @@ const subClient = pubClient.duplicate()
 const redisAdapter = createAdapter(pubClient, subClient)
 
 export class RedisIoAdapter extends IoAdapter {
-  createIOServer(port: number, options?: ServerOptions): any {
+  override createIOServer(port: number, options?: ServerOptions): any {
     const server = super.createIOServer(port, options)
     server.adapter(redisAdapter)
     return server

@@ -12,20 +12,15 @@
       "esnext",
       "WebWorker"
     ],
-
     "resolveJsonModule": false,
-
     // "moduleDetection": "force",
     // "isolatedModules": true,
-
     /** Keep TSC performant in monorepos */
     // "incremental": true,
     // "disableSourceOfProjectReferenceRedirect": true,
-
     "strict": true, /* Enable all strict type-checking options. */
     // "noUncheckedIndexedAccess": true,
     // "checkJs": true, /* Report errors in .js files. */
-
     /** Transpile using Bundler (not tsc) */
     "module": "commonjs", // "Preserve",
     // "moduleResolution": "Bundler", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */ // 指定使用哪种模块解析策略，默认为 Classic,// node, bundler 指定使用哪种模块解析策略，默认为 Classic, 'bundler'
@@ -33,11 +28,9 @@
     /* Basic Options */
     // https://node.green/
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
-    
     "declaration": true, /* Generates corresponding '.d.ts' file. */
     "declarationMap": true, /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    "sourceMap": true, /* Generates corresponding '.map' file. */
-
+    "sourceMap": false, /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
     // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
@@ -57,13 +50,13 @@
     // 允许
     "allowJs": false,
     "allowSyntheticDefaultImports": true, /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
-    "allowUnusedLabels": true,
+    "allowUnusedLabels": false,
     "allowUnreachableCode": false,
     // 不允许
-    "noUnusedLocals": true, /* Report errors on unused locals. */
-    "noUnusedParameters": true, /* Report errors on unused parameters. */
-    "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
-    "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true, /* when not all code paths in function return a value. */
+    "noFallthroughCasesInSwitch": true, /* fallthrough cases in switch statement. */
     "noImplicitAny": true,
     "noImplicitThis": true, /* Raise error on 'this' expressions with an implied 'any' type. */
     "noImplicitOverride": true,
@@ -72,7 +65,6 @@
     "pretty": true,
     "newLine": "lf",
     "removeComments": true, /* Do not emit comments to output. */
-
     /* Module Resolution Options */
     // "moduleResolution": "node",           
     "baseUrl": ".", /* Base directory to resolve non-absolute module names. */
@@ -84,7 +76,6 @@
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     // "types": [],                           /* Type declaration files to be included in compilation. */
-  
     // "preserveSymlinks": false, /* Do not resolve the real path of symlinks. */
     /* Source Map Options */
     // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
@@ -110,11 +101,15 @@
     // // type checking options
     // "alwaysStrict": true,
     // "strictNullChecks": true,
-  
     // "strictBindCallApply": true,
     // "declarationDir": "dist/types", // .d.ts 类型文件的输出目录，默认为 outDir 目录
-    // "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写，默认为 true
     // "strictPropertyInitialization": false,
   },
-  "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    ".next",
+    ".expo"
+  ]
 }
