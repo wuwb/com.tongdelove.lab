@@ -32,7 +32,6 @@ export default Index
 export const getServerSideProps: GetServerSideProps<IndexProps> = async (
   context
 ) => {
-
   return {
     props: {},
   }

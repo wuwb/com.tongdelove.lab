@@ -15,15 +15,12 @@ export function buildSharedStaticProps() {
  */
 export function buildSharedServerSideProps<Props extends Record<string, any>>(
   fn: GetServerSideProps<Partial<Props>>,
-  options?: {
-  }
+  options?: {}
 ) {
   let _fn = fn
 
   return buildAuthServerSideProps(
-    buildDeviceSizeServerSideProps(
-      buildI18NServerSideProps(_fn)
-    )
+    buildDeviceSizeServerSideProps(buildI18NServerSideProps(_fn))
   ) as GetServerSideProps<Props>
 }
 

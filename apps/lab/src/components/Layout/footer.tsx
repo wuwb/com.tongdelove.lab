@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import FooterMenu from '@/components/layout/footer-menu'
+import FooterMenu from '@/components/Layout/footer-menu'
 import LogoSquare from '@/components/logo-square'
 import { getMenu } from '@/lib/shopify'
 import { Suspense } from 'react'

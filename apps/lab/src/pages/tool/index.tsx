@@ -54,8 +54,15 @@ const ToolCard: React.FC<{
   )
 }
 
-const ToolPage = (props) => {
+const Tool = (props) => {
   const { t } = useTranslation()
+
+  const toolData = [
+    {
+      title: '',
+    },
+  ]
+
   return (
     <Container>
       <div className="w-full pt-3">
@@ -109,6 +116,13 @@ const ToolPage = (props) => {
             title="计算书本厚度"
             desc=""
           />
+          <ToolCard
+            index={1}
+            Icon={RiLinksLine}
+            href="/logo-surf"
+            title={t('Favicon 生成器')}
+            desc=""
+          />
         </div>
       </div>
 
@@ -141,4 +155,4 @@ const ToolPage = (props) => {
   )
 }
 
-export default ToolPage
+export default Tool

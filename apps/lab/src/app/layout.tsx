@@ -7,7 +7,7 @@ import { GoogleAnalytics } from '@/components/metrics/GoogleAnalytics'
 import { MicrosoftClarity } from '@/components/metrics/MicrosoftClarity'
 import { ThemeProvider, ThemeToggle } from '@tongdelove/ui/theme'
 import { CartProvider } from '@/components/cart/cart-context'
-import { Navbar } from '@/components/layout/navbar'
+import { Navbar } from '@/components/Layout/navbar'
 import { WelcomeToast } from '@/components/welcome-toast'
 import { getCart } from '@/lib/shopify'
 import { ensureStartsWith } from '@/lib/utils'
@@ -20,9 +20,7 @@ const baseUrl = env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000'
 
-const twitterCreator = 'wuwb_'
-  ? ensureStartsWith('wuwb_', '@')
-  : undefined
+const twitterCreator = 'wuwb_' ? ensureStartsWith('wuwb_', '@') : undefined
 
 const twitterSite = 'https://x.com/wuwb_'
   ? ensureStartsWith('https://x.com/wuwb_', 'https://')
@@ -68,11 +66,10 @@ export default function RootLayout({
             <MantineProvider>
               <CartProvider cartPromise={cart}>
                 <Navbar />
-              {/* <Layout> */}
-              {children}
-              {/* </Layout> */}
+                {/* <Layout> */}
+                {children}
+                {/* </Layout> */}
               </CartProvider>
-
             </MantineProvider>
           </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">

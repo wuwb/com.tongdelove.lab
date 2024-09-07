@@ -4,7 +4,7 @@ import * as stream from 'stream'
 import { ConfigService } from '@nestjs/config'
 import * as mime from 'mime'
 import dayjs from 'dayjs'
-import { base64Encode, hmacSHA1 } from '@tongdelove/crypto'
+import { base64Encode, hmacSHA1 } from '@tongdelove/utils'
 import axios from 'axios'
 
 const STS = (OSS as any).STS

@@ -1,5 +1,5 @@
 import { ProductType } from '@/client'
-import { cn } from '@/utils'
+import { cn } from '@tongdelove/ui'
 import { Group } from './Group'
 
 enum Status {

@@ -1,5 +1,5 @@
 {
-  "name": "@tondelove/schema",
+  "name": "@tongdelove/schema",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -19,6 +19,6 @@
     "@tongdelove/typescript-config": "workspace:^"
   },
   "peerDependencies": {
-    "@prisma/client": "^5.19.0"
+    "@prisma/client": "^5.19.1"
   }
 }

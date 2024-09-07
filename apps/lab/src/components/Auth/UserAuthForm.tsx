@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@tongdelove/ui'
 import { Button } from '@tongdelove/ui/button'
 import { Input } from '@tongdelove/ui/input'
 import { Label } from '@tongdelove/ui/label'
@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const { t } = useTranslation()

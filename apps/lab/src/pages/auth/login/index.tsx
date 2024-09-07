@@ -19,7 +19,7 @@ import {
 import { Input } from '@tongdelove/ui/input'
 import { Label } from '@tongdelove/ui/label'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@tongdelove/ui'
 // import { Icons } from "@/components/icons"
 import { Loader2 } from 'lucide-react'
 import { Metadata } from 'next'

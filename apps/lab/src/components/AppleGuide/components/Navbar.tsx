@@ -1,5 +1,5 @@
 import { DataType } from '@/client'
-import { cn } from '@/utils'
+import { cn } from '@tongdelove/ui'
 import { useTranslation } from '@/i18n'
 
 export const Navbar = ({

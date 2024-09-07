@@ -26,12 +26,16 @@ export const Layout = ({ children }: LayoutProps) => {
 
   const asPath = decodeURIComponent(router.asPath)
 
+  const hasHeader = ['/tool', '/map'].includes(asPath)
+
   let layout: React.ReactNode
 
   if (asPath.startsWith('/auth')) {
     layout = <>{children}</>
   } else if (asPath.startsWith('/fullscreen')) {
     layout = <FullLayout>{children}</FullLayout>
+  } else if (hasHeader) {
+    layout = <BaseLayout hasHeader={hasHeader}> {children}</BaseLayout>
   } else {
     layout = <BaseLayout>{children}</BaseLayout>
   }

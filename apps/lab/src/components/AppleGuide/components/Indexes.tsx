@@ -1,4 +1,4 @@
-import { cn } from '@/utils'
+import { cn } from '@tongdelove/ui'
 import { useMemo, useState } from 'react'
 import { assets, holder } from '../assertMap'
 

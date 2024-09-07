@@ -1,15 +1,21 @@
-import { HeaderMegaMenu } from './Header'
 import { Sidebar } from './Sidebar'
+import { HeaderMegaMenu } from './Header'
 
 type LayoutProps = {
+  hasHeader?: boolean
   children: React.ReactNode
 }
 
-export const BaseLayout = ({ children }: LayoutProps) => {
+export const BaseLayout = ({ hasHeader = false, children }: LayoutProps) => {
   return (
-    <div className="flex h-full w-full flex-col">
-      <Sidebar />
-      <div className="md:pl-14">{children}</div>
+    <div className="flex h-full w-full">
+      <div className="hidden w-[100px] transition-all duration-300 ease-in-out lg:block">
+        <Sidebar />
+      </div>
+      <div className="flex-1 overflow-x-hidden">
+        {hasHeader && <HeaderMegaMenu />}
+        {children}
+      </div>
     </div>
   )
 }

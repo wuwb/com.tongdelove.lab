@@ -88,7 +88,7 @@ export class MailService {
         email: this.configService.get<string>('mail.from.email', ''),
       },
       to: {
-        name: user.nicename,
+        name: user.nicename ?? '',
         email: user.email,
       },
       subject: 'Reset your Reactive Resume password',

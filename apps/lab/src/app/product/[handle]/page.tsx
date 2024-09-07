@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { GridTileImage } from '@/components/grid/tile'
-import Footer from '@/components/layout/footer'
+import Footer from '@/components/Layout/footer'
 import { Gallery } from '@/components/product/gallery'
 import { ProductProvider } from '@/components/product/product-context'
 import { ProductDescription } from '@/components/product/product-description'
@@ -37,15 +37,15 @@ export async function generateMetadata({
     },
     openGraph: url
       ? {
-          images: [
-            {
-              url,
-              width,
-              height,
-              alt,
-            },
-          ],
-        }
+        images: [
+          {
+            url,
+            width,
+            height,
+            alt,
+          },
+        ],
+      }
       : null,
   }
 }

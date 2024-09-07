@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import dayjs, { ManipulateType } from 'dayjs'
 
 export const jobCompany = (user) => {
   let str = ''
@@ -68,13 +68,13 @@ export const recentTime = (
     { time: 1, unit: 'minutes', label: '1分钟前' },
   ])
   for (const timeData of timeArr) {
-    if (t.add(timeData.time as any, timeData.unit).isBefore(now)) {
+    if (t.add(timeData.time, timeData.unit as ManipulateType).isBefore(now)) {
       if (timeData.label) {
         return timeData.label
       }
       return dayjs(time).format(formatStr)
     }
-    t.subtract(timeData.time as any, timeData.unit)
+    t.subtract(timeData.time as any, timeData.unit as ManipulateType)
   }
   return '刚刚'
 }

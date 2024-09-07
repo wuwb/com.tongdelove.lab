@@ -66,7 +66,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={clsx(
-        'fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex',
+        'sticky left-0 top-0 flex h-screen w-full flex-col gap-2.5 p-2.5',
         styles.aside
       )}
     >
