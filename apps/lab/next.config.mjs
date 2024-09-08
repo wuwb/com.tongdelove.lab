@@ -12,8 +12,12 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import url from 'node:url'
 import withBundleAnalyzer from '@next/bundle-analyzer'
-import nextI18nConfig from './next-i18next.config.js'
+// import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.mjs'
+
+const nextI18NextConfig = await import('./next-i18next.config.js').then(
+  (m) => m.default
+)
 
 // const jiti = createJiti(fileURLToPath(import.meta.url))
 
@@ -106,13 +110,13 @@ const config = {
    *
    * @see https://github.com/vercel/next.js/issues/41980
    */
-  i18n: nextI18nConfig.i18n,
+  i18n: nextI18NextConfig.i18n,
 
   // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
   // trailingSlash: true,
 
   optimizeFonts: true,
-  // poweredByHeader: false,
+  poweredByHeader: false,
 
   httpAgentOptions: {
     // @link https://nextjs.org/blog/next-11-1#builds--data-fetching
@@ -276,6 +280,7 @@ const config = {
     // },
     swcPlugins: [['next-superjson-plugin', {}]],
   },
+  staticPageGenerationTimeout: 240,
 
   serverRuntimeConfig: {
     // Will only be available on the server side

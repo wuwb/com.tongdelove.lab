@@ -43,9 +43,7 @@ export const { GET, POST } = handlers
 //   email: string;
 // };
 // export const forgotPassword = async (forgotPasswordParams: ForgotPasswordParams) => {
-//   console.log('----1');
 //   await axios.post<void, AxiosResponse<void>, ForgotPasswordParams>('/auth/forgot-password', forgotPasswordParams);
-//   console.log('----2');
 //   toast.success('Please check your email for the password reset link.');
 // };
 

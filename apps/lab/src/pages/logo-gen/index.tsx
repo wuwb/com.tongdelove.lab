@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { LogoSurfPage } from '@/components/LogoSurfPage/index'
+import { LogoGenPage } from '@/components/LogoGenPage/index'
 import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
 
@@ -14,8 +14,9 @@ const Map = (
 
   return (
     <>
-      <NextSeo title={t('行万里路 - Printlake Lab')} description="" />
-      <LogoSurfPage />
+      <NextSeo title={t('LOGO 生成器 - Printlake Lab')} description="" />
+      {/* https://github.com/airyland/logo.surf */}
+      <LogoGenPage />
     </>
   )
 }

@@ -10,6 +10,8 @@ export async function createFavicon({
   fontSize,
   fontRotate,
   textColor,
+  textStrokeColor,
+  textStrokeWidth,
   fineTuneVerticalPosition,
   fineTuneHorizontalPosition,
   deviceId,
@@ -24,9 +26,11 @@ export async function createFavicon({
   fontSize: number
   fontRotate: number
   textColor: string
+  textStrokeColor: string
+  textStrokeWidth: number
   fineTuneVerticalPosition: number
   fineTuneHorizontalPosition: number
-  deviceId?: string
+  deviceId?: string | null
   userId?: string
 }) {
   if (size < 16 || size > 2048) {
@@ -43,9 +47,10 @@ export async function createFavicon({
       fontSize,
       fontRotate,
       textColor,
+      textStrokeColor,
+      textStrokeWidth,
       fineTuneVerticalPosition,
       fineTuneHorizontalPosition,
-
       deviceId,
       userId,
     },

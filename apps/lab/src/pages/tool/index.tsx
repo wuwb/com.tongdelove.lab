@@ -119,7 +119,7 @@ const Tool = (props) => {
           <ToolCard
             index={1}
             Icon={RiLinksLine}
-            href="/logo-surf"
+            href="/logo-gen"
             title={t('Favicon 生成器')}
             desc=""
           />

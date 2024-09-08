@@ -16,6 +16,7 @@ import { config } from '../../next-seo.config'
 import { MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import '@/styles/globals.css'
+import { SSRHidden } from '@/components/Atom/SSRHidden'
 
 /* @import "@mantine/core/styles.layer.css"; */
 import '@mantine/core/styles.css'
@@ -74,7 +75,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
             <Component {...pageProps} />
           </Layout>
           <Analytics />
-          <SpeedInsights />
+          <SSRHidden>
+            <SpeedInsights />
+          </SSRHidden>
         </MantineProvider>
       </AppProviders>
     </>

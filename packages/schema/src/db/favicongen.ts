@@ -12,6 +12,8 @@ export const FaviconGenModelSchema = z.object({
   fontSize: z.number().int(),
   fontRotate: z.number().int(),
   textColor: z.string(),
+  textStrokeColor: z.string(),
+  textStrokeWidth: z.number().int(),
   fineTuneVerticalPosition: z.number().int(),
   fineTuneHorizontalPosition: z.number().int(),
   deviceId: z.string().nullish(),

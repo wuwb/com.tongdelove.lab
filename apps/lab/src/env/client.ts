@@ -22,11 +22,11 @@ export const env = createEnv({
     // NEXT_PUBLIC_NODE_ENV: z.enum(["development", "test", "production"]),
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
     // PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
-    NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY: z.string(),
+    NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY: z.string().optional(),
 
-    NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string(),
-    NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT: z.string(),
-    NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN: z.string(),
+    NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string().optional(),
+    NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT: z.string().optional(),
+    NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN: z.string().optional(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY:

@@ -18,6 +18,7 @@ import {
   useMantineTheme,
   ActionIcon,
   VisuallyHidden,
+  Indicator,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
@@ -64,6 +65,7 @@ import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
 import { MainNav } from '@/components/auth-test/main-nav'
 import UserButton from '@/components/auth-test/user-button'
+// import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 const mockdata = [
   {
@@ -249,6 +251,11 @@ export function HeaderMegaMenu() {
         </div>
         <div className="flex gap-2">
           <div className="flex w-full justify-end gap-1">
+            <Indicator color="red" size={12} processing>
+              <Button>
+                <Link href="/logo-gen">{t('LOGO 生成器')}</Link>
+              </Button>
+            </Indicator>
             {session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -321,6 +328,8 @@ export function HeaderMegaMenu() {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
+
+            {/* <LanguageSwitcher /> */}
 
             <Link href="https://txc.qq.com/products/430271">
               <Button

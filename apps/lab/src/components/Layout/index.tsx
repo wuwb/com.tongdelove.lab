@@ -26,7 +26,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
   const asPath = decodeURIComponent(router.asPath)
 
-  const hasHeader = ['/tool', '/map'].includes(asPath)
+  const hasHeader = ['/tool', '/map', '/logo-gen'].includes(asPath)
 
   let layout: React.ReactNode
 
