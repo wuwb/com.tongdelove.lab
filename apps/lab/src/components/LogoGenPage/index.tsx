@@ -7,9 +7,9 @@ import {
   TextInput,
   Text,
   CopyButton,
-  NumberInput,
+  Input,
 } from '@mantine/core'
-import { Trans, useTranslation } from '@/i18n'
+import { useTranslation } from '@/i18n'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
 import { useEffect, useRef, useState } from 'react'
 import { saveAs } from 'file-saver'
@@ -21,6 +21,7 @@ import { getRandomHexColor } from '@/utils/randoms/getRandomHexColor'
 import { LogoGenFaq } from './LogoGenFaq'
 import { Code } from '@/components/ui/Code'
 import { LogoExamples } from './LogoExamples'
+import { hexToRgba } from '@/utils/color'
 
 export const LogoGenPage = () => {
   const { t } = useTranslation()
@@ -123,7 +124,9 @@ export const LogoGenPage = () => {
     fontSize: 394,
     fontRotate: 0,
     textColor: '#FEFCBF',
+    textOpacity: 1,
     textStrokeColor: '#eee',
+    textStrokeOpacity: 1,
     textStrokeWidth: 0,
     fineTuneVerticalPosition: 0,
     fineTuneHorizontalPosition: 0,
@@ -182,7 +185,9 @@ export const LogoGenPage = () => {
       fontSize: formValue.fontSize,
       fontRotate: formValue.fontRotate,
       textColor: formValue.textColor,
+      textOpacity: formValue.textOpacity,
       textStrokeColor: formValue.textStrokeColor,
+      textStrokeOpacity: formValue.textStrokeOpacity,
       textStrokeWidth: formValue.textStrokeWidth,
 
       fineTuneVerticalPosition: formValue.fineTuneVerticalPosition,
@@ -348,12 +353,17 @@ export const LogoGenPage = () => {
     return fontSize
   }
 
-  const handleSizeChange = (value) => {
-    form.getInputProps('size').onChange(value)
-    const fontSize = adjustTextSizeAndPosition(formValue.text, value)
+  const handleSizeChange = (value: string | null) => {
+    if (value === null) {
+      return
+    }
+    let valueNumber = Number(value)
+    form.getInputProps('size').onChange(valueNumber)
+    const fontSize = adjustTextSizeAndPosition(formValue.text, valueNumber)
     form.setFieldValue('fontSize', fontSize)
+    handleSizeChangeEnd(valueNumber)
   }
-  const handleSizeChangeEnd = (value) => {
+  const handleSizeChangeEnd = (value: number) => {
     fixFontSize(formValue.text, value)
     const fontSize = adjustTextSizeAndPosition(formValue.text, value)
     form.setFieldValue('fontSize', fontSize)
@@ -389,27 +399,31 @@ export const LogoGenPage = () => {
         <div className="w-1/2 p-5">
           <div className="border p-5">
             <div>
-              <form onSubmit={form.onSubmit((values) => console.log(values))}>
-                <TextInput
-                  withAsterisk
-                  label={t('文字')}
-                  key={form.key('text')}
-                  {...form.getInputProps('text')}
-                />
-                <p>
-                  （{t('支持 Emoji，可以从这里复制：')}
-                  <a href="https://emojispark.com" target="_blank">
-                    EmojiSpark.com
-                  </a>
-                  ）
-                </p>
+              <form
+                onSubmit={form.onSubmit((values) => console.log(values))}
+                className="space-y-2"
+              >
+                <div>
+                  <TextInput
+                    size="xs"
+                    withAsterisk
+                    label={t('文字')}
+                    description={
+                      <>
+                        （{t('支持 Emoji，可以从这里复制：')}
+                        <a href="https://emojispark.com" target="_blank">
+                          EmojiSpark.com
+                        </a>
+                        ）
+                      </>
+                    }
+                    key={form.key('text')}
+                    {...form.getInputProps('text')}
+                  />
+                </div>
 
                 <div className="flex items-end gap-2.5">
-                  <div className="flex-1">
-                    <Text size="sm" mt="xl">
-                      {t('大小')}
-                    </Text>
-                    <Slider
+                  {/* <Slider
                       min={16}
                       max={2048}
                       step={1}
@@ -443,14 +457,58 @@ export const LogoGenPage = () => {
                         duration: 150,
                         timingFunction: 'linear',
                       }}
-                    />
-                  </div>
+                    /> */}
+                  <Select
+                    size="xs"
+                    label={t('背景大小')}
+                    key={form.key('size')}
+                    {...form.getInputProps('size')}
+                    defaultValue={form
+                      .getInputProps('size')
+                      .defaultValue.toString()}
+                    onChange={handleSizeChange}
+                    data={[
+                      '16',
+                      '24',
+                      '29',
+                      '32',
+                      '36',
+                      '48',
+                      '57',
+                      '58',
+                      '64',
+                      '72',
+                      '96',
+                      '114',
+                      '128',
+                      '144',
+                      '192',
+                      '256',
+                      '512',
+                      '1024',
+                      '2048',
+                    ]}
+                    searchable
+                    checkIconPosition="right"
+                  />
+
+                  <ColorInput
+                    size="xs"
+                    className="flex-1"
+                    label={t('背景颜色')}
+                    key={form.key('backgroundColor')}
+                    {...form.getInputProps('backgroundColor')}
+                  />
+                  <Button
+                    size="xs"
+                    onClick={() => handleRandomColor('backgroundColor')}
+                  >
+                    {t('随机')}
+                  </Button>
                 </div>
-                <div className="flex items-end gap-2.5">
-                  <div className="flex-1">
-                    <Text size="sm" mt="xl">
-                      {t('圆角')}
-                    </Text>
+
+                <div className="!mb-7 flex items-end gap-2.5">
+                  <Input.Wrapper size="xs" className="flex-1" label={t('圆角')}>
                     <Slider
                       min={0}
                       max={formValue.size / 2}
@@ -480,179 +538,269 @@ export const LogoGenPage = () => {
                         timingFunction: 'linear',
                       }}
                     />
-                  </div>
+                  </Input.Wrapper>
                 </div>
-                <div className="mt-5 flex items-end gap-2">
-                  <ColorInput
-                    className="flex-1"
-                    label={t('背景颜色')}
-                    key={form.key('backgroundColor')}
-                    {...form.getInputProps('backgroundColor')}
-                  />
-                  <Button onClick={() => handleRandomColor('backgroundColor')}>
-                    {t('随机')}
-                  </Button>
-                </div>
-                <Select
-                  data={[
-                    'Arial',
-                    'Helvetica',
-                    'Times New Roman',
-                    'Courier',
-                    'Verdana',
-                    'Georgia',
-                    'Palatino',
-                    'Garamond',
-                    'Bookman',
-                    'Comic Sans MS',
-                    'Trebuchet MS',
-                    'Arial Black',
-                    'Impact',
-                  ]}
-                  label={t('字体')}
-                  key={form.key('fontFamily')}
-                  {...form.getInputProps('fontFamily')}
-                />
+
                 <div>
-                  <Text size="sm" mt="xl">
-                    {t('字重（根据浏览器和字体，不一定起效）')}
-                  </Text>
-                  <Slider
-                    min={100}
-                    max={900}
-                    step={100}
-                    marks={[
-                      { value: 100, label: 'Thin' },
-                      { value: 200, label: 'Extra Light' },
-                      { value: 300, label: 'Light' },
-                      { value: 400, label: 'Normal' },
-                      { value: 500, label: 'Medium' },
-                      { value: 600, label: 'Semi Bold' },
-                      { value: 700, label: 'Bold' },
-                      { value: 800, label: 'Extra Bold' },
-                      { value: 900, label: 'Black' },
+                  <Select
+                    size="xs"
+                    data={[
+                      'Arial',
+                      'Helvetica',
+                      'Times New Roman',
+                      'Courier',
+                      'Verdana',
+                      'Georgia',
+                      'Palatino',
+                      'Garamond',
+                      'Bookman',
+                      'Comic Sans MS',
+                      'Trebuchet MS',
+                      'Arial Black',
+                      'Impact',
                     ]}
-                    key={form.key('fontWeight')}
-                    {...form.getInputProps('fontWeight')}
-                    labelTransitionProps={{
-                      transition: 'skew-down',
-                      duration: 150,
-                      timingFunction: 'linear',
-                    }}
+                    label={t('字体')}
+                    key={form.key('fontFamily')}
+                    {...form.getInputProps('fontFamily')}
                   />
                 </div>
-                <div className="mt-10 flex items-end gap-2">
+
+                <div className="flex h-[30px] items-center gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('字体大小')}
+                  >
+                    <Slider
+                      className="flex-1"
+                      defaultValue={394}
+                      min={8}
+                      max={formValue.size * 1.5}
+                      step={1}
+                      key={form.key('fontSize')}
+                      {...form.getInputProps('fontSize')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                </div>
+
+                <div className="flex h-[30px] items-center gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('字重（根据浏览器和字体，不一定起效）')}
+                  >
+                    <Slider
+                      className="flex-1"
+                      min={100}
+                      max={900}
+                      step={100}
+                      marks={[
+                        { value: 100, label: 'Thin' },
+                        { value: 200, label: 'Extra Light' },
+                        { value: 300, label: 'Light' },
+                        { value: 400, label: 'Normal' },
+                        { value: 500, label: 'Medium' },
+                        { value: 600, label: 'Semi Bold' },
+                        { value: 700, label: 'Bold' },
+                        { value: 800, label: 'Extra Bold' },
+                        { value: 900, label: 'Black' },
+                      ]}
+                      key={form.key('fontWeight')}
+                      {...form.getInputProps('fontWeight')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                </div>
+
+                <div className="!mt-7 mt-10 flex items-end gap-2">
                   <ColorInput
+                    size="xs"
                     className="flex-1"
                     label={t('文字颜色')}
                     key={form.key('textColor')}
                     {...form.getInputProps('textColor')}
                   />
-                  <Button onClick={() => handleRandomColor('textColor')}>
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('文字透明度')}
+                  >
+                    <Slider
+                      defaultValue={1}
+                      min={0}
+                      max={1}
+                      step={0.1}
+                      key={form.key('textOpacity')}
+                      {...form.getInputProps('textOpacity')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                  <Button
+                    size="xs"
+                    onClick={() => handleRandomColor('textColor')}
+                  >
                     {t('随机')}
                   </Button>
                 </div>
-                <Text size="sm" mt="xl">
-                  {t('文字大小')}
-                </Text>
-                <Slider
-                  defaultValue={394}
-                  min={8}
-                  max={formValue.size * 1.5}
-                  step={1}
-                  key={form.key('fontSize')}
-                  {...form.getInputProps('fontSize')}
-                  labelTransitionProps={{
-                    transition: 'skew-down',
-                    duration: 150,
-                    timingFunction: 'linear',
-                  }}
-                />
 
                 <div className="flex items-end gap-2">
                   <ColorInput
+                    size="xs"
                     className="flex-1"
                     label={t('文字边框颜色')}
                     key={form.key('textStrokeColor')}
                     {...form.getInputProps('textStrokeColor')}
                   />
-                  <Button onClick={() => handleRandomColor('textStrokeColor')}>
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('文字边框透明度')}
+                  >
+                    <Slider
+                      defaultValue={1}
+                      min={0}
+                      max={1}
+                      step={0.1}
+                      key={form.key('textStrokeOpacity')}
+                      {...form.getInputProps('textStrokeOpacity')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                  <Button
+                    size="xs"
+                    onClick={() => handleRandomColor('textStrokeColor')}
+                  >
                     {t('随机')}
                   </Button>
                 </div>
 
-                <Text size="sm" mt="xl">
-                  {t('文字边框粗细')}
-                </Text>
-                <Slider
-                  defaultValue={0}
-                  min={0}
-                  max={formValue.size / 2}
-                  step={1}
-                  key={form.key('textStrokeWidth')}
-                  {...form.getInputProps('textStrokeWidth')}
-                  labelTransitionProps={{
-                    transition: 'skew-down',
-                    duration: 150,
-                    timingFunction: 'linear',
-                  }}
-                />
-                <Text size="sm" mt="xl">
-                  {t('文字旋转')}
-                </Text>
-                <Slider
-                  defaultValue={0}
-                  min={-180}
-                  max={180}
-                  step={0.01}
-                  key={form.key('fontRotate')}
-                  {...form.getInputProps('fontRotate')}
-                  labelTransitionProps={{
-                    transition: 'skew-down',
-                    duration: 150,
-                    timingFunction: 'linear',
-                  }}
-                />
-                <div>
-                  <Text size="sm" mt="xl">
-                    {t('垂直微调')}
-                  </Text>
-                  <Slider
-                    defaultValue={0}
-                    min={-0.3}
-                    max={0.3}
-                    step={0.01}
-                    label={(value) => `${value * 100}%`}
-                    key={form.key('fineTuneVerticalPosition')}
-                    {...form.getInputProps('fineTuneVerticalPosition')}
-                    labelTransitionProps={{
-                      transition: 'skew-down',
-                      duration: 150,
-                      timingFunction: 'linear',
-                    }}
-                  />
+                <div className="flex items-end gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('文字边框粗细')}
+                  >
+                    <Slider
+                      className="flex-1"
+                      min={0}
+                      max={formValue.size / 2}
+                      step={1}
+                      key={form.key('textStrokeWidth')}
+                      {...form.getInputProps('textStrokeWidth')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
                 </div>
-                <div>
-                  <Text size="sm" mt="xl">
-                    {t('横向微调')}
-                  </Text>
-                  <Slider
-                    defaultValue={0}
-                    min={-0.3}
-                    max={0.3}
-                    step={0.01}
-                    label={(value) => `${value * 100}%`}
-                    key={form.key('fineTuneHorizontalPosition')}
-                    {...form.getInputProps('fineTuneHorizontalPosition')}
-                    labelTransitionProps={{
-                      transition: 'skew-down',
-                      duration: 150,
-                      timingFunction: 'linear',
-                    }}
-                  />
+                <div className="flex items-end gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('文字旋转')}
+                  >
+                    <Slider
+                      className="flex-1"
+                      min={-180}
+                      max={180}
+                      step={0.01}
+                      key={form.key('fontRotate')}
+                      {...form.getInputProps('fontRotate')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                  <Button
+                    size="xs"
+                    onClick={() => form.setFieldValue('fontRotate', 0)}
+                  >
+                    {t('重置')}
+                  </Button>
                 </div>
+                <div className="flex items-end gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('垂直微调')}
+                  >
+                    <Slider
+                      className="flex-1"
+                      min={-0.3}
+                      max={0.3}
+                      step={0.01}
+                      label={(value) => `${value * 100}%`}
+                      key={form.key('fineTuneVerticalPosition')}
+                      {...form.getInputProps('fineTuneVerticalPosition')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                  <Button
+                    size="xs"
+                    onClick={() =>
+                      form.setFieldValue('fineTuneVerticalPosition', 0)
+                    }
+                  >
+                    {t('重置')}
+                  </Button>
+                </div>
+                <div className="flex items-end gap-2.5">
+                  <Input.Wrapper
+                    size="xs"
+                    className="flex-1"
+                    label={t('横向微调')}
+                  >
+                    <Slider
+                      min={-0.3}
+                      max={0.3}
+                      step={0.01}
+                      label={(value) => `${value * 100}%`}
+                      key={form.key('fineTuneHorizontalPosition')}
+                      {...form.getInputProps('fineTuneHorizontalPosition')}
+                      labelTransitionProps={{
+                        transition: 'skew-down',
+                        duration: 150,
+                        timingFunction: 'linear',
+                      }}
+                    />
+                  </Input.Wrapper>
+                  <Button
+                    size="xs"
+                    onClick={() =>
+                      form.setFieldValue('fineTuneHorizontalPosition', 0)
+                    }
+                  >
+                    {t('重置')}
+                  </Button>
+                </div>
+
                 <div className="flex gap-1.5">
-                  <Button onClick={handleReset}>{t('重置')}</Button>
+                  <Button onClick={handleReset}>{t('重置所有')}</Button>
                 </div>
               </form>
             </div>
@@ -681,12 +829,15 @@ export const LogoGenPage = () => {
                   textAnchor="middle"
                   fontFamily={formValue.fontFamily}
                   fontWeight={formValue.fontWeight}
-                  fill={formValue.textColor}
+                  fill={hexToRgba(formValue.textColor, formValue.textOpacity)}
                   fontSize={formValue.fontSize}
                   transform={`rotate(${formValue.fontRotate}, ${rotatePoint.x}, ${rotatePoint.y})`}
                   dx={formValue.fineTuneHorizontalPosition * 512}
                   dy={formValue.fineTuneVerticalPosition * 512}
-                  stroke={formValue.textStrokeColor}
+                  stroke={hexToRgba(
+                    formValue.textStrokeColor,
+                    formValue.textStrokeOpacity
+                  )}
                   strokeWidth={formValue.textStrokeWidth}
                 >
                   {formValue.text}

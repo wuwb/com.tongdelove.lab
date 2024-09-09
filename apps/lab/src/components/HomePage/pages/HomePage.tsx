@@ -8,6 +8,7 @@ import '@mantine/notifications/styles.css'
 import { toast } from 'sonner'
 import { Shows } from '@/components/StickerPage/Shows'
 import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
+import { FollowUsOnX } from '@/components/FollowUsOnX'
 
 export const HomePage = () => {
   const { t } = useTranslation()
@@ -78,7 +79,7 @@ export const HomePage = () => {
   ]
 
   return (
-    <>
+    <div className="pb-20">
       {/* <Banner /> */}
       {/* <HeroBlock /> */}
       {/* <FeaturesBlock /> */}
@@ -88,6 +89,8 @@ export const HomePage = () => {
       <Generator />
       <Shows />
       <Faq data={faqData} />
-    </>
+
+      <FollowUsOnX />
+    </div>
   )
 }

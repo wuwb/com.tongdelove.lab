@@ -8,7 +8,7 @@ export function Main() {
     <div className="relative flex-1">
       <main className="h-full w-full overflow-y-auto bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100">
         <Menu />
-        {/* <Welcome /> */}
+        <Welcome />
         <MessageList />
         <ChatInput />
       </main>
