@@ -67,7 +67,8 @@ export const Sidebar = () => {
     <aside
       className={clsx(
         'sticky left-0 top-0 flex h-screen w-full flex-col gap-2.5 p-2.5',
-        styles.aside
+        styles.aside,
+        'border-r border-gray-200 dark:border-gray-100'
       )}
     >
       <nav className={clsx('flex flex-col items-center gap-4 px-2 sm:py-5')}>

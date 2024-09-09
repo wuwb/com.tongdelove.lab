@@ -4,6 +4,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: rem(1px) solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  /* border-right: rem(1px) solid light-dark('#eee', var(--mantine-color-dark-7)); */
 }

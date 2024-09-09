@@ -644,10 +644,10 @@ export const LogoGenPage = () => {
             <div>
               <div>{t('推荐颜色配置')}</div>
               <div className="flex flex-wrap gap-1.5">
-                {recommandColorSchemas.map((item) => {
+                {recommandColorSchemas.map((item, index) => {
                   return (
                     <Button
-                      key={item.backgroundColor}
+                      key={index}
                       style={{
                         backgroundColor: item.backgroundColor,
                         color: item.textColor,
@@ -658,7 +658,7 @@ export const LogoGenPage = () => {
                     </Button>
                   )
                 })}
-                <Button onClick={handleRandomColors}>{t('随机')}</Button>
+                <Button key="random" onClick={handleRandomColors}>{t('随机')}</Button>
               </div>
             </div>
             <div className="mt-2.5 flex justify-center gap-2">

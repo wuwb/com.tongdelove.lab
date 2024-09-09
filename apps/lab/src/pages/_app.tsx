@@ -13,7 +13,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ViewTransitions } from 'next-view-transitions'
 import { DefaultSeo } from 'next-seo'
 import { config } from '../../next-seo.config'
-import { MantineProvider } from '@mantine/core'
+import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import '@/styles/globals.css'
 import { SSRHidden } from '@/components/Atom/SSRHidden'
@@ -62,7 +62,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
       <DefaultSeo {...config} />
       <AppProviders session={session}>
-        <MantineProvider theme={theme}>
+        <ColorSchemeScript
+          nonce="8IBTHwOdqNKAWeKl7plt8g=="
+          defaultColorScheme="auto"
+        />
+        <MantineProvider theme={theme} defaultColorScheme="auto">
           <Notifications />
           <NextNProgress
             color="#fff"

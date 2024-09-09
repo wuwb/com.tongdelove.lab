@@ -17,8 +17,9 @@ import {
   rem,
   useMantineTheme,
   ActionIcon,
-  VisuallyHidden,
   Indicator,
+  useMantineColorScheme,
+  useComputedColorScheme,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
@@ -33,7 +34,6 @@ import {
 import { signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import classes from './HeaderMegaMenu.module.css'
-import Image from 'next/image'
 import {
   Home,
   LineChart,
@@ -43,14 +43,6 @@ import {
   ShoppingCart,
   Users2,
 } from 'lucide-react'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@tongdelove/ui/breadcrumb'
 import { Button } from '@tongdelove/ui/button'
 import {
   DropdownMenu,
@@ -65,7 +57,8 @@ import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
 import { MainNav } from '@/components/auth-test/main-nav'
 import UserButton from '@/components/auth-test/user-button'
-// import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { RiMoonLine, RiSunLine } from 'react-icons/ri'
+import { SSRHidden } from '@/components/Atom/SSRHidden'
 
 const mockdata = [
   {
@@ -186,6 +179,14 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ))
 
+  const { colorScheme, setColorScheme } = useMantineColorScheme({
+    keepTransitions: true,
+  });
+  const computedColorScheme = useComputedColorScheme('light', {
+    getInitialValueInEffect: true
+  });
+  const dark = computedColorScheme === 'dark'
+
   return (
     <div className="border-soild flex h-14 items-center justify-end border-b">
       <header className="sticky top-0 z-30 flex h-[60px] w-full items-center justify-between bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -250,7 +251,11 @@ export function HeaderMegaMenu() {
           </Sheet>
         </div>
         <div className="flex gap-2">
-          <div className="flex w-full justify-end gap-1">
+          <div className="flex w-full justify-end gap-1 items-center">
+
+
+
+
             <Indicator color="red" size={12} processing>
               <Button>
                 <Link href="/logo-gen">{t('LOGO 生成器')}</Link>
@@ -339,6 +344,16 @@ export function HeaderMegaMenu() {
                 {t('反馈')}
               </Button>
             </Link>
+            <SSRHidden>
+              <ActionIcon
+                variant="outline"
+                color={dark ? 'yellow' : 'blue'}
+                onClick={() => setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark')}
+                title="Toggle color scheme"
+              >
+                {dark ? <RiSunLine size="1.1rem" /> : <RiMoonLine size="1.1rem" />}
+              </ActionIcon>
+            </SSRHidden>
           </div>
           <div className="flex items-center justify-center sm:hidden">
             <Burger
