@@ -59,6 +59,7 @@ import { MainNav } from '@/components/auth-test/main-nav'
 import UserButton from '@/components/auth-test/user-button'
 import { RiMoonLine, RiSunLine } from 'react-icons/ri'
 import { SSRHidden } from '@/components/Atom/SSRHidden'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 const mockdata = [
   {
@@ -252,10 +253,6 @@ export function HeaderMegaMenu() {
         </div>
         <div className="flex gap-2">
           <div className="flex w-full justify-end gap-1 items-center">
-
-
-
-
             <Indicator color="red" size={12} processing>
               <Button>
                 <Link href="/logo-gen">{t('LOGO 生成器')}</Link>
@@ -334,7 +331,7 @@ export function HeaderMegaMenu() {
               </DropdownMenu>
             )}
 
-            {/* <LanguageSwitcher /> */}
+            <LanguageSwitcher />
 
             <Link href="https://txc.qq.com/products/430271">
               <Button

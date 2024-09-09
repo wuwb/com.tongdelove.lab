@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser'
 
 mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_ID, {
-  api_host: 'https://flowgpt.com/mp',
+  api_host: 'https://printlake.com/mp',
 })
 
 const TRACKING_ACTIVE =
@@ -34,10 +34,10 @@ const actions = {
   start: (
     user:
       | ({ id: string } & {
-          name?: string | null | undefined
-          email?: string | null | undefined
-          image?: string | null | undefined
-        })
+        name?: string | null | undefined
+        email?: string | null | undefined
+        image?: string | null | undefined
+      })
       | undefined
   ) => {
     if (TRACKING_ACTIVE) {

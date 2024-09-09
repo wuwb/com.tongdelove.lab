@@ -4,6 +4,7 @@ import { HomePage } from '@/components/HomePage/pages'
 import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
 import { useTranslation } from '@/i18n'
+import { buildSharedServerSideProps } from '@/server/common/factory'
 
 type IndexProps = {}
 
@@ -29,10 +30,17 @@ const Index = (
 
 export default Index
 
-export const getServerSideProps: GetServerSideProps<IndexProps> = async (
-  context
-) => {
-  return {
-    props: {},
+export const getServerSideProps = buildSharedServerSideProps<IndexProps>(async () => {
+  try {
+    return {
+      props: {
+      },
+    }
+  } catch (error) {
+    console.error('Error fetching carousels:', error)
+    return {
+      props: {
+      },
+    }
   }
-}
+})

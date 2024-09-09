@@ -52,7 +52,8 @@
     "versionup:init": "standard-version --first-release",
     "translation": "pnpm script -- ./scripts/translation/build_translation.mts",
     "translation:scan": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm script -- ./scripts/scan_translation.mts",
-    "translation:csv": "pnpm script -- ./scripts/translation/generate_translation_csv.mts"
+    "translation:csv": "pnpm script -- ./scripts/translation/generate_translation_csv.mts",
+    "translation:translate": "i18next-toolkit translate"
   },
   "browserslist": {
     "production": [
@@ -145,14 +146,14 @@
     "jiti": "^1.21.6",
     "jsonwebtoken": "^9.0.2",
     "jszip": "^3.10.1",
-    "langchain": "0.2.16",
-    "lucide-react": "^0.429.0",
+    "langchain": "0.2.18",
+    "lucide-react": "^0.439.0",
     "mixpanel-browser": "^2.53.0",
     "nanoid": "^5.0.7",
     "negotiator": "^0.6.3",
     "next": "14.2.8",
     "next-auth": "5.0.0-beta.19",
-    "next-i18next": "^13.3.0",
+    "next-i18next": "^15.3.1",
     "next-secure-headers": "2.2.0",
     "next-seo": "^6.5.0",
     "next-sitemap": "^4.2.3",

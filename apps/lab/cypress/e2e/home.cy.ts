@@ -3,10 +3,6 @@ describe('Home page', () => {
     cy.visit('/')
   })
 
-  it('contains "FLOWGPT"', () => {
-    cy.contains('FLOWGPT')
-  })
-
   it('lighthouse', () => {
     const customThresholds = {
       performance: 10,
@@ -34,4 +30,4 @@ describe('Home page', () => {
   })
 })
 
-export {}
+export { }

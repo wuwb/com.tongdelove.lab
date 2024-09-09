@@ -594,7 +594,7 @@ const nextConfig = (phase, { defaultConfig }) => {
   //       // Suppresses source map uploading logs during build
   //       silent: true,
 
-  //       org: 'httpsgithubcomflowgpt',
+  //       org: 'httpsgithubcomtongdelove',
   //       project: 'flow-gpt',
   //     },
   //     {

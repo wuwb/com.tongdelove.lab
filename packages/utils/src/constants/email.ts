@@ -6105,5 +6105,4 @@ export const validDomains = [
   'zzn.com',
   'zzom.co.uk',
   'zzz.com',
-  'flowgpt.com',
 ]

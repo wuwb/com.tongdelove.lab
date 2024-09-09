@@ -1,0 +1,93 @@
+{
+  "$schema": "./node_modules/@i18next-toolkit/cli/config-schema.json",
+  "publicDir": "./public",
+  "defaultLocale": "en",
+  "locales": [
+    "en",
+    "zh",
+    "de",
+    "es",
+    "fr",
+    "ja",
+    "pt",
+    "ru",
+    "ko",
+    "tr",
+    "it",
+    "nl",
+    "pl",
+    "sv",
+    "id",
+    "hu",
+    "el",
+    "cs",
+    "ro",
+    "vi",
+    "th",
+    "ms",
+    "bg",
+    "fi",
+    "hi",
+    "hr",
+    "lt",
+    "uk",
+    "ar",
+    "bn",
+    "en-US",
+    "es-ES",
+    "fr-FR",
+    "it-IT",
+    "pt-PT",
+    "de-DE",
+    "tr-TR",
+    "pl-PL",
+    "ru-RU",
+    "id-ID",
+    "zh-CN",
+    "zh-TW",
+    "ja-JP",
+    "ko-KR",
+    "th-TH",
+    "vi-VN",
+    "bg-BG",
+    "cs-CZ",
+    "el-GR",
+    "fi-FI",
+    "hi-IN",
+    "hr-HR",
+    "hu-HU",
+    "lt-LT",
+    "nl-NL",
+    "ro-RO",
+    "sv-SE",
+    "uk-UA",
+    "ms-MY"
+  ],
+  "namespaces": [
+    "translation"
+  ],
+  "indentSpaces": 2,
+  "verbose": false,
+  "extractor": {
+    "input": [
+      "./**/*.{js,jsx,ts,tsx}",
+      "!./**/*.spec.{js,jsx,ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "output": "./public/locales"
+  },
+  "scanner": {
+    "source": "./**/*.tsx",
+    "tsconfigPath": "./tsconfig.json",
+    "indentationText": "  ",
+    "autoImport": false,
+    "ignoreFiles": [],
+    "ignoreText": []
+  },
+  "translator": {
+    "type": "microsoft",
+    "openai": {
+      "modelName": "gpt-4o-mini"
+    }
+  }
+}

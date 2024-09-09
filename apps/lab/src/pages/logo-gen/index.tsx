@@ -3,8 +3,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { LogoGenPage } from '@/components/LogoGenPage/index'
 import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
+import { buildSharedServerSideProps } from '@/server/common/factory'
 
-type MapProps = {}
 
 const Map = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -23,10 +23,19 @@ const Map = (
 
 export default Map
 
-export const getServerSideProps: GetServerSideProps<MapProps> = async (
-  context
-) => {
-  return {
-    props: {},
+
+export const getServerSideProps = buildSharedServerSideProps<{
+}>(async () => {
+  try {
+    return {
+      props: {
+      },
+    }
+  } catch (error) {
+    console.error('Error fetching carousels:', error)
+    return {
+      props: {
+      },
+    }
   }
-}
+})

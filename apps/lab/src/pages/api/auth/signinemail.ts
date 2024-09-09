@@ -7,7 +7,7 @@ export const config = {
 
 const createTransport = (server: string) => {
   return {
-    sendMail: (data: any) => {},
+    sendMail: (data: any) => { },
   }
 }
 
@@ -42,7 +42,7 @@ function html(params: {
   //由于使用
   const escapedHost = host.replace(/\./g, '&#8203;.')
   const currentYear = new Date().getFullYear()
-  const brandName = 'FlowGPT'
+  const brandName = 'Tongdelove'
   const magicBtnLabel = `sign in to ${brandName}`
 
   return `<html>

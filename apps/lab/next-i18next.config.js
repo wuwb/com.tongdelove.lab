@@ -13,6 +13,8 @@ const nextI18NextConfig = {
     defaultLocale: 'en',
     locales: [
       'en',
+      'de',
+      'fr',
       'zh-CN',
       'de-DE',
       'es-ES',
@@ -20,18 +22,24 @@ const nextI18NextConfig = {
       'ja-JP',
       'pt-BR',
       'ru-RU',
+      'nl',
     ],
     localeDetection: false,
   },
+  // fallbackLng: {
+  //   default: ['en'],
+  //   'de-CH': ['fr'],
+  // },
+  // nonExplicitSupportedLngs: true,
   serializeConfig: false,
   defaultNS: 'translation',
   reloadOnPrerender: process?.env?.NODE_ENV === 'development',
   /** To avoid issues when deploying to some paas (vercel...) */
-  // localePath: path.resolve('./public/locales'),
-  localePath:
-    typeof window === 'undefined'
-      ? path.resolve('./public/locales')
-      : localePublicFolder,
+  localePath: path.resolve('./public/locales'),
+  // localePath:
+  //   typeof window === 'undefined'
+  //     ? path.resolve('./public/locales')
+  //     : localePublicFolder,
   react: {
     transSupportBasicHtmlNodes: false,
     useSuspense: false,
@@ -52,12 +60,8 @@ const nextI18NextConfig = {
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration
    */
 
-  // fallbackLng: {
-  //   default: ['zh'],
-  //   en: ['zh']
-  // },
+
   // de, fr and en will be loaded as fallback languages for de-CH
-  // nonExplicitSupportedLngs: true,
   // defaultNS: 'common',
   // localeExtension: 'json',
   // interpolation: {
