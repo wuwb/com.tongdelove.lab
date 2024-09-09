@@ -7,7 +7,7 @@ export const config = {
 
 const createTransport = (server: string) => {
   return {
-    sendMail: (data: any) => { },
+    sendMail: (data: any) => {},
   }
 }
 

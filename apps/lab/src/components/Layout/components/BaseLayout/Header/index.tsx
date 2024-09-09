@@ -182,10 +182,10 @@ export function HeaderMegaMenu() {
 
   const { colorScheme, setColorScheme } = useMantineColorScheme({
     keepTransitions: true,
-  });
+  })
   const computedColorScheme = useComputedColorScheme('light', {
-    getInitialValueInEffect: true
-  });
+    getInitialValueInEffect: true,
+  })
   const dark = computedColorScheme === 'dark'
 
   return (
@@ -252,7 +252,7 @@ export function HeaderMegaMenu() {
           </Sheet>
         </div>
         <div className="flex gap-2">
-          <div className="flex w-full justify-end gap-1 items-center">
+          <div className="flex w-full items-center justify-end gap-1">
             <Indicator color="red" size={12} processing>
               <Button>
                 <Link href="/logo-gen">{t('LOGO 生成器')}</Link>
@@ -308,6 +308,11 @@ export function HeaderMegaMenu() {
                       {t('Github 登录')}
                     </button>
                   </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <button onClick={() => signIn('google')}>
+                      {t('Google 登录')}
+                    </button>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     {/* <button
@@ -345,10 +350,18 @@ export function HeaderMegaMenu() {
               <ActionIcon
                 variant="outline"
                 color={dark ? 'yellow' : 'blue'}
-                onClick={() => setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark')}
+                onClick={() =>
+                  setColorScheme(
+                    computedColorScheme === 'dark' ? 'light' : 'dark'
+                  )
+                }
                 title="Toggle color scheme"
               >
-                {dark ? <RiSunLine size="1.1rem" /> : <RiMoonLine size="1.1rem" />}
+                {dark ? (
+                  <RiSunLine size="1.1rem" />
+                ) : (
+                  <RiMoonLine size="1.1rem" />
+                )}
               </ActionIcon>
             </SSRHidden>
           </div>

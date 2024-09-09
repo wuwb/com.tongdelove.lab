@@ -35,15 +35,9 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/public/*": [
-        "public/*"
-      ],
-      "@tongdelove/design/*": [
-        "../../packages/design/src/*"
-      ]
+      "@/*": ["src/*"],
+      "@/public/*": ["public/*"],
+      "@tongdelove/design/*": ["../../packages/design/src/*"]
     },
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "strictNullChecks": true, // trpc required, need to be true
@@ -69,9 +63,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "composite": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "noErrorTruncation": true,
     "allowImportingTsExtensions": false,
     "downlevelIteration": true
@@ -93,9 +85,7 @@
     "../../prettier.config.js",
     "scripts/*.mts"
   ],
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node",

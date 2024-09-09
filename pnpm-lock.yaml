@@ -1421,6 +1421,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
+      cypress:
+        specifier: ^13.13.0
+        version: 13.13.0
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.4.5)
@@ -19106,7 +19109,7 @@ packages:
       '@types/semver': 7.5.8
       better-opn: 3.0.2
       chalk: 4.1.2
-      cli-table3: 0.6.4
+      cli-table3: 0.6.5
       compression: 1.7.4
       detect-port: 1.6.1
       express: 4.18.2

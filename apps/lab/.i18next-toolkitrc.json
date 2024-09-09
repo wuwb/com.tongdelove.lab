@@ -63,9 +63,7 @@
     "uk-UA",
     "ms-MY"
   ],
-  "namespaces": [
-    "translation"
-  ],
+  "namespaces": ["translation"],
   "indentSpaces": 2,
   "verbose": false,
   "extractor": {

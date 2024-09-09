@@ -34,10 +34,10 @@ const actions = {
   start: (
     user:
       | ({ id: string } & {
-        name?: string | null | undefined
-        email?: string | null | undefined
-        image?: string | null | undefined
-      })
+          name?: string | null | undefined
+          email?: string | null | undefined
+          image?: string | null | undefined
+        })
       | undefined
   ) => {
     if (TRACKING_ACTIVE) {

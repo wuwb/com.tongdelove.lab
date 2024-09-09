@@ -1,4 +1,5 @@
 import Github from 'next-auth/providers/github'
+import Google from 'next-auth/providers/google'
 
 const providers = [
   // Credentials({
@@ -108,16 +109,7 @@ const providers = [
   // @see https://github.com/settings/applications/2443205
   // @see https://next-auth.js.org/providers/github
   Github,
-  // GoogleProvider({
-  //   clientId: env.AUTH_GOOGLE_ID,
-  //   clientSecret: env.AUTH_GOOGLE_SECRET,
-  //   authorization: {
-  //     params: {
-  //       access_type: "offline",
-  //       prompt: "consent"
-  //     }
-  //   },
-  // }),
+  Google,
 ]
 
 export const authConfig = {

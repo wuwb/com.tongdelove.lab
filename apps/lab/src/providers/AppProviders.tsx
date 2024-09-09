@@ -19,8 +19,8 @@ export const AppProviders: FC<Props> = (props) => {
   return (
     <SessionProvider
       session={session}
-    // refetchInterval={0}
-    // refetchOnWindowFocus={false}
+      // refetchInterval={0}
+      // refetchOnWindowFocus={false}
     >
       {/* <SessionProvider session={session} refetchInterval={0}> */}
       {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}

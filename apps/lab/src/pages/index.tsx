@@ -30,17 +30,17 @@ const Index = (
 
 export default Index
 
-export const getServerSideProps = buildSharedServerSideProps<IndexProps>(async () => {
-  try {
-    return {
-      props: {
-      },
-    }
-  } catch (error) {
-    console.error('Error fetching carousels:', error)
-    return {
-      props: {
-      },
+export const getServerSideProps = buildSharedServerSideProps<IndexProps>(
+  async () => {
+    try {
+      return {
+        props: {},
+      }
+    } catch (error) {
+      console.error('Error fetching carousels:', error)
+      return {
+        props: {},
+      }
     }
   }
-})
+)

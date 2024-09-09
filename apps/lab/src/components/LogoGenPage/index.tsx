@@ -9,7 +9,7 @@ import {
   CopyButton,
   NumberInput,
 } from '@mantine/core'
-import { useTranslation } from '@/i18n'
+import { Trans, useTranslation } from '@/i18n'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
 import { useEffect, useRef, useState } from 'react'
 import { saveAs } from 'file-saver'
@@ -20,6 +20,7 @@ import { useDeviceId } from '@/hooks/useDeviceId'
 import { getRandomHexColor } from '@/utils/randoms/getRandomHexColor'
 import { LogoGenFaq } from './LogoGenFaq'
 import { Code } from '@/components/ui/Code'
+import { LogoExamples } from './LogoExamples'
 
 export const LogoGenPage = () => {
   const { t } = useTranslation()
@@ -140,7 +141,7 @@ export const LogoGenPage = () => {
     mode: 'uncontrolled',
     initialValues,
     validate: {},
-    onValuesChange: (values) => {
+    onValuesChange: (values, previous) => {
       console.log(values)
       const formValue = form.getValues()
       setFormValue(formValue)
@@ -299,10 +300,63 @@ export const LogoGenPage = () => {
   const handleRandomColors = () => {
     const color1 = getRandomHexColor()
     const color2 = getRandomHexColor()
-    console.log('color1: ', color1)
-    console.log('color2: ', color2)
     form.setFieldValue('backgroundColor', color1)
     form.setFieldValue('textColor', color2)
+  }
+
+  const adjustTextSizeAndPosition = (text: string, size: number) => {
+    if (!textRef.current) {
+      return
+    }
+    const isAllEnglish = /^[A-Za-z0-9\s]+$/.test(text)
+    const charCount = text.length
+
+    let fontSize
+    if (charCount <= 2) {
+      fontSize = size * 0.8
+    } else if (isAllEnglish) {
+      fontSize = size * 0.75
+    } else {
+      fontSize = size * 0.6
+    }
+
+    return fontSize
+  }
+
+  const fixFontSize = (text: string, size: number) => {
+    if (!textRef.current) {
+      return
+    }
+    let fontSize = formValue.fontSize
+    const isAllEnglish = /^[A-Za-z0-9\s]+$/.test(text)
+
+    const maxWidth = size * 0.95
+    const maxHeight = size * 0.95
+    const scaleFactor = isAllEnglish ? 0.98 : 0.95
+
+    let iterations = 0
+    const maxIterations = 50
+
+    while (fontSize > 1 && iterations < maxIterations) {
+      const bbox = textRef.current.getBBox()
+      if (bbox.width <= maxWidth && bbox.height <= maxHeight) {
+        break
+      }
+      fontSize *= scaleFactor
+      iterations++
+    }
+    return fontSize
+  }
+
+  const handleSizeChange = (value) => {
+    form.getInputProps('size').onChange(value)
+    const fontSize = adjustTextSizeAndPosition(formValue.text, value)
+    form.setFieldValue('fontSize', fontSize)
+  }
+  const handleSizeChangeEnd = (value) => {
+    fixFontSize(formValue.text, value)
+    const fontSize = adjustTextSizeAndPosition(formValue.text, value)
+    form.setFieldValue('fontSize', fontSize)
   }
 
   useEffect(() => {
@@ -343,7 +397,7 @@ export const LogoGenPage = () => {
                   {...form.getInputProps('text')}
                 />
                 <p>
-                  （支持 Emoji，可以从这里复制：
+                  （{t('支持 Emoji，可以从这里复制：')}
                   <a href="https://emojispark.com" target="_blank">
                     EmojiSpark.com
                   </a>
@@ -356,7 +410,6 @@ export const LogoGenPage = () => {
                       {t('大小')}
                     </Text>
                     <Slider
-                      defaultValue={512}
                       min={16}
                       max={2048}
                       step={1}
@@ -383,6 +436,8 @@ export const LogoGenPage = () => {
                       ]}
                       key={form.key('size')}
                       {...form.getInputProps('size')}
+                      onChange={handleSizeChange}
+                      onChangeEnd={handleSizeChangeEnd}
                       labelTransitionProps={{
                         transition: 'skew-down',
                         duration: 150,
@@ -397,7 +452,6 @@ export const LogoGenPage = () => {
                       {t('圆角')}
                     </Text>
                     <Slider
-                      defaultValue={90}
                       min={0}
                       max={formValue.size / 2}
                       step={1}
@@ -464,7 +518,6 @@ export const LogoGenPage = () => {
                     {t('字重（根据浏览器和字体，不一定起效）')}
                   </Text>
                   <Slider
-                    defaultValue={400}
                     min={100}
                     max={900}
                     step={100}
@@ -503,7 +556,7 @@ export const LogoGenPage = () => {
                   {t('文字大小')}
                 </Text>
                 <Slider
-                  defaultValue={0}
+                  defaultValue={394}
                   min={8}
                   max={formValue.size * 1.5}
                   step={1}
@@ -658,7 +711,9 @@ export const LogoGenPage = () => {
                     </Button>
                   )
                 })}
-                <Button key="random" onClick={handleRandomColors}>{t('随机')}</Button>
+                <Button key="random" onClick={handleRandomColors}>
+                  {t('随机')}
+                </Button>
               </div>
             </div>
             <div className="mt-2.5 flex justify-center gap-2">
@@ -712,6 +767,8 @@ export const LogoGenPage = () => {
           </div>
         </div>
       </div>
+
+      <LogoExamples />
 
       <LogoGenFaq />
       <div className="mb-20">

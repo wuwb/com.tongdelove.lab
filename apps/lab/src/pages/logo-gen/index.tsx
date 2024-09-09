@@ -5,7 +5,6 @@ import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 
-
 const Map = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
@@ -23,19 +22,15 @@ const Map = (
 
 export default Map
 
-
-export const getServerSideProps = buildSharedServerSideProps<{
-}>(async () => {
+export const getServerSideProps = buildSharedServerSideProps<{}>(async () => {
   try {
     return {
-      props: {
-      },
+      props: {},
     }
   } catch (error) {
     console.error('Error fetching carousels:', error)
     return {
-      props: {
-      },
+      props: {},
     }
   }
 })
