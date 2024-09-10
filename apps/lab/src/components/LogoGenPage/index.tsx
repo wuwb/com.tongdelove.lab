@@ -5,9 +5,11 @@ import {
   Select,
   Slider,
   TextInput,
-  Text,
-  CopyButton,
   Input,
+  Combobox,
+  useCombobox,
+  Tooltip,
+  Checkbox,
 } from '@mantine/core'
 import { useTranslation } from '@/i18n'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
@@ -19,100 +21,19 @@ import { trpc } from '@/utils/trpc'
 import { useDeviceId } from '@/hooks/useDeviceId'
 import { getRandomHexColor } from '@/utils/randoms/getRandomHexColor'
 import { LogoGenFaq } from './LogoGenFaq'
-import { Code } from '@/components/ui/Code'
 import { LogoExamples } from './LogoExamples'
 import { hexToRgba } from '@/utils/color'
+import { HowToUse } from './HowToUse'
+import { RecommandColorSchemas, ColorSchema } from './RecommandColorSchema'
+import { Information } from './Information'
+import { clone } from 'es-toolkit'
 
 export const LogoGenPage = () => {
   const { t } = useTranslation()
+  const deviceId = useDeviceId()
 
-  const recommandColorSchemas = [
-    {
-      backgroundColor: '#1a365d',
-      textColor: '#ffffff',
-      title: t('Deep Blue'),
-    },
-    {
-      backgroundColor: '#2D3748',
-      textColor: '#ED8936',
-      title: t('Dark Gray & Orange'),
-    },
-    {
-      backgroundColor: '#744210',
-      textColor: '#F6E05E',
-      title: t('Brown & Yellow'),
-    },
-    {
-      backgroundColor: '#1A202C',
-      textColor: '#63B3ED',
-      title: t('Almost Black & Sky Blue'),
-    },
-    {
-      backgroundColor: '#702459',
-      textColor: '#FBBF24',
-      title: t('Purple & Yellow'),
-    },
-    {
-      backgroundColor: '#065F46',
-      textColor: '#6EE7B7',
-      title: t('Dark Green & Light Green'),
-    },
-    {
-      backgroundColor: '#3730A3',
-      textColor: '#FCA5A5',
-      title: t('Indigo & Light Red'),
-    },
-    {
-      backgroundColor: '#131516',
-      textColor: '#70e000',
-      title: t('Black & Neon Green'),
-    },
-    {
-      backgroundColor: '#E53E3E',
-      textColor: '#FFFFFF',
-      title: t('Red & White'),
-    },
-    {
-      backgroundColor: '#2B6CB0',
-      textColor: '#BEE3F8',
-      title: t('Blue & Light Blue'),
-    },
-    {
-      backgroundColor: '#2D3748',
-      textColor: '#F7FAFC',
-      title: t('Dark Gray & Off White'),
-    },
-    {
-      backgroundColor: '#975A16',
-      textColor: '#FEFCBF',
-      title: t('Brown & Pale Yellow'),
-    },
-    {
-      backgroundColor: '#276749',
-      textColor: '#C6F6D5',
-      title: t('Green & Pale Green'),
-    },
-    {
-      backgroundColor: '#6B46C1',
-      textColor: '#E9D8FD',
-      title: t('Purple & Lavender'),
-    },
-    {
-      backgroundColor: '#2C7A7B',
-      textColor: '#81E6D9',
-      title: t('Teal & Light Teal'),
-    },
-    {
-      backgroundColor: '#9C4221',
-      textColor: '#FEEBC8',
-      title: t('Burnt Orange & Peach'),
-    },
-    {
-      backgroundColor: '#000000',
-      textColor: '#FFA31A',
-      title: t('Bold Black & Yellow'),
-    },
-  ]
+  const faviconGenMutation = trpc.faviconGen.create.useMutation()
+  const { data = [] } = trpc.tool.getGoogleFonts.useQuery()
 
   const initialValues = {
     text: t('AI'),
@@ -130,6 +51,8 @@ export const LogoGenPage = () => {
     textStrokeWidth: 0,
     fineTuneVerticalPosition: 0,
     fineTuneHorizontalPosition: 0,
+    live: false,
+    fork: false,
   }
   const [formValue, setFormValue] = useState(initialValues)
   const [rotatePoint, setRotatePoint] = useState({
@@ -145,7 +68,6 @@ export const LogoGenPage = () => {
     initialValues,
     validate: {},
     onValuesChange: (values, previous) => {
-      console.log(values)
       const formValue = form.getValues()
       setFormValue(formValue)
     },
@@ -155,10 +77,7 @@ export const LogoGenPage = () => {
     form.reset()
   }
 
-  const handleChangeRecommandColorSchema = (data: {
-    backgroundColor: string
-    textColor: string
-  }) => {
+  const handleChangeRecommandColorSchema = (data: ColorSchema) => {
     form.setFieldValue('backgroundColor', data.backgroundColor)
     form.setFieldValue('textColor', data.textColor)
   }
@@ -170,9 +89,6 @@ export const LogoGenPage = () => {
 
     return new XMLSerializer().serializeToString(svgRef.current)
   }
-
-  const faviconGenMutation = trpc.faviconGen.create.useMutation()
-  const deviceId = useDeviceId()
 
   const saveGenerateData = async () => {
     const data = await faviconGenMutation.mutateAsync({
@@ -193,6 +109,8 @@ export const LogoGenPage = () => {
       fineTuneVerticalPosition: formValue.fineTuneVerticalPosition,
       fineTuneHorizontalPosition: formValue.fineTuneHorizontalPosition,
       deviceId,
+      live: formValue.live,
+      fork: formValue.fork,
     })
     console.log('data: ', data)
   }
@@ -271,7 +189,10 @@ export const LogoGenPage = () => {
     const svgContent = new XMLSerializer().serializeToString(svgRef.current)
     zip.file('favicon.svg', svgContent)
 
-    const sizes = [16, 32, 180, 192, 512, 1024, 2048]
+    const sizes = [
+      16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024,
+      2048,
+    ]
     const nameMap = {
       '180': 'apple-touch-icon.png',
     }
@@ -303,10 +224,8 @@ export const LogoGenPage = () => {
   }
 
   const handleRandomColors = () => {
-    const color1 = getRandomHexColor()
-    const color2 = getRandomHexColor()
-    form.setFieldValue('backgroundColor', color1)
-    form.setFieldValue('textColor', color2)
+    handleRandomColor('backgroundColor')
+    handleRandomColor('textColor')
   }
 
   const adjustTextSizeAndPosition = (text: string, size: number) => {
@@ -353,16 +272,24 @@ export const LogoGenPage = () => {
     return fontSize
   }
 
+  const prevSize = useRef(0)
+  const hanldeSizeMouseDown = () => {
+    prevSize.current = clone(formValue.size)
+  }
+
   const handleSizeChange = (value: string | null) => {
     if (value === null) {
       return
     }
     let valueNumber = Number(value)
     form.getInputProps('size').onChange(valueNumber)
-    const fontSize = adjustTextSizeAndPosition(formValue.text, valueNumber)
-    form.setFieldValue('fontSize', fontSize)
-    handleSizeChangeEnd(valueNumber)
+
+    // 按比例调整字体大小
+    const rate = valueNumber / prevSize.current
+    const newFontSize = formValue.fontSize * rate
+    form.setFieldValue('fontSize', newFontSize)
   }
+
   const handleSizeChangeEnd = (value: number) => {
     fixFontSize(formValue.text, value)
     const fontSize = adjustTextSizeAndPosition(formValue.text, value)
@@ -383,6 +310,59 @@ export const LogoGenPage = () => {
       y: centerY,
     })
   }, [formValue])
+
+  const [customFonts, setCustomFonts] = useState([
+    'Arial',
+    'Helvetica',
+    'Times New Roman',
+    'Courier',
+    'Verdana',
+    'Georgia',
+    'Palatino',
+    'Garamond',
+    'Bookman',
+    'Comic Sans MS',
+    'Trebuchet MS',
+    'Arial Black',
+    'Impact',
+  ])
+  const [googlefonts, setGoogleFonts] = useState<string[]>(data)
+
+  const combobox = useCombobox()
+  const shouldFilterOptions = !customFonts.some(
+    (item) => item === formValue.fontFamily
+  )
+  const filteredOptions = shouldFilterOptions
+    ? [
+        ...customFonts.filter((item) =>
+          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+        ),
+        ...googlefonts.filter((item) =>
+          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+        ),
+      ]
+    : customFonts
+
+  const options = filteredOptions.map((item) => (
+    <Combobox.Option value={item} key={item}>
+      {item}
+    </Combobox.Option>
+  ))
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      setGoogleFonts(data)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (formValue.fontFamily && !customFonts.includes(formValue.fontFamily)) {
+      const link = document.createElement('link')
+      link.href = `https://fonts.googleapis.com/css2?family=${formValue.fontFamily.replace(/\s+/g, '+')}&display=swap`
+      link.rel = 'stylesheet'
+      document.head.appendChild(link)
+    }
+  }, [formValue.fontFamily])
 
   return (
     <div className="container">
@@ -476,12 +456,17 @@ export const LogoGenPage = () => {
                       '48',
                       '57',
                       '58',
+                      '60',
                       '64',
                       '72',
+                      '76',
                       '96',
                       '114',
+                      '120',
                       '128',
                       '144',
+                      '152',
+                      '180',
                       '192',
                       '256',
                       '512',
@@ -490,6 +475,7 @@ export const LogoGenPage = () => {
                     ]}
                     searchable
                     checkIconPosition="right"
+                    onMouseDown={hanldeSizeMouseDown}
                   />
 
                   <ColorInput
@@ -542,27 +528,49 @@ export const LogoGenPage = () => {
                 </div>
 
                 <div>
-                  <Select
+                  <Combobox
                     size="xs"
-                    data={[
-                      'Arial',
-                      'Helvetica',
-                      'Times New Roman',
-                      'Courier',
-                      'Verdana',
-                      'Georgia',
-                      'Palatino',
-                      'Garamond',
-                      'Bookman',
-                      'Comic Sans MS',
-                      'Trebuchet MS',
-                      'Arial Black',
-                      'Impact',
-                    ]}
-                    label={t('字体')}
-                    key={form.key('fontFamily')}
-                    {...form.getInputProps('fontFamily')}
-                  />
+                    onOptionSubmit={(optionValue) => {
+                      form.getInputProps('fontFamily').onChange(optionValue)
+                      combobox.closeDropdown()
+                    }}
+                    store={combobox}
+                  >
+                    <Combobox.Target>
+                      <TextInput
+                        label={t('字体')}
+                        description={
+                          <>
+                            （{t('支持 Google Fonts，可以在这查询字体名称：')}
+                            <a href="https://fonts.google.com/" target="_blank">
+                              Google Fonts
+                            </a>
+                            ）
+                          </>
+                        }
+                        {...form.getInputProps('fontFamily')}
+                        onChange={(event) => {
+                          form
+                            .getInputProps('fontFamily')
+                            .onChange(event.currentTarget.value)
+                          combobox.openDropdown()
+                          combobox.updateSelectedOptionIndex()
+                        }}
+                        onClick={() => combobox.openDropdown()}
+                        onFocus={() => combobox.openDropdown()}
+                        onBlur={() => combobox.closeDropdown()}
+                      />
+                    </Combobox.Target>
+                    <Combobox.Dropdown>
+                      <Combobox.Options>
+                        {options.length === 0 ? (
+                          <Combobox.Empty>{t('Nothing found')}</Combobox.Empty>
+                        ) : (
+                          options
+                        )}
+                      </Combobox.Options>
+                    </Combobox.Dropdown>
+                  </Combobox>
                 </div>
 
                 <div className="flex h-[30px] items-center gap-2.5">
@@ -805,6 +813,12 @@ export const LogoGenPage = () => {
               </form>
             </div>
           </div>
+          <div>
+            <RecommandColorSchemas
+              onChange={handleChangeRecommandColorSchema}
+              onRamdon={handleRandomColors}
+            />
+          </div>
         </div>
         <div className="w-1/2 p-5">
           <div className="border p-5">
@@ -845,31 +859,39 @@ export const LogoGenPage = () => {
               </svg>
               <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             </div>
-            <div>
-              <div>{t('推荐颜色配置')}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {recommandColorSchemas.map((item, index) => {
-                  return (
-                    <Button
-                      key={index}
-                      style={{
-                        backgroundColor: item.backgroundColor,
-                        color: item.textColor,
-                      }}
-                      onClick={() => handleChangeRecommandColorSchema(item)}
-                    >
-                      {item.title}
-                    </Button>
-                  )
-                })}
-                <Button key="random" onClick={handleRandomColors}>
-                  {t('随机')}
-                </Button>
-              </div>
+            <div className="flex gap-2">
+              <Tooltip
+                label={t(
+                  '勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，供其他用户查看.'
+                )}
+              >
+                <Checkbox
+                  label={t('是否给其他用户查看')}
+                  key={form.key('live')}
+                  {...form.getInputProps('live')}
+                />
+              </Tooltip>
+              <Tooltip
+                label={t(
+                  '勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，其他用户可以点击复现你的设计.'
+                )}
+              >
+                <Checkbox
+                  label={t('是否给其他用户下载')}
+                  key={form.key('fork')}
+                  {...form.getInputProps('fork')}
+                />
+              </Tooltip>
             </div>
             <div className="mt-2.5 flex justify-center gap-2">
               <Button onClick={handleDownloadPNG}>{t('下载 PNG')}</Button>
-              <Button onClick={handleDownloadSVG}>{t('下载 SVG')}</Button>
+              <Tooltip
+                label={t(
+                  'Enabling this feature will convert the text to vector paths, not text tags, thus getting rid of the dependency on font files. Some Asian languages are not supported, including Japanese, Chinese and Korean.'
+                )}
+              >
+                <Button onClick={handleDownloadSVG}>{t('下载 SVG')}</Button>
+              </Tooltip>
               <Button onClick={handleDownloadAll}>
                 {t('下载所有（ZIP）')}
               </Button>
@@ -889,35 +911,12 @@ export const LogoGenPage = () => {
               {t('For additional PNG optimization, check out https://small.im')}
             </div>
           </div>
-          <div>
-            <div>{t('Favicon HTML Code')}</div>
-            <div>
-              <Code
-                code={`<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />`}
-                language="html"
-              />
-            </div>
-            <div>
-              {t(
-                'To test if the favicon is configured correctly, you can use https://favicon.im'
-              )}
-            </div>
-            <CopyButton
-              value={`<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />`}
-            >
-              {({ copied, copy }) => (
-                <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
-                  {copied ? t('Copied') : t('Copy HTML Code')}
-                </Button>
-              )}
-            </CopyButton>
-          </div>
         </div>
       </div>
+
+      <HowToUse />
+
+      <Information />
 
       <LogoExamples />
 

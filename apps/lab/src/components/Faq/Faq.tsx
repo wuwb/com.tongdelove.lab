@@ -1,10 +1,14 @@
 import { Container, Title, Accordion } from '@mantine/core'
 import { useTranslation } from '@/i18n'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import remarkAutolinkHeadings from 'remark-autolink-headings'
 
 interface FaqProps {
   data: {
     question: string
     answer: string
+    markdown?: boolean
   }[]
 }
 
@@ -29,7 +33,15 @@ export function Faq({ data }: FaqProps) {
             <Accordion.Control className="px-4">
               {item.question}
             </Accordion.Control>
-            <Accordion.Panel>{item.answer}</Accordion.Panel>
+            <Accordion.Panel>
+              {item?.markdown ? (
+                <div className="prose dark:prose-invert">
+                  <ReactMarkdown>{item.answer}</ReactMarkdown>
+                </div>
+              ) : (
+                <div>{item.answer}</div>
+              )}
+            </Accordion.Panel>
           </Accordion.Item>
         ))}
       </Accordion>

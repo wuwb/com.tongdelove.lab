@@ -2150,9 +2150,9 @@ model FaviconGen {
   fontSize                   Int     @map(name: "font_size")
   fontRotate                 Int     @map(name: "font_rotate")
   textColor                  String  @map(name: "text_color")
-  textOpacity                Int     @map(name: "text_opacity")
+  textOpacity                Int     @default(1) @map(name: "text_opacity")
   textStrokeColor            String  @map(name: "text_stroke_color")
-  textStrokeOpacity          Int     @map(name: "text_strock_opacity")
+  textStrokeOpacity          Int     @default(1) @map(name: "text_strock_opacity")
   textStrokeWidth            Int     @map(name: "text_stroke_width")
   fineTuneVerticalPosition   Int     @map(name: "fine_tune_vertical_postion")
   fineTuneHorizontalPosition Int     @map(name: "fine_tune_horizontal_position")
@@ -2161,6 +2161,7 @@ model FaviconGen {
   userId    String?
   createdAt DateTime @default(now()) @map(name: "created_at")
   live      Boolean  @default(true) // 是否显示
+  fork      Boolean  @default(false) // 是否可以复刻
 
   @@map(name: "favicon_gen")
 }

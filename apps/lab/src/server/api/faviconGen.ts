@@ -3,21 +3,23 @@ import { prisma } from '@/server/db/prisma'
 export async function createFavicon({
   text,
   size,
-  radius,
+  radius = 0,
   backgroundColor,
   fontFamily,
-  fontWeight,
+  fontWeight = 400,
   fontSize,
-  fontRotate,
+  fontRotate = 0,
   textColor,
-  textOpacity,
+  textOpacity = 1,
   textStrokeColor,
-  textStrokeOpacity,
-  textStrokeWidth,
-  fineTuneVerticalPosition,
-  fineTuneHorizontalPosition,
+  textStrokeOpacity = 1,
+  textStrokeWidth = 0,
+  fineTuneVerticalPosition = 0,
+  fineTuneHorizontalPosition = 0,
   deviceId,
   userId,
+  live = true,
+  fork = true,
 }: {
   text: string
   size: number
@@ -36,6 +38,8 @@ export async function createFavicon({
   fineTuneHorizontalPosition: number
   deviceId?: string | null
   userId?: string
+  live?: boolean
+  fork?: boolean
 }) {
   if (size < 16 || size > 2048) {
     throw new Error('size error.')
@@ -59,6 +63,8 @@ export async function createFavicon({
       fineTuneHorizontalPosition,
       deviceId,
       userId,
+      live,
+      fork,
     },
   })
   return result

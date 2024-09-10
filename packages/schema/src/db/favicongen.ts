@@ -22,4 +22,5 @@ export const FaviconGenModelSchema = z.object({
   userId: z.string().nullish(),
   createdAt: z.date(),
   live: z.boolean(),
+  fork: z.boolean(),
 })

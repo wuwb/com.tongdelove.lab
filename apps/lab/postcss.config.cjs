@@ -13,6 +13,7 @@ module.exports = {
   // ],
   plugins: {
     // 'postcss-import': {},
+    '@tailwindcss/typography': {},
     'tailwindcss/nesting': {},
     tailwindcss: {},
     autoprefixer: {},

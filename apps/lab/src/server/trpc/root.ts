@@ -13,6 +13,7 @@ import { s3Router } from '../routers/s3'
 import { stickerRouter } from '../routers/sticker'
 import { userRouter } from '../routers/user'
 import { faviconGenRouter } from '../routers/faviconGen'
+import { toolRouter } from '../routers/toolRouter'
 
 /**
  * This is the primary router for your server.
@@ -46,6 +47,7 @@ export const appRouter = createTRPCRouter({
   sticker: stickerRouter,
   user: userRouter,
   faviconGen: faviconGenRouter,
+  tool: toolRouter,
 })
 
 // export type definition of API

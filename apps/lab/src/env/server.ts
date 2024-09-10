@@ -63,6 +63,7 @@ export const env = createEnv({
     ENABLE_TRPC_LOGGER: z.string().optional(),
 
     LEMON_SQUEEZY_API_KEY: z.string().optional(),
+    GOOGLE_FONT_API_KEY: z.string().optional(),
   },
   experimental__runtimeEnv: process.env,
   isServer: typeof window === 'undefined',

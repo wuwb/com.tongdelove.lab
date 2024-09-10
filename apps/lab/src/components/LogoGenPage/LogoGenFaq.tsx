@@ -61,6 +61,62 @@ export const LogoGenFaq = () => {
         '复制我们的生成器提供的 HTML 代码并将其粘贴到 HTML 文档的 <head> 部分。确保将图标文件上传到您的网络服务器。'
       ),
     },
+
+    {
+      question: t('Is this favicon generator free?'),
+      answer: t(
+        'Yes, our favicon generator is completely free to use with no restrictions.'
+      ),
+    },
+    {
+      question: t('Can I use these favicons for commercial projects?'),
+      answer: t(
+        'Google Fonts can be used for commercial purposes, including printing on products like clothing for sale. Most of the fonts available in the Google Fonts library are released under the Open Font License (OFL), which allows you to freely use, modify, and distribute the fonts, even for commercial projects.\n\
+        However, there are a few important considerations:\n\
+\n\
+- Font - Specific Restrictions: While most fonts are free to use, you should carefully read the license that accompanies each font to ensure there are no specific restrictions.\n\
+- Trademarks and Copyrights: Although the font files themselves can be used freely, the font names may be trademarked.Therefore, you should not use the font names as a brand or trademark for your products.\n\
+- Modifying Fonts: If you plan to modify the fonts, make sure to adhere to the terms outlined in the Open Font License.\n\
+- Responsibility: Ensure that you comply with all relevant laws and licensing terms when using the fonts.\n\
+\n\
+In summary, using Google Fonts for commercial purposes is generally permitted, but it is advisable to review the specific license terms of each font before applying them to commercial projects.'
+      ),
+      markdown: true,
+    },
+    {
+      question: t(
+        'How does the favicon generator ensure quality across sizes?'
+      ),
+      answer: t(
+        'We use advanced SVG rendering to maintain clarity and sharpness in all generated favicon sizes.'
+      ),
+    },
+    {
+      question: t('Does the favicon generator support SVG output?'),
+      answer: t(
+        'Yes, our generator supports SVG output, but with limitations. SVG output is only available for English letters and basic Latin characters. Asian languages and special characters require specific fonts and are not supported in SVG mode. For full language support, please use the standard PNG output.'
+      ),
+    },
+    {
+      question: t('Does your favicon generator support the .ico format?'),
+      answer: t(
+        'Yes, our generator supports the .ico format, which is a 32x32 pixel icon file commonly used for maximum compatibility, especially with older systems and browsers. This ensures your favicon looks great across all platforms, including legacy systems.'
+      ),
+    },
+    {
+      question: t('Why do you provide a 32x32 .ico file?'),
+      answer: t(
+        'We provide a 32x32 .ico file because it offers the best balance between size and quality for older systems. This size is widely supported and ensures your favicon is visible even on legacy browsers and operating systems that may not fully support newer favicon formats.'
+      ),
+    },
+    {
+      question: t(
+        'Why should I use the .ico format in addition to PNG and SVG?'
+      ),
+      answer: t(
+        "While modern browsers support PNG and SVG favicons, some older browsers and systems still prefer the .ico format. By including an .ico file in your favicon set, you ensure the widest possible compatibility for your website's icon across different platforms and browser versions."
+      ),
+    },
   ]
 
   return <Faq data={faqData} />

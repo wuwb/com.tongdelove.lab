@@ -6,11 +6,10 @@ export const faviconGenRouter = router({
   create: publicProcedure
     .input(
       FaviconGenModelSchema.omit({
-        title: true,
         id: true,
-        createdAt: true,
-        live: true,
+        title: true,
         userId: true,
+        createdAt: true,
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -32,6 +31,7 @@ export const faviconGenRouter = router({
         fineTuneHorizontalPosition: input.fineTuneHorizontalPosition,
         deviceId: input.deviceId,
         userId: ctx.session?.user.id,
+        live: input.live,
       })
     }),
 })
