@@ -1668,6 +1668,9 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
+      '@tongdelove/eslint-config':
+        specifier: workspace:^
+        version: link:../../tooling/eslint-config
       '@tongdelove/typescript-config':
         specifier: workspace:^
         version: link:../../tooling/typescript-config
