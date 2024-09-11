@@ -345,13 +345,13 @@ export const LogoGenPage = () => {
   )
   const filteredOptions = shouldFilterOptions
     ? [
-        ...customFonts.filter((item) =>
-          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-        ),
-        ...googlefonts.filter((item) =>
-          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-        ),
-      ]
+      ...customFonts.filter((item) =>
+        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+      ),
+      ...googlefonts.filter((item) =>
+        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+      ),
+    ]
     : customFonts
 
   const options = filteredOptions.map((item) => (
@@ -982,8 +982,7 @@ export const LogoGenPage = () => {
           </div>
           <div>
             <div>
-              {t(`下载所有（ZIP） 包含: favicon.ico, favicon.svg, favicon-16x16.png, favicon-32x32.png, favicon-180x180.png, favicon-192x192.png, favicon-512x512.png, favicon-2048x2048.png
-              `)}
+              {t(`下载所有（ZIP） 包含下面这些尺寸: 16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024, 2048`)}
             </div>
             <div>
               {t(
@@ -1000,8 +999,6 @@ export const LogoGenPage = () => {
       <HowToUse />
 
       <Information />
-
-      <LogoExamples />
 
       <LogoGenFaq />
 

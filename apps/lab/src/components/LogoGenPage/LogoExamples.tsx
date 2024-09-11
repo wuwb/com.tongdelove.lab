@@ -1,18 +1,6 @@
 import { RenderSVG } from './RenderSVG'
 
 export const examples = [
-  // {
-  //   options: {
-  //     text: 'PH',
-  //     size: 512,
-  //     bgColor: '#000000',
-  //     textColor: '#FFA500',
-  //     fontFamily: 'Arial, Arial, sans-serif',
-  //     fontWeight: 'normal',
-  //     radius: 0
-  //   },
-  //   title: 'Video Hub Style Part 2'
-  // },
   {
     options: {
       text: 'Y',

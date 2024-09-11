@@ -4,7 +4,7 @@ import { Button } from '@mantine/core'
 export type ColorSchema = {
   backgroundColor: string
   textColor: string
-  title: string
+  title?: string
 }
 
 interface RecommandColorSchemaProps {
@@ -18,7 +18,7 @@ export const RecommandColorSchemas = ({
 }: RecommandColorSchemaProps) => {
   const { t } = useTranslation()
 
-  const recommandColorSchemas = [
+  let recommandColorSchemas: ColorSchema[] = [
     {
       backgroundColor: '#1a365d',
       textColor: '#ffffff',
@@ -106,6 +106,30 @@ export const RecommandColorSchemas = ({
     },
   ]
 
+  recommandColorSchemas = [
+    { backgroundColor: '#1C1C1C', textColor: '#FFFFFF' },
+    { backgroundColor: '#2F4F4F', textColor: '#FFFF00' },
+    { backgroundColor: '#005555', textColor: '#FFFFFF' },
+    { backgroundColor: '#008080', textColor: '#F0FFFF' },
+    { backgroundColor: '#008B8B', textColor: '#FFFFFF' },
+    { backgroundColor: '#006400', textColor: '#ADFF2F' },
+    { backgroundColor: '#8B0000', textColor: '#FFC0CB' },
+    { backgroundColor: '#CD5C5C', textColor: '#FFFFFF' },
+    { backgroundColor: '#FF8C00', textColor: '#FFFFFF' },
+    { backgroundColor: '#FFD700', textColor: '#000000' },
+    { backgroundColor: '#FF69B4', textColor: '#000000' },
+    { backgroundColor: '#FF00FF', textColor: '#000000' },
+    { backgroundColor: '#00BFFF', textColor: '#000000' },
+    { backgroundColor: '#00FF7F', textColor: '#000000' },
+    { backgroundColor: '#8A2BE2', textColor: '#FFFFFF' },
+    { backgroundColor: '#ADD8E6', textColor: '#000000' },
+    { backgroundColor: '#DC143C', textColor: '#FFFFFF' },
+    { backgroundColor: '#FFFAFA', textColor: '#000000' },
+    { backgroundColor: '#FF6347', textColor: '#000000' },
+    { backgroundColor: '#FF4500', textColor: '#FFFFFF' },
+    { backgroundColor: '#FFA07A', textColor: '#000000' },
+  ]
+
   return (
     <div>
       <div>{t('推荐颜色配置')}</div>
@@ -121,7 +145,7 @@ export const RecommandColorSchemas = ({
               }}
               onClick={() => onChange(item)}
             >
-              {item.title}
+              {item.title ?? `${item.textColor}/${item.backgroundColor}`}
             </Button>
           )
         })}

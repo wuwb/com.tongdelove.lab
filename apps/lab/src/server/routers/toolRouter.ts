@@ -17,7 +17,7 @@ export const toolRouter = router({
       return families
     } catch (err) {
       console.error('Error fetching font list:', err)
-      return 'Get google fonts failed.'
+      throw new Error('Get google fonts failed.')
     }
   }),
 })

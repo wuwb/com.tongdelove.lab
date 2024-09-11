@@ -11,6 +11,7 @@
     "msjsdiag.debugger-for-chrome",
     "stylelint.vscode-stylelint",
     "wangzy.sneak-mark",
-    "prisma.prisma"
+    "prisma.prisma",
+    "YoavBls.pretty-ts-errors"
   ]
 }

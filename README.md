@@ -22,8 +22,6 @@ https://mantine.dev/core/action-icon/
 - https://www.cnblogs.com/eddyz/p/17622721.html
 - https://github.com/meetqy/aspoem/
 
-
-
 ## 描述
 
 ### 示例
@@ -55,8 +53,8 @@ https://mantine.dev/core/action-icon/
   Fully responsive, and works across all modern/supported browsers
   Fully documented​
 
-
 ### 数据库
+
 https://supabase.com/dashboard/project/bnzvhmuwewoopoctsvbc
 
 ### 页面
@@ -124,7 +122,8 @@ Error
 
 ## 更新
 
-### 05.03 
+### 05.03
+
 - 添加苹果购买指南
 
 ### v1.0.0
@@ -156,9 +155,7 @@ Error
 - https://github.com/raxjs/universal-api
 - https://github.com/ayungavis/turborepo-nextjs-tailwind-trpc
 
-
 - https://github.com/refinedev/refine
-
 
 # App Architecture
 
@@ -230,11 +227,13 @@ Error
 - https://github.com/devsapp
 
 ## 参考
+
 - https://github.com/simoneb/axios-hooks
 - https://tailwindtemplates.io/
 - https://www.antpkg.com/packaging-vave-services
 
 ## 不好的例子
+
 - https://github.com/imranhsayed/nextjs-woocommerce-restapi
 - https://github.com/strapi/strapi-starter-next-corporate
 - https://github.com/ElliotReed/developmanager_client
@@ -242,7 +241,6 @@ Error
 - https://github.com/kingsleydon/heybox-wfa
 - https://github.com/KelvinMitaki/Apollo-Stack.git
 - https://github.com/taozhi1010/nest-admin
-
 
 ### Tech stacks
 
@@ -261,4 +259,23 @@ Error
 - Koyeb Paas Service.
 
 ## 资源
+
 - https://docs.google.com/spreadsheets/u/0/d/1Ky8NU5nhSi_zYHBbvxvofOmMRZf0r3MwiM0apoe8Pvk/htmlview?pli=1#
+
+# 更新记录
+
+09.11
+增加换行，文字偏移，文字行高
+增加是否给其他用户查看，是否给其他用户下载
+
+09.10
+增加文字大小同步外框尺寸修改
+增加重置文字旋转，横向微调，垂直微调
+增加文字透明度，边框透明度
+增加部分外款尺寸
+增加支持谷歌字体
+优化表单排序及样式
+增加 buymeacoffee
+
+09.09
+项目初始化
