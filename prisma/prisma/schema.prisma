@@ -2156,6 +2156,8 @@ model FaviconGen {
   textStrokeWidth            Int     @map(name: "text_stroke_width")
   fineTuneVerticalPosition   Int     @map(name: "fine_tune_vertical_postion")
   fineTuneHorizontalPosition Int     @map(name: "fine_tune_horizontal_position")
+  lineHeight                 Int     @map(name: "font_height")
+  lineLead                   Int     @map(name: "font_lead")
 
   deviceId  String?
   userId    String?

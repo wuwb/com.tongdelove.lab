@@ -10,6 +10,7 @@ import {
   useCombobox,
   Tooltip,
   Checkbox,
+  Textarea,
 } from '@mantine/core'
 import { useTranslation } from '@/i18n'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
@@ -51,6 +52,8 @@ export const LogoGenPage = () => {
     textStrokeWidth: 0,
     fineTuneVerticalPosition: 0,
     fineTuneHorizontalPosition: 0,
+    lineLead: -1,
+    lineHeight: 1,
     live: false,
     fork: false,
   }
@@ -312,6 +315,14 @@ export const LogoGenPage = () => {
   }, [formValue])
 
   const [customFonts, setCustomFonts] = useState([
+    '宋体',
+    'Arial Narrow',
+    'Tahoma',
+    'STHeiTi',
+    'simsun',
+    'sans - serif',
+    'lucida grande',
+    'bitstream vera sans',
     'Arial',
     'Helvetica',
     'Times New Roman',
@@ -364,6 +375,9 @@ export const LogoGenPage = () => {
     }
   }, [formValue.fontFamily])
 
+  // console.log('formValue.text: ', formValue.text)
+  // console.log('2: ', formValue.text.replace(/\r\n|\r/g, '\n').split('\n'))
+
   return (
     <div className="container">
       <div>
@@ -384,13 +398,12 @@ export const LogoGenPage = () => {
                 className="space-y-2"
               >
                 <div>
-                  <TextInput
+                  <Textarea
                     size="xs"
-                    withAsterisk
                     label={t('文字')}
                     description={
                       <>
-                        （{t('支持 Emoji，可以从这里复制：')}
+                        （{t('支持换行，支持 Emoji，可以从这里复制：')}
                         <a href="https://emojispark.com" target="_blank">
                           EmojiSpark.com
                         </a>
@@ -400,6 +413,60 @@ export const LogoGenPage = () => {
                     key={form.key('text')}
                     {...form.getInputProps('text')}
                   />
+                  {formValue.text.replace(/\r\n|\r/g, '\n').includes('\n') && (
+                    <div className="flex items-end gap-2.5">
+                      <Input.Wrapper
+                        size="xs"
+                        className="flex-1"
+                        label={t('文字偏移')}
+                      >
+                        <Slider
+                          className="flex-1"
+                          min={-3}
+                          max={3}
+                          step={0.01}
+                          key={form.key('lineLead')}
+                          {...form.getInputProps('lineLead')}
+                          labelTransitionProps={{
+                            transition: 'skew-down',
+                            duration: 150,
+                            timingFunction: 'linear',
+                          }}
+                        />
+                      </Input.Wrapper>
+                      <Button
+                        size="xs"
+                        onClick={() => form.setFieldValue('lineLead', 1)}
+                      >
+                        {t('重置')}
+                      </Button>
+                      <Input.Wrapper
+                        size="xs"
+                        className="flex-1"
+                        label={t('文字行高')}
+                      >
+                        <Slider
+                          className="flex-1"
+                          min={-3}
+                          max={3}
+                          step={0.01}
+                          key={form.key('lineHeight')}
+                          {...form.getInputProps('lineHeight')}
+                          labelTransitionProps={{
+                            transition: 'skew-down',
+                            duration: 150,
+                            timingFunction: 'linear',
+                          }}
+                        />
+                      </Input.Wrapper>
+                      <Button
+                        size="xs"
+                        onClick={() => form.setFieldValue('lineHeight', 1)}
+                      >
+                        {t('重置')}
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-end gap-2.5">
@@ -720,6 +787,7 @@ export const LogoGenPage = () => {
                     />
                   </Input.Wrapper>
                 </div>
+
                 <div className="flex items-end gap-2.5">
                   <Input.Wrapper
                     size="xs"
@@ -854,7 +922,22 @@ export const LogoGenPage = () => {
                   )}
                   strokeWidth={formValue.textStrokeWidth}
                 >
-                  {formValue.text}
+                  {formValue.text.replace(/\r\n|\r/g, '\n').split('\n')[0]}
+                  {formValue.text
+                    .replace(/\r\n|\r/g, '\n')
+                    .split('\n')
+                    .slice(1)
+                    .map((item, index) => {
+                      return (
+                        <tspan
+                          key={index}
+                          dx={`${formValue.lineLead}em`}
+                          dy={`${formValue.lineHeight}em`}
+                        >
+                          {item}
+                        </tspan>
+                      )
+                    })}
                 </text>
               </svg>
               <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
@@ -899,16 +982,16 @@ export const LogoGenPage = () => {
           </div>
           <div>
             <div>
-              {t(` Download All (ZIP) includes: favicon.ico, favicon.svg, favicon-16x16.png, favicon-32x32.png, favicon-180x180.png, favicon-192x192.png, favicon-512x512.png, favicon-2048x2048.png
+              {t(`下载所有（ZIP） 包含: favicon.ico, favicon.svg, favicon-16x16.png, favicon-32x32.png, favicon-180x180.png, favicon-192x192.png, favicon-512x512.png, favicon-2048x2048.png
               `)}
             </div>
             <div>
               {t(
-                'Tip: For emojis or special symbols, we recommend using PNG to ensure consistent display across all systems.'
+                '提示: 使用 emojis 或者特殊图标的时候，建议使用 PNG，以保证在不同平台上的兼容性和一致性。'
               )}
             </div>
             <div>
-              {t('For additional PNG optimization, check out https://small.im')}
+              {t('可以使用 https://tinypng.com/ 进一步优化 PNG 文件大小。')}
             </div>
           </div>
         </div>
@@ -921,6 +1004,7 @@ export const LogoGenPage = () => {
       <LogoExamples />
 
       <LogoGenFaq />
+
       <div className="mb-20">
         <FollowUsOnX />
       </div>

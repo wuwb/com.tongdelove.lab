@@ -1424,6 +1424,9 @@ importers:
       cypress:
         specifier: ^13.13.0
         version: 13.13.0
+      cypress-real-events:
+        specifier: ^1.13.0
+        version: 1.13.0(cypress@13.13.0)
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.4.5)
@@ -28527,6 +28530,14 @@ packages:
 
   /current-script-polyfill@1.0.0:
     resolution: {integrity: sha512-qv8s+G47V6Hq+g2kRE5th+ASzzrL7b6l+tap1DHKK25ZQJv3yIFhH96XaQ7NGL+zRW3t/RDbweJf/dJDe5Z5KA==}
+    dev: true
+
+  /cypress-real-events@1.13.0(cypress@13.13.0):
+    resolution: {integrity: sha512-LoejtK+dyZ1jaT8wGT5oASTPfsNV8/ClRp99ruN60oPj8cBJYod80iJDyNwfPAu4GCxTXOhhAv9FO65Hpwt6Hg==}
+    peerDependencies:
+      cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x
+    dependencies:
+      cypress: 13.13.0
     dev: true
 
   /cypress@13.13.0:
