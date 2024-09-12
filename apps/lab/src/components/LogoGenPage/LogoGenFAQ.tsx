@@ -1,7 +1,7 @@
 import { Faq } from '@/components/Faq/Faq'
 import { useTranslation } from '@/i18n'
 
-export const LogoGenFaq = () => {
+export const LogoGenFAQ = () => {
   const { t } = useTranslation()
 
   const faqData = [

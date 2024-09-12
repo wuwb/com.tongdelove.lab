@@ -4,7 +4,6 @@ import { prisma } from '@/server/db/prisma'
 export const appleGuideRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     const result = prisma.appleGuide.findMany()
-    console.log('result: ', result)
     return result
   }),
 })

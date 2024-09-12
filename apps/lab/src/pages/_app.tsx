@@ -17,10 +17,8 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import '@/styles/globals.css'
 import { SSRHidden } from '@/components/Atom/SSRHidden'
-
 /* @import "@mantine/core/styles.layer.css"; */
 import '@mantine/core/styles.css'
-
 /* Mantine foundational components */
 import '@mantine/core/styles/ScrollArea.css'
 import '@mantine/core/styles/UnstyledButton.css'
@@ -34,10 +32,8 @@ import '@mantine/core/styles/Overlay.css'
 import '@mantine/core/styles/ModalBase.css'
 import '@mantine/core/styles/Input.css'
 import '@mantine/core/styles/Flex.css'
-
 /* Mantine components */
 import '@mantine/core/styles/Button.css'
-
 import '@mantine/dates/styles.css'
 import '@mantine/notifications/styles.css'
 import '@mantine/carousel/styles.css'

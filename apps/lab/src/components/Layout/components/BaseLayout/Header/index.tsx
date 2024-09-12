@@ -338,8 +338,6 @@ export function HeaderMegaMenu() {
               </DropdownMenu>
             )}
 
-            <LanguageSwitcher />
-
             <Link href="https://txc.qq.com/products/430271">
               <Button
                 variant="outline"
@@ -348,24 +346,26 @@ export function HeaderMegaMenu() {
                 {t('反馈')}
               </Button>
             </Link>
-            <SSRHidden>
-              <ActionIcon
-                variant="outline"
-                color={dark ? 'yellow' : 'blue'}
-                onClick={() =>
-                  setColorScheme(
-                    computedColorScheme === 'dark' ? 'light' : 'dark'
-                  )
-                }
-                title="Toggle color scheme"
-              >
-                {dark ? (
-                  <RiSunLine size="1.1rem" />
-                ) : (
-                  <RiMoonLine size="1.1rem" />
-                )}
-              </ActionIcon>
-            </SSRHidden>
+            <LanguageSwitcher />
+
+            {/* <SSRHidden> */}
+            <ActionIcon
+              variant="outline"
+              color={dark ? 'yellow' : 'blue'}
+              onClick={() =>
+                setColorScheme(
+                  computedColorScheme === 'dark' ? 'light' : 'dark'
+                )
+              }
+              title="Toggle color scheme"
+            >
+              {dark ? (
+                <RiSunLine size="1.1rem" />
+              ) : (
+                <RiMoonLine size="1.1rem" />
+              )}
+            </ActionIcon>
+            {/* </SSRHidden> */}
           </div>
           <div className="flex items-center justify-center sm:hidden">
             <Burger

@@ -1,10 +1,11 @@
-import { Menu, Button } from '@mantine/core'
+import { Menu, ActionIcon } from '@mantine/core'
 import { useTranslation } from '@/i18n'
 import { getLocale } from '@/i18n/locale'
 import { useRouter } from 'next/router'
 import { popularUserLanguages } from '@/i18n/language'
 import { UserLanguageCode } from '@prisma/client'
 import { useState } from 'react'
+import { RiAB } from 'react-icons/ri'
 
 export const LanguageSwitcher = () => {
   const { t } = useTranslation()
@@ -36,7 +37,10 @@ export const LanguageSwitcher = () => {
       onChange={setOpened}
     >
       <Menu.Target>
-        <Button>{t('切换语言')}</Button>
+        <ActionIcon variant="outline">
+          <RiAB />
+          {/* {t('切换语言')} */}
+        </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
         {popularUserLanguages.map((language) => (

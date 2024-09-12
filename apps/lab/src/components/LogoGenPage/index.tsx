@@ -21,7 +21,7 @@ import JSZip from 'jszip'
 import { trpc } from '@/utils/trpc'
 import { useDeviceId } from '@/hooks/useDeviceId'
 import { getRandomHexColor } from '@/utils/randoms/getRandomHexColor'
-import { LogoGenFaq } from './LogoGenFaq'
+import { LogoGenFAQ } from './LogoGenFAQ'
 import { LogoExamples } from './LogoExamples'
 import { hexToRgba } from '@/utils/color'
 import { HowToUse } from './HowToUse'
@@ -95,25 +95,8 @@ export const LogoGenPage = () => {
 
   const saveGenerateData = async () => {
     const data = await faviconGenMutation.mutateAsync({
-      text: formValue.text,
-      size: formValue.size,
-      radius: formValue.radius,
-      backgroundColor: formValue.backgroundColor,
-      fontFamily: formValue.fontFamily,
-      fontWeight: formValue.fontWeight,
-      fontSize: formValue.fontSize,
-      fontRotate: formValue.fontRotate,
-      textColor: formValue.textColor,
-      textOpacity: formValue.textOpacity,
-      textStrokeColor: formValue.textStrokeColor,
-      textStrokeOpacity: formValue.textStrokeOpacity,
-      textStrokeWidth: formValue.textStrokeWidth,
-
-      fineTuneVerticalPosition: formValue.fineTuneVerticalPosition,
-      fineTuneHorizontalPosition: formValue.fineTuneHorizontalPosition,
+      ...formValue,
       deviceId,
-      live: formValue.live,
-      fork: formValue.fork,
     })
     console.log('data: ', data)
   }
@@ -345,13 +328,13 @@ export const LogoGenPage = () => {
   )
   const filteredOptions = shouldFilterOptions
     ? [
-      ...customFonts.filter((item) =>
-        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-      ),
-      ...googlefonts.filter((item) =>
-        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-      ),
-    ]
+        ...customFonts.filter((item) =>
+          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+        ),
+        ...googlefonts.filter((item) =>
+          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+        ),
+      ]
     : customFonts
 
   const options = filteredOptions.map((item) => (
@@ -389,8 +372,8 @@ export const LogoGenPage = () => {
         </h2>
       </div>
 
-      <div className="flex">
-        <div className="w-1/2 p-5">
+      <div className="flex flex-wrap">
+        <div className="w-full sm:w-1/2 sm:p-5">
           <div className="border p-5">
             <div>
               <form
@@ -888,7 +871,7 @@ export const LogoGenPage = () => {
             />
           </div>
         </div>
-        <div className="w-1/2 p-5">
+        <div className="w-full sm:w-1/2 sm:p-5">
           <div className="border p-5">
             <div className="grid-background p-5">
               <svg
@@ -982,7 +965,9 @@ export const LogoGenPage = () => {
           </div>
           <div>
             <div>
-              {t(`下载所有（ZIP） 包含下面这些尺寸: 16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024, 2048`)}
+              {t(
+                `下载所有（ZIP） 包含下面这些尺寸: 16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024, 2048`
+              )}
             </div>
             <div>
               {t(
@@ -1000,7 +985,7 @@ export const LogoGenPage = () => {
 
       <Information />
 
-      <LogoGenFaq />
+      <LogoGenFAQ />
 
       <div className="mb-20">
         <FollowUsOnX />

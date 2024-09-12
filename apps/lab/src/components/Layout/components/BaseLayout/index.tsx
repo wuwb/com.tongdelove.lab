@@ -1,5 +1,6 @@
 import { Sidebar } from './Sidebar'
 import { HeaderMegaMenu } from './Header'
+import { GoTopButton } from '@/components/Layout/GoTopButton'
 
 type LayoutProps = {
   hasHeader?: boolean
@@ -16,6 +17,7 @@ export const BaseLayout = ({ hasHeader = false, children }: LayoutProps) => {
         {hasHeader && <HeaderMegaMenu />}
         {children}
       </div>
+      <GoTopButton />
     </div>
   )
 }

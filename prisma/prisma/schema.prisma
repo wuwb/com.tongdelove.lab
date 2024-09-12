@@ -2162,6 +2162,7 @@ model FaviconGen {
   deviceId  String?
   userId    String?
   createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
   live      Boolean  @default(true) // 是否显示
   fork      Boolean  @default(false) // 是否可以复刻
 

@@ -3,12 +3,19 @@ import { useRouter } from 'next/router'
 import { useTranslation } from '@/i18n'
 import { RiHome2Line } from 'react-icons/ri'
 import { IconType } from 'react-icons'
-import { TbTools } from 'react-icons/tb'
 import clsx from 'clsx'
-import { RiChat3Line, RiChat3Fill } from 'react-icons/ri'
 import { ImLab } from 'react-icons/im'
 import styles from './Sidebar.module.css'
 import { UnstyledButton, Button, Tooltip, Title, rem } from '@mantine/core'
+import {
+  RiFileHistoryLine,
+  RiFileHistoryFill,
+  RiHome2Fill,
+  RiToolsLine,
+  RiToolsFill,
+  RiChat3Line,
+  RiChat3Fill,
+} from 'react-icons/ri'
 
 export const NavItem = ({
   isCollapsed,
@@ -77,26 +84,26 @@ export const Sidebar = () => {
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
           <ImLab className="h-4 w-4 transition-all group-hover:scale-110" />
-          <span className="sr-only">Tongdelove Inc</span>
+          <span className="sr-only">{t('Tongdelove Inc')}</span>
         </Link>
 
         <NavItem
           isCollapsed={false}
           icon={RiHome2Line}
-          activeIcon={RiHome2Line}
+          activeIcon={RiHome2Fill}
           active={pathname === '/'}
           title={t('Home')}
           href="/"
         ></NavItem>
 
-        <NavItem
+        {/* <NavItem
           isCollapsed={false}
           icon={RiChat3Line}
           activeIcon={RiChat3Fill}
           active={pathname === '/chat'}
           title={t('Chat')}
           href="/chat"
-        ></NavItem>
+        ></NavItem> */}
 
         {/* <Tooltip>
           <TooltipTrigger asChild>
@@ -129,15 +136,23 @@ export const Sidebar = () => {
         {/* <NavItem isCollapsed={false} icon={LineChart} activeIcon={LineChart} active={pathname === '/analytics'} title={t('Analytics')} href="/analytics"></NavItem> */}
         <NavItem
           isCollapsed={false}
-          icon={TbTools}
-          activeIcon={TbTools}
+          icon={RiToolsLine}
+          activeIcon={RiToolsFill}
           active={pathname === '/tool'}
           title={t('Tool')}
           href="/tool"
         ></NavItem>
       </nav>
-      {/* <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <Tooltip>
+      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+        <NavItem
+          isCollapsed={false}
+          icon={RiFileHistoryLine}
+          activeIcon={RiFileHistoryFill}
+          active={pathname === '/changelog'}
+          title={t('修改记录')}
+          href="/changelog"
+        ></NavItem>
+        {/* <Tooltip>
           <TooltipTrigger asChild>
             <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
               <Settings className="h-5 w-5" />
@@ -145,8 +160,8 @@ export const Sidebar = () => {
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right">Settings</TooltipContent>
-        </Tooltip>
-      </nav> */}
-    </aside>
+        </Tooltip> */}
+      </nav>
+    </aside >
   )
 }

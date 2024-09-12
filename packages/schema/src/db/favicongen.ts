@@ -18,9 +18,12 @@ export const FaviconGenModelSchema = z.object({
   textStrokeWidth: z.number().int(),
   fineTuneVerticalPosition: z.number().int(),
   fineTuneHorizontalPosition: z.number().int(),
+  lineHeight: z.number().int(),
+  lineLead: z.number().int(),
   deviceId: z.string().nullish(),
   userId: z.string().nullish(),
   createdAt: z.date(),
+  updatedAt: z.date(),
   live: z.boolean(),
   fork: z.boolean(),
 })
