@@ -162,6 +162,6 @@ export const Sidebar = () => {
           <TooltipContent side="right">Settings</TooltipContent>
         </Tooltip> */}
       </nav>
-    </aside >
+    </aside>
   )
 }

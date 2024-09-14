@@ -1,18 +1,18 @@
-import { getRandomInt } from './random';
-import { expect, test, describe } from 'vitest'
+import { describe, expect, test } from 'vitest'
+import { getRandomInt } from './random'
 
 describe('getRandomInt tests', () => {
   test('should return an integer between min and max', () => {
-    expect([100, 101].includes(getRandomInt(100, 101))).toBeTruthy();
-    expect([-101, -100].includes(getRandomInt(-101, -100))).toBeTruthy();
-  });
+    expect([100, 101].includes(getRandomInt(100, 101))).toBeTruthy()
+    expect([-101, -100].includes(getRandomInt(-101, -100))).toBeTruthy()
+  })
 
   test('should throw if not a number', () => {
-    expect(() => getRandomInt(NaN, 100)).toThrow(/min/i);
-    expect(() => getRandomInt(10, {} as unknown as number)).toThrow(/max/i);
-  });
+    expect(() => getRandomInt(NaN, 100)).toThrow(/min/i)
+    expect(() => getRandomInt(10, {} as unknown as number)).toThrow(/max/i)
+  })
 
   test('should throw if min > max', () => {
-    expect(() => getRandomInt(100, 10)).toThrow(/greater/i);
-  });
-});
+    expect(() => getRandomInt(100, 10)).toThrow(/greater/i)
+  })
+})

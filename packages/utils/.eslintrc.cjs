@@ -11,12 +11,12 @@ module.exports = {
     project: 'tsconfig.json',
   },
   extends: [
-    '@tongdelove/eslint-config-base/typescript',
-    '@tongdelove/eslint-config-base/sonar',
-    '@tongdelove/eslint-config-base/regexp',
-    '@tongdelove/eslint-config-base/jest',
+    '@tongdelove/eslint-config/typescript',
+    '@tongdelove/eslint-config/sonar',
+    '@tongdelove/eslint-config/regexp',
+    '@tongdelove/eslint-config/jest',
     // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-base/prettier-plugin',
+    '@tongdelove/eslint-config/prettier-plugin',
   ],
   rules: {
     // optional overrides per project
@@ -24,4 +24,4 @@ module.exports = {
   overrides: [
     // optional overrides per project file match
   ],
-};
+}

@@ -12,11 +12,11 @@ module.exports = {
   },
   ignorePatterns: ['src/generated'],
   extends: [
-    '@tongdelove/eslint-config-base/typescript',
-    '@tongdelove/eslint-config-base/sonar',
-    '@tongdelove/eslint-config-base/regexp',
+    '@tongdelove/eslint-config/typescript',
+    '@tongdelove/eslint-config/sonar',
+    '@tongdelove/eslint-config/regexp',
     // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config-base/prettier-plugin',
+    '@tongdelove/eslint-config/prettier-plugin',
   ],
   overrides: [
     // optional overrides per project file match

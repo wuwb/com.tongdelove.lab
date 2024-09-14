@@ -16,14 +16,15 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^2.4.3",
+    "es-toolkit": "^1.17.0"
   },
   "devDependencies": {
-    "vitest": "^2.0.5",
-    "@types/bcryptjs": "^2.4.6",
-    "vite-tsconfig-paths": "^5.0.1",
-    "@tongdelove/typescript-config": "workspace:^",
     "@tongdelove/eslint-config": "workspace:^",
-    "typescript": "^5.4.5"
+    "@tongdelove/typescript-config": "workspace:^",
+    "@types/bcryptjs": "^2.4.6",
+    "typescript": "^5.4.5",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
   }
 }

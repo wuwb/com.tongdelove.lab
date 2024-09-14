@@ -11,9 +11,9 @@ module.exports = {
     project: 'tsconfig.json',
   },
   extends: [
-    // '@tongdelove/eslint-config-base/typescript',
+    // '@tongdelove/eslint-config/typescript',
     // Apply prettier and disable incompatible rules
-    // '@tongdelove/eslint-config-base/prettier-plugin',
+    // '@tongdelove/eslint-config/prettier-plugin',
   ],
   rules: {
     // optional overrides per project

@@ -28,7 +28,7 @@ export function useTranslation() {
         let words = originT(hashKey, defaultValue, options)
         if (words === hashKey) {
           words = key
-          console.debug(`[i18n] miss translation: [${hashKey}] ${key}`)
+          console.info(`[i18n] miss translation: [${hashKey}] ${key}`)
         }
         return words
       } catch (err) {

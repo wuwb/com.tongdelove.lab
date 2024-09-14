@@ -1,6 +1,6 @@
-import { isNonEmptyString } from '../typeguards/index';
+import { isNonEmptyString } from '../typeguards/index'
 
-type MsgOrErrorFactory = string | (() => Error);
+type MsgOrErrorFactory = string | (() => Error)
 
 export function assertNonEmptyString(
   v: unknown,
@@ -9,7 +9,7 @@ export function assertNonEmptyString(
   trim?: boolean
 ): asserts v is string {
   if (!isNonEmptyString(v, trim ?? true)) {
-    throw createAssertException(msgOrErrorFactory);
+    throw createAssertException(msgOrErrorFactory)
   }
 }
 
@@ -19,18 +19,18 @@ export function assertIncludes<T extends string[]>(
   msgOrErrorFactory?: MsgOrErrorFactory,
   caseInsensitive?: boolean
 ): asserts v is T[number] {
-  const insensitive = caseInsensitive ?? false;
-  const val = insensitive ? v?.toUpperCase() : v;
+  const insensitive = caseInsensitive ?? false
+  const val = insensitive ? v?.toUpperCase() : v
   const allowed = insensitive
     ? stringArray.map((v) => v.toUpperCase())
-    : stringArray;
+    : stringArray
   if (!val || !allowed.includes(val)) {
     const msg = [
       `Value '${v ? v : typeof v}' is not in allowed values`,
       `(${stringArray.join(',')}`,
       insensitive ? '(case insensitive).' : '(case sensitive).',
-    ].join(',');
-    throw createAssertException(msgOrErrorFactory, msg);
+    ].join(',')
+    throw createAssertException(msgOrErrorFactory, msg)
   }
 }
 
@@ -42,7 +42,7 @@ export function assertIsPresent<T>(
     throw createAssertException(
       msgOrErrorFactory,
       'Value is null or undefined.'
-    );
+    )
   }
 }
 
@@ -54,7 +54,7 @@ export function assertSafeInteger(
     throw createAssertException(
       msgOrErrorFactory,
       'Value is not a safe integer'
-    );
+    )
   }
 }
 
@@ -68,7 +68,7 @@ function createAssertException(
   ) {
     throw new Error(
       msgOrErrorFactory ?? fallbackMsg ?? 'Assertion did not pass.'
-    );
+    )
   }
-  throw msgOrErrorFactory();
+  throw msgOrErrorFactory()
 }

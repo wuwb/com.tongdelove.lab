@@ -1,1 +1,1 @@
-export * from './string-convert';
+export * from './string-convert'

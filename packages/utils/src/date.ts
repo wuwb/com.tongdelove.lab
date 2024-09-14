@@ -1,23 +1,21 @@
-
-
 export function converData(data: string) {
-  let [ano, mes, dia, hora, min] = data.split("/").map(Number);
+  let [ano, mes, dia, hora, min] = data.split('/').map(Number)
   if (typeof ano === 'undefined') {
-    ano = 0;
+    ano = 0
   }
   if (typeof mes === 'undefined') {
-    mes = 0;
+    mes = 0
   }
   if (typeof dia === 'undefined') {
-    dia = 0;
+    dia = 0
   }
   if (typeof hora === 'undefined') {
-    hora = 0;
+    hora = 0
   }
   if (typeof min === 'undefined') {
-    min = 0;
+    min = 0
   }
-  const horaMin = hora * 60;
-  const totalMin = ano + mes + dia + horaMin + min;
-  return totalMin;
+  const horaMin = hora * 60
+  const totalMin = ano + mes + dia + horaMin + min
+  return totalMin
 }
