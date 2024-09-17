@@ -1,9 +1,9 @@
 export const Config = {
-  title: 'ACME Storefront | Powered by Next.js Commerce',
-  titleTemplate: '%s - ACME Storefront',
+  title: 'Tongdelove Storefront | Powered by Next.js Commerce',
+  titleTemplate: '%s - Tongdelove Storefront',
   description: 'Next.js Commerce - https://www.nextjs.org/commerce',
   openGraph: {
-    title: 'ACME Storefront | Powered by Next.js Commerce',
+    title: 'Tongdelove Storefront | Powered by Next.js Commerce',
     locale: 'en_IE',
     url: 'https://nextjs.org/commerce',
 

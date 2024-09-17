@@ -282,6 +282,15 @@ export const LogoGenPage = () => {
     form.setFieldValue('fontSize', fontSize)
   }
 
+  const handleSetIcon = (item) => {
+    const { id: _id, ...rest } = item
+    form.setValues(rest)
+    window.scrollTo({
+      top: 300,
+      behavior: 'smooth',
+    })
+  }
+
   useEffect(() => {
     if (!textRef.current) {
       return
@@ -357,9 +366,6 @@ export const LogoGenPage = () => {
       document.head.appendChild(link)
     }
   }, [formValue.fontFamily])
-
-  // console.log('formValue.text: ', formValue.text)
-  // console.log('2: ', formValue.text.replace(/\r\n|\r/g, '\n').split('\n'))
 
   return (
     <div className="container">
@@ -980,6 +986,8 @@ export const LogoGenPage = () => {
           </div>
         </div>
       </div>
+
+      <LogoExamples onSetIcon={handleSetIcon} />
 
       <HowToUse />
 

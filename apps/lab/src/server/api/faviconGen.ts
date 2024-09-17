@@ -69,3 +69,57 @@ export async function createFavicon({
   })
   return result
 }
+
+export async function listFavicons({
+  userId,
+  page,
+  take = 10,
+  live,
+}: {
+  userId?: string
+  page: number
+  take: number
+  live?: boolean
+}) {
+  const where: any = {}
+  if (userId) {
+    where.userId = userId
+  }
+  if (live) {
+    where.live = live
+  }
+  const result = await prisma.faviconGen.findMany({
+    skip: (page - 1) * take,
+    take: take,
+    where: where,
+    select: {
+      id: true,
+      text: true,
+      size: true,
+      radius: true,
+      backgroundColor: true,
+      fontFamily: true,
+      fontWeight: true,
+      fontSize: true,
+      fontRotate: true,
+      textColor: true,
+      textOpacity: true,
+      textStrokeColor: true,
+      textStrokeWidth: true,
+      textStrokeOpacity: true,
+      fineTuneVerticalPosition: true,
+      fineTuneHorizontalPosition: true,
+      deviceId: true,
+      userId: true,
+      live: true,
+      fork: true,
+      createdAt: true,
+    },
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+    ],
+  })
+  return result
+}

@@ -12,8 +12,10 @@ import {
 } from '@tongdelove/ui/breadcrumb'
 import { Input } from '@tongdelove/ui/input'
 import { Separator } from '@tongdelove/ui/separator'
+import { useTranslation } from '@/i18n'
 
 const App = () => {
+  const { t } = useTranslation()
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   return (
@@ -42,9 +44,13 @@ const App = () => {
             </Breadcrumb>
 
             <div className="my-6 space-y-0.5">
-              <h2 className="text-2xl font-bold tracking-tight">网格工具</h2>
+              <h2 className="text-2xl font-bold tracking-tight">
+                {t('网格工具')}
+              </h2>
               <p className="text-muted-foreground">
-                为投资者精密计算买卖价格点位，依据市场波动智能生成网格计划，帮助把握震荡区间盈利机遇，兼容多平台使用，提升交易策略效率。
+                {t(
+                  '为投资者精密计算买卖价格点位，依据市场波动智能生成网格计划，帮助把握震荡区间盈利机遇，兼容多平台使用，提升交易策略效率。'
+                )}
               </p>
             </div>
 

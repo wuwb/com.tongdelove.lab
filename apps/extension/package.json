@@ -1,14 +1,17 @@
 {
-  "devDependencies": {
-    "extension": "latest"
-  },
+  "name": "@tongdelove/extension",
+  "description": "An Extension.js example.",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
+    "build:tsc": "tsc && cp src/*.html dist/",
+    "dev:tsc": "tsc --watch",
     "dev": "extension dev",
     "start": "extension start",
     "build": "extension build"
   },
-  "dependencies": {},
-  "name": "extension",
-  "private": true,
-  "version": "0.0.0"
+  "devDependencies": {
+    "extension": "^2.0.0-alpha.28",
+    "typescript": "^5.6.2"
+  }
 }

@@ -1,7 +1,7 @@
 import { use } from 'react'
-import type { RouterOutputs } from '@acme/api'
+import type { RouterOutputs } from '@tongdelove/api'
 import { cn } from '@tongdelove/ui'
-import { Button } from '@acme/ui/button'
+import { Button } from '@tongdelove/ui/button'
 import {
   Form,
   FormControl,
@@ -9,10 +9,10 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from '@acme/ui/form'
-import { Input } from '@acme/ui/input'
-import { toast } from '@acme/ui/toast'
-import { CreatePostSchema } from '@acme/validators'
+} from '@tongdelove/ui/form'
+import { Input } from '@tongdelove/ui/input'
+import { toast } from '@tongdelove/ui/toast'
+import { CreatePostSchema } from '@tongdelove/validators'
 
 import { api } from '~/trpc/react'
 

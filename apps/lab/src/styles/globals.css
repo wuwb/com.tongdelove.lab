@@ -198,6 +198,9 @@
       10px -10px,
       -10px 0px;
   }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
 }
 
 /* clearfix */

@@ -21,8 +21,6 @@ const StickerExplore = (
   const { t } = useTranslation()
   const { data: session } = useSession()
 
-  console.log('session: ', session)
-
   return (
     <>
       <NextSeo

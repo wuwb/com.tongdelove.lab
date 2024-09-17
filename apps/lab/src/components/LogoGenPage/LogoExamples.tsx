@@ -1,4 +1,7 @@
 import { RenderSVG } from './RenderSVG'
+import { useTranslation } from '@/i18n'
+import { Skeleton, Tooltip } from '@mantine/core'
+import { useLogoGen } from './useLogoGen'
 
 export const examples = [
   {
@@ -790,38 +793,77 @@ export const examples = [
   },
 ]
 
-export const LogoExamples = () => {
+interface LogoExamplesProps {
+  onSetIcon: (item) => void
+}
+
+export const LogoExamples = ({ onSetIcon }: LogoExamplesProps) => {
+  const { t } = useTranslation()
+  const { examples } = useLogoGen()
+
   return (
-    <div className="grid grid-cols-8">
-      {examples.map((item, index) => {
-        return (
-          <div
-            key={index}
-            className="flex cursor-pointer flex-col items-center transition-opacity hover:opacity-80"
-          >
-            <div className="mb-2 h-16 w-16">
-              <RenderSVG
-                formValue={{
-                  text: item.options.text,
-                  size: item.options.size,
-                  radius: item.options.radius,
-                  backgroundColor: item.options.bgColor,
-                  fontFamily: item.options.fontFamily,
-                  fontWeight: item.options.fontWeight === 'normal' ? 400 : 700,
-                  fontSize: item.options.fontSize,
-                  fontRotate: 0,
-                  textColor: item.options.textColor,
-                  textStrokeColor: '',
-                  textStrokeWidth: 0,
-                  fineTuneVerticalPosition: 0,
-                  fineTuneHorizontalPosition: 0,
-                }}
-              />
+    <div className="min-h-[528px]">
+      <h3 className="pt-20 text-center text-4xl">
+        {t('Example from our users')}
+      </h3>
+      <p className="pb-20 pt-2.5 text-center text-xl">
+        {t('you can start creating by click to fork this icons')}
+      </p>
+      <div className="grid grid-cols-8">
+        {examples.length === 0 &&
+          Array.from({ length: 32 }).map((item, index) => (
+            <div
+              key={index}
+              className="my-5 flex cursor-pointer flex-col items-center transition-opacity hover:opacity-80"
+            >
+              <Skeleton height={64} width={64}></Skeleton>
             </div>
-            <div className="text-sm text-gray-600">{item.title}</div>
-          </div>
-        )
-      })}
+          ))}
+        {examples.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className="my-5 flex cursor-pointer flex-col items-center transition-opacity hover:opacity-80"
+              onClick={() => onSetIcon(item)}
+            >
+              <div className="mb-2 h-16 w-16">
+                <RenderSVG
+                  formValue={{
+                    text: item.text,
+                    size: item.size,
+                    radius: item.radius,
+                    backgroundColor: item.backgroundColor,
+                    fontFamily: item.fontFamily,
+                    fontWeight: item.fontWeight,
+                    fontSize: item.fontSize,
+                    fontRotate: 0,
+                    textColor: item.textColor,
+                    textStrokeColor: '',
+                    textStrokeWidth: 0,
+                    fineTuneVerticalPosition: 0,
+                    fineTuneHorizontalPosition: 0,
+                  }}
+                />
+              </div>
+              {item.fork ? (
+                <Tooltip label={t('Click icon to fork')}>
+                  <div className="text-sm text-gray-600">
+                    {item.text}
+                    {item.fork}
+                  </div>
+                </Tooltip>
+              ) : (
+                <div className="text-sm text-gray-600">
+                  {item.text}
+                  {item.fork}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
+
+LogoExamples.displayName = 'LogoExamples'

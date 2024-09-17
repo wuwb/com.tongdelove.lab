@@ -1,6 +1,7 @@
 import { useTranslation } from '@/i18n'
-import { Code } from '@/components/ui/Code'
 import { Button, CopyButton } from '@mantine/core'
+import { CodeHighlight } from '@mantine/code-highlight'
+import '@mantine/code-highlight/styles.css'
 
 export const HowToUse = () => {
   const { t } = useTranslation()
@@ -25,7 +26,9 @@ export const HowToUse = () => {
 
   return (
     <div>
-      <h3>{t('How to Install Favicons on Your Website')}</h3>
+      <h3 className="py-20 text-center text-4xl">
+        {t('How to Install Favicons on Your Website')}
+      </h3>
       <p>
         {t(
           "Enhance your website's appearance across all devices by installing custom favicons. Follow these simple steps to integrate your newly generated favicon package:"
@@ -60,7 +63,7 @@ export const HowToUse = () => {
       <div>
         <div>{t('Favicon HTML Code')}</div>
         <div>
-          <Code code={codeToCopy} language="html" />
+          <CodeHighlight code={codeToCopy} language="html" />
         </div>
         <div>
           {t(

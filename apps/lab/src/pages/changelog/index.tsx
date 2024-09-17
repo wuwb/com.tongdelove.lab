@@ -11,6 +11,11 @@ function TimelinePage() {
       <div className="prose dark:prose-invert">
         <Markdown>
           {`
+#### 2024.09.16
+
+- [[LOGO 生成器](/logo-gen)]支持复刻图标
+- [[LOGO 生成器](/logo-gen)]增加用户分享的图标
+
 #### 2024.09.12
 
 - [[LOGO 生成器](/logo-gen)]支持 mobile

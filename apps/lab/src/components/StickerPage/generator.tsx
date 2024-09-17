@@ -7,8 +7,6 @@ import { Button } from './components/button'
 import { Skeleton } from './components/skeleton'
 import { Input } from './components/input'
 import { useTranslation } from '@/i18n'
-import img1 from './assets/placeholder.png'
-import qrcode from './assets/qrcode.png'
 import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
 import { randomInt } from 'es-toolkit'
 import { trpc } from '@/utils/trpc'
@@ -341,7 +339,7 @@ export default function Generator() {
               </Button>
             </HoverCard.Target>
             <HoverCard.Dropdown>
-              <Image src={qrcode} alt={t('微信二维码')} />
+              <Image src="/images/wechat-qrcode.png" alt={t('微信二维码')} />
               <div>{t('50mm * 50mm 100张，40元')}</div>
               <div>{t('100mm * 100mm 100张，50元')}</div>
             </HoverCard.Dropdown>
@@ -357,17 +355,16 @@ export default function Generator() {
             {imgUrl ? (
               <img
                 src={imgUrl}
-                alt="Generated Image"
+                alt={t('Generated Image')}
                 width={600}
                 height={600}
                 className="max-w-full object-cover transition-all duration-700 group-hover:scale-110"
               />
             ) : (
               <Image
-                src={img1}
-                alt="Generated Image"
+                src="/images/sticker/placeholder.png"
+                alt={t('Generated Image')}
                 priority
-                placeholder="blur"
                 width={600}
                 height={600}
                 className="max-w-full object-cover transition-all duration-700 group-hover:scale-110"
@@ -376,7 +373,7 @@ export default function Generator() {
 
             {imgUrl && (
               <Button
-                size={'icon'}
+                size="icon"
                 onClick={() => {
                   if (imgUrl) {
                     const a = document.createElement('a')

@@ -1,7 +1,9 @@
 import { useSession } from 'next-auth/react'
 import { TextAvatar } from '@/components/avatar/TextAvatar'
+import { useTranslation } from '@/i18n'
 
 export const AdminSidebar = async () => {
+  const { t } = useTranslation()
   // @todo better to use middleware or https://next-auth.js.org/getting-started/client#custom-client-session-handling
   const { data: session, update } = useSession()
 
@@ -37,7 +39,7 @@ export const AdminSidebar = async () => {
               ></path>
             </svg>
             <div className="flex flex-col">
-              <span>Acme</span>
+              <span>{t('tongdelove')}</span>
               <span className="text-content2 text-xs font-normal">
                 Team Plan
               </span>

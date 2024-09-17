@@ -6,10 +6,6 @@ import { useRouter } from 'next/router'
 const MapCountryCodeLocationCode = () => {
   const router = useRouter()
 
-  console.log('router: ', router)
-  console.log('router: ', router.query.countryCode)
-  console.log('router: ', router.query.cityCode)
-
   const countryData = {
     id: '1',
     code: 'cn',

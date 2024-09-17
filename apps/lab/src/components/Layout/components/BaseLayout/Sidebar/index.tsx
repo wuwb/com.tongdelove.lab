@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from '@/i18n'
-import { RiHome2Line } from 'react-icons/ri'
+import {
+  RiCoreosFill,
+  RiCoreosLine,
+  RiEmojiStickerFill,
+  RiEmojiStickerLine,
+  RiHome2Line,
+} from 'react-icons/ri'
 import { IconType } from 'react-icons'
 import clsx from 'clsx'
 import { ImLab } from 'react-icons/im'
@@ -81,7 +87,7 @@ export const Sidebar = () => {
       <nav className={clsx('flex flex-col items-center gap-4 px-2 sm:py-5')}>
         <Link
           href="/"
-          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
           <ImLab className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className="sr-only">{t('Tongdelove Inc')}</span>
@@ -134,6 +140,22 @@ export const Sidebar = () => {
         </Tooltip> */}
 
         {/* <NavItem isCollapsed={false} icon={LineChart} activeIcon={LineChart} active={pathname === '/analytics'} title={t('Analytics')} href="/analytics"></NavItem> */}
+        <NavItem
+          isCollapsed={false}
+          icon={RiEmojiStickerLine}
+          activeIcon={RiEmojiStickerFill}
+          active={pathname === '/sticker'}
+          title={t('贴纸生成器')}
+          href="/sticker"
+        ></NavItem>
+        <NavItem
+          isCollapsed={false}
+          icon={RiCoreosLine}
+          activeIcon={RiCoreosFill}
+          active={pathname === '/logo'}
+          title={t('LOGO 生成器')}
+          href="/logo-gen"
+        ></NavItem>
         <NavItem
           isCollapsed={false}
           icon={RiToolsLine}

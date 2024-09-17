@@ -1,6 +1,7 @@
 import { router, publicProcedure } from '@/server/trpc/trpc'
 import { FaviconGenModelSchema } from '@tongdelove/schema'
-import { createFavicon } from '@/server/api/faviconGen'
+import { createFavicon, listFavicons } from '@/server/api/faviconGen'
+import { z } from 'zod'
 
 export const faviconGenRouter = router({
   create: publicProcedure
@@ -34,4 +35,12 @@ export const faviconGenRouter = router({
         live: input.live,
       })
     }),
+  listHomePage: publicProcedure.query(async ({ input, ctx }) => {
+    const data = await listFavicons({
+      page: 1,
+      take: 64,
+      live: true,
+    })
+    return data
+  }),
 })

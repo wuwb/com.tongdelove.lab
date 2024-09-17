@@ -1,16 +1,13 @@
-import { CtaBlock, HeroBlock } from '../blocks'
 import { useTranslation } from '@/i18n'
 import { Faq } from '@/components/Faq/Faq'
 import Generator from '@/components/StickerPage/generator'
-import { trpc } from '@/utils/trpc'
-import { notifications } from '@mantine/notifications'
 import '@mantine/notifications/styles.css'
-import { toast } from 'sonner'
 import { Shows } from '@/components/StickerPage/Shows'
 import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
+import { Toaster } from '@/components/StickerPage/components/sonner'
 
-export const HomePage = () => {
+export const StickerPage = () => {
   const { t } = useTranslation()
 
   const faqData = [
@@ -80,17 +77,15 @@ export const HomePage = () => {
 
   return (
     <div className="pb-20">
-      {/* <Banner /> */}
-      {/* <HeroBlock /> */}
-      {/* <FeaturesBlock /> */}
-      {/* <CtaBlock /> */}
-
       <HeaderMegaMenu />
       <Generator />
       <Shows />
       <Faq data={faqData} />
 
       <FollowUsOnX />
+      <Toaster richColors />
     </div>
   )
 }
+
+StickerPage.displayName = 'StickerPage'

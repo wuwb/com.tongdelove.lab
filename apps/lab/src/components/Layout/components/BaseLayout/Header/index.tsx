@@ -257,7 +257,12 @@ export function HeaderMegaMenu() {
             <BuyMeACoffee />
             <Indicator color="red" size={12} processing>
               <Button>
-                <Link href="/logo-gen">{t('LOGO 生成器')}</Link>
+                <Link href="/sticker">{t('贴纸生成器')}</Link>
+              </Button>
+            </Indicator>
+            <Indicator color="red" size={12} processing>
+              <Button>
+                <Link href="/logo-gen">{t('标识生成器')}</Link>
               </Button>
             </Indicator>
             {session ? (

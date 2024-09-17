@@ -24,7 +24,6 @@ export const LinksSidebar = () => {
         <div className="sidebar-menu flex-fill">
           <Accordion chevronPosition="right">
             {categoryDate.map((category, index) => {
-              console.log('category: ', category)
               return (
                 <Accordion.Item value={category.slug} key={index}>
                   <Accordion.Control className="px-2">

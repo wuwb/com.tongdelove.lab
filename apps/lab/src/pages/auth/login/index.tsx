@@ -31,8 +31,6 @@ import { useSession } from 'next-auth/react'
 const Login = () => {
   const { data: session } = useSession()
 
-  console.log('session: ', session)
-
   useEffect(() => {
     if (session?.user?.id) {
       router.replace('/')
