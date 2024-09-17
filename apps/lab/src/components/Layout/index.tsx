@@ -20,7 +20,9 @@ type LayoutProps = {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  useGlobalInit()
+  useGlobalInit().catch((err) => {
+    console.error(err)
+  })
 
   const router = useRouter()
 
@@ -39,7 +41,7 @@ export const Layout = ({ children }: LayoutProps) => {
   } else if (hasHeader) {
     layout = <BaseLayout hasHeader={hasHeader}> {children}</BaseLayout>
   } else {
-    layout = <BaseLayout>{children}</BaseLayout>
+    layout = <BaseLayout hasHeader={true}>{children}</BaseLayout>
   }
 
   return <LayoutProvider>{layout}</LayoutProvider>

@@ -18,8 +18,6 @@ export const HomePage = () => {
 
   return (
     <div className="pb-20">
-      <HeaderMegaMenu />
-
       <div className="flex-center gap-20 px-48">
         <div className="w-1/2 p-20 pr-0">
           <Card shadow="sm" padding="lg" radius="md" withBorder>

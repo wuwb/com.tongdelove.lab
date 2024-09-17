@@ -3,12 +3,21 @@ import { Button } from '@mantine/core'
 import Image from 'next/image'
 import React from 'react'
 import { useTranslation } from '@/i18n'
+import { NextSeo } from 'next-seo'
 
-export default function Custom404() {
-  const { t }: { t: any } = useTranslation()
+const Custom404 = () => {
+  const { t } = useTranslation()
 
   return (
     <>
+      <NextSeo
+        title={t(
+          'Multi-Tool Online Toolkit - Solve Everyday Tasks Quickly and Efficiently - Printlake Lab'
+        )}
+        description={t(
+          "Welcome to our online multi-tool hub, offering a range of free utilities from encoding and decoding, image editing to unit conversions. Whether you're a student, developer, or professional, our tools are designed to enhance your productivity. Experience user-friendly design combined with powerful functionality – try it out now!"
+        )}
+      />
       <NotFoundPage />;
       <div className="flex h-full flex-1 flex-col">
         <div className="align-center flex w-full flex-1 justify-center p-6">
@@ -43,3 +52,5 @@ export default function Custom404() {
     </>
   )
 }
+
+export default Custom404

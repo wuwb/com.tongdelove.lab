@@ -15,7 +15,7 @@ type MyDocumentProps = DocumentProps & {
 
 const defaultLocale = 'en'
 
-export default function MyDocument(props: MyDocumentProps) {
+const MyDocument = (props: MyDocumentProps) => {
   const locale = props.locale ?? defaultLocale
   const currentLocale =
     props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale
@@ -117,6 +117,8 @@ MyDocument.getInitialProps = async (ctx) => {
     ...initialProps,
   }
 }
+
+export default MyDocument
 
 // Example to process graceful shutdowns (ie: closing db or other resources)
 // https://nextjs.org/docs/deployment#manual-graceful-shutdowns

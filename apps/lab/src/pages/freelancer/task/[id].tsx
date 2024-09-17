@@ -3,7 +3,7 @@ import { Link } from '@/components/ui/'
 import axios from '@/utils/axios'
 import { InferGetServerSidePropsType } from 'next'
 
-const HomePage = (
+const FreelancerTask = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   return (
@@ -40,7 +40,7 @@ const HomePage = (
   )
 }
 
-export default HomePage
+export default FreelancerTask
 
 export const getServerSideProps = async (context) => {
   const { id } = context.params

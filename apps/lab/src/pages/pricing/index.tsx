@@ -1,8 +1,7 @@
 import { Container, Footer } from '@/components/common'
 import { PricingCardGroup } from '@/components/ui/Pricing'
-import { getRencentTasks } from '@/server/task'
 
-const HomePage = (props) => {
+const Pricing = (props) => {
   return (
     <Container>
       <div className="relative z-10 py-16 lg:py-28">
@@ -17,10 +16,12 @@ const HomePage = (props) => {
           </div>
         </div>
       </div>
-      <PricingCardGroup></PricingCardGroup>
+      <div className="my-20">
+        <PricingCardGroup />
+      </div>
       <Footer />
     </Container>
   )
 }
 
-export default HomePage
+export default Pricing

@@ -1,20 +1,5 @@
-import {
-  Divider,
-  Box,
-  Flex,
-  Button,
-  Text,
-  Container,
-  Input,
-  Textarea,
-  Stack,
-  List,
-  ListItem,
-  Title,
-  ThemeIcon,
-} from '@mantine/core'
-
-import { TbCircleCheck } from 'react-icons/tb'
+import { Divider, Box, Text, Stack, Title } from '@mantine/core'
+import { PackageTier } from '@/components/AdvertisePage/PackageTier'
 
 // 广告价位
 // 时间	价格(￥)	RMB / 天	描述
@@ -51,50 +36,8 @@ const options3 = [
   { id: 2, desc: '9.9元每天' },
   { id: 3, desc: '1 年广告' },
 ]
-interface PackageTierProps {
-  title: string
-  options: Array<{ id: number; desc: string }>
-  typePlan: string
-  checked?: boolean
-}
-const PackageTier = ({
-  title,
-  options,
-  typePlan,
-  checked = false,
-}: PackageTierProps) => {
-  const colorTextLight = checked ? 'white' : 'purple.600'
-  const bgColorLight = checked ? 'purple.400' : 'gray.300'
 
-  const colorTextDark = checked ? 'white' : 'purple.500'
-  const bgColorDark = checked ? 'purple.400' : 'gray.300'
-
-  return (
-    <Stack p={3} py={3}>
-      <Title size="md">{title}</Title>
-      <List spacing={3}>
-        {options.map((desc, id) => (
-          <ListItem
-            key={desc.id}
-            icon={
-              <ThemeIcon color="blue" size={24} radius="xl">
-                <TbCircleCheck size="1rem" />
-              </ThemeIcon>
-            }
-          >
-            {desc.desc}
-          </ListItem>
-        ))}
-      </List>
-      <Title size="xl">{typePlan}</Title>
-      <Stack>
-        <Button size="md">Get Started</Button>
-      </Stack>
-    </Stack>
-  )
-}
-
-const ThreeTierPricingHorizontal = () => {
+const Adverise = () => {
   return (
     <Box py={6} px={80}>
       <Stack>
@@ -116,19 +59,21 @@ const ThreeTierPricingHorizontal = () => {
           </Stack>
         </Stack>
         <Divider />
-        <PackageTier title="1 个月广告" typePlan="599" options={options1} />
-        <Divider />
-        <PackageTier
-          title="6 个月广告"
-          checked={true}
-          typePlan="2699"
-          options={options2}
-        />
-        <Divider />
-        <PackageTier title="1 年广告" typePlan="3649" options={options3} />
+        <div className="flex-center">
+          <PackageTier title="1 个月广告" typePlan="599" options={options1} />
+          <Divider />
+          <PackageTier
+            title="6 个月广告"
+            checked={true}
+            typePlan="2699"
+            options={options2}
+          />
+          <Divider />
+          <PackageTier title="1 年广告" typePlan="3649" options={options3} />
+        </div>
       </Stack>
     </Box>
   )
 }
 
-export default ThreeTierPricingHorizontal
+export default Adverise

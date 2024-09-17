@@ -1,17 +1,16 @@
 import { Link } from '@/components/ui/Link'
-import { ReactNode } from 'react'
-import { FooterCopyright } from './FooterCopyright'
-import { FooterIconList } from './FooterIconList'
+import { useTranslation } from '@/i18n'
 
 export function Copyright(props: any) {
+  const { t } = useTranslation()
   return (
     <div className="flex items-center justify-center text-center" {...props}>
       <p className="mb-0 text-base">
         <a href="https://beian.miit.gov.cn/">浙ICP备00000000号-1</a>
-        {'Copyright © '}
+        {t('Copyright © ')}
         {new Date().getFullYear()}
-        <Link href="https://lab.tongdelove.com/">海维包装实验室</Link>
-        <span>版权所有。</span>
+        <Link href="https://lab.tongdelove.com/">{t('海维包装实验室')}</Link>
+        <span>{t('版权所有')}</span>
       </p>
     </div>
   )
@@ -67,34 +66,6 @@ export function Footer(props): any {
         <hr className="border-t border-solid border-gray-800 lg:my-12" />
         <Copyright />
         {/* <SwitchLang></SwitchLang> */}
-      </div>
-    </div>
-  )
-}
-
-type ICenteredFooterProps = {
-  logo: ReactNode
-  iconList: ReactNode
-  children: ReactNode
-}
-
-export function CenteredFooter(props: ICenteredFooterProps) {
-  return (
-    <div className="text-center">
-      {props.logo}
-
-      <nav>
-        <ul className="navbar mt-5 flex flex-row justify-center text-xl font-medium text-gray-800">
-          {props.children}
-        </ul>
-      </nav>
-
-      <div className="mt-8 flex justify-center">
-        <FooterIconList>{props.iconList}</FooterIconList>
-      </div>
-
-      <div className="mt-8 text-sm">
-        <FooterCopyright />
       </div>
     </div>
   )

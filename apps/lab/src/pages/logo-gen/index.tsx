@@ -1,13 +1,10 @@
 import { useSession } from 'next-auth/react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { LogoGenPage } from '@/components/LogoGenPage/index'
 import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 
-const Map = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const Map = () => {
   const { t } = useTranslation()
   const { data: session } = useSession()
 
@@ -27,15 +24,8 @@ const Map = (
 
 export default Map
 
-export const getServerSideProps = buildSharedServerSideProps<{}>(async () => {
-  try {
-    return {
-      props: {},
-    }
-  } catch (error) {
-    console.error('Error fetching carousels:', error)
-    return {
-      props: {},
-    }
+export const getServerSideProps = buildSharedServerSideProps(async () => {
+  return {
+    props: {},
   }
 })

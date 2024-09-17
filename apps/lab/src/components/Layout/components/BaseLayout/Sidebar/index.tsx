@@ -21,6 +21,8 @@ import {
   RiToolsFill,
   RiChat3Line,
   RiChat3Fill,
+  RiColorFilterLine,
+  RiColorFilterFill,
 } from 'react-icons/ri'
 
 export const NavItem = ({
@@ -155,6 +157,14 @@ export const Sidebar = () => {
           active={pathname === '/logo'}
           title={t('LOGO 生成器')}
           href="/logo-gen"
+        ></NavItem>
+        <NavItem
+          isCollapsed={false}
+          icon={RiColorFilterLine}
+          activeIcon={RiColorFilterFill}
+          active={pathname === '/tool/color'}
+          title={t('中国传统色')}
+          href="/tool/color"
         ></NavItem>
         <NavItem
           isCollapsed={false}

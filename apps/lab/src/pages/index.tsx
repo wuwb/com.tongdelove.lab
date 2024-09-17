@@ -20,7 +20,7 @@ const Index = (
           'Multi-Tool Online Toolkit - Solve Everyday Tasks Quickly and Efficiently - Printlake Lab'
         )}
         description={t(
-          "Welcome to our online multi-tool hub, offering a range of free utilities from encoding and decoding, image editing to unit conversions. Whether you're a student, developer, or professional, our tools are designed to enhance your productivity. Experience user-friendly design combined with powerful functionality – try it out now!"
+          "Welcome to our online multi-tool hub, offering a range of free utilities from encoding and decoding, image editing to unit conversions. Whether you're a student, developer, or professional, our tools are designed to enhance your productivity. Experience user-friendly design combined with powerful functionality - try it out now!"
         )}
       />
       <HomePage />
@@ -32,15 +32,8 @@ export default Index
 
 export const getServerSideProps = buildSharedServerSideProps<IndexProps>(
   async () => {
-    try {
-      return {
-        props: {},
-      }
-    } catch (error) {
-      console.error('Error fetching carousels:', error)
-      return {
-        props: {},
-      }
+    return {
+      props: {},
     }
   }
 )

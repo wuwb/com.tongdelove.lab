@@ -1,36 +1,26 @@
-import { trpc } from '@/utils/trpc'
-import { Container } from '@/components/common'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
-import Head from 'next/head'
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { HomePage } from '@/components/HomePage/pages'
+import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
-import type { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
 import { StickerExplorePage } from '@/components/StickerExplorePage/index'
-import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
 import { PageContainer } from '@/components/Layout/PageContainer'
+import { buildSharedServerSideProps } from '@/server/common/factory'
 
-type StickerExploreProps = {}
-
-const StickerExplore = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const StickerExplore = () => {
   const { t } = useTranslation()
   const { data: session } = useSession()
 
   return (
     <>
       <NextSeo
-        title={t('AI Animal Sticker Generator - Printlake Lab')}
+        title={t(
+          'My Stickers | Your Personalized Sticker Creations - Printlake Lab'
+        )}
         description={t(
-          `Discover the fun and creativity of our AI Sticker Generator! Transform your ideas into unique, custom stickers effortlessly. With our advanced AI technology, you can create personalized stickers for any occasion. Whether it's for personal use or to enhance your brand, our platform offers endless possibilities. Get started today and bring your concepts to life!`
+          "Welcome to My Stickers! Here, you can view, manage, and showcase all the stickers you've created. Customize and edit your designs, or download them to share with friends. Your creativity is just a click away—let's make your sticker collection uniquely yours!"
         )}
       />
       <PageContainer>
-        <HeaderMegaMenu />
         <StickerExplorePage />
       </PageContainer>
       <Toaster richColors />
@@ -39,3 +29,9 @@ const StickerExplore = (
 }
 
 export default StickerExplore
+
+export const getServerSideProps = buildSharedServerSideProps(async () => {
+  return {
+    props: {},
+  }
+})

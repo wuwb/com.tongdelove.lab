@@ -13,7 +13,7 @@ import { trpc } from '@/utils/trpc'
 import { useDeviceId } from '@/hooks/useDeviceId'
 import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
 
-export default function Generator() {
+const Generator = () => {
   const { t } = useTranslation()
 
   const deviceId = useDeviceId()
@@ -402,3 +402,5 @@ export default function Generator() {
     </div>
   )
 }
+
+export default Generator

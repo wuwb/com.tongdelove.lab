@@ -1,23 +1,13 @@
-import { trpc } from '@/utils/trpc'
-import { Container } from '@/components/common'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
-import Head from 'next/head'
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { HomePage } from '@/components/HomePage/pages'
+import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { Toaster } from '@/components/StickerPage/components/sonner'
-import type { Metadata } from 'next'
 import { useTranslation } from '@/i18n'
 import { MyStickersPage } from '@/components/MyStickersPage/index'
 import { HeaderMegaMenu } from '@/components/Layout/components/BaseLayout/Header'
 import { PageContainer } from '@/components/Layout/PageContainer'
+import { buildSharedServerSideProps } from '@/server/common/factory'
 
-type MyStickersProps = {}
-
-const MyStickers = (
-  _props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const MyStickers = () => {
   const { t } = useTranslation()
   const { data: session } = useSession()
 
@@ -39,3 +29,9 @@ const MyStickers = (
 }
 
 export default MyStickers
+
+export const getServerSideProps = buildSharedServerSideProps(async () => {
+  return {
+    props: {},
+  }
+})
