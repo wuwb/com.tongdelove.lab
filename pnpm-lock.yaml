@@ -845,8 +845,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(react@18.3.1)
       react-day-picker:
-        specifier: ^8.10.1
-        version: 8.10.1(date-fns@2.30.0)(react@18.3.1)
+        specifier: ^9.1.1
+        version: 9.1.1(react@18.3.1)
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
@@ -9584,6 +9584,10 @@ packages:
       colorspace: 1.1.4
       enabled: 2.0.0
       kuler: 2.0.0
+
+  /@date-fns/tz@1.1.0:
+    resolution: {integrity: sha512-ebywM7KeJY5cm13Aq037FmjjghyOAMxccqQn0BIpHkvdAZe+gb7V18Sz2usKECguMcSrvy49TR1gR7Y9naGseQ==}
+    dev: false
 
   /@discoveryjs/json-ext@0.5.7:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
@@ -30958,6 +30962,10 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.4
 
+  /date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+    dev: false
+
   /date-format@0.0.0:
     resolution: {integrity: sha512-kAmAdtsjW5nQ02FERwI1bP4xe6HQBPwy5kpAF4CRSLOMUs/vgMIEEwpy6JqUs7NitTyhZiImxwAjgPpnteycHg==}
     deprecated: 0.x is no longer supported. Please upgrade to 4.x or higher.
@@ -50183,13 +50191,13 @@ packages:
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1)(react@18.3.1)
     dev: true
 
-  /react-day-picker@8.10.1(date-fns@2.30.0)(react@18.3.1):
-    resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
+  /react-day-picker@9.1.1(react@18.3.1):
+    resolution: {integrity: sha512-z+xPpd5N42kIqt27XEIyawJgKEya2l5GJMTpZ9FIclqdu40BFfKR4rjQlnXz05h2Gxh0s2F72gL/JCYWuteCIg==}
     peerDependencies:
-      date-fns: ^2.28.0 || ^3.0.0
       react: 18.3.1
     dependencies:
-      date-fns: 2.30.0
+      '@date-fns/tz': 1.1.0
+      date-fns: 4.1.0
       react: 18.3.1
     dev: false
 
