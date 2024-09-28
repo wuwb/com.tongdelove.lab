@@ -164,7 +164,11 @@
     "webpack": "5.88.2",
     "winston-daily-rotate-file": "^4.7.1",
     "wordpress-hash-node": "^1.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@nestjs-packages/sqs": "^1.0.2",
+    "@ntegral/nestjs-sentry": "^4.0.0",
+    "api": "^5.0.8",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.2.4",

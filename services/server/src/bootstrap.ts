@@ -218,7 +218,7 @@ export async function bootstrap(app, listening: boolean = true) {
       maxAge: 0,
       optionsSuccessStatus: 200,
       exposedHeaders: ['Authorization'],
-      // allowedHeaders: '';
+      allowedHeaders: 'Content-Type, Authorization, x-api-key'
       // preflightContinue: false;
     })
   }

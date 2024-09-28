@@ -57,7 +57,13 @@ import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
 import { MainNav } from '@/components/auth-test/main-nav'
 import UserButton from '@/components/auth-test/user-button'
-import { RiMoonLine, RiSunLine } from 'react-icons/ri'
+import {
+  RiColorFilterLine,
+  RiEmojiStickerLine,
+  RiMoonLine,
+  RiSunLine,
+  RiCoreosLine,
+} from 'react-icons/ri'
 import { SSRHidden } from '@/components/Atom/SSRHidden'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { BuyMeACoffee } from './BuyMeACoffee'
@@ -214,13 +220,37 @@ export function HeaderMegaMenu() {
                   <span className="sr-only">Tongdelove Inc</span>
                 </Link>
                 <Link
-                  href="#"
+                  href="/"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
                   <Home className="h-5 w-5" />
-                  Home
+                  {t('首页')}
+                </Link>
+
+                <Indicator color="red" size={12} processing>
+                  <Link
+                    href="/sticker"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <RiEmojiStickerLine className="h-5 w-5" />
+                    {t('贴纸生成器')}
+                  </Link>
+                </Indicator>
+                <Link
+                  href="/logo-gen"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <RiCoreosLine className="h-5 w-5" />
+                  {t('标识生成器')}
                 </Link>
                 <Link
+                  href="/tool/color"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <RiColorFilterLine />
+                  {t('中国传统色')}
+                </Link>
+                {/* <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
@@ -247,7 +277,7 @@ export function HeaderMegaMenu() {
                 >
                   <LineChart className="h-5 w-5" />
                   Settings
-                </Link>
+                </Link> */}
               </nav>
             </SheetContent>
           </Sheet>
@@ -255,7 +285,7 @@ export function HeaderMegaMenu() {
         <div className="flex gap-2">
           <div className="flex w-full items-center justify-end gap-1">
             <BuyMeACoffee />
-            <Indicator color="red" size={12} processing>
+            {/* <Indicator color="red" size={12} processing>
               <Button>
                 <Link href="/sticker">{t('贴纸生成器')}</Link>
               </Button>
@@ -264,7 +294,7 @@ export function HeaderMegaMenu() {
               <Button>
                 <Link href="/logo-gen">{t('标识生成器')}</Link>
               </Button>
-            </Indicator>
+            </Indicator> */}
             {session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -372,18 +402,18 @@ export function HeaderMegaMenu() {
             </ActionIcon>
             {/* </SSRHidden> */}
           </div>
-          <div className="flex items-center justify-center sm:hidden">
+          {/* <div className="flex items-center justify-center sm:hidden">
             <Burger
               size="sm"
               opened={drawerOpened}
               onClick={toggleDrawer}
               aria-label="Toggle navigation"
             />
-          </div>
+          </div> */}
         </div>
       </header>
 
-      <Drawer
+      {/* <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
         size="90%"
@@ -420,7 +450,7 @@ export function HeaderMegaMenu() {
             )}
           </div>
         </ScrollArea>
-      </Drawer>
+      </Drawer> */}
     </div>
   )
 }
@@ -434,11 +464,10 @@ export function WithSubnavigation() {
         <Flex ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
           <ActionIcon
             variant="filled"
-            aria-label="Settings"
             onClick={toggle}
-            ariaLabel="Toggle Navigation"
+            aria-label="Toggle Navigation"
           >
-            {open ? <TbX /> : <TbBrandMcdonalds />}
+            {isOpen ? <TbX /> : <TbBrandMcdonalds />}
           </ActionIcon>
         </Flex>
         <Flex justify={{ base: 'center', md: 'start' }}>

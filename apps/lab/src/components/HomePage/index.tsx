@@ -18,8 +18,8 @@ export const HomePage = () => {
 
   return (
     <div className="pb-20">
-      <div className="flex-center gap-20 px-48">
-        <div className="w-1/2 p-20 pr-0">
+      <div className="flex-center flex-wrap sm:flex-nowrap sm:gap-20 sm:px-48">
+        <div className="md:p-15 w-full p-5 sm:w-1/2 sm:p-10 sm:pr-0 lg:p-16">
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section component="a" href="/sticker" className="p-5 pb-0">
               <Image
@@ -51,7 +51,7 @@ export const HomePage = () => {
             </Button>
           </Card>
         </div>
-        <div className="w-1/2 p-20 pl-0">
+        <div className="md:p-15 -mt-5 w-full p-5 sm:mt-0 sm:w-1/2 sm:p-10 sm:pl-0 lg:p-16">
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section component="a" href="/logo-gen" className="p-5 pb-0">
               <Image

@@ -11,6 +11,11 @@ function TimelinePage() {
       <div className="prose dark:prose-invert">
         <Markdown>
           {`
+#### 2024.09.28
+
+- [[首页](/)]首页兼容移动端
+- [[全局](/)]优化移动端侧边栏
+
 #### 2024.09.17
 
 - [[中国传统色](/tool/color)]界面优化
@@ -24,7 +29,7 @@ function TimelinePage() {
 
 - [[LOGO 生成器](/logo-gen)]支持 mobile
 - [[全局](/)]增加回到顶部
-- [[全局](/)]增加历史记录页面
+- [[历史记录](/changelog)]增加历史记录页面
 - [[全局](/)]修复侧边按钮选中状态
 
 #### 2024.09.11
