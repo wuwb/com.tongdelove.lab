@@ -27,7 +27,7 @@ interface ContainerProps {
   designModal: any;
 }
 
-const Container = (props: ContainerProps) => {
+export const Container = (props: ContainerProps) => {
   const { dispatch, designModal } = props;
   const state = useAppSelector(selectState);
   const {
@@ -348,5 +348,3 @@ const Container = (props: ContainerProps) => {
     </>
   );
 };
-
-export default Container;

@@ -20,6 +20,6 @@
     "@tongdelove/eslint-config": "workspace:^"
   },
   "peerDependencies": {
-    "@prisma/client": "^5.19.1"
+    "@prisma/client": "^5.20.0"
   }
 }

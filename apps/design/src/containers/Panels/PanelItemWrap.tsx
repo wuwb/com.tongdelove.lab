@@ -1,29 +1,26 @@
-import Box from '@mui/material/Box';
-import styles from './PanelItemWrap.module.css';
+import { Tabs } from '@mantine/core';
 
 interface PanelItemProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+  children?: React.ReactNode;
+  index?: number;
+  value: string;
 }
 
 const PanelItemWrap = (props: PanelItemProps) => {
-    const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            className={styles.panelItem}
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                children
-            )}
-        </div>
-    );
+  return (
+    <Tabs.Panel
+      className="w-[250px]"
+      value={value}
+      role="tabpanel"
+      id={`vertical-tabpanel-${value}`}
+      aria-labelledby={`vertical-tab-${value}`}
+      {...other}
+    >
+      {children}
+    </Tabs.Panel>
+  );
 }
 
 export default PanelItemWrap;

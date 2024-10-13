@@ -18,14 +18,14 @@ export const Shows = () => {
       <div className="mx-auto max-w-screen-xl">
         <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {data.map((item) => (
-            <div key={item.id}>
+            <Link href={`/sticker/${item.id}`} key={item.id}>
               <Image
                 width="300"
                 height="300"
                 src={item.url}
                 alt={item.object}
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

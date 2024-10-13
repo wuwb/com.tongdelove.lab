@@ -1,4 +1,4 @@
-import { FC, createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useState } from 'react'
 
 export const LayoutContext = createContext({
   classes: {
@@ -14,10 +14,12 @@ export const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   const setLayout = () => {
     //
   }
+
   const value = {
     classes,
     setLayout,
   }
+
   return (
     <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
   )

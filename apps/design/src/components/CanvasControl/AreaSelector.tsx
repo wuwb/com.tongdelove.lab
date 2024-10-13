@@ -1,5 +1,5 @@
-import Popover from '@mui/material/Popover';
 import React from 'react'
+import { Popover, Text, Button } from '@mantine/core';
 
 const AreaSelector = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

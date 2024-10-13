@@ -4,6 +4,8 @@ import { z } from 'zod'
 import { generatePresignedUrlUserImage } from '../api/s3'
 import { STICKER_ENDPOINT } from '@/utils/constants/sticker'
 import { isAdmin } from '../api/user'
+import { getById } from '../api/sticker'
+import { createStripeCheckoutSession } from '@/server/api/credit'
 
 export const stickerRouter = router({
   create: publicProcedure
@@ -126,6 +128,36 @@ export const stickerRouter = router({
       }
       return hideSticker({
         id: input.id,
+      })
+    }),
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      return getById({
+        id: input.id,
+      })
+    }),
+
+  purchase: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        successUrl: z.string().optional(),
+        cancelUrl: z.string().optional(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      return createStripeCheckoutSession({
+        userId: ctx.session.user.id,
+        cents: 99,
+        name: `Sticker ${input.id}`,
+        description: `Purchase Sticker ${input.id}`,
+        successUrl: input.successUrl,
+        cancelUrl: input.cancelUrl,
       })
     }),
 })

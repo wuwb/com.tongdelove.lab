@@ -73,7 +73,7 @@ export async function listStickers({
   return result
 }
 
-export const hideSticker = async ({ id }: { id: string }) => {
+export async function hideSticker({ id }: { id: string }) {
   const result = await prisma.sticker.update({
     where: {
       id,
@@ -83,6 +83,20 @@ export const hideSticker = async ({ id }: { id: string }) => {
     },
     data: {
       live: false,
+    },
+  })
+  return result
+}
+
+export async function getById({
+  id
+}: {
+  id: string
+}) {
+  const result = await prisma.sticker.findUnique({
+    where: {
+      id,
+      live: true,
     },
   })
   return result

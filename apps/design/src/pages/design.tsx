@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
-import Container from '@/containers/Container';
+import { Container } from '@/containers/Container';
 import UnitConversion from '@/utils/unit';
 import 'react-contexify/dist/ReactContexify.min.css';
 import {

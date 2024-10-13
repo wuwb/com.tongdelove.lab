@@ -8,12 +8,8 @@ import {
   UnstyledButton,
   Text,
   ThemeIcon,
-  Divider,
   Box,
-  Burger,
-  Drawer,
   Collapse,
-  ScrollArea,
   rem,
   useMantineTheme,
   ActionIcon,
@@ -55,8 +51,6 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
 import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
-import { MainNav } from '@/components/auth-test/main-nav'
-import UserButton from '@/components/auth-test/user-button'
 import {
   RiColorFilterLine,
   RiEmojiStickerLine,
@@ -64,7 +58,6 @@ import {
   RiSunLine,
   RiCoreosLine,
 } from 'react-icons/ri'
-import { SSRHidden } from '@/components/Atom/SSRHidden'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { BuyMeACoffee } from './BuyMeACoffee'
 

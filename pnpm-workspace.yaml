@@ -1,5 +1,6 @@
 packages:
   - 'apps/admin'
+  - 'apps/design'
   - 'apps/desktop'
   - 'apps/lab'
   - 'apps/mobile'

@@ -1,6 +1,6 @@
 import React, { useRef, memo, useState, useEffect } from 'react';
-import { Input, Modal, Tooltip } from 'antd';
-import Badge from '@mui/material/Badge';
+import { Modal } from 'antd';
+import { Badge, Indicator } from '@mantine/core';
 import { BiRedo, BiChevronLeft } from "react-icons/bi";
 import QRCode from 'qrcode.react';
 import req from '@/utils/req';
@@ -9,12 +9,8 @@ import styles from './Header.module.css';
 import { useRouter } from 'next/router';
 import { selectState } from '@/models/workSlice';
 import { useAppSelector } from '@/context/hooks';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Box, Button, ActionIcon, Tooltip, Input } from '@mantine/core';
+import { Title } from '@mantine/core';
 
 const { confirm } = Modal;
 const isDev = process.env.NODE_ENV === 'development';
@@ -161,63 +157,62 @@ const HeaderComponent = memo((props) => {
 
   return (
     <>
-      <AppBar position="static">
-        <Toolbar variant="dense">
-          <IconButton
-            edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}
-            onClick={toBack}
+      <div className="flex items-center h-[52px] gap-2.5 px-2.5 border-b">
+        <ActionIcon
+          aria-label="menu"
+          onClick={toBack}
+        >
+          <BiChevronLeft />
+        </ActionIcon>
+        <Title order={6} component="div">
+          海维设计
+        </Title>
+        <Box className="flex gap-0.5">
+          <Button
+            size="xs"
+            onClick={handleSaveTpl}
+            disabled={!designData.length}
           >
-            <BiChevronLeft />
-          </IconButton>
-          <Typography variant="h6" component="div" color="inherit">
-            海维设计
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }} className="">
-            <Button
-              onClick={handleSaveTpl}
-              disabled={!designData.length}
-            >
-              保存
-            </Button>
-
-            <Button
-              onClick={newPage}
-              disabled={!designData.length}
-            >
-              新建
-            </Button>
-
-            <Button
-              onClick={deleteAll}
-              disabled={!designData.length}
-              variant="outlined"
-            >
-              清空
-            </Button>
-            <Button
-              onClick={undoHandler}
-              disabled={!designData.length}
-            >
-              撤销
-            </Button>
-
-            <Button onClick={redoHandler}>
-              重做
-            </Button>
-
-            <Tooltip placement="bottom" title="一键生成海报分享图">
-              <Badge variant="dot" >
-                <Button
-                  onClick={generatePoster}
-                  disabled={!designData.length}
-                >
-                  分享
-                </Button>
-              </Badge>
-            </Tooltip>
-          </Box>
-        </Toolbar>
-      </AppBar>
+            保存
+          </Button>
+          <Button
+            size="xs"
+            onClick={newPage}
+            disabled={!designData.length}
+          >
+            新建
+          </Button>
+          <Button
+            size="xs"
+            onClick={deleteAll}
+            disabled={!designData.length}
+            variant="outlined"
+          >
+            清空
+          </Button>
+          <Button
+            size="xs"
+            onClick={undoHandler}
+            disabled={!designData.length}
+          >
+            撤销
+          </Button>
+          <Button size="xs" onClick={redoHandler} >
+            重做
+          </Button>
+          <Tooltip label="一键生成海报分享图">
+            <Indicator>
+              <Button
+                size="xs"
+                onClick={generatePoster}
+                disabled={!designData.length}
+              >
+                分享
+              </Button>
+            </Indicator>
+          </Tooltip>
+        </Box>
+      </div>
 
       <Modal
         title="生成封面中...(长时间未反应请点右侧按钮重试)"

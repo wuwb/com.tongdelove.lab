@@ -45,6 +45,9 @@ export const env = createEnv({
     S3_ACCESS_KEY_ID: z.string().optional(),
     S3_SECRET_ACCESS_KEY: z.string().optional(),
 
+    // stripe
+    STRIPE_SECRET_KEY: z.string().optional(),
+
     // dev
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
