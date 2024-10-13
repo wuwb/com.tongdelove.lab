@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 const StyledZoomMenu = styled.div`
   position: absolute;
@@ -9,8 +9,8 @@ const StyledZoomMenu = styled.div`
   display: none;
   border-radius: 4px;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 4%);
-  transition: display .2s linear;
-`;
+  transition: display 0.2s linear;
+`
 
 const StyledZoomMenuItem = styled.div`
   width: 126px;
@@ -19,22 +19,36 @@ const StyledZoomMenuItem = styled.div`
   text-align: center;
   background-color: #fff;
   cursor: pointer;
-  transition: all .2s linear;
-`;
+  transition: all 0.2s linear;
+`
 
 const ZoomMenu = (props) => {
-  const { handleZoom } = props;
+  const { handleZoom } = props
   return (
     <StyledZoomMenu>
-      <StyledZoomMenuItem onClick={() => handleZoom(0.2)}>20%</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(0.5)}>50%</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(1)}>100%</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(2)}>200%</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(3)}>300%</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(-1)}>适应屏幕</StyledZoomMenuItem>
-      <StyledZoomMenuItem onClick={() => handleZoom(0)}>实际大小</StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(0.2)}>
+        20%
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(0.5)}>
+        50%
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(1)}>
+        100%
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(2)}>
+        200%
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(3)}>
+        300%
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(-1)}>
+        适应屏幕
+      </StyledZoomMenuItem>
+      <StyledZoomMenuItem onClick={() => handleZoom(0)}>
+        实际大小
+      </StyledZoomMenuItem>
     </StyledZoomMenu>
-  );
-};
+  )
+}
 
-export default ZoomMenu;
+export default ZoomMenu

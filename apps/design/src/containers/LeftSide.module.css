@@ -1,72 +1,72 @@
-  /* 左边面板 */
-  .leftSideWrap {
-    display: flex;
-    flex-direction: row;
-    width: 303px;
-  }
+/* 左边面板 */
+.leftSideWrap {
+  display: flex;
+  flex-direction: row;
+  width: 303px;
+}
 
-  .leftSide {
-    position: absolute;
-    top: 54px;
-    left: 0;
-    bottom: 0;
-  }
+.leftSide {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  bottom: 0;
+}
 
-  .leftSideCollapsed {
-    width: 50px;
+.leftSideCollapsed {
+  width: 50px;
 
-    .btnDrawLeft {
-      display: none;
-    }
+  .btnDrawLeft {
+    display: none;
   }
+}
 
-  /* 左边垫背 */
-  .leftSideBg {
-    width: 302px;
-    transition: all ease-in-out 0.5s;
-  }
+/* 左边垫背 */
+.leftSideBg {
+  width: 302px;
+  transition: all ease-in-out 0.5s;
+}
 
-  .leftSideBgCollapsed {
-    width: 50px;
-  }
+.leftSideBgCollapsed {
+  width: 50px;
+}
 
-  .tabWrap {
-    display: flex;
-    /* background-color: #fff; */
-    z-index: 1000;
-    user-select: none;
-    /* width: 100%; */
-    width: 62px;
-    height: 100%;
-    overflow: visible;
-    /* border-right: 1px solid #f2f3f5; */
-    display: flex;
-    flex-direction: column;
-  }
+.tabWrap {
+  display: flex;
+  /* background-color: #fff; */
+  z-index: 1000;
+  user-select: none;
+  /* width: 100%; */
+  width: 62px;
+  height: 100%;
+  overflow: visible;
+  /* border-right: 1px solid #f2f3f5; */
+  display: flex;
+  flex-direction: column;
+}
 
-  .tabItem {
-    padding: 0;
-    width: 62px;
-    cursor: pointer;
-    position: relative;
-    z-index: 500;
-    text-align: center;
-    font-size: 12px;
-    overflow: hidden;
-    min-width: 52px;
-  }
+.tabItem {
+  padding: 0;
+  width: 62px;
+  cursor: pointer;
+  position: relative;
+  z-index: 500;
+  text-align: center;
+  font-size: 12px;
+  overflow: hidden;
+  min-width: 52px;
+}
 
-  .panelwrap {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    flex: 0 0 250px;
-    width: 250px;
-    height: 100%;
-    left: 0;
-    box-shadow: 2px 0 5px 0 rgb(0 0 0 / 4%);
-    z-index: 999;
-    transition: left .2s linear;
-    user-select: none;
-  }
+.panelwrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  flex: 0 0 250px;
+  width: 250px;
+  height: 100%;
+  left: 0;
+  box-shadow: 2px 0 5px 0 rgb(0 0 0 / 4%);
+  z-index: 999;
+  transition: left 0.2s linear;
+  user-select: none;
+}

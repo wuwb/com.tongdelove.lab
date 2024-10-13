@@ -1,7 +1,9 @@
 import path from 'path'
 
 const isDev = process.env.NODE_ENV !== 'production'
-const debugI18n = ['true', 1].includes(process?.env?.NEXTJS_DEBUG_I18N ?? 'false')
+const debugI18n = ['true', 1].includes(
+  process?.env?.NEXTJS_DEBUG_I18N ?? 'false'
+)
 
 const localePublicFolder = undefined
 export const defaultLocale = 'en'
@@ -25,7 +27,10 @@ const nextI18NextConfig = {
   // defaultNS: 'translation',
   reloadOnPrerender: process?.env?.NODE_ENV === 'development',
   /** To avoid issues when deploying to some paas (vercel...) */
-  localePath: typeof window === 'undefined' ? path.resolve('./public/locales') : localePublicFolder,
+  localePath:
+    typeof window === 'undefined'
+      ? path.resolve('./public/locales')
+      : localePublicFolder,
   react: {
     transSupportBasicHtmlNodes: false,
     useSuspense: false,

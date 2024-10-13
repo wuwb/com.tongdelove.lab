@@ -1,114 +1,124 @@
-import { useMemo } from 'react';
-import clsx from 'clsx';
-import BackgroundPanel from "../components/Panel/BackgroundPanel";
-import FontPanel from "../components/Panel/FontPanel";
-import MaterialPanel from "../components/Panel/MaterialPanel";
-import styles from './LeftSide.module.css';
-import {
-  toggleFlip,
-  addFontDesignData,
-  selectState
-} from '@/models/workSlice';
-import PanelItemWrap from './Panels/PanelItemWrap';
-import { Tabs, rem } from '@mantine/core';
+import { addFontDesignData } from '@/models/workSlice'
+import { Tabs } from 'antd'
+import clsx from 'clsx'
+import { useMemo } from 'react'
+import { BackgroundPanel } from '../components/Panel/BackgroundPanel'
+import { FontPanel } from '../components/Panel/FontPanel'
+import MaterialPanel from '../components/Panel/MaterialPanel'
+import styles from './LeftSide.module.css'
 
-interface Props {
-  collapsed: boolean;
-  tabIndex: number;
-  showTab: boolean;
-  handleChange: (newValue: number) => void;
+interface LeftSideProps {
+  collapsed: boolean
+  tabIndex: string
+  showTab: boolean
+  handleChange: (newValue: string) => void
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-TabPanel-${index}`,
-  };
-}
+export const LeftSide = (props: LeftSideProps) => {
+  const { collapsed, tabIndex, handleChange, showTab } = props
 
-const LeftSide = (props: Props) => {
-  const { collapsed, tabIndex, handleChange, showTab } = props;
-
-  const handleTabsChange = (event: React.SyntheticEvent, newValue: number) => {
-    console.log(newValue);
-    handleChange(newValue);
-  };
+  const handleTabsChange = (key: string) => {
+    console.log(key)
+    handleChange(key)
+  }
 
   // 颜色选择器
   const handleColorPicker = useMemo(() => {
-    return () => { };
-  }, []);
+    return () => {}
+  }, [])
 
   // 文字选择器
   const handleTexturePicker = useMemo(() => {
-    return () => { };
-  }, []);
+    return () => {}
+  }, [])
 
   // 添加文字
   const handleFontPicker = useMemo(() => {
     return (type: string) => {
-      addFontDesignData("text");
-    };
-  }, []);
+      addFontDesignData('text')
+    }
+  }, [])
 
   return (
-    <div className={clsx(styles.leftSideWrap, styles.leftSide, {
-      [styles.leftSideCollapsed]: collapsed,
-    }, 'flex w-full')}>
+    <div
+      className={clsx(
+        styles.leftSideWrap,
+        styles.leftSide,
+        {
+          [styles.leftSideCollapsed]: collapsed,
+        },
+        'flex w-full'
+      )}
+    >
       <Tabs
-        className="w-[303px] flex"
-        orientation="vertical"
+        className="flex"
         onChange={handleTabsChange}
-        defaultValue="类型"
+        tabPosition="left"
+        defaultActiveKey="类型"
+        size="small"
+        activeKey={tabIndex}
+        items={[
+          {
+            label: '类型',
+            key: '类型',
+            children: <div>类型</div>,
+          },
+          {
+            label: '盒型',
+            key: '盒型',
+            children: <MaterialPanel />,
+          },
+          {
+            label: '模板',
+            key: '模板',
+            children: <div>模板</div>,
+          },
+          {
+            label: '素材',
+            key: '素材',
+            children: (
+              <BackgroundPanel
+                handleColorPicker={handleColorPicker}
+                handleTexturePicker={handleTexturePicker}
+              />
+            ),
+          },
+          {
+            label: '文字',
+            key: '文字',
+            children: <FontPanel handleFontPicker={handleFontPicker} />,
+          },
+          {
+            label: '图片',
+            key: '图片',
+            children: <div>图片</div>,
+          },
+          {
+            label: '工具',
+            key: '工具',
+            children: (
+              <div>
+                <div>工具</div>
+                <div>条形码</div>
+                <div>二维码</div>
+                <div>表格</div>
+                <div>图表</div>
+                <div>图例</div>
+              </div>
+            ),
+          },
+          {
+            label: '上传',
+            key: '上传',
+            children: <div>上传</div>,
+          },
+          {
+            label: '图层',
+            key: '图层',
+            children: <div>图层</div>,
+          },
+        ]}
       >
-        <Tabs.List className={styles.tabWrap}>
-          <Tabs.Tab value="类型"
-            className={styles.tabItem} {...a11yProps(0)}>类型</Tabs.Tab>
-          <Tabs.Tab value="盒型" className={styles.tabItem} {...a11yProps(1)}>盒型</Tabs.Tab>
-          <Tabs.Tab value="模板" className={styles.tabItem} {...a11yProps(2)}>模板</Tabs.Tab>
-          <Tabs.Tab value="素材" className={styles.tabItem} {...a11yProps(3)}>素材</Tabs.Tab>
-          <Tabs.Tab value="文字" className={styles.tabItem} {...a11yProps(4)}>文字</Tabs.Tab>
-          <Tabs.Tab value="图片" className={styles.tabItem} {...a11yProps(5)}>图片</Tabs.Tab>
-          <Tabs.Tab value="工具" className={styles.tabItem} {...a11yProps(6)}>工具</Tabs.Tab>
-          <Tabs.Tab value="上传" className={styles.tabItem} {...a11yProps(7)}>上传</Tabs.Tab>
-          <Tabs.Tab value="图层" className={styles.tabItem} {...a11yProps(8)}>图层</Tabs.Tab>
-        </Tabs.List>
-        <div className={clsx(styles.panelwrap, {
-          hidden: showTab,
-        })}>
-          <PanelItemWrap value="类型">
-            类型
-          </PanelItemWrap>
-          <PanelItemWrap value="盒型">
-            <MaterialPanel />
-          </PanelItemWrap>
-          <PanelItemWrap value="文字">
-            <FontPanel handleFontPicker={handleFontPicker} />
-          </PanelItemWrap>
-          <PanelItemWrap value="素材">
-            <BackgroundPanel
-              handleColorPicker={handleColorPicker}
-              handleTexturePicker={handleTexturePicker}
-            />
-          </PanelItemWrap>
-          <PanelItemWrap value="图片">
-            <div className={styles.ctitle}>图片</div>
-          </PanelItemWrap>
-          <PanelItemWrap value="工具">
-            <div className={styles.ctitle}>工具</div>
-            <div>条形码</div>
-            <div>二维码</div>
-            <div>表格</div>
-            <div>图表</div>
-            <div>图例</div>
-          </PanelItemWrap>
-          <PanelItemWrap value="上传">
-            <div className={styles.ctitle}>上传</div>
-          </PanelItemWrap>
-          <PanelItemWrap value="图层">
-            <div className={styles.ctitle}>图层</div>
-          </PanelItemWrap>
-        </div>
         {/* 收缩按钮 */}
         {/* <BtnDrawLeft
           className={styles.btnDrawLeft}
@@ -116,7 +126,5 @@ const LeftSide = (props: Props) => {
         /> */}
       </Tabs>
     </div>
-  );
+  )
 }
-
-export default LeftSide;

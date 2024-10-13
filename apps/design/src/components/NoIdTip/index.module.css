@@ -1,15 +1,15 @@
 .noIdTipWrap {
-    position: absolute;
-    left: 66px;
-    top: 52px;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #f1f3f5;
-    overflow: hidden;
-    user-select: none;
+  position: absolute;
+  left: 66px;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f1f3f5;
+  overflow: hidden;
+  user-select: none;
 }

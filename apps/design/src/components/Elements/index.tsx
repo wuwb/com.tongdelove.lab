@@ -1,18 +1,18 @@
-import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
-import clsx from 'clsx';
-import styles from './index.module.css';
+import clsx from 'clsx'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import styles from './index.module.css'
 
 interface Props {
-  item: any[];
+  item: any[]
 }
 
 const Elements = (props: any) => {
-  const { item, dispatch, designModal, scaleNum } = props;
-  const { currentDesignData, isMouseDown, mouseMoveType } = designModal;
-  const elementRef = useRef<HTMLInputElement>(null);
+  const { item, dispatch, designModal, scaleNum } = props
+  const { currentDesignData, isMouseDown, mouseMoveType } = designModal
+  const elementRef = useRef<HTMLInputElement>(null)
 
   // 东南西北， 东北、西北、东南、西南
-  const points = ['e', 'w', 's', 'n', 'ne', 'nw', 'se', 'sw'];
+  const points = ['e', 'w', 's', 'n', 'ne', 'nw', 'se', 'sw']
 
   // 初始数据， 因为不需要重新render 所以用 useRef
   const oriPos = useRef({
@@ -22,34 +22,33 @@ const Elements = (props: any) => {
     height: 0,
     cX: 0, // 鼠标的坐标
     cY: 0,
-  });
-
+  })
 
   const handleMouseDown = useCallback((dir, e) => {
-    console.log('dir: ', dir);
-    e.stopPropagation();
+    console.log('dir: ', dir)
+    e.stopPropagation()
 
     dispatch({
       type: 'design/setMouseMoveType',
-      payload: dir
-    });
+      payload: dir,
+    })
     dispatch({
       type: 'design/setMouseDown',
-    });
+    })
     dispatch({
       type: 'design/setMouseDownElementStyle',
       payload: {
         ...currentDesignData.style,
-      }
-    });
+      },
+    })
     dispatch({
       type: 'design/setMouseDownPosition',
       payload: {
         x: e.clientX,
         y: e.clientY,
-      }
-    });
-  }, []);
+      },
+    })
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -57,26 +56,26 @@ const Elements = (props: any) => {
         dispatch({
           type: 'design/cancelSelectDesignData',
           payload: {
-            uuid: item.uuid
-          }
-        });
+            uuid: item.uuid,
+          },
+        })
       }
     }
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutside)
     return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
 
   const handleClick = (uuid, e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     dispatch({
       type: 'design/selectDesignData',
       payload: {
         uuid,
-      }
+      },
     })
-  };
+  }
 
   const RenderControl = (
     <>
@@ -109,7 +108,7 @@ const Elements = (props: any) => {
         ></div>
       ))}
     </>
-  );
+  )
 
   return (
     <div
@@ -210,7 +209,7 @@ const Elements = (props: any) => {
         {item.value}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Elements;
+export default Elements

@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { notifications } from '@mantine/notifications';
+import { message } from 'antd'
+import axios from 'axios'
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development'
 
 const instance = axios.create({
   // 服务器地址需要自己配置和开发
   baseURL: isDev ? 'http://localhost:3000/xxx' : 'http://xxxxx',
   timeout: 10000,
   withCredentials: true,
-});
+})
 
 // 添加请求拦截器
 instance.interceptors.request.use(
@@ -17,45 +17,39 @@ instance.interceptors.request.use(
     config.headers = {
       'x-requested-with': '',
       authorization: '',
-    };
-    return config;
+    }
+    return config
   },
   function (error) {
     // 对请求错误做些什么
-    return Promise.reject(error);
-  },
-);
+    return Promise.reject(error)
+  }
+)
 
 // 添加响应拦截器
 instance.interceptors.response.use(
   function (response) {
     // 对响应数据做点什么
     // 你的业务数据
-    return response;
+    return response
   },
   function (error) {
     // 对响应错误做点什么
-    const { response } = error;
+    const { response } = error
     if (response) {
       if (response.status === 404) {
-        notifications.show({
-          message: '请求资源未发现'
-        });
+        message.error('请求资源未发现')
       } else if (response.status === 403) {
-        notifications.show({
-          message: response.data.msg
-        });
-
-        window.location.href = '/admin/login';
+        message.error(response.data.msg, () => {
+          window.location.href = '/admin/login'
+        })
       } else {
-        notifications.show({
-          message: response.data.msg
-        });
+        message.error(response.data.msg)
       }
     }
 
-    return Promise.reject(error);
-  },
-);
+    return Promise.reject(error)
+  }
+)
 
-export default instance;
+export default instance

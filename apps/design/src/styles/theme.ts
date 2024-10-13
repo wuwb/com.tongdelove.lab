@@ -1,5 +1,8 @@
-import { createTheme, MantineProvider } from '@mantine/core';
+import type { ThemeConfig } from 'antd'
 
-export const theme = createTheme({
-  /** Put your mantine theme override here */
-});
+export const theme: ThemeConfig = {
+  token: {
+    fontSize: 16,
+    colorPrimary: '#52c41a',
+  },
+}

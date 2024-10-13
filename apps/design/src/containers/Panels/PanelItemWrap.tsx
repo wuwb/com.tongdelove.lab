@@ -1,13 +1,13 @@
-import { Tabs } from '@mantine/core';
+import { Tabs } from 'antd'
 
 interface PanelItemProps {
-  children?: React.ReactNode;
-  index?: number;
-  value: string;
+  children?: React.ReactNode
+  index?: number
+  value: string
 }
 
-const PanelItemWrap = (props: PanelItemProps) => {
-  const { children, value, index, ...other } = props;
+export const PanelItemWrap = (props: PanelItemProps) => {
+  const { children, value, index, ...other } = props
 
   return (
     <Tabs.Panel
@@ -20,7 +20,5 @@ const PanelItemWrap = (props: PanelItemProps) => {
     >
       {children}
     </Tabs.Panel>
-  );
+  )
 }
-
-export default PanelItemWrap;

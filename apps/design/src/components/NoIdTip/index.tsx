@@ -1,13 +1,14 @@
-import styles from './index.module.css';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import { memo } from 'react'
+import styles from './index.module.css'
 
 interface Props {
-  loginHandler: any;
-  className: string;
+  loginHandler: any
+  className: string
 }
 
-const NoIdTip = (props: Props) => {
-  const { loginHandler } = props;
+export const NoIdTip = memo((props: Props) => {
+  const { loginHandler } = props
 
   return (
     <div className={clsx(styles.noIdTipWrap, props.className)}>
@@ -21,7 +22,7 @@ const NoIdTip = (props: Props) => {
         <div onClick={loginHandler}>登录</div>
       </div>
     </div>
-  );
-}
+  )
+})
 
-export default NoIdTip;
+NoIdTip.displayName = 'NoIdTip'

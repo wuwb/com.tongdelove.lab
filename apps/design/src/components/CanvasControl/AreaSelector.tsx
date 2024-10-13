@@ -1,19 +1,19 @@
+import { Button, Popover, Text } from 'antd'
 import React from 'react'
-import { Popover, Text, Button } from '@mantine/core';
 
 const AreaSelector = () => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   return (
     <Popover
@@ -25,10 +25,11 @@ const AreaSelector = () => {
         vertical: 'bottom',
         horizontal: 'left',
       }}
-      title={null}>
+      title={null}
+    >
       <div className="">区域选择</div>
     </Popover>
-  );
-};
+  )
+}
 
-export default AreaSelector;
+export default AreaSelector

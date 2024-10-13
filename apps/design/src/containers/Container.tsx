@@ -1,35 +1,27 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
-import clsx from 'clsx';
-import { ActionCreators } from "redux-undo";
-import HeaderComponent from "../components/Header";
-import CanvasControl from "../components/CanvasControl";
-import RightButtons from "../components/RightButtons";
-import TargetBox from "./TargetBox";
-import {
-  toggleFlip,
-  selectState
-} from '@/models/workSlice';
-import { useAppSelector } from '@/context/hooks';
-import { throttle } from "@/utils/tool";
-import LeftSide from './LeftSide';
-import styles from './Container.module.css';
+import { RightPanel } from '@/containers/components/RightPanel'
+import { useAppSelector } from '@/context/hooks'
+import { selectState, toggleFlip } from '@/models/workSlice'
+import { throttle } from '@/utils/tool'
+import clsx from 'clsx'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { ActionCreators } from 'redux-undo'
+import CanvasControl from '../components/CanvasControl'
+import { HeaderComponent } from '../components/Header'
+import { RightButtons } from '../components/RightButtons'
+import styles from './Container.module.css'
+import { LeftSide } from './LeftSide'
+import TargetBox from './TargetBox'
 
 interface ContainerProps {
-  history?: any;
-  location?: any;
-  dispatch?: any;
-  designModal: any;
+  history?: any
+  location?: any
+  dispatch?: any
+  designModal: any
 }
 
 export const Container = (props: ContainerProps) => {
-  const { dispatch, designModal } = props;
-  const state = useAppSelector(selectState);
+  const { dispatch, designModal } = props
+  const state = useAppSelector(selectState)
   const {
     isMouseDown,
     mouseMoveType,
@@ -39,66 +31,66 @@ export const Container = (props: ContainerProps) => {
     currentDesignData,
     insideDesignData,
     currentInsideDesignData,
-  } = state;
+  } = state
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  const [scaleNum, setScale] = useState(1);
-  const [rotateNum, setRotate] = useState(0);
-  const [collapsed, setCollapsed] = useState(false);
-  const [rightCollapsed, setRightCollapsed] = useState(true);
-  const [dragstate, setDragState] = useState({ x: 0, y: 0 });
+  const [scaleNum, setScale] = useState(1)
+  const [rotateNum, setRotate] = useState(0)
+  const [collapsed, setCollapsed] = useState(false)
+  const [rightCollapsed, setRightCollapsed] = useState(true)
+  const [dragstate, setDragState] = useState({ x: 0, y: 0 })
   const [diffMove, setDiffMove] = useState({
     start: { x: 0, y: 0 },
     move: false,
-  });
-  const [tabIndex, setTabIndex] = useState(0);
-  const [showTab, setShowTab] = useState(false);
+  })
+  const [tabIndex, setTabIndex] = useState(0)
+  const [showTab, setShowTab] = useState(false)
 
   // 左边收起
   const changeCollapse = useMemo(() => {
     return (c: boolean) => {
-      setCollapsed(c);
-    };
-  }, []);
+      setCollapsed(c)
+    }
+  }, [])
 
   // 右边收起
   const changeRightCollapsed = useMemo(() => {
     return (c: boolean, e: Event) => {
-      e.stopPropagation();
-      setRightCollapsed(c);
-    };
-  }, []);
+      e.stopPropagation()
+      setRightCollapsed(c)
+    }
+  }, [])
 
   // 设置实际大小
   const backSize = () => {
-    setScale(1);
-    setDragState({ x: 0, y: 0 });
-  };
+    setScale(1)
+    setDragState({ x: 0, y: 0 })
+  }
 
   // 缩放
   const handleSlider = useMemo(() => {
     return (type: any) => {
       if (type) {
-        setScale((prev: number) => +(prev + 0.1).toFixed(1));
+        setScale((prev: number) => +(prev + 0.1).toFixed(1))
       } else {
-        setScale((prev: number) => +(prev - 0.1).toFixed(1));
+        setScale((prev: number) => +(prev - 0.1).toFixed(1))
       }
-    };
-  }, []);
+    }
+  }, [])
 
   // 旋转
   const handleRotate = useMemo(() => {
     return () => {
       setRotate((prevValue: number) => {
-        let newValue = prevValue + 90;
+        let newValue = prevValue + 90
         if (newValue === 360) {
-          newValue = 0;
+          newValue = 0
         }
-        return newValue;
-      });
-    };
-  }, []);
+        return newValue
+      })
+    }
+  }, [])
 
   // 保存
   const handleFormSave = useMemo(() => {
@@ -110,50 +102,50 @@ export const Container = (props: ContainerProps) => {
       //     config: data,
       //   },
       // });
-    };
-  }, [currentDesignData]);
+    }
+  }, [currentDesignData])
 
   // 清除
   const clearData = useCallback(() => {
     // clearAll();
-  }, []);
+  }, [])
 
   // 删除
   const handleDel = useMemo(() => {
     return (id: any) => {
       // delPointData({ id });
-    };
-  }, []);
+    }
+  }, [])
 
   // 重做
   const redoHandler = useMemo(() => {
     return () => {
-      dispatch(ActionCreators.redo());
-    };
-  }, [dispatch]);
+      dispatch(ActionCreators.redo())
+    }
+  }, [dispatch])
 
   // 撤销
   const undoHandler = useMemo(() => {
     return () => {
-      dispatch(ActionCreators.undo());
-    };
-  }, [dispatch]);
+      dispatch(ActionCreators.undo())
+    }
+  }, [dispatch])
 
   // 设置翻转
   const handleToggleInSideAndOutSide = useMemo(() => {
     return (type: boolean) => {
-      toggleFlip(type);
-    };
-  }, []);
+      toggleFlip(type)
+    }
+  }, [])
 
   // 设置移动状态
   useEffect(() => {
     if (diffMove.move && containerRef.current) {
-      containerRef.current.style.cursor = "move";
+      containerRef.current.style.cursor = 'move'
     } else {
-      containerRef.current!.style.cursor = "default";
+      containerRef.current!.style.cursor = 'default'
     }
-  }, [diffMove.move]);
+  }, [diffMove.move])
 
   // 移动开始
   const mousedownFn = useMemo(() => {
@@ -165,36 +157,36 @@ export const Container = (props: ContainerProps) => {
             y: e.clientY,
           },
           move: true,
-        });
+        })
       }
-    };
-  }, []);
+    }
+  }, [])
 
   // 移动中
   const mousemoveFn = useMemo(() => {
     return (e: React.MouseEvent<HTMLDivElement>) => {
       if (diffMove.move) {
-        console.log("移动");
-        const newX = e.clientX;
-        const newY = e.clientY;
-        const diffx = newX - diffMove.start.x;
-        const diffy = newY - diffMove.start.y;
+        console.log('移动')
+        const newX = e.clientX
+        const newY = e.clientY
+        const diffx = newX - diffMove.start.x
+        const diffy = newY - diffMove.start.y
         setDiffMove({
           start: {
             x: newX,
             y: newY,
           },
           move: true,
-        });
+        })
         setDragState((prev) => {
           return {
             x: prev.x + diffx,
             y: prev.y + diffy,
-          };
-        });
+          }
+        })
       }
-    };
-  }, [diffMove.move, diffMove.start.x, diffMove.start.y]);
+    }
+  }, [diffMove.move, diffMove.start.x, diffMove.start.y])
 
   // 移动结束
   const mouseupFn = useMemo(() => {
@@ -202,9 +194,9 @@ export const Container = (props: ContainerProps) => {
       setDiffMove({
         start: { x: 0, y: 0 },
         move: false,
-      });
-    };
-  }, []);
+      })
+    }
+  }, [])
 
   // 滚轮
   const onwheelFn = useMemo(() => {
@@ -213,16 +205,15 @@ export const Container = (props: ContainerProps) => {
         setDragState((prev) => ({
           x: prev.x,
           y: prev.y + 40,
-        }));
+        }))
       } else {
         setDragState((prev) => ({
           x: prev.x,
           y: prev.y - 40,
-        }));
+        }))
       }
-    };
-  }, []);
-
+    }
+  }, [])
 
   // 渲染右边
   const renderRight = useMemo(() => {
@@ -230,8 +221,8 @@ export const Container = (props: ContainerProps) => {
       <div
         className={styles.attrSetting}
         style={{
-          transition: "all ease-in-out 0.5s",
-          transform: rightCollapsed ? "translate(100%,0)" : "translate(0,0)",
+          transition: 'all ease-in-out 0.5s',
+          transform: rightCollapsed ? 'translate(100%,0)' : 'translate(0,0)',
         }}
       >
         {designData.length && currentDesignData ? (
@@ -259,7 +250,7 @@ export const Container = (props: ContainerProps) => {
           {/* <BtnDrawRight /> */}
         </div>
       </div>
-    );
+    )
   }, [
     designData.length,
     insideDesignData.length,
@@ -269,13 +260,13 @@ export const Container = (props: ContainerProps) => {
     handleFormSave,
     changeRightCollapsed,
     rightCollapsed,
-  ]);
+  ])
 
-  const handleTabChange = (newTabIndex: number) => {
-    if (tabIndex !== newTabIndex) {
-      setTabIndex(newTabIndex);
+  const handleTabChange = (key: string) => {
+    if (tabIndex !== key) {
+      setTabIndex(key)
     } else {
-      setShowTab(!showTab);
+      setShowTab(!showTab)
     }
   }
 
@@ -344,7 +335,12 @@ export const Container = (props: ContainerProps) => {
       </section>
 
       {/* 渲染右边 */}
-      {renderRight}
+      <RightPanel
+        designData={designData}
+        currentDesignData={currentDesignData}
+        rightCollapsed={rightCollapsed}
+        changeRightCollapsed={changeRightCollapsed}
+      />
     </>
-  );
-};
+  )
+}

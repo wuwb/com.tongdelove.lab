@@ -1,26 +1,25 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-
 import workReducer from '@/models/workSlice'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
 export function makeStore() {
-    return configureStore({
-        reducer: {
-            work: workReducer
-        },
-    });
+  return configureStore({
+    reducer: {
+      work: workReducer,
+    },
+  })
 }
 
-const store = makeStore()
+export const store = makeStore()
 
-export type AppState = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof store.getState>
 
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch
 
 export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    AppState,
-    unknown,
-    Action<string>
->;
+  ReturnType,
+  AppState,
+  unknown,
+  Action<string>
+>
 
-export default store;
+export default store

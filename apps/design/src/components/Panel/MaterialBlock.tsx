@@ -1,23 +1,21 @@
-import SubTitle from './SubTitle';
+import { SubTitle } from './SubTitle'
 
-interface Props {
-    title: string;
-    handleShowMore: Function;
+interface MaterialBlockProps {
+  title: string
+  handleShowMore: () => void
+  children: React.ReactNode
 }
 
-const MaterialBlock = (props: Props) => {
-    const { title, handleShowMore, children } = props;
-    return (
-        <div>
-            <div>
-                <SubTitle title={title} />
-                <div onClick={handleShowMore}>更多</div>
-            </div>
-            <div>
-                {children}
-            </div>
-        </div>
-    );
-}
+export const MaterialBlock = (props: MaterialBlockProps) => {
+  const { title, handleShowMore, children } = props
 
-export default MaterialBlock;
+  return (
+    <div>
+      <div>
+        <SubTitle title={title} />
+        <div onClick={handleShowMore}>更多</div>
+      </div>
+      <div>{children}</div>
+    </div>
+  )
+}

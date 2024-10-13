@@ -64,22 +64,22 @@
 }
 
 .editorCenter {
-    position: absolute;
-    left: 52px;
-    top: 54px;
-    z-index: 0;
-    right: 20px;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f2f3f5;
-    overflow: hidden;
+  position: absolute;
+  left: 52px;
+  top: 54px;
+  z-index: 0;
+  right: 20px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f3f5;
+  overflow: hidden;
 }
 
 .leftIndent {
-    left: 302px;
+  left: 302px;
 }
 .rightIndent {
-    right: 220px;
+  right: 220px;
 }

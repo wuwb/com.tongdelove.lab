@@ -1,72 +1,63 @@
-import React, { useRef, memo, useState, useEffect } from 'react';
-import { Modal } from 'antd';
-import { Badge, Indicator } from '@mantine/core';
-import { BiRedo, BiChevronLeft } from "react-icons/bi";
-import QRCode from 'qrcode.react';
-import req from '@/utils/req';
-import { uuid } from '@/utils/tool';
-import styles from './Header.module.css';
-import { useRouter } from 'next/router';
-import { selectState } from '@/models/workSlice';
-import { useAppSelector } from '@/context/hooks';
-import { Box, Button, ActionIcon, Tooltip, Input } from '@mantine/core';
-import { Title } from '@mantine/core';
+import { useAppSelector } from '@/context/hooks'
+import { selectState } from '@/models/workSlice'
+import req from '@/utils/req'
+import { uuid } from '@/utils/tool'
+import { Button, Input, Modal, Tooltip } from 'antd'
+import { useRouter } from 'next/router'
+import QRCode from 'qrcode.react'
+import React, { memo, useEffect, useRef, useState } from 'react'
+import { BiChevronLeft, BiRedo } from 'react-icons/bi'
 
-const { confirm } = Modal;
-const isDev = process.env.NODE_ENV === 'development';
+const { confirm } = Modal
+const isDev = process.env.NODE_ENV === 'development'
 
-const HeaderComponent = memo((props) => {
-  const router = useRouter();
-  const state = useAppSelector(selectState);
+export const HeaderComponent = memo((props) => {
+  const router = useRouter()
+  const state = useAppSelector(selectState)
 
-  router.query = {};
-  router.query.tid = '1';
+  router.query = {}
+  router.query.tid = '1'
 
-  const {
-    designData,
-    clearData,
-    undoHandler,
-    redoHandler,
-  } = state;
+  const { designData, clearData, undoHandler, redoHandler } = state
 
-  const [showModalIframe, setShowModalIframe] = useState(false);
-  const [showFaceModal, setShowFaceModal] = useState(false);
-  const [faceUrl, setFaceUrl] = useState('');
-  const iptRef = useRef(null);
+  const [showModalIframe, setShowModalIframe] = useState(false)
+  const [showFaceModal, setShowFaceModal] = useState(false)
+  const [faceUrl, setFaceUrl] = useState('')
+  const iptRef = useRef(null)
 
   const toPreview = () => {
-    localStorage.setItem('designData', JSON.stringify(designData));
-    savePreview();
+    localStorage.setItem('designData', JSON.stringify(designData))
+    savePreview()
     setTimeout(() => {
       router.push(
         isDev
           ? `/preview?tid=${router.query.tid}`
-          : `/preview?tid=${router.query.tid}`,
-      );
-    }, 600);
-  };
+          : `/preview?tid=${router.query.tid}`
+      )
+    }, 600)
+  }
 
   const content = () => {
-    const { tid } = router.query || '';
+    const { tid } = router.query || ''
     return (
       <QRCode value={`${router.protocol}//${router.host}/preview?tid=${tid}`} />
-    );
-  };
+    )
+  }
 
   const generateFace = (type: number) => {
     // 自定义生成封面逻辑, 可以采用html2canvas 或 dom-to-image
-  };
+  }
 
   const handleSaveTpl = () => {
     confirm({
       title: '确定要保存吗？',
       content: (
-        <div className={styles.saveForm}>
-          <div className={styles.formIpt}>
+        <div>
+          <div className="mb-5">
             <span>模版名称：</span>
             <Input ref={iptRef} />
           </div>
-          <div className={styles.formIpt}>
+          <div className="mb-5">
             <span>封面设置：</span>
             <Button
               style={{ marginRight: '20px' }}
@@ -78,7 +69,7 @@ const HeaderComponent = memo((props) => {
               使用默认封面
             </Button>
           </div>
-          <div className={styles.formIpt}>
+          <div className="mb-5">
             <span>访问链接：</span>
             <Input disabled value="暂未开放，保存之后可以在模版库中访问" />
           </div>
@@ -87,28 +78,24 @@ const HeaderComponent = memo((props) => {
       okText: '保存',
       cancelText: '取消',
       onOk() {
-        let name = iptRef.current!.state.value;
-        req.post('/visible/tpl/save', { name, tpl: designData }).then(res => {
-          console.log(res);
-        });
+        let name = iptRef.current!.state.value
+        req.post('/visible/tpl/save', { name, tpl: designData }).then((res) => {
+          console.log(res)
+        })
       },
       onCancel() {
-        console.log('Cancel');
+        console.log('Cancel')
       },
-    });
-  };
+    })
+  }
 
   const useTemplate = () => {
     Modal.info({
       title: '该功能正在升级，可以关注下方公众号实时查看动态',
-      content: (
-        <div style={{ textAlign: 'center' }}>
-          测试
-        </div>
-      ),
+      content: <div style={{ textAlign: 'center' }}>测试</div>,
       okText: '客官知道啦',
-    });
-  };
+    })
+  }
 
   const deleteAll = () => {
     Modal.confirm({
@@ -116,107 +103,83 @@ const HeaderComponent = memo((props) => {
       okText: '确认',
       cancelText: '取消',
       onOk() {
-        clearData();
+        clearData()
       },
-    });
-  };
+    })
+  }
 
   const toBack = () => {
-    router.push('/');
-  };
+    router.push('/')
+  }
 
   const newPage = () => {
-    clearData();
-    router.push(`/editor?tid=${uuid(8, 16)}`);
-  };
+    clearData()
+    router.push(`/editor?tid=${uuid(8, 16)}`)
+  }
 
   const savePreview = () => {
-    const { tid } = router.query || '';
-    req.post('/visible/preview', { tid, tpl: designData });
-  };
+    const { tid } = router.query || ''
+    req.post('/visible/preview', { tid, tpl: designData })
+  }
 
   useEffect(() => {
     // 定义截图子页面句柄函数
     window.getFaceUrl = (url: string) => {
-      setFaceUrl(url);
-      setShowModalIframe(false);
-    };
-  }, []);
+      setFaceUrl(url)
+      setShowModalIframe(false)
+    }
+  }, [])
 
   const generatePoster = () => {
-    localStorage.setItem('designData', JSON.stringify(designData));
-    setShowModalIframe(true);
+    localStorage.setItem('designData', JSON.stringify(designData))
+    setShowModalIframe(true)
     setTimeout(() => {
-      setShowFaceModal(true);
-    }, 3600);
-  };
+      setShowFaceModal(true)
+    }, 3600)
+  }
 
   const handleReloadPage = () => {
-    document.getElementById('previewPage')?.contentWindow.location.reload();
-  };
+    document.getElementById('previewPage')?.contentWindow.location.reload()
+  }
 
   return (
     <>
-      <div className="flex items-center h-[52px] gap-2.5 px-2.5 border-b">
-        <ActionIcon
-          aria-label="menu"
-          onClick={toBack}
-        >
+      <div className="flex h-[52px] items-center gap-2.5 border-b px-2.5">
+        <div aria-label="menu" onClick={toBack}>
           <BiChevronLeft />
-        </ActionIcon>
-        <Title order={6} component="div">
-          海维设计
-        </Title>
-        <Box className="flex gap-0.5">
-          <Button
-            size="xs"
-            onClick={handleSaveTpl}
-            disabled={!designData.length}
-          >
+        </div>
+        <div>海维设计</div>
+        <div className="flex gap-0.5">
+          <Button onClick={handleSaveTpl} disabled={!designData.length}>
             保存
           </Button>
-          <Button
-            size="xs"
-            onClick={newPage}
-            disabled={!designData.length}
-          >
+          <Button onClick={newPage} disabled={!designData.length}>
             新建
           </Button>
           <Button
-            size="xs"
             onClick={deleteAll}
             disabled={!designData.length}
             variant="outlined"
           >
             清空
           </Button>
-          <Button
-            size="xs"
-            onClick={undoHandler}
-            disabled={!designData.length}
-          >
+          <Button onClick={undoHandler} disabled={!designData.length}>
             撤销
           </Button>
-          <Button size="xs" onClick={redoHandler} >
-            重做
-          </Button>
-          <Tooltip label="一键生成海报分享图">
-            <Indicator>
-              <Button
-                size="xs"
-                onClick={generatePoster}
-                disabled={!designData.length}
-              >
+          <Button onClick={redoHandler}>重做</Button>
+          <Tooltip title="一键生成海报分享图">
+            <div>
+              <Button onClick={generatePoster} disabled={!designData.length}>
                 分享
               </Button>
-            </Indicator>
+            </div>
           </Tooltip>
-        </Box>
+        </div>
       </div>
 
       <Modal
         title="生成封面中...(长时间未反应请点右侧按钮重试)"
-        visible={showModalIframe}
+        open={showModalIframe}
         footer={null}
         width={414}
         closeIcon={<BiRedo />}
@@ -233,7 +196,7 @@ const HeaderComponent = memo((props) => {
 
       <Modal
         title="封面图(右键复制图片)"
-        visible={showFaceModal}
+        open={showFaceModal}
         footer={null}
         width={414}
         destroyOnClose={true}
@@ -242,7 +205,5 @@ const HeaderComponent = memo((props) => {
         <img src={faceUrl} style={{ width: '100%' }} />
       </Modal>
     </>
-  );
-});
-
-export default HeaderComponent;
+  )
+})
