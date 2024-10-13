@@ -4434,7 +4434,7 @@ packages:
       dagre: 0.8.5
       insert-css: 2.0.0
       ml-matrix: 6.11.1
-      tslib: 2.6.3
+      tslib: 2.7.0
     transitivePeerDependencies:
       - '@antv/g6'
     dev: false
@@ -4720,7 +4720,7 @@ packages:
     resolution: {integrity: sha512-o6I9hi5CIUvLGDhth0RxNSFDRwXeywmt6ExR4+RmVAzIi48ps6HUy+svxOCayvrPBN37uE6TAc2KDofRo0nK9Q==}
     dependencies:
       csstype: 3.1.3
-      tslib: 2.6.3
+      tslib: 2.7.0
     dev: false
 
   /@antv/util@3.3.7:
@@ -9884,7 +9884,7 @@ packages:
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   /@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.1.0)(react@18.3.1):
     resolution: {integrity: sha512-rbxcsg3HhzlcMHVHWDuh9LCjpOVAgqbV78wLGI8tziXY3+qcMQ61qVXIvNKQFuhj75dSfD+o+PYZQ/NUk2A23A==}
@@ -9895,7 +9895,7 @@ packages:
       '@dnd-kit/core': 6.1.0(react-dom@18.3.1)(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   /@dnd-kit/sortable@7.0.2(@dnd-kit/core@6.1.0)(react@18.3.1):
     resolution: {integrity: sha512-wDkBHHf9iCi1veM834Gbk1429bd4lHX4RpAwT0y2cHLf246GAvU2sVw/oxWNpPKQNQRQaeGXhAVgrOl1IT+iyA==}
@@ -9906,7 +9906,7 @@ packages:
       '@dnd-kit/core': 6.1.0(react-dom@18.3.1)(react@18.3.1)
       '@dnd-kit/utilities': 3.2.2(react@18.3.1)
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   /@dnd-kit/utilities@3.2.2(react@18.3.1):
     resolution: {integrity: sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg==}
@@ -9914,7 +9914,7 @@ packages:
       react: 18.3.1
     dependencies:
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   /@edge-runtime/format@2.1.0:
     resolution: {integrity: sha512-gc2qbYEIIJRczBApBPznVI1c5vZgzrZQOsFZnAxxFiYah9qldHiu1YEitzSvXI8X8ZgvAguuIiyIbpWz17nlXA==}
@@ -25545,7 +25545,7 @@ packages:
       react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.2.53)(react-dom@18.3.1)(react@18.3.1)(redux@4.2.1)
       redux: 4.2.1
       styled-components: 6.1.1(react-dom@18.3.1)(react@18.3.1)
-      tslib: 2.6.3
+      tslib: 2.7.0
       warning: 4.0.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -25593,7 +25593,7 @@ packages:
       react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.2.53)(react-dom@18.3.1)(react@18.3.1)(redux@4.2.1)
       redux: 4.2.1
       styled-components: 6.1.1(react-dom@18.3.1)(react@18.3.1)
-      tslib: 2.6.3
+      tslib: 2.7.0
       warning: 4.0.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -57201,7 +57201,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   /syncpack@12.4.0(typescript@5.4.5):
     resolution: {integrity: sha512-iVDbuxW1zpjC8IuGLLgTjfgnAjr1iTd+In//RGUi49nKT8f6BWYSEAt496fj4eGNmYeajUiGngBHl15Jb++RBg==}
