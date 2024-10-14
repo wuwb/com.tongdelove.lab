@@ -40,7 +40,7 @@
     "eslint-plugin-testing-library": "^6.2.2",
     "prettier": "^3.3.3",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.6.0",
+    "typescript-eslint": "^8.8.1",
     "@rushstack/eslint-patch": "^1.4.0",
     "@tanstack/eslint-plugin-query": "^4.34.1",
     "eslint-import-resolver-typescript": "^3.6.0",
