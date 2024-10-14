@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "0.4.4",
-    "@testing-library/dom": "^8.13.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "latest",
     "@tongdelove/eslint-config": "workspace:^",

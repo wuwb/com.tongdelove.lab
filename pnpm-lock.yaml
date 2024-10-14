@@ -614,14 +614,14 @@ importers:
         specifier: 0.4.4
         version: 0.4.4(tailwindcss@3.4.13)
       '@testing-library/dom':
-        specifier: ^8.13.0
-        version: 8.20.1
+        specifier: ^10.4.0
+        version: 10.4.0
       '@testing-library/react':
         specifier: ^14.2.1
         version: 14.3.1(react-dom@18.3.1)(react@18.3.1)
       '@testing-library/user-event':
         specifier: latest
-        version: 14.5.2(@testing-library/dom@8.20.1)
+        version: 14.5.2(@testing-library/dom@10.4.0)
       '@tongdelove/eslint-config':
         specifier: workspace:^
         version: link:../../tooling/eslint-config
@@ -1198,14 +1198,14 @@ importers:
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.11)
       '@testing-library/dom':
-        specifier: 9.3.4
-        version: 9.3.4
+        specifier: 10.4.0
+        version: 10.4.0
       '@testing-library/react':
         specifier: ^14.2.1
         version: 14.3.1(react-dom@18.3.1)(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@9.3.4)
+        version: 14.5.2(@testing-library/dom@10.4.0)
       '@tongdelove/eslint-config':
         specifier: workspace:^
         version: link:../../tooling/eslint-config
@@ -1720,7 +1720,7 @@ importers:
         version: 14.3.1(react-dom@18.3.1)(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
-        version: 14.5.2(@testing-library/dom@8.20.1)
+        version: 14.5.2(@testing-library/dom@10.4.0)
       '@tongdelove/eslint-config':
         specifier: workspace:^
         version: link:../../tooling/eslint-config
@@ -1834,14 +1834,14 @@ importers:
         specifier: 0.5.6
         version: 0.5.6(tailwindcss@3.4.6)
       '@testing-library/dom':
-        specifier: 9.3.3
-        version: 9.3.3
+        specifier: 10.4.0
+        version: 10.4.0
       '@testing-library/react':
         specifier: ^14.2.1
         version: 14.3.1(react-dom@18.3.1)(react@18.3.1)
       '@testing-library/user-event':
         specifier: 14.5.1
-        version: 14.5.1(@testing-library/dom@9.3.3)
+        version: 14.5.1(@testing-library/dom@10.4.0)
       '@tongdelove/eslint-config':
         specifier: workspace:^
         version: link:../../tooling/eslint-config
@@ -22778,20 +22778,6 @@ packages:
       '@tauri-apps/cli-win32-x64-msvc': 1.6.2
     dev: true
 
-  /@testing-library/dom@10.3.1:
-    resolution: {integrity: sha512-q/WL+vlXMpC0uXDyfsMtc1rmotzLV8Y0gq6q1gfrrDjQeHoeLrqHbxdPvPNAh1i+xuJl7+BezywcXArz7vLqKQ==}
-    engines: {node: '>=18'}
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.24.4
-      '@types/aria-query': 5.0.4
-      aria-query: 5.3.0
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
-    dev: true
-
   /@testing-library/dom@10.4.0:
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
     engines: {node: '>=18'}
@@ -22800,34 +22786,6 @@ packages:
       '@babel/runtime': 7.24.4
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
-    dev: true
-
-  /@testing-library/dom@8.20.1:
-    resolution: {integrity: sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.24.4
-      '@types/aria-query': 5.0.4
-      aria-query: 5.1.3
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
-    dev: true
-
-  /@testing-library/dom@9.3.3:
-    resolution: {integrity: sha512-fB0R+fa3AUqbLHWyxXa2kGVtf1Fe1ZZFr0Zp6AIbIAzXb2mKbEXl+PCQNUOaq5lbTab5tfctfXRNsWXxa2f7Aw==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.24.4
-      '@types/aria-query': 5.0.4
-      aria-query: 5.1.3
       chalk: 4.1.2
       dom-accessibility-api: 0.5.16
       lz-string: 1.5.0
@@ -22885,20 +22843,20 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.4
-      '@testing-library/dom': 10.3.1
+      '@testing-library/dom': 10.4.0
       '@types/react': 18.2.53
       '@types/react-dom': 18.3.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     dev: true
 
-  /@testing-library/user-event@14.5.1(@testing-library/dom@9.3.3):
+  /@testing-library/user-event@14.5.1(@testing-library/dom@10.4.0):
     resolution: {integrity: sha512-UCcUKrUYGj7ClomOo2SpNVvx4/fkd/2BbIHDCle8A0ax+P3bU7yJwDBDrS6ZwdTMARWTGODX1hEsCcO+7beJjg==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
-      '@testing-library/dom': 9.3.3
+      '@testing-library/dom': 10.4.0
     dev: true
 
   /@testing-library/user-event@14.5.2(@testing-library/dom@10.4.0):
@@ -22908,15 +22866,6 @@ packages:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
       '@testing-library/dom': 10.4.0
-    dev: true
-
-  /@testing-library/user-event@14.5.2(@testing-library/dom@8.20.1):
-    resolution: {integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==}
-    engines: {node: '>=12', npm: '>=6'}
-    peerDependencies:
-      '@testing-library/dom': '>=7.21.4'
-    dependencies:
-      '@testing-library/dom': 8.20.1
     dev: true
 
   /@testing-library/user-event@14.5.2(@testing-library/dom@9.3.4):
