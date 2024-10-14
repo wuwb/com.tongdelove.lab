@@ -55,6 +55,25 @@ const MyDocument = () => {
         />
       </Head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-26TZGP2HCH"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-26TZGP2HCH');
+            `
+          }}
+        />
         <Main />
         <NextScript />
       </body>
