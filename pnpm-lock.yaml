@@ -2360,8 +2360,8 @@ importers:
         specifier: ^1.5.0
         version: 1.10.0(typescript@5.4.5)
       '@sendgrid/mail':
-        specifier: ^7.7.0
-        version: 7.7.0
+        specifier: ^8.1.4
+        version: 8.1.4
       '@sentry/node':
         specifier: ^7.59.3
         version: 7.112.2
@@ -19343,9 +19343,26 @@ packages:
       - debug
     dev: false
 
+  /@sendgrid/client@8.1.4:
+    resolution: {integrity: sha512-VxZoQ82MpxmjSXLR3ZAE2OWxvQIW2k2G24UeRPr/SYX8HqWLV/8UBN15T2WmjjnEb5XSmFImTJOKDzzSeKr9YQ==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@sendgrid/helpers': 8.0.0
+      axios: 1.7.7
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@sendgrid/helpers@7.7.0:
     resolution: {integrity: sha512-3AsAxfN3GDBcXoZ/y1mzAAbKzTtUZ5+ZrHOmWQ279AuaFXUNCh9bPnRpN504bgveTqoW+11IzPg3I0WVgDINpw==}
     engines: {node: '>= 6.0.0'}
+    dependencies:
+      deepmerge: 4.3.1
+    dev: false
+
+  /@sendgrid/helpers@8.0.0:
+    resolution: {integrity: sha512-Ze7WuW2Xzy5GT5WRx+yEv89fsg/pgy3T1E3FS0QEx0/VvRmigMZ5qyVGhJz4SxomegDkzXv/i0aFPpHKN8qdAA==}
+    engines: {node: '>= 12.0.0'}
     dependencies:
       deepmerge: 4.3.1
     dev: false
@@ -19356,6 +19373,16 @@ packages:
     dependencies:
       '@sendgrid/client': 7.7.0
       '@sendgrid/helpers': 7.7.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@sendgrid/mail@8.1.4:
+    resolution: {integrity: sha512-MUpIZykD9ARie8LElYCqbcBhGGMaA/E6I7fEcG7Hc2An26QJyLtwOaKQ3taGp8xO8BICPJrSKuYV4bDeAJKFGQ==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@sendgrid/client': 8.1.4
+      '@sendgrid/helpers': 8.0.0
     transitivePeerDependencies:
       - debug
     dev: false
