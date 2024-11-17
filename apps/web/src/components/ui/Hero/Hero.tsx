@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
 import styled from '@emotion/styled'
 
 const Block = styled.div`

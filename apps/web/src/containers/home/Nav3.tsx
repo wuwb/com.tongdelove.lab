@@ -1,9 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
-import { Menu } from 'antd'
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from '@/components/ui/menu'
 import { getChildrenToRender } from '@/utils/utils'
-
-const { Item, SubMenu } = Menu
 
 export class Header3 extends React.Component<any, any> {
   constructor(props: any) {
@@ -28,7 +31,7 @@ export class Header3 extends React.Component<any, any> {
       const { children: a, subItem, ...itemProps } = item
       if (subItem) {
         return (
-          <SubMenu
+          <MenuContent
             key={item.name}
             {...itemProps}
             title={
@@ -53,20 +56,20 @@ export class Header3 extends React.Component<any, any> {
                 </div>
               )
               return (
-                <Item key={$item.name || ii.toString()} {...$item}>
+                <MenuItem key={$item.name || ii.toString()} {...$item}>
                   {child}
-                </Item>
+                </MenuItem>
               )
             })}
-          </SubMenu>
+          </MenuContent>
         )
       }
       return (
-        <Item key={item.name} {...itemProps}>
+        <MenuItem key={item.name} {...itemProps}>
           <a {...a} className={`header3-item-block ${a.className}`.trim()}>
             {a.children.map(getChildrenToRender)}
           </a>
-        </Item>
+        </MenuItem>
       )
     })
     const moment = phoneOpen === undefined ? 300 : null
@@ -123,13 +126,7 @@ export class Header3 extends React.Component<any, any> {
             moment={moment}
             reverse={!!phoneOpen}
           >
-            <Menu
-              mode={isMobile ? 'inline' : 'horizontal'}
-              defaultSelectedKeys={['sub0']}
-              theme="light"
-            >
-              {navChildren}
-            </Menu>
+            <MenuRoot>{navChildren}</MenuRoot>
           </div>
         </div>
       </div>

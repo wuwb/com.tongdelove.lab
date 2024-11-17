@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react'
-import { Form, Button, Input, Popover, Progress, Select } from 'antd'
+import { Field } from '@/components/ui/field'
+import { Button } from '@/components/ui/button'
+import { Input } from '@chakra-ui/react'
+import { ProgressBar, ProgressRoot } from '@/components/ui/progress'
+import {
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+
 import Link from 'next/link'
 import styles from './register.module.css'
-
-const { Option } = Select
-const InputGroup = Input.Group
 
 const passwordStatusMap = {
   ok: (
@@ -114,13 +123,15 @@ const UserRegisterPage = (props) => {
     const passwordStatus = getPasswordStatus()
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
-        <Progress
+        <ProgressRoot
+          size="sm"
           status={passwordProgressMap[passwordStatus]}
           className={styles.progress}
-          strokeWidth={6}
-          percent={value.length * 10 > 100 ? 100 : value.length * 10}
+          value={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}
-        />
+        >
+          <ProgressBar />
+        </ProgressRoot>
       </div>
     ) : null
   }
@@ -139,14 +150,13 @@ const UserRegisterPage = (props) => {
           <p>系统暂不开放注册。</p>
           <p>体验可以联系管理员微信：13735851501</p>
         </div>
-        <Form
+        <div
           form={form}
           layout="vertical"
           name="UserRegister"
           onFinish={onFinish}
         >
-          <Form.Item
-            name="mail"
+          <Field
             label="邮箱"
             rules={[
               {
@@ -160,46 +170,32 @@ const UserRegisterPage = (props) => {
             ]}
           >
             <Input placeholder="邮箱" />
-          </Form.Item>
-          <Popover
-            getPopupContainer={(node) => {
-              if (node && node.parentNode) {
-                return node.parentNode as HTMLElement
-              }
-              return node
-            }}
-            content={
-              visible && (
+          </Field>
+          <PopoverRoot>
+            <PopoverTrigger asChild>
+              <Field
+                label="密码"
+                rules={[
+                  {
+                    validator: checkPassword,
+                    required: true,
+                  },
+                ]}
+              >
+                <Input type="password" placeholder="至少6位密码，区分大小写" />
+              </Field>
+            </PopoverTrigger>
+            <PopoverContent>
+              <div>
+                {passwordStatusMap[getPasswordStatus()]}
+                {renderPasswordProgress()}
                 <div>
-                  {passwordStatusMap[getPasswordStatus()]}
-                  {renderPasswordProgress()}
-                  <div>
-                    <span>
-                      请至少输入 6 个字符。请不要使用容易被猜到的密码。
-                    </span>
-                  </div>
+                  <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
                 </div>
-              )
-            }
-            overlayStyle={{ width: 240 }}
-            placement="right"
-            visible={visible}
-          >
-            <Form.Item
-              name="password"
-              label="密码"
-              rules={[
-                {
-                  validator: checkPassword,
-                  required: true,
-                },
-              ]}
-            >
-              <Input type="password" placeholder="至少6位密码，区分大小写" />
-            </Form.Item>
-          </Popover>
-          <Form.Item
-            name="confirm"
+              </div>
+            </PopoverContent>
+          </PopoverRoot>
+          <Field
             label="确认密码"
             rules={[
               {
@@ -212,9 +208,8 @@ const UserRegisterPage = (props) => {
             ]}
           >
             <Input type="password" placeholder="确认密码" />
-          </Form.Item>
-          <Form.Item
-            name="mobile"
+          </Field>
+          <Field
             label="手机号"
             rules={[
               {
@@ -228,14 +223,21 @@ const UserRegisterPage = (props) => {
             ]}
           >
             <div className="flex space-x-2">
-              <Select value={prefix} onChange={changePrefix}>
-                <Option value="86">+86</Option>
-              </Select>
+              <NativeSelectRoot
+                size="sm"
+                width="240px"
+                value={prefix}
+                onChange={changePrefix}
+              >
+                <NativeSelectField placeholder="Select option">
+                  <option value="86">+86</option>
+                </NativeSelectField>
+              </NativeSelectRoot>
               <Input placeholder="手机号" />
             </div>
-          </Form.Item>
-          <Form.Item
-            name="captcha"
+          </Field>
+          <Field
+            label="captcha"
             label="验证码"
             className="flex justify-start"
             rules={[
@@ -255,20 +257,20 @@ const UserRegisterPage = (props) => {
                 {count ? `${count} s` : '获取验证码'}
               </Button>
             </div>
-          </Form.Item>
+          </Field>
 
-          <Form.Item>
+          <Field>
             <Button className="w-full" type="primary" htmlType="submit">
               <span>注册</span>
             </Button>
-          </Form.Item>
-          <Form.Item>
+          </Field>
+          <Field>
             <div className="flex items-center justify-between">
               <Link href="/user/forget">忘记密码了</Link>
               <Link href="/user/login">使用已有账户登录</Link>
             </div>
-          </Form.Item>
-        </Form>
+          </Field>
+        </div>
       </div>
     </div>
   )

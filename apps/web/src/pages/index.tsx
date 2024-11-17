@@ -1,10 +1,13 @@
 import Head from 'next/head'
-import { Row, Col } from 'antd'
-import { Banner, Col4Demo } from '@/containers/Index'
+import { Box, SimpleGrid } from '@chakra-ui/react'
+import { Col4Demo } from '@/containers/Index'
 import { Solution } from '@/containers/Index/Solution'
 import { Customers } from '@/containers/Index/Customers'
 import { Ready } from '@/containers/Index/Ready'
 import { Layout } from '@/components/common'
+import { CustomCarousel } from '@/components/ui/CustomCarousel'
+import Banner1 from '@/containers/index/1.png'
+import Banner2 from '@/containers/index/2.png'
 
 const IndexPage = (props) => {
   return (
@@ -14,20 +17,29 @@ const IndexPage = (props) => {
         <meta name="description" content="印刷,包装,包装供应链" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner />
+      <CustomCarousel
+        images={[
+          {
+            url: Banner1,
+          },
+          {
+            url: Banner2,
+          },
+        ]}
+      />
       <div className="container mx-auto">
         <Col4Demo />
-        <Row justify="center">
-          <Col md={24}>
+        <SimpleGrid columns={1} spacing={4} justifyItems="center">
+          <Box>
             {/* 解决方案 */}
             <Solution />
-          </Col>
-          <Col md={24}>
+          </Box>
+          <Box>
             {/* 客户 */}
             <Customers />
-          </Col>
-          <Col md={24}></Col>
-        </Row>
+          </Box>
+          <Box></Box>
+        </SimpleGrid>
         {/* 准备好了吗 */}
         <Ready />
       </div>

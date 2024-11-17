@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Row, Col } from 'antd'
 
 export const Content1 = (props) => {
   const { ...tagProps }: any = props
@@ -25,7 +24,7 @@ export const Content1 = (props) => {
   }
   return (
     <div {...tagProps} {...dataSource.wrapper}>
-      <Row>
+      <div>
         <span {...dataSource.img}>
           <Image
             src={dataSource.img.children}
@@ -40,7 +39,6 @@ export const Content1 = (props) => {
           leaveReverse
           ease={['easeOutQuad', 'easeInQuad']}
           {...dataSource.textWrapper}
-          component={Col}
           componentProps={{
             md: dataSource.textWrapper.md,
             xs: dataSource.textWrapper.xs,
@@ -53,7 +51,7 @@ export const Content1 = (props) => {
             {dataSource.content.children}
           </div>
         </div>
-      </Row>
+      </div>
     </div>
   )
 }

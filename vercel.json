@@ -3,5 +3,10 @@
   "rewrites": [],
   "github": {
     "silent": true
+  },
+  "functions": {
+    "server/api/**/*.ts": {
+      "maxDuration": 10
+    }
   }
 }

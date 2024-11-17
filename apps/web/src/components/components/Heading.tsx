@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Avatar, Button } from 'antd'
+import { Avatar, Button } from '@chakra-ui/react'
 import s from './Heading.module.css'
 
 export const Heading = () => {

@@ -11,6 +11,16 @@
   },
   "permissions": [
     "activeTab",
-    "scripting"
-  ]
-}
+    "scripting",
+    "management"
+  ],
+  "content_scripts": [
+      {
+        "matches": [
+          "https://github.com/FlowGPT/flow/graphs/contributors"
+        ],
+        "js": ["dist/scripts/github.js"],
+        "run_at": "document_start"
+      }
+    ]
+  }

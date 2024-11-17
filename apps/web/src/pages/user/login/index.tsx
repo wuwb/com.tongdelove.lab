@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Form, Input, Button, Checkbox, notification } from 'antd'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { useRouter } from 'next/router'
 import { UserService } from '@/services'
 import { useAuth } from '@/contexts/auth'
+import { toaster } from '@/components/ui/toaster'
+import { Input } from '@chakra-ui/react'
+import { Field } from '@/components/ui/field'
+import { PasswordInput } from '@/components/ui/password-input'
 
 const UserLoginPage = (props) => {
   const [username, setUsername] = useState()
@@ -31,12 +36,14 @@ const UserLoginPage = (props) => {
       router.push('/')
     } catch (err) {
       if (err instanceof Error) {
-        notification.error({
-          message: err.message,
+        toaster.create({
+          title: err.message,
+          type: 'error',
         })
       } else {
-        notification.error({
-          message: 'Error',
+        toaster.create({
+          title: `error`,
+          type: 'error',
         })
       }
     }
@@ -59,39 +66,31 @@ const UserLoginPage = (props) => {
             </h2>
           </div>
 
-          <Form
+          <div
             layout="vertical"
             name="basic"
             initialValues={{ remember: true }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-            <Form.Item
-              label="用户名"
-              name="username"
-              rules={[{ required: true }]}
-            >
+            <Field label="用户名" name="username" rules={[{ required: true }]}>
               <Input autoFocus />
-            </Form.Item>
-            <Form.Item
-              label="密码"
-              name="password"
-              rules={[{ required: true }]}
-            >
-              <Input.Password />
-            </Form.Item>
-            <Form.Item name="remember" valuePropName="checked">
+            </Field>
+            <Field label="密码" name="password" rules={[{ required: true }]}>
+              <PasswordInput />
+            </Field>
+            <Field name="remember" valuePropName="checked">
               <div className="flex items-center justify-between">
                 <Checkbox>记住账号</Checkbox>
                 <Link href="/user/forget">忘记密码了</Link>
               </div>
-            </Form.Item>
-            <Form.Item>
+            </Field>
+            <Field>
               <Button type="primary" htmlType="submit" className="w-full">
                 登录
               </Button>
-            </Form.Item>
-          </Form>
+            </Field>
+          </div>
 
           <div className="rounded-t-lg bg-white p-8">
             <p className="text-center text-sm font-light text-gray-400">

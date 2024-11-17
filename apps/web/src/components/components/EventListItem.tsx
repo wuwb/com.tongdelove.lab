@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar } from 'antd'
+import { Avatar } from '@chakra-ui/react'
 
 interface EventListItemProps {
   username: string
@@ -15,6 +15,7 @@ export const EventListItem = ({
   return (
     <div className="item-center border-bottom flex py-5 text-base">
       <Avatar
+        name={`${username} Avatar`}
         alt={`${username} Avatar`}
         size={32}
         className="mr-5"

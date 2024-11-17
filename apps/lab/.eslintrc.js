@@ -23,6 +23,7 @@ module.exports = {
     es2021: true,
   },
   rules: {
+    "react-hooks/rules-of-hooks": 0,
     '@next/next/no-html-link-for-pages': 'off',
   },
   // The ".eslintignore" file is no longer supported.

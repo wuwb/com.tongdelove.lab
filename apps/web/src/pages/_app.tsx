@@ -10,8 +10,7 @@ import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar'
 import nextI18NextConfig from '../../next-i18next.config'
 import '@/styles/globals.css'
-import { ConfigProvider } from 'antd'
-import { theme } from '../styles/themeConfig'
+import { GlobalProviders } from '@/contexts/GlobalProviders'
 
 const Noop = ({ children }) => <>{children}</>
 
@@ -32,7 +31,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   // }, []);
 
   return (
-    <ConfigProvider theme={theme}>
+    <GlobalProviders>
       <AuthProvider>
         <Head>
           <title>{SiteConfig.title}</title>
@@ -50,16 +49,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             content="initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
           />
         </Head>
-        <NextNProgress
-          height={1}
-          color="rgb(156, 163, 175, 0.9)"
-          options={{ showSpinner: false }}
-        />
         <Layout pageProps={pageProps}>
           <Component {...pageProps} />
         </Layout>
       </AuthProvider>
-    </ConfigProvider>
+    </GlobalProviders>
   )
 }
 

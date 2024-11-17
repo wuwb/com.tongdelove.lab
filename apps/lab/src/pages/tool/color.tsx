@@ -104,7 +104,7 @@ const ToolPage = () => {
       title: '黄色系',
       category: '黄',
       colors: [
-        { name: '鹅黄', pinyin: 'É Huáng', hex: '#FFF143' },
+        { name: '鹅黄', pinyin: 'É Huáng', hex: '#FFF143' },//
         { name: '鸭黄', pinyin: 'Yā Huáng', hex: '#FAFF72' },
         { name: '樱草色', pinyin: 'Yīng Cǎo Sè', hex: '#EAFF56' },
         { name: '杏黄', pinyin: 'Xìng Huáng', hex: '#FFA631' },
@@ -113,7 +113,7 @@ const ToolPage = () => {
         { name: '橙黄', pinyin: 'Chéng Huáng', hex: '#FFA400' },
         { name: '橘红', pinyin: 'Jú Hóng', hex: '#FF7500' },
         { name: '姜黄', pinyin: 'Jiāng Huáng', hex: '#FFC773' },
-        { name: '缃色', pinyin: 'Xiāng Sè', hex: '#F0C239' },
+        { name: '缃色', pinyin: 'Xiāng Sè', hex: '#F0C239' },//
         { name: '橙色', pinyin: 'Chéng Sè', hex: '#FA8C35' },
         { name: '茶色', pinyin: 'Chá Sè', hex: '#B35C44' },
         { name: '驼色', pinyin: 'Tuó Sè', hex: '#A88462' },
@@ -126,7 +126,7 @@ const ToolPage = () => {
         { name: '棕黄', pinyin: 'Zōng Huáng', hex: '#AE7000' },
         { name: '赭', pinyin: 'Zhě', hex: '#9C5333' },
         { name: '赭色', pinyin: 'Zhě Sè', hex: '#955539' },
-        { name: '琥珀', pinyin: 'Hǔ Pò', hex: '#CA6924' },
+        { name: '琥珀', pinyin: 'Hǔ Pò', hex: '#CA6924' },//
         { name: '褐色', pinyin: 'Hè Sè', hex: '#6E511E' },
         { name: '枯黄', pinyin: 'Kū Huáng', hex: '#D3B17D' },
         { name: '黄栌', pinyin: 'Huáng Lú', hex: '#E29C45' },
@@ -303,11 +303,10 @@ const ToolPage = () => {
         {categories.map((category, index) => (
           <button
             key={index}
-            className={`rounded-full px-3 py-1 text-sm ${
-              activeCategory === category
+            className={`rounded-full px-3 py-1 text-sm ${activeCategory === category
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-200 text-gray-700'
-            }`}
+              }`}
             onClick={() => setActiveCategory(category)}
           >
             {category}

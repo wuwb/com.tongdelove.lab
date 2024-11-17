@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import { TinyNav } from '@/components/TinyNav'
-import { Button, Row, Col } from 'antd'
+import { Button } from '@/components/ui/button'
+
 import { Layout } from '@/components/common'
 import s from './Team.module.css'
 
@@ -32,8 +33,8 @@ const Page = () => (
           },
         ]}
       />
-      <Row className="flex justify-center">
-        <Col>
+      <div className="flex justify-center">
+        <div>
           <div className={s.pageHeading}>
             <h1 className={s.pageTitle}>我们是海维包装</h1>
             <p>
@@ -45,8 +46,8 @@ const Page = () => (
               <Button className={s.action}>想加入我们吗？</Button>
             </Link>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   </>
 )

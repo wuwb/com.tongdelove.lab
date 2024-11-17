@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Breadcrumb, Rate, Radio } from 'antd'
 import Style from './detail.module.css'
 import { Layout } from '@/components/common'
+import { Radio, RadioGroup } from '@/components/ui/radio'
+import {
+  BreadcrumbCurrentLink,
+  BreadcrumbLink,
+  BreadcrumbRoot,
+} from '@/components/ui/breadcrumb'
 
 interface DetailPageProps {
   name?: string
@@ -12,8 +17,13 @@ interface DetailPageProps {
   detail: string
 }
 
-const DetailPage = ({ name, subtitle, price, stock, detail }: DetailPageProps) => {
-
+const DetailPage = ({
+  name,
+  subtitle,
+  price,
+  stock,
+  detail,
+}: DetailPageProps) => {
   const product = {
     name: 'Basic Tee 6-Pack',
     price: '$192',
@@ -84,12 +94,11 @@ const DetailPage = ({ name, subtitle, price, stock, detail }: DetailPageProps) =
     details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
   }
-  
+
   const reviews = { href: '#', average: 4, totalCount: 117 }
-  
+
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
-
 
   function handleChange(data) {
     setSelectedColor(data)
@@ -99,11 +108,11 @@ const DetailPage = ({ name, subtitle, price, stock, detail }: DetailPageProps) =
     <div className="bg-white">
       <div className="pt-6">
         <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-          <Breadcrumb>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="">Catalog</Breadcrumb.Item>
-            <Breadcrumb.Item>Page</Breadcrumb.Item>
-          </Breadcrumb>
+          <BreadcrumbRoot>
+            <BreadcrumbLink>Home</BreadcrumbLink>
+            <BreadcrumbLink href="">Catalog</BreadcrumbLink>
+            <BreadcrumbCurrentLink>Page</BreadcrumbCurrentLink>
+          </BreadcrumbRoot>
         </div>
 
         {/* Image gallery */}
@@ -176,7 +185,7 @@ const DetailPage = ({ name, subtitle, price, stock, detail }: DetailPageProps) =
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
                 <div className="flex items-center">
-                  <Rate disabled allowHalf defaultValue={reviews.average} />
+                  <div disabled allowHalf defaultValue={reviews.average} />
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
                 <a
@@ -193,12 +202,12 @@ const DetailPage = ({ name, subtitle, price, stock, detail }: DetailPageProps) =
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
-                <Radio.Group
+                <RadioGroup
                   options={product.colors}
                   value={selectedColor}
                   onChange={handleChange}
                   className="mt-4"
-                ></Radio.Group>
+                ></RadioGroup>
               </div>
 
               {/* Sizes */}

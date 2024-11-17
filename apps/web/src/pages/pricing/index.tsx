@@ -1,5 +1,5 @@
-import { Row, Col, Table, Button } from 'antd'
-import Head from 'next/head'
+import { Button } from '@/components/ui/button'
+import { Table } from '@chakra-ui/react'
 import { Layout } from '@/components/common'
 
 const Home = () => {
@@ -197,8 +197,8 @@ const Home = () => {
           </div>
         </div>
         <div className="content">
-          <Row gutter={32}>
-            <Col span={16}>
+          <div gutter={32}>
+            <div span={16}>
               <h3 className="title text-xl font-bold">海维包装提供哪些服务?</h3>
               <div className="section mt-5">
                 <div className="title mb-2 text-lg">工厂网络</div>
@@ -230,8 +230,8 @@ const Home = () => {
                   size="small"
                 />
               </div>
-            </Col>
-            <Col span={8} className="py-32">
+            </div>
+            <div span={8} className="py-32">
               <div className="more-service-1">
                 Additional services are available directly in the platform with
                 flat rate pricing. <br />
@@ -245,8 +245,8 @@ const Home = () => {
                 Inventory tracking Inventory planning Just-in-time delivery
                 ERP/WMS integrations
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
           <div className="py-36 text-center">
             <p className="text-2xl font-bold">

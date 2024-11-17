@@ -74,7 +74,7 @@ export const NavItem = ({
   )
 }
 
-export const Sidebar = () => {
+export const GlobalSidebar = () => {
   let { pathname } = useRouter()
   const { t } = useTranslation()
 

@@ -1,7 +1,7 @@
 const path = require('path')
 const crc32 = require('crc').crc32
 
-const localePublicFolder = undefined
+const localePublicFolder = '/public/locales'
 
 /**
  * @type {import('next-i18next').UserConfig}
@@ -82,7 +82,7 @@ const nextI18NextConfig = {
   // nonExplicitSupportedLngs: true,
   serializeConfig: false,
   defaultNS: 'translation',
-  reloadOnPrerender: process?.env?.NODE_ENV === 'development',
+  reloadOnPrerender: process.env.NODE_ENV === 'development',
   /** To avoid issues when deploying to some paas (vercel...) */
   localePath: path.resolve('./public/locales'),
   // localePath:

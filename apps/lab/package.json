@@ -53,7 +53,8 @@
     "translation": "pnpm script -- ./scripts/translation/build_translation.mts",
     "translation:scan": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm script -- ./scripts/scan_translation.mts",
     "translation:csv": "pnpm script -- ./scripts/translation/generate_translation_csv.mts",
-    "translation:translate": "i18next-toolkit translate"
+    "translation:translate": "i18next-toolkit translate",
+    "dev-email": "email dev"
   },
   "browserslist": {
     "production": [
@@ -108,6 +109,7 @@
     "@sentry/browser": "^8.33.1",
     "@sentry/nextjs": "^7.112.2",
     "@sentry/react": "^7.112.2",
+    "@stripe/react-stripe-js": "^2.8.1",
     "@stripe/stripe-js": "^4.7.0",
     "@t3-oss/env-core": "^0.11.1",
     "@t3-oss/env-nextjs": "^0.11.1",
@@ -292,6 +294,7 @@
     "react-custom-scrollbars-2": "^4.5.0",
     "react-datepicker": "4.15.0",
     "react-dropzone": "^14.2.9",
+    "react-email": "3.0.1",
     "react-fast-marquee": "^1.6.0",
     "react-gtm-module": "^2.0.11",
     "react-helmet-async": "^1.3.0",

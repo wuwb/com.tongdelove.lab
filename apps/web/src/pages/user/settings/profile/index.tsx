@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
-import { Form, Input, Select, Button, AutoComplete } from 'antd'
-import { Row, Col } from 'antd'
-
-const { TextArea } = Input
-const FormItem = Form.Item
-const { Option } = Select
-const AutoCompleteOption = AutoComplete.Option
+import { Button } from '@/components/ui/button'
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValueText,
+} from '@/components/ui/select'
+import { Group, Input, InputAddon, Textarea } from '@chakra-ui/react'
+import { Field } from '@/components/ui/field'
+import {
+  NativeSelectField,
+  NativeSelectRoot,
+} from '@/components/ui/native-select'
 
 const formItemLayout = {
   labelCol: {
@@ -86,22 +94,22 @@ const RegistrationForm = (props) => {
   }
 
   const websiteOptions = autoCompleteResult.map((website) => (
-    <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+    <div key={website}>{website}</div>
   ))
-   
+
   return (
     <section className="">
-      <Row className="header">
-        <Col span={8}>
+      <div className="header">
+        <div>
           <span className="avatar fl-right" />
-        </Col>
-        <Col span={16} className="user_abstract">
-          <div className={'username'}>username</div>
+        </div>
+        <div className="user_abstract">
+          <div className="username">username</div>
           {/* <div className={'notice'}>更换头像<Upload successCb={this.changeAvatarCb} className={'notice'} /></div> */}
-        </Col>
-      </Row>
+        </div>
+      </div>
       <Form onFinish={handleSubmit}>
-        <FormItem
+        <Field
           {...formItemLayout}
           name={['profile', 'username']}
           label={<span className="form-item-label">姓名</span>}
@@ -114,21 +122,18 @@ const RegistrationForm = (props) => {
           ]}
         >
           <Input />
-        </FormItem>
-        <FormItem
+        </Field>
+        <Field
           {...formItemLayout}
           name={['profile', 'website']}
           label={<span className="form-item-label">网站</span>}
           rules={[{ required: false, message: 'Please input website!' }]}
         >
-          <AutoComplete
-            dataSource={websiteOptions}
-            onChange={handleWebsiteChange}
-          >
+          <div dataSource={websiteOptions} onChange={handleWebsiteChange}>
             <Input />
-          </AutoComplete>
-        </FormItem>
-        <FormItem
+          </div>
+        </Field>
+        <Field
           {...formItemLayout}
           name={['profile', 'abstract']}
           label={<span className="form-item-label">个人简介</span>}
@@ -139,12 +144,12 @@ const RegistrationForm = (props) => {
             },
           ]}
         >
-          <TextArea
+          <Textarea
             placeholder="Please input your abstract "
             autoSize={{ minRows: 2, maxRows: 6 }}
           />
-        </FormItem>
-        <FormItem
+        </Field>
+        <Field
           {...formItemLayout}
           name={['profile', 'email']}
           label={<span className="form-item-label">邮箱</span>}
@@ -156,8 +161,8 @@ const RegistrationForm = (props) => {
           ]}
         >
           <Input />
-        </FormItem>
-        <FormItem
+        </Field>
+        <Field
           {...formItemLayout}
           name={['profile', 'mobile']}
           label={<span className="form-item-label">手机号</span>}
@@ -167,30 +172,45 @@ const RegistrationForm = (props) => {
         >
           <Input
             addonBefore={
-              <Select style={{ width: 70 }}>
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-              </Select>
+              <NativeSelectRoot>
+                <NativeSelectField placeholder="Select option">
+                  <option value="86">+86</option>
+                  <option value="87">+87</option>
+                </NativeSelectField>
+              </NativeSelectRoot>
             }
             style={{ width: '100%' }}
           />
-        </FormItem>
-        <FormItem
+          <Group attached>
+            <InputAddon>
+              <NativeSelectRoot style={{ width: 70 }}>
+                <NativeSelectField placeholder="Select option">
+                  <option value="86">+86</option>
+                  <option value="87">+87</option>
+                </NativeSelectField>
+              </NativeSelectRoot>
+            </InputAddon>
+            <Input placeholder="Phone number..." />
+          </Group>
+        </Field>
+        <Field
           {...formItemLayout}
           name={['profile', 'sex']}
           label={<span className="form-item-label">性别</span>}
           rules={[{ required: false, message: 'Please input your sex!' }]}
         >
-          <Select>
-            <Option value="男">男</Option>
-            <Option value="女">女</Option>
-          </Select>
-        </FormItem>
-        <FormItem {...tailFormItemLayout}>
+          <NativeSelectRoot>
+            <NativeSelectField placeholder="Select option">
+              <option value="男">男</option>
+              <option value="女">女</option>
+            </NativeSelectField>
+          </NativeSelectRoot>
+        </Field>
+        <Field {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             更新
           </Button>
-        </FormItem>
+        </Field>
       </Form>
     </section>
   )

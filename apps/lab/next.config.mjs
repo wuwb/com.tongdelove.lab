@@ -100,7 +100,8 @@ if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
+  reactStrictMode: process.env.NODE_ENV === 'development' ? false : true,
+  compress: true,
 
   // basePath: '',
   // productionBrowserSourceMaps: process.env.NEXT_BUILD_ENV_SOURCEMAPS === true,
@@ -216,7 +217,8 @@ const config = {
 
     // https://vercel.com/docs/observability/otel-overview
     instrumentationHook: true,
-
+    serverComponentsExternalPackages: ['mongoose', 'pg'],
+    outputFileTracingRoot: path.join(__dirname, '../../')
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     // ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
     //   ? { outputFileTracingRoot: workspaceRoot }

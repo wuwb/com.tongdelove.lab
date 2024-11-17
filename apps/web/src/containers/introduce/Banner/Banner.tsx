@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
+
 import Link from 'next/link'
 
 const MainBanner = styled.div`

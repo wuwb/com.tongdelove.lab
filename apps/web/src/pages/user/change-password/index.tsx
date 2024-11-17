@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Input, Button, notification } from 'antd'
-
-const FormItem = Form.Item
+import { Button } from '@/components/ui/button'
+import { toaster } from '@/components/ui/toaster'
+import { Input } from '@chakra-ui/react'
+import { Field } from '@/components/ui/field'
 
 const formItemLayout = {
   labelCol: {
@@ -38,8 +39,9 @@ class ChangePassword extends React.Component<any, any> {
       if (!err) {
         let { newPassword, confirmPassword, password } = values
         if (newPassword !== confirmPassword) {
-          notification['error']({
-            message: '新密码与确认密码不一致',
+          toaster.create({
+            title: '新密码与确认密码不一致',
+            type: 'error',
           })
           return
         }
@@ -88,31 +90,31 @@ class ChangePassword extends React.Component<any, any> {
   render() {
     return (
       <section className="m-10">
-        <Form onFinish={this.handleSubmit}>
-          <FormItem
+        <div onFinish={this.handleSubmit}>
+          <Field
             {...formItemLayout}
             label={<span className="form-item-label">旧密码</span>}
           >
             <Input />
-          </FormItem>
-          <FormItem
+          </Field>
+          <Field
             {...formItemLayout}
             label={<span className="form-item-label">新密码</span>}
           >
             <Input />
-          </FormItem>
-          <FormItem
+          </Field>
+          <Field
             {...formItemLayout}
             label={<span className="form-item-label">确定新密码</span>}
           >
             <Input />
-          </FormItem>
-          <FormItem {...tailFormItemLayout}>
+          </Field>
+          <Field {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               确定
             </Button>
-          </FormItem>
-        </Form>
+          </Field>
+        </div>
       </section>
     )
   }

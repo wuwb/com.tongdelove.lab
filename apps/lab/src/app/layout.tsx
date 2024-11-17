@@ -1,15 +1,15 @@
 import { MantineProvider } from '@mantine/core'
 import { TRPCReactProvider } from '@/trpc/react'
 // import AppContextProvider from '@/contexts/AppContext'
-import { Layout } from '@/components/Layout'
+// import { Layout } from '@/components/Layout'
 import '@/styles/globals.css'
 import { GoogleAnalytics } from '@/components/metrics/GoogleAnalytics'
 import { MicrosoftClarity } from '@/components/metrics/MicrosoftClarity'
 import { ThemeProvider, ThemeToggle } from '@tongdelove/ui/theme'
-import { CartProvider } from '@/components/cart/cart-context'
+// import { CartProvider } from '@/components/cart/cart-context'
 import { Navbar } from '@/components/Layout/navbar'
 import { WelcomeToast } from '@/components/welcome-toast'
-import { getCart } from '@/lib/shopify'
+// import { getCart } from '@/lib/shopify'
 import { ensureStartsWith } from '@/lib/utils'
 import { cookies } from 'next/headers'
 import { Toaster } from 'sonner'
@@ -29,7 +29,7 @@ const twitterSite = 'https://x.com/wuwb_'
 export const metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'printlake lab'!,
+    default: 'printlake lab',
     template: `%s | ${'printlake lab'}`,
   },
   description: '',
@@ -54,7 +54,7 @@ export default function RootLayout({
 }) {
   const cartId = cookies().get('cartId')?.value
   // Don't await the fetch, pass the Promise to the context provider
-  const cart = getCart(cartId)
+  // const cart = getCart(cartId)
 
   return (
     <html lang="en" suppressHydrationWarning={false}>
@@ -64,12 +64,12 @@ export default function RootLayout({
           <TRPCReactProvider>
             {/* <TRPCReactProvider cookies={cookies().toString()}> */}
             <MantineProvider>
-              <CartProvider cartPromise={cart}>
+              {/* <CartProvider cartPromise={cart}> */}
                 <Navbar />
                 {/* <Layout> */}
                 {children}
                 {/* </Layout> */}
-              </CartProvider>
+              {/* </CartProvider> */}
             </MantineProvider>
           </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
@@ -80,8 +80,8 @@ export default function RootLayout({
         </ThemeProvider>
 
         {/* </AppContextProvider> */}
-        <GoogleAnalytics id={process.env.NEXT_PUBLIC_GA_ID} />
-        <MicrosoftClarity id={process.env.NEXT_PUBLIC_MC_ID} />
+        {/* <GoogleAnalytics id={env.NEXT_PUBLIC_GA_ID} /> */}
+        {/* <MicrosoftClarity id={env.NEXT_PUBLIC_MC_ID} /> */}
       </body>
     </html>
   )

@@ -92,6 +92,24 @@
           url: http://www.wizzer.cn/
         - title: 姜糖水
           url: http://www.cnphp6.com/
+        - title: 惜分飞
+          url: https://www.xifenfei.com/  
+          description: Oracle自由顾问程飞
+        - title: Blog about Database, Cloud Computing and Life
+          url: https://www.orczhou.com/
+          description: 龙子立
+        - title: isnowfy
+          url: http://www.isnowfy.com/
+          description: 89年
+        - title: terence的窝
+          url: https://terence2008.info/
+          description: 浙大
+        - title: 蓝色的华
+          url: https://bluehua.org/
+        - url: https://www.cliveshd.com/
+        - url: https://wiki.eryajf.net/
+        - title: 木及简历
+          url: https://www.mujicv.com/login/
 
 - taxonomy: IOS
   icon: fa fa-solid fa-arrow-left

@@ -1,5 +1,10 @@
 import React from 'react'
-import { Carousel as AntCarousel, Row, Col } from 'antd'
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from '@/components/ui/accordion'
 
 export class Feature6 extends React.PureComponent<any, any> {
   carouselRef: any
@@ -56,7 +61,7 @@ export class Feature6 extends React.PureComponent<any, any> {
         const numberChild = number.children.replace(/[^0-9.-]/g, '')
         const { unit, toText, ...numberProps } = number
         return (
-          <Col {...childProps} key={i.toString()}>
+          <div {...childProps} key={i.toString()}>
             <div
               {...numberProps}
               animation={{
@@ -80,15 +85,15 @@ export class Feature6 extends React.PureComponent<any, any> {
             </div>
             {unit && <span {...unit}>{unit.children}</span>}
             <p {...child}>{child.children}</p>
-          </Col>
+          </div>
         )
       })
       return (
-        <div key={ii.toString()}>
-          <div type="bottom" component={Row} {...itemProps}>
+        <AccordionItem key={ii.toString()} value={ii.toString()}>
+          <div type="bottom" {...itemProps}>
             {childrenItem}
           </div>
-        </div>
+        </AccordionItem>
       )
     })
 
@@ -116,14 +121,14 @@ export class Feature6 extends React.PureComponent<any, any> {
             </div>
           </div>
         </div>
-        <AntCarousel
+        <AccordionRoot
           {...carouselProps}
           key="carousel"
           infinite={false}
           beforeChange={this.onBeforeChange}
         >
           {childrenToRender}
-        </AntCarousel>
+        </AccordionRoot>
       </div>
     )
   }

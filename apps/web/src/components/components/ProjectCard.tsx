@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button, Card, Tag } from 'antd'
+import { Tag } from '@/components/ui/tag'
+import { Card } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import clsx from 'clsx'
 import s from './ProjectCard.module.css'
 

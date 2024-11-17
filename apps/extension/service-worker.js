@@ -10,3 +10,5 @@ chrome.action.onClicked.addListener((tab) => {
     });
   }
 });
+
+chrome.runtime.reload();

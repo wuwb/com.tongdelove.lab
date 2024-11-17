@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Row, Col } from 'antd'
 import { Layout } from '@/components/common'
 import { Hero } from '@/components/ui'
 
@@ -41,8 +40,8 @@ const Page = () => {
           </div>
         </div>
 
-        <Row justify="center">
-          <Col span={16}>
+        <div justify="center">
+          <div span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
                 <Image
@@ -53,25 +52,25 @@ const Page = () => {
                 />
               </div>
             </div>
-          </Col>
-          <Col span={8}>
+          </div>
+          <div span={8}>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-        <Row justify="center">
-          <Col span={8}>
+        <div justify="center">
+          <div span={8}>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
-          </Col>
-          <Col span={16}>
+          </div>
+          <div span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
                 <Image
@@ -82,11 +81,11 @@ const Page = () => {
                 />
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-        <Row justify="center">
-          <Col span={16}>
+        <div justify="center">
+          <div span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
                 <Image
@@ -97,25 +96,25 @@ const Page = () => {
                 />
               </div>
             </div>
-          </Col>
-          <Col span={8}>
+          </div>
+          <div span={8}>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-        <Row justify="center">
-          <Col span={8}>
+        <div justify="center">
+          <div span={8}>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
-          </Col>
-          <Col span={16}>
+          </div>
+          <div span={16}>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
                 <Image
@@ -126,8 +125,8 @@ const Page = () => {
                 />
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
         <Hero
           headline="准备好升级你的供应链了吗？"

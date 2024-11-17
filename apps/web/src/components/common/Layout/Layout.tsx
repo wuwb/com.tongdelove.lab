@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Header } from '@/components/common/Header'
 import { Footer } from '@/components/common/Footer'

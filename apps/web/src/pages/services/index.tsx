@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { List, Typography } from 'antd'
+import { List } from '@chakra-ui/react'
 import { Layout } from '@/components/common'
 
 const Page = () => {
@@ -42,11 +42,11 @@ const Page = () => {
           <h3>联系我们的团队获取更多的服务</h3>
           <Link href="/">开始→</Link>
         </div>
-        <List
-          className="list"
-          dataSource={data}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
-        />
+        <List.Root>
+          {data.map((item) => {
+            return <List.Item key={item}>{item}</List.Item>
+          })}
+        </List.Root>
       </div>
     </div>
   )

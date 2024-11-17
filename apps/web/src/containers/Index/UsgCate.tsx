@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Row, Col } from 'antd'
 
 export const UsgCate = () => {
   return (
@@ -12,8 +11,8 @@ export const UsgCate = () => {
         <div className="col-xl-2">
           <div className="sub-section">自热包装盒</div>
         </div>
-        <Row gutter={16} className="justify-center">
-          <Col className="product-wrap">
+        <div gutter={16} className="justify-center">
+          <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">
                 <Image
@@ -35,8 +34,8 @@ export const UsgCate = () => {
                 </Link>
               </h4>
             </div>
-          </Col>
-          <Col className="product-wrap">
+          </div>
+          <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">
                 <Image
@@ -58,8 +57,8 @@ export const UsgCate = () => {
                 </Link>
               </h4>
             </div>
-          </Col>
-          <Col className="product-wrap">
+          </div>
+          <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">
                 <Image
@@ -81,8 +80,8 @@ export const UsgCate = () => {
                 </Link>
               </h4>
             </div>
-          </Col>
-          <Col className="product-wrap">
+          </div>
+          <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">
                 <Image
@@ -104,8 +103,8 @@ export const UsgCate = () => {
                 </Link>
               </h4>
             </div>
-          </Col>
-          <Col className="product-wrap">
+          </div>
+          <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">
                 <Image
@@ -127,8 +126,8 @@ export const UsgCate = () => {
                 </Link>
               </h4>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </div>
   )

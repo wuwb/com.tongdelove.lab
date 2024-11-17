@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Row, Col } from 'antd'
 
 const Page = () => {
   return (
@@ -208,11 +207,11 @@ const Page = () => {
             <h3 className="product-title">包装辅料</h3>
           </div>
 
-          <Row>
-            <Col span={4} lg={4} className="col-xl-2">
+          <div>
+            <div span={4} lg={4} className="col-xl-2">
               <div className="sub-section"></div>
-            </Col>
-            <Col span={20} lg={4} className="col-xl-10">
+            </div>
+            <div span={20} lg={4} className="col-xl-10">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div className="product-wrap">
                   <div className="product">
@@ -539,19 +538,19 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
-        <Row>
-          <Col>
+        <div>
+          <div>
             <div className="help-block clearfix">
               <div className="content">
                 <h3>没找到你所需要的产品？</h3>
                 <div className="btn btn-primary">寻求报价</div>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </>
   )

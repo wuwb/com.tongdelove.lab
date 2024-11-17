@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Col, Row } from 'antd'
 import { Layout } from '@/components/common'
 import { Marquee } from '@/components/ui'
 import { Banner, Belt } from '@/containers/introduce'
@@ -49,7 +48,7 @@ const Page = () => {
       name: 'Primary',
       image: '/assets/introduce/show-05-primary.jpg',
       industry: "Kid's clothing",
-      description: 'Rotogravure print with seven spot&nbsp;colors',
+      description: 'Rotogravure print with seven spot&nbsp;divors',
     },
     {
       name: 'Howtoons',
@@ -103,7 +102,7 @@ const Page = () => {
       name: 'Cotton Bureau',
       image: '/assets/introduce/show-14-cottonbureau.jpg',
       industry: 'T-shirts',
-      description: 'Colorful mailers that brighten&nbsp;mailboxes',
+      description: 'divorful mailers that brighten&nbsp;mailboxes',
     },
     {
       name: 'MeUndies',
@@ -154,8 +153,8 @@ const Page = () => {
       <div className="container-fluid">
         <Banner />
 
-        <Row>
-          <Col>
+        <div>
+          <div>
             <div className="main-wrap ps4">
               <div className="pt1 customers commodity">
                 <div className="conveyor-belt-container">
@@ -177,19 +176,19 @@ const Page = () => {
                   </h3>
 
                   <div className="features__items clearfix">
-                    <div className="column">
+                    <div className="divumn">
                       <h4 className="strong">Source</h4>
                       <p>Request quotes for new&nbsp;items you&nbsp;need</p>
                     </div>
-                    <div className="column">
+                    <div className="divumn">
                       <h4 className="strong">Design</h4>
                       <p>Manage your dielines and&nbsp;artwork files</p>
                     </div>
-                    <div className="column">
+                    <div className="divumn">
                       <h4 className="strong">Purchase</h4>
                       <p>Pay online and re‑order&nbsp;easily</p>
                     </div>
-                    <div className="column">
+                    <div className="divumn">
                       <h4 className="strong">Track</h4>
                       <p>Check in on the progress of your&nbsp;deliveries</p>
                     </div>
@@ -214,8 +213,8 @@ const Page = () => {
                   <h2 className="c cc ps4" style={{ paddingBottom: '4rem' }}>
                     为了降低您的包装的生产成本，我们做了非常多的努力。
                   </h2>
-                  <div className="row row-extra-padding row-top">
-                    <div className="col">
+                  <div className="div div-extra-padding div-top">
+                    <div className="div">
                       <div className="">
                         <h4 className="strong">
                           无论您是每月运送数千或数百万个订单，您的购买力都会因加入海维包装而放大。
@@ -225,7 +224,7 @@ const Page = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="col">
+                    <div className="div">
                       <div className="">
                         <h4 className="strong">
                           您的业务正在发展，您的供应链也应如此。
@@ -246,8 +245,8 @@ const Page = () => {
 
                   <a href="/case-studies/parachute">
                     <div className="bg-gray-light mb-8 mt-2">
-                      <div className="row row-no-padding flex justify-center">
-                        <div className="col-6 mr-2">
+                      <div className="div div-no-padding flex justify-center">
+                        <div className="div-6 mr-2">
                           <Image
                             alt=""
                             width={300}
@@ -255,7 +254,7 @@ const Page = () => {
                             src="/assets/introduce/parchute-unboxing.jpg"
                           />
                         </div>
-                        <div className="col-4">
+                        <div className="div-4">
                           <div className="ppa ssl ssr">
                             <h4 className="strong">Parachute Home</h4>
                             <h4>
@@ -271,8 +270,8 @@ const Page = () => {
 
                   <a href="/case-studies/meundies">
                     <div className="bg mt-2">
-                      <div className="row row-no-padding flex justify-center">
-                        <div className="col-6 mr-2">
+                      <div className="div div-no-padding flex justify-center">
+                        <div className="div-6 mr-2">
                           <Image
                             alt=""
                             width={300}
@@ -280,7 +279,7 @@ const Page = () => {
                             src="/assets/introduce/meundie-pink-spring.jpg"
                           />
                         </div>
-                        <div className="col-4">
+                        <div className="div-4">
                           <div className="ppa ssl ssr">
                             <h4 className="strong">MeUndies</h4>
                             <h4>
@@ -314,40 +313,40 @@ const Page = () => {
               </div>
 
               <div className="services">
-                <Col>
-                  <Row>互联网+包装</Row>
-                  <Row>融入云计算、大数据、物联网技术</Row>
-                </Col>
-                <Col>
-                  <Row>持续降低成本</Row>
-                  <Row>简化生产流程、工艺，优化包装方案</Row>
-                </Col>
-                <Col>
-                  <Row>多品类管理</Row>
-                  <Row>产品组合、库存管理、新产品开发</Row>
-                </Col>
-                <Col>
-                  <Row>设计及咨询</Row>
-                  <Row>针对性专业设计，专业在线咨询</Row>
-                </Col>
+                <div>
+                  <div>互联网+包装</div>
+                  <div>融入云计算、大数据、物联网技术</div>
+                </div>
+                <div>
+                  <div>持续降低成本</div>
+                  <div>简化生产流程、工艺，优化包装方案</div>
+                </div>
+                <div>
+                  <div>多品类管理</div>
+                  <div>产品组合、库存管理、新产品开发</div>
+                </div>
+                <div>
+                  <div>设计及咨询</div>
+                  <div>针对性专业设计，专业在线咨询</div>
+                </div>
               </div>
 
               <div>
                 <div>行业解决方案</div>
-                <Row>
-                  <Col>医疗</Col>
-                  <Col>消费电子</Col>
-                  <Col>电商</Col>
-                </Row>
-                <Row>
-                  <Col>汽车</Col>
-                  <Col>通讯</Col>
-                  <Col>其他</Col>
-                </Row>
+                <div>
+                  <div>医疗</div>
+                  <div>消费电子</div>
+                  <div>电商</div>
+                </div>
+                <div>
+                  <div>汽车</div>
+                  <div>通讯</div>
+                  <div>其他</div>
+                </div>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </>
   )

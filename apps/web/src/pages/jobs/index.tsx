@@ -1,7 +1,5 @@
 import { TinyNav } from '@/components/TinyNav'
-import { Row, Col } from 'antd'
 import { Layout } from '@/components/common'
-
 
 const Home = () => (
   <>
@@ -26,7 +24,7 @@ const Home = () => (
       ]}
     />
     <div>
-      <Row>
+      <div>
         <div className="col-12 mt30">
           <div className="p-[120px]">
             <h1 className="text-center">帮助重塑制造业。</h1>
@@ -36,64 +34,64 @@ const Home = () => (
             </div>
           </div>
         </div>
-      </Row>
-      <Row>
-        <Col>
+      </div>
+      <div>
+        <div>
           <div className="mb-[50px]">
-            <h3 className="job-category my-7 pb-5 border-b">技术</h3>
+            <h3 className="job-category my-7 border-b pb-5">技术</h3>
             <div>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">高级UX设计师</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">全栈开发工程师</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
             </div>
           </div>
 
           <div className="mb-[50px]">
-            <h3 className="job-category my-7 pb-5 border-b">印前</h3>
+            <h3 className="job-category my-7 border-b pb-5">印前</h3>
             <div>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">包装设计师</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
             </div>
           </div>
 
           <div className="mb-[50px]">
-            <h3 className="job-category my-7 pb-5 border-b">销售</h3>
+            <h3 className="job-category my-7 border-b pb-5">销售</h3>
             <div>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">业务经理</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">企业销售总监</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
               <a href="">
-                <div className="overflow-hidden flex justify-between items-center">
+                <div className="flex items-center justify-between overflow-hidden">
                   <p className="text-[18px]">销售负责人</p>
-                  <span className="text-[#999] text-[14px]">浙江杭州</span>
+                  <span className="text-[14px] text-[#999]">浙江杭州</span>
                 </div>
               </a>
             </div>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   </>
 )

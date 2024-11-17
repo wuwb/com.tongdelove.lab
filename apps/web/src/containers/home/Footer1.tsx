@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 import { isImg } from '@/utils/utils'
 
@@ -13,7 +12,7 @@ export class Footer extends React.Component<any, any> {
     data.map((item, i) => {
       const { title, childWrapper, ...itemProps } = item
       return (
-        <Col key={i.toString()} {...itemProps} title={null} content={null}>
+        <div key={i.toString()} {...itemProps} title={null} content={null}>
           <h2 {...title}>
             {typeof title.children === 'string' &&
             title.children.match(isImg) ? (
@@ -25,7 +24,7 @@ export class Footer extends React.Component<any, any> {
           <div {...childWrapper}>
             {childWrapper.children.map(getChildrenToRender)}
           </div>
-        </Col>
+        </div>
       )
     })
 

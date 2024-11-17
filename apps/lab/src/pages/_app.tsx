@@ -1,22 +1,23 @@
-import { Analytics } from '@vercel/analytics/react'
-import { type AppType } from 'next/app'
+import { AppType, AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import { trpc } from '@/utils/trpc'
 import { Layout } from '@/components/Layout'
-import React from 'react'
+import React, { useEffect, ReactElement } from 'react'
 import nextI18NextConfig from '../../next-i18next.config'
-import { AppProviders } from '@/providers/AppProviders'
-import NextNProgress from 'nextjs-progressbar'
+import { AppProviders } from '@/contexts/AppProviders'
+import { FeatureProviders } from '@/contexts/FeatureProviders'
 import { type Session } from 'next-auth'
 import Head from 'next/head'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ViewTransitions } from 'next-view-transitions'
 import { DefaultSeo } from 'next-seo'
 import { config } from '../../next-seo.config'
 import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
+import { SessionProvider } from 'next-auth/react'
+import { NextPage } from 'next';
+import { useTranslation } from '@/i18n'
+
 import '@/styles/globals.css'
-import { SSRHidden } from '@/components/Atom/SSRHidden'
 /* @import "@mantine/core/styles.layer.css"; */
 import '@mantine/core/styles.css'
 /* Mantine foundational components */
@@ -37,7 +38,7 @@ import '@mantine/core/styles/Button.css'
 import '@mantine/dates/styles.css'
 import '@mantine/notifications/styles.css'
 import '@mantine/carousel/styles.css'
-import { Notifications } from '@mantine/notifications'
+
 
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect (and its warnings) when not running in a browser
@@ -47,38 +48,55 @@ if (typeof window === 'undefined') {
 /**
  * @link https://nextjs.org/docs/advanced-features/custom-app
  */
+
+type NextPageWithLayout = NextPage & {
+  setLayout?: (page: ReactElement) => JSX.Element;
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+}
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
-}) => {
+}: AppPropsWithLayout) => {
+
+  const { t } = useTranslation();
+  const setLayout = Component.setLayout ?? ((page) => <>{page}</>);
+
+  // Forbid touch scale
+  useEffect(() => {
+    document.addEventListener(
+      'wheel',
+      function (e) {
+        if (e.ctrlKey && Math.abs(e.deltaY) !== 0) {
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+  }, []);
+
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <DefaultSeo {...config} />
-      <AppProviders session={session}>
-        <ColorSchemeScript
-          nonce="8IBTHwOdqNKAWeKl7plt8g=="
-          defaultColorScheme="auto"
-        />
-        <MantineProvider theme={theme} defaultColorScheme="auto">
-          <Notifications />
-          <NextNProgress
-            color="#fff"
-            startPosition={0.3}
-            stopDelayMs={200}
-            height={3}
-            showOnShallow={false}
-          />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-          <Analytics />
-          <SSRHidden>
-            <SpeedInsights />
-          </SSRHidden>
-        </MantineProvider>
+      <AppProviders>
+        <SessionProvider
+          session={session}
+          // refetchInterval={0}
+          // refetchOnWindowFocus={false}
+        >
+          <FeatureProviders>
+            <Layout>
+              {setLayout(<Component {...pageProps} />)}
+            </Layout>
+          </FeatureProviders>
+        </SessionProvider>
       </AppProviders>
     </>
   )

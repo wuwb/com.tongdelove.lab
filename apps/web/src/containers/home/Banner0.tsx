@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
 import { AiOutlineDown } from 'react-icons/ai'
 import { isImg } from '@/utils/utils'
 

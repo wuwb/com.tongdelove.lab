@@ -1,8 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Button, Tabs, List, Collapse, Radio } from 'antd'
+import { Radio, RadioGroup } from '@/components/ui/radio'
+import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/common/Layout'
+import { Tabs, List } from '@chakra-ui/react'
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from '@/components/ui/accordion'
 
-const { TabPane } = Tabs
 const { Panel } = Collapse
 
 const Home = () => {
@@ -230,20 +237,26 @@ const Home = () => {
     <div className="p-10">
       <div className="grid">
         <div className="">
-          <Tabs defaultActiveKey="1" tabPosition="left">
-            <TabPane tab="大小" key="0">
-              <Collapse defaultActiveKey={['1']} onChange={callback}>
-                <Panel header="常用长宽高" key="1">
-                  <List
-                    bordered
-                    dataSource={data}
-                    renderItem={(item) => <List.Item>{item}</List.Item>}
-                  />
+          <Tabs.Root defaultValue="1">
+            <Tabs.List>
+              <Tabs.Trigger value="大小">大小</Tabs.Trigger>
+              <Tabs.Trigger value="材质">材质</Tabs.Trigger>
+              <Tabs.Trigger value="设计">设计</Tabs.Trigger>
+              <Tabs.Trigger value="数量">数量</Tabs.Trigger>
+            </Tabs.List>
+            <Tabs.Content value="大小" key="0">
+              <AccordionRoot defaultActiveKey={['1']} onChange={callback}>
+                <AccordionItem header="常用长宽高" key="1">
+                  <List.Root>
+                    {data.map(({ item }) => {
+                      return <List.Item key={item}>{item}</List.Item>
+                    })}
+                  </List.Root>
                   <div>尺寸的单位是厘米</div>
                   <div>不清楚自己需要多大尺寸？可以联系我们。</div>
-                </Panel>
-                <Panel header="自定义长宽高" key="2">
-                  <List bordered>
+                </AccordionItem>
+                <AccordionItem header="自定义长宽高" key="2">
+                  <List.Root>
                     <List.Item>
                       <span>长</span>
                       <span>
@@ -262,12 +275,12 @@ const Home = () => {
                         <input type="text" value={z} onChange={changeZ} />
                       </span>
                     </List.Item>
-                  </List>
-                </Panel>
-              </Collapse>
-            </TabPane>
-            <TabPane tab="材质" key="1">
-              <Radio.Group onChange={onChange} value={material}>
+                  </List.Root>
+                </AccordionItem>
+              </AccordionRoot>
+            </Tabs.Content>
+            <Tabs.Content value="材质" key="1">
+              <RadioGroup onChange={onChange} value={material}>
                 <Radio style={radioStyle} value={1}>
                   传统白板
                 </Radio>
@@ -278,9 +291,9 @@ const Home = () => {
                   牛皮纸
                   <div>自然棕色卡纸上油</div>
                 </Radio>
-              </Radio.Group>
-            </TabPane>
-            <TabPane tab="设计" key="2">
+              </RadioGroup>
+            </Tabs.Content>
+            <Tabs.Content value="设计" key="2">
               <Collapse defaultActiveKey={['1']} onChange={callback}>
                 <Panel header="在线设计" key="1">
                   <div className="{Style['selectors']}">
@@ -334,8 +347,8 @@ const Home = () => {
                   <div>匹配包装设计专家</div>
                 </Panel>
               </Collapse>
-            </TabPane>
-            <TabPane tab="数量" key="3">
+            </Tabs.Content>
+            <Tabs.Content value="数量" key="3">
               <div>
                 <List bordered>
                   <List.Item>
@@ -366,8 +379,8 @@ const Home = () => {
                   </List.Item>
                 </List>
               </div>
-            </TabPane>
-          </Tabs>
+            </Tabs.Content>
+          </Tabs.Root>
         </div>
         <div>
           <canvas

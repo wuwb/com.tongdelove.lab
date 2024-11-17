@@ -1,6 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
-import { Space, Avatar, Popover } from 'antd'
+import {
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+
+import { Avatar } from '@/components/ui/avatar'
 import { Logo } from '../../ui'
 import { TopMenu } from '../TopMenu'
 import { TopMenuDocker } from '../TopMenuDocker'
@@ -59,26 +68,28 @@ export const Header = (props) => {
 
             {children}
           </div>
-          <div className="flex items-center">
-            <Space direction="horizontal" align="center">
-              {!data && (
-                <>
-                  <Link href="/user/login">登录</Link>
-                  <Link href="/user/register">注册</Link>
-                </>
-              )}
-              {data && (
-                <Popover
-                  placement="bottomRight"
-                  title={text}
-                  content={content}
-                  trigger="click"
-                >
+          <div className="flex items-center gap-2.5">
+            {!data && (
+              <>
+                <Link href="/user/login">登录</Link>
+                <Link href="/user/register">注册</Link>
+              </>
+            )}
+            {data && (
+              <PopoverRoot>
+                <PopoverTrigger asChild>
                   <Avatar src={data.avatarUrl} />
-                </Popover>
-              )}
-              <TopMenuDocker />
-            </Space>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverBody>
+                    <PopoverTitle fontWeight="medium">{text}</PopoverTitle>
+                    {content}
+                  </PopoverBody>
+                </PopoverContent>
+              </PopoverRoot>
+            )}
+            <TopMenuDocker />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Card } from '@chakra-ui/react'
 import { PostPreview } from '../components/post-preview'
 
 export const MoreStories = ({ posts }) => {

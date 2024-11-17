@@ -23,7 +23,7 @@ export const TinyNav = (props) => {
   const { navs } = props
 
   return (
-    <StyledTinyNav className="text-center border-b border-[#e6e5e3]">
+    <StyledTinyNav className="border-b border-[#e6e5e3] text-center">
       {navs.map((item) => (
         <Link href={item.href} key={item.name}>
           {item.name}

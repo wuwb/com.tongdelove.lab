@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Row, Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 
 export class Content3 extends React.PureComponent<any, any> {
@@ -26,7 +25,6 @@ export class Content3 extends React.PureComponent<any, any> {
       clearFloatNum = clearFloatNum > 24 ? 0 : clearFloatNum
       return (
         <div
-          component={Col}
           animation={liAnim}
           key={item.name}
           {...item}
@@ -78,9 +76,9 @@ export class Content3 extends React.PureComponent<any, any> {
           </div>
           <div {...dataSource.div}>
             <div key="u">
-              <Row key="row" {...dataSource.block}>
+              <div key="row" {...dataSource.block}>
                 {children}
-              </Row>
+              </div>
             </div>
           </div>
         </div>

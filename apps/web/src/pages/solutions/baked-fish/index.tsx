@@ -1,4 +1,6 @@
-import { Button, message, Space } from 'antd'
+import { Button } from '@/components/ui/button'
+import { toaster } from '@/components/ui/toaster'
+
 import {
   AiOutlineExclamationCircle,
   AiOutlineCheckCircle,
@@ -7,25 +9,25 @@ import { Layout } from '@/components/common'
 
 const SolutionsBackedFishPage = () => {
   const info = () => {
-    message.info(
-      <>
-        请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span>{' '}
-        详细沟通。
-      </>,
-      30
-    )
+    toaster.create({
+      description: (
+        <>
+          请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span>{' '}
+          详细沟通。
+        </>
+      ),
+      type: 'info',
+    })
   }
 
   return (
     <div className="solutions-backed-fish">
       <div className="">
         <h1 className="pt-20 text-center">烤鱼自热包装</h1>
-        <div className="flex justify-center">
-          <Space className="pb-20 text-center" direction="vertical">
-            <span>3斤烤鱼自热餐盒</span>
-            <span>外盒尺寸：41*27*11</span>
-            <span>内盒尺寸：36*25*5</span>
-          </Space>
+        <div className="flex justify-center gap-2.5">
+          <span>3斤烤鱼自热餐盒</span>
+          <span>外盒尺寸：41*27*11</span>
+          <span>内盒尺寸：36*25*5</span>
         </div>
         <div className="flex scale-90 justify-center gap-2 md:scale-100 lg:gap-10">
           <div className="w-30 text-right">

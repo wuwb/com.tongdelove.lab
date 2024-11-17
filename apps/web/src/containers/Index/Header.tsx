@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Button, Space } from 'antd'
+import { Button } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 const popoverContent = () => (
@@ -79,7 +79,7 @@ export const Menu = ({ toggleDarkMode }: any) => {
             >
                 <Icons.Sun size={16} />
             </ThemeIcon> */}
-            <Space>
+            <div>
               <Link href="/login">
                 <Button type="link">登录</Button>
               </Link>
@@ -89,7 +89,7 @@ export const Menu = ({ toggleDarkMode }: any) => {
               {/* <Popover title="User Settings" content={popoverContent} placement="bottomEnd" portalClassName="popover">
                 <Avatar text="链接" />
               </Popover> */}
-            </Space>
+            </div>
           </Sidebar>
         </HeaderContent>
       </Header>

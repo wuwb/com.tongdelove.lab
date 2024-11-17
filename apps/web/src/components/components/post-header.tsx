@@ -1,7 +1,7 @@
 // import Avatar from '../components/avatar';
 import { DateFormater } from '../components/date-formater'
 import { CoverImage } from '../components/cover-image'
-import { Card } from 'antd'
+import { Card } from '@chakra-ui/react'
 import { Categories } from './categories'
 
 export const PostHeader = ({ title, coverImage, date, author, categories }) => {

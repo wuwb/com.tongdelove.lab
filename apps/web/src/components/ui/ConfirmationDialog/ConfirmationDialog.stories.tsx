@@ -10,7 +10,6 @@ const Template: Story<ConfirmationDialogProps> = (props) => (
 
 export const Danger = Template.bind({})
 
-
 const meta: Meta<typeof ConfirmationDialog> = {
   title: 'Example/Page',
   component: ConfirmationDialog,

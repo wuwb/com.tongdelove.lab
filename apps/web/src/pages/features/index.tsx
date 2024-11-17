@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Row, Col, Button } from 'antd'
+import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/common'
 
 const Home = () => {
@@ -47,11 +47,11 @@ const Home = () => {
             </div>
           </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={13}>
+          <div justify="center" className="py-10">
+            <div md={13}>
               <Image layout="fill" src="/assets/features/quote.png" alt="" />
-            </Col>
-            <Col md={11}>
+            </div>
+            <div md={11}>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">直接从工厂获得最佳价格。</h3>
                 <p className="mt-5">
@@ -62,11 +62,11 @@ const Home = () => {
                   有关采购的更多信息→
                 </Link>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={11}>
+          <div justify="center" className="py-10">
+            <div md={11}>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">简化您的下单工作流程。</h3>
                 <p className="mt-5">
@@ -76,17 +76,17 @@ const Home = () => {
                   有关购买的更多信息→
                 </Link>
               </div>
-            </Col>
-            <Col md={13}>
+            </div>
+            <div md={13}>
               <Image alt="" layout="fill" src="/assets/features/order.png" />
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={13}>
+          <div justify="center" className="py-10">
+            <div md={13}>
               <Image alt="" layout="fill" src="/assets/features/proof.png" />
-            </Col>
-            <Col md={11}>
+            </div>
+            <div md={11}>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">在云端存储你的所有数据。</h3>
                 <p className="mt-5">
@@ -97,11 +97,11 @@ const Home = () => {
                   有关打样的更多信息→
                 </Link>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={11}>
+          <div justify="center" className="py-10">
+            <div md={11}>
               <div className="p-20">
                 <h3 className="text-lg font-bold">实时更新每个项目。</h3>
                 <p className="mt-5">
@@ -111,21 +111,21 @@ const Home = () => {
                   有关生产的更多信息→
                 </Link>
               </div>
-            </Col>
-            <Col md={13}>
+            </div>
+            <div md={13}>
               <Image
                 alt=""
                 layout="fill"
                 src="/assets/features/production.png"
               />
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={13}>
+          <div justify="center" className="py-10">
+            <div md={13}>
               <Image alt="" layout="fill" src="/assets/features/analyze.png" />
-            </Col>
-            <Col md={11}>
+            </div>
+            <div md={11}>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">利用数据做出更好的决策。</h3>
                 <p className="mt-5">
@@ -136,11 +136,11 @@ const Home = () => {
                   有关分析的更多信息→
                 </Link>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
-          <Row justify="center" className="py-10">
-            <Col md={11}>
+          <div justify="center" className="py-10">
+            <div md={11}>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">每个SKU的鸟瞰图。</h3>
                 <p className="mt-5">
@@ -151,15 +151,15 @@ const Home = () => {
                   有关数据管理的更多信息→
                 </Link>
               </div>
-            </Col>
-            <Col md={13}>
+            </div>
+            <div md={13}>
               <Image
                 alt=""
                 layout="fill"
                 src="/assets/features/manage-items.png"
               />
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </div>
       <div className="p-36 text-center">

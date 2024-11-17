@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Card, Avatar } from 'antd'
+import { Card } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
 import { DateFormater } from '../components/date-formater'
 import { CoverImage } from './cover-image'
 import Link from 'next/link'
@@ -15,7 +16,7 @@ export const PostPreview = ({
   return (
     <div>
       <div className="mb-5">
-        <Card style={{ width: '500px' }} title="运行此命令以下载库。">
+        <Card.Root style={{ width: '500px' }} title="运行此命令以下载库。">
           {/* <CoverImage slug={slug} title={title} src={coverImage} /> */}
           <Image
             width={435}
@@ -23,7 +24,7 @@ export const PostPreview = ({
             src="https://zeit.co/docs/static/docs/git-integrations/github-comment.png"
             alt=""
           />
-        </Card>
+        </Card.Root>
       </div>
       <h3 className="mb-3 text-3xl leading-snug">
         <Link

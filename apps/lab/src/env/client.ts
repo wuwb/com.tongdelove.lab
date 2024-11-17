@@ -27,6 +27,11 @@ export const env = createEnv({
     NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string().optional(),
     NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT: z.string().optional(),
     NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN: z.string().optional(),
+
+    NEXT_PUBLIC_WORDPRESS_API_URL: z.string().optional(),
+
+    NEXT_PUBLIC_GA_ID: z.string().optional(),
+    NEXT_PUBLIC_MC_ID: z.string().optional(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY:
@@ -37,6 +42,12 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT,
     NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN:
       process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN,
+    NEXT_PUBLIC_WORDPRESS_API_URL:
+      process.env.NEXT_PUBLIC_WORDPRESS_API_URL,
+    NEXT_PUBLIC_GA_ID:
+      process.env.NEXT_PUBLIC_GA_ID,
+    NEXT_PUBLIC_MC_ID:
+      process.env.NEXT_PUBLIC_MC_ID,
   },
   emptyStringAsUndefined: true,
 })

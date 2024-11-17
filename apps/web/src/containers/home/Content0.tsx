@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 import { getChildrenToRender } from '@/utils/utils'
 
 export class Content extends React.PureComponent<any, any> {
@@ -12,6 +11,7 @@ export class Content extends React.PureComponent<any, any> {
       OverPack: overPackData,
       childWrapper,
     } = dataSource
+
     return (
       <div {...props} {...wrapper}>
         <div {...page}>
@@ -19,18 +19,18 @@ export class Content extends React.PureComponent<any, any> {
             {titleWrapper.children.map(getChildrenToRender)}
           </div>
           <div {...overPackData}>
-            <Row>
+            <div>
               {childWrapper.children.map((block, i) => {
                 const { children: item, ...blockProps } = block
                 return (
-                  <Col key={i.toString()} {...blockProps}>
+                  <div key={i.toString()} {...blockProps}>
                     <div {...item}>
                       {item.children.map(getChildrenToRender)}
                     </div>
-                  </Col>
+                  </div>
                 )
               })}
-            </Row>
+            </div>
           </div>
         </div>
       </div>
