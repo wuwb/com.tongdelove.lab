@@ -8,13 +8,14 @@ import {
   PopoverTitle,
   PopoverTrigger,
 } from '@/components/ui/popover'
-
 import { Avatar } from '@/components/ui/avatar'
 import { Logo } from '../../ui'
 import { TopMenu } from '../TopMenu'
 import { TopMenuDocker } from '../TopMenuDocker'
 import s from './Header.module.css'
 import { useAuth } from '@/contexts/auth'
+import { ColorModeButton } from '@/components/ui/color-mode'
+import clsx from 'clsx'
 // import { useTranslation, Trans } from 'next-i18next';
 // import LocaleSwitch from '@/components/common/Header';
 
@@ -59,7 +60,7 @@ export const Header = (props) => {
   return (
     <div>
       <div className={s.headerPlaceholder}></div>
-      <div id="header" className={s.styledHeader}>
+      <div id="header" className={clsx(s.styledHeader, 'bg-white')}>
         <div className={s.styledHeaderContent}>
           <div className="flex">
             <Logo className="ml-4 mr-2 flex items-center" />
@@ -69,6 +70,7 @@ export const Header = (props) => {
             {children}
           </div>
           <div className="flex items-center gap-2.5">
+            <ColorModeButton />
             {!data && (
               <>
                 <Link href="/user/login">登录</Link>

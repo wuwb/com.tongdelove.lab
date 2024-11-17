@@ -1,4 +1,4 @@
-import type { UnPromisify } from '@tongdelove/ts-utils'
+import type { UnPromisify } from '@tongdelove/utils'
 import type { SearchPoemsQuery } from './SearchPoemsQuery'
 
 export interface SearchPoemsParams {

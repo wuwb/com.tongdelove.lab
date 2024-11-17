@@ -218,7 +218,7 @@ const config = {
     // https://vercel.com/docs/observability/otel-overview
     instrumentationHook: true,
     serverComponentsExternalPackages: ['mongoose', 'pg'],
-    outputFileTracingRoot: path.join(__dirname, '../../')
+    // outputFileTracingRoot: path.join(__dirname, '../../'),
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     // ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
     //   ? { outputFileTracingRoot: workspaceRoot }

@@ -4,6 +4,8 @@
 @tailwind variants;
 
 :root {
+  color-scheme: light dark;
+
   --primary: #ffffff;
   --primary-2: #f1f3f5;
   --secondary: #000000;
@@ -47,7 +49,7 @@
   --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
     'Helvetica', sans-serif;
 
-  color-scheme: light dark;
+
   --font-stack: 'Messina Sans Lumi', -apple-system, BlinkMacSystemFont, Roboto,
     'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -190,7 +192,9 @@
     0 7px 14px 0 rgba(50, 50, 50, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.02);
   --btn-shadow: 0 2px 2px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.02);
   --btn-shadow-hover: 0 3px 4px rgba(0, 0, 0, 0.06),
-    0 1px 1px rgba(0, 0, 0, 0.02) /* 参考 */ --aa-search-input-height: 44px;
+    0 1px 1px rgba(0, 0, 0, 0.02)
+    /* 参考 */
+    --aa-search-input-height: 44px;
   --aa-input-icon-size: 20px;
   --aa-base-unit: 16;
   --aa-spacing-factor: 1;
@@ -291,6 +295,7 @@ body {
   min-height: 100%;
   margin: 0;
 }
+
 /**
  * Chrome has a bug with transitions on load since 2012!
  *
@@ -303,6 +308,7 @@ body {
 body.loading * {
   transition: none !important;
 }
+
 .fit {
   min-height: calc(100vh - 88px);
 }
@@ -344,6 +350,7 @@ a {
   from {
     transform: scale(1.01);
   }
+
   to {
     transform: scale(0.99);
   }
@@ -353,27 +360,36 @@ a {
   h1 {
     @apply text-2xl;
   }
+
   h2 {
     @apply text-xl;
   }
 }
+
 @layer components {
   .wwb-btn-primary {
     @apply rounded-lg px-4 py-2 font-semibold text-white shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75;
   }
 }
+
 @layer utilities {
+
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   .filter-none {
     filter: none;
   }
+
   .filter-grayscale {
     filter: grayscale(100%);
   }
@@ -387,6 +403,7 @@ a {
   padding: 0;
   list-style: none;
 }
+
 .sub-nav ul li {
   float: left;
   font-size: 16px;
@@ -403,23 +420,28 @@ a {
   border-bottom-right-radius: 0px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
-.row-banner .dropdown-menu > li > a:hover {
+
+.row-banner .dropdown-menu>li>a:hover {
   background-image: none;
   color: white;
   background-color: rgb(0, 129, 194);
   background-color: rgba(0, 129, 194, 0.5);
 }
-.row-banner .dropdown-menu > li > a.maintainHover {
+
+.row-banner .dropdown-menu>li>a.maintainHover {
   color: white;
   background-color: #0081c2;
 }
+
 .process-step {
   text-align: center;
 }
+
 .product-block {
   width: 1370px;
   margin: 0 auto;
 }
+
 .product-head .product-title {
   font-size: 22px;
   margin-top: 40px;
@@ -427,6 +449,7 @@ a {
   margin-bottom: 20px;
   border-bottom: 1px solid #eee;
 }
+
 .sub-section {
   font-size: 16px;
 }

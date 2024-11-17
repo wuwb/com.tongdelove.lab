@@ -28,7 +28,7 @@ const MyDocument = () => {
   return (
     <Html lang="zh-cn" suppressHydrationWarning>
       <Head>
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
                 (function(){
@@ -40,7 +40,7 @@ const MyDocument = () => {
                 })()
               `,
           }}
-        />
+        /> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -64,10 +64,10 @@ const MyDocument = () => {
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
-       
+
         <Main />
         <NextScript />
-        <GoogleAnalytics  gaId="G-26TZGP2HCH" />
+        <GoogleAnalytics gaId="G-26TZGP2HCH" />
       </body>
     </Html>
   )

@@ -1,0 +1,514 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body {
+  @apply bg-zinc-800;
+}
+
+@layer base {
+  ul,
+  ol {
+    list-style: revert;
+    list-style-position: inside;
+  }
+}
+
+@layer base {
+  html {
+    --color-overlay-main-0: 49 49 53; /* Dark Graish */
+    --color-base-purple-200: 91 148 242;
+    --color-base-purple-400: 139 149 242;
+    --color-base-purple-600: 139 114 238;
+    --color-base-purple-800: 133 86 234;
+    --color-base-purple-1000: 65 56 229;
+    --color-base-blue-500: 29 161 242;
+    --color-base-red-200: 255 102 102;
+    --color-base-red-500: 255 0 0;
+    --color-base-red-700: 212 4 4;
+    --color-base-green-500: 72 187 120;
+    --color-base-green-700: 38 184 135;
+    --color-base-emochi-500: 218 255 125; /* #DAFF7D */
+    --color-base-emochi-600: 173 215 68; /* #ADD744 */
+    --color-base-emochi-650: 126 155 53; /* #7E9B35 */
+    --color-base-emochi-700: 122 255 112; /* #7AFF70 */
+
+    --color-main-0: rgb(var(--color-base-main-0)); /* white */
+    --color-main-100: rgb(var(--color-base-main-100));
+    --color-main-200: rgb(var(--color-base-main-200));
+    --color-main-300: rgb(var(--color-base-main-300));
+    --color-main-400: rgb(var(--color-base-main-400));
+    --color-main-500: rgb(var(--color-base-main-500));
+    --color-main-600: rgb(var(--color-base-main-600));
+    --color-main-700: rgb(var(--color-base-main-700));
+    --color-main-800: rgb(var(--color-base-main-800));
+    --color-main-850: rgb(var(--color-base-main-850));
+    --color-main-900: rgb(var(--color-base-main-900));
+    --color-main-950: rgb(var(--color-base-main-950));
+    --color-main-1000: rgb(var(--color-base-main-1000)); /* darkgray */
+
+    --color-overlay-main-0: rgb(var(--color-overlay-main-0)); /* Dark Graish */
+    --color-purple-200: rgb(var(--color-base-purple-200));
+    --color-purple-400: rgb(var(--color-base-purple-400));
+    --color-purple-600: rgb(var(--color-base-purple-600));
+    --color-purple-800: rgb(var(--color-base-purple-800));
+    --color-purple-1000: rgb(var(--color-base-purple-1000));
+    --color-blue-500: rgb(var(--color-base-blue-500));
+    --color-red-200: rgb(var(--color-base-red-200));
+    --color-red-500: rgb(var(--color-base-red-500));
+    --color-red-700: rgb(var(--color-base-red-700));
+    --color-green-500: rgb(var(--color-base-green-500));
+    --color-green-700: rgb(var(--color-base-green-700));
+    --color-emochi-500: rgb(var(--color-base-emochi-500));
+    --color-emochi-600: rgb(var(--color-base-emochi-600));
+    --color-emochi-650: rgb(var(--color-base-emochi-650));
+    --color-emochi-700: rgb(var(--color-base-emochi-700));
+
+    --color-gradient-economy-purple: linear-gradient(
+      266.57deg,
+      #57e4ff -104.53%,
+      #8b95f2 -43.74%,
+      #8b72ee 0.14%,
+      #8556ea 36.66%,
+      #4138e5 128.95%
+    );
+    --color-gradient-economy-enhanced: linear-gradient(
+      89.79deg,
+      #b6becd 34.64%,
+      #ffffff 61.56%,
+      #767988 95.2%
+    );
+    --color-gradient-economy-elite: linear-gradient(
+      266.9deg,
+      #57e4ff 2.57%,
+      #8b95f2 29.34%,
+      #8b72ee 48.67%,
+      #8556ea 64.75%,
+      #4138e5 105.41%
+    );
+  }
+
+  html[data-theme='dark'] {
+    --color-base-main-0: 255 255 255; /* white */
+    --color-base-main-100: 243 244 248;
+    --color-base-main-200: 210 212 218;
+    --color-base-main-300: 179 181 189;
+    --color-base-main-400: 148 150 161;
+    --color-base-main-500: 119 121 134;
+    --color-base-main-600: 255 255 255; /* white add 0.4 opacity */
+    --color-base-main-700: 88 89 92;
+    --color-base-main-800: 255 255 255; /* white add 0.06 opacity */
+    --color-base-main-850: 255 255 255; /* white add 0.03 opacity */
+    --color-base-main-900: 44 42 47; /* #2C2A2F add 0.9 opacity */
+    --color-base-main-950: 44 42 47; /* #2C2A2F */
+    --color-base-main-1000: 36 36 36; /* #242424 */
+    --color-overlay-main-0: 49 49 53; /* Dark Graish */
+    --color-overlay-dark-0: 0 0 0; /* Dark */
+  }
+
+  html[data-theme='light'] {
+    --color-base-main-1000: 217 217 217; /* #D9D9D9 */
+    --color-base-main-950: 255 255 255;
+    --color-base-main-900: 255 255 255; /* white add 0.9 opacity */
+    --color-base-main-850: 36 36 36; /* #242424 add 0.03 opacity */
+    --color-base-main-800: 36 36 36; /* #242424 add 0.06 opacity */
+    --color-base-main-700: 179 181 189;
+    --color-base-main-600: 36 36 36; /* #242424 add 0.4 opacity */
+    --color-base-main-500: 119 121 134;
+    --color-base-main-400: 104 106 114;
+    --color-base-main-300: 88 89 92;
+    --color-base-main-200: 47 48 51;
+    --color-base-main-100: 26 27 30;
+    --color-base-main-0: 36 36 36; /* #242424 */
+    --color-overlay-main-0: 255 255 255; /* white */
+    --color-overlay-dark-0: 255 255 255; /* Dark */
+  }
+}
+
+@layer components {
+  /* .my-react-select-container {} */
+  .my-react-select-container .my-react-select__control {
+    @apply text-fgMain-0 border-fgMain-800 dark:bg-fgMain-900 cursor-pointer overflow-hidden rounded-sm border-[0.5px] bg-white p-1 ring-0;
+  }
+  .my-react-select-container .my-react-select__control:hover {
+    @apply border-fgMain-800;
+  }
+
+  .my-react-select-container .my-react-select__control--is-focused {
+    @apply dark-scroll-bar overflow-hidden shadow-none;
+  }
+
+  .my-react-select-container .my-react-select__menu {
+    @apply dark-scroll-bar text-fgMain-0 rounded-[6px] border-0 bg-[#39393b] shadow-sm;
+  }
+
+  .my-react-select-container .my-react-select__option {
+    @apply cursor-pointer p-2;
+  }
+
+  .my-react-select-container .my-react-select__option:active {
+    @apply bg-neutral-800;
+  }
+
+  .my-react-select-container .my-react-select__option--is-focused {
+    @apply bg-neutral-800;
+  }
+
+  .my-react-select-container .my-react-select__option--is-selected {
+    @apply bg-neutral-700;
+  }
+
+  .my-react-select-container .my-react-select__input-container,
+  .my-react-select-container .my-react-select__placeholder {
+    @apply text-gray-400;
+  }
+
+  .my-react-select-container .my-react-select__indicator {
+    @apply text-fgMain-0;
+  }
+
+  .my-react-select-container .my-react-select__indicator-separator {
+    @apply bg-fgMain-0/[0.06];
+  }
+
+  .my-react-select-container .my-react-select__multi-value {
+    @apply bg-fgMain-1000 rounded;
+  }
+
+  .my-react-select-container .my-react-select__multi-value__remove:focus {
+    @apply bg-fgMain-0/[0.06];
+  }
+
+  .my-react-select-container .my-react-select__multi-value__remove:disabled {
+    @apply bg-fgMain-0/[0.06];
+  }
+
+  .dark-scroll-bar {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-track-rounded-full scrollbar-thumb-rounded-full z-0 overflow-auto;
+  }
+
+  .light-scroll-bar {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-200 scrollbar-track-rounded-full scrollbar-thumb-rounded-full z-0 overflow-auto;
+  }
+
+  .dark-scroll-bar-y {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-track-rounded-full scrollbar-thumb-rounded-full z-0 overflow-y-auto;
+  }
+
+  .light-scroll-bar-y {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-200 scrollbar-track-rounded-full scrollbar-thumb-rounded-full z-0 overflow-y-auto;
+  }
+
+  .bg-white-primary {
+    @apply bg-white/[0.12];
+  }
+
+  .bg-white-secondary {
+    @apply bg-white/[0.06];
+  }
+
+  html[data-theme='light'] {
+    .dark-scroll-bar {
+      @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-200 scrollbar-track-rounded-full scrollbar-thumb-rounded-full z-0 overflow-auto;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+    --gray-999: #2e3033;
+
+    --theme-gradient: linear-gradient(
+      259.45deg,
+      rgba(87, 228, 255, 1) -4.54%,
+      rgba(139, 149, 242, 1) 26.9%,
+      rgba(139, 114, 238, 1) 49.6%,
+      rgba(133, 86, 234, 1) 68.49%,
+      rgba(65, 56, 229, 1) 116.24%
+    );
+
+    /* allotment */
+    --focus-border: var(--color-emochi-500);
+    --separator-border: var(--color-base-main-950);
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  .flex-c {
+    @apply flex items-center justify-center;
+  }
+
+  .max-screen {
+    @apply 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl max-w-screen-lg px-4 px-8 sm:mx-auto xl:px-0 2xl:max-w-screen-xl;
+  }
+
+  .abs-c {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+.active-link-bg {
+  background: linear-gradient(
+    28.72deg,
+    #3e3e3e -5.54%,
+    #2c2c2c 62.1%,
+    #979797 113.25%
+  );
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 18px;
+  background-color: #2e3033;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background-color: #2e3033;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #1a1b1ed9;
+}
+
+@media (min-width: 786px) {
+  .overview-grad {
+    background: linear-gradient(
+      28.72deg,
+      rgba(62, 62, 62, 0.51) -5.54%,
+      rgba(44, 44, 44, 0.51) 62.1%,
+      rgba(151, 151, 151, 0.51) 113.25%
+    );
+  }
+}
+
+/* Currently commenting it , if any problem raised please write some details above it */
+/* .css-r6z5ec {
+  z-index: 999 !important;
+} */
+
+@layer utilities {
+  .text-purple-2-gradient {
+    background: linear-gradient(
+      259.45deg,
+      #57e4ff -4.54%,
+      #8b95f2 26.9%,
+      #8b72ee 49.6%,
+      #8556ea 68.49%,
+      #4138e5 116.24%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-purple-gradient {
+    background: var(
+      --purple-gradient,
+      linear-gradient(
+        259deg,
+        #8b95f2 26.9%,
+        #8b72ee 49.6%,
+        #8556ea 68.49%,
+        #4138e5 116.24%
+      )
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-rank-gold {
+    background: linear-gradient(148deg, #ffe092 12.55%, #e3a302 86.73%);
+  }
+
+  .bg-rank-silver {
+    background: linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%);
+  }
+
+  .bg-rank-bronze {
+    background: linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%);
+  }
+
+  .text-rank-gold {
+    background: var(
+      --Gold,
+      linear-gradient(148deg, #ffe092 12.55%, #e3a302 86.73%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-rank-silver {
+    background: var(
+      --Silver,
+      linear-gradient(90deg, #b6becd 15.55%, #767988 95.2%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-rank-bronze {
+    background: var(
+      --Bronze,
+      linear-gradient(340deg, #d69160 13.94%, #f2c497 83.24%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-purple-gradient-solid {
+    background: var(
+      --purple-gradient,
+      linear-gradient(
+        259deg,
+        #8b95f2 26.9%,
+        #8b72ee 49.6%,
+        #8556ea 68.49%,
+        #4138e5 116.24%
+      )
+    );
+  }
+
+  .bg-elite-tier-gradient {
+    background: linear-gradient(
+      266.9deg,
+      #57e4ff 2.57%,
+      #8b95f2 29.34%,
+      #8b72ee 48.67%,
+      #8556ea 64.75%,
+      #4138e5 105.41%
+    );
+  }
+
+  .bg-enhanced-tier-gradient {
+    background: linear-gradient(
+      89.79deg,
+      #b6becd 34.64%,
+      #ffffff 61.56%,
+      #767988 95.2%
+    );
+  }
+
+  .bg-purple-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(
+        to right,
+        var(--color-main-900),
+        var(--color-main-900)
+      ),
+      linear-gradient(
+        259.45deg,
+        var(--color-purple-200) -4.54%,
+        var(--color-purple-400) 26.9%,
+        var(--color-purple-600) 49.6%,
+        var(--color-purple-800) 68.49%,
+        var(--color-purple-1000) 116.24%
+      );
+  }
+}
+
+/* image error */
+img.error {
+  display: inline-block;
+  transform: scale(1);
+}
+img.error::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  background: #000
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 1080 1080' xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cpath d='M1188 -108H-108V1188H1188V-108Z' fill='black' /%3E%3Cpath d='M754.516 690.385V559.026L653.62 632.703L754.516 690.385ZM432.458 505.01L537.698 586.094L539.76 583L496.823 518.521L539.76 432.516L492.016 368H325V585.443L432.458 505.01ZM657.849 540.016C687.557 540.016 711.542 515.964 711.542 486.266C711.542 456.568 687.557 432.516 657.849 432.516C628.224 432.516 604.161 456.568 604.161 486.266C604.161 515.964 628.224 540.016 657.849 540.016ZM754.516 368V532.875L633.219 621.021L578.385 589.526L582.734 583L539.76 518.521L582.734 432.516L539.76 368H754.516ZM539.76 647.516L582.734 711.995H748.911L566.448 607.432L539.76 647.516ZM496.823 647.516L539.76 711.995H325V612.281L432.302 532.036L508.646 590.979L508.604 591.016L525.651 604.188L496.823 647.516Z' fill='white' /%3E%3C/svg%3E")
+    repeat center / 100% 100%;
+}
+
+#marketing-carousel .carousel.carousel-slider {
+  border-radius: 12px;
+}
+#marketing-carousel .carousel.carousel-slider .error {
+  margin-top: -4rem;
+}

@@ -5,12 +5,12 @@ import { defineConfig } from 'vitest/config';
 const testFiles = ['./src/**/*.test.{js,jsx,ts,tsx}'];
 
 export default defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    react({
-      // fastRefresh: false,
-    }),
-  ],
+  // plugins: [
+  //   tsconfigPaths(),
+  //   react({
+  //     // fastRefresh: false,
+  //   }),
+  // ],
   test: {
     globals: true,
     environment: 'happy-dom',

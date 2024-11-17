@@ -1,4 +1,2 @@
-export * from './base';
-export { Message } from './message';
-export { AsyncMessage } from './async-message';
+export { system } from './styles/theme'
 export * from './utils/index'

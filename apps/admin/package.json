@@ -175,8 +175,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 10"
-  ],
-  "engines": {
-    "node": "20.x"
-  }
+  ]
 }

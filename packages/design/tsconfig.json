@@ -1,26 +1,33 @@
 {
   "extends": "@tongdelove/typescript-config/library.json",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@chakra-ui/styled-system": [
+        "./node_modules/@chakra-ui/styled-system"
+      ]
+    },
+    "outDir": "dist",
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
+    "target": "esnext",
+    "module": "esnext",
     "noEmit": false,
     "incremental": true,
-    "types": []
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["**/node_modules", "**/.*/*", "dist"],
   "include": [
-    ".eslintrc.*",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mts",
-    "**/*.js",
-    "**/*.cjs",
-    "**/*.mjs",
-    "**/*.jsx",
-    "**/*.json"
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/test/*.test.ts",
+    "test",
+    "dist",
+    "src/_stories/*",
+    "src/config/*",
   ]
 }

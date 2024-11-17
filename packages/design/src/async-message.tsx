@@ -1,11 +1,11 @@
-import { useEffect, useState, type FC } from 'react';
+import { useEffect, useState } from 'react'
 
-type Props = {
+type AsyncMessageProps = {
   apiUrl: string;
   children?: never;
-};
+}
 
-export const AsyncMessage: FC<Props> = (props) => {
+export const AsyncMessage = (props: AsyncMessageProps) => {
   const [msg, setMsg] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,4 +32,4 @@ export const AsyncMessage: FC<Props> = (props) => {
   }
 
   return <span>{msg}</span>;
-};
+}
