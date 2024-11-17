@@ -1094,6 +1094,9 @@ importers:
       sonner:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@18.3.1)(react@18.3.1)
+      strip:
+        specifier: ^3.0.0
+        version: 3.0.0
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
@@ -57983,6 +57986,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       escape-string-regexp: 1.0.5
+    dev: false
+
+  /strip@3.0.0:
+    resolution: {integrity: sha512-kIPiqRSsGCwWItPLDhuZPQlwX16WjQggT5QS1f5Aam0DSbtPQh8SsIkbBxLm+835qb1Q0OoQnvrhJ0oplIup8Q==}
     dev: false
 
   /stripe@12.18.0:

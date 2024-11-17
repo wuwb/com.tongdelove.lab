@@ -1,6 +1,6 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
 // import { avatarTheme } from './avatar'
-import { buttonRecipe } from './button.recipe'
+// import { buttonRecipe } from './button.recipe'
 // import { checkboxTheme } from './checkbox'
 // import { menuTheme } from './menu'
 // import { modalTheme } from './modal'
