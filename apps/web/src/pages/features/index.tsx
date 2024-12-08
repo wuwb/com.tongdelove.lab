@@ -47,11 +47,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={13}>
+          <div className="py-10">
+            <div>
               <Image layout="fill" src="/assets/features/quote.png" alt="" />
             </div>
-            <div md={11}>
+            <div>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">直接从工厂获得最佳价格。</h3>
                 <p className="mt-5">
@@ -65,8 +65,8 @@ const Home = () => {
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={11}>
+          <div className="py-10">
+            <div>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">简化您的下单工作流程。</h3>
                 <p className="mt-5">
@@ -77,16 +77,16 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div md={13}>
+            <div>
               <Image alt="" layout="fill" src="/assets/features/order.png" />
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={13}>
+          <div className="py-10">
+            <div>
               <Image alt="" layout="fill" src="/assets/features/proof.png" />
             </div>
-            <div md={11}>
+            <div>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">在云端存储你的所有数据。</h3>
                 <p className="mt-5">
@@ -100,8 +100,8 @@ const Home = () => {
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={11}>
+          <div className="py-10">
+            <div>
               <div className="p-20">
                 <h3 className="text-lg font-bold">实时更新每个项目。</h3>
                 <p className="mt-5">
@@ -112,7 +112,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div md={13}>
+            <div>
               <Image
                 alt=""
                 layout="fill"
@@ -121,11 +121,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={13}>
+          <div className="py-10">
+            <div>
               <Image alt="" layout="fill" src="/assets/features/analyze.png" />
             </div>
-            <div md={11}>
+            <div>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">利用数据做出更好的决策。</h3>
                 <p className="mt-5">
@@ -139,8 +139,8 @@ const Home = () => {
             </div>
           </div>
 
-          <div justify="center" className="py-10">
-            <div md={11}>
+          <div className="py-10">
+            <div>
               <div className="px-20 py-36">
                 <h3 className="text-lg font-bold">每个SKU的鸟瞰图。</h3>
                 <p className="mt-5">
@@ -152,7 +152,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div md={13}>
+            <div>
               <Image
                 alt=""
                 layout="fill"

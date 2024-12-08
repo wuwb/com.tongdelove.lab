@@ -42,12 +42,9 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT,
     NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN:
       process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN,
-    NEXT_PUBLIC_WORDPRESS_API_URL:
-      process.env.NEXT_PUBLIC_WORDPRESS_API_URL,
-    NEXT_PUBLIC_GA_ID:
-      process.env.NEXT_PUBLIC_GA_ID,
-    NEXT_PUBLIC_MC_ID:
-      process.env.NEXT_PUBLIC_MC_ID,
+    NEXT_PUBLIC_WORDPRESS_API_URL: process.env.NEXT_PUBLIC_WORDPRESS_API_URL,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    NEXT_PUBLIC_MC_ID: process.env.NEXT_PUBLIC_MC_ID,
   },
   emptyStringAsUndefined: true,
 })

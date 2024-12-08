@@ -5,7 +5,7 @@ import type { SearchPoemsParams } from './SearchPoems.types'
 type SearchPoems = UnPromisify<ReturnType<SearchPoemsQuery['searchPoems']>>
 
 export class SearchPoemsQuery {
-  constructor(private readonly prisma: PrismaClientDbMain) { }
+  constructor(private readonly prisma: PrismaClientDbMain) {}
 
   execute = async (params: SearchPoemsParams) => {
     return this.mapToResult(await this.searchPoems(params))

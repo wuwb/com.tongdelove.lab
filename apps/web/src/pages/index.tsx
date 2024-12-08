@@ -29,19 +29,14 @@ const IndexPage = (props) => {
       />
       <div className="container mx-auto">
         <Col4Demo />
-        <SimpleGrid columns={1} spacing={4} justifyItems="center">
-          <Box>
-            {/* 解决方案 */}
-            <Solution />
-          </Box>
-          <Box>
-            {/* 客户 */}
-            <Customers />
-          </Box>
-          <Box></Box>
+        <SimpleGrid justifyItems="center">
+          {/* 解决方案 */}
+          <Solution />
+          {/* 客户 */}
+          <Customers />
+          {/* 准备好了吗 */}
+          <Ready />
         </SimpleGrid>
-        {/* 准备好了吗 */}
-        <Ready />
       </div>
     </>
   )

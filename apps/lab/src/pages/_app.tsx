@@ -14,7 +14,7 @@ import { config } from '../../next-seo.config'
 import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import { SessionProvider } from 'next-auth/react'
-import { NextPage } from 'next';
+import { NextPage } from 'next'
 import { useTranslation } from '@/i18n'
 
 import '@/styles/globals.css'
@@ -39,7 +39,6 @@ import '@mantine/dates/styles.css'
 import '@mantine/notifications/styles.css'
 import '@mantine/carousel/styles.css'
 
-
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect (and its warnings) when not running in a browser
   // React.useLayoutEffect = () => { }
@@ -50,20 +49,19 @@ if (typeof window === 'undefined') {
  */
 
 type NextPageWithLayout = NextPage & {
-  setLayout?: (page: ReactElement) => JSX.Element;
+  setLayout?: (page: ReactElement) => JSX.Element
 }
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPageWithLayout
 }
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }: AppPropsWithLayout) => {
-
-  const { t } = useTranslation();
-  const setLayout = Component.setLayout ?? ((page) => <>{page}</>);
+  const { t } = useTranslation()
+  const setLayout = Component.setLayout ?? ((page) => <>{page}</>)
 
   // Forbid touch scale
   useEffect(() => {
@@ -71,13 +69,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
       'wheel',
       function (e) {
         if (e.ctrlKey && Math.abs(e.deltaY) !== 0) {
-          e.preventDefault();
+          e.preventDefault()
         }
       },
       { passive: false }
-    );
-  }, []);
-
+    )
+  }, [])
 
   return (
     <>
@@ -92,9 +89,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           // refetchOnWindowFocus={false}
         >
           <FeatureProviders>
-            <Layout>
-              {setLayout(<Component {...pageProps} />)}
-            </Layout>
+            <Layout>{setLayout(<Component {...pageProps} />)}</Layout>
           </FeatureProviders>
         </SessionProvider>
       </AppProviders>

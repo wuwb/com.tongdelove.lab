@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
 
 interface EventListItemProps {
   username: string
@@ -16,8 +16,7 @@ export const EventListItem = ({
     <div className="item-center border-bottom flex py-5 text-base">
       <Avatar
         name={`${username} Avatar`}
-        alt={`${username} Avatar`}
-        size={32}
+        size="md"
         className="mr-5"
         src={`https://vercel.com/api/www/avatar/?u=${username}&s=32`}
       />

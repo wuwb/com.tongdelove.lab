@@ -12,18 +12,22 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { theme } from '../theme'
 import '@/styles/globals.css'
 import { Notifications } from '@mantine/notifications'
-
 import { SSRHidden } from '@/components/Atom/SSRHidden'
-
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 type AppProvidersProps = {
   children: React.ReactNode
 }
 
+const stripePromise = loadStripe(
+  'pk_test_51PxVobHVzRJLjT1QYM385EGjK3lJDRPF5wFfIkjs3FSiW7zTiU6T7jCLmFLkAKOZZWsEuUk6iM1OUydPrZuJPO7o00RXLKrOct'
+)
+
 // Client-side cache, shared for the whole session of the user in the browser.
 
 export const AppProviders = ({ children }: AppProvidersProps) => {
-
+  const options = {}
   return (
     <>
       <NextNProgress
@@ -40,11 +44,11 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           defaultColorScheme="auto"
         />
         <TooltipProvider>
-          <AppContextProvider>
-            {children}
-          </AppContextProvider>
+          <Elements stripe={stripePromise} options={options}>
+            <AppContextProvider>{children}</AppContextProvider>
+          </Elements>
         </TooltipProvider>
-        
+
         {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
         {/* <ReactQueryClientProvider> */}
         {/* </ReactQueryClientProvider> */}

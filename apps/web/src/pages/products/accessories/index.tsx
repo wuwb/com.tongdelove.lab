@@ -208,10 +208,10 @@ const Page = () => {
           </div>
 
           <div>
-            <div span={4} lg={4} className="col-xl-2">
+            <div className="col-xl-2">
               <div className="sub-section"></div>
             </div>
-            <div span={20} lg={4} className="col-xl-10">
+            <div className="col-xl-10">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div className="product-wrap">
                   <div className="product">

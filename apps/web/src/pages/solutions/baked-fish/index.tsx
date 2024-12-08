@@ -141,7 +141,7 @@ const SolutionsBackedFishPage = () => {
           </div>
         </div>
         <div className="flex justify-center p-20">
-          <Button type="primary" className="center" onClick={info}>
+          <Button type="button" className="center" onClick={info}>
             马上沟通
           </Button>
         </div>

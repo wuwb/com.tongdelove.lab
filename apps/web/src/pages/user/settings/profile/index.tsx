@@ -108,69 +108,69 @@ const RegistrationForm = (props) => {
           {/* <div className={'notice'}>更换头像<Upload successCb={this.changeAvatarCb} className={'notice'} /></div> */}
         </div>
       </div>
-      <Form onFinish={handleSubmit}>
+      <div>
         <Field
           {...formItemLayout}
-          name={['profile', 'username']}
-          label={<span className="form-item-label">姓名</span>}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your username!',
-              whitespace: true,
-            },
-          ]}
+          // name={['profile', 'username']}
+          // label={<span className="form-item-label">姓名</span>}
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: 'Please input your username!',
+          //     whitespace: true,
+          //   },
+          // ]}
         >
           <Input />
         </Field>
         <Field
           {...formItemLayout}
-          name={['profile', 'website']}
+          // name={['profile', 'website']}
           label={<span className="form-item-label">网站</span>}
-          rules={[{ required: false, message: 'Please input website!' }]}
+          // rules={[{ required: false, message: 'Please input website!' }]}
         >
-          <div dataSource={websiteOptions} onChange={handleWebsiteChange}>
+          {/* <div dataSource={websiteOptions} onChange={handleWebsiteChange}>
             <Input />
-          </div>
+          </div> */}
         </Field>
         <Field
           {...formItemLayout}
-          name={['profile', 'abstract']}
+          // name={['profile', 'abstract']}
           label={<span className="form-item-label">个人简介</span>}
-          rules={[
-            {
-              required: false,
-              message: 'Please input your abstract!',
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: false,
+          //     message: 'Please input your abstract!',
+          //   },
+          // ]}
         >
           <Textarea
             placeholder="Please input your abstract "
-            autoSize={{ minRows: 2, maxRows: 6 }}
+            // autoSize={{ minRows: 2, maxRows: 6 }}
           />
         </Field>
         <Field
           {...formItemLayout}
-          name={['profile', 'email']}
-          label={<span className="form-item-label">邮箱</span>}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-          ]}
+          // name={['profile', 'email']}
+          // label={<span className="form-item-label">邮箱</span>}
+          // rules={[
+          //   {
+          //     type: 'email',
+          //     message: 'The input is not valid E-mail!',
+          //   },
+          // ]}
         >
           <Input />
         </Field>
         <Field
           {...formItemLayout}
-          name={['profile', 'mobile']}
-          label={<span className="form-item-label">手机号</span>}
-          rules={[
-            { required: false, message: 'Please input your phone number!' },
-          ]}
+          // name={['profile', 'mobile']}
+          // label={<span className="form-item-label">手机号</span>}
+          // rules={[
+          //   { required: false, message: 'Please input your phone number!' },
+          // ]}
         >
-          <Input
+          {/* <Input
             addonBefore={
               <NativeSelectRoot>
                 <NativeSelectField placeholder="Select option">
@@ -180,7 +180,7 @@ const RegistrationForm = (props) => {
               </NativeSelectRoot>
             }
             style={{ width: '100%' }}
-          />
+          /> */}
           <Group attached>
             <InputAddon>
               <NativeSelectRoot style={{ width: 70 }}>
@@ -194,10 +194,10 @@ const RegistrationForm = (props) => {
           </Group>
         </Field>
         <Field
-          {...formItemLayout}
-          name={['profile', 'sex']}
-          label={<span className="form-item-label">性别</span>}
-          rules={[{ required: false, message: 'Please input your sex!' }]}
+        // {...formItemLayout}
+        // name={['profile', 'sex']}
+        // label={<span className="form-item-label">性别</span>}
+        // rules={[{ required: false, message: 'Please input your sex!' }]}
         >
           <NativeSelectRoot>
             <NativeSelectField placeholder="Select option">
@@ -207,11 +207,9 @@ const RegistrationForm = (props) => {
           </NativeSelectRoot>
         </Field>
         <Field {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            更新
-          </Button>
+          <Button type="submit">更新</Button>
         </Field>
-      </Form>
+      </div>
     </section>
   )
 }

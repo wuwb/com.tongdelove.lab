@@ -5,9 +5,9 @@ import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 
-type IndexProps = {}
+type IndexPageProps = {}
 
-const Index = (
+const IndexPage = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const { t } = useTranslation()
@@ -28,7 +28,7 @@ const Index = (
   )
 }
 
-export default Index
+export default IndexPage
 
 export const getServerSideProps = buildSharedServerSideProps<IndexProps>(
   async () => {

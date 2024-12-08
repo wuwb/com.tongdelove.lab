@@ -10,8 +10,6 @@ import {
   AccordionRoot,
 } from '@/components/ui/accordion'
 
-const { Panel } = Collapse
-
 const Home = () => {
   const data = [
     '4cm x 4cm x 2cm',
@@ -245,17 +243,21 @@ const Home = () => {
               <Tabs.Trigger value="数量">数量</Tabs.Trigger>
             </Tabs.List>
             <Tabs.Content value="大小" key="0">
-              <AccordionRoot defaultActiveKey={['1']} onChange={callback}>
-                <AccordionItem header="常用长宽高" key="1">
+              <AccordionRoot
+                collapsible
+                defaultValue={['1']}
+                onChange={callback}
+              >
+                <AccordionItem value="常用长宽高" key="1">
                   <List.Root>
-                    {data.map(({ item }) => {
+                    {data.map((item, index) => {
                       return <List.Item key={item}>{item}</List.Item>
                     })}
                   </List.Root>
                   <div>尺寸的单位是厘米</div>
                   <div>不清楚自己需要多大尺寸？可以联系我们。</div>
                 </AccordionItem>
-                <AccordionItem header="自定义长宽高" key="2">
+                <AccordionItem value="自定义长宽高" key="2">
                   <List.Root>
                     <List.Item>
                       <span>长</span>
@@ -281,21 +283,25 @@ const Home = () => {
             </Tabs.Content>
             <Tabs.Content value="材质" key="1">
               <RadioGroup onChange={onChange} value={material}>
-                <Radio style={radioStyle} value={1}>
+                <Radio style={radioStyle} value="1">
                   传统白板
                 </Radio>
-                <Radio style={radioStyle} value={2}>
+                <Radio style={radioStyle} value="2">
                   高级白板
                 </Radio>
-                <Radio style={radioStyle} value={3}>
+                <Radio style={radioStyle} value="2">
                   牛皮纸
                   <div>自然棕色卡纸上油</div>
                 </Radio>
               </RadioGroup>
             </Tabs.Content>
             <Tabs.Content value="设计" key="2">
-              <Collapse defaultActiveKey={['1']} onChange={callback}>
-                <Panel header="在线设计" key="1">
+              <AccordionRoot
+                collapsible
+                defaultValue={['1']}
+                onChange={callback}
+              >
+                <AccordionItem value="在线设计" key="1">
                   <div className="{Style['selectors']}">
                     <div className="{Style['cover-selector']}">
                       <div>位置</div>
@@ -338,19 +344,19 @@ const Home = () => {
                       <div>文字</div>
                     </div>
                   </div>
-                </Panel>
-                <Panel header="离线设计" key="2">
+                </AccordionItem>
+                <AccordionItem value="离线设计" key="2">
                   <div>
                     <Button>下载设计模板</Button>
                     <Button>上传模板</Button>
                   </div>
                   <div>匹配包装设计专家</div>
-                </Panel>
-              </Collapse>
+                </AccordionItem>
+              </AccordionRoot>
             </Tabs.Content>
             <Tabs.Content value="数量" key="3">
               <div>
-                <List bordered>
+                <List.Root>
                   <List.Item>
                     <span>选择数量</span>
                     <span>单价</span>
@@ -377,7 +383,7 @@ const Home = () => {
                       <input type="text" value={n} onChange={changeN} />
                     </span>
                   </List.Item>
-                </List>
+                </List.Root>
               </div>
             </Tabs.Content>
           </Tabs.Root>
@@ -390,7 +396,7 @@ const Home = () => {
             style={{ width: '510px', height: '510px' }}
           ></canvas>
         </div>
-        <div className="{Style.Panel}">
+        <div className="{Style.AccordionItem}">
           <div className="{Style['panel-title']}">
             <h3>Mailer Box</h3>
             <p>描述信息</p>

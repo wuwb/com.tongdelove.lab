@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { NumberInput, NativeSelect, TextInput, Button } from '@mantine/core';
+import { useState } from 'react'
+import { NumberInput, NativeSelect, TextInput, Button } from '@mantine/core'
 
 function BookThicknessTool() {
-  const [numberOfPages, setNumberOfPages] = useState(0);
-  const [paperWeight, setPaperWeight] = useState('147');
-  const [thickness, setThickness] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0)
+  const [paperWeight, setPaperWeight] = useState('147')
+  const [thickness, setThickness] = useState(0)
 
   const calculateThickness = () => {
-    const calculatedThickness = numberOfPages * (parseInt(paperWeight) / 1000);
-    setThickness(calculatedThickness);
-  };
+    const calculatedThickness = numberOfPages * (parseInt(paperWeight) / 1000)
+    setThickness(calculatedThickness)
+  }
 
   const handleClick = () => {
-    calculateThickness();
-  };
+    calculateThickness()
+  }
 
   return (
     <div className="grow p-2.5">
@@ -39,7 +39,7 @@ function BookThicknessTool() {
         <TextInput label="书籍厚度" value={thickness} disabled />
       </div>
     </div>
-  );
+  )
 }
 
 export default BookThicknessTool

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 export type ConfirmationDialogProps = {
   triggerButton: React.ReactElement
@@ -65,7 +65,6 @@ export const ConfirmationDialog = ({
         <div className="mt-4 flex justify-end space-x-2">
           <Button
             type="button"
-            variant="inverse"
             className="inline-flex w-full justify-center rounded-md border focus:ring-1 focus:ring-indigo-500 focus:ring-offset-1 sm:mt-0 sm:w-auto sm:text-sm"
             onClick={close}
             ref={cancelButtonRef}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Field } from '@/components/ui/field'
 import { Button } from '@/components/ui/button'
-import { Input } from '@chakra-ui/react'
+import { Input, NativeSelectField, NativeSelectRoot } from '@chakra-ui/react'
 import { ProgressBar, ProgressRoot } from '@/components/ui/progress'
 import {
   PopoverArrow,
@@ -51,7 +51,7 @@ const UserRegisterPage = (props) => {
   const confirmDirty = false
   let interval: number | undefined
 
-  const [form] = Form.useForm()
+  // const [form] = Form.useForm()
 
   useEffect(
     () => () => {
@@ -73,24 +73,24 @@ const UserRegisterPage = (props) => {
   }
 
   const getPasswordStatus = () => {
-    const value = form.getFieldValue('password')
-    if (value && value.length > 9) {
-      return 'ok'
-    }
-    if (value && value.length > 5) {
-      return 'pass'
-    }
-    return 'poor'
+    // const value = form.getFieldValue('password')
+    // if (value && value.length > 9) {
+    //   return 'ok'
+    // }
+    // if (value && value.length > 5) {
+    //   return 'pass'
+    // }
+    // return 'poor'
   }
 
   const onFinish = (values: any) => {}
 
   const checkConfirm = (_: any, value: string) => {
-    const promise = Promise
-    if (value && value !== form.getFieldValue('password')) {
-      return promise.reject('两次输入的密码不匹配!')
-    }
-    return promise.resolve()
+    // const promise = Promise
+    // if (value && value !== form.getFieldValue('password')) {
+    //   return promise.reject('两次输入的密码不匹配!')
+    // }
+    // return promise.resolve()
   }
 
   const checkPassword = (_: any, value: string) => {
@@ -109,7 +109,7 @@ const UserRegisterPage = (props) => {
       return promise.reject('')
     }
     if (value && confirmDirty) {
-      form.validateFields(['confirm'])
+      // form.validateFields(['confirm'])
     }
     return promise.resolve()
   }
@@ -119,21 +119,21 @@ const UserRegisterPage = (props) => {
   }
 
   const renderPasswordProgress = () => {
-    const value = form.getFieldValue('password')
-    const passwordStatus = getPasswordStatus()
-    return value && value.length ? (
-      <div className={styles[`progress-${passwordStatus}`]}>
-        <ProgressRoot
-          size="sm"
-          status={passwordProgressMap[passwordStatus]}
-          className={styles.progress}
-          value={value.length * 10 > 100 ? 100 : value.length * 10}
-          showInfo={false}
-        >
-          <ProgressBar />
-        </ProgressRoot>
-      </div>
-    ) : null
+    // const value = form.getFieldValue('password')
+    // const passwordStatus = getPasswordStatus()
+    // return value && value.length ? (
+    //   <div className={styles[`progress-${passwordStatus}`]}>
+    //     <ProgressRoot
+    //       size="sm"
+    //       // status={passwordProgressMap[passwordStatus]}
+    //       className={styles.progress}
+    //       value={value.length * 10 > 100 ? 100 : value.length * 10}
+    //     // showInfo={false}
+    //     >
+    //       <ProgressBar />
+    //     </ProgressRoot>
+    //   </div>
+    // ) : null
   }
 
   function submitting() {
@@ -151,23 +151,20 @@ const UserRegisterPage = (props) => {
           <p>体验可以联系管理员微信：13735851501</p>
         </div>
         <div
-          form={form}
-          layout="vertical"
-          name="UserRegister"
-          onFinish={onFinish}
+        // onFinish={onFinish}
         >
           <Field
             label="邮箱"
-            rules={[
-              {
-                required: true,
-                message: '请输入邮箱地址!',
-              },
-              {
-                type: 'email',
-                message: '邮箱地址格式错误!',
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: '请输入邮箱地址!',
+            //   },
+            //   {
+            //     type: 'email',
+            //     message: '邮箱地址格式错误!',
+            //   },
+            // ]}
           >
             <Input placeholder="邮箱" />
           </Field>
@@ -175,20 +172,18 @@ const UserRegisterPage = (props) => {
             <PopoverTrigger asChild>
               <Field
                 label="密码"
-                rules={[
-                  {
-                    validator: checkPassword,
-                    required: true,
-                  },
-                ]}
+                // rules={[
+                //   {
+                //     validator: checkPassword,
+                //     required: true,
+                //   },
+                // ]}
               >
                 <Input type="password" placeholder="至少6位密码，区分大小写" />
               </Field>
             </PopoverTrigger>
             <PopoverContent>
               <div>
-                {passwordStatusMap[getPasswordStatus()]}
-                {renderPasswordProgress()}
                 <div>
                   <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
                 </div>
@@ -197,37 +192,36 @@ const UserRegisterPage = (props) => {
           </PopoverRoot>
           <Field
             label="确认密码"
-            rules={[
-              {
-                required: true,
-                message: '确认密码',
-              },
-              {
-                validator: checkConfirm,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: '确认密码',
+            //   },
+            //   {
+            //     validator: checkConfirm,
+            //   },
+            // ]}
           >
             <Input type="password" placeholder="确认密码" />
           </Field>
           <Field
             label="手机号"
-            rules={[
-              {
-                required: true,
-                message: '请输入手机号!',
-              },
-              {
-                pattern: /^\d{11}$/,
-                message: '手机号格式错误!',
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: '请输入手机号!',
+            //   },
+            //   {
+            //     pattern: /^\d{11}$/,
+            //     message: '手机号格式错误!',
+            //   },
+            // ]}
           >
             <div className="flex space-x-2">
               <NativeSelectRoot
                 size="sm"
                 width="240px"
-                value={prefix}
-                onChange={changePrefix}
+                // value={prefix}
               >
                 <NativeSelectField placeholder="Select option">
                   <option value="86">+86</option>
@@ -236,17 +230,7 @@ const UserRegisterPage = (props) => {
               <Input placeholder="手机号" />
             </div>
           </Field>
-          <Field
-            label="captcha"
-            label="验证码"
-            className="flex justify-start"
-            rules={[
-              {
-                required: true,
-                message: '请输入验证码!',
-              },
-            ]}
-          >
+          <Field label="captcha" className="flex justify-start">
             <div className="flex justify-start space-x-2">
               <Input placeholder="验证码" />
               <Button
@@ -260,7 +244,7 @@ const UserRegisterPage = (props) => {
           </Field>
 
           <Field>
-            <Button className="w-full" type="primary" htmlType="submit">
+            <Button className="w-full" type="submit">
               <span>注册</span>
             </Button>
           </Field>

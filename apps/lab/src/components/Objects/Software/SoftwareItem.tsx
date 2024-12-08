@@ -1,13 +1,6 @@
+interface SoftwareItemProps {}
 
-
-interface SoftwareItemProps {
-
-}
-
-export const SoftwareItem = ({
-  software
-}: any) => {
-  
+export const SoftwareItem = ({ software }: any) => {
   return (
     <div>
       <div className="software-card">

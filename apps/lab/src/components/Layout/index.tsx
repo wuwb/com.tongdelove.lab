@@ -28,23 +28,15 @@ export const Layout = ({ children }: LayoutProps) => {
 
   const asPath = decodeURIComponent(router.asPath)
 
-  console.log('asPath: ', asPath)
-
   const hasHeader = [
-    '/tool', 
-    '/map', 
-    '/logo-gen', 
+    '/tool',
+    '/map',
+    '/logo-gen',
     '/changelog',
     '/tool/book-thickness',
-  ].includes(
-    asPath
-  )
+  ].includes(asPath)
 
-  const hasSidebar = [
-    '/tool/book-thickness'
-  ].includes(
-    asPath
-  )
+  const hasSidebar = ['/tool/book-thickness'].includes(asPath)
 
   let layout: React.ReactNode
 
@@ -53,7 +45,11 @@ export const Layout = ({ children }: LayoutProps) => {
   } else if (asPath.startsWith('/fullscreen')) {
     layout = <FullLayout>{children}</FullLayout>
   } else if (hasHeader || hasSidebar) {
-    layout = <BaseLayout hasHeader={hasHeader} hasSidebar={hasSidebar}>{children}</BaseLayout>
+    layout = (
+      <BaseLayout hasHeader={hasHeader} hasSidebar={hasSidebar}>
+        {children}
+      </BaseLayout>
+    )
   } else {
     layout = <BaseLayout hasHeader={true}>{children}</BaseLayout>
   }

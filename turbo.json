@@ -1,9 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
   "tasks": {
     "build": {
       "dependsOn": [
-        "^build"
+        "^build",
+        "test"
       ],
       "outputs": [
         "dist/**",
@@ -13,6 +17,20 @@
         ".expo/**",
         ".output/**",
         ".vercel/output/**"
+      ],
+      "env": [
+        "DATABASE_URL",
+        "DIRECT_URL",
+        "AUTH_SECRET",
+        "AUTH_GITHUB_ID",
+        "AUTH_GITHUB_SECRET",
+        "AUTH_REDIRECT_PROXY_URL",
+        "EMAIL_SERVER",
+        "EMAIL_FROM",
+        "NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY",
+        "NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN",
+        "NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT",
+        "NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN"
       ]
     },
     "build-request": {
@@ -53,6 +71,7 @@
     },
     "lint": {
       "dependsOn": [
+        "^lint",
         "^topo"
       ],
       "outputs": [
@@ -69,23 +88,17 @@
     },
     "clean": {
       "cache": false
+    },
+    "test": {
+      "dependsOn": [
+        "^test"
+      ]
+    },
+    "analyze": {
+      "dependsOn": [
+        "^analyze"
+      ]
     }
   },
-  "globalDependencies": [
-    "**/.env"
-  ],
-  "globalEnv": [
-    "DATABASE_URL",
-    "DIRECT_URL",
-    "AUTH_SECRET",
-    "AUTH_GITHUB_ID",
-    "AUTH_GITHUB_SECRET",
-    "AUTH_REDIRECT_PROXY_URL",
-    "EMAIL_SERVER",
-    "EMAIL_FROM",
-    "NEXT_PUBLIC_LEMON_SQUEEZY_API_KEY",
-    "NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN",
-    "NEXT_PUBLIC_SHOPIFY_GRAPHQL_API_ENDPOINT",
-    "NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN"
-  ]
+  "globalEnv": []
 }

@@ -66,27 +66,21 @@ const UserLoginPage = (props) => {
             </h2>
           </div>
 
-          <div
-            layout="vertical"
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          >
-            <Field label="用户名" name="username" rules={[{ required: true }]}>
+          <div>
+            <Field label="用户名">
               <Input autoFocus />
             </Field>
-            <Field label="密码" name="password" rules={[{ required: true }]}>
+            <Field label="密码">
               <PasswordInput />
             </Field>
-            <Field name="remember" valuePropName="checked">
+            <Field>
               <div className="flex items-center justify-between">
                 <Checkbox>记住账号</Checkbox>
                 <Link href="/user/forget">忘记密码了</Link>
               </div>
             </Field>
             <Field>
-              <Button type="primary" htmlType="submit" className="w-full">
+              <Button type="submit" className="w-full">
                 登录
               </Button>
             </Field>

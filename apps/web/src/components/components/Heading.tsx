@@ -1,15 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
-import { Avatar, Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import s from './Heading.module.css'
+import { Avatar } from '@/components/ui/avatar'
 
 export const Heading = () => {
   return (
     <div className={s.root}>
       <div className={s.content}>
         <Avatar
-          alt="Your Avatar"
-          size={100}
+          size="md"
           className="mr-10"
           src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180"
         />

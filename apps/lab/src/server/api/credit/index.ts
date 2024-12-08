@@ -1,23 +1,21 @@
 import Stripe from 'stripe'
 import stripe from '@/lib/stripe'
 
-export async function createStripeCheckoutSession(
-  {
-    userId,
-    cents,
-    name,
-    description,
-    successUrl,
-    cancelUrl,
-  }: {
-    userId: string,
-    cents: number,
-    name: string,
-    description: string,
-    successUrl: string | undefined,
-    cancelUrl: string | undefined
-  }
-): Promise<Stripe.Response<Stripe.Checkout.Session>> {
+export async function createStripeCheckoutSession({
+  userId,
+  cents,
+  name,
+  description,
+  successUrl,
+  cancelUrl,
+}: {
+  userId: string
+  cents: number
+  name: string
+  description: string
+  successUrl: string | undefined
+  cancelUrl: string | undefined
+}): Promise<Stripe.Response<Stripe.Checkout.Session>> {
   return await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [

@@ -18,14 +18,9 @@ import {
   AccordionRoot,
 } from '@/components/ui/accordion'
 import {
-  DrawerActionTrigger,
-  DrawerBackdrop,
   DrawerBody,
-  DrawerCloseTrigger,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
-  DrawerRoot,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
@@ -35,11 +30,18 @@ import {
   MenuRoot,
   MenuTrigger,
 } from '@/components/ui/menu'
-import { HStack } from '@chakra-ui/react'
+import {
+  CheckboxGroup,
+  DrawerRoot,
+  Fieldset,
+  HStack,
+  Menu,
+} from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 
 const ProductPage = () => {
-  const [minimumQuantity, setMiniumQuantity] = useState(0)
-  const [category, setCategory] = useState(0)
+  const [minimumQuantity, setMiniumQuantity] = useState('0')
+  const [category, setCategory] = useState('0')
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   const sortOptions = [
@@ -144,69 +146,89 @@ const ProductPage = () => {
       <div className="flex flex-row">
         <div className={s.leftSidebar}>
           <div className={s.sidebarPanel}>
-            <AccordionRoot
-              defaultActiveKey={['1', '2', '3', '4']}
-              ghost
-              expandIconPosition="right"
-            >
-              <AccordionItem header="最小起订量" key="1">
+            <AccordionRoot defaultValue={['1', '2', '3', '4']}>
+              <AccordionItem value="最小起订量" key="1">
                 <AccordionItemTrigger>最小起订量</AccordionItemTrigger>
                 <AccordionItemContent>
                   <RadioGroup
                     onChange={handleMiniumQuantityChange}
                     value={minimumQuantity}
                   >
-                    <HStack size={0}>
-                      <Radio value={0}>任意数量</Radio>
-                      <Radio value={500}>500单位或更少</Radio>
-                      <Radio value={1000}>1,000单位或更少</Radio>
-                      <Radio value={10000}>10,000单位或更少</Radio>
+                    <HStack>
+                      <Radio value={'0'}>任意数量</Radio>
+                      <Radio value={'500'}>500单位或更少</Radio>
+                      <Radio value={'1000'}>1,000单位或更少</Radio>
+                      <Radio value={'10000'}>10,000单位或更少</Radio>
                     </HStack>
                   </RadioGroup>
                 </AccordionItemContent>
               </AccordionItem>
-              <AccordionItem header="分类" key="2">
+              <AccordionItem value="分类" key="2">
                 <AccordionItemTrigger>分类</AccordionItemTrigger>
                 <AccordionItemContent>
                   <RadioGroup onChange={handleCategoryChange} value={category}>
-                    <HStack direction="vertical" size={0}>
-                      <Radio value={0}>Boxes</Radio>
-                      <Radio value={2}>Child Resistant</Radio>
-                      <Radio value={3}>Collateral</Radio>
-                      <Radio value={4}>Inner Bags</Radio>
-                      <Radio value={5}>Insulation</Radio>
-                      <Radio value={6}>Mailers</Radio>
-                      <Radio value={7}>Publications</Radio>
-                      <Radio value={8}>Retail Bags</Radio>
-                      <Radio value={9}>Sewn Bags</Radio>
-                      <Radio value={10}>Stickers and Labels</Radio>
-                      <Radio value={11}>Tape</Radio>
-                      <Radio value={12}>Tubes</Radio>
-                      <Radio value={13}>Void Fill</Radio>
+                    <HStack>
+                      <Radio value="0">Boxes</Radio>
+                      <Radio value="2">Child Resistant</Radio>
+                      <Radio value="3">Collateral</Radio>
+                      <Radio value="4">Inner Bags</Radio>
+                      <Radio value="5">Insulation</Radio>
+                      <Radio value="6">Mailers</Radio>
+                      <Radio value="7">Publications</Radio>
+                      <Radio value="8">Retail Bags</Radio>
+                      <Radio value="9">Sewn Bags</Radio>
+                      <Radio value="10">Stickers and Labels</Radio>
+                      <Radio value="11">Tape</Radio>
+                      <Radio value="12">Tubes</Radio>
+                      <Radio value="13">Void Fill</Radio>
                     </HStack>
                   </RadioGroup>
                 </AccordionItemContent>
               </AccordionItem>
-              <AccordionItem header="材质" key="3">
+              <AccordionItem value="材质" key="3">
                 <AccordionItemTrigger>材质</AccordionItemTrigger>
                 <AccordionItemContent>
-                  <Checkbox
-                    className="flex flex-col"
-                    options={materialsOptions}
-                    defaultValue={[]}
-                    onChange={onChange}
-                  />
+                  <Fieldset.Root>
+                    <CheckboxGroup
+                      defaultValue={[]}
+                      name="材质"
+                      onCheckedChange={onChange}
+                    >
+                      <Fieldset.Legend fontSize="sm" mb="2">
+                        材质
+                      </Fieldset.Legend>
+                      <Fieldset.Content>
+                        {materialsOptions.map((item) => {
+                          return (
+                            <Checkbox value={item.value}>{item.label}</Checkbox>
+                          )
+                        })}
+                      </Fieldset.Content>
+                    </CheckboxGroup>
+                  </Fieldset.Root>
                 </AccordionItemContent>
               </AccordionItem>
-              <AccordionItem header="环保标准" key="4">
+              <AccordionItem value="环保标准" key="4">
                 <AccordionItemTrigger>环保标准</AccordionItemTrigger>
                 <AccordionItemContent>
-                  <Checkbox
-                    className="flex flex-col"
-                    options={sustainabilityOptions}
-                    defaultValue={[]}
-                    onChange={onChange}
-                  />
+                  <Fieldset.Root>
+                    <CheckboxGroup
+                      defaultValue={[]}
+                      name="环保标准"
+                      onCheckedChange={onChange}
+                    >
+                      <Fieldset.Legend fontSize="sm" mb="2">
+                        环保标准
+                      </Fieldset.Legend>
+                      <Fieldset.Content>
+                        {sustainabilityOptions.map((item) => {
+                          return (
+                            <Checkbox value={item.value}>{item.label}</Checkbox>
+                          )
+                        })}
+                      </Fieldset.Content>
+                    </CheckboxGroup>
+                  </Fieldset.Root>
                 </AccordionItemContent>
               </AccordionItem>
             </AccordionRoot>
@@ -216,7 +238,7 @@ const ProductPage = () => {
           <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pb-6 pt-6">
             <div className={s.mainTitle}>包装产品分类</div>
             <div className="flex items-center">
-              <MenuRoot overlay={menu} trigger={['click']}>
+              <MenuRoot>
                 <MenuTrigger asChild>
                   <a
                     className="ant-dropdown-link"

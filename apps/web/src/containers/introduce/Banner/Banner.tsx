@@ -17,7 +17,7 @@ export const Banner = () => {
       </h3>
       <div className="main-banner__actions">
         <Link href="/get-started" className="btn btn-primary">
-          <Button type="primary">开始</Button>
+          <Button type="button">开始</Button>
         </Link>
       </div>
     </MainBanner>

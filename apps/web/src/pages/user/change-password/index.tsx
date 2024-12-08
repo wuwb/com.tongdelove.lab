@@ -90,7 +90,7 @@ class ChangePassword extends React.Component<any, any> {
   render() {
     return (
       <section className="m-10">
-        <div onFinish={this.handleSubmit}>
+        <div>
           <Field
             {...formItemLayout}
             label={<span className="form-item-label">旧密码</span>}
@@ -110,9 +110,7 @@ class ChangePassword extends React.Component<any, any> {
             <Input />
           </Field>
           <Field {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              确定
-            </Button>
+            <Button type="submit">确定</Button>
           </Field>
         </div>
       </section>

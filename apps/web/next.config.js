@@ -1,4 +1,3 @@
-// @ts-check
 const withPlugins = require('next-compose-plugins')
 // const { i18n } = require('./next-i18next.config');
 
@@ -18,9 +17,6 @@ module.exports = withPlugins([], {
    * This is needed to ensure that external urls can't be abused.
    * @see https://nextjs.org/docs/basic-features/image-optimization#domains
    */
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 768, 1024, 1280, 1536, 1920, 2250], // sync to tailwind config
@@ -64,6 +60,7 @@ module.exports = withPlugins([], {
     outputFileTracingExcludes: {
       '*': ['node_modules/canvas', 'node_modules/.pnpm/canvas@2.11.2'],
     },
+    optimizePackageImports: ['@chakra-ui/react'],
     webVitalsAttribution: ['CLS', 'LCP'],
     swcPlugins: [['next-superjson-plugin', {}]],
     nextScriptWorkers: true,
@@ -82,8 +79,6 @@ module.exports = withPlugins([], {
   //
   //   return config
   // },
-
-  // experimental: {
   //   redirects() {
   //     // 将页面映射到根目录
   //     return [
@@ -94,7 +89,6 @@ module.exports = withPlugins([], {
   //       },
   //     ]
   //   },
-  // },
   // webpack(config, options) {
   //   return config;
   // }

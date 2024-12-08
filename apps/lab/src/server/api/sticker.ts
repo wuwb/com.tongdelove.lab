@@ -88,11 +88,7 @@ export async function hideSticker({ id }: { id: string }) {
   return result
 }
 
-export async function getById({
-  id
-}: {
-  id: string
-}) {
+export async function getById({ id }: { id: string }) {
   const result = await prisma.sticker.findUnique({
     where: {
       id,

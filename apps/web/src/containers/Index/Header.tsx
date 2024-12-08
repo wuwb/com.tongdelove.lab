@@ -81,10 +81,10 @@ export const Menu = ({ toggleDarkMode }: any) => {
             </ThemeIcon> */}
             <div>
               <Link href="/login">
-                <Button type="link">登录</Button>
+                <Button type="button">登录</Button>
               </Link>
               <Link href="/choose">
-                <Button type="primary">开始</Button>
+                <Button type="button">开始</Button>
               </Link>
               {/* <Popover title="User Settings" content={popoverContent} placement="bottomEnd" portalClassName="popover">
                 <Avatar text="链接" />

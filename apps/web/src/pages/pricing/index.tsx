@@ -196,42 +196,105 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="content">
-          <div gutter={32}>
-            <div span={16}>
+        <div>
+          <div>
+            <div>
               <h3 className="title text-xl font-bold">海维包装提供哪些服务?</h3>
               <div className="section mt-5">
                 <div className="title mb-2 text-lg">工厂网络</div>
-                <Table
-                  columns={columns}
-                  dataSource={networkData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <Table.Root>
+                  <Table.Header>
+                    {columns.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
+                          <Table.ColumnHeader>
+                            {item.dataIndex}
+                          </Table.ColumnHeader>
+                          <Table.ColumnHeader textAlign="end">
+                            {item.key}
+                          </Table.ColumnHeader>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Header>
+                  <Table.Body>
+                    {networkData.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.Cell>{item.condation}</Table.Cell>
+                          <Table.Cell>{item.other}</Table.Cell>
+                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Body>
+                </Table.Root>
               </div>
               <div className="section mt-10">
                 <div className="title mb-2 text-lg">软件平台</div>
-                <Table
-                  columns={columns}
-                  dataSource={softwarePlatformData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <Table.Root>
+                  <Table.Header>
+                    {columns.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
+                          <Table.ColumnHeader>
+                            {item.dataIndex}
+                          </Table.ColumnHeader>
+                          <Table.ColumnHeader textAlign="end">
+                            {item.key}
+                          </Table.ColumnHeader>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Header>
+                  <Table.Body>
+                    {softwarePlatformData.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.Cell>{item.condation}</Table.Cell>
+                          <Table.Cell>{item.other}</Table.Cell>
+                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Body>
+                </Table.Root>
               </div>
               <div className="section mt-10">
                 <div className="title mb-2 text-lg">专业服务</div>
-                <Table
-                  columns={columns}
-                  dataSource={expertServicesData}
-                  pagination={false}
-                  bordered={true}
-                  size="small"
-                />
+                <Table.Root>
+                  <Table.Header>
+                    {columns.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
+                          <Table.ColumnHeader>
+                            {item.dataIndex}
+                          </Table.ColumnHeader>
+                          <Table.ColumnHeader textAlign="end">
+                            {item.key}
+                          </Table.ColumnHeader>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Header>
+                  <Table.Body>
+                    {expertServicesData.map((item, index) => {
+                      return (
+                        <Table.Row key={item.key}>
+                          <Table.Cell>{item.condation}</Table.Cell>
+                          <Table.Cell>{item.other}</Table.Cell>
+                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
+                  </Table.Body>
+                </Table.Root>
               </div>
             </div>
-            <div span={8} className="py-32">
+            <div className="py-32">
               <div className="more-service-1">
                 Additional services are available directly in the platform with
                 flat rate pricing. <br />

@@ -102,6 +102,7 @@
     "@opentelemetry/sdk-trace-base": "^1.26.0",
     "@opentelemetry/sdk-trace-node": "^1.26.0",
     "@opentelemetry/semantic-conventions": "^1.27.0",
+    "@pansy/seal": "^0.1.4",
     "@prisma/adapter-neon": "^5.20.0",
     "@prisma/client": "^5.20.0",
     "@qdrant/js-client-rest": "^1.11.0",

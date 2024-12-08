@@ -40,8 +40,8 @@ const Page = () => {
           </div>
         </div>
 
-        <div justify="center">
-          <div span={16}>
+        <div>
+          <div>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
                 <Image
@@ -53,7 +53,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div span={8}>
+          <div>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
@@ -62,15 +62,15 @@ const Page = () => {
           </div>
         </div>
 
-        <div justify="center">
-          <div span={8}>
+        <div>
+          <div>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
           </div>
-          <div span={16}>
+          <div>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
                 <Image
@@ -84,8 +84,8 @@ const Page = () => {
           </div>
         </div>
 
-        <div justify="center">
-          <div span={16}>
+        <div>
+          <div>
             <div className="webshot-wrap clearfix">
               <div className="webshot" style={{ float: 'right' }}>
                 <Image
@@ -97,7 +97,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div span={8}>
+          <div>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
@@ -106,15 +106,15 @@ const Page = () => {
           </div>
         </div>
 
-        <div justify="center">
-          <div span={8}>
+        <div>
+          <div>
             <h3>每个 SKU 的管理视图。</h3>
             <div>
               <p>仪表板使您的团队可以集中访问公司使用的每种包装样式。</p>
               <p>在一个位置访问定价，规格，校样和订单历史记录。</p>
             </div>
           </div>
-          <div span={16}>
+          <div>
             <div className="webshot-wrap clearfix">
               <div className="webshot">
                 <Image

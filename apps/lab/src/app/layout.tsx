@@ -1,4 +1,4 @@
-import { MantineProvider } from '@mantine/core'
+import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { TRPCReactProvider } from '@/trpc/react'
 // import AppContextProvider from '@/contexts/AppContext'
 // import { Layout } from '@/components/Layout'
@@ -15,16 +15,16 @@ import { cookies } from 'next/headers'
 import { Toaster } from 'sonner'
 import './globals.css'
 import { env } from '@/env/client'
+import { theme } from '@/theme'
+import '@mantine/core/styles.css'
+import Script from 'next/dist/client/script'
 
 const baseUrl = env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000'
 
-const twitterCreator = 'wuwb_' ? ensureStartsWith('wuwb_', '@') : undefined
-
+const twitterCreator = 'wuwb_'
 const twitterSite = 'https://x.com/wuwb_'
-  ? ensureStartsWith('https://x.com/wuwb_', 'https://')
-  : undefined
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
@@ -58,17 +58,21 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning={false}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <head>
+        <ColorSchemeScript />
+        <Script src="https://www.zhangxinxu.com/study/202008/offset-path.js" />
+      </head>
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* <AppContextProvider> */}
           <TRPCReactProvider>
             {/* <TRPCReactProvider cookies={cookies().toString()}> */}
-            <MantineProvider>
+            <MantineProvider theme={theme}>
               {/* <CartProvider cartPromise={cart}> */}
-                <Navbar />
-                {/* <Layout> */}
-                {children}
-                {/* </Layout> */}
+              <Navbar />
+              {/* <Layout> */}
+              {children}
+              {/* </Layout> */}
               {/* </CartProvider> */}
             </MantineProvider>
           </TRPCReactProvider>

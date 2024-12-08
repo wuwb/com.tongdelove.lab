@@ -1,4 +1,4 @@
-import { useEvent } from '@/hooks/useEvent'
+import { useEvent } from '@tongdelove/hooks'
 import { crc32 } from 'crc'
 import {
   Trans,

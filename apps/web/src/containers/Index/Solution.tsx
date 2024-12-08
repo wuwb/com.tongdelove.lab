@@ -1,27 +1,16 @@
 import Image from 'next/image'
-import styled from '@emotion/styled'
 
 export const Solution = () => {
-  const Container = styled.div`
-    margin-top: 60px;
-    & .content .content-primary {
-      padding-top: 60px;
-      width: 380px;
-      height: 420px;
-    }
-    & .content .content-secondly {
-      width: 1000px;
-      height: 420px;
-    }
-  `
   return (
-    <Container className="introduce-block clearfix container text-center">
+    <div className="introduce-block clearfix container mt-[60px] text-center">
       <div className="client-block-hd">
-        <h3>提供一整套解决方案</h3>
-        <p>从需求设计到产品出货</p>
+        <h3 className="text-2xl font-semibold text-gray-800">
+          提供一整套解决方案
+        </h3>
+        <p className="text-lg text-gray-600">从需求设计到产品出货</p>
       </div>
-      <div className="container mx-auto grid grid-cols-12">
-        <div className="content-primary col-span-4 float-left text-left">
+      <div className="container mx-auto mt-20 grid grid-cols-12">
+        <div className="content-primary col-span-4 float-left mt-[60px] h-[420px] w-[380px] text-left">
           <dl>
             <dt>
               <p className="text-lg font-bold">在线报价</p>
@@ -53,7 +42,7 @@ export const Solution = () => {
             <dd>32 年持续耕耘，品质可靠稳定</dd>
           </dl>
         </div>
-        <div className="content-secondly col-span-8 float-right">
+        <div className="content-secondly col-span-8 float-right h-[420px] w-[1000px]">
           <Image
             width={1000}
             height={420}
@@ -62,6 +51,6 @@ export const Solution = () => {
           />
         </div>
       </div>
-    </Container>
+    </div>
   )
 }

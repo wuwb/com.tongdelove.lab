@@ -9,10 +9,10 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-export const BaseLayout = ({ 
-  hasHeader = false, 
-  hasSidebar = false, 
-  children 
+export const BaseLayout = ({
+  hasHeader = false,
+  hasSidebar = false,
+  children,
 }: LayoutProps) => {
   return (
     <div className="flex h-full w-full">

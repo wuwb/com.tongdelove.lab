@@ -12,17 +12,19 @@ export const MoreStories = ({ posts }) => {
         }}
       >
         {posts.map((post) => (
-          <Card key={post.slug} style={{ width: 300 }}>
-            <PostPreview
-              key={post.slug}
-              title={post.title}
-              coverImage={post.coverImage}
-              date={post.date}
-              author={post.author}
-              slug={post.slug}
-              excerpt={post.excerpt}
-            />
-          </Card>
+          <Card.Root width="320px">
+            <Card.Body gap="2" key={post.slug} style={{ width: 300 }}>
+              <PostPreview
+                key={post.slug}
+                title={post.title}
+                coverImage={post.coverImage}
+                date={post.date}
+                author={post.author}
+                slug={post.slug}
+                excerpt={post.excerpt}
+              />
+            </Card.Body>
+          </Card.Root>
         ))}
       </div>
     </>

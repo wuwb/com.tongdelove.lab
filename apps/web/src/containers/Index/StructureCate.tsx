@@ -11,7 +11,7 @@ export const StructureCate = () => {
         <div className="col-xl-2">
           <div className="sub-section">自热包装盒</div>
         </div>
-        <div gutter={16} className="justify-center">
+        <div className="justify-center">
           <div className="product-wrap">
             <div className="product">
               <Link href="" className="action-hover">

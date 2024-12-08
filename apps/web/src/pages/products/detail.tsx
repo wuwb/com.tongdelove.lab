@@ -8,6 +8,7 @@ import {
   BreadcrumbLink,
   BreadcrumbRoot,
 } from '@/components/ui/breadcrumb'
+import { HStack } from '@chakra-ui/react'
 
 interface DetailPageProps {
   name?: string
@@ -185,7 +186,7 @@ const DetailPage = ({
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
                 <div className="flex items-center">
-                  <div disabled allowHalf defaultValue={reviews.average} />
+                  <div defaultValue={reviews.average} />
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
                 <a
@@ -203,11 +204,21 @@ const DetailPage = ({
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
                 <RadioGroup
-                  options={product.colors}
-                  value={selectedColor}
-                  onChange={handleChange}
+                  value={selectedColor?.value}
+                  onValueChange={(e) => {
+                    handleChange(e.value)
+                  }}
                   className="mt-4"
-                ></RadioGroup>
+                >
+                  <HStack gap="6">
+                    {product.colors.map((item) => (
+                      <Radio value={item.value}>{item.label}</Radio>
+                    ))}
+
+                    <Radio value="2">Option 2</Radio>
+                    <Radio value="3">Option 3</Radio>
+                  </HStack>
+                </RadioGroup>
               </div>
 
               {/* Sizes */}

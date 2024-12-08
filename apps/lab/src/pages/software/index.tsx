@@ -1,53 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from '@/i18n'
-import { SoftwareItem } from '@/components/Objects/Software/SoftwareItem';
+import { SoftwareItem } from '@/components/Objects/Software/SoftwareItem'
 
-function SofewarePage() {
-  const { t } = useTranslation() 
+function Software() {
+  const { t } = useTranslation()
   const softwareList = [
     {
-        id: 1,
-        name: '软件A',
-        description: '这是一个非常有用的软件A，提供了多种功能。',
-        icon: 'https://example.com/icon-a.png',
-        detailUrl: '/software/a'
+      id: 1,
+      name: '软件A',
+      description: '这是一个非常有用的软件A，提供了多种功能。',
+      icon: 'https://example.com/icon-a.png',
+      detailUrl: '/software/a',
     },
     {
-        id: 2,
-        name: '软件B',
-        description: '这是另一个优秀的软件B，适合各种场景。',
-        icon: 'https://example.com/icon-b.png',
-        detailUrl: '/software/b'
+      id: 2,
+      name: '软件B',
+      description: '这是另一个优秀的软件B，适合各种场景。',
+      icon: 'https://example.com/icon-b.png',
+      detailUrl: '/software/b',
     },
-  ];
+  ]
 
-  const [softwares, setSoftwares] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const softwarePerPage = 8; // 4个一行，一次加载两行
+  const [softwares, setSoftwares] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(1)
+  const softwarePerPage = 8 // 4个一行，一次加载两行
 
   useEffect(() => {
     const fetchData = async () => {
-      if (loading) return;
+      if (loading) return
 
-      setLoading(true);
+      setLoading(true)
       // 假设你有一个API可以获取软件列表，这里只是一个模拟的示例
       // const response = await fetch(`https://api.example.com/softwares?page=${page}&per_page=${softwarePerPage}`);
       // const data = await response.json();
-      
-      setSoftwares(prevSoftwares => [...softwareList]);
-      setLoading(false);
-    };
+
+      setSoftwares((prevSoftwares) => [...softwareList])
+      setLoading(false)
+    }
 
     window.addEventListener('scroll', () => {
-      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight && !loading) {
-        setPage(prevPage => prevPage + 1);
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+          document.documentElement.offsetHeight &&
+        !loading
+      ) {
+        setPage((prevPage) => prevPage + 1)
       }
-    });
+    })
 
-    fetchData();
-  }, [loading, page]);
-  
+    fetchData()
+  }, [loading, page])
+
   return (
     <>
       <div className="grow">
@@ -83,4 +87,4 @@ function SofewarePage() {
   )
 }
 
-export default SofewarePage
+export default Software

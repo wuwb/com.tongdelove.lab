@@ -33,7 +33,7 @@ export const Col4Demo = (props) => {
         ]}
       />
       <ProductDemoList
-        title="自加热餐盒点 - 全包纸套"
+        title="自加热餐盒 - 腰封"
         products={[
           {
             image: '/assets/index/01.jpg',

@@ -17,10 +17,7 @@ export class PostRepositorySsr {
       }
       return post
     } catch (e) {
-      throw new Error({
-        message: `Post ${postId} can't be retrieved`,
-        cause: e instanceof Error ? e : undefined,
-      })
+      throw new Error(`Post ${postId} can't be retrieved`)
     }
   }
 
@@ -50,10 +47,7 @@ export class PostRepositorySsr {
         orderBy: { publishedAt: 'desc' },
       })
     } catch (e) {
-      throw new Error({
-        message: `Posts can't be retrieved`,
-        cause: e instanceof Error ? e : undefined,
-      })
+      throw new Error(`Posts can't be retrieved`)
     }
   }
 }

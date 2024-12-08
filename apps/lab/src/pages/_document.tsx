@@ -86,7 +86,10 @@ const MyDocument = (props: MyDocumentProps) => {
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCGSDTJ20H"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-JCGSDTJ20H"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -94,7 +97,8 @@ const MyDocument = (props: MyDocumentProps) => {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-JCGSDTJ20H');
-          `}}
+          `,
+          }}
         />
         <Main />
         <NextScript data-sprig-preview />
