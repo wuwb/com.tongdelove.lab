@@ -106,7 +106,7 @@
     "@prisma/adapter-neon": "^5.20.0",
     "@prisma/client": "^5.20.0",
     "@qdrant/js-client-rest": "^1.11.0",
-    "@reduxjs/toolkit": "1.9.5",
+    "@reduxjs/toolkit": "2.2.8",
     "@sentry/browser": "^8.33.1",
     "@sentry/nextjs": "^7.112.2",
     "@sentry/react": "^7.112.2",
