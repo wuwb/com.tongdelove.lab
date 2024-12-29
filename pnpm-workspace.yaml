@@ -5,6 +5,7 @@ packages:
   - 'apps/lab'
   - 'apps/mobile'
   - 'apps/web'
+  - 'apps/extension'
   - 'prisma'
   - 'packages/schema'
   - 'packages/utils'

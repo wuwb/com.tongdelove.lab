@@ -22,7 +22,7 @@ function insertDifference(element: Element, difference: number): void {
 }
 
 // Main function to process the page
-function processContributorsPage(): void {
+export function processContributorsPage(): void {
   console.log("DOMContentLoaded")
 
   // const url = window.location.href;
@@ -31,9 +31,9 @@ function processContributorsPage(): void {
   // }
 
   const elements = document.querySelectorAll('span.color-fg-success, span.color-fg-danger');
-  
+
   console.log('elements: ', elements)
-  
+
   elements.forEach((element) => {
     const parentElement = element.parentElement;
     if (parentElement) {
@@ -49,5 +49,10 @@ function processContributorsPage(): void {
 // Run the main function when the content script is injected
 // processContributorsPage();
 
-document.addEventListener('DOMContentLoaded', processContributorsPage, false) 
-
+export default defineContentScript({
+  matches: ['https://github.com/FlowGPT/flow/graphs/contributors'],
+  runAt: 'document_start',
+  main() {
+    processContributorsPage()
+  },
+});

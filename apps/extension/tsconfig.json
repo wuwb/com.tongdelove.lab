@@ -1,19 +1,9 @@
 {
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2015",
-    "strict": true,
-    "esModuleInterop": true,
-    "outDir": "./dist",
-    "lib": [
-      "ES2015",
-      "DOM"
-    ],
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "types": []
-  },
-  "include": [
-    "src/**/*.ts"
-  ]
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "types": ["chrome"],
+    "lib": ["DOM", "ESNext", "WebWorker"]
+  }
 }
