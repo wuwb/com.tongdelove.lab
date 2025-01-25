@@ -15,7 +15,7 @@ const Privacy = () => {
         )}
       />
       <div>
-        Privacy Policy Effective Date: 2024/01/01 Introduction Welcome to
+        {t(`Privacy Policy Effective Date: 2024/01/01 Introduction Welcome to
         Printlake. This Privacy Policy describes how we collect, use, and
         protect your personal information when you visit our website.
         Information We Collect We collect the following types of information:
@@ -26,7 +26,7 @@ const Privacy = () => {
         collect any data from children. Updates to the Privacy Policy If we
         update our Privacy Policy, we will notify you via email. Contact Us If
         you have any questions about this Privacy Policy, please contact us at
-        support@tongdelove.com
+        support@tongdelove.com.`)}
       </div>
     </>
   )
