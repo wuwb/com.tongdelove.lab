@@ -1,10 +1,15 @@
 import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [
+      tailwindcss(),
+      externalizeDepsPlugin()
+    ]
   },
   preload: {
     plugins: [externalizeDepsPlugin()]
@@ -15,6 +20,12 @@ export default defineConfig({
         '@renderer': resolve('src/renderer/src')
       }
     },
-    plugins: [react()]
+    plugins: [
+      tailwindcss(),
+      react(),
+      tsconfigPaths({
+        ignoreConfigErrors: true // 忽略配置错误
+      }),
+    ],
   }
 })
