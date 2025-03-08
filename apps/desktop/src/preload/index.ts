@@ -4,6 +4,10 @@ import { electronAPI } from '@electron-toolkit/preload'
 // Custom APIs for renderer
 const api = {}
 
+const appAPI = {
+  sayHelloFromBridge: () => console.log('\nHello from bridgeAPI! 👋\n\n'),
+}
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
@@ -12,17 +16,15 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
 
+    contextBridge.exposeInMainWorld('app', appAPI)
+
     // Expose protected methods that allow the renderer process to use
     // the ipcRenderer without exposing the entire object
-    contextBridge.exposeInMainWorld(
-      'custom',
-      {
-        invoke: (channel: string, ...args: any[]) => {
-          return ipcRenderer.invoke(channel, ...args)
-        }
-      }
-    )
-
+    contextBridge.exposeInMainWorld('custom', {
+      invoke: (channel: string, ...args: any[]) => {
+        return ipcRenderer.invoke(channel, ...args)
+      },
+    })
   } catch (error) {
     console.error(error)
   }
@@ -31,4 +33,6 @@ if (process.contextIsolated) {
   window.electron = electronAPI
   // @ts-ignore (define in dts)
   window.api = api
+  // @ts-ignore (define in dts)
+  window.app = app
 }

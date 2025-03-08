@@ -1,3 +1,0 @@
-provider: generic
-url: https://example.com/auto-updates
-updaterCacheDirName: 20250304_electron_vite-updater

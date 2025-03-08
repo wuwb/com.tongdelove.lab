@@ -1,8 +1,12 @@
 import { useState } from 'react'
-import Versions from './components/Versions'
-import { Button } from "@chakra-ui/react"
 
-function App(): JSX.Element {
+import { Route } from 'react-router-dom'
+import { Router } from '@/lib/electron-router-dom'
+import { IndexPage } from './pages/index'
+import { AboutPage } from './pages/about'
+import { Layout } from './layouts/index'
+
+export function App() {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
   const [count, setCount] = useState(0)
@@ -12,14 +16,14 @@ function App(): JSX.Element {
   }
 
   return (
-    <div>
-      <a className="text-3xl font-bold underline" target="_blank" rel="noreferrer" onClick={ipcHandle}>
-        Send IPC
-      </a>
-      <Button className="bg-sky-500 hover:bg-sky-700" onClick={handleClick}>Click me {count}</Button>
-      <Versions />
-    </div>
+    <Router
+      main={
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Route>
+      }
+      about={<Route path="/" element={<AboutPage />} />}
+    />
   )
 }
-
-export default App
