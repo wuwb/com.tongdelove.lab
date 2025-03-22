@@ -30,6 +30,7 @@
     "@prisma/client": "^5.20.0"
   },
   "devDependencies": {
+    "@tongdelove/typescript-config": "workspace:^",
     "@soluble/dsn-parser": "^1.9.2",
     "@tongdelove/eslint-config": "workspace:^",
     "@types/node": "^20.12.8",

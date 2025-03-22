@@ -17,7 +17,6 @@
     "flamegraph-home": "npx 0x --output-dir './.debug/flamegraph/{pid}.0x' --on-port 'autocannon http://localhost:$PORT --duration 20' -- node ../../node_modules/.bin/next start",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx,.cjs,.mjs,.mdx,.graphql --cache --cache-location ../../.cache/eslint/nextjs-app.eslintcache --resolve-plugins-relative-to . .",
     "start": "next start",
-    "test": "cypress run --headless --browser chrome",
     "test-e2e": "E2E_WEBSERVER_MODE=BUILD_AND_START playwright test",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
     "lint2": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs,.mdx,.graphql --cache --cache-location ../../.cache/eslint/nextjs-app.eslintcache",
@@ -36,7 +35,6 @@
     "eslint:fix": "eslint . --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cypress": "cypress open",
     "script2": "npx ts-node --esm",
     "script": "node --loader ts-node/esm",
     "analyze": "ANALYZE=true next build",
@@ -54,7 +52,9 @@
     "translation:scan": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm script -- ./scripts/scan_translation.mts",
     "translation:csv": "pnpm script -- ./scripts/translation/generate_translation_csv.mts",
     "translation:translate": "i18next-toolkit translate",
-    "dev-email": "email dev"
+    "dev-email": "email dev",
+    "client:rsdoctor": "rsdoctor analyze --profile .next/.rsdoctor/manifest.json",
+    "server:rsdoctor": "rsdoctor analyze --profile .next/server/chunks/.rsdoctor/manifest.json"
   },
   "browserslist": {
     "production": [
@@ -207,13 +207,10 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@cypress-audit/lighthouse": "^1.4.2",
-    "@cypress/webpack-preprocessor": "^6.0.2",
     "@i18next-toolkit/cli": "^1.4.3",
     "@next/bundle-analyzer": "^14.2.14",
     "@next/env": "^14.2.14",
     "@next/eslint-plugin-next": "^14.2.14",
-    "@playwright/test": "1.47.2",
     "@size-limit/file": "11.1.6",
     "@soluble/dsn-parser": "^1.9.2",
     "@storybook/addon-essentials": "^8.3.5",
@@ -260,7 +257,6 @@
     "apexcharts": "3.54.0",
     "autoprefixer": "^10.4.20",
     "cookies-next": "^4.0.0",
-    "cypress": "^13.15.0",
     "dotenv": "^16.4.5",
     "downloadjs": "^1.4.7",
     "embla-carousel-react": "^8.3.0",
@@ -326,7 +322,9 @@
     "use-image": "^1.1.1",
     "web-vitals": "latest",
     "wujie-react": "1.0.22",
-    "yaml-loader": "^0.8.1"
+    "yaml-loader": "^0.8.1",
+    "@rsdoctor/cli": "^1.0.0",
+    "@rsdoctor/webpack-plugin": "^1.0.0"
   },
   "publishConfig": {
     "access": "restricted"

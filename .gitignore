@@ -39,7 +39,7 @@ packages/spider/
 apps/demo
 services/lucky-knives-lead/
 tasks/jobs/spider/src/sites/xueqiu
-
+apps/text-polish-chrome-extension
 
 # testing
 coverage

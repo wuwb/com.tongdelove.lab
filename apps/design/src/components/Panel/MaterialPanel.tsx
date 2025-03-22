@@ -3,6 +3,7 @@ import { MaterialBlock } from './MaterialBlock'
 
 const MaterialPanel = () => {
   const [showMore, setShowMore] = useState(false)
+  
   const handleShowMore = () => {
     setShowMore(true)
   }

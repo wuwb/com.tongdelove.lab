@@ -1,4 +1,4 @@
-import { FC, createContext, useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
 import { LayoutContext } from './LayoutProvider'
 
 export function useLayout() {

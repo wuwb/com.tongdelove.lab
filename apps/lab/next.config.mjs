@@ -14,6 +14,7 @@ import url from 'node:url'
 import withBundleAnalyzer from '@next/bundle-analyzer'
 // import nextI18nConfig from './next-i18next.config.js'
 import nextUtils from './next-utils.config.mjs'
+import { RsdoctorWebpackPlugin } from '@rsdoctor/webpack-plugin';
 
 const nextI18NextConfig = await import('./next-i18next.config.js').then(
   (m) => m.default
@@ -490,6 +491,23 @@ const config = {
         { loader: 'yaml-loader' },
       ],
     })
+
+    if (config.name === 'client') {
+      config.plugins.push(
+        new RsdoctorWebpackPlugin({
+          disableClientServer: true,
+        }),
+      );
+    } else if (config.name === 'server') {
+      config.plugins.push(
+        new RsdoctorWebpackPlugin({
+          disableClientServer: true,
+          output: {
+            reportDir: './.next/server',
+          },
+        }),
+      );
+    }
 
     //   const rules = config.module.rules.find(r => !!r.oneOf);
     //   rules.oneOf.forEach(loaders => {

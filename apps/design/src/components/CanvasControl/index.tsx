@@ -1,11 +1,8 @@
-import styled from '@emotion/styled'
 import { Popover } from 'antd'
 import clsx from 'clsx'
 import React, {
   MouseEvent,
   MouseEventHandler,
-  useEffect,
-  useState,
 } from 'react'
 import Draggable from 'react-draggable'
 import FastMenu from '../FastMenu'
@@ -18,15 +15,6 @@ interface CanvasControlProps {
   backSize: (event: MouseEvent<HTMLDivElement>) => unknown
   handleRotate: MouseEventHandler
 }
-
-const StyledCanvasControl = styled.div`
-  display: inline-block;
-  left: 0;
-  bottom: 0;
-  background: #ffffff;
-  border-radius: 4px;
-  pointer-events: auto;
-`
 
 const CanvasControl = (props: CanvasControlProps) => {
   const { scaleNum, handleSlider, backSize, handleRotate } = props
@@ -49,7 +37,14 @@ const CanvasControl = (props: CanvasControlProps) => {
 
   return (
     <Draggable>
-      <StyledCanvasControl className="absolute">
+      <div className="absolute" style={{
+         display: 'inline-block',
+         left: 0,
+         bottom: 0,
+         background: '#ffffff',
+         borderRadius: '4px',
+         pointerEvents: 'auto',
+      }}>
         {/* 放大缩小功能 */}
         <Popover
           placement="bottom"
@@ -87,7 +82,7 @@ const CanvasControl = (props: CanvasControlProps) => {
             旋转
           </span>
         </Popover>
-      </StyledCanvasControl>
+      </div>
     </Draggable>
   )
 }

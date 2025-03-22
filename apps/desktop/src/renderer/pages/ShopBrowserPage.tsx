@@ -10,70 +10,41 @@ import {
   MenuContent,
   MenuItem,
 } from '@chakra-ui/react'
-import { useState, useEffect, useRef } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { Tooltip } from '../components/ui/tooltip'
+import { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
   CloseIcon,
-  ChevronDownIcon,
+  AddIcon,
 } from '@chakra-ui/icons'
 import clsx from 'clsx'
+import { RootState } from '../store'
+import { addTab, closeTab, selectTab, setUrlInput, updateTabUrl } from '../store/browser'
 
 export const ShopBrowserPage = () => {
-  // Define a type for opened webpages
-  type OpenedPage = {
-    id: string
-    name: string
-    url: string
-    partition: string
-  }
-
   // Reference to the webview element
   const webviewRef = useRef<Electron.WebviewTag | null>(null)
-
-  // State to track opened webpages and the currently selected one
-  const [openedPages, setOpenedPages] = useState<OpenedPage[]>([])
-  const [selectedPageId, setSelectedPageId] = useState<string | null>(null)
-  const [urlInput, setUrlInput] = useState('')
+  const dispatch = useDispatch()
+  
+  // Get browser state from Redux store
+  const { tabs, selectedTabId, urlInput } = useSelector((state: RootState) => state.browser)
 
   // Handle page selection
-  const handleSelectPage = (pageId: string) => {
-    setSelectedPageId(pageId)
+  const handleSelectPage = (tabId: string) => {
+    dispatch(selectTab({ tabId }))
   }
 
   // Handle closing a page
-  const handleClosePage = (pageId: string, e: React.MouseEvent) => {
+  const handleClosePage = (tabId: string, e: React.MouseEvent) => {
     e.stopPropagation() // Prevent triggering the tab selection
-    const updatedPages = openedPages.filter(page => page.id !== pageId)
-    setOpenedPages(updatedPages)
-
-    // If we're closing the currently selected page
-    if (selectedPageId === pageId) {
-      // Select the first remaining page, or null if none left
-      setSelectedPageId(updatedPages.length > 0 ? updatedPages[0].id : null)
-    }
+    dispatch(closeTab({ tabId }))
   }
 
-  // Handle adding a new webpage with unique partition
-  const handleAddWebsite = (url: string = 'https://www.baidu.com') => {
-    // Format URL if it doesn't have http/https prefix
-    const formattedUrl = url.startsWith('http') ? url : `https://${url}`
-
-    const pageId = uuidv4()
-    const newPage = {
-      id: pageId,
-      name:
-        url === 'https://www.baidu.com'
-          ? `百度 ${openedPages.length + 1}`
-          : new URL(formattedUrl).hostname,
-      url: formattedUrl,
-      partition: `persist:webview-${pageId}`,
-    }
-
-    setOpenedPages([...openedPages, newPage])
-    setSelectedPageId(pageId)
-    setUrlInput('')
+  // Handle adding a new webpage
+  const handleAddWebsite = (url?: string) => {
+    dispatch(addTab({ url }))
   }
 
   // Handle URL input submission
@@ -82,6 +53,11 @@ export const ShopBrowserPage = () => {
     if (urlInput.trim()) {
       handleAddWebsite(urlInput.trim())
     }
+  }
+
+  // Handle URL input change
+  const handleUrlInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setUrlInput(e.target.value))
   }
 
   // Handle webview navigation
@@ -98,78 +74,55 @@ export const ShopBrowserPage = () => {
   }
 
   const handleAddNewTab = () => {
-    setSelectedPageId(null)
+    handleAddWebsite()
   }
 
-  // Select the first page when pages are available but none is selected
-  useEffect(() => {
-    if (openedPages.length > 0 && selectedPageId === null) {
-      setSelectedPageId(openedPages[0].id)
-    }
-  }, [openedPages, selectedPageId])
-
   return (
-    <div className="flex w-full h-full border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-      <div className="w-1/4 bg-gray-50 p-4 border-r border-gray-200 overflow-y-auto">
-        <div className="flex flex-col gap-2">
-          {openedPages.map(page => (
+    <div className="flex flex-col w-full h-full border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+      {/* Chrome-like tab bar at the top */}
+      <div className="flex items-center bg-gray-100 px-2 py-1 border-b border-gray-200">
+        <div className="flex-1 flex items-center overflow-x-auto">
+          {tabs.map((tab, index) => (
             <div
-              key={page.id}
+              key={tab.id}
               className={clsx(
-                `px-4 py-3 text-left rounded-md transition-all flex justify-between items-center`,
-                'hover:bg-gray-100 hover:cursor-pointer group shadow-sm',
-                `${selectedPageId === page.id ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-500 pl-3' : 'hover:bg-gray-100 border-l-4 border-transparent'}`
+                'flex items-center px-3 py-2 mr-1 rounded-t-md border-b-2 transition-all',
+                'hover:bg-gray-200 cursor-pointer',
+                selectedTabId === tab.id
+                  ? 'bg-white border-blue-500 text-blue-700'
+                  : 'bg-gray-100 border-transparent text-gray-600'
               )}
+              onClick={() => handleSelectPage(tab.id)}
             >
-              <div
-                onClick={() => handleSelectPage(page.id)}
-                className="flex-grow truncate font-medium"
-              >
-                {page.name}
+              <div className="max-w-[120px] truncate font-medium text-sm">
+                {tab.name}
               </div>
-              <MenuRoot positioning={{ placement: 'right-start' }}>
-                <MenuTrigger asChild>
-                  <IconButton
-                    variant="ghost"
-                    size="xs"
-                    aria-label="Tab options"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity ml-2"
-                  >
-                    <ChevronDownIcon />
-                  </IconButton>
-                </MenuTrigger>
-                <MenuContent>
-                  <MenuItem
-                    onClick={e => handleClosePage(page.id, e)}
-                    className="text-red-500"
-                    value="close"
-                  >
-                    <CloseIcon className="mr-2" />
-                    关闭
-                  </MenuItem>
-                </MenuContent>
-              </MenuRoot>
+              <IconButton
+                variant="ghost"
+                size="xs"
+                aria-label="Close tab"
+                className="ml-2 opacity-50 hover:opacity-100"
+                onClick={e => handleClosePage(tab.id, e)}
+              >
+                <CloseIcon fontSize="10px" />
+              </IconButton>
             </div>
           ))}
-          <Button
-            key="add"
-            onClick={() => handleAddWebsite()}
-            width="full"
-          >
-            打开百度
-          </Button>
-          <Button
-            key="add-tab"
-            onClick={() => handleAddNewTab()}
-            width="full"
-          >
-            打开新页面
-          </Button>
+          <Tooltip content="新标签页" positioning={{ placement: 'bottom-end' }}>
+            <IconButton
+              aria-label="New tab"
+              size="sm"
+              variant="ghost"
+              className="ml-1"
+              onClick={handleAddNewTab}
+            >
+              <AddIcon />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
-
-      <div className="flex flex-col bg-white w-full">
-        {selectedPageId ? (
+      <div className="flex flex-col bg-white w-full h-full">
+        {selectedTabId ? (
           <div className="w-full h-full flex flex-col">
             <div className="flex items-center p-3 border-b border-gray-200 bg-gray-50">
               <div className="flex space-x-2 mr-3">
@@ -195,13 +148,13 @@ export const ShopBrowserPage = () => {
                 </IconButton>
               </div>
 
-              {openedPages
-                .filter(page => page.id === selectedPageId)
-                .map(page => (
-                  <div key={`url-${page.id}`} className="flex-grow">
+              {tabs
+                .filter(tab => tab.id === selectedTabId)
+                .map(tab => (
+                  <div key={`url-${tab.id}`} className="flex-grow">
                     <Group attached>
                       <Input
-                        value={page.url}
+                        value={tab.url}
                         readOnly
                         bg="white"
                         borderRadius="md"
@@ -213,16 +166,16 @@ export const ShopBrowserPage = () => {
                 ))}
             </div>
 
-            {openedPages
-              .filter(page => page.id === selectedPageId)
-              .map(page => (
+            {tabs
+              .filter(tab => tab.id === selectedTabId)
+              .map(tab => (
                 <webview
-                  key={page.id}
+                  key={tab.id}
                   ref={webviewRef as any}
-                  src={page.url}
+                  src={tab.url}
                   className="w-full flex-grow"
                   allowpopups={'true' as any}
-                  partition={page.partition}
+                  partition={tab.partition}
                   nodeintegration={'true' as any}
                   plugins={'true' as any}
                   style={{

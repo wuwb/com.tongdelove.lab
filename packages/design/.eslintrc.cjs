@@ -12,20 +12,14 @@ module.exports = {
   },
   ignorePatterns: ['/storybook-static'],
   extends: [
-    '@tongdelove/eslint-config/typescript',
-    '@tongdelove/eslint-config/regexp',
-    '@tongdelove/eslint-config/sonar',
-    '@tongdelove/eslint-config/jest',
-    '@tongdelove/eslint-config/rtl',
-    '@tongdelove/eslint-config/storybook',
-    '@tongdelove/eslint-config/react',
-    // Apply prettier and disable incompatible rules
-    '@tongdelove/eslint-config/prettier-plugin',
-  ],
-  rules: {
-    // optional overrides per project
-  },
-  overrides: [
-    // optional overrides per project file match
+    // '@tongdelove/eslint-config/typescript',
+    // '@tongdelove/eslint-config/regexp',
+    // '@tongdelove/eslint-config/sonar',
+    // '@tongdelove/eslint-config/jest',
+    // '@tongdelove/eslint-config/rtl',
+    // '@tongdelove/eslint-config/storybook',
+    // '@tongdelove/eslint-config/react',
+    // // Apply prettier and disable incompatible rules
+    // '@tongdelove/eslint-config/prettier-plugin',
   ],
 };

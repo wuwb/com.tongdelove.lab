@@ -6,10 +6,9 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   parser: '@typescript-eslint/parser',
-  env: { 
+  env: {
     browser: true,
     node: true,
-    "cypress/globals": true
   },
   globals: {
     React: 'readonly',
@@ -23,7 +22,6 @@ module.exports = {
   plugins: [
     'import',
     'testing-library',
-    'cypress',
     'storybook',
     'prettier',
   ],
@@ -93,7 +91,7 @@ module.exports = {
   ],
   rules: {
     'no-unused-vars': 'off',
- 
+
     'no-restricted-syntax': [
       'error',
       'AwaitExpression > AwaitExpression.argument'

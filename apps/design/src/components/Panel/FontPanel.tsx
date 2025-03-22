@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import { SubTitle } from './SubTitle'
 
 interface FontPanelProps {
-  handleFontPicker: Function
+  handleFontPicker: () => void
 }
 
 export const FontPanel = (props: FontPanelProps) => {

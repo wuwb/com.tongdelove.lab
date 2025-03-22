@@ -13,7 +13,6 @@ module.exports = {
     'react',
     'react-hooks',
     'testing-library',
-    'cypress',
     'storybook',
   ],
   extends: [
@@ -41,10 +40,6 @@ module.exports = {
     {
       files: ['**/?(*.)+(spec|test|cy).[jt]s?(x)'],
       extends: ['plugin:testing-library/react'],
-    },
-    {
-      files: ['**/?(*.)+(cy).[jt]s?(x)'],
-      extends: ["plugin:cypress/recommended"]
     },
     {
       files: ["*.stories.*"],

@@ -121,7 +121,7 @@ export default [
     // overrides: [
     //   {
     //     "env": {
-    //       "node": true
+    //        true
     //     },
     //     "files": [
     //       ".eslintrc.{js,cjs}"

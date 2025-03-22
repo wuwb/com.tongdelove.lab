@@ -7,8 +7,14 @@ export default defineConfig({
   manifest: {
     // These permissions are required for "webext-dynamic-content-scripts" and
     // "webext-permission-toggle" to work.
-    permissions: ["storage", "scripting", "activeTab", "contextMenus", 'tabs'],
-
+    permissions: [
+      "management", // 自动重载插件
+      "storage",
+      "scripting",
+      "activeTab",
+      "contextMenus",
+      "tabs",
+    ],
     // @ts-ignore: Valid MV3 key for chrome
     optional_host_permissions: ["*://*.baidu.com/*"],
     web_accessible_resources: [
@@ -20,10 +26,10 @@ export default defineConfig({
     // Required for webext-permission-toggle
     action: {
     },
-    page_action: {},
+    page_action: {
+    },
   },
- 
-
+  srcDir: 'src',
   hooks: {
     "build:manifestGenerated": (wxt, manifest) => {
       if (wxt.config.command === "serve") {
@@ -32,14 +38,13 @@ export default defineConfig({
         // add it manually.
         manifest.content_scripts ??= [];
         manifest.content_scripts.push({
-          matches: ["*://*.wxt.dev/*"],
-          js: ["content-scripts/content.js"],
+          matches: ["*://*.1688.com/*"],
+          js: ["content-scripts/1688.js"],
           // If the script has CSS, add it here.
         });
       }
     },
   },
-
   runner: {
     startUrls: ["https://wxt.dev"],
   },

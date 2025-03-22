@@ -1,19 +1,19 @@
 // https://umijs.org/config/
-import { convertLegacyToken } from '@ant-design/compatible/lib'
-import { defineConfig } from '@umijs/max'
-import { theme } from 'antd'
-import { join } from 'path'
-import { defaultSettings } from './defaultSettings'
-import proxy from './proxy'
-import routes from './routes'
+import { convertLegacyToken } from "@ant-design/compatible/lib";
+import { defineConfig } from "umi";
+import { theme } from "antd";
+import { join } from "path";
+import { defaultSettings } from "./defaultSettings";
+import proxy from "./proxy";
+import routes from "./routes";
 
-const { defaultAlgorithm, defaultSeed } = theme
+const { defaultAlgorithm, defaultSeed } = theme;
 
-const mapToken = defaultAlgorithm(defaultSeed)
-const v4Token = convertLegacyToken(mapToken)
+const mapToken = defaultAlgorithm(defaultSeed);
+const v4Token = convertLegacyToken(mapToken);
 
 // const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const { REACT_APP_ENV = 'dev' } = process.env
+const { REACT_APP_ENV = "dev" } = process.env;
 
 export default defineConfig({
   // define: {
@@ -42,23 +42,19 @@ export default defineConfig({
     //   edge: 13,
     //   ios: 10,
   },
-
   /**
    * @name 路由的配置，不在路由中引入的文件不会编译
    * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
    * @doc https://umijs.org/docs/guides/routes
    * umi routes: https://umijs.org/docs/routing
-   */
-  routes,
-
+   */ routes
   /**
    * @name 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置
    * @doc antd的主题设置 https://ant.design/docs/react/customize-theme-cn
    * @doc umi 的theme 配置 https://umijs.org/docs/api/config#theme
    * Theme for antd: https://ant.design/docs/react/customize-theme-cn
-   */
-  // theme: {
+   */, // theme: {
   // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
   // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
   // 'root-entry-name': 'variable',
@@ -113,13 +109,13 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/layout-menu
    * https://umijs.org/zh-CN/plugins/plugin-layout
    */
-  title: 'Ant Design Pro',
+  title: "Ant Design Pro",
   layout: {
     // 支持任何不需要 dom 的
     // https://procomponents.ant.design/components/layout#prolayout
-    name: '实验室',
+    name: "实验室",
     locale: true,
-    theme: 'pro',
+    theme: "pro",
     siderWidth: 208,
     ...defaultSettings(),
   },
@@ -129,8 +125,8 @@ export default defineConfig({
    * @doc https://umijs.org/docs/max/moment2dayjs
    */
   moment2dayjs: {
-    preset: 'antd',
-    plugins: ['duration'],
+    preset: "antd",
+    plugins: ["duration"],
   },
   /**
    * @name 国际化插件
@@ -141,8 +137,8 @@ export default defineConfig({
     antd: true,
     // default true, when it is true, will use `navigator.language` overwrite default
     baseNavigator: false,
-    baseSeparator: '-',
-    default: 'zh-CN',
+    baseSeparator: "-",
+    default: "zh-CN",
     title: true,
     useLocalStorage: true,
   },
@@ -174,13 +170,12 @@ export default defineConfig({
   request: {
     // 默认值不需要配置，想要在消费数据时拿到后端的原始数据，配置为空字符串
     // dataField: 'data',
-  },
-
+  }
   /**
    * @name 权限插件
    * @description 基于 initialState 的权限插件，必须先打开 initialState
    * @doc https://umijs.org/docs/max/access
-   */
+   */,
   access: {},
   /**
    * @name <head> 中额外的 script
@@ -188,21 +183,16 @@ export default defineConfig({
    */
   headScripts: [
     // 解决首次加载时白屏的问题
-    { src: '/scripts/loading.js', async: true },
+    { src: "/scripts/loading.js", async: true },
   ],
-  mock: {
-    include: ['src/pages/**/_mock.ts'],
-  },
-  dva: {
-    immer: {},
-    // hmr: true, // umi 4 不再支持这个配置项
-    skipModelValidate: false,
-  },
 
+  mock: {
+    include: ["src/pages/**/_mock.ts"],
+  },
   //================ pro 插件配置 =================
 
   // 自动加载 preset 和 plugins
-  presets: ['umi-presets-pro'],
+  presets: ["umi-presets-pro"],
 
   /**
    * @name openAPI 插件的配置
@@ -214,19 +204,19 @@ export default defineConfig({
       requestLibPath: "import { request } from '@umijs/max'",
       // 或者使用在线的版本
       // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json"
-      schemaPath: join(__dirname, 'oneapi.json'),
+      schemaPath: join(__dirname, "oneapi.json"),
       mock: false,
     },
     {
       requestLibPath: "import { request } from '@umijs/max'",
       schemaPath:
-        'https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json',
-      projectName: 'swagger',
+        "https://gw.alipayobjects.com/os/antfincdn/CA1dOm%2631B/openapi.json",
+      projectName: "swagger",
     },
   ],
+
   mfsu: {
-    strategy: 'normal',
-    exclude: ['@playwright/test'],
+    strategy: "normal",
   },
   requestRecord: {},
 
@@ -289,8 +279,8 @@ export default defineConfig({
   title: false,
 
   manifest: {
-    basePath: '/',
-    fileName: '../config/manifest.json',
+    basePath: "/",
+    fileName: "../config/manifest.json",
   },
 
   // openAPI: [
@@ -315,15 +305,11 @@ export default defineConfig({
     //     // const result = await request('https://your-api/news/list');
     //     return Promise.resolve(['/news/1', 'news/2']);
     //   }
-  },
-
-  // extra configuration 前后端分离点
+  }, // extra configuration 前后端分离点
   // runtimePublicPath: true, // umi4 去除
-
   // publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '/',
   // outputPath: './dist',
   // devtool: false,
-
   // dyamicImport: {},
 
   extraBabelPlugins: [
@@ -334,10 +320,10 @@ export default defineConfig({
   // devtool: 'eval',
 
   // a lower cost way to genereate sourcemap, default is cheap-module-source-map, could save 60% time in dev hotload
-  devtool: 'cheap-module-source-map',
+  devtool: "cheap-module-source-map",
 
   history: {
-    type: 'hash',
+    type: "hash",
   },
 
   // 配置 external
@@ -358,80 +344,81 @@ export default defineConfig({
   //   ga: '',
   //   baidu: '',
   // },
-  chainWebpack(config, { env, webpack }) {
-    config.module
-      // 判断是否存在less-to-css规则
-      .rule('less-to-css')
-      // rule对象的test属性设置，返回rule对象
-      .test(/\.less$/)
-      .use('less-loader')
-      // 设置Use对象的loader属性，返回Use<this>对象
-      .loader('less-loader')
-      // 将上面的Use<this> 对象放到css-loader对象的后面
-      .options({
-        lessOptions: {
-          modifyVars: v4Token,
-        },
-      })
-      .end()
-
-    // 对 ssr bundler memo 的修改
-    // 服务端渲染构建扩展
-    // memo.module
-    //   .rule('node')
-    //   .test(/\.node$/)
-    //   .use('node')
-    //   .loader('node-loader')
-    //   .end();
-
-    // memo.module
-    //   .rule('canvas')
-    //   .test(/canvas/)
-    //   .use('null')
-    //   .loader('null-loader')
-    //   .end();
-
-    // 对 csr bundler memo 的修改
-    // 客户端渲染构建扩展
-
-    // ssr 和 csr 都扩展
-
-    // memo.module
-    //   .rule('mdx')
-    //   .test(/\.mdx?$/)
-    //   .use('babel')
-    //   .loader('babel-loader')
-    //   .options({
-    //     presets: [
-    //       '@babel/preset-env',
-    //       '@babel/preset-react'
-    //     ]
-    //   })
-    //   .end()
-    //   .use('mdx')
-    //   .loader('@mdx-js/loader')
-    //   .end()
-    //   .end();
-
-    // memo.merge({
-    //   optimization: {
-    //     minimize: true,
-    //     splitChunks: {
-    //       chunks: 'all',
-    //       minSize: 30000,
-    //       minChunks: 3,
-    //       automaticNameDelimiter: '.',
-    //       cacheGroups: {
-    //         vendor: {
-    //           name: 'vendors',
-    //           test({ resource }) {
-    //             return /[\\/]node_modules[\\/]/.test(resource);
-    //           },
-    //           priority: 10,
-    //         },
-    //       },
-    //     },
-    //   }
-    // });
-  },
-})
+  // chainWebpack(config, { env, webpack }) {
+  //   config.module
+  //     // 判断是否存在less-to-css规则
+  //     .rule("less-to-css")
+  //     // rule对象的test属性设置，返回rule对象
+  //     .test(/\.less$/)
+  //     .use("less-loader")
+  //     // 设置Use对象的loader属性，返回Use<this>对象
+  //     .loader("less-loader")
+  //     // 将上面的Use<this> 对象放到css-loader对象的后面
+  //     .options({
+  //       lessOptions: {
+  //         modifyVars: v4Token,
+  //       },
+  //     })
+  //     .end();
+  //
+  //   // 对 ssr bundler memo 的修改
+  //   // 服务端渲染构建扩展
+  //   // memo.module
+  //   //   .rule('node')
+  //   //   .test(/\.node$/)
+  //   //   .use('node')
+  //   //   .loader('node-loader')
+  //   //   .end();
+  //
+  //   // memo.module
+  //   //   .rule('canvas')
+  //   //   .test(/canvas/)
+  //   //   .use('null')
+  //   //   .loader('null-loader')
+  //   //   .end();
+  //
+  //   // 对 csr bundler memo 的修改
+  //   // 客户端渲染构建扩展
+  //
+  //   // ssr 和 csr 都扩展
+  //
+  //   // memo.module
+  //   //   .rule('mdx')
+  //   //   .test(/\.mdx?$/)
+  //   //   .use('babel')
+  //   //   .loader('babel-loader')
+  //   //   .options({
+  //   //     presets: [
+  //   //       '@babel/preset-env',
+  //   //       '@babel/preset-react'
+  //   //     ]
+  //   //   })
+  //   //   .end()
+  //   //   .use('mdx')
+  //   //   .loader('@mdx-js/loader')
+  //   //   .end()
+  //   //   .end();
+  //
+  //   // memo.merge({
+  //   //   optimization: {
+  //   //     minimize: true,
+  //   //     splitChunks: {
+  //   //       chunks: 'all',
+  //   //       minSize: 30000,
+  //   //       minChunks: 3,
+  //   //       automaticNameDelimiter: '.',
+  //   //       cacheGroups: {
+  //   //         vendor: {
+  //   //           name: 'vendors',
+  //   //           test({ resource }) {
+  //   //             return /[\\/]node_modules[\\/]/.test(resource);
+  //   //           },
+  //   //           priority: 10,
+  //   //         },
+  //   //       },
+  //   //     },
+  //   //   }
+  //   // });
+  // },
+  mako: {},
+});

@@ -1,65 +1,62 @@
-import styled from '@emotion/styled'
-
-const StyledFastMenu = styled.div`
-  .boardTit {
-    text-align: center;
-    line-height: 2;
-    font-weight: bold;
+const styles = {
+  boardTit: {
+    textAlign: 'center',
+    lineHeight: 2,
+    fontWeight: 'bold',
+  },
+  keyRow: {
+    margin: '10px',
+    display: 'flex',
+  },
+  key: {
+    marginRight: '30px',
+  },
+  keyCode: {
+    display: 'inline-block',
+    border: '1px solid #f0f0f0',
+    borderRadius: '2px',
+    padding: '0 3px',
+    color: 'rgba(94, 41, 41, 0.6)',
+    fontSize: '12px',
+    marginRight: '3px',
+  },
+  text: {
+    marginLeft: 'auto',
+    color: '#888',
   }
-  .keyRow {
-    margin: 10px;
-    display: flex;
-    .key {
-      margin-right: 30px;
-      code {
-        display: inline-block;
-        border: 1px solid #f0f0f0;
-        border-radius: 2px;
-        padding: 0 3px;
-        color: rgba(94, 41, 41, 0.6);
-        font-size: 12px;
-        margin-right: 3px;
-      }
-    }
-    .text {
-      margin-left: auto;
-      color: #888;
-    }
-  }
-`
+}
 
-const FastMenu = () => (
-  <StyledFastMenu>
-    <div className="boardTit">快捷键</div>
-    <div className="keyRow">
+export const FastMenu = () => (
+  <div>
+    <div className="boardTit" style={styles.boardTit}>快捷键</div>
+    <div className="keyRow" style={styles.keyRow}>
       <span className="key">
-        <code>command + c</code>
-        <code>ctrl + c</code>
+        <code style={styles.keyCode}>command + c</code>
+        <code style={styles.keyCode}>ctrl + c</code>
       </span>
-      <span className="text">复制组件</span>
+      <span className="text" style={styles.text}>复制组件</span>
     </div>
-    <div className="keyRow">
-      <span className="key">
-        <code>delete</code>
-        <code>backspace</code>
+    <div className="keyRow" style={styles.keyRow}>
+      <span className="key" style={styles.key}>
+        <code style={styles.keyCode}>delete</code>
+        <code style={styles.keyCode}>backspace</code>
       </span>
-      <span className="text">删除组件</span>
+      <span className="text" style={styles.text}>删除组件</span>
     </div>
-    <div className="keyRow">
-      <span className="key">
-        <code>command + h</code>
-        <code>ctrl +h</code>
+    <div className="keyRow" style={styles.keyRow}>
+      <span className="key" style={styles.key}>
+        <code style={styles.keyCode}>command + h</code>
+        <code style={styles.keyCode}>ctrl +h</code>
       </span>
-      <span className="text">显示/隐藏网格线</span>
+      <span className="text" style={styles.text}>显示/隐藏网格线</span>
     </div>
-    <div className="keyRow">
-      <span className="key">
-        <code>鼠标右键菜单</code>
-        <code>快捷键盘(删除/复制)</code>
+    <div className="keyRow" style={styles.keyRow}>
+      <span className="key" style={styles.key}>
+        <code style={styles.keyCode}>鼠标右键菜单</code>
+        <code style={styles.keyCode}>快捷键盘(删除/复制)</code>
       </span>
-      <span className="text">显示/隐藏网格线</span>
+      <span className="text" style={styles.text}>显示/隐藏网格线</span>
     </div>
-  </StyledFastMenu>
+  </div>
 )
 
-export default FastMenu

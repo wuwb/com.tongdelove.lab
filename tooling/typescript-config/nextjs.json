@@ -26,9 +26,7 @@
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "types": [
-      "cypress",
       "node",
-      "cypress-real-events"
     ],
     "noErrorTruncation": true,
     "module": "esnext"

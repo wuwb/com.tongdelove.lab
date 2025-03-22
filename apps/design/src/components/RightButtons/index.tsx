@@ -1,4 +1,4 @@
-import AreaSelector from '../CanvasControl/AreaSelector'
+import { AreaSelector } from '../CanvasControl/AreaSelector'
 import styles from './RightButtons.module.css'
 
 interface Props {

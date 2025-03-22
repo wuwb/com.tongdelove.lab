@@ -15,20 +15,31 @@
     "postinstall": "wxt prepare"
   },
   "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.6",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@tongdelove/hooks": "workspace:^",
+    "@tongdelove/schema": "workspace:^",
+    "@tongdelove/ui": "workspace:^",
+    "@tongdelove/utils": "workspace:^",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.439.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7",
     "webext-dynamic-content-scripts": "^10.0.3",
     "webext-permission-toggle": "^5.0.1"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.280",
-    "@types/react": "^19.0.1",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.2",
     "@wxt-dev/module-react": "^1.1.2",
-    "typescript": "^5.6.3",
-    "wxt": "^0.19.13",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.6.3",
+    "wxt": "^0.19.13"
   }
 }

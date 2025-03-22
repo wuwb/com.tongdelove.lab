@@ -2,6 +2,12 @@
   "name": "@tongdelove/typescript-config",
   "private": true,
   "version": "0.1.0",
+  "exports": {
+    "./base.json": "./base.json",
+    "./library.json": "./library.json",
+    "./package.json": "./package.json",
+    "./nextjs.json": "./nextjs.json"
+  },
   "files": [
     "*.json"
   ],

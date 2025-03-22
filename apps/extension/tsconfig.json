@@ -4,6 +4,12 @@
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "types": ["chrome"],
-    "lib": ["DOM", "ESNext", "WebWorker"]
+    "lib": ["DOM", "ESNext", "WebWorker"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   }
 }

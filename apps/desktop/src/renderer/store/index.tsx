@@ -10,23 +10,12 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import settings from './settings'
+import browser from './browser'
 import migrate from './migrate'
 
 const rootReducer = combineReducers({
   settings,
-})
-
-const store = configureStore({
-  // @ts-ignore store type is unknown
-  reducer: persistedReducer as typeof rootReducer,
-  middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    })
-  },
-  devTools: true,
+  browser,
 })
 
 const persistedReducer = persistReducer(
@@ -39,6 +28,18 @@ const persistedReducer = persistReducer(
   },
   rootReducer
 )
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
+  },
+  devTools: true,
+})
 
 export type RootState = ReturnType<typeof rootReducer>
 

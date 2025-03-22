@@ -1,6 +1,6 @@
 {
   "extends": [
-    "@tongdelove/tsconfig/base.json"
+    "@tongdelove/typescript-config/base.json"
   ],
   "compilerOptions": {
     "baseUrl": ".",

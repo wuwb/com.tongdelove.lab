@@ -1,7 +1,7 @@
 import { Button, Popover, Text } from 'antd'
 import React from 'react'
 
-const AreaSelector = () => {
+export const AreaSelector = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,5 +31,3 @@ const AreaSelector = () => {
     </Popover>
   )
 }
-
-export default AreaSelector
