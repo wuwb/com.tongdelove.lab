@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
 import type { ContentScriptContext } from "wxt/client";
 import App from './App.tsx';
-import "~/assets/tailwind.css";
+import "@/assets/tailwind.css";
+const watchPattern = new MatchPattern('*://*.youtube.com/watch*');
 
 export default defineContentScript({
   matches: ['*://*.1688.com/*'],
@@ -9,20 +11,23 @@ export default defineContentScript({
   async main(ctx) {
     console.log('Hello content.');
 
+    ctx.addEventListener(window, 'wxt:locationchange', ({ newUrl }) => {
+      if (watchPattern.includes(newUrl)) {
+        mainWatch(ctx);
+      }
+    });
+
     if (ctx.isValid) {
       // do something
       // document.body.style.backgroundColor = 'red';
-     
+
     }
     // OR
     if (ctx.isInvalid) {
       // do something
     }
 
-    const ui = await createUi(ctx)
-
-    // 4. Mount the UI
-    ui.mount();
+    await mainWatch(ctx)
 
     browser.runtime.onMessage.addListener((event) => {
       if (event.type === "MOUNT_UI") {
@@ -33,20 +38,33 @@ export default defineContentScript({
   },
 });
 
+async function mainWatch(ctx: ContentScriptContext) {
+  const ui = await createUi(ctx)
+
+  // 4. Mount the UI
+  ui.mount();
+}
+
 function createUi(ctx: ContentScriptContext) {
   return createShadowRootUi(ctx, {
     name: 'extension-app',
     position: 'inline',
     anchor: 'body',
     append: "last",
-    onMount: (container) => {
+    onMount: (container, shadow) => {
       // Container is a body, and React warns when creating a root on the body, so create a wrapper div
       const app = document.createElement('div');
+
       container.append(app);
+
+      // app.style.fontSize = '16px';
 
       // Create a root on the UI container and render a component
       const root = ReactDOM.createRoot(app);
-      root.render(<App />);
+
+      root.render(
+        <App />
+      );
       return { root, app };
     },
     onRemove: (elements) => {

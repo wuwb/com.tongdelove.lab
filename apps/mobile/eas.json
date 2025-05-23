@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 4.1.2"
+    "version": ">= 16.3.0",
+    "appVersionSource": "local"
   },
   "build": {
     "base": {
@@ -12,7 +13,24 @@
     "development": {
       "extends": "base",
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "API_URL": "",
+        "WS_URL": "",
+        "EXPO_UPDATE_URL": "",
+        "GROWTH_BOOK_KEY": ""
+      },
+      "ios": {
+        "image": "macos-sonoma-14.6-xcode-16.1",
+        "credentialsSource": "remote",
+        "enterpriseProvisioning": "adhoc",
+        "simulator": true
+      },
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      },
     },
     "preview": {
       "extends": "base",
@@ -26,6 +44,10 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./android/app/googleServiceAccount.json"
+      }
+    }
   }
 }

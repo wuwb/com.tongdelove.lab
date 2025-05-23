@@ -1,8 +1,20 @@
 import { REPLACE_BEARER_TOKEN, SUPPLY_TABLE_KEY, TEABLE_ROOT } from '@/constants/app';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { removeParamsFromPath } from '@/utils/utils'
 
 const App = () => {
-  const [spanValue, setSpanValue] = useState<string | null>(null);
+  const [factoryInfo, setFactoryInfo] = useState<any>({
+    title: '',
+    year: 0,
+    scroll: 0,
+    address: '',
+    returnRate: 0,
+    afterSalesExperience: 0,
+    productExperience: 0,
+    logisticsExperience: 0,
+    consultingExperience: 0,
+    url: '',
+  });
   const longLivedMessageList = useRef<HTMLUListElement>(null)
 
   const [helloResponsePre, sethelloResponsePre] = useState('Waiting for message to be sent...')
@@ -34,11 +46,9 @@ const App = () => {
     }
   }
 
-  const handleCollect = async () => {
-
+  const handleCollectFactoryInfo = async () => {
     // https://sale.1688.com/factory/
     console.log('path: ', window.location.href)
-
 
     const url = new URL(`${TEABLE_ROOT}/api/table/${SUPPLY_TABLE_KEY}/record`);
     const data = {
@@ -82,8 +92,100 @@ const App = () => {
     }
   }
 
+  const handleCollectImages = () => {
+    const mainImageDoms = document.querySelectorAll('.detail-gallery-img')
+    const mainImages = []
+    for (let i = 0; i < mainImageDoms.length; i++) {
+      if (mainImageDoms[i].tagName === 'IMG') {
+        mainImages.push(mainImageDoms[i].src);
+      }
+    }
+    console.log('main images: ', mainImages)
+
+    const detailImageDoms = document.querySelectorAll('.detail img')
+    const detailImages = []
+    for (let i = 0; i < detailImageDoms.length; i++) {
+      if (detailImageDoms[i].tagName === 'IMG') {
+        detailImages.push(detailImageDoms[i].src);
+      }
+    }
+    console.log('detail images: ', detailImages)
+
+    const detailImageDoms2 = document.querySelectorAll('#detailContentContainer img')
+    const detailImages2 =  []
+    for(let i = 0; i < detailImageDoms2.length; i++) {
+      if (detailImageDoms2[i].tagName === 'IMG') {
+        detailImages2.push(detailImageDoms2[i].src)
+      }
+    }
+    console.log('detail images: ', detailImages2)
+
+    console.log({
+      mainImages,
+      detailImages,
+      detailImages2,
+    })
+ 
+  }
+
+  const handleDownloadVideos = () => {
+
+  }
+
+  const getFactoryInfo = () => {
+    const title = document.querySelector('#hd_0_container_0 div div div div div div span').title
+    const year = document.querySelector('#hd_0_container_0 div div div div div div a div').innerText.replace('年', '')
+    const scrollWidth = document.querySelector('#hd_0_container_0 div div div div div div div div div div').style.width.replace('px', '')
+    const scroll = scrollWidth / 62
+    const address = document.querySelectorAll('#hd_0_container_0 div div div p span')[1].innerText.replace('地址：', '')
+    const url = removeParamsFromPath(window.location.href, ['spm'])
+    console.log({
+      title,
+      year: Number(year),
+      scroll: Number(scroll),
+      address,
+      url,
+    })
+    setFactoryInfo({
+      ...factoryInfo,
+      title,
+      year: Number(year),
+      scroll: Number(scroll),
+      address,
+      url,
+    })
+  }
+
+  const cleanDoms = () => {
+    // detail-page
+    document.querySelector('.od-pc-offer-toolbar-wrapper')?.remove()
+    document.querySelector('.gyp-pc-od-middle-banner')?.remove()
+    // 搭配组货
+    document.querySelector('.od-pc-offer-combi-recommend')?.remove()
+    
+    // 同行还在看
+    document.querySelector('.od-pc-offer-recommend')?.remove()
+    // 声明内容
+    document.querySelector('.od-pc-content-statement')?.remove()
+    // 页脚
+    document.querySelector('.od-pc-buyer-guarantee')?.remove()
+
+    // https://cart.1688.com/cart.htm
+    // 推荐货源模块
+    document.querySelector('.ctf-lib-recommend')?.parentElement?.remove()
+  }
+
+  useEffect(() => {
+    getFactoryInfo();
+    cleanDoms()
+    return () => {
+      // clean
+    }
+  }, []);
+
   useEffect(() => {
     const port = browser.runtime.connect();
+
     port.onMessage.addListener((message) => {
       console.log('on message: ', message)
       const li = document.createElement("li");
@@ -92,49 +194,23 @@ const App = () => {
     });
   }, [])
 
-  useEffect(() => {
-    const fetchSpanValue = () => {
-      const container = document.getElementById('hd_0_container_0');
-      if (container) {
-        const firstSpan = container.querySelector('span');
-        if (firstSpan) {
-          setSpanValue(firstSpan.textContent);
-        }
-      }
-    };
-
-    fetchSpanValue();
-
-
-    const cleanDoms = () => {
-      // detail-page
-      document.querySelector('.od-pc-offer-toolbar-wrapper')?.remove()
-      document.querySelector('.gyp-pc-od-middle-banner')?.remove()
-      document.querySelector('.od-pc-offer-combi-recommend')?.remove()
-      // 同行还在看
-      document.querySelector('.od-pc-offer-recommend')?.remove()
-      // 声明内容
-      document.querySelector('.od-pc-content-statement')?.remove()
-      // 页脚
-      document.querySelector('.od-pc-buyer-guarantee')?.remove()
-
-      // https://cart.1688.com/cart.htm
-      // 推荐货源模块
-      document.querySelector('.ctf-lib-recommend')?.parentElement?.remove()
-    }
-
-    cleanDoms()
-  }, []);
-
   return (
-    <div className="w-[300px] fixed right-0 bottom-0 z-[101] border-l-2" style={{
+    <div className="w-[300px] fixed right-[10px] bottom-[10px] z-[101] border rounded-[10px]" style={{
       background: 'rgba(255,255,255, 0.8)',
     }}>
       <div>
-
-        <div onClick={handleCollect}>采集</div>
+        <div>{factoryInfo.title}</div>
+        <div>{factoryInfo.year}</div>
+        <div>{factoryInfo.scroll}</div>
+        <div>{factoryInfo.address}</div>
       </div>
-      <p>{spanValue}</p>
+      <div>
+        <div onClick={handleCollectFactoryInfo}>采集商家信息</div>
+        <div onClick={handleCollectImages}>采集商品图片</div>
+        <div onClick={handleDownloadVideos}>下载商品视频</div>
+        <div>设置</div>
+      </div>
+
       <div>
         <div>
           <h2>One-time Message</h2>

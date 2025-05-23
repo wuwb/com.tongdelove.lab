@@ -4,13 +4,11 @@
   "description": "Your awesome app description",
   "version": "0.0.0",
   "main": "./node_modules/.dev/main/index.js",
-  "resources": "src/resources",
   "author": {
-    "name": "Dalton Menezes",
-    "email": "daltonmenezes@outlook.com"
+    "name": "wuwenbin"
   },
+  "resources": "src/resources",
   "license": "UNLICENSE",
-  "packageManager": "pnpm@10.0.0",
   "pnpm": {
     "onlyBuiltDependenciesFile": "./trusted-dependencies-scripts.json"
   },
@@ -23,7 +21,7 @@
     "compile:packageJSON": "tsx ./src/lib/electron-app/release/modules/prebuild.ts",
     "prebuild": "run-s clean:dev compile:app compile:packageJSON",
     "build": "pnpm electron-builder",
-    "postinstall": "run-s prebuild install:deps",
+    "postinstall": "run-s prebuild",
     "install:deps": "electron-builder install-app-deps",
     "make:release": "tsx ./src/lib/electron-app/release/modules/release.ts",
     "release": "electron-builder --publish always",
@@ -58,7 +56,7 @@
     "@vitejs/plugin-react": "^4.0.4",
     "code-inspector-plugin": "^0.20.1",
     "cross-env": "^7.0.3",
-    "electron": "^34.3.0",
+    "electron": "^34.3.3",
     "electron-builder": "^25.1.8",
     "electron-extension-installer": "^1.2.0",
     "electron-vite": "^3.0.0",

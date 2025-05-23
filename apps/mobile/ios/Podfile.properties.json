@@ -1,4 +1,10 @@
 {
   "expo.jsEngine": "hermes",
-  "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true"
+  "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true",
+  "newArchEnabled": "true",
+  "ios.deploymentTarget": "12.0",
+  "USE_FRAMEWORKS": "true",
+  "ios.useFrameworks": "true",
+  "apple.privacyManifestAggregationEnabled": "true",
+  "apple.ccacheEnabled": "false"
 }

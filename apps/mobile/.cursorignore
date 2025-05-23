@@ -1,0 +1,9 @@
+android/app/build
+android/app/libs
+android/gradle
+ios
+public
+img
+.java-version
+Gemfile
+Gemfile.lock

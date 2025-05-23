@@ -1,33 +1,44 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-
-import { TRPCProvider } from "~/utils/api";
-
-import "../styles.css";
-
-import { useColorScheme } from "nativewind";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native'
+import { useFonts } from 'expo-font'
+import { Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import { useColorScheme } from 'nativewind'
+import 'react-native-reanimated'
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
-  const { colorScheme } = useColorScheme();
+  const { colorScheme } = useColorScheme()
+
+  const [loaded] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  })
+
+  if (!loaded) {
+    // Async font loading only occurs in development.
+    return null
+  }
+
   return (
-    <TRPCProvider>
-      {/*
-          The Stack component displays the current page.
-          It also allows you to configure your screens 
-        */}
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#f472b6",
+            backgroundColor: '#f472b6',
           },
           contentStyle: {
-            backgroundColor: colorScheme == "dark" ? "#09090B" : "#FFFFFF",
+            backgroundColor: colorScheme == 'dark' ? '#09090B' : '#FFFFFF',
           },
         }}
-      />
-      <StatusBar />
-    </TRPCProvider>
-  );
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="auto" />
+    </ThemeProvider>
+  )
 }

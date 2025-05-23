@@ -1,4 +1,5 @@
 import { defineConfig } from 'wxt';
+import react from '@vitejs/plugin-react';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
@@ -7,6 +8,7 @@ export default defineConfig({
   manifest: {
     // These permissions are required for "webext-dynamic-content-scripts" and
     // "webext-permission-toggle" to work.
+    name: '半祥电商助手',
     permissions: [
       "management", // 自动重载插件
       "storage",
@@ -14,19 +16,37 @@ export default defineConfig({
       "activeTab",
       "contextMenus",
       "tabs",
+      "cookies",
+      "downloads",
+      "webRequest",
+      "webRequestBlocking",
+      "*://*/",
     ],
     // @ts-ignore: Valid MV3 key for chrome
     optional_host_permissions: ["*://*.baidu.com/*"],
+    content_security_policy: {
+      extension_pages: "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    },
     web_accessible_resources: [
       {
         resources: ["injected.js"],
-        matches: ["*://*.baidu.com/*"],
+        matches: ["*://*/*"],
       },
     ],
     // Required for webext-permission-toggle
     action: {
     },
     page_action: {
+    },
+    browser_action: {
+      default_popup: "popup.html",
+      default_icon: "icon.png" ,
+      default_title: "佳同商品图片采集工具"
+    },
+    icons: {
+      16: "icon.png",
+      48: "icon-48.png",
+      128: "icon-128.png"
     },
   },
   srcDir: 'src',
@@ -40,12 +60,20 @@ export default defineConfig({
         manifest.content_scripts.push({
           matches: ["*://*.1688.com/*"],
           js: ["content-scripts/1688.js"],
+          css: ["content-scripts/1688.css"],
           // If the script has CSS, add it here.
         });
       }
     },
   },
   runner: {
+    // const url = browser.runtime.getURL('/<name>.html');
+    // console.log(url); // "chrome-extension://<id>/<name>.html"
     startUrls: ["https://wxt.dev"],
   },
+  vite: () => ({
+    plugins: [
+      react(),
+    ],
+  }),
 });
