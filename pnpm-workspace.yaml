@@ -2,10 +2,10 @@ packages:
   - 'apps/admin'
   - 'apps/design'
   - 'apps/desktop'
+  - 'apps/extension'
   - 'apps/lab'
   - 'apps/mobile'
   - 'apps/web'
-  - 'apps/extension'
   - 'prisma'
   - 'packages/schema'
   - 'packages/utils'
@@ -22,3 +22,9 @@ packages:
   - 'tooling/prettier-config'
   - 'tooling/tailwind-config'
   - 'tooling/typescript-config'
+
+nohoist:
+  - '**/react' # 所有项目的 react 不提升
+  - '**/react-dom'
+  - '**/@chakra-ui/react'
+  - '**/@chakra-ui/icons'

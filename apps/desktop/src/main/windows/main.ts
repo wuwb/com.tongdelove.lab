@@ -23,6 +23,7 @@ export async function MainWindow() {
     webPreferences: {
       webviewTag: true,
       preload: join(__dirname, '../preload/index.js'),
+      nodeIntegration: true,
     },
   })
 

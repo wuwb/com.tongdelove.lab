@@ -1,6 +1,7 @@
 {
   "/common-async.js": "common-async.js",
   "/layouts__index-async.js": "layouts__index-async.js",
+  "/node_modules_web-vitals_dist_web-vitals_js-async.js": "node_modules_web-vitals_dist_web-vitals_js-async.js",
   "/p__AccountSetting__index-async.css": "p__AccountSetting__index-async.css",
   "/p__AccountSetting__index-async.js": "p__AccountSetting__index-async.js",
   "/p__Admin-async.js": "p__Admin-async.js",
@@ -53,7 +54,6 @@
   "/p__Welcome-async.js": "p__Welcome-async.js",
   "/pd__pd__node_modules__pnpm__antv+layout_1_2_14-beta_9_workerize-loader_2_0_2_webpack_5_97_1__node_modules__antv_layout_lib_worker_js_q_s57j-worker.js": "pd__pd__node_modules__pnpm__antv+layout_1_2_14-beta_9_workerize-loader_2_0_2_webpack_5_97_1__node_modules__antv_layout_lib_worker_js_q_s57j-worker.js",
   "/pd__pd__node_modules__pnpm_react-dom_18_3_1_react_18_3_1_node_modules_react-dom_index_js-async.js": "pd__pd__node_modules__pnpm_react-dom_18_3_1_react_18_3_1_node_modules_react-dom_index_js-async.js",
-  "/pd__pd__node_modules__pnpm_web-vitals_3_5_2_node_modules_web-vitals_dist_web-vitals_js-async.js": "pd__pd__node_modules__pnpm_web-vitals_3_5_2_node_modules_web-vitals_dist_web-vitals_js-async.js",
   "/src__umi_core_EmptyRoute_tsx-async.js": "src__umi_core_EmptyRoute_tsx-async.js",
   "/src__umi_plugin-layout_Layout_tsx-async.css": "src__umi_plugin-layout_Layout_tsx-async.css",
   "/src__umi_plugin-layout_Layout_tsx-async.js": "src__umi_plugin-layout_Layout_tsx-async.js",

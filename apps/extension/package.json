@@ -36,12 +36,12 @@
   "devDependencies": {
     "@types/chrome": "^0.0.280",
     "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.2",
+    "@types/react-dom": "^19.0.4",
     "@wxt-dev/module-react": "^1.1.2",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.6.3",
+    "typescript": "^5.4.5",
     "wxt": "^0.19.13"
   }
 }
