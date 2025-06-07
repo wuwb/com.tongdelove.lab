@@ -43,7 +43,6 @@ export async function MainWindow() {
   //     event.preventDefault()
   //     window.loadURL(url)
   //     window.webContents.send('blocked-new-window', url)
-
   // })
 
   window.webContents.setWindowOpenHandler(details => {

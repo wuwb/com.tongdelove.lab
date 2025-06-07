@@ -7,6 +7,7 @@ import { Layout } from './layouts/index'
 
 import { ErrorScreen } from './pages/ErrorScreen'
 import { AboutPage } from './pages/about'
+import { TestPage } from './pages/Test'
 import { ShopPage } from './pages/shop'
 import { ShopLinksPage } from './pages/ShopLinksPage'
 import { ShopBrowserPage } from './pages/ShopBrowserPage'
@@ -22,6 +23,7 @@ export function AppRoutes() {
             <Route path="browser" element={<ShopBrowserPage />} />
           </Route>
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/test" element={<TestPage />} />
         </Route>
       }
       about={<Route path="/about" element={<AboutPage />} />}

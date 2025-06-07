@@ -21,15 +21,23 @@ import {
 } from '@chakra-ui/icons'
 import clsx from 'clsx'
 import { RootState } from '../store'
-import { addTab, closeTab, selectTab, setUrlInput, updateTabUrl } from '../store/browser'
+import {
+  addTab,
+  closeTab,
+  selectTab,
+  setUrlInput,
+  updateTabUrl,
+} from '../store/browser'
 
 export const ShopBrowserPage = () => {
   // Reference to the webview element
   const webviewRef = useRef<Electron.WebviewTag | null>(null)
   const dispatch = useDispatch()
-  
+
   // Get browser state from Redux store
-  const { tabs, selectedTabId, urlInput } = useSelector((state: RootState) => state.browser)
+  const { tabs, selectedTabId, urlInput } = useSelector(
+    (state: RootState) => state.browser
+  )
 
   // Handle page selection
   const handleSelectPage = (tabId: string) => {

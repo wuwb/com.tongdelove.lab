@@ -28,11 +28,21 @@ const browserSlice = createSlice({
       const tabId = uuidv4()
       const newTab = {
         id: tabId,
-        name: action.payload.url ? new URL(action.payload.url.startsWith('http') ? action.payload.url : `https://${action.payload.url}`).hostname : '新标签页',
-        url: action.payload.url ? (action.payload.url.startsWith('http') ? action.payload.url : `https://${action.payload.url}`) : '',
+        name: action.payload.url
+          ? new URL(
+              action.payload.url.startsWith('http')
+                ? action.payload.url
+                : `https://${action.payload.url}`
+            ).hostname
+          : '新标签页',
+        url: action.payload.url
+          ? action.payload.url.startsWith('http')
+            ? action.payload.url
+            : `https://${action.payload.url}`
+          : '',
         partition: `persist:webview-${tabId}`,
       }
-      
+
       state.tabs.push(newTab)
       state.selectedTabId = tabId
       state.urlInput = ''
@@ -40,7 +50,7 @@ const browserSlice = createSlice({
     closeTab: (state, action: PayloadAction<{ tabId: string }>) => {
       const { tabId } = action.payload
       state.tabs = state.tabs.filter(tab => tab.id !== tabId)
-      
+
       // If we're closing the currently selected tab
       if (state.selectedTabId === tabId) {
         // Select the first remaining tab, or null if none left
@@ -53,7 +63,10 @@ const browserSlice = createSlice({
     setUrlInput: (state, action: PayloadAction<string>) => {
       state.urlInput = action.payload
     },
-    updateTabUrl: (state, action: PayloadAction<{ tabId: string, url: string }>) => {
+    updateTabUrl: (
+      state,
+      action: PayloadAction<{ tabId: string; url: string }>
+    ) => {
       const { tabId, url } = action.payload
       const tab = state.tabs.find(tab => tab.id === tabId)
       if (tab) {
@@ -61,7 +74,10 @@ const browserSlice = createSlice({
         tab.name = new URL(url).hostname
       }
     },
-    reorderTabs: (state, action: PayloadAction<{ sourceIndex: number, destinationIndex: number }>) => {
+    reorderTabs: (
+      state,
+      action: PayloadAction<{ sourceIndex: number; destinationIndex: number }>
+    ) => {
       const { sourceIndex, destinationIndex } = action.payload
       const [removed] = state.tabs.splice(sourceIndex, 1)
       state.tabs.splice(destinationIndex, 0, removed)
@@ -69,13 +85,13 @@ const browserSlice = createSlice({
   },
 })
 
-export const { 
-  addTab, 
-  closeTab, 
-  selectTab, 
-  setUrlInput, 
+export const {
+  addTab,
+  closeTab,
+  selectTab,
+  setUrlInput,
   updateTabUrl,
-  reorderTabs
+  reorderTabs,
 } = browserSlice.actions
 
 export default browserSlice.reducer

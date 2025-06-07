@@ -30,6 +30,8 @@ export default defineConfig({
         output: {
           dir: resolve(devPath, 'main'),
         },
+
+        external: ['sharp'],
       },
     },
   },
@@ -84,6 +86,8 @@ export default defineConfig({
         output: {
           dir: resolve(devPath, 'renderer'),
         },
+
+        external: ['sharp'],
       },
     },
   },
