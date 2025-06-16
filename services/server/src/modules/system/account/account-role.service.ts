@@ -16,7 +16,7 @@ export class AccountRoleService {
   constructor(
     @InjectRepository(AccountRoleEntity)
     private readonly accountRoleRepository: Repository<AccountRoleEntity>
-  ) {}
+  ) { }
 
   /**
    * 根据账号 id 获取授权的角色列表
@@ -55,7 +55,7 @@ export class AccountRoleService {
           accountId,
         })
         for (const item of roleList) {
-          const result = entityManager.create<AccountRoleEntity>(
+          const result = entityManager.create(
             AccountRoleEntity,
             {
               accountId,
@@ -81,7 +81,7 @@ export class AccountRoleService {
   async addUserRole(userId: string, roleId: string): Promise<string> {
     return getManager()
       .transaction(async (entityManager: EntityManager) => {
-        const result = entityManager.create<AccountRoleEntity>(
+        const result = entityManager.create(
           AccountRoleEntity,
           {
             accountId: userId,

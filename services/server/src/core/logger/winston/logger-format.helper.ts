@@ -32,11 +32,7 @@ const reservedFields = {
 //      fields. Default false.
 function ecsTransform(
   info: TransformableInfo,
-  opts: {
-    convertErr?: boolean
-    convertReqRes?: boolean
-    format?: string | (() => string)
-  }
+  opts: any
 ) {
   const { convertErr = true, convertReqRes = false } = opts || {}
 

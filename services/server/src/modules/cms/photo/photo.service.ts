@@ -10,10 +10,11 @@ export class PhotoService extends TypeOrmCrudService<Photo> {
     @InjectRepository(Photo)
     private readonly photoRepository: Repository<Photo>
   ) {
-    super(photoRepository)
+    super(photoRepository as any)
   }
 
   async findAll(): Promise<Photo[]> {
     return this.photoRepository.find()
   }
+
 }

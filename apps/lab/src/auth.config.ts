@@ -74,7 +74,7 @@ const providers = [
   //       }
 
   //       const isValidPassword = true // await verify(user.password, creds.password)
-  //       // const passwordsMatch = await bcrypt.compare(password, user.password)
+  //       // const passwordsMatch = await bcryptjs.compare(password, user.password)
 
   //       if (!isValidPassword) {
   //         throw new Error('Invalid credentials')

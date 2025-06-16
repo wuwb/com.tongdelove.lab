@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import https from 'https'
 import fs from 'fs'
+import { ClientProxy } from '@nestjs/microservices'
 
 @Injectable()
 export class ChatService {
   private client: ClientProxy
 
-  constructor() {}
+  constructor() { }
 
   // https://www.lepton.ai/playground/sdxl?model=open-dalle
   generateLeptonImage() {

@@ -23,5 +23,5 @@ const models = TypeOrmModule.forFeature(entities)
   exports: [models],
 })
 export class DatabaseModule {
-  constructor(private readonly connection: Connection) {}
+  constructor(private readonly connection: Connection) { }
 }

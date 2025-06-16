@@ -1,6 +1,6 @@
 {
   "name": "@tongdelove/utils",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "lint:prettier": "prettier --check \"src/**/*.ts\"",
     "prettier": "prettier --write --cache .",
     "clean": "rm -rf dist",
-    "test": "vitest",
+    "test": "vitest --typecheck.enabled",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {

@@ -25,8 +25,8 @@
   "editor.formatOnSave": true,
   // 使用 eslint 格式化
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll": "explicit"
   },
   "prettier.semi": false,
   "prettier.singleQuote": true,

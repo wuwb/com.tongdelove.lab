@@ -1,4 +1,5 @@
-import { NonEmptyArray } from '../types/NonEmptyArray'
+import { isNonEmptyString } from './string'
+import { NonEmptyArray } from './types/NonEmptyArray'
 
 export type IsoDateString = string
 export const isIsoDateString = (dateStr: unknown): dateStr is IsoDateString => {
@@ -20,9 +21,7 @@ export const isNonEmptyArray = <T>(v: unknown): v is NonEmptyArray<T> => {
   return Array.isArray(v) && v.length > 0
 }
 
-export const isNonEmptyString = (v: unknown, trim = true): v is string => {
-  return typeof v === 'string' && (trim ? v.trim() : v).length > 0
-}
+
 
 export const isPlainObject = <T = unknown, K extends string | number = string>(
   v: unknown

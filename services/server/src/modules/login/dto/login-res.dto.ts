@@ -9,8 +9,6 @@ export class ResImageCaptchaDto {
 }
 
 export class LoginResDto extends UserInfo {
-  /* token密匙 */
-  accessToken: string
 }
 
 export class UserInfoResDto {

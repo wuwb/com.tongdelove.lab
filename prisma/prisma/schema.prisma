@@ -22,7 +22,8 @@ generator client {
   provider        = "prisma-client-js"
   // jsonProtocol 已经实现，不用 preview
   // interactiveTransactions 已经实现，不用 preview
-  previewFeatures = ["metrics", "fullTextSearch"]
+  // preview feature "fullTextSearch" has been renamed to "fullTextSearchPostgres"
+  previewFeatures = ["metrics"]
   // output   = "../node_modules/.prisma/client"
   // binaryTargets   = ["native"]
 }
@@ -63,12 +64,12 @@ generator zod {
 // }
 
 // 提供 prisma 数据模型到 graphql 类型的转换
-// generator nestgraphql {
-//     // provider = "node node_modules/prisma-nestjs-graphql"
-//     provider = "prisma-nestjs-graphql"
-//     output   = "../generated/prisma-nestjs-graphql"
-//     reExport = "Directories"
-// }
+generator nestgraphql {
+  // provider = "node node_modules/prisma-nestjs-graphql"
+  provider = "prisma-nestjs-graphql"
+  output   = "../generated/prisma-nestjs-graphql"
+  reExport = "Directories"
+}
 
 // generator typegraphql {
 //   provider           = "typegraphql-prisma"
@@ -228,13 +229,14 @@ model Session {
 }
 
 model Link {
-  id          String   @id @default(cuid())
-  url         String   @unique // 链接
-  title       String   @unique // 标题
-  description String? // 描述
+  id          String   @id @unique @default(cuid())
+  url         String   @unique
+  title       String   @unique
+  description String?
   icon        String?
   public      Boolean  @default(true)
   status      Int      @default(1)
+  parentId    String?  @map(name: "parent_id")
   categoryId  String   @map(name: "category_id")
   category    Category @relation(fields: [categoryId], references: [id])
   userId      String   @map(name: "user_id")
@@ -1135,7 +1137,7 @@ model Company {
   hasBranch         Int      @default(0) @map(name: "has_branch") // 是否有分支机构
   staffSize         Int      @default(1) @map(name: "staff_size") @db.SmallInt // 员工数量
   registeredCapital Int      @default(0) @map(name: "registered_capital") @db.SmallInt // 注册资本
-  website           String   @unique @default("") // 网站
+  link              String   @unique @default("") // 网站
   email             String   @unique @default("") // 邮箱
   classificationId  String   @map(name: "classification_id") // 分类 id
 
@@ -1301,7 +1303,7 @@ model User {
   last_login_ip   String    @default("")
   level           Int       @default(0) // 用户等级
   // 用户名
-  login           String?   @map(name: "user_login") // 用户名
+  login           String?   @unique @map(name: "user_login") // 用户名 
   pass            String?   @map(name: "user_pass") // 密码
   password        String? // 添加到 LocalAuth 表中
   // 名称
@@ -1873,7 +1875,7 @@ model OpensourceProject {
   githubUrl           String   @default("")
   githubStars         Int      @map(name: "github_stars")
   opensourceLicense   Int      @map(name: "opensource_license")
-  websiteUrl          String   @default("")
+  link                String   @default("")
   lastUpdate          DateTime @db.Timestamp(6)
   version             String   @default("")
   opensourceLicenseId String   @default("")

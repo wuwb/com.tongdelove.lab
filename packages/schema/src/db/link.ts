@@ -9,6 +9,7 @@ export const LinkModelSchema = z.object({
   icon: z.string().nullish(),
   public: z.boolean(),
   status: z.number().int(),
+  parentId: z.string().nullish(),
   categoryId: z.string(),
   userId: z.string(),
   createdAt: z.date(),

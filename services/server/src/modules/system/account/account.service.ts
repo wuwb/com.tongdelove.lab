@@ -23,7 +23,7 @@ export class AccountService {
     private readonly helperService: HelperService,
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService
-  ) {}
+  ) { }
 
   /**
    * 创建账号
@@ -337,11 +337,13 @@ export class AccountService {
     }
   }
 
-  async findCurrentUser() {}
+  async findCurrentUser() { }
 
   async create(data) {
     const createdAccount = await this.prisma.account.create({
       data: {
+        user: {
+        },
         type: data.type,
         provider: data.provider,
         providerAccountId: data.providerAccountId,

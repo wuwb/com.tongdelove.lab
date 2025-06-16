@@ -11,7 +11,7 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { User, Prisma } from '@prisma/client'
 import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { UserEntity } from './entities/user.entity'
-import * as bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import { isEmpty } from 'lodash'
 import { ApiException } from '@/common/exceptions/api.exception'
 import { QQService } from '@/shared/services/qq.service'
@@ -23,7 +23,7 @@ import { UpdatePasswordDto } from './dto/update-password.dto'
 import { PaginationDto } from '@/shared/dto/pagination.dto'
 import { QueryUserDto } from './dto/query-user.dto'
 
-const userWithRoles = Prisma.validator<Prisma.UserArgs>()({
+const userWithRoles = Prisma.validator<any>()({
   include: {
     roles: {
       select: {
@@ -55,7 +55,7 @@ export class UserService {
     private readonly configService: ConfigService,
     private readonly prisma: PrismaService,
     private qqService: QQService
-  ) {}
+  ) { }
 
   // typeorm
 
@@ -111,9 +111,9 @@ export class UserService {
 
   async tcreate(dto: CreateUserDto) {
     const user = this.userRepository.create(dto)
-    const salt = bcrypt.genSaltSync(10)
+    const salt = bcryptjs.genSaltSync(10)
 
-    user.pass = bcrypt.hashSync(user.pass, salt)
+    user.pass = bcryptjs.hashSync(user.pass, salt)
 
     return this.userRepository
       .save(user)
@@ -199,7 +199,7 @@ export class UserService {
         where: query,
         skip,
         take: limit,
-        ...args,
+        ...(args as any),
       }),
       this.prisma.user.count({
         where: query,
@@ -241,12 +241,6 @@ export class UserService {
       },
     })
     return user
-  }
-
-  async count<T extends Prisma.UserFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
-  ): Promise<number> {
-    return this.prisma.user.count(args)
   }
 
   // 返回用户公开的基本信息
@@ -320,7 +314,9 @@ export class UserService {
 
   async findOneWithRoles(loginName: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
-      where: {},
+      where: {
+        login: loginName,
+      },
     })
     if (!user) {
       throw new HttpException('User does not exist', 404)
@@ -384,9 +380,9 @@ export class UserService {
     return user
   }
 
-  async findByResetKey() {}
+  async findByResetKey() { }
 
-  async findByUsername() {}
+  async findByUsername() { }
 
   // 创建普通账号，创建谷歌登录账号
   async create(args): Promise<User> {
@@ -394,10 +390,10 @@ export class UserService {
   }
 
   // Add a role to the user
-  async addUserRole(userId: string, roleId: string) {}
+  async addUserRole(userId: string, roleId: string) { }
 
   // Delete a role from the user
-  async deleteUserRole(userId: string, roleId: string) {}
+  async deleteUserRole(userId: string, roleId: string) { }
 
   async recycleOrBanUser(id: string, action: 'recycle' | 'ban'): Promise<void> {
     const user = await this.findById(id)
@@ -416,7 +412,7 @@ export class UserService {
     return this.prisma.user.update<T>(args)
   }
 
-  async updateStatus(userId: string, status, operatorRole) {}
+  async updateStatus(userId: string, status, operatorRole) { }
 
   // 更新用户信息(头像、职位、公司、个人介绍、个人主页)
   async updateUserInfo(userId, updateUserInfoDto) {
@@ -494,17 +490,11 @@ export class UserService {
     return this.prisma.user.delete(args)
   }
 
-  async remove(where: Partial<Prisma.UserWhereUniqueInput>): Promise<User> {
-    const user = await this.prisma.user.findUnique({ where })
-    if (!user) {
-      throw new NotFoundException('user not found')
-    }
-    return this.prisma.user.delete({
-      where,
-    })
+  async remove(where: Partial<Prisma.UserWhereUniqueInput>) {
+
   }
 
-  async removeById(id: string): Promise<User> {
+  async removeById(id: string) {
     const user = await this.findById(id)
     if (!user) {
       throw new NotFoundException('user not found')
@@ -530,15 +520,15 @@ export class UserService {
 
   // others
 
-  async existsByUsername() {}
+  async existsByUsername() { }
 
-  async existsByEmail() {}
+  async existsByEmail() { }
 
-  async getProfileImageBuffer() {}
+  async getProfileImageBuffer() { }
 
-  async uploadProfileImage() {}
+  async uploadProfileImage() { }
 
-  async deleteProfileImage() {}
+  async deleteProfileImage() { }
 
   // get relations
 
@@ -556,14 +546,13 @@ export class UserService {
     }
   }
 
-  async banOrUnbanUser() {}
+  async banOrUnbanUser() { }
 
-  async verifyUpdatedEmail(token: string) {}
+  async verifyUpdatedEmail(token: string) { }
 
-  async disableUser() {}
+  async disableUser() { }
 
-  async activateUser() {}
+  async activateUser() { }
 
-  // 发送激活邮件
-  async sendActivationMail() {}
+  async sendActivationMail() { }
 }

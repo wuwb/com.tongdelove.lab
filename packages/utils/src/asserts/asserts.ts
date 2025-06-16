@@ -1,4 +1,4 @@
-import { isNonEmptyString } from '../typeguards/index'
+import { isNonEmptyString } from "../string"
 
 type MsgOrErrorFactory = string | (() => Error)
 

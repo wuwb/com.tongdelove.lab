@@ -12,7 +12,6 @@ import { ApiTags } from '@nestjs/swagger'
 import { AppService } from './app.service'
 // import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 // import { User } from '@/common/decorators/user.decorator';
-import * as PKG from '../../../package.json'
 // import { LoginService } from '@/modules/login/login.service';
 // import { UserService } from '@/modules/system/user/user.service';
 
@@ -31,21 +30,15 @@ export class AppController {
     // private readonly authService: AuthService,
     // private readonly linksService: LinksService,
     // private readonly photoService: PhotoService,
-  ) {}
+  ) { }
 
   @Get('/')
   appInfo() {
-    return {
-      name: PKG.name,
-      description: PKG.description,
-      author: PKG.author,
-      homepage: PKG.homepage,
-      issues: PKG.issues,
-    }
+    return 'ok'
   }
 
   @Get('/favicon.ico')
-  favicon() {}
+  favicon() { }
 
   // @Get('/self')
   // findAll(): Observable<AxiosResponse<any>> {

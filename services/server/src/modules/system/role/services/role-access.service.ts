@@ -16,7 +16,7 @@ export class RoleAccessService {
     private readonly roleAccessRepository: Repository<RoleAccessEntity>,
     @InjectRepository(AccessEntity)
     private readonly accessRepository: Repository<AccessEntity>
-  ) {}
+  ) { }
 
   /**
    * 给当前角色 ID 授权菜单、接口权限
@@ -39,7 +39,7 @@ export class RoleAccessService {
             accessId: item,
           }
         })
-        const result = entityManager.create<RoleAccessEntity>(
+        const result = entityManager.create(
           RoleAccessEntity,
           newAccessList
         )

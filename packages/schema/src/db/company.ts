@@ -17,7 +17,7 @@ export const CompanyModelSchema = z.object({
   hasBranch: z.number().int(),
   staffSize: z.number().int(),
   registeredCapital: z.number().int(),
-  website: z.string(),
+  link: z.string(),
   email: z.string(),
   classificationId: z.string(),
 })

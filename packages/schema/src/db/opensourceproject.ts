@@ -9,7 +9,7 @@ export const OpensourceProjectModelSchema = z.object({
   githubUrl: z.string(),
   githubStars: z.number().int(),
   opensourceLicense: z.number().int(),
-  websiteUrl: z.string(),
+  link: z.string(),
   lastUpdate: z.date(),
   version: z.string(),
   opensourceLicenseId: z.string(),

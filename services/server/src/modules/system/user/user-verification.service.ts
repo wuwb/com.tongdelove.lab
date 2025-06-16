@@ -22,7 +22,7 @@ export class UserVerificationService {
     private readonly mailService: MailService,
     private readonly userService: UserService,
     private readonly prisma: PrismaService
-  ) {}
+  ) { }
 
   async resendVerificationEmail(userId: string) {
     const user = await this.userService.get({
@@ -56,7 +56,7 @@ export class UserVerificationService {
         email: this.configService.get<string>('mail.from.email', ''),
       },
       to: {
-        name: user.nicename,
+        name: user.nicename ?? '',
         email: user.email,
       },
       subject: 'Reset your Reactive Resume password',

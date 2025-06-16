@@ -30,10 +30,6 @@ export class RoleEntity extends BaseEntity {
   @ApiProperty()
   value: string
 
-  @Column({ nullable: true })
-  @ApiProperty()
-  remark: string
-
   @Column({
     type: 'tinyint',
     nullable: true,

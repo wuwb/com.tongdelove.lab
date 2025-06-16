@@ -4,7 +4,7 @@
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
     "skipDefaultLibCheck": true,
-    "module": "commonjs",
+    "module": "nodenext",
     "declaration": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
@@ -16,7 +16,11 @@
     "noLib": false,
     "rootDir": ".",
     "baseUrl": ".",
-    "types": ["node", "reflect-metadata", "Multer"],
+    "types": [
+      "node",
+      "reflect-metadata",
+      "Multer"
+    ],
     // https://stackoverflow.com/questions/61687679/nest-js-build-does-does-not-generate-the-dist-folder
     "noEmit": false,
     "noEmitOnError": false,
@@ -28,7 +32,7 @@
       "esnext"
     ],
     // 支持
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     // 允许
     "allowUnusedLabels": true,
     // 不允许
@@ -38,7 +42,7 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写，默认为 true
     "noImplicitReturns": false,
@@ -46,13 +50,20 @@
     "allowJs": true,
     "strict": true,
     "paths": {
-      "@/scripts/*": ["scripts/*"],
+      "@/scripts/*": [
+        "scripts/*"
+      ],
       "@/*": [
         "src/*"
       ]
     }
   },
-  "include": ["**/*", "src/**/*", "tests/**/*", "scripts/**/*"],
+  "include": [
+    "**/*",
+    "src/**/*",
+    "tests/**/*",
+    "scripts/**/*"
+  ],
   "exclude": [
     "node_modules"
   ],

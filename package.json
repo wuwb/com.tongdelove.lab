@@ -68,6 +68,7 @@
     "@manypkg/cli": "^0.21.2",
     "@prisma/client": "^5.20.0",
     "@tongdelove/prettier-config": "workspace:*",
+    "@tongdelove/schema": "workspace:*",
     "@turbo/gen": "^1.13.2",
     "@types/node": "^20.12.8",
     "@types/shell-quote": "1.7.5",

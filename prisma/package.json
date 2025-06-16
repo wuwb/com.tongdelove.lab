@@ -3,8 +3,8 @@
   "version": "2.14.1",
   "sideEffects": false,
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.js",
   "scripts": {
     "build:force": "tsup",
     "clean": "rimraf ./dist ./coverage ./tsconfig.tsbuildinfo",
@@ -14,13 +14,13 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs --cache --cache-location ../../.cache/eslint/prisma.eslintcache",
     "postinstall": "prisma generate",
     "prisma-generate": "prisma generate",
-    "prisma-db-push": "dotenv-flow -- pnpm prisma db push",
-    "prisma-db-seed": "dotenv-flow -- pnpm prisma db seed",
-    "prisma-migrate": "dotenv-flow -- pnpm prisma migrate",
-    "prisma-migrate-reset": "dotenv-flow -- pnpm prisma migrate reset",
-    "prisma-studio": "dotenv-flow -- pnpm prisma studio",
+    "prisma-db-push": "pnpx prisma db push",
+    "prisma-db-seed": "pnpx prisma db seed",
+    "prisma-migrate": "pnpx prisma migrate",
+    "prisma-migrate-reset": "pnpx prisma migrate reset",
+    "prisma-studio": "pnpx prisma studio",
     "test": "run-s test-unit",
-    "test-e2e": "dotenv-flow -- pnpm vitest run",
+    "test-e2e": "pnpx vitest run",
     "test-unit": "echo \"No unit tests yet\"",
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
@@ -30,6 +30,7 @@
     "@prisma/client": "^5.20.0"
   },
   "devDependencies": {
+    "prisma-nestjs-graphql": "^21.2.0",
     "@tongdelove/typescript-config": "workspace:^",
     "@soluble/dsn-parser": "^1.9.2",
     "@tongdelove/eslint-config": "workspace:^",

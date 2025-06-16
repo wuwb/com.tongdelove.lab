@@ -1,30 +1,31 @@
 packages:
-  - 'apps/admin'
-  - 'apps/design'
-  - 'apps/desktop'
-  - 'apps/extension'
-  - 'apps/lab'
-  - 'apps/mobile'
-  - 'apps/web'
-  - 'prisma'
-  - 'packages/schema'
-  - 'packages/utils'
-  - 'packages/hooks'
-  - 'packages/utils'
-  - 'packages/i18n'
-  - 'packages/design'
-  - 'packages/ui'
-  - 'packages/validators'
-  - 'services/server'
-  - 'tasks/jobs/apple-guide-spider'
-  - 'tooling/eslint-config'
-  - 'tooling/github-config'
-  - 'tooling/prettier-config'
-  - 'tooling/tailwind-config'
-  - 'tooling/typescript-config'
-
+  - apps/admin
+  - apps/design
+  - apps/desktop
+  - apps/extension
+  - apps/lab
+  - apps/mobile
+  - apps/web
+  - prisma
+  - packages/schema
+  - packages/utils
+  - packages/hooks
+  - packages/utils
+  - packages/i18n
+  - packages/design
+  - packages/ui
+  - packages/validators
+  - services/server
+  - tasks/jobs/apple-guide-spider
+  - tooling/eslint-config
+  - tooling/github-config
+  - tooling/prettier-config
+  - tooling/tailwind-config
+  - tooling/typescript-config
 nohoist:
-  - '**/react' # 所有项目的 react 不提升
+  - '**/react'
   - '**/react-dom'
   - '**/@chakra-ui/react'
   - '**/@chakra-ui/icons'
+onlyBuiltDependencies:
+  - '@vercel/speed-insights'

@@ -7,10 +7,10 @@ import { UpdateLinkDTO } from './dto/update-link.dto'
 export class LinkService {
   private readonly logger = new Logger(LinkService.name)
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async findOneById(id: string) {
-    return this.prisma.website.findUnique({
+    return this.prisma.link.findUnique({
       where: {
         id,
       },
@@ -18,7 +18,7 @@ export class LinkService {
   }
 
   async findAll(param = {}) {
-    const data = await this.prisma.website.findMany({
+    const data = await this.prisma.link.findMany({
       where: {
         ...param,
       },
@@ -29,8 +29,8 @@ export class LinkService {
   async findMany(page: number = 1, limit: number = 10) {
     const offset = (page - 1) * limit
 
-    const total = await this.prisma.website.count()
-    const data = await this.prisma.website.findMany({
+    const total = await this.prisma.link.count()
+    const data = await this.prisma.link.findMany({
       take: limit,
       skip: offset,
     })
@@ -39,7 +39,7 @@ export class LinkService {
   }
 
   findOne(id: string) {
-    return this.prisma.website.findUnique({
+    return this.prisma.link.findUnique({
       where: { id: id },
       select: {
         title: true,
@@ -56,7 +56,7 @@ export class LinkService {
   }
 
   findOneWithCategory(id: string) {
-    return this.prisma.website.findUnique({
+    return this.prisma.link.findUnique({
       where: { id: id },
       select: {
         title: true,
@@ -73,7 +73,7 @@ export class LinkService {
   }
 
   create(userId: string, categoryId: string, createLinkDTO: CreateLinkDTO) {
-    return this.prisma.website.create({
+    return this.prisma.link.create({
       data: {
         title: createLinkDTO.title,
         description: createLinkDTO.description,
@@ -88,6 +88,7 @@ export class LinkService {
             id: userId,
           },
         },
+        updatedAt: new Date()
       },
     })
   }
@@ -97,7 +98,7 @@ export class LinkService {
   }
 
   async remove(id: string) {
-    return this.prisma.website.delete({
+    return this.prisma.link.delete({
       where: {
         id,
       },

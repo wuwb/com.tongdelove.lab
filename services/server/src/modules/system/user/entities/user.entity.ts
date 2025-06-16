@@ -141,10 +141,6 @@ export class UserEntity extends BaseEntity {
   @ApiProperty()
   lastName: string
 
-  @Column({ nullable: true })
-  @ApiProperty()
-  remark: string
-
   @Column()
   @ApiProperty()
   platform: number

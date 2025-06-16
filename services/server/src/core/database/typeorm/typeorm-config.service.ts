@@ -5,7 +5,7 @@ import { isDevMode } from '@/app.environment'
 
 @Injectable()
 export class TypeormConfigService implements TypeOrmOptionsFactory {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     const {
@@ -54,7 +54,6 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
       // don't change synchronize setting
       synchronize: this.configService.get<boolean>('database.synchronize'),
       // connection pool settings
-      keepConnectionAlive,
       retryDelay,
       verboseRetryLog: true,
       extra: {

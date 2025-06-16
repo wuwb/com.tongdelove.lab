@@ -15,8 +15,7 @@ import { BaseEntity } from '@/shared/entities/base.entity'
 @Entity('product')
 export class Product
   extends BaseEntity
-  implements Prisma.ProductUncheckedCreateInput
-{
+  implements Prisma.ProductUncheckedCreateInput {
   @ApiProperty()
   @Column()
   name: string
@@ -46,7 +45,6 @@ export class Product
   custom_id: string
 
   goods_sn
-  isDeleted
   keywords
   brief
   detail
