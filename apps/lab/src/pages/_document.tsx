@@ -15,13 +15,13 @@ type MyDocumentProps = DocumentProps & {
 
 const defaultLocale = 'en'
 
-const MyDocument = (props: MyDocumentProps) => {
+export default function MyDocument(props: MyDocumentProps) {
   const locale = props.locale ?? defaultLocale
   const currentLocale =
     props.__NEXT_DATA__.locale ?? nextI18NextConfig.i18n.defaultLocale
 
   return (
-    <Html lang={locale}>
+    <Html lang={locale} suppressHydrationWarning>
       <Head>
         <meta charSet="utf-8" />
         <meta name="emotion-insertion-point" content="" />
@@ -50,7 +50,7 @@ const MyDocument = (props: MyDocumentProps) => {
         />
         <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta
           name="msapplication-config"
           content="/images/favicon/browserconfig.xml"
@@ -70,7 +70,7 @@ const MyDocument = (props: MyDocumentProps) => {
             (function() {
               var hm = document.createElement("script");
               hm.src = "https://hm.baidu.com/hm.js?4f4cd00ad9a4344b61ec0e69523ea883";
-              var s = document.getElementsByTagName("script")[0]; 
+              var s = document.getElementsByTagName("script")[0];
               s.parentNode.insertBefore(hm, s);
             })();
           `,
@@ -132,7 +132,6 @@ MyDocument.getInitialProps = async (ctx) => {
   }
 }
 
-export default MyDocument
 
 // Example to process graceful shutdowns (ie: closing db or other resources)
 // https://nextjs.org/docs/deployment#manual-graceful-shutdowns

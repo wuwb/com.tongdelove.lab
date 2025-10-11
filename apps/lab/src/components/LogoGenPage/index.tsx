@@ -337,13 +337,13 @@ export const LogoGenPage = () => {
   )
   const filteredOptions = shouldFilterOptions
     ? [
-        ...customFonts.filter((item) =>
-          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-        ),
-        ...googlefonts.filter((item) =>
-          item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-        ),
-      ]
+      ...customFonts.filter((item) =>
+        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+      ),
+      ...googlefonts.filter((item) =>
+        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
+      ),
+    ]
     : customFonts
 
   const options = filteredOptions.map((item) => (

@@ -1,1 +1,1 @@
-export const MY_X_LINK = 'https://x.com/wuwb_'
+export const MY_X_URL = 'https://x.com/wuwb_'

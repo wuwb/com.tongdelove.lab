@@ -218,6 +218,7 @@ const config = {
 
     // https://vercel.com/docs/observability/otel-overview
     instrumentationHook: true,
+    optimizePackageImports: ["@chakra-ui/react"],
     serverComponentsExternalPackages: ['mongoose', 'pg'],
     // outputFileTracingRoot: path.join(__dirname, '../../'),
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
@@ -274,7 +275,7 @@ const config = {
     externalDir: true,
     // https://github.com/mantinedev/mantine/issues/5306
     // optimizePackageImports: [
-    //   '@mantine/core',
+    //   '@chakra-ui/react',
     //   '@mantine/hooks',
     // ],
     // Google fonts
@@ -304,7 +305,7 @@ const config = {
     //   ignoreBuildErrors: true,
   },
 
-  async headers() {
+  async headers () {
     return [
       {
         source: '/:all*(svg|jpg|png|wasm|gif)',
@@ -406,7 +407,7 @@ const config = {
   // },
 
   // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
-  async rewrites() {
+  async rewrites () {
     return [
       {
         source: '/mp/lib.min.js',
@@ -590,7 +591,7 @@ const plugins = [
  * @type {import('next').NextConfig}
  */
 const nextConfig = (phase, { defaultConfig }) => {
-  let result = config
+  const result = config
 
   // if (process.env.CI === 'true' && process.env.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {
   //   // @ts-ignore cause sentry is not always following nextjs types

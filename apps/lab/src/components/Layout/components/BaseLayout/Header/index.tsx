@@ -556,12 +556,11 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 
       <Collapse animateOpacity style={{ marginTop: '0!important' }}>
         <Stack mt={2} pl={4}>
-          {children &&
-            children.map((child) => (
-              <Box key={child.label} py={2}>
-                {child.label}
-              </Box>
-            ))}
+          {children?.map((child) => (
+            <Box key={child.label} py={2}>
+              {child.label}
+            </Box>
+          ))}
         </Stack>
       </Collapse>
     </Stack>

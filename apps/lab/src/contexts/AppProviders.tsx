@@ -15,6 +15,7 @@ import { Notifications } from '@mantine/notifications'
 import { SSRHidden } from '@/components/Atom/SSRHidden'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import { Provider } from "@/components/ui/provider"
 
 type AppProvidersProps = {
   children: React.ReactNode
@@ -37,23 +38,25 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
         height={3}
         showOnShallow={false}
       />
-      <MantineProvider theme={theme} defaultColorScheme="auto">
-        <Notifications />
-        <ColorSchemeScript
-          nonce="8IBTHwOdqNKAWeKl7plt8g=="
-          defaultColorScheme="auto"
-        />
-        <TooltipProvider>
-          <Elements stripe={stripePromise} options={options}>
-            <AppContextProvider>{children}</AppContextProvider>
-          </Elements>
-        </TooltipProvider>
+      <Provider>
+        <MantineProvider theme={theme} defaultColorScheme="auto">
+          <Notifications />
+          <ColorSchemeScript
+            nonce="8IBTHwOdqNKAWeKl7plt8g=="
+            defaultColorScheme="auto"
+          />
+          <TooltipProvider>
+            <Elements stripe={stripePromise} options={options}>
+              <AppContextProvider>{children}</AppContextProvider>
+            </Elements>
+          </TooltipProvider>
 
-        {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
-        {/* <ReactQueryClientProvider> */}
-        {/* </ReactQueryClientProvider> */}
-        {/* </PlausibleProvider> */}
-      </MantineProvider>
+          {/* <PlausibleProvider domain="lab.printlake.com" trackOutboundLinks> */}
+          {/* <ReactQueryClientProvider> */}
+          {/* </ReactQueryClientProvider> */}
+          {/* </PlausibleProvider> */}
+        </MantineProvider>
+      </Provider>
       <SSRHidden>
         <Analytics />
         <SpeedInsights sampleRate={1} />

@@ -1,13 +1,15 @@
 import { useSession } from 'next-auth/react'
 import { InferGetServerSidePropsType } from 'next'
-import { HomePage } from '@/components/HomePage/index'
+import { Home } from './index/index'
 import { NextSeo } from 'next-seo'
 import { useTranslation } from '@/i18n'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 
-type IndexPageProps = {}
+type IndexProps = {
+  // 
+}
 
-const IndexPage = (
+const Index = (
   _props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const { t } = useTranslation()
@@ -23,12 +25,12 @@ const IndexPage = (
           "Welcome to our online multi-tool hub, offering a range of free utilities from encoding and decoding, image editing to unit conversions. Whether you're a student, developer, or professional, our tools are designed to enhance your productivity. Experience user-friendly design combined with powerful functionality - try it out now!"
         )}
       />
-      <HomePage />
+      <Home />
     </>
   )
 }
 
-export default IndexPage
+export default Index
 
 export const getServerSideProps = buildSharedServerSideProps<IndexProps>(
   async () => {

@@ -817,6 +817,8 @@ model Post {
   Product             Product[]
   readTime            Int?
 
+  comments Comment[]
+
   slug        String    @unique
   title       String    @db.VarChar(300)
   link        String?   @db.VarChar(300)
@@ -925,6 +927,7 @@ model Comment {
   sourceId           Int
   Article            Article?      @relation(fields: [articleId], references: [id])
   articleId          String?
+  post               Post?         @relation(fields: [commentPostId], references: [id])
 
   @@map(name: "comment")
 }
@@ -1328,27 +1331,27 @@ model User {
   updatedAt       DateTime  @updatedAt @map(name: "updated_at")
   deletedAt       DateTime?
 
-  roles             Role[]
-  role              UserPermissionRole  @default(USER)
-  link              Link[]
-  dept              Dept?               @relation(fields: [deptId], references: [id])
-  deptId            String?
-  post              Post[]
-  order             Order[]
-  payMehod          PayMehod[]
+  roles              Role[]
+  role               UserPermissionRole  @default(USER)
+  links              Link[]
+  dept               Dept?               @relation(fields: [deptId], references: [id])
+  deptId             String?
+  posts              Post[]
+  orders             Order[]
+  payMehods          PayMehod[]
   // 电话号码，一个用户可以有多个电话号码，一个用户只能绑定一个电话号码
-  telephone         Telephone? // User -> Telephone 1-1
-  weixin_openid     String              @default("")
-  session_key       String              @default("")
-  cart              Cart[]
-  book              Book[]
-  bookChapter       BookChapter[]
-  bookStar          BookStar[]
-  handbook          HandBook[]
-  handbookChapter   HandBookChapter[]
-  article           Article[]
-  comment           Comment[]
-  CreditTransaction CreditTransaction[]
+  telephone          Telephone? // User -> Telephone 1-1
+  weixin_openid      String              @default("")
+  session_key        String              @default("")
+  carts              Cart[]
+  books              Book[]
+  bookChapters       BookChapter[]
+  bookStars          BookStar[]
+  handbooks          HandBook[]
+  handbookChapters   HandBookChapter[]
+  articles           Article[]
+  comments           Comment[]
+  CreditTransactions CreditTransaction[]
 
   // lemonsqueezy
   subscriptionId   String?

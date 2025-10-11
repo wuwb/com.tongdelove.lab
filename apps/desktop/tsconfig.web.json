@@ -1,0 +1,43 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": [
+      "./src",
+    "electron.vite.config.*",
+    "electron-builder.ts",
+    "index.d.ts",
+    "src/lib/*",
+    "src/lib/**/*",
+    "src/shared/**/*",
+    "src/renderer/src/env.d.ts",
+    "src/renderer/src/**/*",
+    "src/renderer/src/**/*.tsx",
+    "src/preload/*.d.ts"
+  ],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "composite": true,
+    "baseUrl": ".",
+    "strict": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "paths": {
+      "*": ["src/*"],
+      "@/*": ["src/*"],
+      "~/*": ["./*"],
+      "react": [ "./node_modules/@types/react" ]
+    }
+  }
+}
