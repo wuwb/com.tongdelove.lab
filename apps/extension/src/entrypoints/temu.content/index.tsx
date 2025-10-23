@@ -24,20 +24,17 @@ export default defineContentScript({
   // // Configure how/when content script will be registered
   // registration: undefined | "manifest" | "runtime",
 
-  matches: ['<all_urls>'],
-  async main(ctx: ContentScriptContext) {
+  matches: ['*://agentseller.temu.com/*'],
+  world: 'MAIN', // 'ISOLATED',
+  main: () => {
     // ctx.addEventListener(...);
     // ctx.setTimeout(...);
     // ctx.setInterval(...);
     // ctx.requestAnimationFrame(...)
 
-    if (ctx.isValid) {
-      console.log('isValid: ')
-    }
-    // OR
-    if (ctx.isInvalid) {
-      console.log('isInvalid: ')
-    }
+    console.log('temu content')
+
+    injectNetworkInterceptor()
 
     // console.log("Creating web worker");
     // const worker = new MyWorker();

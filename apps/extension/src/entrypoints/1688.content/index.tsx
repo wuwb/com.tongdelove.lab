@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
-import type { ContentScriptContext } from "wxt/client";
+import type { ContentScriptContext } from "#imports";
 import App from './App.tsx';
 import "@/assets/tailwind.css";
 const watchPattern = new MatchPattern('*://*.youtube.com/watch*');
@@ -11,11 +11,11 @@ export default defineContentScript({
   async main(ctx) {
     console.log('Hello content.');
 
-    ctx.addEventListener(window, 'wxt:locationchange', ({ newUrl }) => {
-      if (watchPattern.includes(newUrl)) {
-        mainWatch(ctx);
-      }
-    });
+    // ctx.addEventListener(window, 'wxt:locationchange', ({ newUrl }) => {
+    //   if (watchPattern.includes(newUrl)) {
+    //     mainWatch(ctx);
+    //   }
+    // });
 
     if (ctx.isValid) {
       // do something
@@ -49,6 +49,7 @@ function createUi(ctx: ContentScriptContext) {
   return createShadowRootUi(ctx, {
     name: 'extension-app',
     position: 'inline',
+    inheritStyles: true,
     anchor: 'body',
     append: "last",
     onMount: (container, shadow) => {

@@ -1,7 +1,7 @@
-import { defineAppConfig } from 'wxt/sandbox';
+import { defineAppConfig } from '#imports';
 
 // Define types for your config
-declare module 'wxt/sandbox' {
+declare module 'wxt/utils/define-app-config' {
   export interface WxtAppConfig {
     theme?: 'light' | 'dark';
     apiKey?: string;
