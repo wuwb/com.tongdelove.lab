@@ -5,11 +5,11 @@ export default defineContentScript({
   matches: ["*://*/*"],
   runAt: "document_start",
   main: async () => {
-    console.log("Injecting script...");
+    console.log("Injecting script...")
 
     injectScript("/injected.js", {
       keepInDom: true,
-    });
+    })
 
     // const container = document.createElement('div'); 
     // document.body.append(container); 
@@ -23,4 +23,4 @@ export default defineContentScript({
     //   console.log("Session start time:", new Date(startTime).toISOString());
     // }
   },
-});
+})

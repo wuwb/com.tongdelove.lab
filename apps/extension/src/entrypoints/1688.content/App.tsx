@@ -1,5 +1,5 @@
-import { REPLACE_BEARER_TOKEN, SUPPLY_TABLE_KEY, TEABLE_ROOT } from '@/constants/app';
-import React, { useEffect, useState, useRef } from 'react';
+import { REPLACE_BEARER_TOKEN, SUPPLY_TABLE_KEY, TEABLE_ROOT } from '@/constants/app'
+import React, { useEffect, useState, useRef } from 'react'
 import { removeParamsFromPath } from '@/utils/utils'
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     logisticsExperience: 0,
     consultingExperience: 0,
     url: '',
-  });
+  })
   const longLivedMessageList = useRef<HTMLUListElement>(null)
 
   const [helloResponsePre, sethelloResponsePre] = useState('Waiting for message to be sent...')
@@ -25,24 +25,24 @@ const App = () => {
       const response = await browser.runtime.sendMessage({
         type: "hello",
         name: "Aaron",
-      });
-      console.log({ response });
+      })
+      console.log({ response })
       console.log('response: ', response)
-      sethelloResponsePre(JSON.stringify(response));
+      sethelloResponsePre(JSON.stringify(response))
     } catch (err: any) {
-      sethelloResponsePre("ERROR: " + err.message);
+      sethelloResponsePre("ERROR: " + err.message)
     }
   }
 
   const sendUnknownMessageBtn = async () => {
     try {
-      const response = await browser.runtime.sendMessage({ type: "unknown" });
-      console.log({ response });
+      const response = await browser.runtime.sendMessage({ type: "unknown" })
+      console.log({ response })
       console.log('response: ', response)
 
-      setunknownResponsePre(JSON.stringify(response));
+      setunknownResponsePre(JSON.stringify(response))
     } catch (err: any) {
-      setunknownResponsePre("ERROR: " + err.message);
+      setunknownResponsePre("ERROR: " + err.message)
     }
   }
 
@@ -50,7 +50,7 @@ const App = () => {
     // https://sale.1688.com/factory/
     console.log('path: ', window.location.href)
 
-    const url = new URL(`${TEABLE_ROOT}/api/table/${SUPPLY_TABLE_KEY}/record`);
+    const url = new URL(`${TEABLE_ROOT}/api/table/${SUPPLY_TABLE_KEY}/record`)
     const data = {
       "fieldKeyType": "id",
       "typecast": true,
@@ -81,14 +81,14 @@ const App = () => {
         'content-type': 'application/json'
       },
       body: JSON.stringify(data)
-    };
+    }
 
     try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      console.log(data);
+      const response = await fetch(url, options)
+      const data = await response.json()
+      console.log(data)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 
@@ -97,7 +97,7 @@ const App = () => {
     const mainImages = []
     for (let i = 0; i < mainImageDoms.length; i++) {
       if (mainImageDoms[i].tagName === 'IMG') {
-        mainImages.push(mainImageDoms[i].src);
+        mainImages.push(mainImageDoms[i]?.src)
       }
     }
     console.log('main images: ', mainImages)
@@ -106,7 +106,7 @@ const App = () => {
     const detailImages = []
     for (let i = 0; i < detailImageDoms.length; i++) {
       if (detailImageDoms[i].tagName === 'IMG') {
-        detailImages.push(detailImageDoms[i].src);
+        detailImages.push(detailImageDoms[i]?.src)
       }
     }
     console.log('detail images: ', detailImages)
@@ -115,7 +115,7 @@ const App = () => {
     const detailImages2 =  []
     for(let i = 0; i < detailImageDoms2.length; i++) {
       if (detailImageDoms2[i].tagName === 'IMG') {
-        detailImages2.push(detailImageDoms2[i].src)
+        detailImages2.push(detailImageDoms2[i]?.src)
       }
     }
     console.log('detail images: ', detailImages2)
@@ -125,7 +125,7 @@ const App = () => {
       detailImages,
       detailImages2,
     })
- 
+
   }
 
   const handleDownloadVideos = () => {
@@ -162,7 +162,7 @@ const App = () => {
     document.querySelector('.gyp-pc-od-middle-banner')?.remove()
     // 搭配组货
     document.querySelector('.od-pc-offer-combi-recommend')?.remove()
-    
+
     // 同行还在看
     document.querySelector('.od-pc-offer-recommend')?.remove()
     // 声明内容
@@ -176,22 +176,22 @@ const App = () => {
   }
 
   useEffect(() => {
-    getFactoryInfo();
+    getFactoryInfo()
     cleanDoms()
     return () => {
       // clean
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    const port = browser.runtime.connect();
+    const port = browser.runtime.connect()
 
     port.onMessage.addListener((message) => {
       console.log('on message: ', message)
-      const li = document.createElement("li");
-      li.textContent = JSON.stringify(message);
-      longLivedMessageList.current?.append(li);
-    });
+      const li = document.createElement("li")
+      li.textContent = JSON.stringify(message)
+      longLivedMessageList.current?.append(li)
+    })
   }, [])
 
   return (
@@ -225,7 +225,7 @@ const App = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default App

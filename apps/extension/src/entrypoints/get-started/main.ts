@@ -1,5 +1,5 @@
-declare const closeBtn: HTMLButtonElement;
+declare const closeBtn: HTMLButtonElement
 
 closeBtn.onclick = () => {
-  window.close();
-};
+  window.close()
+}

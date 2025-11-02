@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import ReactDOM from 'react-dom/client';
-import type { ContentScriptContext } from "#imports";
-import App from './App.tsx';
-import "@/assets/tailwind.css";
-const watchPattern = new MatchPattern('*://*.youtube.com/watch*');
+import ReactDOM from 'react-dom/client'
+import type { ContentScriptContext } from "#imports"
+import App from './App.tsx'
+import "@/assets/tailwind.css"
+const watchPattern = new MatchPattern('*://*.youtube.com/watch*')
 
 export default defineContentScript({
   matches: ['*://*.1688.com/*'],
   cssInjectionMode: 'ui',
   async main(ctx) {
-    console.log('Hello content.');
+    console.log('Hello content.')
 
     // ctx.addEventListener(window, 'wxt:locationchange', ({ newUrl }) => {
     //   if (watchPattern.includes(newUrl)) {
@@ -34,15 +34,15 @@ export default defineContentScript({
         // dynamic mount by user action via messaging.
         // ui.mount();
       }
-    });
+    })
   },
-});
+})
 
 async function mainWatch(ctx: ContentScriptContext) {
   const ui = await createUi(ctx)
 
   // 4. Mount the UI
-  ui.mount();
+  ui.mount()
 }
 
 function createUi(ctx: ContentScriptContext) {
@@ -54,24 +54,24 @@ function createUi(ctx: ContentScriptContext) {
     append: "last",
     onMount: (container, shadow) => {
       // Container is a body, and React warns when creating a root on the body, so create a wrapper div
-      const app = document.createElement('div');
+      const app = document.createElement('div')
 
-      container.append(app);
+      container.append(app)
 
       // app.style.fontSize = '16px';
 
       // Create a root on the UI container and render a component
-      const root = ReactDOM.createRoot(app);
+      const root = ReactDOM.createRoot(app)
 
       root.render(
         <App />
-      );
-      return { root, app };
+      )
+      return { root, app }
     },
     onRemove: (elements) => {
       // Unmount the root when the UI is removed
-      elements?.root.unmount();
-      elements?.app.remove();
+      elements?.root.unmount()
+      elements?.app.remove()
     },
-  });
+  })
 }

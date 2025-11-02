@@ -1,11 +1,11 @@
-import { defineConfig } from 'wxt';
+import { defineConfig } from 'wxt'
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   manifest: ({ browser, manifestVersion, mode, command }) => {
-    const isDev = mode === 'development';
-    console.log('Is development mode:', isDev);
+    const isDev = mode === 'development'
+    console.log('Is development mode:', isDev)
 
     return {
       
@@ -130,7 +130,7 @@ export default defineConfig({
     //     });
     //   }
       if (wxt.config.mode === 'development') {
-        manifest.name += ' (DEV)';
+        manifest.name += ' (DEV)'
       }
     },
   },
@@ -145,4 +145,4 @@ export default defineConfig({
 			port:3000,
 		}
 	},
-});
+})

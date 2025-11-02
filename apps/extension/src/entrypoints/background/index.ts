@@ -1,8 +1,8 @@
 // import { sessionStartTime } from "@/utils/storage";
-import { injectNetworkInterceptor } from "@/utils/injectNetworkInterceptor";
-import { isJSInjectionValidUrl } from "@/utils/url";
-import "webext-dynamic-content-scripts";
-import { initJSInjectionInterceptor } from "./initJSInjectionInterceptor";
+import { injectNetworkInterceptor } from "@/utils/injectNetworkInterceptor"
+import { isJSInjectionValidUrl } from "@/utils/url"
+import "webext-dynamic-content-scripts"
+import { initJSInjectionInterceptor } from "./initJSInjectionInterceptor"
 // import addPermissionToggle from "webext-permission-toggle";
 // import initWasm from "@vlcn.io/crsqlite-wasm"
 // import wasmUrl from "@vlcn.io/crsqlite-wasm/crsqlite.wasm?url";
@@ -11,7 +11,7 @@ import { initJSInjectionInterceptor } from "./initJSInjectionInterceptor";
 export default defineBackground({
   // Executed when background is loaded, CANNOT BE ASYNC
   main() {
-    console.log('Hello background!', { id: browser.runtime.id });
+    console.log('Hello background!', { id: browser.runtime.id })
 
     // 激活的时候启动页面
     browser.runtime.onInstalled.addListener(async (ctx) => {
@@ -19,22 +19,22 @@ export default defineBackground({
 
       // Open a tab on install
       if (ctx.reason === "install") {
-        console.log('Extension installed');
+        console.log('Extension installed')
 
         await browser.tabs.create({
           url: browser.runtime.getURL("/get-started.html"),
           active: true,
-        });
+        })
 
-        return;
+        return
       }
 
       // Open a tab on update
       if (ctx.reason === 'update') {
-        console.log('Extension updated');
-        return;
+        console.log('Extension updated')
+        return
       }
-    });
+    })
 
     // (browser.action ?? browser.browserAction).onClicked.addListener(
     //   async (tab) => {
@@ -52,9 +52,9 @@ export default defineBackground({
     // initSqlite();
 
     // 启动拦截器
-    initJSInjectionInterceptor();
+    initJSInjectionInterceptor()
   }
-});
+})
 
 // const initSession = () => {
 //    // Set a value in session storage, don't need to await it.

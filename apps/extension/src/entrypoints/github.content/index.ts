@@ -1,24 +1,24 @@
 
 // Function to extract and calculate the difference
 function calculateDifference(element: Element): number | null {
-  const successSpan = element.querySelector('.color-fg-success');
-  const dangerSpan = element.querySelector('.color-fg-danger');
+  const successSpan = element.querySelector('.color-fg-success')
+  const dangerSpan = element.querySelector('.color-fg-danger')
 
   if (successSpan && dangerSpan) {
-    const successNumber = parseInt(successSpan.textContent?.replace(/[^0-9]/g, '') || '0', 10);
-    const dangerNumber = parseInt(dangerSpan.textContent?.replace(/[^0-9]/g, '') || '0', 10);
-    return successNumber - dangerNumber;
+    const successNumber = parseInt(successSpan.textContent?.replace(/[^0-9]/g, '') || '0', 10)
+    const dangerNumber = parseInt(dangerSpan.textContent?.replace(/[^0-9]/g, '') || '0', 10)
+    return successNumber - dangerNumber
   }
 
-  return null;
+  return null
 }
 
 // Function to insert the difference
 function insertDifference(element: Element, difference: number): void {
-  const newSpan = document.createElement('span');
-  newSpan.textContent = `Difference: ${difference}`;
-  newSpan.style.marginLeft = '10px';
-  element.appendChild(newSpan);
+  const newSpan = document.createElement('span')
+  newSpan.textContent = `Difference: ${difference}`
+  newSpan.style.marginLeft = '10px'
+  element.appendChild(newSpan)
 }
 
 // Main function to process the page
@@ -30,20 +30,20 @@ export function processContributorsPage(): void {
   //   return;
   // }
 
-  const elements = document.querySelectorAll('span.color-fg-success, span.color-fg-danger');
+  const elements = document.querySelectorAll('span.color-fg-success, span.color-fg-danger')
 
   console.log('elements: ', elements)
 
   elements.forEach((element) => {
-    const parentElement = element.parentElement;
+    const parentElement = element.parentElement
     if (parentElement) {
-      const difference = calculateDifference(parentElement);
+      const difference = calculateDifference(parentElement)
       console.log('difference: ', difference)
       if (difference !== null) {
-        insertDifference(parentElement, difference);
+        insertDifference(parentElement, difference)
       }
     }
-  });
+  })
 }
 
 // Run the main function when the content script is injected
@@ -55,4 +55,4 @@ export default defineContentScript({
   main() {
     processContributorsPage()
   },
-});
+})

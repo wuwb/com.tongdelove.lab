@@ -1,5 +1,5 @@
-import { ProductSKC } from "@/types/temu/product";
-import { UserInfo } from "@/types/temu/user";
+import { ProductSKC } from "@/types/temu/product"
+import { UserInfo } from "@/types/temu/user"
 
 // /bg/quick/api/merchant/msgBox/unreadMsgDetail
 // /bg/detroit/api/infoTicket/searchTicket  信息票数量接口
@@ -39,11 +39,11 @@ export function handleTemuResponse(data: any) {
 
   if (url.includes("/api/seller/auth/userInfo")) {
     try {
-      const userInfo = result;
+      const userInfo = result
 
       console.log('userInfo: ', userInfo)
 
-      sessionStorage.setItem('bx-temu-user-info', JSON.stringify(userInfo));
+      sessionStorage.setItem('bx-temu-user-info', JSON.stringify(userInfo))
     } catch (error) {
       console.error(error)
     }

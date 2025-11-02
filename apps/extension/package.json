@@ -10,6 +10,7 @@
     "build": "wxt build --mode production",
     "zip": "wxt zip",
     "compile": "tsc --noEmit",
+    "lint": "eslint . --fix",
     "postinstall": "wxt prepare"
   },
   "dependencies": {
@@ -43,5 +44,8 @@
     "typescript": "^5.8.2",
     "vite-plugin-remove-console": "^2.2.0",
     "wxt": "^0.20.11"
+  },
+  "overrides": {
+    "eslint": "^9.38.0"
   }
 }

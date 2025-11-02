@@ -8,7 +8,7 @@
         'baidu.com',
         'juejin.cn',
         'temu.com',
-      ];
+      ]
       
       const invalidProtocols = [
         'chrome://',
@@ -17,17 +17,17 @@
         'about:',
         'data:',
         'file:'
-      ];
+      ]
       
       // 检查是否为无效协议
       if (invalidProtocols.some(protocol => url.startsWith(protocol))) {
-        return false;
+        return false
       }
       
       // 检查是否为允许的域名
       if (allowedDomains.some(domain => url.includes(domain))) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     }

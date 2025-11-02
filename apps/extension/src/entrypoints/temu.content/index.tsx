@@ -1,6 +1,6 @@
 // import MyWorker from "./worker?worker&inline";
 // import { sessionStartTime } from "@/utils/storage";
-import { ContentScriptContext } from '#imports';
+import { ContentScriptContext } from '#imports'
 
 export default defineContentScript({
   // // Set manifest options
@@ -47,4 +47,4 @@ export default defineContentScript({
     //   console.log("Session start time:", new Date(startTime).toISOString());
     // }
   },
-});
+})

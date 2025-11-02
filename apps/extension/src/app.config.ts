@@ -1,4 +1,4 @@
-import { defineAppConfig } from '#imports';
+import { defineAppConfig } from '#imports'
 
 // Define types for your config
 declare module 'wxt/utils/define-app-config' {
@@ -13,4 +13,4 @@ export default defineAppConfig({
   theme: 'dark',
   apiKey: import.meta.env.WXT_API_KEY,
   skipWelcome: import.meta.env.WXT_SKIP_WELCOME === 'true',
-});
+})

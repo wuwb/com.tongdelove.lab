@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './style.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './style.css'
 
-console.log("Popup loaded");
+console.log("Popup loaded")
 
-let rootElement = document.getElementById('root');
+let rootElement = document.getElementById('root')
 if (!rootElement) {
-  rootElement = document.createElement('div');
-  rootElement.id = 'root';
-  document.body.appendChild(rootElement);
+  rootElement = document.createElement('div')
+  rootElement.id = 'root'
+  document.body.appendChild(rootElement)
 }
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-);
+)
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   // 采集所有图片按钮

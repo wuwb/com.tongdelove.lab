@@ -1,9 +1,9 @@
-// eslint.config.mjs
+import { defineConfig } from "eslint/config"
 import autoImports from './.wxt/eslint-auto-imports.mjs';
 
-export default [
+export default defineConfig([
   autoImports,
   {
-    // The rest of your config...
+    ignores: ['**/dist', '**/.wxt', '**/.output', 'node_modules/']
   },
-];
+])

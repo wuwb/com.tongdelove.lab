@@ -8,8 +8,8 @@ export const usePopup = () => {
         }
         chrome.tabs.sendMessage(tabs[0].id, { action: "getCollectButtonStatus" }, function(response) {
           resolve(response)
-        });
-      });
+        })
+      })
     })
   }
 
@@ -18,23 +18,23 @@ export const usePopup = () => {
       if (!tabs[0].id) {
         return
       }
-      chrome.tabs.sendMessage(tabs[0].id, { action: "collectAllImages" });
-    });
+      chrome.tabs.sendMessage(tabs[0].id, { action: "collectAllImages" })
+    })
   }
 
   const collectGoodsImages = () => chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     if (!tabs[0].id) {
       return
     }
-    chrome.tabs.sendMessage(tabs[0].id, { action: "collectGoodsImages" });
-  });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "collectGoodsImages" })
+  })
 
   const downloadVideo = chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     if (!tabs[0].id) {
       return
     }
-    chrome.tabs.sendMessage(tabs[0].id, { action: "downloadVideo" });
-  });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "downloadVideo" })
+  })
 
   return {
     getCollectButtonStatus,
