@@ -16,8 +16,9 @@ export const createIframe = (id: string): HTMLIFrameElement => {
   }
 
 export const writeIframeContent = (iframe: HTMLIFrameElement, content: string) => {
-  const doc = iframe.contentDocument!;
-  doc.open();
-  doc.write(content);
-  doc.close();
+  // const doc = iframe.contentDocument!;
+  // doc.open();
+  // doc.write(content);
+  // doc.close();
+  iframe.srcdoc = content;
 };

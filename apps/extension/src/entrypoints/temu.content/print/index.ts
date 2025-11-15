@@ -1,8 +1,14 @@
 import { CUSTOM_PRINT_BUTTON_CLASSNAME, CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME, CUSTOM_PRINT_IFRAME_ID, PRINT_BUTTON_INSERT_POSITION } from "./consts"
 import { createIframe, writeIframeContent } from "./iframe"
 import { map } from './map'
+import { PrintProduct } from "./types"
+import { generatePrintContent } from "./utils"
 
 export const createCustomPrint = async () => {
+
+  /**
+   * add custom print button
+   */
   document.addEventListener('click', async (e) => {
     const target = e.target as HTMLElement
     // 检查是否点击了目标按钮（兼容嵌套元素）
@@ -38,6 +44,112 @@ export const createCustomPrint = async () => {
     const pollingTimer = setInterval(checkModal, POLL_INTERVAL)
   })
 
+  const extractProductListFromModal = (): PrintProduct[] => {
+    // 查找抽屉内容区域
+    const container = document.querySelector<HTMLElement>('.index-module__drawer-body___3-jUp');
+    if (!container) {
+      alert('未找到发货单抽屉区域，请确认弹窗已完全打开。');
+      return [];
+    }
+
+    // 查找表格
+    const table = container.querySelector<HTMLElement>('[data-testid="beast-core-table"]');
+    if (!table) {
+      alert('在抽屉区域内未找到商品表格，请确认表格已加载完成。');
+      return [];
+    }
+
+    // 查找所有数据行
+    const rows = table.querySelectorAll<HTMLTableRowElement>('[data-testid="beast-core-table-body-tr"]');
+    if (rows.length === 0) {
+      alert('表格中未找到任何商品数据行。');
+      return [];
+    }
+
+    const productList: PrintProduct[] = [];
+
+    try {
+      Array.from(rows).forEach((row, index) => {
+        const cells = row.querySelectorAll('[data-testid="beast-core-table-td"]');
+        if (cells.length < 7) {
+          throw new Error(`第 ${index + 1} 行数据不完整：期望 7 列，实际 ${cells.length} 列`);
+        }
+
+        const getTextContent = (cell: Element): string => cell.textContent?.trim() ?? '';
+
+        // 第一列：包含图片、商品标题、SKC
+        const firstCell = cells[0];
+        const img = firstCell.querySelector<HTMLImageElement>('img[src]');
+        const imageUrl = img ? img.src : ''; // 提取图片地址
+
+        const titleElements = firstCell.querySelectorAll('div.goods-info_content__pfkNO > div');
+        const title = titleElements.length > 0 ? titleElements[0].textContent?.trim() ?? '' : '';
+        const skc = titleElements.length > 1 ? (titleElements[1] as HTMLElement).innerText.trim() : '';
+
+
+        const sku = getTextContent(cells[1]);
+        if (!sku) {
+          throw new Error(`第 ${index + 1} 行缺失 SKU ID`);
+        }
+
+        const skuLabel = getTextContent(cells[2]);
+        if (!skuLabel) {
+          throw new Error(`第 ${index + 1} 行缺失 SKU货号`);
+        }
+
+        const mainAttr = getTextContent(cells[3]).replace('-', '').trim();
+        const subAttrText = getTextContent(cells[4]);
+        const subAttr = subAttrText.includes(':')
+          ? subAttrText.split(':').slice(1).join(':').trim()
+          : subAttrText;
+
+        const countText = getTextContent(cells[5]);
+        const count = parseFloat(countText.replace(/[^\d.-]/g, ''));
+        if (isNaN(count)) throw new Error(`第 ${index + 1} 行“发货数”无效：${countText}`);
+
+        const input = cells[6].querySelector('input[data-testid="beast-core-inputNumber-htmlInput"]');
+        const rawValue = input ? (input as HTMLInputElement).value : '';
+        const inputValue = rawValue.trim();
+
+        let inputCount: number;
+
+        // 判断是否为空值（包括纯空格）
+        if (inputValue === '') {
+          inputCount = 0; // 空输入 → 认为是 0，不报错
+        } else {
+          // 非空输入：必须能被解析为有效数字
+          const cleaned = inputValue.replace(/[^\d.-]/g, '');
+          const parsed = parseFloat(cleaned);
+
+          if (isNaN(parsed)) {
+            throw new Error(`第 ${index + 1} 行“打印数量”无效："${rawValue}" 不是一个有效的数字`);
+          }
+
+          inputCount = parsed;
+        }
+
+        productList.push({
+          image: imageUrl,
+          title,
+          skc,
+          sku,
+          skuLabel,
+          mainAttr,
+          subAttr,
+          address: 'Made in China',
+          count,
+          inputCount,
+        });
+      });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : '未知错误';
+      alert(`提取商品数据失败：\n\n${message}\n\n请检查页面内容是否正常加载。`);
+      return []; // 遇错清空结果
+    }
+
+    return productList;
+  }
+
   const insertCustomPrintButton = (container: HTMLElement) => {
     const button = document.createElement('button')
     button.className = PRINT_BUTTON_INSERT_POSITION
@@ -58,110 +170,33 @@ export const createCustomPrint = async () => {
       const iframe = createIframe(CUSTOM_PRINT_IFRAME_ID)
       document.body.appendChild(iframe)
 
-      const productList = [
-        {
-          skuId: '26940309089',
-          skuLabel: 'Z_hei_100',
-          mainAttr: '',
-          subAttr: '60M (196 Feet)',
-          address: 'Made in China',
-          count: 2,
-          inputCount: 2,
-        },
-        // {
-        //   skuId: '40644651821',
-        //   skuLabel: 'Q_lv-B_100',
-        //   mainAttr: '',
-        //   subAttr: '60M (196 Feet)',
-        //   address: 'Made in China',
-        //   count: 3,
-        //   inputCount: 3,
-        // }
-      ]
+      // const productList = [
+      //   {
+      //     sku: '26940309089',
+      //     skuLabel: 'Z_hei_100',
+      //     mainAttr: '',
+      //     subAttr: '60M (196 Feet)',
+      //     address: 'Made in China',
+      //     count: 2,
+      //     inputCount: 2,
+      //   },
+      //   {
+      //     sku: '40644651821',
+      //     skuLabel: 'Q_lv-B_100',
+      //     mainAttr: '',
+      //     subAttr: '60M (196 Feet)',
+      //     address: 'Made in China',
+      //     count: 3,
+      //     inputCount: 3,
+      //   }
+      // ]
 
-      const productsWithImages = productList.map((product) => {
-        const imageDataUrl = map[`${product.skuLabel}_${product.skuId}`]
-        return { ...product, imageDataUrl };
-      })
+      const productList = extractProductListFromModal();
 
-      const pages = productsWithImages.map((product) => {
-        return {
-          title: product.skuLabel,
-          count: product.inputCount,
-          list: Array.from({ length: product.inputCount }, () => ({
-            skuId: product.skuId,
-            skuLabel: product.skuLabel,
-            mainAttr: product.mainAttr,
-            subAttr: product.subAttr,
-            address: product.address,
-            imageDataUrl: product.imageDataUrl,
-          }))
-        }
-      })
+      // 使用统一生成函数
+      const contentHtml = generatePrintContent(productList, map)
 
-      const pageHtml = pages.map((page) => {
-        const titleHtml = `
-          <div class="page print-page">
-            ${page.title} - ${page.count}份
-          </div>
-        `
-        const bodyHtml = page.list.map((item) => {
-        console.log('item.imageDataUrl: ',item.imageDataUrl)
-
-          return `
-          <div class="page print-page">
-            <img src="${item.imageDataUrl}" />
-          </div>
-          `
-        }).join('')
-        return titleHtml + bodyHtml
-      }).join('');
-
-      writeIframeContent(iframe, `
-        <html>
-          <head>
-            <base target="_self">
-            <style>
-              @page { 
-                size: 70mm 20mm;
-                margin: 0mm; 
-              }
-              body { 
-                font-family: Arial, sans-serif; 
-                padding: 20px;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background: white;
-              }
-              .page {
-                text-align: center;
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-              }
-              .page:last-child { page-break-after: avoid; }
-            </style>
-          </head>
-          <body>
-            ${pageHtml}
-            <script>
-              // 监听打印结束（用户关闭打印预览或点击打印/取消）
-              window.onafterprint = function() {
-                // 告诉外层页面移除 iframe
-                window.parent.postMessage({ type: 'REMOVE_PRINT_IFRAME' }, '*');
-              };
-
-              // 可选：调试用
-              // window.onbeforeprint = function() {
-              //   console.log('准备打印...');
-              // };
-            </script>
-          </body>
-        </html>
-      `)
+      writeIframeContent(iframe, contentHtml)
 
       iframe.onload = () => {
         setTimeout(() => {
@@ -179,6 +214,9 @@ export const createCustomPrint = async () => {
     container.prepend(button)
   }
 
+  /**
+   * remove custom print button
+   */
   const handleRemoveIframe = (event: MessageEvent) => {
     if (event.data?.type === 'REMOVE_PRINT_IFRAME') {
       const iframe = document.getElementById(CUSTOM_PRINT_IFRAME_ID)
@@ -188,4 +226,67 @@ export const createCustomPrint = async () => {
   }
   window.removeEventListener('message', handleRemoveIframe)
   window.addEventListener('message', handleRemoveIframe)
+
+
+  /**
+   * debug
+   */
+  if (process.env.NODE_ENV === 'development') {
+    const debugButton = document.createElement('button')
+    debugButton.textContent = '🖨️ 测试打印样式'
+    debugButton.style.position = 'fixed'
+    debugButton.style.bottom = '20px'
+    debugButton.style.right = '20px'
+    debugButton.style.zIndex = '9999'
+    debugButton.style.padding = '10px 15px'
+    debugButton.style.backgroundColor = '#007acc'
+    debugButton.style.color = 'white'
+    debugButton.style.border = 'none'
+    debugButton.style.borderRadius = '6px'
+    debugButton.style.cursor = 'pointer'
+    debugButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
+
+    debugButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      openPrintDebugWindow()
+    })
+
+    document.body.appendChild(debugButton)
+  }
+
+  /**
+   * 打开打印调试窗口（独立页面）
+   */
+  function openPrintDebugWindow() {
+    const productList = [
+      {
+        sku: '26940309089',
+        skuLabel: 'Z_hei_100',
+        mainAttr: '',
+        subAttr: '颜色: (Light Purple+White)浅紫色+白色',
+        address: 'Made in China',
+        count: 2,
+        inputCount: 2,
+      },
+      {
+        sku: '40644651821',
+        skuLabel: 'Q_lv-B_100',
+        mainAttr: '',
+        subAttr: '60M (196 Feet)',
+        address: 'Made in China',
+        count: 3,
+        inputCount: 3,
+      }
+    ]
+
+    const contentHtml = generatePrintContent(productList, map)
+
+    const debugWin = window.open('', '_blank')
+    if (debugWin) {
+      debugWin.document.write(contentHtml)
+      debugWin.document.close()
+    } else {
+      alert('无法打开新窗口，请检查浏览器弹窗拦截设置。')
+    }
+  }
 }

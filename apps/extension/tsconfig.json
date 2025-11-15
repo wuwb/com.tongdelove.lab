@@ -4,7 +4,7 @@
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "types": ["chrome"],
-    "lib": ["DOM", "ESNext", "WebWorker"],
+    "lib": ["DOM", "dom.iterable", "ESNext", "WebWorker"],
     "baseUrl": ".",
     "paths": {
       "@/*": [
