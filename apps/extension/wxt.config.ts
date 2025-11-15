@@ -90,7 +90,10 @@ export default defineConfig({
       // },
       web_accessible_resources: [
         {
-          resources: ["injected.js"],
+          resources: [
+            "injected.js",
+            "/js/pdf.worker.min.js"
+          ],
           matches: ["*://*/*"],
         },
       ],
