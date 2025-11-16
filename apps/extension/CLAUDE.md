@@ -85,8 +85,6 @@ apps/extension/
 import { defineConfig } from 'wxt'
 
 export default defineConfig({
-  modules: ['@wxt-dev/module-react'],
-
   // 构建配置
   build: {
     // 排除的依赖
@@ -101,12 +99,26 @@ export default defineConfig({
     debug: true,
   },
 
+  // 清单文件配置
+  manifest: {
+    description: '支持1688、Temu等平台的浏览器助手',
+    host_permissions: [
+      'https://*.1688.com/*',
+      'https://*.temu.com/*',
+      'https://github.com/*',
+    ],
+    name: '电商助手',
+    version: '0.0.0',
+  },
+
+  modules: ['@wxt-dev/module-react'],
+
   // 输出配置
   output: {
-    // 打包格式
-    format: 'zip',
     // 目录
     dir: 'dist',
+    // 打包格式
+    format: 'zip',
   },
 
   // 权限配置
@@ -117,18 +129,6 @@ export default defineConfig({
     'declarativeNetRequest',
     'notifications',
   ],
-
-  // 清单文件配置
-  manifest: {
-    name: '电商助手',
-    description: '支持1688、Temu等平台的浏览器助手',
-    version: '0.0.0',
-    host_permissions: [
-      'https://*.1688.com/*',
-      'https://*.temu.com/*',
-      'https://github.com/*',
-    ],
-  },
 })
 ```
 
@@ -190,11 +190,11 @@ function isSupportedPlatform(url: string): boolean {
 
 #### usePopup.ts
 ```typescript
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export function usePopup() {
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<null | string>(null)
 
   // 向内容脚本发送消息
   const sendMessage = (tabId: number, message: any): Promise<any> => {
@@ -202,7 +202,8 @@ export function usePopup() {
       chrome.tabs.sendMessage(tabId, message, (response) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError.message)
-        } else {
+        }
+        else {
           resolve(response)
         }
       })
@@ -214,18 +215,18 @@ export function usePopup() {
     return new Promise((resolve) => {
       chrome.tabs.query(
         { active: true, currentWindow: true },
-        (tabs) => resolve(tabs[0])
+        tabs => resolve(tabs[0])
       )
     })
   }
 
   return {
-    isLoading,
-    setIsLoading,
     error,
-    setError,
-    sendMessage,
     getCurrentTab,
+    isLoading,
+    sendMessage,
+    setError,
+    setIsLoading,
   }
 }
 ```
@@ -240,13 +241,13 @@ import { handleTemuResponse } from '@/utils/responseHandlers/temuHandler'
 // 监听来自后台脚本的消息
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.action) {
-    case 'extractProduct':
-      extractProductInfo()
+    case 'enableInterceptor':
+      injectNetworkInterceptor()
       sendResponse({ success: true })
       break
 
-    case 'enableInterceptor':
-      injectNetworkInterceptor()
+    case 'extractProduct':
+      extractProductInfo()
       sendResponse({ success: true })
       break
   }
@@ -256,10 +257,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // 提取商品信息
 function extractProductInfo() {
   const productInfo = {
-    title: '',
-    price: '',
     images: [] as string[],
+    price: '',
     specs: {} as Record<string, string>,
+    title: '',
   }
 
   // 根据不同平台提取信息
@@ -269,7 +270,8 @@ function extractProductInfo() {
     if (titleEl) {
       productInfo.title = titleEl.textContent?.trim() || ''
     }
-  } else if (window.location.hostname.includes('temu.com')) {
+  }
+  else if (window.location.hostname.includes('temu.com')) {
     // Temu平台提取逻辑
     handleTemuResponse(document)
   }
@@ -283,7 +285,8 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     injectNetworkInterceptor()
   })
-} else {
+}
+else {
   injectNetworkInterceptor()
 }
 ```
@@ -305,7 +308,7 @@ export function injectNetworkInterceptor() {
 
   // 拦截 XMLHttpRequest
   const originalXHROpen = XMLHttpRequest.prototype.open
-  XMLHttpRequest.prototype.open = function(method, url) {
+  XMLHttpRequest.prototype.open = function (method, url) {
     this.addEventListener('load', () => {
       processResponse(this.responseText)
     })
@@ -327,10 +330,12 @@ async function processResponse(response: Response | string) {
 
     if (url.includes('temu.com')) {
       handleTemuData(data)
-    } else if (url.includes('1688.com')) {
+    }
+    else if (url.includes('1688.com')) {
       handle1688Data(data)
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error('Failed to process response:', error)
   }
 }
@@ -360,8 +365,8 @@ export default defineBackgroundScript(() => {
       if (isSupportedPlatform(tab.url || '')) {
         // 可以在这里更新扩展图标或状态
         chrome.action.setBadgeText({
-          text: 'ON',
-          tabId
+          tabId,
+          text: 'ON'
         })
       }
     }
@@ -370,9 +375,9 @@ export default defineBackgroundScript(() => {
 
 function isSupportedPlatform(url: string): boolean {
   return (
-    url.includes('1688.com') ||
-    url.includes('temu.com') ||
-    url.includes('github.com')
+    url.includes('1688.com')
+    || url.includes('temu.com')
+    || url.includes('github.com')
   )
 }
 ```
@@ -382,51 +387,51 @@ function isSupportedPlatform(url: string): boolean {
 ### 核心依赖
 ```json
 {
-  "wxt": "^0.20.11",                     // WebExtensions框架
-  "@wxt-dev/module-react": "^1.1.5",     // React集成
-  "@types/chrome": "^0.1.24"             // Chrome API类型
+  "wxt": "^0.20.11", // WebExtensions框架
+  "@wxt-dev/module-react": "^1.1.5", // React集成
+  "@types/chrome": "^0.1.24" // Chrome API类型
 }
 ```
 
 ### 前端依赖
 ```json
 {
-  "react": "^19.2.0",                    // React 19
+  "react": "^19.2.0", // React 19
   "react-dom": "^19.2.0",
-  "@emotion/react": "^11.14.0",          // CSS-in-JS
-  "lucide-react": "^0.439.0",            // 图标库
-  "react-icons": "^5.5.0"                // 更多图标
+  "@emotion/react": "^11.14.0", // CSS-in-JS
+  "lucide-react": "^0.439.0", // 图标库
+  "react-icons": "^5.5.0" // 更多图标
 }
 ```
 
 ### 数据处理
 ```json
 {
-  "@vlcn.io/crsqlite-wasm": "^0.16.0",   // SQLite WASM
-  "axios": "^1.12.2",                    // HTTP客户端
-  "class-variance-authority": "^0.7.0",  // 样式变体
-  "clsx": "^2.1.1"                       // 类名工具
+  "@vlcn.io/crsqlite-wasm": "^0.16.0", // SQLite WASM
+  "axios": "^1.12.2", // HTTP客户端
+  "class-variance-authority": "^0.7.0", // 样式变体
+  "clsx": "^2.1.1" // 类名工具
 }
 ```
 
 ### 自有包
 ```json
 {
-  "@tongdelove/hooks": "workspace:*",     // 自定义Hooks
-  "@tongdelove/schema": "workspace:*",    // 数据模型
-  "@tongdelove/ui": "workspace:*",        // UI组件
-  "@tongdelove/utils": "workspace:*",     // 工具函数
-  "@tongdelove/typescript-config": ":*",  // TS配置
+  "@tongdelove/hooks": "workspace:*", // 自定义Hooks
+  "@tongdelove/schema": "workspace:*", // 数据模型
+  "@tongdelove/ui": "workspace:*", // UI组件
+  "@tongdelove/utils": "workspace:*", // 工具函数
+  "@tongdelove/typescript-config": ":*" // TS配置
 }
 ```
 
 ### 构建工具
 ```json
 {
-  "typescript": "^5.8.2",                // TypeScript
-  "tailwindcss": "^3.4.4",               // 样式框架
-  "postcss": "^8.5.6",                   // CSS处理
-  "autoprefixer": "^10.4.19",            // 自动前缀
+  "typescript": "^5.8.2", // TypeScript
+  "tailwindcss": "^3.4.4", // 样式框架
+  "postcss": "^8.5.6", // CSS处理
+  "autoprefixer": "^10.4.19", // 自动前缀
   "vite-plugin-remove-console": "^2.2.0" // 移除console
 }
 ```
@@ -457,23 +462,23 @@ pnpm lint . --fix                      # 自动修复
 // 提取1688商品信息
 export function extract1688Product(element: Document | Element) {
   return {
-    platform: '1688',
-    title: extractTitle(element),
-    price: extractPrice(element),
-    minOrder: extractMinOrder(element),
     images: extractImages(element),
-    supplier: extractSupplierInfo(element),
+    minOrder: extractMinOrder(element),
+    platform: '1688',
+    price: extractPrice(element),
     specifications: extractSpecifications(element),
+    supplier: extractSupplierInfo(element),
+    title: extractTitle(element),
   }
-}
-
-function extractTitle(element: Document | Element): string {
-  return element.querySelector('.product-title')?.textContent?.trim() || ''
 }
 
 function extractPrice(element: Document | Element): string {
   const priceEl = element.querySelector('.price')
   return priceEl?.textContent?.trim() || ''
+}
+
+function extractTitle(element: Document | Element): string {
+  return element.querySelector('.product-title')?.textContent?.trim() || ''
 }
 ```
 
@@ -481,6 +486,16 @@ function extractPrice(element: Document | Element): string {
 
 #### 响应处理器
 ```typescript
+export function extractTemuProduct(document: Document) {
+  return {
+    images: extractImages(document),
+    platform: 'temu',
+    price: document.querySelector('[data-testid="product-price"]')?.textContent?.trim(),
+    rating: document.querySelector('[data-testid="product-rating"]')?.textContent?.trim(),
+    title: document.querySelector('[data-testid="product-title"]')?.textContent?.trim(),
+  }
+}
+
 // utils/responseHandlers/temuHandler.ts
 export function handleTemuResponse(document: Document) {
   // 监听网络请求
@@ -491,10 +506,10 @@ export function handleTemuResponse(document: Document) {
       chrome.storage.local.set({ temuProduct: productData })
       // 发送通知
       chrome.notifications.create({
-        type: 'basic',
         iconUrl: 'icon.png',
-        title: '商品信息已提取',
         message: `已提取 ${productData.title} 的信息`,
+        title: '商品信息已提取',
+        type: 'basic',
       })
     }
   })
@@ -506,59 +521,36 @@ export function handleTemuResponse(document: Document) {
 
   return observer
 }
-
-export function extractTemuProduct(document: Document) {
-  return {
-    platform: 'temu',
-    title: document.querySelector('[data-testid="product-title"]')?.textContent?.trim(),
-    price: document.querySelector('[data-testid="product-price"]')?.textContent?.trim(),
-    rating: document.querySelector('[data-testid="product-rating"]')?.textContent?.trim(),
-    images: extractImages(document),
-  }
-}
 ```
 
 ## 本地存储
 
 ### 存储管理
 ```typescript
-// utils/storage.ts
-export interface StorageData {
-  extractedProducts: ProductInfo[]
-  settings: ExtensionSettings
-  lastSyncTime?: number
+export interface ExtensionSettings {
+  autoExtract: boolean
+  dataRetention: number // 天数
+  notifications: boolean
 }
 
 export interface ProductInfo {
-  id: string
-  platform: '1688' | 'temu' | 'github'
-  title: string
-  price?: string
-  images: string[]
-  url: string
   extractedAt: number
+  id: string
+  images: string[]
+  platform: '1688' | 'github' | 'temu'
+  price?: string
+  title: string
+  url: string
 }
 
-export interface ExtensionSettings {
-  autoExtract: boolean
-  notifications: boolean
-  dataRetention: number // 天数
+// utils/storage.ts
+export interface StorageData {
+  extractedProducts: ProductInfo[]
+  lastSyncTime?: number
+  settings: ExtensionSettings
 }
 
 class StorageManager {
-  // 保存商品信息
-  async saveProduct(product: ProductInfo): Promise<void> {
-    const data = await this.getStorage()
-    data.extractedProducts.push(product)
-    await chrome.storage.local.set({ extractedProducts: data.extractedProducts })
-  }
-
-  // 获取所有商品
-  async getProducts(): Promise<ProductInfo[]> {
-    const data = await this.getStorage()
-    return data.extractedProducts
-  }
-
   // 清除过期数据
   async cleanExpiredData(): Promise<void> {
     const data = await this.getStorage()
@@ -573,6 +565,19 @@ class StorageManager {
     await chrome.storage.local.set({ extractedProducts: data.extractedProducts })
   }
 
+  // 获取所有商品
+  async getProducts(): Promise<ProductInfo[]> {
+    const data = await this.getStorage()
+    return data.extractedProducts
+  }
+
+  // 保存商品信息
+  async saveProduct(product: ProductInfo): Promise<void> {
+    const data = await this.getStorage()
+    data.extractedProducts.push(product)
+    await chrome.storage.local.set({ extractedProducts: data.extractedProducts })
+  }
+
   private async getStorage(): Promise<StorageData> {
     return new Promise((resolve) => {
       chrome.storage.local.get(null, (items) => {
@@ -580,8 +585,8 @@ class StorageManager {
           extractedProducts: items.extractedProducts || [],
           settings: items.settings || {
             autoExtract: true,
-            notifications: true,
             dataRetention: 30,
+            notifications: true,
           },
         })
       })
@@ -660,8 +665,8 @@ A:
 console.log('Content script loaded')
 // 在后台脚本中
 chrome.scripting.executeScript({
-  target: { tabId: tab.id },
-  func: () => console.log('Injected script')
+  func: () => console.log('Injected script'),
+  target: { tabId: tab.id }
 })
 ```
 

@@ -1,11 +1,11 @@
-import { CUSTOM_PRINT_BUTTON_CLASSNAME, CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME, CUSTOM_PRINT_IFRAME_ID, PRINT_BUTTON_INSERT_POSITION } from "./consts"
-import { createIframe, writeIframeContent } from "./iframe"
+import type { PrintProduct } from './types'
+
+import { CUSTOM_PRINT_BUTTON_CLASSNAME, CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME, CUSTOM_PRINT_IFRAME_ID, PRINT_BUTTON_INSERT_POSITION } from './consts'
+import { createIframe, writeIframeContent } from './iframe'
 import { map } from './map'
-import { PrintProduct } from "./types"
-import { generatePrintContent } from "./utils"
+import { generatePrintContent } from './utils'
 
-export const createCustomPrint = async () => {
-
+export async function createCustomPrint() {
   /**
    * add custom print button
    */
@@ -25,7 +25,7 @@ export const createCustomPrint = async () => {
     const checkModal = () => {
       // 查找弹窗插入位置（您的自定义选择器）
       const modalContainer = document.querySelector<HTMLElement>(CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME)
-      
+
       if (modalContainer) {
         console.log('-----------------------------------modalContainer')
         // 3. 检查是否已存在自定义按钮（避免重复插入）
@@ -34,7 +34,8 @@ export const createCustomPrint = async () => {
           insertCustomPrintButton(modalContainer)
         }
         clearInterval(pollingTimer)
-      } else if (++attempts >= MAX_ATTEMPTS) {
+      }
+      else if (++attempts >= MAX_ATTEMPTS) {
         clearInterval(pollingTimer)
         console.warn('弹窗容器未找到，停止检测')
       }
@@ -46,108 +47,110 @@ export const createCustomPrint = async () => {
 
   const extractProductListFromModal = (): PrintProduct[] => {
     // 查找抽屉内容区域
-    const container = document.querySelector<HTMLElement>('.index-module__drawer-body___3-jUp');
+    const container = document.querySelector<HTMLElement>('.index-module__drawer-body___3-jUp')
     if (!container) {
-      alert('未找到发货单抽屉区域，请确认弹窗已完全打开。');
-      return [];
+      alert('未找到发货单抽屉区域，请确认弹窗已完全打开。')
+      return []
     }
 
     // 查找表格
-    const table = container.querySelector<HTMLElement>('[data-testid="beast-core-table"]');
+    const table = container.querySelector<HTMLElement>('[data-testid="beast-core-table"]')
     if (!table) {
-      alert('在抽屉区域内未找到商品表格，请确认表格已加载完成。');
-      return [];
+      alert('在抽屉区域内未找到商品表格，请确认表格已加载完成。')
+      return []
     }
 
     // 查找所有数据行
-    const rows = table.querySelectorAll<HTMLTableRowElement>('[data-testid="beast-core-table-body-tr"]');
+    const rows = table.querySelectorAll<HTMLTableRowElement>('[data-testid="beast-core-table-body-tr"]')
     if (rows.length === 0) {
-      alert('表格中未找到任何商品数据行。');
-      return [];
+      alert('表格中未找到任何商品数据行。')
+      return []
     }
 
-    const productList: PrintProduct[] = [];
+    const productList: PrintProduct[] = []
 
     try {
       Array.from(rows).forEach((row, index) => {
-        const cells = row.querySelectorAll('[data-testid="beast-core-table-td"]');
+        const cells = row.querySelectorAll('[data-testid="beast-core-table-td"]')
         if (cells.length < 7) {
-          throw new Error(`第 ${index + 1} 行数据不完整：期望 7 列，实际 ${cells.length} 列`);
+          throw new Error(`第 ${index + 1} 行数据不完整：期望 7 列，实际 ${cells.length} 列`)
         }
 
-        const getTextContent = (cell: Element): string => cell.textContent?.trim() ?? '';
+        const getTextContent = (cell: Element): string => cell.textContent?.trim() ?? ''
 
         // 第一列：包含图片、商品标题、SKC
-        const firstCell = cells[0];
-        const img = firstCell.querySelector<HTMLImageElement>('img[src]');
-        const imageUrl = img ? img.src : ''; // 提取图片地址
+        const firstCell = cells[0]
+        const img = firstCell.querySelector<HTMLImageElement>('img[src]')
+        const imageUrl = img ? img.src : '' // 提取图片地址
 
-        const titleElements = firstCell.querySelectorAll('div.goods-info_content__pfkNO > div');
-        const title = titleElements.length > 0 ? titleElements[0].textContent?.trim() ?? '' : '';
-        const skc = titleElements.length > 1 ? (titleElements[1] as HTMLElement).innerText.trim() : '';
+        const titleElements = firstCell.querySelectorAll('div.goods-info_content__pfkNO > div')
+        const title = titleElements.length > 0 ? titleElements[0].textContent?.trim() ?? '' : ''
+        const skc = titleElements.length > 1 ? (titleElements[1] as HTMLElement).innerText.trim() : ''
 
-
-        const sku = getTextContent(cells[1]);
+        const sku = getTextContent(cells[1])
         if (!sku) {
-          throw new Error(`第 ${index + 1} 行缺失 SKU ID`);
+          throw new Error(`第 ${index + 1} 行缺失 SKU ID`)
         }
 
-        const skuLabel = getTextContent(cells[2]);
+        const skuLabel = getTextContent(cells[2])
         if (!skuLabel) {
-          throw new Error(`第 ${index + 1} 行缺失 SKU货号`);
+          throw new Error(`第 ${index + 1} 行缺失 SKU货号`)
         }
 
-        const mainAttr = getTextContent(cells[3]).replace('-', '').trim();
-        const subAttrText = getTextContent(cells[4]);
+        const mainAttr = getTextContent(cells[3]).replace('-', '').trim()
+        const subAttrText = getTextContent(cells[4])
         const subAttr = subAttrText.includes(':')
           ? subAttrText.split(':').slice(1).join(':').trim()
-          : subAttrText;
+          : subAttrText
 
-        const countText = getTextContent(cells[5]);
-        const count = parseFloat(countText.replace(/[^\d.-]/g, ''));
-        if (isNaN(count)) throw new Error(`第 ${index + 1} 行“发货数”无效：${countText}`);
+        const countText = getTextContent(cells[5])
+        const count = Number.parseFloat(countText.replace(/[^\d.-]/g, ''))
+        if (isNaN(count))
+          throw new Error(`第 ${index + 1} 行“发货数”无效：${countText}`)
 
-        const input = cells[6].querySelector('input[data-testid="beast-core-inputNumber-htmlInput"]');
-        const rawValue = input ? (input as HTMLInputElement).value : '';
-        const inputValue = rawValue.trim();
+        const input = cells[6].querySelector('input[data-testid="beast-core-inputNumber-htmlInput"]')
+        const rawValue = input ? (input as HTMLInputElement).value : ''
+        const inputValue = rawValue.trim()
 
-        let inputCount: number;
+        let inputCount: number
 
         // 判断是否为空值（包括纯空格）
         if (inputValue === '') {
-          inputCount = 0; // 空输入 → 认为是 0，不报错
-        } else {
+          inputCount = 0 // 空输入 → 认为是 0，不报错
+        }
+        else {
           // 非空输入：必须能被解析为有效数字
-          const cleaned = inputValue.replace(/[^\d.-]/g, '');
-          const parsed = parseFloat(cleaned);
+          const cleaned = inputValue.replace(/[^\d.-]/g, '')
+          const parsed = Number.parseFloat(cleaned)
 
           if (isNaN(parsed)) {
-            throw new Error(`第 ${index + 1} 行“打印数量”无效："${rawValue}" 不是一个有效的数字`);
+            throw new TypeError(`第 ${index + 1} 行“打印数量”无效："${rawValue}" 不是一个有效的数字`)
           }
 
-          inputCount = parsed;
+          inputCount = parsed
         }
 
         productList.push({
+          address: 'Made in China',
+          count,
           image: imageUrl,
-          title,
+          inputCount,
+          mainAttr,
           skc,
           sku,
           skuLabel,
-          mainAttr,
           subAttr,
-          address: 'Made in China',
-          count,
-          inputCount,
-        });
-      });
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : '未知错误';
-      alert(`提取商品数据失败：\n\n${message}\n\n请检查页面内容是否正常加载。`);
-      return []; // 遇错清空结果
+          title,
+        })
+      })
+    }
+    catch (err: unknown) {
+      const message = err instanceof Error ? err.message : '未知错误'
+      alert(`提取商品数据失败：\n\n${message}\n\n请检查页面内容是否正常加载。`)
+      return [] // 遇错清空结果
     }
 
-    return productList;
+    return productList
   }
 
   const insertCustomPrintButton = (container: HTMLElement) => {
@@ -191,7 +194,7 @@ export const createCustomPrint = async () => {
       //   }
       // ]
 
-      const productList = extractProductListFromModal();
+      const productList = extractProductListFromModal()
 
       // 使用统一生成函数
       const contentHtml = generatePrintContent(productList, map)
@@ -203,7 +206,8 @@ export const createCustomPrint = async () => {
           try {
             iframe.contentWindow?.focus()
             iframe.contentWindow?.print()
-          } catch (err) {
+          }
+          catch (err) {
             console.error('打印失败:', err)
             alert('打印失败，请重试。')
           }
@@ -227,32 +231,31 @@ export const createCustomPrint = async () => {
   window.removeEventListener('message', handleRemoveIframe)
   window.addEventListener('message', handleRemoveIframe)
 
-
   /**
    * debug
    */
-  if (process.env.NODE_ENV === 'development') {
-    const debugButton = document.createElement('button')
-    debugButton.textContent = '🖨️ 测试打印样式'
-    debugButton.style.position = 'fixed'
-    debugButton.style.bottom = '20px'
-    debugButton.style.right = '20px'
-    debugButton.style.zIndex = '9999'
-    debugButton.style.padding = '10px 15px'
-    debugButton.style.backgroundColor = '#007acc'
-    debugButton.style.color = 'white'
-    debugButton.style.border = 'none'
-    debugButton.style.borderRadius = '6px'
-    debugButton.style.cursor = 'pointer'
-    debugButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
+  // if (process.env.NODE_ENV === 'development') {
+  //   const debugButton = document.createElement('button')
+  //   debugButton.textContent = '🖨️ 测试打印样式'
+  //   debugButton.style.position = 'fixed'
+  //   debugButton.style.bottom = '20px'
+  //   debugButton.style.right = '20px'
+  //   debugButton.style.zIndex = '9999'
+  //   debugButton.style.padding = '10px 15px'
+  //   debugButton.style.backgroundColor = '#007acc'
+  //   debugButton.style.color = 'white'
+  //   debugButton.style.border = 'none'
+  //   debugButton.style.borderRadius = '6px'
+  //   debugButton.style.cursor = 'pointer'
+  //   debugButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
 
-    debugButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      openPrintDebugWindow()
-    })
+  //   debugButton.addEventListener('click', (e) => {
+  //     e.preventDefault()
+  //     openPrintDebugWindow()
+  //   })
 
-    document.body.appendChild(debugButton)
-  }
+  //   document.body.appendChild(debugButton)
+  // }
 
   /**
    * 打开打印调试窗口（独立页面）
@@ -260,23 +263,23 @@ export const createCustomPrint = async () => {
   function openPrintDebugWindow() {
     const productList = [
       {
-        sku: '26940309089',
-        skuLabel: 'Z_hei_100',
-        mainAttr: '',
-        subAttr: '颜色: (Light Purple+White)浅紫色+白色',
         address: 'Made in China',
         count: 2,
         inputCount: 2,
+        mainAttr: '',
+        sku: '26940309089',
+        skuLabel: 'Z_hei_100',
+        subAttr: '颜色: (Light Purple+White)浅紫色+白色',
       },
       {
-        sku: '40644651821',
-        skuLabel: 'Q_lv-B_100',
-        mainAttr: '',
-        subAttr: '60M (196 Feet)',
         address: 'Made in China',
         count: 3,
         inputCount: 3,
-      }
+        mainAttr: '',
+        sku: '40644651821',
+        skuLabel: 'Q_lv-B_100',
+        subAttr: '60M (196 Feet)',
+      },
     ]
 
     const contentHtml = generatePrintContent(productList, map)
@@ -285,7 +288,8 @@ export const createCustomPrint = async () => {
     if (debugWin) {
       debugWin.document.write(contentHtml)
       debugWin.document.close()
-    } else {
+    }
+    else {
       alert('无法打开新窗口，请检查浏览器弹窗拦截设置。')
     }
   }

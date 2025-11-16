@@ -1,6 +1,6 @@
 // import MyWorker from "./worker?worker&inline";
 // import { sessionStartTime } from "@/utils/storage";
-import { ContentScriptContext } from '#imports'
+import type { ContentScriptContext } from '#imports'
 
 export default defineContentScript({
   // // Set manifest options
@@ -24,7 +24,6 @@ export default defineContentScript({
   // // Configure how/when content script will be registered
   // registration: undefined | "manifest" | "runtime",
 
-  matches: ['<all_urls>'],
   async main(ctx: ContentScriptContext) {
     // ctx.addEventListener(...);
     // ctx.setTimeout(...);
@@ -50,4 +49,5 @@ export default defineContentScript({
     //   console.log("Session start time:", new Date(startTime).toISOString());
     // }
   },
+  matches: ['<all_urls>'],
 })

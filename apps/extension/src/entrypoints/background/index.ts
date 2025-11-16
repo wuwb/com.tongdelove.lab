@@ -1,8 +1,7 @@
 // import { sessionStartTime } from "@/utils/storage";
-import { injectNetworkInterceptor } from "@/utils/injectNetworkInterceptor"
-import { isJSInjectionValidUrl } from "@/utils/url"
-import "webext-dynamic-content-scripts"
-import { initJSInjectionInterceptor } from "./initJSInjectionInterceptor"
+import 'webext-dynamic-content-scripts'
+
+import { initJSInjectionInterceptor } from './initJSInjectionInterceptor'
 // import addPermissionToggle from "webext-permission-toggle";
 // import initWasm from "@vlcn.io/crsqlite-wasm"
 // import wasmUrl from "@vlcn.io/crsqlite-wasm/crsqlite.wasm?url";
@@ -18,12 +17,12 @@ export default defineBackground({
       console.log('ctx: ', ctx)
 
       // Open a tab on install
-      if (ctx.reason === "install") {
+      if (ctx.reason === 'install') {
         console.log('Extension installed')
 
         await browser.tabs.create({
-          url: browser.runtime.getURL("/get-started.html"),
           active: true,
+          url: browser.runtime.getURL('/get-started.html'),
         })
 
         return
@@ -32,17 +31,16 @@ export default defineBackground({
       // Open a tab on update
       if (ctx.reason === 'update') {
         console.log('Extension updated')
-        return
       }
     })
 
     chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       if (msg.type === 'GET_PDF_WORKER_URL') {
         // 这里才真正能调到 chrome.runtime.getURL
-        const url = chrome.runtime.getURL('/js/pdf.worker.min.js');
-        sendResponse({ url });
+        const url = chrome.runtime.getURL('/js/pdf.worker.min.js')
+        sendResponse({ url })
       }
-    });
+    })
 
     // (browser.action ?? browser.browserAction).onClicked.addListener(
     //   async (tab) => {
@@ -61,7 +59,7 @@ export default defineBackground({
 
     // 启动拦截器
     initJSInjectionInterceptor()
-  }
+  },
 })
 
 // const initSession = () => {

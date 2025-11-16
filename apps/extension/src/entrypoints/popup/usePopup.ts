@@ -1,12 +1,12 @@
-export const usePopup = () => {
+export function usePopup() {
   const getCollectButtonStatus = async () => {
     return new Promise((resolve, reject) => {
-      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (!tabs[0].id) {
           reject()
           return
         }
-        chrome.tabs.sendMessage(tabs[0].id, { action: "getCollectButtonStatus" }, function(response) {
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'getCollectButtonStatus' }, (response) => {
           resolve(response)
         })
       })
@@ -14,32 +14,32 @@ export const usePopup = () => {
   }
 
   const collectAllImages = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (!tabs[0].id) {
         return
       }
-      chrome.tabs.sendMessage(tabs[0].id, { action: "collectAllImages" })
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'collectAllImages' })
     })
   }
 
-  const collectGoodsImages = () => chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+  const collectGoodsImages = () => chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs[0].id) {
       return
     }
-    chrome.tabs.sendMessage(tabs[0].id, { action: "collectGoodsImages" })
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'collectGoodsImages' })
   })
 
-  const downloadVideo = chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+  const downloadVideo = chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs[0].id) {
       return
     }
-    chrome.tabs.sendMessage(tabs[0].id, { action: "downloadVideo" })
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'downloadVideo' })
   })
 
   return {
-    getCollectButtonStatus,
     collectAllImages,
     collectGoodsImages,
     downloadVideo,
+    getCollectButtonStatus,
   }
 }

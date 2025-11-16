@@ -1,14 +1,13 @@
-
-type MallInfo = {
-  mallId: number;
-  mallName: string;
-  managedType: number;
-  uniqueId: string;
+export interface UserInfo {
+  accountId: number
+  accountType: number // 2
+  mallList: MallInfo[]
+  maskMobile: any | null
 }
 
-export type UserInfo = {
-  accountId: number;
-  maskMobile: any | null;
-  mallList: MallInfo[];
-  accountType: number; // 2
+interface MallInfo {
+  mallId: number
+  mallName: string
+  managedType: number
+  uniqueId: string
 }

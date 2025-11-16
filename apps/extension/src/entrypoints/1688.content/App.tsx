@@ -1,19 +1,20 @@
+import React, { useEffect, useRef, useState } from 'react'
+
 import { REPLACE_BEARER_TOKEN, SUPPLY_TABLE_KEY, TEABLE_ROOT } from '@/constants/app'
-import React, { useEffect, useState, useRef } from 'react'
 import { removeParamsFromPath } from '@/utils/utils'
 
-const App = () => {
+function App() {
   const [factoryInfo, setFactoryInfo] = useState<any>({
-    title: '',
-    year: 0,
-    scroll: 0,
     address: '',
-    returnRate: 0,
     afterSalesExperience: 0,
-    productExperience: 0,
-    logisticsExperience: 0,
     consultingExperience: 0,
+    logisticsExperience: 0,
+    productExperience: 0,
+    returnRate: 0,
+    scroll: 0,
+    title: '',
     url: '',
+    year: 0,
   })
   const longLivedMessageList = useRef<HTMLUListElement>(null)
 
@@ -23,26 +24,28 @@ const App = () => {
   const sendHelloMessageBtn = async () => {
     try {
       const response = await browser.runtime.sendMessage({
-        type: "hello",
-        name: "Aaron",
+        name: 'Aaron',
+        type: 'hello',
       })
       console.log({ response })
       console.log('response: ', response)
       sethelloResponsePre(JSON.stringify(response))
-    } catch (err: any) {
-      sethelloResponsePre("ERROR: " + err.message)
+    }
+    catch (err: any) {
+      sethelloResponsePre(`ERROR: ${err.message}`)
     }
   }
 
   const sendUnknownMessageBtn = async () => {
     try {
-      const response = await browser.runtime.sendMessage({ type: "unknown" })
+      const response = await browser.runtime.sendMessage({ type: 'unknown' })
       console.log({ response })
       console.log('response: ', response)
 
       setunknownResponsePre(JSON.stringify(response))
-    } catch (err: any) {
-      setunknownResponsePre("ERROR: " + err.message)
+    }
+    catch (err: any) {
+      setunknownResponsePre(`ERROR: ${err.message}`)
     }
   }
 
@@ -52,42 +55,43 @@ const App = () => {
 
     const url = new URL(`${TEABLE_ROOT}/api/table/${SUPPLY_TABLE_KEY}/record`)
     const data = {
-      "fieldKeyType": "id",
-      "typecast": true,
-      "order": {
-        "viewId": "string",
-        "anchorId": "string",
-        "position": "before"
+      fieldKeyType: 'id',
+      order: {
+        anchorId: 'string',
+        position: 'before',
+        viewId: 'string',
       },
-      "records": [
+      records: [
         {
-          "fields": {
-            "联系人": "何新",
-            "产品": [
-              "自发热包"
+          fields: {
+            产品: [
+              '自发热包',
             ],
-            "地址": "江西省宜春市万载县株潭镇株山村",
-            "备注": "（透明袋）物流/包专票",
-            "联系电话": "13065173936",
-            "供应商名称": "万载县易蒸科技有限公司",
-          }
-        }
-      ]
+            供应商名称: '万载县易蒸科技有限公司',
+            地址: '江西省宜春市万载县株潭镇株山村',
+            备注: '（透明袋）物流/包专票',
+            联系人: '何新',
+            联系电话: '13065173936',
+          },
+        },
+      ],
+      typecast: true,
     }
     const options = {
-      method: 'POST',
+      body: JSON.stringify(data),
       headers: {
-        Authorization: `Bearer ${REPLACE_BEARER_TOKEN}`,
-        'content-type': 'application/json'
+        'Authorization': `Bearer ${REPLACE_BEARER_TOKEN}`,
+        'content-type': 'application/json',
       },
-      body: JSON.stringify(data)
+      method: 'POST',
     }
 
     try {
       const response = await fetch(url, options)
       const data = await response.json()
       console.log(data)
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
   }
@@ -112,8 +116,8 @@ const App = () => {
     console.log('detail images: ', detailImages)
 
     const detailImageDoms2 = document.querySelectorAll('#detailContentContainer img')
-    const detailImages2 =  []
-    for(let i = 0; i < detailImageDoms2.length; i++) {
+    const detailImages2 = []
+    for (let i = 0; i < detailImageDoms2.length; i++) {
       if (detailImageDoms2[i].tagName === 'IMG') {
         detailImages2.push(detailImageDoms2[i]?.src)
       }
@@ -121,11 +125,10 @@ const App = () => {
     console.log('detail images: ', detailImages2)
 
     console.log({
-      mainImages,
       detailImages,
       detailImages2,
+      mainImages,
     })
-
   }
 
   const handleDownloadVideos = () => {
@@ -140,19 +143,19 @@ const App = () => {
     const address = document.querySelectorAll('#hd_0_container_0 div div div p span')[1].innerText.replace('地址：', '')
     const url = removeParamsFromPath(window.location.href, ['spm'])
     console.log({
-      title,
-      year: Number(year),
-      scroll: Number(scroll),
       address,
+      scroll: Number(scroll),
+      title,
       url,
+      year: Number(year),
     })
     setFactoryInfo({
       ...factoryInfo,
-      title,
-      year: Number(year),
-      scroll: Number(scroll),
       address,
+      scroll: Number(scroll),
+      title,
       url,
+      year: Number(year),
     })
   }
 
@@ -181,23 +184,26 @@ const App = () => {
     return () => {
       // clean
     }
-  }, [])
+  }, [getFactoryInfo])
 
   useEffect(() => {
     const port = browser.runtime.connect()
 
     port.onMessage.addListener((message) => {
       console.log('on message: ', message)
-      const li = document.createElement("li")
+      const li = document.createElement('li')
       li.textContent = JSON.stringify(message)
       longLivedMessageList.current?.append(li)
     })
   }, [])
 
   return (
-    <div className="w-[300px] fixed right-[10px] bottom-[10px] z-[101] border rounded-[10px]" style={{
-      background: 'rgba(255,255,255, 0.8)',
-    }}>
+    <div
+      className="w-[300px] fixed right-[10px] bottom-[10px] z-[101] border rounded-[10px]"
+      style={{
+        background: 'rgba(255,255,255, 0.8)',
+      }}
+    >
       <div>
         <div>{factoryInfo.title}</div>
         <div>{factoryInfo.year}</div>

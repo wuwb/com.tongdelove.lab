@@ -1,6 +1,3 @@
-import { ProductSKC } from "@/types/temu/product"
-import { UserInfo } from "@/types/temu/user"
-
 // /bg/quick/api/merchant/msgBox/unreadMsgDetail
 // /bg/detroit/api/infoTicket/searchTicket  信息票数量接口
 
@@ -30,21 +27,22 @@ import { UserInfo } from "@/types/temu/user"
 export function handleTemuResponse(data: any) {
   const url = data.url
   const body = data.responseBody
-  const success= body.success
+  const success = body.success
   const result = body.result
 
   if (!success) {
     return
   }
 
-  if (url.includes("/api/seller/auth/userInfo")) {
+  if (url.includes('/api/seller/auth/userInfo')) {
     try {
       const userInfo = result
 
       console.log('userInfo: ', userInfo)
 
       sessionStorage.setItem('bx-temu-user-info', JSON.stringify(userInfo))
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
   }
@@ -56,8 +54,8 @@ export function handleTemuResponse(data: any) {
       console.log('data: ', data)
       console.log('pageItems: ', pageItems)
       console.log('total: ', total)
-
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
   }

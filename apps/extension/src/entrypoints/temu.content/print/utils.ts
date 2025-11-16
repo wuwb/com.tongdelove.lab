@@ -1,38 +1,38 @@
-import { PrintProduct } from "./types";
+import type { PrintProduct } from './types'
 
 // utils.ts 或直接放在当前文件顶部
 export function generatePrintContent(productList: PrintProduct[], imageMap: Record<string, string>) {
   const productsWithImages = productList.map((product) => {
-    const mapKey = sanitizeIdentifier(`${product.skuLabel}_${product.sku}`);
+    const mapKey = sanitizeIdentifier(`${product.skuLabel}_${product.sku}`)
     const imageDataUrl = imageMap[mapKey]
-    return { ...product, imageDataUrl };
+    return { ...product, imageDataUrl }
   })
 
   const pages = productsWithImages.map((product) => {
     return {
       ...product,
-      subAttr: product.subAttr.replace('颜色:', ''),
-      title: product.skuLabel,
       list: Array.from({ length: product.inputCount }, () => ({
-        sku: product.sku,
-        skuLabel: product.skuLabel,
-        mainAttr: product.mainAttr,
-        subAttr: product.subAttr,
         address: product.address,
         imageDataUrl: product.imageDataUrl,
-      }))
+        mainAttr: product.mainAttr,
+        sku: product.sku,
+        skuLabel: product.skuLabel,
+        subAttr: product.subAttr,
+      })),
+      subAttr: product.subAttr.replace('颜色:', ''),
+      title: product.skuLabel,
     }
   })
 
   const pageHtml = pages.map((page) => {
     // 只有当需要打印至少一个标签时才输出内容
     if (page.list.length === 0) {
-      return ''; // 不输出任何 HTML
+      return '' // 不输出任何 HTML
     }
     const titleHtml = `
       <div class="page print-page">
         <div class="title">${page.subAttr}</div>
-        <div class="description">${page.title} - <span class="count">${page.inputCount}</span>个</div>
+        <div class="description">${page.title} <span class="count">${page.inputCount}</span>个</div>
       </div>
     `
     const bodyHtml = page.list.map((item) => {
@@ -43,7 +43,7 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
       `
     }).join('')
     return titleHtml + bodyHtml
-  }).join('');
+  }).join('')
 
   const html = `
     <html>
@@ -100,17 +100,17 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
         </script>
       </body>
     </html>
-  `;
+  `
 
-  return html;
+  return html
 }
 
 export function sanitizeIdentifier(filename: string) {
-  const baseName = filename.replace(/\.\w+$/, '');
+  const baseName = filename.replace(/\.\w+$/, '')
   // 替换非合法标识符字符为下划线，并确保不以数字开头
-  let safe = baseName.replace(/[^a-zA-Z0-9_$]/g, '_');
-  if (!/^[a-zA-Z_$]/.test(safe)) {
-    safe = '_' + safe;
+  let safe = baseName.replace(/[^\w$]/g, '_')
+  if (!/^[a-z_$]/i.test(safe)) {
+    safe = `_${safe}`
   }
-  return safe;
+  return safe
 }

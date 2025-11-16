@@ -1,18 +1,15 @@
-
-import { injectScript, ContentScriptContext } from '#imports'
+import { injectScript } from '#imports'
 
 export default defineContentScript({
-  matches: ["*://*/*"],
-  runAt: "document_start",
   main: async () => {
-    console.log("Injecting script...")
+    console.log('Injecting script...')
 
-    injectScript("/injected.js", {
+    injectScript('/injected.js', {
       keepInDom: true,
     })
 
-    // const container = document.createElement('div'); 
-    // document.body.append(container); 
+    // const container = document.createElement('div');
+    // document.body.append(container);
 
     // console.log("Done!");
 
@@ -23,4 +20,6 @@ export default defineContentScript({
     //   console.log("Session start time:", new Date(startTime).toISOString());
     // }
   },
+  matches: ['*://*/*'],
+  runAt: 'document_start',
 })

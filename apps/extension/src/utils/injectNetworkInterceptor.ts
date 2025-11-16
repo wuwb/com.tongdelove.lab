@@ -1,5 +1,4 @@
-import { handleResponseData } from "./responseHandlers"
-import { handleTemuResponse } from "./responseHandlers/temuHandler"
+import { handleResponseData } from './responseHandlers'
 
 export function injectNetworkInterceptor() {
   console.log('injectNetworkInterceptor')
@@ -75,7 +74,8 @@ export function injectNetworkInterceptor() {
     // 避免重复注入
     if (win.__WEFLY_NETWORK_INTERCEPTOR_INJECTED__) {
       return
-    } else {
+    }
+    else {
       win.__WEFLY_NETWORK_INTERCEPTOR_INJECTED__ = true
     }
 
@@ -88,7 +88,7 @@ export function injectNetworkInterceptor() {
      */
     win.fetch = async function (...args: any) {
       const [resource, config] = args
-      const originalRequest = typeof resource === "string" ? new Request(resource, config) : resource
+      const originalRequest = typeof resource === 'string' ? new Request(resource, config) : resource
       const url = originalRequest.url
       const method = originalRequest.method
 
@@ -97,8 +97,8 @@ export function injectNetworkInterceptor() {
 
       // 只对可读的 body 类型进行捕获（并且只在有 body 的时候）
       if (
-        ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase()) &&
-        originalRequest.headers.get('Content-Type')
+        ['PATCH', 'POST', 'PUT'].includes(method.toUpperCase())
+        && originalRequest.headers.get('Content-Type')
       ) {
         try {
           // 👉 克隆 request，用于提取 body
@@ -109,21 +109,27 @@ export function injectNetworkInterceptor() {
 
           if (contentType.includes('application/json')) {
             requestBody = JSON.parse(bodyText)
-          } else if (contentType.includes('x-www-form-urlencoded')) {
+          }
+          else if (contentType.includes('x-www-form-urlencoded')) {
             requestBody = '[URLEncoded]'
             // 可选：解析为对象 new URLSearchParams(bodyText)
-          } else if (contentType.includes('multipart/form-data')) {
+          }
+          else if (contentType.includes('multipart/form-data')) {
             requestBody = '[FormData]'
             // 注意：FormData 无法直接展开，除非你知道字段名
-          } else if (contentType.includes('text/')) {
+          }
+          else if (contentType.includes('text/')) {
             requestBody = bodyText
-          } else {
+          }
+          else {
             requestBody = '[Binary Data]'
           }
-        } catch (err: any) {
+        }
+        catch (err: any) {
           requestBody = `[Read Body Failed: ${err?.message}]`
         }
-      } else {
+      }
+      else {
         requestBody = null // GET/HEAD 等无 body
       }
 
@@ -138,36 +144,40 @@ export function injectNetworkInterceptor() {
         // 尝试获取响应体
         let responseBody = null
         try {
-          const contentType = response.headers.get("content-type") || ""
-          if (contentType.includes("application/json")) {
+          const contentType = response.headers.get('content-type') || ''
+          if (contentType.includes('application/json')) {
             responseBody = await responseClone.json()
-          } else if (contentType.includes("text/")) {
-            responseBody = await responseClone.text()
-          } else {
-            responseBody = "[Binary Data]"
           }
-        } catch (error) {
-          responseBody = "[Parse Response Body Fail]"
+          else if (contentType.includes('text/')) {
+            responseBody = await responseClone.text()
+          }
+          else {
+            responseBody = '[Binary Data]'
+          }
+        }
+        catch (error) {
+          responseBody = '[Parse Response Body Fail]'
         }
 
         handleResponseData({
-          type: "fetch",
-          url,
           method,
-          requestHeaders: Object.fromEntries(originalRequest.headers.entries()),
           requestBody,
+          requestHeaders: Object.fromEntries(originalRequest.headers.entries()),
+          responseBody,
           responseStatus: response.status,
           responseStatusText: response.statusText,
-          responseBody,
           timestamp: Date.now(),
+          type: 'fetch',
+          url,
         })
         return response
-      } catch (error) {
-        if (url.includes("chrome-extension://") || url.includes("127.0.0.1")) {
+      }
+      catch (error) {
+        if (url.includes('chrome-extension://') || url.includes('127.0.0.1')) {
           // 忽略扩展和本地资源的报错
           return
         }
-        console.error("❌ [fetch拦截] 请求失败:", url, error)
+        console.error('❌ [fetch拦截] 请求失败:', url, error)
         throw error // ❗必须 re-throw，保持原始行为
       }
     }
@@ -181,11 +191,11 @@ export function injectNetworkInterceptor() {
       const originalSend = xhr.send
       const originalSetRequestHeader = xhr.setRequestHeader
 
-      let requestData: any = {
-        url: "",
-        method: "",
-        headers: {},
+      const requestData: any = {
         body: null,
+        headers: {},
+        method: '',
+        url: '',
       }
 
       // 重写open方法
@@ -211,15 +221,15 @@ export function injectNetworkInterceptor() {
           if (xhr.readyState === 4) {
             // 请求完成
             handleResponseData({
-              type: "xhr",
-              url: requestData.url,
               method: requestData.method,
-              requestHeaders: requestData.headers,
               requestBody: requestData.body,
+              requestHeaders: requestData.headers,
+              responseBody: xhr.responseText,
               responseStatus: xhr.status,
               responseStatusText: xhr.statusText,
-              responseBody: xhr.responseText,
               timestamp: Date.now(),
+              type: 'xhr',
+              url: requestData.url,
             })
           }
 
