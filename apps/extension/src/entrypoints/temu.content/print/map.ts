@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated at: 2025-11-16T16:18:03.470Z
+// Generated at: 2025-11-19T11:50:50.927Z
 
 import Q100_MiB_36189020753 from '@/assets/imgs/temu-barcodes/Q100_MiB_36189020753.png'
 import Q100_MiB_53304519603 from '@/assets/imgs/temu-barcodes/Q100_MiB_53304519603.png'
@@ -42,6 +42,7 @@ import S5_B_27819589740 from '@/assets/imgs/temu-barcodes/S5_B_27819589740.png'
 import S5_B_73566872278 from '@/assets/imgs/temu-barcodes/S5_B_73566872278.png'
 import S5_B_86607931733 from '@/assets/imgs/temu-barcodes/S5_B_86607931733.png'
 import S5_B_95951087369 from '@/assets/imgs/temu-barcodes/S5_B_95951087369.png'
+import S_B_5_73566872278 from '@/assets/imgs/temu-barcodes/S_B_5_73566872278.png'
 import Z100_B_17298424299 from '@/assets/imgs/temu-barcodes/Z100_B_17298424299.png'
 import Z100_B_2_74870185438 from '@/assets/imgs/temu-barcodes/Z100_B_2_74870185438.png'
 import Z100_B_33733837068 from '@/assets/imgs/temu-barcodes/Z100_B_33733837068.png'
@@ -557,5 +558,5 @@ export const map: Record<string, string> = {
   Z90_LvB_45560971485,
   Z90_LvB_68873053011,
   _6388971399_3145301074,
-  _9333906516_6097817663,
-}
+  _9333906516_6097817663
+};

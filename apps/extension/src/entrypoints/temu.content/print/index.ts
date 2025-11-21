@@ -221,41 +221,47 @@ export async function createCustomPrint() {
   /**
    * remove custom print button
    */
-  const handleRemoveIframe = (event: MessageEvent) => {
-    if (event.data?.type === 'REMOVE_PRINT_IFRAME') {
-      const iframe = document.getElementById(CUSTOM_PRINT_IFRAME_ID)
-      iframe?.remove()
-      console.log('已自动移除打印 iframe')
+  function autoRemoveCustomPrintButton() {
+    const handleRemoveIframe = (event: MessageEvent) => {
+      if (event.data?.type === 'REMOVE_PRINT_IFRAME') {
+        const iframe = document.getElementById(CUSTOM_PRINT_IFRAME_ID)
+        iframe?.remove()
+        console.log('已自动移除打印 iframe')
+      }
     }
+    window.removeEventListener('message', handleRemoveIframe)
+    window.addEventListener('message', handleRemoveIframe)
   }
-  window.removeEventListener('message', handleRemoveIframe)
-  window.addEventListener('message', handleRemoveIframe)
+
+  autoRemoveCustomPrintButton()
 
   /**
    * debug
    */
-  // if (process.env.NODE_ENV === 'development') {
-  //   const debugButton = document.createElement('button')
-  //   debugButton.textContent = '🖨️ 测试打印样式'
-  //   debugButton.style.position = 'fixed'
-  //   debugButton.style.bottom = '20px'
-  //   debugButton.style.right = '20px'
-  //   debugButton.style.zIndex = '9999'
-  //   debugButton.style.padding = '10px 15px'
-  //   debugButton.style.backgroundColor = '#007acc'
-  //   debugButton.style.color = 'white'
-  //   debugButton.style.border = 'none'
-  //   debugButton.style.borderRadius = '6px'
-  //   debugButton.style.cursor = 'pointer'
-  //   debugButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
+  function startDebug() {
+    if (process.env.NODE_ENV === 'development') {
+      const debugButton = document.createElement('button')
+      debugButton.textContent = '测试打印'
+      debugButton.style.position = 'fixed'
+      debugButton.style.bottom = '20px'
+      debugButton.style.right = '20px'
+      debugButton.style.zIndex = '9999'
+      debugButton.style.padding = '10px 15px'
+      debugButton.style.backgroundColor = '#007acc'
+      debugButton.style.color = 'white'
+      debugButton.style.border = 'none'
+      debugButton.style.borderRadius = '6px'
+      debugButton.style.cursor = 'pointer'
+      debugButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
 
-  //   debugButton.addEventListener('click', (e) => {
-  //     e.preventDefault()
-  //     openPrintDebugWindow()
-  //   })
+      debugButton.addEventListener('click', (e) => {
+        e.preventDefault()
+        openPrintDebugWindow()
+      })
 
-  //   document.body.appendChild(debugButton)
-  // }
+      document.body.appendChild(debugButton)
+    }
+  }
 
   /**
    * 打开打印调试窗口（独立页面）
@@ -264,21 +270,21 @@ export async function createCustomPrint() {
     const productList = [
       {
         address: 'Made in China',
-        count: 2,
-        inputCount: 2,
+        count: 100,
+        inputCount: 100,
         mainAttr: '',
-        sku: '26940309089',
-        skuLabel: 'Z_hei_100',
-        subAttr: '颜色: (Light Purple+White)浅紫色+白色',
+        sku: '17298424299',
+        skuLabel: 'Z100_B',
+        subAttr: '柱100米_白色',
       },
       {
         address: 'Made in China',
-        count: 3,
-        inputCount: 3,
+        count: 30,
+        inputCount: 30,
         mainAttr: '',
-        sku: '40644651821',
-        skuLabel: 'Q_lv-B_100',
-        subAttr: '60M (196 Feet)',
+        sku: '5951129920',
+        skuLabel: 'Q60_HongB',
+        subAttr: '球60M_红白',
       },
     ]
 
@@ -288,9 +294,10 @@ export async function createCustomPrint() {
     if (debugWin) {
       debugWin.document.write(contentHtml)
       debugWin.document.close()
-    }
-    else {
+    } else {
       alert('无法打开新窗口，请检查浏览器弹窗拦截设置。')
     }
   }
+
+  startDebug()
 }

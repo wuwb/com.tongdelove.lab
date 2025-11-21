@@ -1,6 +1,5 @@
 import type { PrintProduct } from './types'
 
-// utils.ts 或直接放在当前文件顶部
 export function generatePrintContent(productList: PrintProduct[], imageMap: Record<string, string>) {
   const productsWithImages = productList.map((product) => {
     const mapKey = sanitizeIdentifier(`${product.skuLabel}_${product.sku}`)
@@ -25,20 +24,21 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
   })
 
   const pageHtml = pages.map((page) => {
-    // 只有当需要打印至少一个标签时才输出内容
     if (page.list.length === 0) {
-      return '' // 不输出任何 HTML
+      return ''
     }
     const titleHtml = `
       <div class="page print-page">
-        <div class="title">${page.subAttr}</div>
-        <div class="description">${page.title} <span class="count">${page.inputCount}</span>个</div>
+        <div class="content-wrapper">
+          <div class="title">${page.subAttr}</div>
+          <div class="description">${page.title} <span class="count">${page.inputCount}</span>个</div>
+         </div>
       </div>
     `
     const bodyHtml = page.list.map((item) => {
       return `
         <div class="page print-page">
-          <img src="${item.imageDataUrl}" style="width:100%;height:auto;" />
+          <img class="image" src="${item.imageDataUrl}" />
         </div>
       `
     }).join('')
@@ -59,28 +59,51 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
           body {
             margin: 0; 
             padding: 0;
+            width: 100%;
           }
           .page {
             width: 70mm;
             height: 20mm;
+            box-sizing: border-box;
             padding: 0;
             margin: 0;
+
+            page-break-after: always; /* 兼容旧浏览器 */
+            break-after: page;        /* 新标准 */
+            break-inside: avoid;      /* 防止单个标签内部被分页 */
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
             font-family: 'Heiti SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            overflow: hidden;
+            // overflow: hidden;
+            text-align: center;
+
+            position: relative;
+          }
+          .content-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
           .page .title {
-            line-height: 10mm;
+            line-height: 5mm;
           }
           .page .description {
-            font-size: 7mm;
-            line-height: 10mm;
+            font-size: 5mm;
+            line-height: 5mm;
           }
-          .page .count {
+          .page .description .count {
             font-weight: 700;
+            line-height: 5mm;
+          }
+          .page .image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
           }
         </style>
       </head>
@@ -94,9 +117,9 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
           };
 
           // 可选：调试用
-          // window.onbeforeprint = function() {
-          //   console.log('准备打印...');
-          // };
+          window.onbeforeprint = function() {
+            console.log('准备打印...');
+          };
         </script>
       </body>
     </html>

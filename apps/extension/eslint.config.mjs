@@ -1,7 +1,18 @@
 import antfu from '@antfu/eslint-config'
 import perfectionist from 'eslint-plugin-perfectionist'
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default antfu(
+const eslintConfig = defineConfig([
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+])
+
+const antfuConfig = antfu(
   {
     ignores: ['tsconfig.*'],
     react: true,
@@ -34,4 +45,7 @@ export default antfu(
       ...perfectionist.configs['recommended-natural'].rules,
     },
   },
+  ...eslintConfig,
 )
+
+export default antfuConfig

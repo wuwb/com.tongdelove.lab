@@ -1,12 +1,13 @@
-import ReactDOM from 'react-dom'
+import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-// 6️⃣ 菜单按钮注入系统
+import { AppRoot } from './App'
+
 function createConfigMenuSystem(modalSystem: ReturnType<typeof createConfigModalSystem>) {
   const menuButtonClass = 'config-menu-button'
-  const menuContainerSelector = '.index-module__mmsCommon___3B2_9'
+  // const menuContainerSelector = '.index-module__mmsCommon___3B2_9'
+  const menuContainerSelector = '.index-module__mmsCommon___2SP2n'
 
-  // 7️⃣ 创建菜单按钮
   const createMenuButton = () => {
     const button = document.createElement('button')
     button.className = menuButtonClass
@@ -28,7 +29,10 @@ function createConfigMenuSystem(modalSystem: ReturnType<typeof createConfigModal
       'transition': 'all 0.2s',
     })
 
-    button.addEventListener('click', modalSystem.openModal)
+    button.addEventListener('click', (e) => {
+      e.stopPropagation() // 阻止事件向上冒泡
+      modalSystem.openModal()
+    })
     return button
   }
 
@@ -43,9 +47,11 @@ function createConfigMenuSystem(modalSystem: ReturnType<typeof createConfigModal
 
     const checkAndInject = () => {
       const menuContainer = document.querySelector<HTMLElement>(menuContainerSelector)
-      if (menuContainer && !menuContainer.querySelector(`.${menuButtonClass}`)) {
-        menuContainer.appendChild(createMenuButton())
-        cleanup() // 找到后停止观察
+      if (menuContainer) {
+        // 容器存在时确保按钮存在（修复 SPA 问题）
+        if (!menuContainer.querySelector(`.${menuButtonClass}`)) {
+          menuContainer.appendChild(createMenuButton())
+        }
       }
     }
 
@@ -79,6 +85,7 @@ function createConfigModalSystem() {
   // 弹窗状态管理（闭包内）
   let isModalOpen = false
   const modalRootId = 'config-modal-root'
+  let currentRoot: ReturnType<typeof createRoot> | null = null
 
   // 2️⃣ 创建 React 组件（无 JSX，纯 createElement）
   const createModalContent = (onClose: () => void) => {
@@ -215,8 +222,9 @@ function createConfigModalSystem() {
 
   // 3️⃣ 弹窗控制函数
   const openModal = () => {
-    if (isModalOpen)
+    if (isModalOpen) {
       return
+    }
 
     // 创建或获取根元素
     let modalRoot = document.getElementById(modalRootId)
@@ -227,19 +235,25 @@ function createConfigModalSystem() {
     }
 
     // 渲染弹窗
-    createRoot(modalRoot).render(createModalContent(closeModal))
+    const root = createRoot(modalRoot)
+    root.render(<AppRoot onClose={closeModal} />)
 
     isModalOpen = true
+
+    currentRoot = root
   }
 
   const closeModal = () => {
-    if (!isModalOpen)
+    if (!isModalOpen) {
       return
 
+    }
+
     const modalRoot = document.getElementById(modalRootId)
-    if (modalRoot) {
-      ReactDOM.unmountComponentAtNode(modalRoot)
+    if (modalRoot && currentRoot) {
+      currentRoot.unmount()
       modalRoot.remove()
+      currentRoot = null
     }
 
     isModalOpen = false
@@ -260,7 +274,7 @@ function createConfigModalSystem() {
 }
 
 // 🔟 初始化配置菜单功能
-function initConfigMenuFeature() {
+export function initConfigMenuFeature() {
   // 创建弹窗系统
   const modalSystem = createConfigModalSystem()
 
@@ -270,10 +284,5 @@ function initConfigMenuFeature() {
   // 设置菜单观察器
   const cleanupMenuObserver = menuSystem.setupMenuObserver()
 
-  // 返回清理函数
-  return () => {
-    modalSystem.cleanup()
-    menuSystem.cleanup()
-    cleanupMenuObserver()
-  }
+  console.log('menu inserted.')
 }

@@ -21,7 +21,7 @@ async function generateMap() {
 
     content += `import ${varName} from '${modulePath}'\n`
 
-    entries.push(`  ${varName},`)
+    entries.push(`  ${varName}`)
   }
 
   content += `\nexport const map: Record<string, string> = {\n${entries.join(',\n')}\n};\n`
