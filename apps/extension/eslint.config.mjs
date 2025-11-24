@@ -1,18 +1,6 @@
-import antfu from '@antfu/eslint-config'
-import perfectionist from 'eslint-plugin-perfectionist'
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig, globalIgnores } from 'eslint/config'
 
 const eslintConfig = defineConfig([
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-])
-
-const antfuConfig = antfu(
   {
     ignores: ['tsconfig.*'],
     react: true,
@@ -38,14 +26,13 @@ const antfuConfig = antfu(
       'unused-imports/no-unused-vars': 'warn',
     },
   },
-  {
-    name: 'perfectionist',
-    rules: {
-      'import/order': 'off',
-      ...perfectionist.configs['recommended-natural'].rules,
-    },
-  },
-  ...eslintConfig,
-)
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]),
+])
 
-export default antfuConfig
+export default eslintConfig

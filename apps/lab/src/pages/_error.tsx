@@ -1,8 +1,3 @@
-/**
- * Typescript class based component for custom-error
- * @link https://nextjs.org/docs/advanced-features/custom-error-page
- */
-
 import {
   captureException as sentryCaptureException,
   flush as sentryFlush,

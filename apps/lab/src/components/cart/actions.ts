@@ -16,7 +16,8 @@ export async function addItem(
   prevState: any,
   selectedVariantId: string | undefined
 ) {
-  let cartId = cookies().get('cartId')?.value
+  const cookieStore = await cookies()
+  const cartId = cookieStore.get('cartId')?.value
 
   if (!cartId || !selectedVariantId) {
     return 'Error adding item to cart'
@@ -31,7 +32,8 @@ export async function addItem(
 }
 
 export async function removeItem(prevState: any, merchandiseId: string) {
-  let cartId = cookies().get('cartId')?.value
+  const cookieStore = await cookies()
+  const cartId = cookieStore.get('cartId')?.value
 
   if (!cartId) {
     return 'Missing cart ID'
@@ -66,7 +68,8 @@ export async function updateItemQuantity(
     quantity: number
   }
 ) {
-  let cartId = cookies().get('cartId')?.value
+  const cookieStore = await cookies()
+  const cartId = cookieStore.get('cartId')?.value
 
   if (!cartId) {
     return 'Missing cart ID'
@@ -110,7 +113,8 @@ export async function updateItemQuantity(
 }
 
 export async function redirectToCheckout() {
-  let cartId = cookies().get('cartId')?.value
+  const cookieStore = await cookies()
+  const cartId = cookieStore.get('cartId')?.value
 
   if (!cartId) {
     return 'Missing cart ID'

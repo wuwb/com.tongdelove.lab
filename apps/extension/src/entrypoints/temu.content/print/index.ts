@@ -161,7 +161,7 @@ export async function createCustomPrint() {
     button.style.borderColor = 'red'
 
     const span = document.createElement('span')
-    span.textContent = '自定义打印'
+    span.textContent = '高级打印'
     button.appendChild(span)
 
     button.addEventListener('click', async () => {
@@ -299,5 +299,5 @@ export async function createCustomPrint() {
     }
   }
 
-  startDebug()
+  // startDebug()
 }

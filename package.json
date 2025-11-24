@@ -28,7 +28,6 @@
     "start:web": "pnpm --filter web start",
     "dev:design": "pnpm --filter design run dev",
     "deploy": "rsync -az --del ./packages/server/dist ubuntu@118.24.105.97:~/api.tongdelove.com/packages/server/dist",
-    "prepare": "husky install",
     "commit": "git-cz",
     "format-backup": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
     "with-env": "dotenv -e .env --",

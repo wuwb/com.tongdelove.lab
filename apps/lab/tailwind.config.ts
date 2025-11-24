@@ -1,5 +1,4 @@
 import { type Config } from 'tailwindcss'
-import defaultTheme, { fontFamily } from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 const tailwindConfig = {
@@ -23,7 +22,6 @@ const tailwindConfig = {
       roman: 'upper-roman',
     },
     screens: {
-      ...defaultTheme.screens,
       // device define
       mobile: { max: '639px' },
       tablet: { min: '640px', max: '1023px' },
@@ -52,8 +50,6 @@ const tailwindConfig = {
       },
     },
     fontFamily: {
-      serif: [...fontFamily.serif],
-      mono: [...fontFamily.mono],
     },
     container: {
       center: true,
@@ -225,10 +221,6 @@ const tailwindConfig = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    require('tailwind-scrollbar-hide'),
-    require('tailwind-scrollbar')({ nocompatible: true }),
-    // tailwindcss 3.3 include by default
-    // require('@tailwindcss/line-clamp'),
     // todo: remove this plugin and corePlugins inset setting until safari 14.0 deprecated
     function ({ matchUtilities, theme }) {
       const config = {

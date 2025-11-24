@@ -26,7 +26,12 @@ export default defineContentScript({
   // // Configure how/when content script will be registered
   // registration: undefined | "manifest" | "runtime",
 
+  matches: [
+    '*://agentseller.temu.com/*',
+    '*://seller.kuajingmaihuo.com/*',
+  ],
   cssInjectionMode: 'ui',
+  world: 'MAIN', // 'ISOLATED',
   main: () => {
     // ctx.addEventListener(...);
     // ctx.setTimeout(...);
@@ -49,11 +54,7 @@ export default defineContentScript({
 
     createCustomPrint()
     removeUnusedTip()
-    createMenu()
+    // createMenu()
   },
-  matches: [
-    '*://agentseller.temu.com/*',
-    '*://seller.kuajingmaihuo.com/*',
-  ],
-  world: 'MAIN', // 'ISOLATED',
+
 })

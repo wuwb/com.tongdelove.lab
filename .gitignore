@@ -83,3 +83,6 @@ dist/
 .turbo
 
 apps/signgen/
+
+.bmad-core/
+.claude/commands/BMad

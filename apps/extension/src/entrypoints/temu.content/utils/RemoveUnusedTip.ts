@@ -1,8 +1,27 @@
-export function removeUnusedTip() {
-  // 页面加载完成后执行
-  window.addEventListener('load', removeShippingWarning)
+import { EVENT_CONFIG_UPDATED, EVENT_REQUEST_CONFIG } from "@/constants/app";
 
-  // 可选：监听 DOM 变化，防止动态加载的内容未被处理
+let isHideWarningEnabled = false;
+
+export function removeUnusedTip() {
+
+  window.addEventListener(EVENT_CONFIG_UPDATED, (e: any) => {
+    const { hideReadyToShip } = e.detail;
+    console.log('[Main World] 配置更新: 隐藏发货提醒 =', hideReadyToShip);
+    
+    isHideWarningEnabled = hideReadyToShip;
+    
+    removeShippingWarning();
+  });
+
+  startObserver()
+
+  window.dispatchEvent(new CustomEvent(EVENT_REQUEST_CONFIG));
+}
+
+export function startObserver() {
+  // window.addEventListener('load', removeShippingWarning)
+  removeShippingWarning();
+
   const observer = new MutationObserver(() => {
     removeShippingWarning()
   })
@@ -45,12 +64,19 @@ function removeShippingWarning() {
   //   </div>
   // </div>
 
-  // 查找匹配的 div 元素
   const portalDivs = document.querySelectorAll('div[data-testid="beast-core-portal-main"]')
   portalDivs.forEach((div) => {
+    if (!(div instanceof HTMLElement)) {
+      return;
+    }
     const targetSpan = div.querySelector('span.shipping-list_opacityBg__-Y0I-')
     if (targetSpan && targetSpan.textContent.includes('请勾选发货单后点击发货，否则仓库无法收货')) {
-      div.remove() // 移除 beast-core-portal-main
+      if (isHideWarningEnabled) {
+          div.style.display = 'none';
+          div.remove()
+        } else {
+          div.style.display = ''; 
+        }
     }
   })
 }

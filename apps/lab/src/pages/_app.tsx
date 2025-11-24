@@ -8,36 +8,13 @@ import { AppProviders } from '@/contexts/AppProviders'
 import { FeatureProviders } from '@/contexts/FeatureProviders'
 import { type Session } from 'next-auth'
 import Head from 'next/head'
-import { ViewTransitions } from 'next-view-transitions'
 import { DefaultSeo } from 'next-seo'
 import { config } from '../../next-seo.config'
-import { ColorSchemeScript, MantineProvider } from '@mantine/core'
-import { theme } from '../theme'
 import { SessionProvider } from 'next-auth/react'
 import { NextPage } from 'next'
 import { useTranslation } from '@/i18n'
 
 import '@/styles/globals.css'
-/* @import "@mantine/core/styles.layer.css"; */
-import '@mantine/core/styles.css'
-/* Mantine foundational components */
-import '@mantine/core/styles/ScrollArea.css'
-import '@mantine/core/styles/UnstyledButton.css'
-import '@mantine/core/styles/VisuallyHidden.css'
-import '@mantine/core/styles/Paper.css'
-import '@mantine/core/styles/Popover.css'
-import '@mantine/core/styles/CloseButton.css'
-import '@mantine/core/styles/Group.css'
-import '@mantine/core/styles/Loader.css'
-import '@mantine/core/styles/Overlay.css'
-import '@mantine/core/styles/ModalBase.css'
-import '@mantine/core/styles/Input.css'
-import '@mantine/core/styles/Flex.css'
-/* Mantine components */
-import '@mantine/core/styles/Button.css'
-import '@mantine/dates/styles.css'
-import '@mantine/notifications/styles.css'
-import '@mantine/carousel/styles.css'
 
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect (and its warnings) when not running in a browser

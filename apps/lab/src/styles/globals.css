@@ -164,7 +164,7 @@
   }
 
   .max-screen {
-    @apply 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl mx-auto max-w-screen-lg px-4 px-8 xl:px-0 2xl:max-w-screen-xl;
+    @apply 4xl:max-w-screen-3xl mx-auto max-w-screen-lg px-4 px-8 xl:px-0 2xl:max-w-screen-xl;
   }
 
   .absolute-center {
@@ -264,4 +264,38 @@
 .custom-scrollbar::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: #1a1b1ed9;
+}
+
+
+/* 定义隐藏滚动条的工具类 (替代 scrollbar-hide) */
+@utility scrollbar-hide {
+  /* Firefox */
+  scrollbar-width: none;
+  /* Chrome, Safari, Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 定义自定义滚动条样式 (替代 scrollbar, scrollbar-thumb-gray-900 等) */
+/* 你可以根据需要修改颜色 */
+@utility scrollbar-custom {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-400) transparent;
+
+  /* Chrome, Safari, Edge */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-400);
+    border-radius: 20px;
+  }
 }

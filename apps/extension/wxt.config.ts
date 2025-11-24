@@ -11,6 +11,16 @@ export default defineConfig({
   // imports: true,
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {
+      manifest.content_scripts ??= [];
+      manifest.content_scripts.push({
+        // Build extension once to see where your CSS get's written to
+        css: ['content-scripts/temu-admin.css'],
+        matches: [
+          '*://agentseller.temu.com/*',
+          '*://seller.kuajingmaihuo.com/*',
+        ],
+      });
+
     //   if (wxt.config.command === "serve") {
     //     // During development, content script is not listed in manifest, causing
     //     // "webext-dynamic-content-scripts" to throw an error. So we need to
@@ -30,7 +40,8 @@ export default defineConfig({
   },
   manifest: ({ browser, command, manifestVersion, mode }) => {
     const isDev = mode === 'development'
-    console.log('Is development mode:', isDev)
+    
+    console.log(`\nIs development mode: ${isDev}\n`)
 
     return {
 
@@ -132,6 +143,7 @@ export default defineConfig({
           resources: [
             'injected.js',
             '/js/pdf.worker.min.js',
+            'temu-admin.css'
           ],
         },
       ],

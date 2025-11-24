@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, useState } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/require-await
 const getAsyncError = async (): Promise<never> => {

@@ -1,8 +1,9 @@
 {
   "extends": "@tongdelove/typescript-config/nextjs.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES2017",
+    "module": "esnext",
+    "jsx": "react-jsx",
     /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -25,7 +26,6 @@
     "outDir": "dist",
     "noEmit": true,
     "moduleResolution": "Bundler", // node
-    "jsx": "preserve",
     "importHelpers": true,
     "plugins": [
       {

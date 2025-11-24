@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { Container } from '@/components/common'
 import { SyntheticEvent, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'

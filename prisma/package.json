@@ -25,9 +25,9 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "prisma": "^6.10.1",
+    "prisma": "^5.20.0",
     "prisma-erd-generator": "^1.11.1",
-    "@prisma/client": "^6.10.1"
+    "@prisma/client": "^5.20.0"
   },
   "devDependencies": {
     "prisma-nestjs-graphql": "^21.2.0",

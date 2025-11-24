@@ -1,4 +1,3 @@
-// @ts-check
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
@@ -13,12 +12,11 @@ import path from 'node:path'
 import url from 'node:url'
 import withBundleAnalyzer from '@next/bundle-analyzer'
 // import nextI18nConfig from './next-i18next.config.js'
-import nextUtils from './next-utils.config.mjs'
+import nextUtils from './next-utils.config.js'
 import { RsdoctorWebpackPlugin } from '@rsdoctor/webpack-plugin';
+import type { NextConfig } from 'next'
 
-const nextI18NextConfig = await import('./next-i18next.config.js').then(
-  (m) => m.default
-)
+import nextI18NextConfig from './next-i18next.config'
 
 // const jiti = createJiti(fileURLToPath(import.meta.url))
 
@@ -99,8 +97,15 @@ if (!process.env.NEXT_BUILD_ENV_SOURCEMAPS) {
 //   referrerPolicy: 'same-origin',
 // })
 
-/** @type {import("next").NextConfig} */
 const config = {
+  turbopack: {
+    resolveAlias: {
+      fs: {
+        browser: './empty.ts', // We recommend to fix code imports before using this method
+      },
+    },
+  },
+  reactCompiler: true,
   reactStrictMode: process.env.NODE_ENV === 'development' ? false : true,
   compress: true,
 
@@ -117,7 +122,7 @@ const config = {
   // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
   // trailingSlash: true,
 
-  optimizeFonts: true,
+  // optimizeFonts: true, // 默认 true
   poweredByHeader: false,
 
   httpAgentOptions: {
@@ -132,13 +137,14 @@ const config = {
 
   // @link https://nextjs.org/docs/advanced-features/compiler#minification
   // Sometimes buggy so enable/disable when debugging.
-  swcMinify: true,
+  // swcMinify: true, // 默认true
 
   compiler: {
     // Remove console aside from 'error' in production
     // removeConsole: {
     //   exclude: ['error'],
     // },
+    // styledComponents: true, 
     // emotion: true,
     // Remove data-testid used for React Testing Library in production
     // reactRemoveProperties: {
@@ -212,14 +218,37 @@ const config = {
     ? { output: 'standalone', outputFileTracing: true }
     : {}),
 
+  serverExternalPackages: [
+    'mongoose', 
+    'pg',
+    'import-in-the-middle', 
+    'require-in-the-middle',
+  ],
+  // Caution if using pnpm you might also need to consider that things are hoisted
+  // under node_modules/.pnpm/<something variable>. Depends on version
+  outputFileTracingExcludes: {
+    '*': [
+      'node_modules/canvas',
+      'node_modules/.pnpm/canvas@2.11.2',
+      '**/node_modules/@swc/core-linux-x64-gnu/**/*',
+      '**/node_modules/@swc/core-linux-x64-musl/**/*',
+      // If you're nor relying on mdx-remote... drop this
+      '**/node_modules/esbuild/linux/**/*',
+      '**/node_modules/webpack/**/*',
+      '**/node_modules/terser/**/*',
+      // If you're not relying on sentry edge or any weird stuff... drop this too
+      // https://github.com/getsentry/sentry-javascript/pull/6982
+      '**/node_modules/rollup/**/*',
+    ],
+  },
   experimental: {
+    turbopackFileSystemCacheForDev: true,
     // forceSwcTransforms: true, // To use Turbopack, remove the following configuration options:
     // esmExternals: true,
 
     // https://vercel.com/docs/observability/otel-overview
-    instrumentationHook: true,
+    // instrumentationHook: true, // 默认开启
     optimizePackageImports: ["@chakra-ui/react"],
-    serverComponentsExternalPackages: ['mongoose', 'pg'],
     // outputFileTracingRoot: path.join(__dirname, '../../'),
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     // ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
@@ -242,23 +271,7 @@ const config = {
     //
     // Related issue: https://github.com/vercel/next.js/issues/42641
 
-    // Caution if using pnpm you might also need to consider that things are hoisted
-    // under node_modules/.pnpm/<something variable>. Depends on version
-    outputFileTracingExcludes: {
-      '*': [
-        'node_modules/canvas',
-        'node_modules/.pnpm/canvas@2.11.2',
-        '**/node_modules/@swc/core-linux-x64-gnu/**/*',
-        '**/node_modules/@swc/core-linux-x64-musl/**/*',
-        // If you're nor relying on mdx-remote... drop this
-        '**/node_modules/esbuild/linux/**/*',
-        '**/node_modules/webpack/**/*',
-        '**/node_modules/terser/**/*',
-        // If you're not relying on sentry edge or any weird stuff... drop this too
-        // https://github.com/getsentry/sentry-javascript/pull/6982
-        '**/node_modules/rollup/**/*',
-      ],
-    },
+
 
     webVitalsAttribution: ['CLS', 'LCP'],
     // https://nextjs.org/docs/app/api-reference/functions/server-actions
@@ -282,21 +295,11 @@ const config = {
     // removeConsole: {
     //   exclude: ['error'],
     // },
-    swcPlugins: [['next-superjson-plugin', {}]],
+    swcPlugins: [
+      // ['next-superjson-plugin', {}]
+    ],
   },
   staticPageGenerationTimeout: 240,
-
-  serverRuntimeConfig: {
-    // Will only be available on the server side
-  },
-  publicRuntimeConfig: {
-    // Will be available on both server and client
-  },
-
-  eslint: {
-    ignoreDuringBuilds: true,
-    // dirs: [`${__dirname}/src`], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
-  },
 
   typescript: {
     ignoreBuildErrors: true,
@@ -587,10 +590,7 @@ const plugins = [
   }),
 ]
 
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = (phase, { defaultConfig }) => {
+const nextConfig: NextConfig = (phase, { defaultConfig }) => {
   const result = config
 
   // if (process.env.CI === 'true' && process.env.NEXT_BUILD_ENV_SENTRY_ENABLED === true) {

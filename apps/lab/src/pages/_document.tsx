@@ -89,7 +89,7 @@ export default function MyDocument(props: MyDocumentProps) {
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-JCGSDTJ20H"
-        ></script>
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

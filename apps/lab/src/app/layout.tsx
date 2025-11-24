@@ -1,4 +1,3 @@
-import { ColorSchemeScript, MantineProvider } from '@mantine/core'
 import { TRPCReactProvider } from '@/trpc/react'
 // import AppContextProvider from '@/contexts/AppContext'
 // import { Layout } from '@/components/Layout'
@@ -16,7 +15,6 @@ import { Toaster } from 'sonner'
 import './globals.css'
 import { env } from '@/env/client'
 import { theme } from '@/theme'
-import '@mantine/core/styles.css'
 import Script from 'next/dist/client/script'
 
 const baseUrl = env.NEXT_PUBLIC_VERCEL_URL
@@ -47,19 +45,19 @@ export const metadata = {
     }),
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const cartId = cookies().get('cartId')?.value
+  const cookieStore = await cookies()
+  const cartId = cookieStore.get('cartId')?.value
   // Don't await the fetch, pass the Promise to the context provider
   // const cart = getCart(cartId)
 
   return (
     <html lang="en" suppressHydrationWarning={false}>
       <head>
-        <ColorSchemeScript />
         <Script src="https://www.zhangxinxu.com/study/202008/offset-path.js" />
       </head>
       <body>
@@ -67,14 +65,12 @@ export default function RootLayout({
           {/* <AppContextProvider> */}
           <TRPCReactProvider>
             {/* <TRPCReactProvider cookies={cookies().toString()}> */}
-            <MantineProvider theme={theme}>
               {/* <CartProvider cartPromise={cart}> */}
               <Navbar />
               {/* <Layout> */}
               {children}
               {/* </Layout> */}
               {/* </CartProvider> */}
-            </MantineProvider>
           </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
