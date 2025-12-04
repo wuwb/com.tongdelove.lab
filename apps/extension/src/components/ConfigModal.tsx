@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AppRoot } from './App'; // 确保引入的是那个 display: none 的版本
+import { AppRoot } from './App'
 
 export const ConfigModal = () => {
   const [open, setOpen] = useState(false);

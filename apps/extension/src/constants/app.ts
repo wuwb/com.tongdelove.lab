@@ -3,9 +3,6 @@ export const REPLACE_BEARER_TOKEN = 'teable_accMtLMDzrqw07eLaFc_0ZJDqkx7y+VT9HL8
 
 export const SUPPLY_TABLE_KEY = 'tblUADR3JyJup8YtWSb'
 
-
-
-
 // temu
 export const STORAGE_KEY_HIDE_ALERT = 'local:config_hide_shipping_alert';
 export const EVENT_CONFIG_UPDATED = 'tongde:config-updated';

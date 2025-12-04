@@ -1,7 +1,26 @@
 import { defineConfig } from 'wxt'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
+  vite: () => {
+    return {
+      css: {
+        devSourcemap: false,
+      },
+      build: {
+        sourcemap: false, 
+      },
+      plugins: [
+        tanstackRouter({
+          target: 'react',
+          autoCodeSplitting: false,
+        }),
+        tailwindcss(),
+      ],
+    }
+  },
   dev: {
     server: {
       port: 3000,
@@ -21,18 +40,18 @@ export default defineConfig({
         ],
       });
 
-    //   if (wxt.config.command === "serve") {
-    //     // During development, content script is not listed in manifest, causing
-    //     // "webext-dynamic-content-scripts" to throw an error. So we need to
-    //     // add it manually.
-    //     manifest.content_scripts ??= [];
-    //     manifest.content_scripts.push({
-    //       matches: ["*://*.1688.com/*"],
-    //       js: ["content-scripts/1688.js"],
-    //       css: ["content-scripts/1688.css"],
-    //       // If the script has CSS, add it here.
-    //     });
-    //   }
+      //   if (wxt.config.command === "serve") {
+      //     // During development, content script is not listed in manifest, causing
+      //     // "webext-dynamic-content-scripts" to throw an error. So we need to
+      //     // add it manually.
+      //     manifest.content_scripts ??= [];
+      //     manifest.content_scripts.push({
+      //       matches: ["*://*.1688.com/*"],
+      //       js: ["content-scripts/1688.js"],
+      //       css: ["content-scripts/1688.css"],
+      //       // If the script has CSS, add it here.
+      //     });
+      //   }
       if (wxt.config.mode === 'development') {
         manifest.name += ' (DEV)'
       }
@@ -40,7 +59,7 @@ export default defineConfig({
   },
   manifest: ({ browser, command, manifestVersion, mode }) => {
     const isDev = mode === 'development'
-    
+
     console.log(`\nIs development mode: ${isDev}\n`)
 
     return {

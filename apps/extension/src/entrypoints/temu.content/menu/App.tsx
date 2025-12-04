@@ -15,14 +15,14 @@ export const AppRoot = ({ open, onOpenChange }: AppRootProps) => {
       const originalStyle = window.getComputedStyle(document.body).overflow
       // 锁定滚动
       document.body.style.overflow = 'hidden'
-      
+
       // 清理函数：恢复滚动
       return () => {
         document.body.style.overflow = originalStyle
       }
     }
   }, [open])
-  
+
   return (
     <div
       // ✅ 关键 1：使用 CSS 控制显隐，而不是条件渲染
@@ -37,9 +37,9 @@ export const AppRoot = ({ open, onOpenChange }: AppRootProps) => {
       )}
     >
       {/* 遮罩层点击关闭 */}
-      <div 
-        className="absolute inset-0" 
-        onClick={() => onOpenChange(false)} 
+      <div
+        className="absolute inset-0"
+        onClick={() => onOpenChange(false)}
       />
 
       {/* ✅ 关键 3：模拟 DialogContent 的样式 */}
@@ -62,9 +62,9 @@ export const AppRoot = ({ open, onOpenChange }: AppRootProps) => {
       >
         {/* 关闭按钮 (手动实现 DialogClose) */}
         <div className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             className="h-6 w-6 p-0"
             onClick={() => onOpenChange(false)}
           >
@@ -82,7 +82,7 @@ export const AppRoot = ({ open, onOpenChange }: AppRootProps) => {
 
         {/* ⬇️ 这里是你的复杂内容，它永远不会被卸载 ⬇️ */}
         <div className="flex-1 overflow-y-auto py-4 space-y-6">
-           <ComplexHeavyComponent />
+          <ComplexHeavyComponent />
         </div>
       </div>
     </div>

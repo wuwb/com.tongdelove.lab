@@ -3,7 +3,6 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 const eslintConfig = defineConfig([
   {
     ignores: ['tsconfig.*'],
-    react: true,
   },
   {
     ignores: [
@@ -23,7 +22,7 @@ const eslintConfig = defineConfig([
       'jsonc/sort-keys': 'off',
       'no-console': 'off',
       'react-refresh/only-export-components': 'off',
-      'unused-imports/no-unused-vars': 'warn',
+      // 'unused-imports/no-unused-vars': 'warn',
     },
   },
   globalIgnores([
