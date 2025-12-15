@@ -34,10 +34,10 @@ export default defineBackground({
       }
     })
 
-    chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       if (msg.type === 'GET_PDF_WORKER_URL') {
-        // 这里才真正能调到 chrome.runtime.getURL
-        const url = chrome.runtime.getURL('/js/pdf.worker.min.js')
+        // 这里才真正能调到 browser.runtime.getURL
+        const url = browser.runtime.getURL('/js/pdf.worker.min.js')
         sendResponse({ url })
       }
     })

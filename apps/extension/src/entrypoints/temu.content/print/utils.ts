@@ -23,11 +23,12 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
     }
   })
 
-  const pageHtml = pages.map((page) => {
-    if (page.list.length === 0) {
-      return ''
-    }
-    const titleHtml = `
+  const pageHtml = pages
+    .map((page) => {
+      if (page.list.length === 0) {
+        return ''
+      }
+      const titleHtml = `
       <div class="page print-page">
         <div class="content-wrapper">
           <div class="title">${page.subAttr}</div>
@@ -35,15 +36,18 @@ export function generatePrintContent(productList: PrintProduct[], imageMap: Reco
          </div>
       </div>
     `
-    const bodyHtml = page.list.map((item) => {
-      return `
+      const bodyHtml = page.list
+        .map((item) => {
+          return `
         <div class="page print-page">
           <img class="image" src="${item.imageDataUrl}" />
         </div>
       `
-    }).join('')
-    return titleHtml + bodyHtml
-  }).join('')
+        })
+        .join('')
+      return titleHtml + bodyHtml
+    })
+    .join('')
 
   const html = `
     <html>

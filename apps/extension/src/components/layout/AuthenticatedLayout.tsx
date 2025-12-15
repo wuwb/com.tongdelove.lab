@@ -1,3 +1,4 @@
+import React from 'react'
 import { Outlet } from '@tanstack/react-router'
 import { getCookie } from '@/lib/cookies'
 import { cn } from '@tongdelove/ui/lib/utils'
@@ -11,7 +12,7 @@ type AuthenticatedLayoutProps = {
   children?: React.ReactNode
 }
 
-export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
+export const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
   const defaultOpen = getCookie('sidebar_state') !== 'false'
   return (
     // <SearchProvider>
@@ -33,7 +34,7 @@ export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
             // set the height to 100svh - spacing (total margins) to prevent overflow
             'peer-data-[variant=inset]:min-h-[calc(100svh-(var(--spacing)*4))]',
             'overflow-y-auto', // 修复滚动
-            'bg-background',   // 可选：保持背景一致
+            'bg-background', // 可选：保持背景一致
             'flex flex-col'
           )}
         >

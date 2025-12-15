@@ -17,7 +17,10 @@ export function parsePDFText(text: string): null | PDFData {
     const withoutPageInfo = cleaned.replace(/\s*--\s*\d+\s+of\s+\d+\s*--/g, '').trim()
 
     // 3. 分割行为两部分：主体内容 和 地址+SKU 行
-    const lines = withoutPageInfo.split('Made In China').filter(Boolean).map(s => s.trim())
+    const lines = withoutPageInfo
+      .split('Made In China')
+      .filter(Boolean)
+      .map((s) => s.trim())
 
     if (lines.length < 1) {
       throw new Error('只有一行数据，无法提取。')
@@ -54,15 +57,13 @@ export function parsePDFText(text: string): null | PDFData {
       if (labelMatch) {
         skuLabel = labelMatch[1].trim()
         skuDescription = labelMatch[2]?.trim() || ''
-      }
-      else {
+      } else {
         // --- 情况3：都不匹配？尝试提取最长的大写/数字/下划线前缀 ---
         const fallbackMatch = /^(\w+)/.exec(mainContent)
         if (fallbackMatch) {
           skuLabel = fallbackMatch[1].trim()
           skuDescription = mainContent.substring(skuLabel.length).trim()
-        }
-        else {
+        } else {
           throw new Error('无法识别 skuLabel')
         }
       }
@@ -74,8 +75,7 @@ export function parsePDFText(text: string): null | PDFData {
       skuDescription,
       skuLabel,
     }
-  }
-  catch (err) {
+  } catch (err) {
     console.warn('Failed to parse PDF text:', err)
     return null
   }
@@ -90,8 +90,7 @@ async function extractTextFromPdf(buffer: Buffer): Promise<string> {
       return '前后规格不同，请不要贴错'
     }
     return result
-  }
-  catch (err) {
+  } catch (err) {
     console.warn('PDF 解析失败:', err)
     throw new Error('PDF 解析失败')
   }
@@ -122,7 +121,7 @@ async function splitPdfFiles(inputDir: string, outputDir: string, overwrite = fa
   await fs.ensureDir(outputDir)
 
   const dirents = await fs.readdir(inputDir, { withFileTypes: true })
-  const pdfFiles = dirents.filter(dirent => dirent.isFile() && /\.pdf$/i.test(dirent.name))
+  const pdfFiles = dirents.filter((dirent) => dirent.isFile() && /\.pdf$/i.test(dirent.name))
 
   if (pdfFiles.length === 0) {
     console.log('📭 没有找到 PDF 文件。')
@@ -163,15 +162,13 @@ async function splitPdfFiles(inputDir: string, outputDir: string, overwrite = fa
 
           await fs.writeFile(finalPath, singlePageBuffer)
           console.log(`✅ 已生成: ${path.basename(finalPath)}`)
-        }
-        catch (err) {
+        } catch (err) {
           console.warn(`⚠️ 文本提取失败 (${file.name} 第 ${pageIndex + 1} 页):`, err)
         }
       }
 
       console.log(`🟢 完成拆分 "${file.name}"\n`)
-    }
-    catch (err) {
+    } catch (err) {
       console.error(`💥 处理失败: ${file.name}`, err)
     }
   }
@@ -179,14 +176,13 @@ async function splitPdfFiles(inputDir: string, outputDir: string, overwrite = fa
   console.log(`🎉 所有 PDF 拆分并重命名完成！输出路径: ${outputDir}`)
 }
 
-(async () => {
+;(async () => {
   const inputDir = path.resolve('./public/pdf/temu-origin')
   const outputDir = path.resolve('./public/pdf/temu-barcodes')
 
   try {
     await splitPdfFiles(inputDir, outputDir, true)
-  }
-  catch (err) {
+  } catch (err) {
     console.error('脚本执行出错:', err)
     process.exit(1)
   }

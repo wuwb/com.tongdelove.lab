@@ -1,16 +1,21 @@
 import type { PrintProduct } from './types'
-
-import { CUSTOM_PRINT_BUTTON_CLASSNAME, CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME, CUSTOM_PRINT_IFRAME_ID, PRINT_BUTTON_INSERT_POSITION } from './consts'
-import { createIframe, writeIframeContent } from './iframe'
+import {
+  CUSTOM_PRINT_BUTTON_CLASSNAME,
+  CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME,
+  CUSTOM_PRINT_IFRAME_ID,
+  PRINT_BUTTON_INSERT_POSITION,
+} from './consts'
+import { createIframe, writeIframeContent } from '@/utils/iframe'
 import { map } from './map'
 import { generatePrintContent } from './utils'
 
-export async function createCustomPrint() {
+export async function createPrint() {
   /**
    * add custom print button
    */
   document.addEventListener('click', async (e) => {
     const target = e.target as HTMLElement
+
     // 检查是否点击了目标按钮（兼容嵌套元素）
     const printButton = target.closest('[data-testid="beast-core-button-link"]')
     if (!printButton) {
@@ -29,13 +34,12 @@ export async function createCustomPrint() {
       if (modalContainer) {
         console.log('-----------------------------------modalContainer')
         // 3. 检查是否已存在自定义按钮（避免重复插入）
-        if (!modalContainer.querySelector(CUSTOM_PRINT_BUTTON_CLASSNAME)) {
+        if (!modalContainer.querySelector(`.${CUSTOM_PRINT_BUTTON_CLASSNAME}`)) {
           console.log('-----------------------------------modalContainer insert')
           insertCustomPrintButton(modalContainer)
         }
         clearInterval(pollingTimer)
-      }
-      else if (++attempts >= MAX_ATTEMPTS) {
+      } else if (++attempts >= MAX_ATTEMPTS) {
         clearInterval(pollingTimer)
         console.warn('弹窗容器未找到，停止检测')
       }
@@ -84,7 +88,7 @@ export async function createCustomPrint() {
         const imageUrl = img ? img.src : '' // 提取图片地址
 
         const titleElements = firstCell.querySelectorAll('div.goods-info_content__pfkNO > div')
-        const title = titleElements.length > 0 ? titleElements[0].textContent?.trim() ?? '' : ''
+        const title = titleElements.length > 0 ? (titleElements[0].textContent?.trim() ?? '') : ''
         const skc = titleElements.length > 1 ? (titleElements[1] as HTMLElement).innerText.trim() : ''
 
         const sku = getTextContent(cells[1])
@@ -99,14 +103,11 @@ export async function createCustomPrint() {
 
         const mainAttr = getTextContent(cells[3]).replace('-', '').trim()
         const subAttrText = getTextContent(cells[4])
-        const subAttr = subAttrText.includes(':')
-          ? subAttrText.split(':').slice(1).join(':').trim()
-          : subAttrText
+        const subAttr = subAttrText.includes(':') ? subAttrText.split(':').slice(1).join(':').trim() : subAttrText
 
         const countText = getTextContent(cells[5])
         const count = Number.parseFloat(countText.replace(/[^\d.-]/g, ''))
-        if (isNaN(count))
-          throw new Error(`第 ${index + 1} 行“发货数”无效：${countText}`)
+        if (isNaN(count)) throw new Error(`第 ${index + 1} 行“发货数”无效：${countText}`)
 
         const input = cells[6].querySelector('input[data-testid="beast-core-inputNumber-htmlInput"]')
         const rawValue = input ? (input as HTMLInputElement).value : ''
@@ -117,8 +118,7 @@ export async function createCustomPrint() {
         // 判断是否为空值（包括纯空格）
         if (inputValue === '') {
           inputCount = 0 // 空输入 → 认为是 0，不报错
-        }
-        else {
+        } else {
           // 非空输入：必须能被解析为有效数字
           const cleaned = inputValue.replace(/[^\d.-]/g, '')
           const parsed = Number.parseFloat(cleaned)
@@ -143,8 +143,7 @@ export async function createCustomPrint() {
           title,
         })
       })
-    }
-    catch (err: unknown) {
+    } catch (err: unknown) {
       const message = err instanceof Error ? err.message : '未知错误'
       alert(`提取商品数据失败：\n\n${message}\n\n请检查页面内容是否正常加载。`)
       return [] // 遇错清空结果
@@ -206,8 +205,7 @@ export async function createCustomPrint() {
           try {
             iframe.contentWindow?.focus()
             iframe.contentWindow?.print()
-          }
-          catch (err) {
+          } catch (err) {
             console.error('打印失败:', err)
             alert('打印失败，请重试。')
           }

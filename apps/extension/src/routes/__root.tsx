@@ -24,12 +24,11 @@ import { NotFoundError } from '@/features/errors/NotFoundError'
 //       })),
 //     )
 
-
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
   shadowRoot?: ShadowRoot
 }>()({
-  component: ({ context }) => {
+  component: ({ _context }) => {
     return (
       <>
         {/* <NavigationProgress /> */}

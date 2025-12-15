@@ -10,7 +10,7 @@ const OUTPUT_FILE = 'src/entrypoints/temu.content/print/map.ts'
 
 async function generateMap() {
   const files = await readdir(ASSETS_DIR)
-  const imageFiles = files.filter(f => f.match(/\.(png|jpe?g|webp)$/i))
+  const imageFiles = files.filter((f) => f.match(/\.(png|jpe?g|webp)$/i))
 
   let content = `// This file is auto-generated. Do not edit manually.\n// Generated at: ${new Date().toISOString()}\n\n`
   const entries: string[] = []

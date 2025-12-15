@@ -22,7 +22,6 @@ export default defineContentScript({
     if (ctx.isValid) {
       // do something
       // document.body.style.backgroundColor = 'red';
-
     }
     // OR
     if (ctx.isInvalid) {
@@ -58,9 +57,7 @@ function createUi(ctx: ContentScriptContext) {
       // Create a root on the UI container and render a component
       const root = ReactDOM.createRoot(app)
 
-      root.render(
-        <App />,
-      )
+      root.render(<App />)
       return { app, root }
     },
     onRemove: (elements) => {

@@ -1,12 +1,12 @@
 export function usePopup() {
   const getCollectButtonStatus = async () => {
     return new Promise((resolve, reject) => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (!tabs[0].id) {
           reject()
           return
         }
-        chrome.tabs.sendMessage(tabs[0].id, { action: 'getCollectButtonStatus' }, (response) => {
+        browser.tabs.sendMessage(tabs[0].id, { action: 'getCollectButtonStatus' }, (response) => {
           resolve(response)
         })
       })
@@ -14,26 +14,27 @@ export function usePopup() {
   }
 
   const collectAllImages = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (!tabs[0].id) {
         return
       }
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'collectAllImages' })
+      browser.tabs.sendMessage(tabs[0].id, { action: 'collectAllImages' })
     })
   }
 
-  const collectGoodsImages = () => chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (!tabs[0].id) {
-      return
-    }
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'collectGoodsImages' })
-  })
+  const collectGoodsImages = () =>
+    browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (!tabs[0].id) {
+        return
+      }
+      browser.tabs.sendMessage(tabs[0].id, { action: 'collectGoodsImages' })
+    })
 
-  const downloadVideo = chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  const downloadVideo = browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs[0].id) {
       return
     }
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'downloadVideo' })
+    browser.tabs.sendMessage(tabs[0].id, { action: 'downloadVideo' })
   })
 
   return {

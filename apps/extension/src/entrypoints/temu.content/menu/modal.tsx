@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { AppRoot } from './App'
-import cssContent from '../style.css?inline' 
+import cssContent from '../style.css?inline'
 
 function createConfigMenuSystem(modalSystem: ReturnType<typeof createConfigModalSystem>) {
   const menuButtonClass = 'config-menu-button'
@@ -18,16 +18,16 @@ function createConfigMenuSystem(modalSystem: ReturnType<typeof createConfigModal
       ':hover': {
         backgroundColor: '#e9e9e9',
       },
-      'backgroundColor': '#f5f5f5',
-      'border': '1px solid #ddd',
-      'borderRadius': '4px',
-      'color': '#333',
-      'cursor': 'pointer',
-      'fontSize': '14px',
+      backgroundColor: '#f5f5f5',
+      border: '1px solid #ddd',
+      borderRadius: '4px',
+      color: '#333',
+      cursor: 'pointer',
+      fontSize: '14px',
       // 'marginLeft': '12px',
       // 'padding': '6px 12px',
-      'padding': 0,
-      'transition': 'all 0.2s',
+      padding: 0,
+      transition: 'all 0.2s',
     })
 
     button.addEventListener('click', (e) => {
@@ -100,18 +100,13 @@ function createConfigModalSystem() {
       currentRoot = createRoot(modalRoot)
       // 初始渲染，默认 open=false
       // 注意：这里需要一个重新渲染机制，或者使用 Context/Store 来驱动 React 更新
-      render(false) 
+      render(false)
     }
   }
 
   const render = (show: boolean) => {
     if (currentRoot) {
-      currentRoot.render(
-        <AppRoot 
-          open={show} 
-          onOpenChange={handleOpenChange} 
-        />
-      )
+      currentRoot.render(<AppRoot open={show} onOpenChange={handleOpenChange} />)
     }
   }
 
@@ -129,13 +124,11 @@ function createConfigModalSystem() {
     handleOpenChange(false)
   }
 
-
   return {
     closeModal,
     openModal,
   }
 }
-
 
 function injectStyles() {
   const styleId = 'tongdelove-plugin-styles'
@@ -150,6 +143,7 @@ function injectStyles() {
 // 🔟 初始化配置菜单功能
 export function initConfigMenuFeature() {
   injectStyles()
+
   // 创建弹窗系统
   const modalSystem = createConfigModalSystem()
 
@@ -157,7 +151,7 @@ export function initConfigMenuFeature() {
   const menuSystem = createConfigMenuSystem(modalSystem)
 
   // 设置菜单观察器
-  const cleanupMenuObserver = menuSystem.setupMenuObserver()
+  const _cleanupMenuObserver = menuSystem.setupMenuObserver()
 
   console.log('menu inserted.')
 }

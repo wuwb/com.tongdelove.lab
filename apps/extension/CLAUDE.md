@@ -58,11 +58,13 @@ apps/extension/
 ## 功能特性
 
 ### 支持的电商平台
+
 - **1688**: 阿里巴巴批发网商品助手
 - **Temu**: 拼多多国际版购物助手
 - **Github**: GitHub平台增强
 
 ### 核心功能
+
 1. **商品信息提取**
    - 自动识别商品标题、价格、规格
    - 批量数据采集
@@ -81,6 +83,7 @@ apps/extension/
 ## WXT配置
 
 ### wxt.config.ts
+
 ```typescript
 import { defineConfig } from 'wxt'
 
@@ -102,11 +105,7 @@ export default defineConfig({
   // 清单文件配置
   manifest: {
     description: '支持1688、Temu等平台的浏览器助手',
-    host_permissions: [
-      'https://*.1688.com/*',
-      'https://*.temu.com/*',
-      'https://github.com/*',
-    ],
+    host_permissions: ['https://*.1688.com/*', 'https://*.temu.com/*', 'https://github.com/*'],
     name: '电商助手',
     version: '0.0.0',
   },
@@ -122,13 +121,7 @@ export default defineConfig({
   },
 
   // 权限配置
-  permissions: [
-    'storage',
-    'activeTab',
-    'scripting',
-    'declarativeNetRequest',
-    'notifications',
-  ],
+  permissions: ['storage', 'activeTab', 'scripting', 'declarativeNetRequest', 'notifications'],
 })
 ```
 
@@ -137,6 +130,7 @@ export default defineConfig({
 ### 1. 弹窗入口 (popup)
 
 #### App.tsx
+
 ```typescript
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
@@ -189,6 +183,7 @@ function isSupportedPlatform(url: string): boolean {
 ```
 
 #### usePopup.ts
+
 ```typescript
 import { useEffect, useState } from 'react'
 
@@ -202,8 +197,7 @@ export function usePopup() {
       chrome.tabs.sendMessage(tabId, message, (response) => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError.message)
-        }
-        else {
+        } else {
           resolve(response)
         }
       })
@@ -213,10 +207,7 @@ export function usePopup() {
   // 获取当前标签页
   const getCurrentTab = (): Promise<chrome.tabs.Tab> => {
     return new Promise((resolve) => {
-      chrome.tabs.query(
-        { active: true, currentWindow: true },
-        tabs => resolve(tabs[0])
-      )
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => resolve(tabs[0]))
     })
   }
 
@@ -234,6 +225,7 @@ export function usePopup() {
 ### 2. 内容脚本 (content)
 
 #### index.ts
+
 ```typescript
 import { injectNetworkInterceptor } from '@/utils/injectNetworkInterceptor'
 import { handleTemuResponse } from '@/utils/responseHandlers/temuHandler'
@@ -270,8 +262,7 @@ function extractProductInfo() {
     if (titleEl) {
       productInfo.title = titleEl.textContent?.trim() || ''
     }
-  }
-  else if (window.location.hostname.includes('temu.com')) {
+  } else if (window.location.hostname.includes('temu.com')) {
     // Temu平台提取逻辑
     handleTemuResponse(document)
   }
@@ -285,13 +276,13 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     injectNetworkInterceptor()
   })
-}
-else {
+} else {
   injectNetworkInterceptor()
 }
 ```
 
 #### injectNetworkInterceptor.ts
+
 ```typescript
 // 网络请求拦截器
 export function injectNetworkInterceptor() {
@@ -319,23 +310,17 @@ export function injectNetworkInterceptor() {
 async function processResponse(response: Response | string) {
   try {
     // 解析JSON响应
-    const data = typeof response === 'string'
-      ? JSON.parse(response)
-      : await response.clone().json()
+    const data = typeof response === 'string' ? JSON.parse(response) : await response.clone().json()
 
     // 根据URL判断平台并处理
-    const url = typeof response === 'string'
-      ? ''
-      : response.url
+    const url = typeof response === 'string' ? '' : response.url
 
     if (url.includes('temu.com')) {
       handleTemuData(data)
-    }
-    else if (url.includes('1688.com')) {
+    } else if (url.includes('1688.com')) {
       handle1688Data(data)
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Failed to process response:', error)
   }
 }
@@ -344,6 +329,7 @@ async function processResponse(response: Response | string) {
 ### 3. 后台脚本 (background)
 
 #### index.ts
+
 ```typescript
 import { defineBackgroundScript } from 'wxt/background'
 
@@ -353,7 +339,7 @@ export default defineBackgroundScript(() => {
     if (details.reason === 'install') {
       // 打开引导页
       chrome.tabs.create({
-        url: chrome.runtime.getURL('get-started/index.html')
+        url: chrome.runtime.getURL('get-started/index.html'),
       })
     }
   })
@@ -366,7 +352,7 @@ export default defineBackgroundScript(() => {
         // 可以在这里更新扩展图标或状态
         chrome.action.setBadgeText({
           tabId,
-          text: 'ON'
+          text: 'ON',
         })
       }
     }
@@ -374,17 +360,14 @@ export default defineBackgroundScript(() => {
 })
 
 function isSupportedPlatform(url: string): boolean {
-  return (
-    url.includes('1688.com')
-    || url.includes('temu.com')
-    || url.includes('github.com')
-  )
+  return url.includes('1688.com') || url.includes('temu.com') || url.includes('github.com')
 }
 ```
 
 ## 依赖详情
 
 ### 核心依赖
+
 ```json
 {
   "wxt": "^0.20.11", // WebExtensions框架
@@ -394,6 +377,7 @@ function isSupportedPlatform(url: string): boolean {
 ```
 
 ### 前端依赖
+
 ```json
 {
   "react": "^19.2.0", // React 19
@@ -405,6 +389,7 @@ function isSupportedPlatform(url: string): boolean {
 ```
 
 ### 数据处理
+
 ```json
 {
   "@vlcn.io/crsqlite-wasm": "^0.16.0", // SQLite WASM
@@ -415,6 +400,7 @@ function isSupportedPlatform(url: string): boolean {
 ```
 
 ### 自有包
+
 ```json
 {
   "@tongdelove/hooks": "workspace:*", // 自定义Hooks
@@ -426,6 +412,7 @@ function isSupportedPlatform(url: string): boolean {
 ```
 
 ### 构建工具
+
 ```json
 {
   "typescript": "^5.8.2", // TypeScript
@@ -458,6 +445,7 @@ pnpm lint . --fix                      # 自动修复
 ### 1688平台适配
 
 #### 数据提取
+
 ```typescript
 // 提取1688商品信息
 export function extract1688Product(element: Document | Element) {
@@ -485,6 +473,7 @@ function extractTitle(element: Document | Element): string {
 ### Temu平台适配
 
 #### 响应处理器
+
 ```typescript
 export function extractTemuProduct(document: Document) {
   return {
@@ -526,6 +515,7 @@ export function handleTemuResponse(document: Document) {
 ## 本地存储
 
 ### 存储管理
+
 ```typescript
 export interface ExtensionSettings {
   autoExtract: boolean
@@ -558,9 +548,7 @@ class StorageManager {
     const retentionDays = data.settings.dataRetention
     const maxAge = retentionDays * 24 * 60 * 60 * 1000
 
-    data.extractedProducts = data.extractedProducts.filter(
-      product => now - product.extractedAt < maxAge
-    )
+    data.extractedProducts = data.extractedProducts.filter((product) => now - product.extractedAt < maxAge)
 
     await chrome.storage.local.set({ extractedProducts: data.extractedProducts })
   }
@@ -600,6 +588,7 @@ export const storageManager = new StorageManager()
 ## 部署流程
 
 ### 1. 开发调试
+
 ```bash
 # 启动开发模式
 pnpm dev
@@ -612,6 +601,7 @@ pnpm dev
 ```
 
 ### 2. 构建生产版本
+
 ```bash
 # 构建
 pnpm build
@@ -621,12 +611,14 @@ pnpm zip
 ```
 
 ### 3. 发布到Chrome Web Store
+
 1. 压缩 `dist/chrome-mv3-prod` 目录为ZIP
 2. 登录Chrome Web Store开发者控制台
 3. 上传ZIP文件并填写信息
 4. 提交审核
 
 ### 4. 发布到Firefox Add-ons
+
 ```bash
 # Firefox构建
 npx wxt build --browser firefox
@@ -637,21 +629,25 @@ npx wxt build --browser firefox
 ## 最佳实践
 
 ### 1. 性能优化
+
 - 避免在内容脚本中执行耗时操作
 - 使用 `debounce` 减少DOM查询频率
 - 及时清理事件监听器和观察器
 
 ### 2. 安全考虑
+
 - 验证所有外部数据
 - 避免XSS攻击
 - 最小权限原则
 
 ### 3. 用户体验
+
 - 提供清晰的状态反馈
 - 优雅处理错误情况
 - 遵循浏览器原生UI规范
 
 ### 4. 测试策略
+
 - 在多个浏览器中测试
 - 测试不同页面结构
 - 模拟网络异常情况
@@ -659,19 +655,23 @@ npx wxt build --browser firefox
 ## 常见问题
 
 ### Q: 如何调试内容脚本？
+
 A:
+
 ```typescript
 // 在内容脚本中
 console.log('Content script loaded')
 // 在后台脚本中
 chrome.scripting.executeScript({
   func: () => console.log('Injected script'),
-  target: { tabId: tab.id }
+  target: { tabId: tab.id },
 })
 ```
 
 ### Q: 如何处理动态加载的内容？
+
 A: 使用 `MutationObserver`
+
 ```typescript
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
@@ -692,7 +692,9 @@ observer.observe(document.body, {
 ```
 
 ### Q: 如何与页面原生JavaScript交互？
+
 A: 通过注入自定义脚本
+
 ```typescript
 // 在内容脚本中注入
 const script = document.createElement('script')
@@ -712,4 +714,4 @@ const data = (window as any).getPageData()
 
 ---
 
-*最后更新: 2025-11-02*
+_最后更新: 2025-11-02_

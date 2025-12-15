@@ -24,6 +24,8 @@
 // /agora/conv/needReplyCount
 // /bg-luna-mms/goods/quality/optimize/order/wait/optimize/count
 
+import { useShoppingListStore } from '@/stores/useShoppingListStore'
+
 export function handleTemuResponse(data: any) {
   const url = data.url
   const body = data.responseBody
@@ -41,8 +43,7 @@ export function handleTemuResponse(data: any) {
       console.log('userInfo: ', userInfo)
 
       sessionStorage.setItem('bx-temu-user-info', JSON.stringify(userInfo))
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
     }
   }
@@ -51,12 +52,22 @@ export function handleTemuResponse(data: any) {
     try {
       const pageItems = result.pageItems
       const total = result.total
+
       console.log('data: ', data)
       console.log('pageItems: ', pageItems)
       console.log('total: ', total)
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
+    }
+  }
+
+  if (url.includes('/bgSongbird-api/supplier/deliverGoods/management/pageQueryDeliveryBatch')) {
+    try {
+      const list = result.list || []
+      console.log('📦 捕获到发货批次表格数据（pageQueryDeliveryBatch）:', list)
+      useShoppingListStore.getState().setItems(list)
+    } catch (err) {
+      console.error('❌ 解析 pageQueryDeliveryBatch 响应失败:', err)
     }
   }
 }

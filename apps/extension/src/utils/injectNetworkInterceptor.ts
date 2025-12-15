@@ -69,15 +69,15 @@ export function injectNetworkInterceptor() {
   // }
 
   function setRequestProxy() {
+    console.log('setRequestProxy')
+
     const win = window as any
 
     // 避免重复注入
     if (win.__WEFLY_NETWORK_INTERCEPTOR_INJECTED__) {
       return
     }
-    else {
-      win.__WEFLY_NETWORK_INTERCEPTOR_INJECTED__ = true
-    }
+    win.__WEFLY_NETWORK_INTERCEPTOR_INJECTED__ = true
 
     // 保存原始的fetch和XMLHttpRequest
     const originalFetch = window.fetch
@@ -96,10 +96,7 @@ export function injectNetworkInterceptor() {
       let requestBody = null
 
       // 只对可读的 body 类型进行捕获（并且只在有 body 的时候）
-      if (
-        ['PATCH', 'POST', 'PUT'].includes(method.toUpperCase())
-        && originalRequest.headers.get('Content-Type')
-      ) {
+      if (['PATCH', 'POST', 'PUT'].includes(method.toUpperCase()) && originalRequest.headers.get('Content-Type')) {
         try {
           // 👉 克隆 request，用于提取 body
           requestCloneForLogging = originalRequest.clone()
@@ -109,27 +106,21 @@ export function injectNetworkInterceptor() {
 
           if (contentType.includes('application/json')) {
             requestBody = JSON.parse(bodyText)
-          }
-          else if (contentType.includes('x-www-form-urlencoded')) {
+          } else if (contentType.includes('x-www-form-urlencoded')) {
             requestBody = '[URLEncoded]'
             // 可选：解析为对象 new URLSearchParams(bodyText)
-          }
-          else if (contentType.includes('multipart/form-data')) {
+          } else if (contentType.includes('multipart/form-data')) {
             requestBody = '[FormData]'
             // 注意：FormData 无法直接展开，除非你知道字段名
-          }
-          else if (contentType.includes('text/')) {
+          } else if (contentType.includes('text/')) {
             requestBody = bodyText
-          }
-          else {
+          } else {
             requestBody = '[Binary Data]'
           }
-        }
-        catch (err: any) {
+        } catch (err: any) {
           requestBody = `[Read Body Failed: ${err?.message}]`
         }
-      }
-      else {
+      } else {
         requestBody = null // GET/HEAD 等无 body
       }
 
@@ -147,15 +138,13 @@ export function injectNetworkInterceptor() {
           const contentType = response.headers.get('content-type') || ''
           if (contentType.includes('application/json')) {
             responseBody = await responseClone.json()
-          }
-          else if (contentType.includes('text/')) {
+          } else if (contentType.includes('text/')) {
             responseBody = await responseClone.text()
-          }
-          else {
+          } else {
             responseBody = '[Binary Data]'
           }
-        }
-        catch (error) {
+        } catch (error) {
+          console.error(error)
           responseBody = '[Parse Response Body Fail]'
         }
 
@@ -170,9 +159,9 @@ export function injectNetworkInterceptor() {
           type: 'fetch',
           url,
         })
+
         return response
-      }
-      catch (error) {
+      } catch (error) {
         if (url.includes('chrome-extension://') || url.includes('127.0.0.1')) {
           // 忽略扩展和本地资源的报错
           return

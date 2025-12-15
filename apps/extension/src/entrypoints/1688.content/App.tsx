@@ -30,8 +30,7 @@ function App() {
       console.log({ response })
       console.log('response: ', response)
       sethelloResponsePre(JSON.stringify(response))
-    }
-    catch (err: any) {
+    } catch (err: any) {
       sethelloResponsePre(`ERROR: ${err.message}`)
     }
   }
@@ -43,8 +42,7 @@ function App() {
       console.log('response: ', response)
 
       setunknownResponsePre(JSON.stringify(response))
-    }
-    catch (err: any) {
+    } catch (err: any) {
       setunknownResponsePre(`ERROR: ${err.message}`)
     }
   }
@@ -64,9 +62,7 @@ function App() {
       records: [
         {
           fields: {
-            产品: [
-              '自发热包',
-            ],
+            产品: ['自发热包'],
             供应商名称: '万载县易蒸科技有限公司',
             地址: '江西省宜春市万载县株潭镇株山村',
             备注: '（透明袋）物流/包专票',
@@ -80,7 +76,7 @@ function App() {
     const options = {
       body: JSON.stringify(data),
       headers: {
-        'Authorization': `Bearer ${REPLACE_BEARER_TOKEN}`,
+        Authorization: `Bearer ${REPLACE_BEARER_TOKEN}`,
         'content-type': 'application/json',
       },
       method: 'POST',
@@ -90,8 +86,7 @@ function App() {
       const response = await fetch(url, options)
       const data = await response.json()
       console.log(data)
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
     }
   }
@@ -131,14 +126,14 @@ function App() {
     })
   }
 
-  const handleDownloadVideos = () => {
-
-  }
+  const handleDownloadVideos = () => {}
 
   const getFactoryInfo = () => {
     const title = document.querySelector('#hd_0_container_0 div div div div div div span').title
     const year = document.querySelector('#hd_0_container_0 div div div div div div a div').innerText.replace('年', '')
-    const scrollWidth = document.querySelector('#hd_0_container_0 div div div div div div div div div div').style.width.replace('px', '')
+    const scrollWidth = document
+      .querySelector('#hd_0_container_0 div div div div div div div div div div')
+      .style.width.replace('px', '')
     const scroll = scrollWidth / 62
     const address = document.querySelectorAll('#hd_0_container_0 div div div p span')[1].innerText.replace('地址：', '')
     const url = removeParamsFromPath(window.location.href, ['spm'])
@@ -220,9 +215,13 @@ function App() {
       <div>
         <div>
           <h2>One-time Message</h2>
-          <button className="text-right" onClick={sendHelloMessageBtn}>Send "Hello" Message</button>
+          <button className="text-right" onClick={sendHelloMessageBtn}>
+            Send Hello Message
+          </button>
           <pre>{helloResponsePre}</pre>
-          <button className="text-right" onClick={sendUnknownMessageBtn}>Send Unknown Message</button>
+          <button className="text-right" onClick={sendUnknownMessageBtn}>
+            Send Unknown Message
+          </button>
           <pre>{unknownResponsePre}</pre>
         </div>
         <div>

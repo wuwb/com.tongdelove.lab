@@ -1,5 +1,4 @@
-// Work around for: https://github.com/wxt-dev/wxt/issues/942
-// @ts-expect-error
+// @ts-expect-error Work around for: https://github.com/wxt-dev/wxt/issues/942
 globalThis._content = undefined
 
 // Worker code below:

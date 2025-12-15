@@ -1,8 +1,9 @@
 // import MyWorker from "./worker?worker&inline";
 // import { sessionStartTime } from "@/utils/storage";
-import { createCustomPrint } from './print'
+import { createPrint } from './print'
+import { createPrintCover } from './PrintCover'
 import { removeUnusedTip } from './utils/RemoveUnusedTip'
-import { createMenu } from './menu'
+// import { createMenu } from './menu'
 
 export default defineContentScript({
   // // Set manifest options
@@ -26,10 +27,7 @@ export default defineContentScript({
   // // Configure how/when content script will be registered
   // registration: undefined | "manifest" | "runtime",
 
-  matches: [
-    '*://agentseller.temu.com/*',
-    '*://seller.kuajingmaihuo.com/*',
-  ],
+  matches: ['*://agentseller.temu.com/*', '*://seller.kuajingmaihuo.com/*'],
   cssInjectionMode: 'ui',
   world: 'MAIN', // 'ISOLATED',
   main: () => {
@@ -52,9 +50,9 @@ export default defineContentScript({
     //   console.log("Session start time:", new Date(startTime).toISOString());
     // }
 
-    createCustomPrint()
+    createPrint()
+    createPrintCover()
     removeUnusedTip()
     // createMenu()
   },
-
 })

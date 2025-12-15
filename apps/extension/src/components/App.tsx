@@ -2,17 +2,15 @@ import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import { cn } from '@tongdelove/ui/lib/utils'
 import { Button } from '@tongdelove/ui/components/button'
-import { storage } from '#imports';
+import { storage } from '#imports'
 import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 import { routeTree } from '@/routeTree.gen'
-import {
-  QueryCache,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from '@/context/ThemeProvider'
-import { STORAGE_KEY_HIDE_ALERT } from '@/constants/app';
+import { STORAGE_KEY_HIDE_ALERT } from '@/constants/app'
+import { AxiosError } from 'axios'
+import { toast } from 'sonner'
 
 interface AppRootProps {
   open: boolean
@@ -24,23 +22,19 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: (failureCount, error) => {
-        // eslint-disable-next-line no-console
         if (import.meta.env.DEV) console.log({ failureCount, error })
 
         if (failureCount >= 0 && import.meta.env.DEV) return false
         if (failureCount > 3 && import.meta.env.PROD) return false
 
-        return !(
-          error instanceof AxiosError &&
-          [401, 403].includes(error.response?.status ?? 0)
-        )
+        return !(error instanceof AxiosError && [401, 403].includes(error.response?.status ?? 0))
       },
       refetchOnWindowFocus: import.meta.env.PROD,
       staleTime: 10 * 1000, // 10s
     },
     mutations: {
       onError: (error) => {
-        handleServerError(error)
+        // handleServerError(error)
 
         if (error instanceof AxiosError) {
           if (error.response?.status === 304) {
@@ -55,7 +49,7 @@ const queryClient = new QueryClient({
       if (error instanceof AxiosError) {
         if (error.response?.status === 401) {
           toast.error('Session expired!')
-          useAuthStore.getState().auth.reset()
+          // useAuthStore.getState().auth.reset()
           const redirect = `${router.history.location.href}`
           router.navigate({ to: '/sign-in', search: { redirect } })
         }
@@ -90,16 +84,16 @@ const router = createRouter({
 })
 
 export const AppRoot = ({ open, onOpenChange, shadowRoot }: AppRootProps) => {
-  const [hideAlert, setHideAlert] = useState(false);
+  const [hideAlert, setHideAlert] = useState(false)
 
   useEffect(() => {
     const loadSettings = async () => {
-      const storedValue = await storage.getItem<boolean>(STORAGE_KEY_HIDE_ALERT);
+      const storedValue = await storage.getItem<boolean>(STORAGE_KEY_HIDE_ALERT)
       // 默认为 false
-      setHideAlert(!!storedValue);
-    };
-    loadSettings();
-  }, []);
+      setHideAlert(!!storedValue)
+    }
+    loadSettings()
+  }, [])
 
   useEffect(() => {
     if (open) {
@@ -112,20 +106,30 @@ export const AppRoot = ({ open, onOpenChange, shadowRoot }: AppRootProps) => {
   }, [open])
 
   return (
-    <div style={{ display: open ? 'flex' : 'none' }} className={cn("fixed inset-0 z-[99999] items-center justify-center bg-black/20", open ? "animate-in fade-in-0" : "")}>
+    <div
+      style={{ display: open ? 'flex' : 'none' }}
+      className={cn(
+        'fixed inset-0 z-[99999] items-center justify-center bg-black/20',
+        open ? 'animate-in fade-in-0' : ''
+      )}
+    >
       <div className="absolute inset-0" onClick={() => onOpenChange(false)} />
-      <div 
-        id="temu-admin-content" 
+      <div
+        id="temu-admin-content"
         className={cn(
-          "relative bg-white shadow-lg w-full border sm:rounded-lg flex flex-col overflow-hidden",
-          "bg-background text-foreground",
-        )} 
-        style={{ margin: '20px', 
-          width: 'calc(100vw - 40px)', height: 'calc(100vh - 40px)', 
-          maxWidth: 'none', maxHeight: 'none' }} 
+          'relative bg-white shadow-lg w-full border sm:rounded-lg flex flex-col overflow-hidden',
+          'bg-background text-foreground',
+          "bg-background text-foreground has-[div[data-variant='inset']]:bg-sidebar"
+        )}
+        style={{
+          margin: '20px',
+          width: 'calc(100vw - 40px)',
+          height: 'calc(100vh - 40px)',
+          maxWidth: 'none',
+          maxHeight: 'none',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-
         {/* 关闭按钮 */}
         <div className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
           <Button variant="ghost" size="icon" className="h-6 w-6 p-0" onClick={() => onOpenChange(false)}>
@@ -138,12 +142,12 @@ export const AppRoot = ({ open, onOpenChange, shadowRoot }: AppRootProps) => {
           <QueryClientProvider client={queryClient}>
             <ThemeProvider>
               <div className="h-full w-full isolate">
-              <RouterProvider
-                router={router}
-                context={{
-                  shadowRoot
-                }}
-              />
+                <RouterProvider
+                  router={router}
+                  context={{
+                    shadowRoot,
+                  }}
+                />
               </div>
             </ThemeProvider>
           </QueryClientProvider>

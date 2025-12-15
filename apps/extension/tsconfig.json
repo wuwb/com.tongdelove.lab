@@ -19,13 +19,8 @@
     "lib": ["DOM", "dom.iterable", "ESNext", "WebWorker"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "src/entrypoints.inactive/**"
-  ]
+  "exclude": ["node_modules", "src/entrypoints.inactive/**"]
 }

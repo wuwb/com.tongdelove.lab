@@ -5,12 +5,10 @@ import { pdfToPng } from 'pdf-to-png-converter'
 const inDir = 'public/pdf/temu-barcodes'
 const outDir = 'src/assets/imgs/temu-barcodes'
 
-fs.mkdirSync(outDir, { recursive: true });
-
-(async () => {
+fs.mkdirSync(outDir, { recursive: true })
+;(async () => {
   for (const file of fs.readdirSync(inDir)) {
-    if (!file.toLowerCase().endsWith('.pdf'))
-      continue
+    if (!file.toLowerCase().endsWith('.pdf')) continue
 
     const pngPages = await pdfToPng(path.join(inDir, file), {
       outputFileMaskFunc: () => `${path.parse(file).name}.png`, // 同名输出

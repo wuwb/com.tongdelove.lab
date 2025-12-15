@@ -1,16 +1,21 @@
 import { defineConfig } from 'wxt'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite'
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
+  imports: {
+    eslintrc: {
+      enabled: 9,
+    },
+  },
   vite: () => {
     return {
       css: {
         devSourcemap: false,
       },
       build: {
-        sourcemap: false, 
+        sourcemap: false,
       },
       plugins: [
         tanstackRouter({
@@ -30,15 +35,12 @@ export default defineConfig({
   // imports: true,
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {
-      manifest.content_scripts ??= [];
+      manifest.content_scripts ??= []
       manifest.content_scripts.push({
         // Build extension once to see where your CSS get's written to
         css: ['content-scripts/temu-admin.css'],
-        matches: [
-          '*://agentseller.temu.com/*',
-          '*://seller.kuajingmaihuo.com/*',
-        ],
-      });
+        matches: ['*://agentseller.temu.com/*', '*://seller.kuajingmaihuo.com/*'],
+      })
 
       //   if (wxt.config.command === "serve") {
       //     // During development, content script is not listed in manifest, causing
@@ -63,12 +65,10 @@ export default defineConfig({
     console.log(`\nIs development mode: ${isDev}\n`)
 
     return {
-
       // These permissions are required for "webext-dynamic-content-scripts" and
       // "webext-permission-toggle" to work.
       // Required for webext-permission-toggle
-      action: {
-      },
+      action: {},
       // page_action: {
       // },
       // browser_action: {
@@ -79,10 +79,7 @@ export default defineConfig({
       content_scripts: [],
       default_locale: 'en',
       description: '__MSG_extension_description__', // or will use package.json's description.
-      host_permissions: [
-        '*://*/*',
-        '<all_urls>',
-      ],
+      host_permissions: ['*://*/*', '<all_urls>'],
       icons: {
         16: '/icons/16.png',
         32: '/icons/32.png',
@@ -93,10 +90,8 @@ export default defineConfig({
       name: '__MSG_extension_name__', // or will use package.json's name.
       // @ts-expect-error: Valid MV3 key for chrome
       // Optional permission '*://*/*' is redundant with the required permissions;this permission will be omitted.
-      optional_host_permissions: [
-      ],
-      optional_permissions: [
-      ],
+      optional_host_permissions: [],
+      optional_permissions: [],
       permissions: [
         // "webRequestBlocking", // manifest v2 only
 
@@ -159,20 +154,12 @@ export default defineConfig({
       web_accessible_resources: [
         {
           matches: ['*://*/*'],
-          resources: [
-            'injected.js',
-            '/js/pdf.worker.min.js',
-            'temu-admin.css'
-          ],
+          resources: ['injected.js', '/js/pdf.worker.min.js', 'temu-admin.css'],
         },
       ],
     }
   },
-  modules: [
-    '@wxt-dev/module-react',
-    '@wxt-dev/auto-icons',
-    '@wxt-dev/i18n/module',
-  ],
+  modules: ['@wxt-dev/module-react', '@wxt-dev/auto-icons', '@wxt-dev/i18n/module'],
   modulesDir: 'modules',
   outDir: '.output',
   publicDir: 'public',
