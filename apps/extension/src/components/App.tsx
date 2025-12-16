@@ -113,13 +113,14 @@ export const AppRoot = ({ open, onOpenChange, shadowRoot }: AppRootProps) => {
         open ? 'animate-in fade-in-0' : ''
       )}
     >
+      {/* bg masker */}
       <div className="absolute inset-0" onClick={() => onOpenChange(false)} />
       <div
         id="temu-admin-content"
         className={cn(
           'relative bg-white shadow-lg w-full border sm:rounded-lg flex flex-col overflow-hidden',
-          'bg-background text-foreground',
-          "bg-background text-foreground has-[div[data-variant='inset']]:bg-sidebar"
+          "bg-background text-foreground has-[div[data-variant='inset']]:bg-sidebar",
+          'bg-white'
         )}
         style={{
           margin: '20px',

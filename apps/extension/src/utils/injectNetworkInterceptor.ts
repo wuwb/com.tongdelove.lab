@@ -1,4 +1,5 @@
 import { handleResponseData } from './responseHandlers'
+import { requestModifiers } from './requestHandlers'
 
 export function injectNetworkInterceptor() {
   console.log('injectNetworkInterceptor')
@@ -68,6 +69,32 @@ export function injectNetworkInterceptor() {
   //   }
   // }
 
+  function processRequestBody(url: string, body: any) {
+    const modifier = requestModifiers.find((m) => m.match(url))
+    if (!modifier || !body) return body
+
+    try {
+      let data
+      let isString = false
+      if (typeof body === 'string') {
+        try {
+          data = JSON.parse(body)
+          isString = true
+        } catch {
+          return body
+        }
+      } else {
+        data = body
+      }
+
+      const modifiedData = modifier.action(data)
+      return isString ? JSON.stringify(modifiedData) : modifiedData
+    } catch (error) {
+      console.error('Process request body error', error)
+      return body
+    }
+  }
+
   function setRequestProxy() {
     console.log('setRequestProxy')
 
@@ -87,6 +114,38 @@ export function injectNetworkInterceptor() {
      * 重写fetch API
      */
     win.fetch = async function (...args: any) {
+      try {
+        let urlToCheck = ''
+        if (typeof args[0] === 'string') {
+          urlToCheck = args[0]
+        } else if (args[0] && typeof args[0] === 'object' && 'url' in args[0]) {
+          urlToCheck = args[0].url
+        }
+
+        if (urlToCheck && requestModifiers.some((m) => m.match(urlToCheck))) {
+          if (typeof args[0] === 'string') {
+            // usage: fetch(url, config)
+            if (args[1] && args[1].body) {
+              args[1].body = processRequestBody(urlToCheck, args[1].body)
+            }
+          } else if (args[0] && typeof args[0].clone === 'function') {
+            // usage: fetch(Request)
+            // Need to clone to read body, but modifying Request body is complex as it is immutable.
+            // We construct a new Request.
+            try {
+              const clone = args[0].clone()
+              const text = await clone.text()
+              const newBody = processRequestBody(urlToCheck, text)
+              args[0] = new Request(args[0], { body: newBody })
+            } catch (e) {
+              console.error('rewrite request body fail', e)
+            }
+          }
+        }
+      } catch (e) {
+        console.error('interceptor pre-check fail', e)
+      }
+
       const [resource, config] = args
       const originalRequest = typeof resource === 'string' ? new Request(resource, config) : resource
       const url = originalRequest.url
@@ -202,6 +261,9 @@ export function injectNetworkInterceptor() {
 
       // 重写send方法
       xhr.send = function (body: any) {
+        if (requestData.url && requestModifiers.some((m) => m.match(requestData.url))) {
+          body = processRequestBody(requestData.url, body)
+        }
         requestData.body = body
 
         // 监听响应
