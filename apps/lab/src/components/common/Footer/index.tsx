@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui/Link'
+import { Link } from '@/components/custom-ui/Link'
 import { useTranslation } from '@/i18n'
 
 export function Copyright(props: any) {

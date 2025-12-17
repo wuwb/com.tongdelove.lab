@@ -3,9 +3,10 @@ import { useTranslation } from '@/i18n'
 import { trpc } from '@/utils/trpc'
 import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Button, Image } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
+import Image from 'next/image'
 import { useIsAdmin } from '@/hooks/user/useIsAdmin'
-import { notifications } from '@mantine/notifications'
+import { Toaster } from "@tongdelove/ui/components/sonner"
 
 export const StickerExplorePage = () => {
   const { t } = useTranslation()

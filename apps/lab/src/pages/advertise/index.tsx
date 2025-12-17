@@ -1,4 +1,3 @@
-import { Divider, Box, Text, Stack, Title } from '@mantine/core'
 import { PackageTier } from '@/components/AdvertisePage/PackageTier'
 
 // 广告价位
@@ -39,40 +38,40 @@ const options3 = [
 
 const Adverise = () => {
   return (
-    <Box py={6} px={80}>
-      <Stack>
-        <Stack p={5}>
-          <Stack>
-            <Title size="lg">
-              The Right Plan for <Text color="purple.400">Your Business</Text>
-            </Title>
-          </Stack>
-          <Stack>
-            <Text>
+    <div py={6} px={80}>
+      <div>
+        <div p={5}>
+          <div>
+            <div size="lg">
+              The Right Plan for <div color="purple.400">Your Business</div>
+            </div>
+          </div>
+          <div>
+            <div>
               本站需要大量资金进行维护与迭代，为了给大家带来更优质的服务与内容，所以决定增加少许广告展示。在此感谢大家的厚爱与支持！
-            </Text>
-            <Text>
+            </div>
+            <div>
               展示位置： 1.首页banner位置 2.首页精品软件top3，3个广告位置
               广告类型： 1.必须是合法的优质广告
               2.必须是经过专业检测后无毒无后门的Mac应用 联系方式： 欢迎合作！
-            </Text>
-          </Stack>
-        </Stack>
-        <Divider />
+            </div>
+          </div>
+        </div>
+        <div />
         <div className="flex-center">
-          <PackageTier title="1 个月广告" typePlan="599" options={options1} />
-          <Divider />
+          <PackageTier div="1 个月广告" typePlan="599" options={options1} />
+          <div />
           <PackageTier
-            title="6 个月广告"
+            div="6 个月广告"
             checked={true}
             typePlan="2699"
             options={options2}
           />
-          <Divider />
-          <PackageTier title="1 年广告" typePlan="3649" options={options3} />
+          <div />
+          <PackageTier div="1 年广告" typePlan="3649" options={options3} />
         </div>
-      </Stack>
-    </Box>
+      </div>
+    </div>
   )
 }
 

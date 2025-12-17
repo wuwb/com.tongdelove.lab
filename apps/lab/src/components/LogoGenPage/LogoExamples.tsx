@@ -1,6 +1,7 @@
 import { RenderSVG } from './RenderSVG'
 import { useTranslation } from '@/i18n'
-import { Skeleton, Tooltip } from '@mantine/core'
+import { Skeleton } from '@tongdelove/ui/components/skeleton'
+import { Tooltip } from '@tongdelove/ui/components/tooltip'
 import { useLogoGen } from './useLogoGen'
 
 export const examples = [

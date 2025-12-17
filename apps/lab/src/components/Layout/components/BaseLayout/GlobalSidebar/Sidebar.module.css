@@ -1,8 +1,0 @@
-.aside {
-  flex: 0 0 rem(60px);
-  background-color: var(--mantine-color-body);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border-right: rem(1px) solid light-dark('#eee', var(--mantine-color-dark-7)); */
-}

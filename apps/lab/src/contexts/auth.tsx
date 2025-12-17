@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
-import Router, { useRouter } from 'next/navigation'
 import axios from '@/utils/axios'
 import { setCookie, deleteCookie } from 'cookies-next'
 

@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { motion } from 'framer-motion'
 
 export function BackgroundGradient({ className }: { className?: string }) {
   return (

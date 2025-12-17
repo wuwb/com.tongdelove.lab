@@ -1,8 +1,8 @@
 import React from 'react'
-import { Loader, Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import toast, { Toaster } from 'react-hot-toast'
 import { axios } from '@/lib/axios'
-import { cn } from '@tongdelove/ui'
+import { cn } from '@tongdelove/ui/lib/utils'
 import { Res } from '@/types/request'
 import { UserSubscriptionPlan } from '@/types/subscribe'
 import { UserInfo } from '@/types/user'
@@ -84,14 +84,14 @@ export function BillingForm({
             {subscriptionPlan.isPro ? (
               <Button onClick={updatePayment}>
                 {isLoading && (
-                  <Loader color="blue" className="mr-2 h-4 w-4 animate-spin" />
+                  <div color="blue" className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 Update Payment
               </Button>
             ) : (
               <Button onClick={upgrade}>
                 {isLoading && (
-                  <Loader color="blue" className="mr-2 h-4 w-4 animate-spin" />
+                  <div color="blue" className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 Upgrade to PRO
               </Button>

@@ -1,5 +1,5 @@
 import { NotFoundPage } from '@/components/system/pages'
-import { Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import Image from 'next/image'
 import React from 'react'
 import { useTranslation } from '@/i18n'

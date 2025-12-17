@@ -7,7 +7,6 @@ import {
   NextScript,
 } from 'next/document'
 import nextI18NextConfig from '../../next-i18next.config'
-import { ColorSchemeScript } from '@mantine/core'
 
 type MyDocumentProps = DocumentProps & {
   emotionStyleTags?: string[]
@@ -62,7 +61,6 @@ export default function MyDocument(props: MyDocumentProps) {
           hrefLang="x-default"
           href={`https://${currentLocale}.vercel.app`}
         />
-        <ColorSchemeScript defaultColorScheme="auto" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

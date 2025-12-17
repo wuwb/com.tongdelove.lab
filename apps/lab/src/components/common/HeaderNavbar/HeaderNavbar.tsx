@@ -1,5 +1,5 @@
 import { TbMoon, TbPercentage, TbHistory } from 'react-icons/tb'
-import { Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

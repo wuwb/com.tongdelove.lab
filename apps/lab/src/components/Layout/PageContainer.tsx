@@ -1,4 +1,4 @@
-import { cn } from '@tongdelove/ui'
+import { cn } from '@tongdelove/ui/lib/utils'
 import clsx from 'clsx'
 import React from 'react'
 

@@ -1,6 +1,6 @@
-import { Card } from '@tongdelove/ui/card'
-import { Input } from '@tongdelove/ui/input'
-import { Label } from '@tongdelove/ui/label'
+import { Card } from '@tongdelove/ui/components/card'
+import { Input } from '@tongdelove/ui/components/input'
+import { Label } from '@tongdelove/ui/components/label'
 import {
   Select,
   SelectContent,
@@ -9,7 +9,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@tongdelove/ui/select'
+} from '@tongdelove/ui/components/select'
 
 function PaperPricTransformTool() {
   return (

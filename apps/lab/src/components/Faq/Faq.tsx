@@ -1,8 +1,11 @@
-import { Container, Title, Accordion } from '@mantine/core'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@tongdelove/ui/components/accordion'
 import { useTranslation } from '@/i18n'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkAutolinkHeadings from 'remark-autolink-headings'
 
 interface FaqProps {
   data: {
@@ -16,35 +19,32 @@ export function Faq({ data }: FaqProps) {
   const { t } = useTranslation()
 
   return (
-    <Container
-      size="sm"
-      className="min-h-[650px] w-full max-w-[800px] pb-2 pt-2"
-    >
-      <Title ta="center" className="mb-2">
+    <div className="min-h-[650px] w-full max-w-[800px] mx-auto pb-10 pt-2 text-sm">
+      <div className="mb-6 text-center text-2xl font-bold">
         {t('常见问题')}
-      </Title>
-      <Accordion variant="separated">
+      </div>
+      <Accordion type="single" collapsible className="w-full space-y-2">
         {data.map((item, index) => (
-          <Accordion.Item
+          <AccordionItem
             key={index}
-            className="mb-2 rounded-md border border-solid px-2.5"
-            value={item.question}
+            value={`item-${index}`}
+            className="border rounded-lg px-2 bg-background"
           >
-            <Accordion.Control className="px-4">
+            <AccordionTrigger className="px-2 hover:no-underline hover:text-primary text-left">
               {item.question}
-            </Accordion.Control>
-            <Accordion.Panel>
+            </AccordionTrigger>
+            <AccordionContent className="px-2 pb-4 text-muted-foreground">
               {item?.markdown ? (
-                <div className="prose dark:prose-invert">
+                <div className="prose dark:prose-invert prose-sm max-w-none">
                   <ReactMarkdown>{item.answer}</ReactMarkdown>
                 </div>
               ) : (
-                <div>{item.answer}</div>
+                <div className="whitespace-pre-wrap">{item.answer}</div>
               )}
-            </Accordion.Panel>
-          </Accordion.Item>
+            </AccordionContent>
+          </AccordionItem>
         ))}
       </Accordion>
-    </Container>
+    </div>
   )
 }

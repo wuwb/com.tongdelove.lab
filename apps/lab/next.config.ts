@@ -210,6 +210,7 @@ const config = {
     // '@tongdelove/auth',
     // '@tongdelove/db',
     '@tongdelove',
+    '@tongdelove/ui',
   ],
 
   // Standalone build
@@ -219,9 +220,9 @@ const config = {
     : {}),
 
   serverExternalPackages: [
-    'mongoose', 
+    'mongoose',
     'pg',
-    'import-in-the-middle', 
+    'import-in-the-middle',
     'require-in-the-middle',
   ],
   // Caution if using pnpm you might also need to consider that things are hoisted
@@ -248,7 +249,9 @@ const config = {
 
     // https://vercel.com/docs/observability/otel-overview
     // instrumentationHook: true, // 默认开启
-    optimizePackageImports: ["@chakra-ui/react"],
+    optimizePackageImports: [
+
+    ],
     // outputFileTracingRoot: path.join(__dirname, '../../'),
     // @link https://nextjs.org/docs/advanced-features/output-file-tracing#caveats
     // ...(process.env.NEXT_BUILD_ENV_OUTPUT === 'standalone'
@@ -288,7 +291,6 @@ const config = {
     externalDir: true,
     // https://github.com/mantinedev/mantine/issues/5306
     // optimizePackageImports: [
-    //   '@chakra-ui/react',
     //   '@mantine/hooks',
     // ],
     // Google fonts
@@ -308,7 +310,7 @@ const config = {
     //   ignoreBuildErrors: true,
   },
 
-  async headers () {
+  async headers() {
     return [
       {
         source: '/:all*(svg|jpg|png|wasm|gif)',
@@ -410,7 +412,7 @@ const config = {
   // },
 
   // @link https://nextjs.org/docs/api-reference/next.config.js/rewrites
-  async rewrites () {
+  async rewrites() {
     return [
       {
         source: '/mp/lib.min.js',

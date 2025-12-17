@@ -1,14 +1,10 @@
 import React from 'react'
-import {
-  TableTbody,
-  TableThead,
-  TableTd,
-  TableTr,
-  Chip,
-  Text,
-  Box,
-  Table,
-} from '@mantine/core'
+import { Table,
+  TableBody,
+  TableHead,
+  TableCell,
+  TableRow,
+} from '@tongdelove/ui/components/table'
 import { BaseCard } from '@/components/module/baseCard/BaseCard'
 
 const products = [
@@ -60,80 +56,80 @@ export const ProductPerfomance = () => {
           whiteSpace: 'nowrap',
         }}
       >
-        <TableThead>
-          <TableTr>
-            <TableTd>
-              <Text color="textSecondary" variant="h6">
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <div color="divSecondary" variant="h6">
                 Id
-              </Text>
-            </TableTd>
-            <TableTd>
-              <Text color="textSecondary" variant="h6">
+              </div>
+            </TableCell>
+            <TableCell>
+              <div color="divSecondary" variant="h6">
                 Assigned
-              </Text>
-            </TableTd>
-            <TableTd>
-              <Text color="textSecondary" variant="h6">
+              </div>
+            </TableCell>
+            <TableCell>
+              <div color="divSecondary" variant="h6">
                 Name
-              </Text>
-            </TableTd>
-            <TableTd>
-              <Text color="textSecondary" variant="h6">
+              </div>
+            </TableCell>
+            <TableCell>
+              <div color="divSecondary" variant="h6">
                 Priority
-              </Text>
-            </TableTd>
-            <TableTd align="right">
-              <Text color="textSecondary" variant="h6">
+              </div>
+            </TableCell>
+            <TableCell align="right">
+              <div color="divSecondary" variant="h6">
                 Budget
-              </Text>
-            </TableTd>
-          </TableTr>
-        </TableThead>
-        <TableTbody>
+              </div>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {products.map((product) => (
-            <TableTr key={product.name}>
-              <TableTd>
-                <Text
+            <TableRow key={product.name}>
+              <TableCell>
+                <div
                   sx={{
                     fontSize: '15px',
                     fontWeight: '500',
                   }}
                 >
                   {product.id}
-                </Text>
-              </TableTd>
-              <TableTd>
-                <Box
+                </div>
+              </TableCell>
+              <TableCell>
+                <div
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
                   }}
                 >
-                  <Box>
-                    <Text variant="h6" className="font-bold">
+                  <div>
+                    <div variant="h6" className="font-bold">
                       {product.name}
-                    </Text>
-                    <Text
+                    </div>
+                    <div
                       className=""
                       style={{
                         fontSize: '13px',
                       }}
                     >
                       {product.post}
-                    </Text>
-                  </Box>
-                </Box>
-              </TableTd>
-              <TableTd>
-                <Text variant="h6">{product.pname}</Text>
-              </TableTd>
-              <TableTd>{product.priority}</TableTd>
-              <TableTd align="right">
-                <Text variant="h6">${product.budget}k</Text>
-              </TableTd>
-            </TableTr>
+                    </div>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div variant="h6">{product.pname}</div>
+              </TableCell>
+              <TableCell>{product.priority}</TableCell>
+              <TableCell align="right">
+                <div variant="h6">${product.budget}k</div>
+              </TableCell>
+            </TableRow>
           ))}
-        </TableTbody>
+        </TableBody>
       </Table>
     </BaseCard>
   )

@@ -1,5 +1,5 @@
 import { useAuth } from '@/contexts/auth'
-import { Separator } from '@tongdelove/ui/separator'
+import { Separator } from '@tongdelove/ui/components/separator'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useTranslation } from '@/i18n'

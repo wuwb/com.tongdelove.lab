@@ -6,8 +6,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@tongdelove/ui/breadcrumb'
-import { Input } from '@tongdelove/ui/input'
+} from '@tongdelove/ui/components/breadcrumbs'
+import { Input } from '@tongdelove/ui/components/input'
 
 const AppleGuidePage = () => {
   return (

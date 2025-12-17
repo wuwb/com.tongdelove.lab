@@ -1,6 +1,5 @@
-import { cn } from '@tongdelove/ui'
+import { cn } from '@tongdelove/ui/lib/utils'
 import { useMemo, useState } from 'react'
-import { assets, holder } from '../assertMap'
 
 export const Indexes = ({
   data,

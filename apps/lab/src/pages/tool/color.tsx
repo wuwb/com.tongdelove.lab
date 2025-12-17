@@ -1,6 +1,6 @@
 import { Container } from '@/components/common'
 import { useState } from 'react'
-import { notifications } from '@mantine/notifications'
+import { Toaster } from "@tongdelove/ui/components/sonner"
 import { useTranslation } from '@/i18n'
 
 type IColor = {

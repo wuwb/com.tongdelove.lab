@@ -6,7 +6,8 @@ import { OctreeNode } from './OctreeNode'
 import { VisualOctree } from './VisualOctree'
 import { ColorTiles } from './ColorTiles'
 import { useTranslation } from '@/i18n'
-import { Button, NativeSelect } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
+import { Select } from '@tongdelove/ui/components/select'
 
 let tc: OctreeNode
 let popu: Popularity

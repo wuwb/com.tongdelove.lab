@@ -9,9 +9,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@tongdelove/ui/breadcrumb'
-import { Input } from '@tongdelove/ui/input'
-import { Separator } from '@tongdelove/ui/separator'
+} from '@tongdelove/ui/components/breadcrumbs'
+import { Input } from '@tongdelove/ui/components/input'
+import { Separator } from '@tongdelove/ui/components/separator'
 import { useTranslation } from '@/i18n'
 
 const App = () => {

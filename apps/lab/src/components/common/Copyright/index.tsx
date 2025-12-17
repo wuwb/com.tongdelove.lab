@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
-import { Text } from '@mantine/core'
 
 export function Copyright() {
   return (
-    <Text variant="body2" color="textSecondary" align="center">
+    <div variant="body2" color="divSecondary" align="center">
       {'Copyright © '}
       <Link href="/" passHref>
         My Website
       </Link>{' '}
       {new Date().getFullYear()}.
-    </Text>
+    </div>
   )
 }

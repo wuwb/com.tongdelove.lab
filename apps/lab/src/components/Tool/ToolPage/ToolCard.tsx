@@ -1,38 +1,37 @@
 import { IconType } from 'react-icons'
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@tongdelove/ui/components/card'
 import Link from 'next/link'
 
 interface ToolCardProps {
   title: string
   Icon?: IconType
-  index: number
+  index?: number // Make index optional as it wasn't really used
   desc: string
   href: string
 }
 
-export const ToolCard = ({ title, href, index, desc, Icon }: ToolCardProps) => {
+export const ToolCard = ({ title, href, desc, Icon }: ToolCardProps) => {
   return (
-    <Link href={href}>
-      <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
-        withBorder
-        className="hover:shadow-lg"
-      >
-        <Card.Section className="border-b">
-          <div className="flex-center h-[120px] w-full px-4 pb-3 pt-2 text-center font-bold text-black">
-            {Icon && <Icon size={30} />}
+    <Link href={href} className="block h-full">
+      <Card className="h-full transition-shadow hover:shadow-lg flex flex-col">
+        <CardHeader className="flex-none p-6 pb-2">
+          <div className="flex items-center justify-center p-4 bg-muted/20 rounded-lg mb-4 h-24">
+            {Icon && <Icon size={40} className="text-primary" />}
           </div>
-        </Card.Section>
-
-        <Group justify="space-between" mt="md" mb="xs">
-          <Text fw={500}>{title}</Text>
-        </Group>
-
-        <Text size="sm" c="dimmed" className="min-h-[42px]">
-          {desc}
-        </Text>
+          <CardTitle className="scroll-m-20 text-xl font-semibold tracking-tight text-center">
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex-1 p-6 pt-2">
+          <p className="text-sm text-muted-foreground line-clamp-3 text-center">
+            {desc}
+          </p>
+        </CardContent>
       </Card>
     </Link>
   )

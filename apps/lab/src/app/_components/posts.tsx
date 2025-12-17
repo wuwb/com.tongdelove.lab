@@ -1,7 +1,7 @@
 import { use } from 'react'
 import type { RouterOutputs } from '@tongdelove/api'
-import { cn } from '@tongdelove/ui'
-import { Button } from '@tongdelove/ui/button'
+import { cn } from '@tongdelove/ui/lib/utils'
+import { Button } from '@tongdelove/ui/components/button'
 import {
   Form,
   FormControl,
@@ -9,8 +9,8 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from '@tongdelove/ui/form'
-import { Input } from '@tongdelove/ui/input'
+} from '@tongdelove/ui/components/form'
+import { Input } from '@tongdelove/ui/components/input'
 import { toast } from '@tongdelove/ui/toast'
 import { CreatePostSchema } from '@tongdelove/validators'
 

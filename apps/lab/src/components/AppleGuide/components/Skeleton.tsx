@@ -1,4 +1,4 @@
-import { cn } from '@tongdelove/ui'
+import { cn } from '@tongdelove/ui/lib/utils'
 
 export const Skeleton = ({
   className,

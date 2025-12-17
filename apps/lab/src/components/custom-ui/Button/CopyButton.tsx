@@ -1,5 +1,5 @@
 import { useTranslation } from '@/i18n'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@tongdelove/ui/components/button'
 import { FC } from 'react'
 
 interface CopyButtonProps {

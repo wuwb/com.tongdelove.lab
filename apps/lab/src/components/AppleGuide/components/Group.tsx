@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-// import { Progress } from '../../../components/Progress'
 
 type Item = {
   daysSince?: string

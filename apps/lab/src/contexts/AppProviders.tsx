@@ -1,5 +1,5 @@
 import { AppContextProvider } from '@/contexts/AppContext'
-import { TooltipProvider } from '@tongdelove/ui/tooltip'
+import { TooltipProvider } from '@tongdelove/ui/components/tooltip'
 import { Analytics } from '@vercel/analytics/react'
 import { type AppType } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
@@ -8,14 +8,12 @@ import { Layout } from '@/components/Layout'
 import React, { useEffect } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { ColorSchemeScript, MantineProvider } from '@mantine/core'
-import { theme } from '../theme'
 import '@/styles/globals.css'
-import { Notifications } from '@mantine/notifications'
+import { Toaster } from "@tongdelove/ui/components/sonner"
 import { SSRHidden } from '@/components/Atom/SSRHidden'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { Provider } from "@/components/ui/provider"
+import { Providers } from "@/components/providers"
 
 type AppProvidersProps = {
   children: React.ReactNode
@@ -38,13 +36,7 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
         height={3}
         showOnShallow={false}
       />
-      <Provider>
-        <MantineProvider theme={theme} defaultColorScheme="auto">
-          <Notifications />
-          <ColorSchemeScript
-            nonce="8IBTHwOdqNKAWeKl7plt8g=="
-            defaultColorScheme="auto"
-          />
+      <Providers>
           <TooltipProvider>
             <Elements stripe={stripePromise} options={options}>
               <AppContextProvider>{children}</AppContextProvider>
@@ -55,8 +47,7 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
           {/* <ReactQueryClientProvider> */}
           {/* </ReactQueryClientProvider> */}
           {/* </PlausibleProvider> */}
-        </MantineProvider>
-      </Provider>
+      </Providers>
       <SSRHidden>
         <Analytics />
         <SpeedInsights sampleRate={1} />

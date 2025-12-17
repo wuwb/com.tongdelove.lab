@@ -1,13 +1,13 @@
-import { Button, Group, useMantineColorScheme } from '@chakra-ui/react'
+import { Button } from '@tongdelove/ui/components/button'
+import { ButtonGroup } from '@tongdelove/ui/components/button-group'
 
 export function ColorSchemeToggle() {
-  const { setColorScheme } = useMantineColorScheme()
 
   return (
-    <Group justify="center" mt="xl">
-      <Button onClick={() => setColorScheme('light')}>Light</Button>
-      <Button onClick={() => setColorScheme('dark')}>Dark</Button>
-      <Button onClick={() => setColorScheme('auto')}>Auto</Button>
-    </Group>
+    <ButtonGroup justify="center" mt="xl">
+      <Button onClick={() => { }}>Light</Button>
+      <Button onClick={() => { }}>Dark</Button>
+      <Button onClick={() => { }}>Auto</Button>
+    </ButtonGroup>
   )
 }

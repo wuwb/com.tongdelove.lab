@@ -1,34 +1,81 @@
-import { FC, useContext, useEffect, useRef, MouseEvent, useState } from 'react'
+'use client'
+
+import { FC, useEffect, useState } from 'react'
 import {
-  Box,
-  Stack,
-  Button,
-  Popover,
-  Text,
-  Divider,
-  MenuItem,
-  Menu,
-  Tooltip,
-  ActionIcon,
-} from '@mantine/core'
-
-import { TbChecks, TbCubeUnfolded } from 'react-icons/tb'
+  TbChecks,
+  TbCubeUnfolded,
+  TbSettings, // 替换 ActionIcon 里的 Customize 文字，通常用图标更合适，或者保留文字
+} from 'react-icons/tb'
 import { useTranslation } from '@/i18n'
-import { Link } from '@tongdelove/ui/Link'
+import { Link } from '@tongdelove/ui/Link' // 假设这是你的 Link 组件
 
-export const ThemeSettings = () => {
+import { Button } from '@tongdelove/ui/components/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@tongdelove/ui/components/popover'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@tongdelove/ui/components/tooltip'
+import { Separator } from '@tongdelove/ui/components/separator'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@tongdelove/ui/components/dropdown-menu'
+import { cn } from '@/lib/utils'
+
+const ThemePreviewBox = ({
+  isActive,
+  onClick,
+  primaryColor,
+  secondaryColor,
+  tooltip,
+}: {
+  isActive: boolean
+  onClick: () => void
+  primaryColor: string
+  secondaryColor: string
+  tooltip: string
+}) => {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className={cn(
+              'relative cursor-pointer overflow-hidden rounded-md border-2 transition-all hover:opacity-90 w-12 h-12 shadow-sm',
+              isActive ? 'border-primary ring-2 ring-primary ring-offset-2' : 'border-transparent'
+            )}
+            onClick={onClick}
+          >
+            {isActive && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 text-white">
+                <TbChecks className="h-5 w-5 drop-shadow-md" />
+              </div>
+            )}
+            <div className="flex h-full w-full">
+              <div className={cn('h-full w-1/2', primaryColor)} />
+              <div className={cn('h-full w-1/2', secondaryColor)} />
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="left">{tooltip}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+
+export const ThemeSettings: FC = () => {
   const { t } = useTranslation()
 
-  const ref = useRef<any>(null)
-  const [isOpen, setOpen] = useState<boolean>(false)
-
-  const handleOpen = (): void => {
-    setOpen(true)
-  }
-
-  const handleClose = (): void => {
-    setOpen(false)
-  }
+  // 状态管理
+  const [theme, setTheme] = useState('PureLightTheme')
 
   useEffect(() => {
     const curThemeName =
@@ -36,305 +83,150 @@ export const ThemeSettings = () => {
     setTheme(curThemeName)
   }, [])
 
-  const [theme, setTheme] = useState('PureLightTheme')
-
-  const changeTheme = (theme): void => {
-    setTheme(theme)
-  }
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
-  const openMenu = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const closeMenu = () => {
-    setAnchorEl(null)
+  const changeTheme = (newTheme: string): void => {
+    setTheme(newTheme)
+    window.localStorage.setItem('appTheme', newTheme)
+    // 这里通常需要调用一个 context 方法来实际应用主题
+    // window.location.reload() // 或者刷新页面如果需要
   }
 
   return (
-    <>
-      <Box>
-        <Tooltip arrow title={t('Theme Settings')}>
-          <ActionIcon
-            ref={ref}
-            onClick={handleOpen}
-            color="primary"
-            aria-label="add"
-          >
-            {t('Customize')}
-          </ActionIcon>
-        </Tooltip>
-        <Popover
-          disableScrollLock
-          anchorEl={ref.current}
-          onClose={handleClose}
-          open={isOpen}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
+    <div>
+      <Popover>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-primary">
+                  {/* 如果你想要图标 */}
+                  <TbSettings className="h-5 w-5" />
+                  <span className="sr-only">{t('Customize')}</span>
+                </Button>
+              </PopoverTrigger>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{t('Theme Settings')}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <PopoverContent
+          align="end"
+          side="bottom"
+          className="w-80 p-4"
+          onOpenAutoFocus={(e) => e.preventDefault()} // 防止自动聚焦
         >
-          <Box p={2}>
-            <Text
-              sx={{
-                mb: 2,
-                textAlign: 'center',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-              }}
-              variant="body1"
-            >
+          {/* Layout Blueprints Section */}
+          <div className="mb-4 flex flex-col gap-2">
+            <h4 className="text-center text-sm font-bold uppercase tracking-wider text-muted-foreground">
               Layout Blueprints
-            </Text>
-            <Button
-              fullWidth
-              size="large"
-              variant="outlined"
-              endIcon={<TbCubeUnfolded />}
-              color="primary"
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={openMenu}
-            >
-              Choose layout
-            </Button>
-            <Menu
-              disableScrollLock
-              anchorEl={anchorEl}
-              open={open}
-              onClose={closeMenu}
-              anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
-              }}
-              transformOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
-              }}
-            >
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/dashboards/reports"
-              >
-                Extended Sidebar
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/accent-header/dashboards/reports"
-              >
-                Accent Header
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/accent-sidebar/dashboards/reports"
-              >
-                Accent Sidebar
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/boxed-sidebar/dashboards/reports"
-              >
-                Boxed Sidebar
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/collapsed-sidebar/dashboards/reports"
-              >
-                Collapsed Sidebar
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/bottom-navigation/dashboards/reports"
-              >
-                Bottom Navigation
-              </MenuItem>
-              <MenuItem
-                sx={{ fontWeight: 'bold' }}
-                component={Link}
-                href="/blueprints/top-navigation/dashboards/reports"
-              >
-                Top Navigation
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Divider />
-          <Stack
-            direction="row"
-            divider={<Divider orientation="vertical" flexItem />}
-          >
-            <Box>
-              <Text
-                sx={{
-                  mt: 1,
-                  mb: 3,
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                }}
-                variant="body1"
-              >
-                Light color schemes
-              </Text>
-              <Stack alignItems="center" spacing={2}>
-                {/* TODO: Add Theme */}
-                <Tooltip placement="left" title="Test Theme" arrow>
-                  <Box
-                    className={theme === 'TestTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('TestTheme')
-                    }}
-                  >
-                    {theme === 'TestTheme' && (
-                      <div>
-                        <TbChecks />
-                      </div>
-                    )}
-                    <Box className="colorSchemeWrapper pureLight">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-                {/* // Add Theme */}
-                <Tooltip placement="left" title="Pure Light" arrow>
-                  <Box
-                    className={theme === 'PureLightTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('PureLightTheme')
-                    }}
-                  >
-                    {theme === 'PureLightTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper pureLight">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-                <Tooltip placement="left" title="Grey Goose" arrow>
-                  <Box
-                    className={theme === 'GreyGooseTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('GreyGooseTheme')
-                    }}
-                  >
-                    {theme === 'GreyGooseTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper greyGoose">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-                <Tooltip placement="left" title="Purple Flow" arrow>
-                  <Box
-                    className={theme === 'PurpleFlowTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('PurpleFlowTheme')
-                    }}
-                  >
-                    {theme === 'PurpleFlowTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper purpleFlow">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-              </Stack>
-            </Box>
-            <Box>
-              <Text
-                sx={{
-                  mt: 1,
-                  mb: 3,
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                }}
-                variant="body1"
-              >
-                Dark color schemes
-              </Text>
-              <Stack alignItems="center" spacing={2}>
-                <Tooltip placement="left" title="Nebula Fighter" arrow>
-                  <Box
-                    className={theme === 'NebulaFighterTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('NebulaFighterTheme')
-                    }}
-                  >
-                    {theme === 'NebulaFighterTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper nebulaFighter">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-                <Tooltip placement="left" title="Green Fields" arrow>
-                  <Box
-                    className={theme === 'GreenFieldsTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('GreenFieldsTheme')
-                    }}
-                  >
-                    {theme === 'GreenFieldsTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper greenFields">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-                <Tooltip placement="left" title="Dark Spaces" arrow>
-                  <Box
-                    className={theme === 'DarkSpacesTheme' ? 'active' : ''}
-                    onClick={() => {
-                      changeTheme('DarkSpacesTheme')
-                    }}
-                  >
-                    {theme === 'DarkSpacesTheme' && (
-                      <Box>
-                        <TbChecks />
-                      </Box>
-                    )}
-                    <Box className="colorSchemeWrapper darkSpaces">
-                      <Box className="primary" />
-                      <Box className="secondary" />
-                    </Box>
-                  </Box>
-                </Tooltip>
-              </Stack>
-            </Box>
-          </Stack>
-        </Popover>
-      </Box>
-    </>
+            </h4>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="lg" className="w-full justify-between">
+                  Choose layout
+                  <TbCubeUnfolded className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64" align="center">
+                {[
+                  { label: 'Extended Sidebar', href: '/dashboards/reports' },
+                  { label: 'Accent Header', href: '/blueprints/accent-header/dashboards/reports' },
+                  { label: 'Accent Sidebar', href: '/blueprints/accent-sidebar/dashboards/reports' },
+                  { label: 'Boxed Sidebar', href: '/blueprints/boxed-sidebar/dashboards/reports' },
+                  { label: 'Collapsed Sidebar', href: '/blueprints/collapsed-sidebar/dashboards/reports' },
+                  { label: 'Bottom Navigation', href: '/blueprints/bottom-navigation/dashboards/reports' },
+                  { label: 'Top Navigation', href: '/blueprints/top-navigation/dashboards/reports' },
+                ].map((item) => (
+                  <DropdownMenuItem key={item.href} asChild>
+                    <Link href={item.href} className="w-full font-semibold cursor-pointer">
+                      {item.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          <Separator className="my-4" />
+
+          {/* Color Schemes Section */}
+          <div className="flex flex-row gap-4">
+            {/* Light Color Schemes */}
+            <div className="flex flex-1 flex-col items-center gap-2">
+              <h4 className="mb-2 text-center text-xs font-bold uppercase text-muted-foreground">
+                Light Schemes
+              </h4>
+              
+              <div className="flex flex-col gap-3">
+                <ThemePreviewBox
+                  tooltip="Test Theme"
+                  isActive={theme === 'TestTheme'}
+                  onClick={() => changeTheme('TestTheme')}
+                  primaryColor="bg-blue-500" // 用 Tailwind 颜色类替换原来的 CSS 类
+                  secondaryColor="bg-blue-200"
+                />
+                <ThemePreviewBox
+                  tooltip="Pure Light"
+                  isActive={theme === 'PureLightTheme'}
+                  onClick={() => changeTheme('PureLightTheme')}
+                  primaryColor="bg-slate-100"
+                  secondaryColor="bg-white"
+                />
+                <ThemePreviewBox
+                  tooltip="Grey Goose"
+                  isActive={theme === 'GreyGooseTheme'}
+                  onClick={() => changeTheme('GreyGooseTheme')}
+                  primaryColor="bg-gray-400"
+                  secondaryColor="bg-gray-200"
+                />
+                <ThemePreviewBox
+                  tooltip="Purple Flow"
+                  isActive={theme === 'PurpleFlowTheme'}
+                  onClick={() => changeTheme('PurpleFlowTheme')}
+                  primaryColor="bg-purple-600"
+                  secondaryColor="bg-purple-300"
+                />
+              </div>
+            </div>
+
+            {/* Vertical Separator */}
+            <Separator orientation="vertical" className="h-auto" />
+
+            {/* Dark Color Schemes */}
+            <div className="flex flex-1 flex-col items-center gap-2">
+              <h4 className="mb-2 text-center text-xs font-bold uppercase text-muted-foreground">
+                Dark Schemes
+              </h4>
+              
+              <div className="flex flex-col gap-3">
+                <ThemePreviewBox
+                  tooltip="Nebula Fighter"
+                  isActive={theme === 'NebulaFighterTheme'}
+                  onClick={() => changeTheme('NebulaFighterTheme')}
+                  primaryColor="bg-slate-900"
+                  secondaryColor="bg-slate-800"
+                />
+                <ThemePreviewBox
+                  tooltip="Green Fields"
+                  isActive={theme === 'GreenFieldsTheme'}
+                  onClick={() => changeTheme('GreenFieldsTheme')}
+                  primaryColor="bg-green-900"
+                  secondaryColor="bg-green-700"
+                />
+                <ThemePreviewBox
+                  tooltip="Dark Spaces"
+                  isActive={theme === 'DarkSpacesTheme'}
+                  onClick={() => changeTheme('DarkSpacesTheme')}
+                  primaryColor="bg-black"
+                  secondaryColor="bg-gray-800"
+                />
+              </div>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
   )
 }

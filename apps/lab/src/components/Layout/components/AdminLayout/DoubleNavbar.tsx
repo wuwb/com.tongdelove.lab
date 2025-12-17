@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { UnstyledButton, Tooltip, Title, rem } from '@mantine/core'
+import { Tooltip } from '@tongdelove/ui/components/tooltip'
+import { Button } from '@tongdelove/ui/components/button'
+
 import {
   TbHome2,
   TbGauge,
@@ -46,16 +48,15 @@ export function DoubleNavbar() {
       label={link.label}
       position="right"
       withArrow
-      transitionProps={{ duration: 0 }}
       key={link.label}
     >
-      <UnstyledButton
+      <Button
         onClick={() => setActive(link.label)}
         className={classes.mainLink}
         data-active={link.label === active || undefined}
       >
-        <link.icon style={{ width: rem(22), height: rem(22) }} stroke={1.5} />
-      </UnstyledButton>
+        <link.icon style={{ width: 22, height: 22 }} stroke={1.5} />
+      </Button>
     </Tooltip>
   ))
 
@@ -79,14 +80,14 @@ export function DoubleNavbar() {
       <div className={classes.wrapper}>
         <div className={classes.aside}>
           <div className={classes.logo}>
-            {/* <MantineLogo type="mark" size={30} /> */}
+            {/* <div type="mark" size={30} /> */}
           </div>
           {mainLinks}
         </div>
         <div className={classes.main}>
-          <Title order={4} className={classes.title}>
+          <div order={4} className={classes.div}>
             {active}
-          </Title>
+          </div>
           <NavbarNested />
 
           {/* {links} */}

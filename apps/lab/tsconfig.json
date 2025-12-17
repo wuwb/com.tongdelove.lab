@@ -37,7 +37,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@/public/*": ["public/*"],
-      "@tongdelove/design/*": ["../../packages/design/src/*"]
+      "@tongdelove/design/*": ["../../packages/design/src/*"],
+      "@tongdelove/ui/*": ["../../packages/ui/src/*"]
     },
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "strictNullChecks": true, // trpc required, need to be true
@@ -69,6 +70,7 @@
     "downlevelIteration": true
   },
   "include": [
+    "next.config.ts",
     ".eslintrc.*",
     "next-env.d.ts",
     "**/*.ts",

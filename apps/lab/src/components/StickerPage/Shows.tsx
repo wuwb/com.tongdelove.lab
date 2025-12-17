@@ -2,7 +2,7 @@ import { trpc } from '@/utils/trpc'
 import Image from 'next/image'
 import { useTranslation } from '@/i18n'
 import Link from 'next/link'
-import { Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 
 export const Shows = () => {
   const { t } = useTranslation()

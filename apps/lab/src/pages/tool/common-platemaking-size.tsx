@@ -1,4 +1,4 @@
-import { Card } from '@tongdelove/ui/card'
+import { Card } from '@tongdelove/ui/components/card'
 
 function CommonPlatemakingSizeTool() {
   return (

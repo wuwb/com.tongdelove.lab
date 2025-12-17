@@ -6,7 +6,7 @@ import {
   TableTh,
   TableThead,
   TableTbody,
-} from '@mantine/core'
+} from '@tongdelove/ui/components/table'
 
 import { data } from './data'
 

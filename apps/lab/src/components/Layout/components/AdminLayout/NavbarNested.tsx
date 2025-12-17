@@ -1,4 +1,3 @@
-import { Group, Code, ScrollArea, rem } from '@mantine/core'
 import {
   TbNotes,
   TbCalendarStats,
@@ -56,9 +55,9 @@ export function NavbarNested() {
 
   return (
     <nav className={classes.navbar}>
-      <ScrollArea className={classes.links}>
+      <div className={classes.links}>
         <div className={classes.linksInner}>{links}</div>
-      </ScrollArea>
+      </div>
 
       <div className={classes.footer}>{/* <UserButton /> */}</div>
     </nav>

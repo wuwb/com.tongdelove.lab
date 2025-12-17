@@ -1,10 +1,10 @@
 import { TbWorld, TbChevronDown } from 'react-icons/tb'
-import { Menu, MenuItem, Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-// https://headlessui.dev/react/menu#integrating-with-next-js
+// https://headlessui.dev/react/div#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
   return (
     <Link href={href} as={as} locale={locale} {...props}>
@@ -39,7 +39,7 @@ export const SwitchLang = () => {
 
   const handleAddLanguage = () => window.open('/', '_blank')
 
-  const handleMenuItemClick = () => {
+  const handledivClick = () => {
     // Cookies.set('NEXT_LOCALE', locale, { path: '/' })
   }
 
@@ -48,7 +48,7 @@ export const SwitchLang = () => {
       <Button
         id="basic-button"
         className="flex items-center space-x-1.5 hover:opacity-80 dark:text-white"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? 'basic-div' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
@@ -57,36 +57,36 @@ export const SwitchLang = () => {
         <TbChevronDown className="h-3 w-3" />
       </Button>
 
-      <Menu
-        id="basic-menu"
+      <div
+        id="basic-div"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
+        divListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
         {locales!.map((locale) => (
-          <MenuItem key={locale} onClick={handleClose}>
+          <div key={locale} onClick={handleClose}>
             <CustomLink
               key={locale}
               href={{ pathname, query }}
               as={asPath}
               locale={locale}
-              onClick={handleMenuItemClick}
+              onClick={handledivClick}
             >
               <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
                 {localeText(locale)}
               </div>
             </CustomLink>
-          </MenuItem>
+          </div>
         ))}
-        <MenuItem>
+        <div>
           <span className="font-bold" onClick={handleAddLanguage}>
             Add your language
           </span>
-        </MenuItem>
-      </Menu>
+        </div>
+      </div>
     </div>
   )
 }

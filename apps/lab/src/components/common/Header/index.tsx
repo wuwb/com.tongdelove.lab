@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui/'
+import { Link } from '@/components/custom-ui/Link'
 import { Logo } from '../Logo'
 import { Navbar } from './Navbar'
 import styles from './Header.module.scss'

@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import { Card, CardContent } from '@mantine/core'
+import { Card, CardContent } from '@tongdelove/ui/components/Card'
 import Image from 'next/image'
 import user1 from '@/public/images/backgrounds/u1.jpg'
-import { Button, Text } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 
 const blogs = [
   {
@@ -41,16 +41,16 @@ export const BlogCard: FC = () => {
                 paddingRight: '30px',
               }}
             >
-              <Text
+              <div
                 sx={{
                   fontSize: 'h4.fontSize',
                   fontWeight: '500',
                 }}
               >
                 {blog.title}
-              </Text>
-              <Text
-                color="textSecondary"
+              </div>
+              <div
+                color="divSecondary"
                 sx={{
                   fontSize: '14px',
                   fontWeight: '400',
@@ -58,7 +58,7 @@ export const BlogCard: FC = () => {
                 }}
               >
                 {blog.subtitle}
-              </Text>
+              </div>
               <Button
                 variant="contained"
                 sx={{

@@ -1,13 +1,5 @@
 import { useState } from 'react'
-import {
-  Group,
-  Box,
-  Collapse,
-  ThemeIcon,
-  Text,
-  UnstyledButton,
-  rem,
-} from '@mantine/core'
+import { Buttom } from '@tongdelove/ui/components/button'
 import { TbCalendarStats, TbChevronRight } from 'react-icons/tb'
 import classes from './NavbarLinksGroup.module.css'
 
@@ -27,30 +19,29 @@ export function LinksGroup({
   const hasLinks = Array.isArray(links)
   const [opened, setOpened] = useState(initiallyOpened || false)
   const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component="a"
+    <div
       className={classes.link}
       href={link.link}
       key={link.label}
       onClick={(event) => event.preventDefault()}
     >
       {link.label}
-    </Text>
+    </div>
   ))
 
   return (
     <>
-      <UnstyledButton
+      <Button
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
       >
-        <Group justify="space-between" gap={0}>
-          <Box style={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant="light" size={30}>
-              <Icon style={{ width: rem(18), height: rem(18) }} />
-            </ThemeIcon>
-            <Box ml="md">{label}</Box>
-          </Box>
+        <div justify="space-between" gap={0}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div variant="light" size={30}>
+              <Icon style={{ width: 18, height: 18 }} />
+            </div>
+            <div ml="md">{label}</div>
+          </div>
           {hasLinks && (
             <TbChevronRight
               className={classes.chevron}
@@ -62,9 +53,9 @@ export function LinksGroup({
               }}
             />
           )}
-        </Group>
-      </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+        </div>
+      </Button>
+      {hasLinks ? <div in={opened}>{items}</div> : null}
     </>
   )
 }
@@ -81,8 +72,8 @@ const mockdata = {
 
 export function NavbarLinksGroup() {
   return (
-    <Box mih={220} p="md">
+    <div mih={220} p="md">
       <LinksGroup {...mockdata} />
-    </Box>
+    </div>
   )
 }

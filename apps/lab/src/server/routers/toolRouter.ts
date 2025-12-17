@@ -6254,7 +6254,7 @@ export const toolRouter = router({
             kind: 'webfonts#webfont',
             menu: 'https://fonts.gstatic.com/s/cevicheone/v16/gyB4hws1IcA6JzR-GB_JX5zcbY8.ttf',
           },
-          {
+        {
             family: 'Chakra Petch',
             variants: [
               '300',
@@ -6296,7 +6296,7 @@ export const toolRouter = router({
             category: 'sans-serif',
             kind: 'webfonts#webfont',
             menu: 'https://fonts.gstatic.com/s/chakrapetch/v11/cIf6MapbsEk7TDLdtEz1BwkWmapl.ttf',
-          },
+          },  
           {
             family: 'Changa',
             variants: ['200', '300', 'regular', '500', '600', '700', '800'],

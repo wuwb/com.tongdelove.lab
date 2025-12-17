@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Card, Text, Title, Button, Group, Stack, Loader } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
+import { Card } from '@tongdelove/ui/components/card'
 import { trpc } from '@/utils/trpc'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 import { useRouter } from 'next/router'
@@ -112,7 +113,7 @@ function StickerDetail({ id }: StickerDetailProps) {
       // Remove the 'success' query parameter from the URL
       const newUrl = new URL(window.location.href)
       newUrl.searchParams.delete('success')
-      window.history.replaceState({}, document.title, newUrl.toString())
+      window.history.replaceState({}, document.div, newUrl.toString())
     }
 
     if (query.get('canceled')) {
@@ -123,7 +124,7 @@ function StickerDetail({ id }: StickerDetailProps) {
   }, [])
 
   if (isLoading) {
-    return <Loader />
+    return <div />
   }
 
   return (
@@ -135,14 +136,14 @@ function StickerDetail({ id }: StickerDetailProps) {
       className="mx-auto mt-8 max-w-2xl"
     >
       <Card.Section>
-        <Title order={2} mb="md">
+        <div order={2} mb="md">
           {sticker?.object}
-        </Title>
+        </div>
       </Card.Section>
       <Elements stripe={stripePromise} options={options}>
         <CheckoutPage />
       </Elements>
-      <Stack>
+      <div>
         <div className="relative mb-4 aspect-square">
           <Image
             src={sticker?.url ?? ''}
@@ -152,13 +153,13 @@ function StickerDetail({ id }: StickerDetailProps) {
             priority
           />
         </div>
-        <Group>
-          <Text>$1</Text>
+        <div>
+          <div>$1</div>
           <Button variant="light" color="blue" radius="md">
             {t('立即购买')}
           </Button>
-        </Group>
-      </Stack>
+        </div>
+      </div>
     </Card>
   )
 }
@@ -168,7 +169,7 @@ export default function StickerDetailPage() {
   const { id } = router.query
 
   if (typeof id !== 'string') {
-    return <Text>Invalid sticker ID</Text>
+    return <div>Invalid sticker ID</div>
   }
 
   return <StickerDetail id={id} />

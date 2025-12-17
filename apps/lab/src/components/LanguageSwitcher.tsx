@@ -1,19 +1,22 @@
-import { Menu, ActionIcon } from '@mantine/core'
 import { useTranslation } from '@/i18n'
 import { getLocale } from '@/i18n/locale'
 import { useRouter } from 'next/router'
 import { popularUserLanguages } from '@/i18n/language'
 import { UserLanguageCode } from '@prisma/client'
-import { useState } from 'react'
-import { RiAB } from 'react-icons/ri'
+import { RiTranslate2 } from 'react-icons/ri'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@tongdelove/ui/components/dropdown-menu'
+import { Button } from '@tongdelove/ui/components/button'
 
 export const LanguageSwitcher = () => {
   const { t } = useTranslation()
   const router = useRouter()
   const { pathname, query } = router
   const asPath = decodeURIComponent(router.asPath)
-
-  const [opened, setOpened] = useState(false)
 
   const handleLanguageChange = (language: {
     code: UserLanguageCode
@@ -25,33 +28,26 @@ export const LanguageSwitcher = () => {
         locale: targetLocale,
       })
     }
-    setOpened(false)
   }
 
   return (
-    <Menu
-      shadow="md"
-      width={200}
-      transitionProps={{ transition: 'rotate-right', duration: 150 }}
-      opened={opened}
-      onChange={setOpened}
-    >
-      <Menu.Target>
-        <ActionIcon variant="outline">
-          <RiAB />
-          {/* {t('切换语言')} */}
-        </ActionIcon>
-      </Menu.Target>
-      <Menu.Dropdown>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" aria-label={t('切换语言')}>
+          <RiTranslate2 className="h-5 w-5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
         {popularUserLanguages.map((language) => (
-          <Menu.Label
+          <DropdownMenuItem
             key={language.code}
             onClick={() => handleLanguageChange(language)}
+            className="cursor-pointer"
           >
             {language.name}
-          </Menu.Label>
+          </DropdownMenuItem>
         ))}
-      </Menu.Dropdown>
-    </Menu>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

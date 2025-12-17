@@ -1,4 +1,4 @@
-import { Accordion } from '@mantine/core'
+import { Accordion } from '@tongdelove/ui/components/accordion'
 import Link from 'next/link'
 import categoryDate from '@/data/config/category.yml'
 

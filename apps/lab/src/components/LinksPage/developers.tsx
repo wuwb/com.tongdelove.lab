@@ -1,5 +1,6 @@
 import { Link } from '@/components/ui'
-import { Table } from '@mantine/core'
+import { Table } from '@tongdelove/ui/components/table'
+
 
 export const Home = () => {
   // {

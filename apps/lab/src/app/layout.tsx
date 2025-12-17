@@ -14,7 +14,6 @@ import { cookies } from 'next/headers'
 import { Toaster } from 'sonner'
 import './globals.css'
 import { env } from '@/env/client'
-import { theme } from '@/theme'
 import Script from 'next/dist/client/script'
 
 const baseUrl = env.NEXT_PUBLIC_VERCEL_URL

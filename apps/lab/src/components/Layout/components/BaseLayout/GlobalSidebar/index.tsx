@@ -7,26 +7,26 @@ import {
   RiEmojiStickerFill,
   RiEmojiStickerLine,
   RiHome2Line,
-} from 'react-icons/ri'
-import { IconType } from 'react-icons'
-import clsx from 'clsx'
-import { ImLab } from 'react-icons/im'
-import styles from './Sidebar.module.css'
-import { UnstyledButton, Button, Tooltip, Title, rem } from '@mantine/core'
-import {
   RiFileHistoryLine,
   RiFileHistoryFill,
   RiHome2Fill,
   RiToolsLine,
   RiToolsFill,
-  RiChat3Line,
-  RiChat3Fill,
   RiColorFilterLine,
   RiColorFilterFill,
 } from 'react-icons/ri'
+import { IconType } from 'react-icons'
+import clsx from 'clsx'
+import { ImLab } from 'react-icons/im'
+import { Button } from '@tongdelove/ui/components/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@tongdelove/ui/components/tooltip'
 
 export const NavItem = ({
-  isCollapsed,
   icon,
   activeIcon,
   active,
@@ -34,7 +34,6 @@ export const NavItem = ({
   href,
   onClick,
 }: {
-  isCollapsed: boolean
   icon: IconType
   activeIcon: IconType
   active: boolean
@@ -44,32 +43,35 @@ export const NavItem = ({
 }) => {
   const Icon = active ? activeIcon : icon
 
-  return (
-    <Tooltip label={title} position="right-start">
-      {href ? (
-        <UnstyledButton
-          component={Link}
-          href={href}
-          className={clsx(
-            'flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8',
-            {
-              'bg-accent text-foreground': active,
-              'text-muted-foreground': !active,
-            }
-          )}
-        >
-          <Icon className="h-5 w-5" />
-          <span className="sr-only">{title}</span>
-        </UnstyledButton>
-      ) : (
-        <UnstyledButton
-          className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-          onClick={onClick}
-        >
-          <Icon className="h-5 w-5" />
-          <span className="sr-only">{title}</span>
-        </UnstyledButton>
+  const buttonContent = (
+    <Button
+      variant={active ? 'secondary' : 'ghost'}
+      size="icon"
+      className={clsx(
+        'h-9 w-9 md:h-8 md:w-8 transition-colors',
+        active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
       )}
+      onClick={!href ? onClick : undefined}
+    >
+      <Icon className="h-5 w-5" />
+      <span className="sr-only">{title}</span>
+    </Button>
+  )
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        {href ? (
+          <Link href={href} onClick={onClick}>
+            {buttonContent}
+          </Link>
+        ) : (
+          buttonContent
+        )}
+      </TooltipTrigger>
+      <TooltipContent side="right">
+        <p>{title}</p>
+      </TooltipContent>
     </Tooltip>
   )
 }
@@ -81,119 +83,67 @@ export const GlobalSidebar = () => {
   return (
     <aside
       className={clsx(
-        'sticky left-0 top-0 flex h-screen w-full flex-col gap-2.5 p-2.5',
-        styles.aside,
-        'border-r border-gray-200 dark:border-gray-100'
+        'sticky left-0 top-0 flex h-screen w-14 flex-col gap-4 border-r bg-background p-2 transition-[width]',
+        'lg:w-[60px]' // Fixed width for sidebar
       )}
     >
-      <nav className={clsx('flex flex-col items-center gap-4 px-2 sm:py-5')}>
-        <Link
-          href="/"
-          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-        >
-          <ImLab className="h-4 w-4 transition-all group-hover:scale-110" />
-          <span className="sr-only">{t('Tongdelove Inc')}</span>
-        </Link>
+      <TooltipProvider>
+        <nav className="flex flex-col items-center gap-2">
+          <Link
+            href="/"
+            className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground md:h-8 md:w-8 mb-2"
+            aria-label={t('Tongdelove Inc')}
+          >
+            <ImLab className="h-4 w-4 transition-all group-hover:scale-110" />
+          </Link>
 
-        <NavItem
-          isCollapsed={false}
-          icon={RiHome2Line}
-          activeIcon={RiHome2Fill}
-          active={pathname === '/'}
-          title={t('Home')}
-          href="/"
-        ></NavItem>
+          <NavItem
+            icon={RiHome2Line}
+            activeIcon={RiHome2Fill}
+            active={pathname === '/'}
+            title={t('Home')}
+            href="/"
+          />
 
-        {/* <NavItem
-          isCollapsed={false}
-          icon={RiChat3Line}
-          activeIcon={RiChat3Fill}
-          active={pathname === '/chat'}
-          title={t('Chat')}
-          href="/chat"
-        ></NavItem> */}
-
-        {/* <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="sr-only">Orders</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Orders</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-              <Package className="h-5 w-5" />
-              <span className="sr-only">Products</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Products</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-              <Users2 className="h-5 w-5" />
-              <span className="sr-only">Customers</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Customers</TooltipContent>
-        </Tooltip> */}
-
-        {/* <NavItem isCollapsed={false} icon={LineChart} activeIcon={LineChart} active={pathname === '/analytics'} title={t('Analytics')} href="/analytics"></NavItem> */}
-        <NavItem
-          isCollapsed={false}
-          icon={RiEmojiStickerLine}
-          activeIcon={RiEmojiStickerFill}
-          active={pathname === '/sticker'}
-          title={t('贴纸生成器')}
-          href="/sticker"
-        ></NavItem>
-        <NavItem
-          isCollapsed={false}
-          icon={RiCoreosLine}
-          activeIcon={RiCoreosFill}
-          active={pathname === '/logo'}
-          title={t('LOGO 生成器')}
-          href="/logo-gen"
-        ></NavItem>
-        <NavItem
-          isCollapsed={false}
-          icon={RiColorFilterLine}
-          activeIcon={RiColorFilterFill}
-          active={pathname === '/tool/color'}
-          title={t('中国传统色')}
-          href="/tool/color"
-        ></NavItem>
-        <NavItem
-          isCollapsed={false}
-          icon={RiToolsLine}
-          activeIcon={RiToolsFill}
-          active={pathname === '/tool'}
-          title={t('Tool')}
-          href="/tool"
-        ></NavItem>
-      </nav>
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <NavItem
-          isCollapsed={false}
-          icon={RiFileHistoryLine}
-          activeIcon={RiFileHistoryFill}
-          active={pathname === '/changelog'}
-          title={t('修改记录')}
-          href="/changelog"
-        ></NavItem>
-        {/* <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-              <Settings className="h-5 w-5" />
-              <span className="sr-only">Settings</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Settings</TooltipContent>
-        </Tooltip> */}
-      </nav>
+          <NavItem
+            icon={RiEmojiStickerLine}
+            activeIcon={RiEmojiStickerFill}
+            active={pathname.startsWith('/sticker')}
+            title={t('贴纸生成器')}
+            href="/sticker"
+          />
+          <NavItem
+            icon={RiCoreosLine}
+            activeIcon={RiCoreosFill}
+            active={pathname.startsWith('/logo-gen')}
+            title={t('LOGO 生成器')}
+            href="/logo-gen"
+          />
+          <NavItem
+            icon={RiColorFilterLine}
+            activeIcon={RiColorFilterFill}
+            active={pathname.startsWith('/tool/color')}
+            title={t('中国传统色')}
+            href="/tool/color"
+          />
+          <NavItem
+            icon={RiToolsLine}
+            activeIcon={RiToolsFill}
+            active={pathname === '/tool'}
+            title={t('Tool')}
+            href="/tool"
+          />
+        </nav>
+        <nav className="mt-auto flex flex-col items-center gap-2">
+          <NavItem
+            icon={RiFileHistoryLine}
+            activeIcon={RiFileHistoryFill}
+            active={pathname === '/changelog'}
+            title={t('修改记录')}
+            href="/changelog"
+          />
+        </nav>
+      </TooltipProvider>
     </aside>
   )
 }

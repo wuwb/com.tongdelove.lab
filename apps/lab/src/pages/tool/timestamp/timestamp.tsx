@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Accordion, Table } from '@mantine/core'
+import { Table } from '@tongdelove/ui/components/table'
+import { Accordion } from '@tongdelove/ui/components/accordion'
 
 const TimestampPage = (props) => {
   const [currentTimestamp, setCurrentTimestamp] = useState(0)

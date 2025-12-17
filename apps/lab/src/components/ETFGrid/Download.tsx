@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react'
 import { toPng } from 'html-to-image'
-import { Button, LoadingOverlay } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import download from 'downloadjs'
 import { usePortal } from '@/hooks/usePortal'
 
 function Loading(visible: boolean = true) {
   return (
     <>
-      <LoadingOverlay
+      <div
         visible={visible}
         zIndex={1000}
         overlayProps={{ radius: 'sm', blur: 2 }}

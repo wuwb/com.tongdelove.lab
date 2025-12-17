@@ -1,7 +1,5 @@
 import { useTranslation } from '@/i18n'
-import { Button, CopyButton } from '@mantine/core'
-import { CodeHighlight } from '@mantine/code-highlight'
-import '@mantine/code-highlight/styles.css'
+import { Button } from '@tongdelove/ui/components/button'
 
 export const HowToUse = () => {
   const { t } = useTranslation()
@@ -63,20 +61,20 @@ export const HowToUse = () => {
       <div>
         <div>{t('Favicon HTML Code')}</div>
         <div>
-          <CodeHighlight code={codeToCopy} language="html" />
+          <div code={codeToCopy} language="html" />
         </div>
         <div>
           {t(
             'To test if the favicon is configured correctly, you can use https://favicon.im'
           )}
         </div>
-        <CopyButton value={codeToCopy}>
+        <Button value={codeToCopy}>
           {({ copied, copy }) => (
             <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
               {copied ? t('Copied') : t('Copy HTML Code')}
             </Button>
           )}
-        </CopyButton>
+        </Button>
       </div>
     </div>
   )

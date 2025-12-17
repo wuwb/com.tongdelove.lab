@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { NumberInput, NativeSelect, TextInput, Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
+import { Input } from '@tongdelove/ui/components/input'
+
 
 function BookThicknessTool() {
   const [numberOfPages, setNumberOfPages] = useState(0)
@@ -18,12 +20,12 @@ function BookThicknessTool() {
   return (
     <div className="grow p-2.5">
       <div className="flex flex-col gap-2.5">
-        <NumberInput
+        <Input
           label="书籍页数"
           value={numberOfPages}
           onChange={(value) => setNumberOfPages(Number(value))}
         />
-        <NativeSelect
+        <Input
           label="纸张克重"
           value={paperWeight}
           onChange={(value) => setPaperWeight(value)}
@@ -36,7 +38,7 @@ function BookThicknessTool() {
           ]}
         />
         <Button onClick={handleClick}>计算</Button>
-        <TextInput label="书籍厚度" value={thickness} disabled />
+        <Input label="书籍厚度" value={thickness} disabled />
       </div>
     </div>
   )

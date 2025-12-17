@@ -2,7 +2,7 @@ import { useTranslation } from '@/i18n'
 import { MY_X_URL } from '@/utils/constants/site'
 import Link from 'next/link'
 import { memo } from 'react'
-import { Button } from "@chakra-ui/react"
+import { Button } from "@tongdelove/ui/components/button"
 
 interface FollowUsOnXProps {
   link?: string

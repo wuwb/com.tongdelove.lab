@@ -1,4 +1,4 @@
-import { notifications } from '@mantine/notifications'
+import { Toaster } from "@tongdelove/ui/components/sonner"
 import { CURRENT_CONFIG_VERSION, Migration } from '@/migrations'
 import {
   ConfigFile,
@@ -46,7 +46,7 @@ export const importConfigFile = (
       onConfigImport({ ...config, state })
     } catch (error) {
       console.error(error)
-      notification.error({
+      Toaster.error({
         description: `出错原因: ${(error as Error).message}`,
         message: '导入失败',
       })

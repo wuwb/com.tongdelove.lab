@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { UnstyledButton, Tooltip, rem } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
+import {Tooltip } from '@tongdelove/ui/components/tooltip'
 import {
   TbHome2,
   TbGauge,
@@ -11,7 +12,6 @@ import {
   TbUser,
   TbSettings,
 } from 'react-icons/tb'
-import classes from './Navbar.module.css'
 import { Navigation } from '../Navigation'
 import clsx from 'clsx'
 
@@ -48,22 +48,19 @@ export function Navbar() {
       label={link.label}
       position="right"
       withArrow
-      transitionProps={{ duration: 0 }}
       key={link.label}
     >
-      <UnstyledButton
+      <Button
         onClick={() => setActive(link.label)}
-        className={classes.mainLink}
         data-active={link.label === active || undefined}
       >
-        <link.icon style={{ width: rem(22), height: rem(22) }} />
-      </UnstyledButton>
+        <link.icon style={{ width: 22, height: 22 }} />
+      </Button>
     </Tooltip>
   ))
 
   const links = linksMockdata.map((link) => (
     <a
-      className={classes.link}
       data-active={activeLink === link || undefined}
       href="#"
       onClick={(event) => {
@@ -77,15 +74,15 @@ export function Navbar() {
   ))
 
   return (
-    <nav className={classes.navbar}>
+    <nav className="">
       <div className="flex h-full flex-1 overflow-hidden">
-        <div className={classes.aside}>
+        <div className="">
           <div className={clsx('jutifiy-center flex w-full', classes.logo)}>
             X
           </div>
           {mainLinks}
         </div>
-        <div className={classes.main}>
+        <div className="">
           <Navigation />
         </div>
       </div>

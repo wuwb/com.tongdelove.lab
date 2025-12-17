@@ -2,7 +2,7 @@
 
 import { MdOutlineTipsAndUpdates } from 'react-icons/md'
 import examples from '@/data/examples.json'
-import { Button } from '@tongdelove/ui/button'
+import { Button } from '@tongdelove/ui/components/button'
 import { useMemo, useState } from 'react'
 
 export const Example = () => {

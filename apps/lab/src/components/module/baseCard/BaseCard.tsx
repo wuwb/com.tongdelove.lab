@@ -1,12 +1,12 @@
 import React from 'react'
-import { Card, CardContent, Divider, Box, Text, Chip } from '@mantine/core'
+import { Card , CardContent} from '@tongdelove/ui/components/card'
 
 export const BaseCard = (props) => {
   return (
     <Card>
-      <Box p={2} display="flex">
+      <div p={2} display="flex">
         <Text variant="h4">{props.title}</Text>
-      </Box>
+      </div>
       <CardContent>{props.children}</CardContent>
     </Card>
   )

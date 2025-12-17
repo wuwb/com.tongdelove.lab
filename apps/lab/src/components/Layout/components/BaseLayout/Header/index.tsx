@@ -1,45 +1,16 @@
 import {
-  Popover,
-  PopoverTarget,
-  PopoverDropdown,
-  Stack,
-  Flex,
-  Group,
-  UnstyledButton,
-  Text,
-  ThemeIcon,
-  Box,
-  Collapse,
-  rem,
-  useMantineTheme,
-  ActionIcon,
-  Indicator,
-  useMantineColorScheme,
-  useComputedColorScheme,
-} from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import {
   TbCode,
   TbBook,
   TbCoin,
-  TbChevronDown,
-  TbBrandMcdonalds,
-  TbX,
-  TbChevronRight,
 } from 'react-icons/tb'
 import { signOut, signIn } from 'next-auth/react'
 import Link from 'next/link'
-import classes from './HeaderMegaMenu.module.css'
 import {
   Home,
-  LineChart,
-  Package,
   Package2,
   PanelLeft,
-  ShoppingCart,
-  Users2,
 } from 'lucide-react'
-import { Button } from '@tongdelove/ui/button'
+import { Button } from '@tongdelove/ui/components/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,8 +18,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@tongdelove/ui/dropdown-menu'
-import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/sheet'
+} from '@tongdelove/ui/components/dropdown-menu'
+import { Sheet, SheetContent, SheetTrigger } from '@tongdelove/ui/components/sheet'
 import { useTranslation } from '@/i18n'
 import { useSession } from 'next-auth/react'
 import {
@@ -60,96 +31,18 @@ import {
 } from 'react-icons/ri'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { BuyMeACoffee } from './BuyMeACoffee'
-
-const mockdata = [
-  {
-    icon: TbCode,
-    title: 'Open source',
-    description: `This Pokémon's cry is very loud and distracting`,
-  },
-  {
-    icon: TbCoin,
-    title: 'Free for everyone',
-    description: `The fluid of Smeargle's tail secretions changes`,
-  },
-  {
-    icon: TbBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
-  },
-]
-
-interface NavItem {
-  label: string
-  subLabel?: string
-  children?: Array<NavItem>
-  href?: string
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'Inspiration',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Find Work',
-    children: [
-      {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '#',
-      },
-      {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
-  },
-  {
-    label: 'Learn Design',
-    href: '#',
-  },
-  {
-    label: 'Hire Designers',
-    href: '#',
-  },
-  {
-    label: '小工具',
-    children: [
-      {
-        label: '聊天记录生成器',
-        subLabel: '生成各种聊天软件的聊天记录',
-        href: '#/tool/chat-log-generator',
-      },
-      {
-        label: 'ETF 网格工具',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
-  },
-]
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 export function HeaderMegaMenu() {
   const { t } = useTranslation()
-  const theme = useMantineTheme()
-  const { data: session, update } = useSession()
+  const { data: session } = useSession()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
-    useDisclosure(false)
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(true)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleClick = () => {
     if (session) {
@@ -159,37 +52,8 @@ export function HeaderMegaMenu() {
     }
   }
 
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon
-            style={{ width: rem(22), height: rem(22) }}
-            color={theme.colors.blue[6]}
-          />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ))
-
-  const { colorScheme, setColorScheme } = useMantineColorScheme({
-    keepTransitions: true,
-  })
-  const computedColorScheme = useComputedColorScheme('light', {
-    getInitialValueInEffect: true,
-  })
-  const dark = computedColorScheme === 'dark'
-
   return (
-    <div className="border-soild flex h-14 items-center justify-end border-b">
+    <div className="flex h-14 items-center justify-end border-b">
       <header className="sticky top-0 z-30 flex h-[60px] w-full items-center justify-between bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
         <div className="flex items-center justify-center px-2">
           <Sheet>
@@ -220,7 +84,7 @@ export function HeaderMegaMenu() {
                   {t('首页')}
                 </Link>
 
-                <Indicator color="red" size={12} processing>
+                <div>
                   <Link
                     href="/sticker"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
@@ -228,7 +92,7 @@ export function HeaderMegaMenu() {
                     <RiEmojiStickerLine className="h-5 w-5" />
                     {t('贴纸生成器')}
                   </Link>
-                </Indicator>
+                </div>
                 <Link
                   href="/logo-gen"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
@@ -243,34 +107,6 @@ export function HeaderMegaMenu() {
                   <RiColorFilterLine />
                   {t('中国传统色')}
                 </Link>
-                {/* <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  Orders
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-foreground"
-                >
-                  <Package className="h-5 w-5" />
-                  Products
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <Users2 className="h-5 w-5" />
-                  Customers
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  Settings
-                </Link> */}
               </nav>
             </SheetContent>
           </Sheet>
@@ -278,16 +114,6 @@ export function HeaderMegaMenu() {
         <div className="flex gap-2">
           <div className="flex w-full items-center justify-end gap-1">
             <BuyMeACoffee />
-            {/* <Indicator color="red" size={12} processing>
-              <Button>
-                <Link href="/sticker">{t('贴纸生成器')}</Link>
-              </Button>
-            </Indicator>
-            <Indicator color="red" size={12} processing>
-              <Button>
-                <Link href="/logo-gen">{t('标识生成器')}</Link>
-              </Button>
-            </Indicator> */}
             {session ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -345,19 +171,6 @@ export function HeaderMegaMenu() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    {/* <button
-                      onClick={() =>
-                        signIn('credentials', {
-                          email: 'bin2302@gmail.com',
-                          password: '123456',
-                        })
-                      }
-                      >
-                    </button> */}
-                    {/* <Link href="/auth/login">{t('邮箱登录')}</Link> */}
-                    {/* <button onClick={() => signIn()}>Sign in</button> */}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
                     <button onClick={handleClick}>
                       {session ? t('Sign out') : t('Sign in')}
                     </button>
@@ -376,193 +189,21 @@ export function HeaderMegaMenu() {
             </Link>
             <LanguageSwitcher />
 
-            {/* <SSRHidden> */}
-            <ActionIcon
-              variant="outline"
-              color={dark ? 'yellow' : 'blue'}
-              onClick={() =>
-                setColorScheme(
-                  computedColorScheme === 'dark' ? 'light' : 'dark'
-                )
-              }
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               title="Toggle color scheme"
             >
-              {dark ? (
-                <RiSunLine size="1.1rem" />
+              {mounted && theme === 'dark' ? (
+                <RiMoonLine size="1.2rem" />
               ) : (
-                <RiMoonLine size="1.1rem" />
+                <RiSunLine size="1.2rem" />
               )}
-            </ActionIcon>
-            {/* </SSRHidden> */}
+            </Button>
           </div>
-          {/* <div className="flex items-center justify-center sm:hidden">
-            <Burger
-              size="sm"
-              opened={drawerOpened}
-              onClick={toggleDrawer}
-              aria-label="Toggle navigation"
-            />
-          </div> */}
         </div>
       </header>
-
-      {/* <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="90%"
-        padding="md"
-        title="Navigation"
-        hiddenFrom="sm"
-        zIndex={1000000}
-        position="right"
-      >
-        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
-          <Divider my="sm" />
-          <Collapse in={linksOpened}>
-            <div className="px-2">{links}</div>
-          </Collapse>
-          <Divider my="sm" />
-          <div className="px-2">
-            {session ? (
-              <div className="flex items-center space-x-3">
-                <img
-                  className="h-12 w-12 rounded-full"
-                  src={session.user?.image ?? ''}
-                  alt="avator"
-                />
-                <Link href="/me">{session.user?.name}</Link>
-                <div>
-                  <button onClick={() => signOut()}>{t('退出')}</button>
-                </div>
-              </div>
-            ) : (
-              <Group justify="center" grow pb="xl" px="md">
-                <Button variant="default">Log in</Button>
-                <Button>Sign up</Button>
-              </Group>
-            )}
-          </div>
-        </ScrollArea>
-      </Drawer> */}
     </div>
-  )
-}
-
-export function WithSubnavigation() {
-  const [isOpen, { toggle, open }] = useDisclosure(false)
-
-  return (
-    <Box>
-      <Flex py={{ base: 2 }} px={{ base: 4 }} align="center">
-        <Flex ml={{ base: -2 }} display={{ base: 'flex', md: 'none' }}>
-          <ActionIcon
-            variant="filled"
-            onClick={toggle}
-            aria-label="Toggle Navigation"
-          >
-            {isOpen ? <TbX /> : <TbBrandMcdonalds />}
-          </ActionIcon>
-        </Flex>
-        <Flex justify={{ base: 'center', md: 'start' }}>
-          <Text>Logo</Text>
-
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
-
-        <Stack justify="flex-end">
-          <Button variant="link">Sign In</Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            color="white"
-            bg="pink.400"
-          >
-            Sign Up
-          </Button>
-        </Stack>
-      </Flex>
-    </Box>
-  )
-}
-
-const DesktopNav = () => {
-  return (
-    <Stack>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover>
-            <PopoverTarget>
-              <Box p={2}>{navItem.label}</Box>
-            </PopoverTarget>
-
-            {navItem.children && (
-              <PopoverDropdown p={4}>
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverDropdown>
-            )}
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
-  )
-}
-
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-  return (
-    <Box role="group" display="block" p={2}>
-      <Stack align="center">
-        <Box>
-          <Text>{label}</Text>
-          <Text>{subLabel}</Text>
-        </Box>
-        <Flex
-          opacity={0}
-          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify="flex-end"
-          align="center"
-          flex={1}
-        >
-          <TbChevronRight />
-        </Flex>
-      </Stack>
-    </Box>
-  )
-}
-
-const MobileNav = () => {
-  return (
-    <Stack p={4} display={{ md: 'none' }}>
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  )
-}
-
-const MobileNavItem = ({ label, children, href }: NavItem) => {
-  const [isOpen, { toggle, open, close }] = useDisclosure(false)
-
-  return (
-    <Stack onClick={children && toggle}>
-      <Box py={2}>
-        <Text>{label}</Text>
-        {children && <TbChevronDown />}
-      </Box>
-
-      <Collapse animateOpacity style={{ marginTop: '0!important' }}>
-        <Stack mt={2} pl={4}>
-          {children?.map((child) => (
-            <Box key={child.label} py={2}>
-              {child.label}
-            </Box>
-          ))}
-        </Stack>
-      </Collapse>
-    </Stack>
   )
 }

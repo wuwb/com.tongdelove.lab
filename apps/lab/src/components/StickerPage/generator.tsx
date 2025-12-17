@@ -7,7 +7,8 @@ import { Button } from './components/button'
 import { Skeleton } from './components/skeleton'
 import { Input } from './components/input'
 import { useTranslation } from '@/i18n'
-import { Button as MantineButton, HoverCard, Tooltip } from '@mantine/core'
+import { Button as CustomButton } from '@tongdelove/ui/components/button'
+import {  Tooltip } from '@tongdelove/ui/components/tooltip'
 import { randomInt } from 'es-toolkit'
 import { trpc } from '@/utils/trpc'
 import { useDeviceId } from '@/hooks/useDeviceId'
@@ -198,13 +199,13 @@ const Generator = () => {
   const renderQuickAction = (objects, action) => {
     return objects.map((item, index) => {
       return (
-        <MantineButton
+        <CustomButton
           size="compact-xs"
           key={item[1] + index}
           onClick={() => action(item[1])}
         >
           {item[0]}
-        </MantineButton>
+        </CustomButton>
       )
     })
   }
@@ -233,13 +234,13 @@ const Generator = () => {
               )}
             </div>
 
-            <MantineButton
+            <CustomButton
               className="float-right w-10"
               size="compact-xs"
               onClick={handleRandom}
             >
               {t('随机')}
-            </MantineButton>
+            </CustomButton>
           </Label>
           <Input
             required
@@ -325,7 +326,7 @@ const Generator = () => {
             {t('生成贴纸')}
             {loading && <Loader2 size={20} className="ml-2 animate-spin" />}
           </Button>
-          <HoverCard
+          <div
             width={320}
             shadow="md"
             withArrow
@@ -333,17 +334,20 @@ const Generator = () => {
             closeDelay={400}
             position="top"
           >
-            <HoverCard.Target>
+            <div>
               <Button size="lg" className="w-3/12">
                 {t('联系客服下单')}
               </Button>
-            </HoverCard.Target>
-            <HoverCard.Dropdown>
-              <Image src="/images/wechat-qrcode.png" alt={t('微信二维码')} />
+            </div>
+            <div>
+              <Image src="/images/wechat-qrcode.png" alt={t('微信二维码')} 
+                width="320"
+                height="320"
+              />
               <div>{t('50mm * 50mm 100张，40元')}</div>
               <div>{t('100mm * 100mm 100张，50元')}</div>
-            </HoverCard.Dropdown>
-          </HoverCard>
+            </div>
+          </div>
         </div>
       </div>
 

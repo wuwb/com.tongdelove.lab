@@ -1,17 +1,17 @@
-import { useForm } from '@mantine/form'
+import { Button } from '@tongdelove/ui/components/button'
 import {
-  Button,
-  ColorInput,
   Select,
-  Slider,
-  TextInput,
-  Input,
-  Combobox,
-  useCombobox,
-  Tooltip,
-  Checkbox,
-  Textarea,
-} from '@mantine/core'
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@tongdelove/ui/components/select'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@tongdelove/ui/components/tooltip'
+import { Slider } from '@tongdelove/ui/components/slider'
+import { Input } from '@tongdelove/ui/components/input'
+import { Textarea } from '@tongdelove/ui/components/textarea'
+import { Label } from '@tongdelove/ui/components/label'
+import { Checkbox } from '@tongdelove/ui/components/checkbox'
 import { useTranslation } from '@/i18n'
 import { FollowUsOnX } from '@/components/FollowUsOnX'
 import { useEffect, useRef, useState } from 'react'
@@ -28,6 +28,66 @@ import { HowToUse } from './HowToUse'
 import { RecommandColorSchemas, ColorSchema } from './RecommandColorSchema'
 import { Information } from './Information'
 import { clone } from 'es-toolkit'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@tongdelove/ui/components/popover'
+import { cn } from '@tongdelove/ui/lib/utils'
+
+// Helper components
+const ColorInput = ({
+  value,
+  onChange,
+  className,
+  label,
+}: {
+  value: string
+  onChange: (val: string) => void
+  className?: string
+  label?: string
+}) => {
+  return (
+    <div className={cn('flex flex-col gap-1.5', className)}>
+      {label && <Label className="text-xs">{label}</Label>}
+      <div className="flex items-center gap-2">
+        <div className="relative overflow-hidden rounded-md border shadow-sm w-full h-9 flex items-center">
+          <input
+            type="color"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            className="absolute -left-1/2 -top-1/2 h-[200%] w-[200%] cursor-pointer border-none p-0"
+          />
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs font-mono uppercase text-foreground mix-blend-difference">
+            {value}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ControlWrapper = ({
+  label,
+  children,
+  className,
+  description,
+}: {
+  label: string
+  children: React.ReactNode
+  className?: string
+  description?: React.ReactNode
+}) => {
+  return (
+    <div className={cn('flex flex-col gap-2', className)}>
+      <div className="flex flex-col gap-1">
+        <Label className="text-xs font-medium">{label}</Label>
+        {description && <div className="text-[10px] text-muted-foreground">{description}</div>}
+      </div>
+      {children}
+    </div>
+  )
+}
 
 export const LogoGenPage = () => {
   const { t } = useTranslation()
@@ -66,31 +126,18 @@ export const LogoGenPage = () => {
   const svgRef = useRef<SVGSVGElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const form = useForm({
-    mode: 'uncontrolled',
-    initialValues,
-    validate: {},
-    onValuesChange: (values, previous) => {
-      const formValue = form.getValues()
-      setFormValue(formValue)
-    },
-  })
+  // Direct state update helper
+  const handleValueChange = (key: keyof typeof initialValues, value: any) => {
+    setFormValue((prev) => ({ ...prev, [key]: value }))
+  }
 
   const handleReset = () => {
-    form.reset()
+    setFormValue(initialValues)
   }
 
   const handleChangeRecommandColorSchema = (data: ColorSchema) => {
-    form.setFieldValue('backgroundColor', data.backgroundColor)
-    form.setFieldValue('textColor', data.textColor)
-  }
-
-  const generateIcon = () => {
-    if (!svgRef.current) {
-      throw new Error('svg not found')
-    }
-
-    return new XMLSerializer().serializeToString(svgRef.current)
+    handleValueChange('backgroundColor', data.backgroundColor)
+    handleValueChange('textColor', data.textColor)
   }
 
   const saveGenerateData = async () => {
@@ -126,19 +173,15 @@ export const LogoGenPage = () => {
     }
 
     const svgContent = new XMLSerializer().serializeToString(svgRef.current)
-
-    // 创建Blob对象
     const svgBlob = new Blob([svgContent], {
       type: 'image/svg+xml;charset=utf-8',
     })
-
-    // 你可以在这里处理Blob对象，例如下载它
-
     saveAs(svgBlob, `${formValue.text}-${formValue.size}x${formValue.size}.svg`)
   }
 
   const createFavicon = (size: number): Promise<Blob> => {
-    const svgString = generateIcon()
+    if (!svgRef.current) throw new Error('SVG ref not found')
+    const svgString = new XMLSerializer().serializeToString(svgRef.current)
     return new Promise((resolve, reject) => {
       const img = new Image()
       img.onload = () => {
@@ -165,7 +208,6 @@ export const LogoGenPage = () => {
 
   const handleDownloadAll = async () => {
     saveGenerateData()
-
     const zip = new JSZip()
 
     if (!svgRef.current) {
@@ -179,7 +221,7 @@ export const LogoGenPage = () => {
       16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024,
       2048,
     ]
-    const nameMap = {
+    const nameMap: Record<string, string> = {
       '180': 'apple-touch-icon.png',
     }
     for (let size of sizes) {
@@ -204,9 +246,9 @@ export const LogoGenPage = () => {
     saveAs(content, name)
   }
 
-  const handleRandomColor = async (type: string) => {
+  const handleRandomColor = async (type: keyof typeof initialValues) => {
     const color = getRandomHexColor()
-    form.setFieldValue(type, color)
+    handleValueChange(type, color)
   }
 
   const handleRandomColors = () => {
@@ -216,7 +258,7 @@ export const LogoGenPage = () => {
 
   const adjustTextSizeAndPosition = (text: string, size: number) => {
     if (!textRef.current) {
-      return
+      return 394 // default fallback
     }
     const isAllEnglish = /^[A-Za-z0-9\s]+$/.test(text)
     const charCount = text.length
@@ -229,7 +271,6 @@ export const LogoGenPage = () => {
     } else {
       fontSize = size * 0.6
     }
-
     return fontSize
   }
 
@@ -263,28 +304,27 @@ export const LogoGenPage = () => {
     prevSize.current = clone(formValue.size)
   }
 
-  const handleSizeChange = (value: string | null) => {
-    if (value === null) {
-      return
-    }
-    let valueNumber = Number(value)
-    form.getInputProps('size').onChange(valueNumber)
+  const handleSizeChange = (value: string | number) => {
+    const valueNumber = Number(value)
+    handleValueChange('size', valueNumber)
 
-    // 按比例调整字体大小
-    const rate = valueNumber / prevSize.current
-    const newFontSize = formValue.fontSize * rate
-    form.setFieldValue('fontSize', newFontSize)
+    if (prevSize.current > 0) {
+      // 按比例调整字体大小
+      const rate = valueNumber / prevSize.current
+      const newFontSize = formValue.fontSize * rate
+      handleValueChange('fontSize', newFontSize)
+    }
   }
 
   const handleSizeChangeEnd = (value: number) => {
     fixFontSize(formValue.text, value)
     const fontSize = adjustTextSizeAndPosition(formValue.text, value)
-    form.setFieldValue('fontSize', fontSize)
+    handleValueChange('fontSize', fontSize)
   }
 
-  const handleSetIcon = (item) => {
+  const handleSetIcon = (item: any) => {
     const { id: _id, ...rest } = item
-    form.setValues(rest)
+    setFormValue((prev) => ({ ...prev, ...rest }))
     window.scrollTo({
       top: 300,
       behavior: 'smooth',
@@ -295,7 +335,6 @@ export const LogoGenPage = () => {
     if (!textRef.current) {
       return
     }
-
     var bbox = textRef.current.getBBox()
     var centerX = bbox.x + bbox.width / 2
     var centerY = bbox.y + bbox.height / 2
@@ -304,53 +343,19 @@ export const LogoGenPage = () => {
       x: centerX,
       y: centerY,
     })
-  }, [formValue])
+  }, [formValue.text, formValue.fontFamily, formValue.fontSize, formValue.size])
 
-  const [customFonts, setCustomFonts] = useState([
-    '宋体',
-    'Arial Narrow',
-    'Tahoma',
-    'STHeiTi',
-    'simsun',
-    'sans - serif',
-    'lucida grande',
-    'bitstream vera sans',
-    'Arial',
-    'Helvetica',
-    'Times New Roman',
-    'Courier',
-    'Verdana',
-    'Georgia',
-    'Palatino',
-    'Garamond',
-    'Bookman',
-    'Comic Sans MS',
-    'Trebuchet MS',
-    'Arial Black',
-    'Impact',
+  const [customFonts] = useState([
+    '宋体', 'Arial Narrow', 'Tahoma', 'STHeiTi', 'simsun', 'sans - serif',
+    'lucida grande', 'bitstream vera sans', 'Arial', 'Helvetica', 'Times New Roman',
+    'Courier', 'Verdana', 'Georgia', 'Palatino', 'Garamond', 'Bookman',
+    'Comic Sans MS', 'Trebuchet MS', 'Arial Black', 'Impact',
   ])
   const [googlefonts, setGoogleFonts] = useState<string[]>(data)
 
-  const combobox = useCombobox()
-  const shouldFilterOptions = !customFonts.some(
-    (item) => item === formValue.fontFamily
-  )
-  const filteredOptions = shouldFilterOptions
-    ? [
-      ...customFonts.filter((item) =>
-        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-      ),
-      ...googlefonts.filter((item) =>
-        item.toLowerCase().includes(formValue.fontFamily.toLowerCase().trim())
-      ),
-    ]
-    : customFonts
-
-  const options = filteredOptions.map((item) => (
-    <Combobox.Option value={item} key={item}>
-      {item}
-    </Combobox.Option>
-  ))
+  const allFonts = [...customFonts, ...googlefonts]
+  const [fontSearch, setFontSearch] = useState('')
+  const filteredFonts = allFonts.filter(f => f.toLowerCase().includes(fontSearch.toLowerCase()))
 
   useEffect(() => {
     if (data?.length > 0) {
@@ -365,525 +370,321 @@ export const LogoGenPage = () => {
       link.rel = 'stylesheet'
       document.head.appendChild(link)
     }
-  }, [formValue.fontFamily])
+  }, [formValue.fontFamily, customFonts])
 
   return (
-    <div className="container">
+    <div className="container mx-auto px-4 py-8">
       <div>
-        <h1 className="pt-20 text-center text-4xl font-bold">
+        <h1 className="pt-10 text-center text-4xl font-bold">
           {t('Logo 和 Favicon 生成器')}
         </h1>
-        <h2 className="mt-2.5 pb-20 text-center text-xl">
+        <h2 className="mt-2.5 pb-10 text-center text-xl text-muted-foreground">
           {t('几秒钟内创建专业的 LOGO 和 Favicon')}
         </h2>
       </div>
 
-      <div className="flex flex-wrap">
-        <div className="w-full sm:w-1/2 sm:p-5">
-          <div className="border p-5">
-            <div>
-              <form
-                onSubmit={form.onSubmit((values) => console.log(values))}
-                className="space-y-2"
-              >
-                <div>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-1/2">
+          <div className="border rounded-lg p-5 shadow-sm bg-card">
+            <div className="space-y-6">
+              <div>
+                <ControlWrapper
+                  label={t('文字')}
+                  description={
+                    <>
+                      （{t('支持换行，支持 Emoji，可以从这里复制：')}
+                      <a href="https://emojispark.com" target="_blank" className="text-primary hover:underline">
+                        EmojiSpark.com
+                      </a>
+                      ）
+                    </>
+                  }
+                >
                   <Textarea
-                    size="xs"
-                    label={t('文字')}
-                    description={
-                      <>
-                        （{t('支持换行，支持 Emoji，可以从这里复制：')}
-                        <a href="https://emojispark.com" target="_blank">
-                          EmojiSpark.com
-                        </a>
-                        ）
-                      </>
-                    }
-                    key={form.key('text')}
-                    {...form.getInputProps('text')}
+                    value={formValue.text}
+                    onChange={(e) => handleValueChange('text', e.target.value)}
+                    className="min-h-[80px]"
                   />
-                  {formValue.text.replace(/\r\n|\r/g, '\n').includes('\n') && (
-                    <div className="flex items-end gap-2.5">
-                      <Input.Wrapper
-                        size="xs"
-                        className="flex-1"
-                        label={t('文字偏移')}
-                      >
-                        <Slider
-                          className="flex-1"
-                          min={-3}
-                          max={3}
-                          step={0.01}
-                          key={form.key('lineLead')}
-                          {...form.getInputProps('lineLead')}
-                          labelTransitionProps={{
-                            transition: 'skew-down',
-                            duration: 150,
-                            timingFunction: 'linear',
-                          }}
-                        />
-                      </Input.Wrapper>
-                      <Button
-                        size="xs"
-                        onClick={() => form.setFieldValue('lineLead', 1)}
-                      >
-                        {t('重置')}
-                      </Button>
-                      <Input.Wrapper
-                        size="xs"
-                        className="flex-1"
-                        label={t('文字行高')}
-                      >
-                        <Slider
-                          className="flex-1"
-                          min={-3}
-                          max={3}
-                          step={0.01}
-                          key={form.key('lineHeight')}
-                          {...form.getInputProps('lineHeight')}
-                          labelTransitionProps={{
-                            transition: 'skew-down',
-                            duration: 150,
-                            timingFunction: 'linear',
-                          }}
-                        />
-                      </Input.Wrapper>
-                      <Button
-                        size="xs"
-                        onClick={() => form.setFieldValue('lineHeight', 1)}
-                      >
-                        {t('重置')}
-                      </Button>
-                    </div>
-                  )}
-                </div>
+                </ControlWrapper>
 
-                <div className="flex items-end gap-2.5">
-                  {/* <Slider
-                      min={16}
-                      max={2048}
-                      step={1}
-                      marks={[
-                        { value: 16 },
-                        { value: 24 },
-                        { value: 29 },
-                        { value: 32 },
-                        { value: 36 },
-                        { value: 48 },
-                        { value: 57 },
-                        { value: 58 },
-                        { value: 64, label: '64' },
-                        { value: 72 },
-                        { value: 96 },
-                        { value: 114 },
-                        { value: 128 },
-                        { value: 144 },
-                        { value: 192 },
-                        { value: 256, label: '256' },
-                        { value: 512, label: '512' },
-                        { value: 1024, label: '1024' },
-                        { value: 2048, label: '2048' },
-                      ]}
-                      key={form.key('size')}
-                      {...form.getInputProps('size')}
-                      onChange={handleSizeChange}
-                      onChangeEnd={handleSizeChangeEnd}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    /> */}
-                  <Select
-                    size="xs"
-                    label={t('背景大小')}
-                    key={form.key('size')}
-                    {...form.getInputProps('size')}
-                    defaultValue={form
-                      .getInputProps('size')
-                      .defaultValue.toString()}
-                    onChange={handleSizeChange}
-                    data={[
-                      '16',
-                      '24',
-                      '29',
-                      '32',
-                      '36',
-                      '48',
-                      '57',
-                      '58',
-                      '60',
-                      '64',
-                      '72',
-                      '76',
-                      '96',
-                      '114',
-                      '120',
-                      '128',
-                      '144',
-                      '152',
-                      '180',
-                      '192',
-                      '256',
-                      '512',
-                      '1024',
-                      '2048',
-                    ]}
-                    searchable
-                    checkIconPosition="right"
-                    onMouseDown={hanldeSizeMouseDown}
-                  />
-
-                  <ColorInput
-                    size="xs"
-                    className="flex-1"
-                    label={t('背景颜色')}
-                    key={form.key('backgroundColor')}
-                    {...form.getInputProps('backgroundColor')}
-                  />
-                  <Button
-                    size="xs"
-                    onClick={() => handleRandomColor('backgroundColor')}
-                  >
-                    {t('随机')}
-                  </Button>
-                </div>
-
-                <div className="!mb-7 flex items-end gap-2.5">
-                  <Input.Wrapper size="xs" className="flex-1" label={t('圆角')}>
-                    <Slider
-                      min={0}
-                      max={formValue.size / 2}
-                      step={1}
-                      marks={[
-                        { value: 5.088 },
-
-                        { value: 10, label: '10' },
-                        { value: 10.175 },
-
-                        { value: 12.632 },
-
-                        { value: 18 },
-
-                        { value: 20, label: '20' },
-                        { value: 25, label: '25' },
-                        { value: 25.263 },
-                        { value: 89.825 },
-
-                        { value: 180, label: '180' },
-                      ]}
-                      key={form.key('radius')}
-                      {...form.getInputProps('radius')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                </div>
-
-                <div>
-                  <Combobox
-                    size="xs"
-                    onOptionSubmit={(optionValue) => {
-                      form.getInputProps('fontFamily').onChange(optionValue)
-                      combobox.closeDropdown()
-                    }}
-                    store={combobox}
-                  >
-                    <Combobox.Target>
-                      <TextInput
-                        label={t('字体')}
-                        description={
-                          <>
-                            （{t('支持 Google Fonts，可以在这查询字体名称：')}
-                            <a href="https://fonts.google.com/" target="_blank">
-                              Google Fonts
-                            </a>
-                            ）
-                          </>
-                        }
-                        {...form.getInputProps('fontFamily')}
-                        onChange={(event) => {
-                          form
-                            .getInputProps('fontFamily')
-                            .onChange(event.currentTarget.value)
-                          combobox.openDropdown()
-                          combobox.updateSelectedOptionIndex()
-                        }}
-                        onClick={() => combobox.openDropdown()}
-                        onFocus={() => combobox.openDropdown()}
-                        onBlur={() => combobox.closeDropdown()}
+                {formValue.text.replace(/\r\n|\r/g, '\n').includes('\n') && (
+                  <div className="flex items-end gap-2.5 mt-2">
+                    <ControlWrapper label={t('文字偏移')} className="flex-1">
+                      <Slider
+                        value={[formValue.lineLead]}
+                        onValueChange={([v]) => handleValueChange('lineLead', v)}
+                        min={-3}
+                        max={3}
+                        step={0.01}
                       />
-                    </Combobox.Target>
-                    <Combobox.Dropdown>
-                      <Combobox.Options>
-                        {options.length === 0 ? (
-                          <Combobox.Empty>{t('Nothing found')}</Combobox.Empty>
-                        ) : (
-                          options
-                        )}
-                      </Combobox.Options>
-                    </Combobox.Dropdown>
-                  </Combobox>
-                </div>
+                    </ControlWrapper>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleValueChange('lineLead', 1)}
+                    >
+                      {t('重置')}
+                    </Button>
 
-                <div className="flex h-[30px] items-center gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('字体大小')}
+                    <ControlWrapper label={t('文字行高')} className="flex-1">
+                      <Slider
+                        value={[formValue.lineHeight]}
+                        onValueChange={([v]) => handleValueChange('lineHeight', v)}
+                        min={-3}
+                        max={3}
+                        step={0.01}
+                      />
+                    </ControlWrapper>
+
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleValueChange('lineHeight', 1)}
+                    >
+                      {t('重置')}
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex items-end gap-2.5">
+                <ControlWrapper label={t('背景大小')} className="w-32">
+                  <Select
+                    value={formValue.size.toString()}
+                    onValueChange={(v) => handleSizeChange(Number(v))}
                   >
-                    <Slider
-                      className="flex-1"
-                      defaultValue={394}
-                      min={8}
-                      max={formValue.size * 1.5}
-                      step={1}
-                      key={form.key('fontSize')}
-                      {...form.getInputProps('fontSize')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                </div>
+                    <SelectTrigger onMouseDown={hanldeSizeMouseDown}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[16, 24, 32, 48, 64, 128, 256, 512, 1024].map((s) => (
+                        <SelectItem key={s} value={s.toString()}>{s}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </ControlWrapper>
 
-                <div className="flex h-[30px] items-center gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('字重（根据浏览器和字体，不一定起效）')}
-                  >
-                    <Slider
-                      className="flex-1"
-                      min={100}
-                      max={900}
-                      step={100}
-                      marks={[
-                        { value: 100, label: 'Thin' },
-                        { value: 200, label: 'Extra Light' },
-                        { value: 300, label: 'Light' },
-                        { value: 400, label: 'Normal' },
-                        { value: 500, label: 'Medium' },
-                        { value: 600, label: 'Semi Bold' },
-                        { value: 700, label: 'Bold' },
-                        { value: 800, label: 'Extra Bold' },
-                        { value: 900, label: 'Black' },
-                      ]}
-                      key={form.key('fontWeight')}
-                      {...form.getInputProps('fontWeight')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                </div>
+                <ColorInput
+                  className="flex-1"
+                  label={t('背景颜色')}
+                  value={formValue.backgroundColor}
+                  onChange={(v) => handleValueChange('backgroundColor', v)}
+                />
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleRandomColor('backgroundColor')}
+                >
+                  {t('随机')}
+                </Button>
+              </div>
 
-                <div className="!mt-7 mt-10 flex items-end gap-2">
-                  <ColorInput
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字颜色')}
-                    key={form.key('textColor')}
-                    {...form.getInputProps('textColor')}
+              <ControlWrapper label={t('圆角')}>
+                <Slider
+                  value={[formValue.radius]}
+                  onValueChange={([v]) => handleValueChange('radius', v)}
+                  min={0}
+                  max={formValue.size / 2}
+                  step={1}
+                />
+              </ControlWrapper>
+
+              <div>
+                <ControlWrapper
+                  label={t('字体')}
+                  description={
+                    <>
+                      （{t('支持 Google Fonts，可以在这查询字体名称：')}
+                      <a href="https://fonts.google.com/" target="_blank" className="text-primary hover:underline">
+                        Google Fonts
+                      </a>
+                      ）
+                    </>
+                  }
+                >
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" role="combobox" className="w-full justify-between font-normal">
+                        {formValue.fontFamily}
+                        <span className="opacity-50">▼</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[300px] p-0" align="start">
+                      <div className="p-2 border-b">
+                        <Input
+                          placeholder={t('Search font...')}
+                          value={fontSearch}
+                          onChange={(e) => setFontSearch(e.target.value)}
+                          className="h-8"
+                        />
+                      </div>
+                      <div className="max-h-[300px] overflow-y-auto p-1">
+                        {filteredFonts.slice(0, 100).map((font) => (
+                          <div
+                            key={font}
+                            className={cn(
+                              "cursor-pointer px-2 py-1.5 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground",
+                              formValue.fontFamily === font && "bg-accent text-accent-foreground"
+                            )}
+                            onClick={() => {
+                              handleValueChange('fontFamily', font)
+                              // close popover implicitly by UI interaction (or use state if needed, but separate component is better)
+                            }}
+                          >
+                            {font}
+                          </div>
+                        ))}
+                        {filteredFonts.length === 0 && <div className="p-2 text-sm text-muted-foreground text-center">No font found</div>}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </ControlWrapper>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <ControlWrapper label={t('字体大小')}>
+                  <Slider
+                    value={[formValue.fontSize]}
+                    onValueChange={([v]) => handleValueChange('fontSize', v)}
+                    min={8}
+                    max={formValue.size * 1.5}
+                    step={1}
                   />
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字透明度')}
-                  >
-                    <Slider
-                      defaultValue={1}
-                      min={0}
-                      max={1}
-                      step={0.1}
-                      key={form.key('textOpacity')}
-                      {...form.getInputProps('textOpacity')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                  <Button
-                    size="xs"
-                    onClick={() => handleRandomColor('textColor')}
-                  >
-                    {t('随机')}
-                  </Button>
-                </div>
+                </ControlWrapper>
 
-                <div className="flex items-end gap-2">
-                  <ColorInput
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字边框颜色')}
-                    key={form.key('textStrokeColor')}
-                    {...form.getInputProps('textStrokeColor')}
+                <ControlWrapper label={t('字重')}>
+                  <Slider
+                    value={[formValue.fontWeight]}
+                    onValueChange={([v]) => handleValueChange('fontWeight', v)}
+                    min={100}
+                    max={900}
+                    step={100}
                   />
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字边框透明度')}
-                  >
-                    <Slider
-                      defaultValue={1}
-                      min={0}
-                      max={1}
-                      step={0.1}
-                      key={form.key('textStrokeOpacity')}
-                      {...form.getInputProps('textStrokeOpacity')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                  <Button
-                    size="xs"
-                    onClick={() => handleRandomColor('textStrokeColor')}
-                  >
-                    {t('随机')}
-                  </Button>
-                </div>
+                </ControlWrapper>
+              </div>
 
-                <div className="flex items-end gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字边框粗细')}
-                  >
-                    <Slider
-                      className="flex-1"
-                      min={0}
-                      max={formValue.size / 2}
-                      step={1}
-                      key={form.key('textStrokeWidth')}
-                      {...form.getInputProps('textStrokeWidth')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                </div>
+              <div className="flex items-end gap-2 mt-4">
+                <ColorInput
+                  className="flex-1"
+                  label={t('文字颜色')}
+                  value={formValue.textColor}
+                  onChange={(v) => handleValueChange('textColor', v)}
+                />
+                <ControlWrapper label={t('文字透明度')} className="flex-1">
+                  <Slider
+                    value={[formValue.textOpacity]}
+                    onValueChange={([v]) => handleValueChange('textOpacity', v)}
+                    min={0}
+                    max={1}
+                    step={0.1}
+                  />
+                </ControlWrapper>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleRandomColor('textColor')}
+                >
+                  {t('随机')}
+                </Button>
+              </div>
 
-                <div className="flex items-end gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('文字旋转')}
-                  >
+              <div className="flex items-end gap-2">
+                <ColorInput
+                  className="flex-1"
+                  label={t('文字边框颜色')}
+                  value={formValue.textStrokeColor}
+                  onChange={(v) => handleValueChange('textStrokeColor', v)}
+                />
+                <ControlWrapper label={t('文字边框透明度')} className="flex-1">
+                  <Slider
+                    value={[formValue.textStrokeOpacity]}
+                    onValueChange={([v]) => handleValueChange('textStrokeOpacity', v)}
+                    min={0}
+                    max={1}
+                    step={0.1}
+                  />
+                </ControlWrapper>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleRandomColor('textStrokeColor')}
+                >
+                  {t('随机')}
+                </Button>
+              </div>
+
+              <ControlWrapper label={t('文字边框粗细')}>
+                <Slider
+                  value={[formValue.textStrokeWidth]}
+                  onValueChange={([v]) => handleValueChange('textStrokeWidth', v)}
+                  min={0}
+                  max={formValue.size / 2}
+                  step={1}
+                />
+              </ControlWrapper>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                  <ControlWrapper label={t('文字旋转')}>
                     <Slider
-                      className="flex-1"
+                      value={[formValue.fontRotate]}
+                      onValueChange={([v]) => handleValueChange('fontRotate', v)}
                       min={-180}
                       max={180}
-                      step={0.01}
-                      key={form.key('fontRotate')}
-                      {...form.getInputProps('fontRotate')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
+                      step={1}
                     />
-                  </Input.Wrapper>
+                  </ControlWrapper>
                   <Button
-                    size="xs"
-                    onClick={() => form.setFieldValue('fontRotate', 0)}
-                  >
-                    {t('重置')}
-                  </Button>
-                </div>
-                <div className="flex items-end gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('垂直微调')}
-                  >
-                    <Slider
-                      className="flex-1"
-                      min={-0.3}
-                      max={0.3}
-                      step={0.01}
-                      label={(value) => `${value * 100}%`}
-                      key={form.key('fineTuneVerticalPosition')}
-                      {...form.getInputProps('fineTuneVerticalPosition')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                  <Button
-                    size="xs"
-                    onClick={() =>
-                      form.setFieldValue('fineTuneVerticalPosition', 0)
-                    }
-                  >
-                    {t('重置')}
-                  </Button>
-                </div>
-                <div className="flex items-end gap-2.5">
-                  <Input.Wrapper
-                    size="xs"
-                    className="flex-1"
-                    label={t('横向微调')}
-                  >
-                    <Slider
-                      min={-0.3}
-                      max={0.3}
-                      step={0.01}
-                      label={(value) => `${value * 100}%`}
-                      key={form.key('fineTuneHorizontalPosition')}
-                      {...form.getInputProps('fineTuneHorizontalPosition')}
-                      labelTransitionProps={{
-                        transition: 'skew-down',
-                        duration: 150,
-                        timingFunction: 'linear',
-                      }}
-                    />
-                  </Input.Wrapper>
-                  <Button
-                    size="xs"
-                    onClick={() =>
-                      form.setFieldValue('fineTuneHorizontalPosition', 0)
-                    }
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleValueChange('fontRotate', 0)}
                   >
                     {t('重置')}
                   </Button>
                 </div>
 
-                <div className="flex gap-1.5">
-                  <Button onClick={handleReset}>{t('重置所有')}</Button>
+                <div className="flex flex-col gap-2">
+                  <ControlWrapper label={t('垂直微调')}>
+                    <Slider
+                      value={[formValue.fineTuneVerticalPosition]}
+                      onValueChange={([v]) => handleValueChange('fineTuneVerticalPosition', v)}
+                      min={-0.3}
+                      max={0.3}
+                      step={0.01}
+                    />
+                  </ControlWrapper>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleValueChange('fineTuneVerticalPosition', 0)}
+                  >
+                    {t('重置')}
+                  </Button>
                 </div>
-              </form>
+              </div>
+
+              <div className="flex gap-1.5 pt-4">
+                <Button variant="destructive" onClick={handleReset} className="w-full">{t('重置所有')}</Button>
+              </div>
             </div>
           </div>
-          <div>
+
+          <div className="mt-5">
             <RecommandColorSchemas
               onChange={handleChangeRecommandColorSchema}
               onRamdon={handleRandomColors}
             />
           </div>
         </div>
-        <div className="w-full sm:w-1/2 sm:p-5">
-          <div className="border p-5">
-            <div className="grid-background p-5">
+
+        <div className="w-full lg:w-1/2">
+          <div className="border rounded-lg p-5 shadow-sm bg-card sticky top-5">
+            <div className="grid-background p-5 rounded-md border mb-5 flex justify-center bg-gray-50/50">
               <svg
                 ref={svgRef}
                 viewBox={`0 0 ${formValue.size} ${formValue.size}`}
                 xmlns="http://www.w3.org/2000/svg"
+                style={{ maxWidth: '100%', maxHeight: '500px', width: 'auto', height: 'auto' }}
               >
                 <rect
                   width={formValue.size}
@@ -903,8 +704,8 @@ export const LogoGenPage = () => {
                   fill={hexToRgba(formValue.textColor, formValue.textOpacity)}
                   fontSize={formValue.fontSize}
                   transform={`rotate(${formValue.fontRotate}, ${rotatePoint.x}, ${rotatePoint.y})`}
-                  dx={formValue.fineTuneHorizontalPosition * 512}
-                  dy={formValue.fineTuneVerticalPosition * 512}
+                  dx={formValue.fineTuneHorizontalPosition * formValue.size}
+                  dy={formValue.fineTuneVerticalPosition * formValue.size}
                   stroke={hexToRgba(
                     formValue.textStrokeColor,
                     formValue.textStrokeOpacity
@@ -922,6 +723,7 @@ export const LogoGenPage = () => {
                           key={index}
                           dx={`${formValue.lineLead}em`}
                           dy={`${formValue.lineHeight}em`}
+                          x="50%"
                         >
                           {item}
                         </tspan>
@@ -931,57 +733,64 @@ export const LogoGenPage = () => {
               </svg>
               <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             </div>
-            <div className="flex gap-2">
-              <Tooltip
-                label={t(
-                  '勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，供其他用户查看.'
-                )}
-              >
-                <Checkbox
-                  label={t('是否给其他用户查看')}
-                  key={form.key('live')}
-                  {...form.getInputProps('live')}
-                />
-              </Tooltip>
-              <Tooltip
-                label={t(
-                  '勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，其他用户可以点击复现你的设计.'
-                )}
-              >
-                <Checkbox
-                  label={t('是否给其他用户下载')}
-                  key={form.key('fork')}
-                  {...form.getInputProps('fork')}
-                />
-              </Tooltip>
-            </div>
-            <div className="mt-2.5 flex justify-center gap-2">
-              <Button onClick={handleDownloadPNG}>{t('下载 PNG')}</Button>
-              <Tooltip
-                label={t(
-                  'Enabling this feature will convert the text to vector paths, not text tags, thus getting rid of the dependency on font files. Some Asian languages are not supported, including Japanese, Chinese and Korean.'
-                )}
-              >
-                <Button onClick={handleDownloadSVG}>{t('下载 SVG')}</Button>
-              </Tooltip>
-              <Button onClick={handleDownloadAll}>
-                {t('下载所有（ZIP）')}
-              </Button>
-            </div>
-          </div>
-          <div>
-            <div>
-              {t(
-                `下载所有（ZIP） 包含下面这些尺寸: 16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024, 2048`
-              )}
-            </div>
-            <div>
-              {t(
-                '提示: 使用 emojis 或者特殊图标的时候，建议使用 PNG，以保证在不同平台上的兼容性和一致性。'
-              )}
-            </div>
-            <div>
-              {t('可以使用 https://tinypng.com/ 进一步优化 PNG 文件大小。')}
+
+            <TooltipProvider>
+              <div className="flex gap-4 mb-4">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="live"
+                    checked={formValue.live}
+                    onCheckedChange={(c) => handleValueChange('live', c)}
+                  />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="live" className="cursor-help">{t('是否给其他用户查看')}</Label>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs">{t('勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，供其他用户查看.')}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="fork"
+                    checked={formValue.fork}
+                    onCheckedChange={(c) => handleValueChange('fork', c)}
+                  />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="fork" className="cursor-help">{t('是否给其他用户下载')}</Label>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs">{t('勾选后，点击下载后，你的图标根据设计质量，可能会出现在示例图标等区域，其他用户可以点击复现你的设计.')}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2 justify-center">
+                <Button onClick={handleDownloadPNG}>{t('下载 PNG')}</Button>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" onClick={handleDownloadSVG}>{t('下载 SVG')}</Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-xs">{t('Enabling this feature will convert the text to vector paths...')}</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Button variant="secondary" onClick={handleDownloadAll}>
+                  {t('下载所有（ZIP）')}
+                </Button>
+              </div>
+            </TooltipProvider>
+
+            <div className="mt-6 text-xs text-muted-foreground space-y-2">
+              <p>{t('下载所有（ZIP） 包含下面这些尺寸: 16, 32, 36, 48, 57, 60, 72, 96, 114, 120, 144, 152, 180, 192, 512, 1024, 2048')}</p>
+              <p>{t('提示: 使用 emojis 或者特殊图标的时候，建议使用 PNG，以保证在不同平台上的兼容性和一致性。')}</p>
+              <p>{t('可以使用 https://tinypng.com/ 进一步优化 PNG 文件大小。')}</p>
             </div>
           </div>
         </div>
@@ -1000,7 +809,7 @@ export const LogoGenPage = () => {
       </div>
 
       <div className="py-5">
-        <p className="mx-auto max-w-[800px] text-center">
+        <p className="mx-auto max-w-[800px] text-center text-sm text-muted-foreground">
           {t(
             '用户有责任确保他们拥有项目中使用的任何字体的适当权利和许可。我们不提供任何字体许可，也不对因不当使用字体而导致的任何版权侵权负责。我们鼓励用户查看并遵守他们使用的每种字体的许可条款，尤其是对于商业应用。'
           )}

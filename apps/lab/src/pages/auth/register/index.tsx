@@ -3,28 +3,25 @@ import { useAuth } from '@/contexts/auth'
 import clsx from 'clsx'
 import { FC, useEffect, useState, SyntheticEvent } from 'react'
 import Image from 'next/image'
-import { useForm } from '@mantine/form'
+import { useForm } from "react-hook-form"
 import { getCsrfToken, signIn } from 'next-auth/react'
 import { LuGithub } from 'react-icons/lu'
 import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
-import { Button } from '@tongdelove/ui/button'
+import { Button } from '@tongdelove/ui/components/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@tongdelove/ui/card'
-import { Input } from '@tongdelove/ui/input'
-import { Label } from '@tongdelove/ui/label'
-
-import { cn } from '@tongdelove/ui'
-// import { Icons } from "@/components/icons"
-import { Loader2 } from 'lucide-react'
+} from '@tongdelove/ui/components/card'
+import { Input } from '@tongdelove/ui/components/input'
+import { Label } from '@tongdelove/ui/components/label'
+import { cn } from '@tongdelove/ui/lib/utils'
 import { Metadata } from 'next'
-import { Command } from 'lucide-react'
-import { buttonVariants } from '@tongdelove/ui/button'
+import { Command, Loader2 } from 'lucide-react'
+import { buttonVariants } from '@tongdelove/ui/components/button'
 import { UserAuthForm } from '@/components/Auth/UserAuthForm'
 
 const Register = () => {

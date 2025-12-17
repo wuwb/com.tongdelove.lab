@@ -1,6 +1,6 @@
 import { useTranslation } from '@/i18n'
-import { NumberInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import { Input } from '@tongdelove/ui/components/input'
+import { useForm } from "react-hook-form"
 import { useMemo } from 'react'
 
 export const FilmRollLengthPage = () => {
@@ -31,7 +31,7 @@ export const FilmRollLengthPage = () => {
 
   return (
     <div>
-      <NumberInput
+      <Input
         withAsterisk
         label={t('纸芯直径(毫米)')}
         min={0}
@@ -39,7 +39,7 @@ export const FilmRollLengthPage = () => {
         key={form.key('paperCoreDiameter')}
         {...form.getInputProps('paperCoreDiameter')}
       />
-      <NumberInput
+      <Input
         withAsterisk
         label={t('卷膜厚度(丝)')}
         min={0}
@@ -47,7 +47,7 @@ export const FilmRollLengthPage = () => {
         key={form.key('filmThickness')}
         {...form.getInputProps('filmThickness')}
       />
-      <NumberInput
+      <Input
         withAsterisk
         label={t('卷膜直径(毫米)')}
         key={form.key('filmDiameter')}

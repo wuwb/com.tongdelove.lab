@@ -1,5 +1,5 @@
 import { useTranslation } from '@/i18n'
-import { Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 
 export type ColorSchema = {
   backgroundColor: string

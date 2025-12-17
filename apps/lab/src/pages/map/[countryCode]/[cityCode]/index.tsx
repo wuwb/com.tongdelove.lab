@@ -1,4 +1,3 @@
-import { Box } from '@mantine/core'
 import { Allotment } from 'allotment'
 import 'allotment/dist/style.css'
 import { useRouter } from 'next/router'
@@ -74,7 +73,7 @@ const MapCountryCodeLocationCode = () => {
             </div>
           </Allotment.Pane>
           <Allotment.Pane minSize={200}>
-            <Box w="full" mr="0.625rem">
+            <div w="full" mr="0.625rem">
               {cityData.map((city) => {
                 return (
                   <div className="border p-2.5">
@@ -87,7 +86,7 @@ const MapCountryCodeLocationCode = () => {
                   </div>
                 )
               })}
-            </Box>
+            </div>
           </Allotment.Pane>
         </Allotment>
       </div>

@@ -1,14 +1,13 @@
 import { Footer } from '@/components/common/Footer'
 import { Home } from '@/components/HomePage/Home'
-import { Container } from '@mantine/core'
 
 function Forum(props): any {
   return (
-    <Container>
+    <div>
       <Home />
       {props.stars}
       <Footer />
-    </Container>
+    </div>
   )
 }
 

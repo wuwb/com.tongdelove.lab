@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@mantine/core'
+import { Button } from '@tongdelove/ui/components/button'
 import { MdRefresh } from 'react-icons/md'
 import { PiLightningFill } from 'react-icons/pi'
 import { FiSend } from 'react-icons/fi'

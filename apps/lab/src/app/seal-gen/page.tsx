@@ -1,14 +1,10 @@
 'use client'
 
-import { useForm } from '@mantine/form'
-import {
-  Button,
-  TextInput,
-  ColorInput,
-  Slider,
-  Checkbox,
-  Select,
-} from '@mantine/core'
+import { Select } from '@tongdelove/ui/components/select'
+import { Slider } from '@tongdelove/ui/components/slider'
+import { Button } from '@tongdelove/ui/components/button'
+import { Input } from '@tongdelove/ui/components/input'
+
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { convertPathData } from '@/utils/svg'
 import { Seal } from '@pansy/seal'
@@ -52,6 +48,10 @@ export default function SealGen(props) {
   }
 
   const [formValue, setFormValue] = useState(initialValues)
+
+  const useForm = () => {
+    return null
+  }
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -192,7 +192,7 @@ export default function SealGen(props) {
             className="flex flex-col gap-4"
           >
             <div className="border p-2.5">
-              <TextInput label="标题" {...form.getInputProps('title')} />
+              <Input label="标题" {...form.getInputProps('title')} />
 
               <Select
                 label="标题字体"
@@ -218,7 +218,7 @@ export default function SealGen(props) {
               />
             </div>
             <div className="border p-2.5">
-              <TextInput
+              <Input
                 label="印章标题"
                 {...form.getInputProps('sealTitle')}
               />
@@ -252,7 +252,7 @@ export default function SealGen(props) {
               />
             </div>
             <div className="border p-2.5">
-              <TextInput
+              <Input
                 label="中心内容"
                 {...form.getInputProps('centerContent')}
               />
@@ -280,7 +280,7 @@ export default function SealGen(props) {
               />
             </div>
             <div className="border p-2.5">
-              <TextInput
+              <Input
                 label="安全码"
                 {...form.getInputProps('securityCode')}
               />
@@ -315,7 +315,7 @@ export default function SealGen(props) {
                 {...form.getInputProps('size')}
               />
 
-              <ColorInput label="印章颜色" {...form.getInputProps('color')} />
+              <Input label="印章颜色" {...form.getInputProps('color')} />
 
               <Slider
                 label="外边框厚度"
@@ -331,9 +331,9 @@ export default function SealGen(props) {
                 {...form.getInputProps('innerBorderThickness')}
               />
 
-              <Checkbox
+              <Input
                 label="显示内边框"
-                {...form.getInputProps('showInnerBorder', { type: 'checkbox' })}
+                {...form.getInputProps('showInnerBorder', { type: 'Input' })}
               />
             </div>
             <div className="border p-2.5">
@@ -344,9 +344,9 @@ export default function SealGen(props) {
                 {...form.getInputProps('aging')}
               />
 
-              <Checkbox
+              <Input
                 label="显示老化效果"
-                {...form.getInputProps('showAging', { type: 'checkbox' })}
+                {...form.getInputProps('showAging', { type: 'Input' })}
               />
             </div>
           </form>

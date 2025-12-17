@@ -1,4 +1,3 @@
-import { Box } from '@mantine/core'
 import { Allotment } from 'allotment'
 import 'allotment/dist/style.css'
 
@@ -17,9 +16,9 @@ export const MapPage = () => {
             </div>
           </Allotment.Pane>
           <Allotment.Pane minSize={446} preferredSize={620}>
-            <Box w="full" mr="0.625rem">
+            <div w="full" mr="0.625rem">
               2
-            </Box>
+            </div>
           </Allotment.Pane>
         </Allotment>
       </div>

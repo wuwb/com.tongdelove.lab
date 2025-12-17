@@ -1,8 +1,19 @@
 // @link https://nextjs.org/docs/app/building-your-application/routing/middleware
 import { authConfig } from './auth.config'
-
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 import NextAuth from 'next-auth'
-export const { auth: proxy } = NextAuth(authConfig)
+// export const { auth: proxy } = NextAuth(authConfig)
+
+export function proxy(request: NextRequest) {
+  // 这里写你的逻辑
+  return NextResponse.next()
+}
+
+// 你的 Config 可以保留
+export const config = {
+  matcher: '/:path*',
+}
 
 // export const config = {
 //   runtime: 'nodejs',

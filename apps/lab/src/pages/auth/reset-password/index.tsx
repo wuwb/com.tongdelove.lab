@@ -1,9 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { Button, Input } from '@mantine/core'
+import { Input } from '@tongdelove/ui/components/input'
+import { Button } from '@tongdelove/ui/components/button'
 
-const ChangePassword = () => {
+export const ChangePassword = () => {
   const onSubmit = (data) => {
     console.log('data: ', data)
   }

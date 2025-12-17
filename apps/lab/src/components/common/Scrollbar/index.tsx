@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars-2'
-import { Box } from '@mantine/core'
 
 interface ScrollbarProps {
   className?: string
@@ -17,7 +16,7 @@ export const Scrollbar: FC<ScrollbarProps> = ({
       autoHide
       universal
       renderThumbVertical={() => {
-        return <Box />
+        return <div />
       }}
       {...rest}
     >

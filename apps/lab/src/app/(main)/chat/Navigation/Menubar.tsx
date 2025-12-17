@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button'
+import { Button } from '@tongdelove/ui/components/button'
 import { useAppContext } from '@/contexts/AppContext'
 import { ActionType } from '@/reducers/AppReducer'
 

@@ -1,4 +1,3 @@
-import { Container, Grid } from '@mantine/core'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import Article from './Article'
@@ -41,9 +40,9 @@ const PostIdPage = (props) => {
         <p>Hello, I'm the {asPath} page</p>
         <h1>Slug: {slug}</h1>
       </div>
-      <Container>
-        <Grid>
-          <Grid>
+      <div>
+        <div>
+          <div>
             <div className="bg-white">
               <Article />
 
@@ -55,12 +54,12 @@ const PostIdPage = (props) => {
                 )
               })}
             </div>
-          </Grid>
-          <Grid>
+          </div>
+          <div>
             <Sidebar />
-          </Grid>
-        </Grid>
-      </Container>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
