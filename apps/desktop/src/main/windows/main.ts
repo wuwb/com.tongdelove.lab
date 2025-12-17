@@ -4,6 +4,8 @@ import { createWindow } from '@/lib/electron-app/factories/windows/create'
 import { ENVIRONMENT } from '@/shared/constants'
 import { displayName } from '~/package.json'
 import icon from '../../resources/icon.png?asset'
+import { registerAiIpc } from '../ipc/ai'
+import { registerSettingsIpc } from '../ipc/settings'
 
 export async function MainWindow() {
   let window = createWindow({
@@ -25,6 +27,10 @@ export async function MainWindow() {
       contextIsolation: true
     }
   })
+
+  // register AI IPC once webContents is ready
+  registerAiIpc(window.webContents)
+  registerSettingsIpc()
 
   window.webContents.on('did-finish-load', () => {
     if (ENVIRONMENT.IS_DEV) {

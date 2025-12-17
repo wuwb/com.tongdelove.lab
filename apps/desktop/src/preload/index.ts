@@ -1,5 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import type { ChatRequest, ChatChunk, AppSettings } from '../shared/ipc'
+import { IPC } from '../shared/ipc'
 
 // Custom APIs for renderer
 const api = {
@@ -17,6 +19,21 @@ const appAPI = {
   username: process.env.USER
 }
 
+const ai = {
+  start: (req: ChatRequest & { provider?: 'mock' | 'openai' | 'ollama' }) => ipcRenderer.invoke(IPC.AI.START, req),
+  cancel: (sessionId: string) => ipcRenderer.invoke(IPC.AI.CANCEL, sessionId),
+  onChunk: (listener: (chunk: ChatChunk) => void) => {
+    const l = (_: any, chunk: ChatChunk) => listener(chunk)
+    ipcRenderer.on(IPC.AI.CHUNK, l)
+    return () => ipcRenderer.off(IPC.AI.CHUNK, l)
+  }
+}
+
+const settings = {
+  get: (): Promise<AppSettings> => ipcRenderer.invoke(IPC.SETTINGS.GET),
+  set: (key: keyof AppSettings, value: any) => ipcRenderer.invoke(IPC.SETTINGS.SET, key, value)
+}
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
@@ -26,6 +43,8 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('api', api)
 
     contextBridge.exposeInMainWorld('app', appAPI)
+    contextBridge.exposeInMainWorld('ai', ai)
+    contextBridge.exposeInMainWorld('settings', settings)
 
     // Expose protected methods that allow the renderer process to use
     // the ipcRenderer without exposing the entire object
@@ -42,4 +61,8 @@ if (process.contextIsolated) {
   window.electron = electronAPI
   // @ts-ignore (define in dts)
   window.api = api
+  // @ts-ignore (define in dts)
+  window.ai = ai
+  // @ts-ignore (define in dts)
+  window.settings = settings
 }
