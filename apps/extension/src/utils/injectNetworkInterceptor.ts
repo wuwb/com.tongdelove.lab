@@ -1,5 +1,6 @@
 import { handleResponseData } from './responseHandlers'
 import { requestModifiers } from './requestHandlers'
+import { buildInterceptData } from './url'
 
 export function injectNetworkInterceptor() {
   console.log('injectNetworkInterceptor')
@@ -207,26 +208,26 @@ export function injectNetworkInterceptor() {
           responseBody = '[Parse Response Body Fail]'
         }
 
-        handleResponseData({
+        handleResponseData(buildInterceptData({
           method,
+          url,
           requestBody,
           requestHeaders: Object.fromEntries(originalRequest.headers.entries()),
           responseBody,
           responseStatus: response.status,
           responseStatusText: response.statusText,
-          timestamp: Date.now(),
           type: 'fetch',
-          url,
-        })
+          originArgs: args,
+        }))
 
         return response
       } catch (error) {
         if (url.includes('chrome-extension://') || url.includes('127.0.0.1')) {
-          // 忽略扩展和本地资源的报错
+          console.info('fetch拦截] 忽略:', url)
           return
         }
-        console.error('❌ [fetch拦截] 请求失败:', url, error)
-        throw error // ❗必须 re-throw，保持原始行为
+        console.error('[fetch拦截] 失败:', url, error)
+        throw error
       }
     }
 
@@ -271,7 +272,7 @@ export function injectNetworkInterceptor() {
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             // 请求完成
-            handleResponseData({
+            handleResponseData(buildInterceptData({
               method: requestData.method,
               requestBody: requestData.body,
               requestHeaders: requestData.headers,
@@ -281,7 +282,7 @@ export function injectNetworkInterceptor() {
               timestamp: Date.now(),
               type: 'xhr',
               url: requestData.url,
-            })
+            }))
           }
 
           // 调用原始的onreadystatechange

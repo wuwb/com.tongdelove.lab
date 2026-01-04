@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated at: 2025-11-19T11:50:50.927Z
+// Generated at: 2026-01-04T06:22:21.425Z
 
 import Q100_MiB_36189020753 from '@/assets/imgs/temu-barcodes/Q100_MiB_36189020753.png'
 import Q100_MiB_53304519603 from '@/assets/imgs/temu-barcodes/Q100_MiB_53304519603.png'
@@ -9,6 +9,7 @@ import Q100_MiB_92608825452 from '@/assets/imgs/temu-barcodes/Q100_MiB_926088254
 import Q30_B_41051523657 from '@/assets/imgs/temu-barcodes/Q30_B_41051523657.png'
 import Q30_Mahuang_7637522146 from '@/assets/imgs/temu-barcodes/Q30_Mahuang_7637522146.png'
 import Q30_MiB_30924340546 from '@/assets/imgs/temu-barcodes/Q30_MiB_30924340546.png'
+import Q35_B_12418159347 from '@/assets/imgs/temu-barcodes/Q35_B_12418159347.png'
 import Q35_B_37933048370 from '@/assets/imgs/temu-barcodes/Q35_B_37933048370.png'
 import Q35_B_57131626721 from '@/assets/imgs/temu-barcodes/Q35_B_57131626721.png'
 import Q35_B_62818792552 from '@/assets/imgs/temu-barcodes/Q35_B_62818792552.png'
@@ -20,7 +21,9 @@ import Q60_B_2_7256466345 from '@/assets/imgs/temu-barcodes/Q60_B_2_7256466345.p
 import Q60_B_36861947769 from '@/assets/imgs/temu-barcodes/Q60_B_36861947769.png'
 import Q60_B_5728182408 from '@/assets/imgs/temu-barcodes/Q60_B_5728182408.png'
 import Q60_B_70089834585 from '@/assets/imgs/temu-barcodes/Q60_B_70089834585.png'
+import Q60_B_73227032120 from '@/assets/imgs/temu-barcodes/Q60_B_73227032120.png'
 import Q60_B_90964927581 from '@/assets/imgs/temu-barcodes/Q60_B_90964927581.png'
+import Q60_HongB_30715676003 from '@/assets/imgs/temu-barcodes/Q60_HongB_30715676003.png'
 import Q60_HongB_36148097108 from '@/assets/imgs/temu-barcodes/Q60_HongB_36148097108.png'
 import Q60_HongB_50450669339 from '@/assets/imgs/temu-barcodes/Q60_HongB_50450669339.png'
 import Q60_HongB_5951129920 from '@/assets/imgs/temu-barcodes/Q60_HongB_5951129920.png'
@@ -28,14 +31,21 @@ import Q60_HongB_76402672436 from '@/assets/imgs/temu-barcodes/Q60_HongB_7640267
 import Q60_HongB_80783501196 from '@/assets/imgs/temu-barcodes/Q60_HongB_80783501196.png'
 import Q60_LanB_1043578826 from '@/assets/imgs/temu-barcodes/Q60_LanB_1043578826.png'
 import Q60_LanB_17691415799 from '@/assets/imgs/temu-barcodes/Q60_LanB_17691415799.png'
+import Q60_LanB_23954647810 from '@/assets/imgs/temu-barcodes/Q60_LanB_23954647810.png'
 import Q60_LanB_46734269822 from '@/assets/imgs/temu-barcodes/Q60_LanB_46734269822.png'
 import Q60_LanB_65348483206 from '@/assets/imgs/temu-barcodes/Q60_LanB_65348483206.png'
 import Q60_LanB_92125848195 from '@/assets/imgs/temu-barcodes/Q60_LanB_92125848195.png'
+import Q60_LvB_23922251484 from '@/assets/imgs/temu-barcodes/Q60_LvB_23922251484.png'
 import Q60_LvB_40644651820 from '@/assets/imgs/temu-barcodes/Q60_LvB_40644651820.png'
 import Q60_LvB_6735748387 from '@/assets/imgs/temu-barcodes/Q60_LvB_6735748387.png'
 import Q60_LvB_87227027334 from '@/assets/imgs/temu-barcodes/Q60_LvB_87227027334.png'
 import Q60_MiB_30307462607 from '@/assets/imgs/temu-barcodes/Q60_MiB_30307462607.png'
+import S15_B_30353323571 from '@/assets/imgs/temu-barcodes/S15_B_30353323571.png'
 import S15_B_31478539296 from '@/assets/imgs/temu-barcodes/S15_B_31478539296.png'
+import S3x6_B_95053350480 from '@/assets/imgs/temu-barcodes/S3x6_B_95053350480.png'
+import S3x6_Hong_74893399898 from '@/assets/imgs/temu-barcodes/S3x6_Hong_74893399898.png'
+import S3x8_NaiB_84553565288 from '@/assets/imgs/temu-barcodes/S3x8_NaiB_84553565288.png'
+import S5_B_20961346497 from '@/assets/imgs/temu-barcodes/S5_B_20961346497.png'
 import S5_B_26475302099 from '@/assets/imgs/temu-barcodes/S5_B_26475302099.png'
 import S5_B_2705446442 from '@/assets/imgs/temu-barcodes/S5_B_2705446442.png'
 import S5_B_27819589740 from '@/assets/imgs/temu-barcodes/S5_B_27819589740.png'
@@ -55,6 +65,7 @@ import Z100_B_55191802338 from '@/assets/imgs/temu-barcodes/Z100_B_55191802338.p
 import Z100_B_56843459194 from '@/assets/imgs/temu-barcodes/Z100_B_56843459194.png'
 import Z100_B_65424632150 from '@/assets/imgs/temu-barcodes/Z100_B_65424632150.png'
 import Z100_B_73716054687 from '@/assets/imgs/temu-barcodes/Z100_B_73716054687.png'
+import Z100_B_73971409845 from '@/assets/imgs/temu-barcodes/Z100_B_73971409845.png'
 import Z100_B_77751897841 from '@/assets/imgs/temu-barcodes/Z100_B_77751897841.png'
 import Z100_B_82995813086 from '@/assets/imgs/temu-barcodes/Z100_B_82995813086.png'
 import Z100_B_85062365112 from '@/assets/imgs/temu-barcodes/Z100_B_85062365112.png'
@@ -132,6 +143,7 @@ import Z100_HongLvB_81842965937 from '@/assets/imgs/temu-barcodes/Z100_HongLvB_8
 import Z100_HongLvB_83294511918 from '@/assets/imgs/temu-barcodes/Z100_HongLvB_83294511918.png'
 import Z100_HongLvB_85649101010 from '@/assets/imgs/temu-barcodes/Z100_HongLvB_85649101010.png'
 import Z100_HongLvB_9817818867 from '@/assets/imgs/temu-barcodes/Z100_HongLvB_9817818867.png'
+import Z100_Hong_23366012223 from '@/assets/imgs/temu-barcodes/Z100_Hong_23366012223.png'
 import Z100_Hong_41030688413 from '@/assets/imgs/temu-barcodes/Z100_Hong_41030688413.png'
 import Z100_Hong_4865463427 from '@/assets/imgs/temu-barcodes/Z100_Hong_4865463427.png'
 import Z100_Hong_7810305104 from '@/assets/imgs/temu-barcodes/Z100_Hong_7810305104.png'
@@ -277,6 +289,9 @@ import Z90_HongLvB_57232619809 from '@/assets/imgs/temu-barcodes/Z90_HongLvB_572
 import Z90_LanB_97492302156 from '@/assets/imgs/temu-barcodes/Z90_LanB_97492302156.png'
 import Z90_LvB_45560971485 from '@/assets/imgs/temu-barcodes/Z90_LvB_45560971485.png'
 import Z90_LvB_68873053011 from '@/assets/imgs/temu-barcodes/Z90_LvB_68873053011.png'
+import _10067633161_42229961305 from '@/assets/imgs/temu-barcodes/_10067633161_42229961305.png'
+import _10067633161_75400962265 from '@/assets/imgs/temu-barcodes/_10067633161_75400962265.png'
+import _10067633161_98946851224 from '@/assets/imgs/temu-barcodes/_10067633161_98946851224.png'
 import _6388971399_3145301074 from '@/assets/imgs/temu-barcodes/_6388971399_3145301074.png'
 import _9333906516_6097817663 from '@/assets/imgs/temu-barcodes/_9333906516_6097817663.png'
 
@@ -289,6 +304,7 @@ export const map: Record<string, string> = {
   Q30_B_41051523657,
   Q30_Mahuang_7637522146,
   Q30_MiB_30924340546,
+  Q35_B_12418159347,
   Q35_B_37933048370,
   Q35_B_57131626721,
   Q35_B_62818792552,
@@ -300,7 +316,9 @@ export const map: Record<string, string> = {
   Q60_B_36861947769,
   Q60_B_5728182408,
   Q60_B_70089834585,
+  Q60_B_73227032120,
   Q60_B_90964927581,
+  Q60_HongB_30715676003,
   Q60_HongB_36148097108,
   Q60_HongB_50450669339,
   Q60_HongB_5951129920,
@@ -308,14 +326,21 @@ export const map: Record<string, string> = {
   Q60_HongB_80783501196,
   Q60_LanB_1043578826,
   Q60_LanB_17691415799,
+  Q60_LanB_23954647810,
   Q60_LanB_46734269822,
   Q60_LanB_65348483206,
   Q60_LanB_92125848195,
+  Q60_LvB_23922251484,
   Q60_LvB_40644651820,
   Q60_LvB_6735748387,
   Q60_LvB_87227027334,
   Q60_MiB_30307462607,
+  S15_B_30353323571,
   S15_B_31478539296,
+  S3x6_B_95053350480,
+  S3x6_Hong_74893399898,
+  S3x8_NaiB_84553565288,
+  S5_B_20961346497,
   S5_B_26475302099,
   S5_B_2705446442,
   S5_B_27819589740,
@@ -335,6 +360,7 @@ export const map: Record<string, string> = {
   Z100_B_56843459194,
   Z100_B_65424632150,
   Z100_B_73716054687,
+  Z100_B_73971409845,
   Z100_B_77751897841,
   Z100_B_82995813086,
   Z100_B_85062365112,
@@ -412,6 +438,7 @@ export const map: Record<string, string> = {
   Z100_HongLvB_83294511918,
   Z100_HongLvB_85649101010,
   Z100_HongLvB_9817818867,
+  Z100_Hong_23366012223,
   Z100_Hong_41030688413,
   Z100_Hong_4865463427,
   Z100_Hong_7810305104,
@@ -557,6 +584,9 @@ export const map: Record<string, string> = {
   Z90_LanB_97492302156,
   Z90_LvB_45560971485,
   Z90_LvB_68873053011,
+  _10067633161_42229961305,
+  _10067633161_75400962265,
+  _10067633161_98946851224,
   _6388971399_3145301074,
-  _9333906516_6097817663,
-}
+  _9333906516_6097817663
+};
