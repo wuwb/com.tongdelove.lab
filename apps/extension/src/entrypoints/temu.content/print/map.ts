@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated at: 2026-01-04T06:22:21.425Z
+// Generated at: 2026-01-04T07:01:09.799Z
 
 import Q100_MiB_36189020753 from '@/assets/imgs/temu-barcodes/Q100_MiB_36189020753.png'
 import Q100_MiB_53304519603 from '@/assets/imgs/temu-barcodes/Q100_MiB_53304519603.png'
@@ -588,5 +588,5 @@ export const map: Record<string, string> = {
   _10067633161_75400962265,
   _10067633161_98946851224,
   _6388971399_3145301074,
-  _9333906516_6097817663
-};
+  _9333906516_6097817663,
+}

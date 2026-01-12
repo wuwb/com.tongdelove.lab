@@ -208,17 +208,19 @@ export function injectNetworkInterceptor() {
           responseBody = '[Parse Response Body Fail]'
         }
 
-        handleResponseData(buildInterceptData({
-          method,
-          url,
-          requestBody,
-          requestHeaders: Object.fromEntries(originalRequest.headers.entries()),
-          responseBody,
-          responseStatus: response.status,
-          responseStatusText: response.statusText,
-          type: 'fetch',
-          originArgs: args,
-        }))
+        handleResponseData(
+          buildInterceptData({
+            method,
+            url,
+            requestBody,
+            requestHeaders: Object.fromEntries(originalRequest.headers.entries()),
+            responseBody,
+            responseStatus: response.status,
+            responseStatusText: response.statusText,
+            type: 'fetch',
+            originArgs: args,
+          })
+        )
 
         return response
       } catch (error) {
@@ -272,17 +274,19 @@ export function injectNetworkInterceptor() {
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             // 请求完成
-            handleResponseData(buildInterceptData({
-              method: requestData.method,
-              requestBody: requestData.body,
-              requestHeaders: requestData.headers,
-              responseBody: xhr.responseText,
-              responseStatus: xhr.status,
-              responseStatusText: xhr.statusText,
-              timestamp: Date.now(),
-              type: 'xhr',
-              url: requestData.url,
-            }))
+            handleResponseData(
+              buildInterceptData({
+                method: requestData.method,
+                requestBody: requestData.body,
+                requestHeaders: requestData.headers,
+                responseBody: xhr.responseText,
+                responseStatus: xhr.status,
+                responseStatusText: xhr.statusText,
+                timestamp: Date.now(),
+                type: 'xhr',
+                url: requestData.url,
+              })
+            )
           }
 
           // 调用原始的onreadystatechange

@@ -18,10 +18,7 @@ const INTERCEPT_CONFIG: Record<string, { [path: string]: HandlerFunc }> = {
       handleTemuResponse(data)
     },
     default: async (data) => {
-      if (data.method === 'GET'
-        && data.responseStatus === 200
-        && data.responseBody !== ''
-      ) {
+      if (data.method === 'GET' && data.responseStatus === 200 && data.responseBody !== '') {
         // 发送到服务器
         await sendResponseDataToServer(data)
       }

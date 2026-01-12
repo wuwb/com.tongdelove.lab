@@ -145,12 +145,7 @@ function ConfigItemRenderer({
   if (item.type === 'switch') {
     return (
       <div className="flex items-start space-x-3 rounded-md border p-4 hover:bg-accent/50 transition-colors">
-        <Checkbox
-          id={item.key}
-          checked={!!value}
-          onCheckedChange={(checked) => onChange(checked)}
-          className="mt-1"
-        />
+        <Checkbox id={item.key} checked={!!value} onCheckedChange={(checked) => onChange(checked)} className="mt-1" />
         <div className="grid gap-1.5 leading-none">
           <Label
             htmlFor={item.key}
@@ -158,9 +153,7 @@ function ConfigItemRenderer({
           >
             {item.label}
           </Label>
-          {item.description && (
-            <p className="text-sm text-muted-foreground leading-snug">{item.description}</p>
-          )}
+          {item.description && <p className="text-sm text-muted-foreground leading-snug">{item.description}</p>}
         </div>
       </div>
     )

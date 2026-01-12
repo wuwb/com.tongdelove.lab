@@ -2,6 +2,7 @@ import type { PrintProduct } from './types'
 import {
   CUSTOM_PRINT_BUTTON_CLASSNAME,
   CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME,
+  CUSTOM_PRINT_DRAW_BODY_CLASSNAME,
   CUSTOM_PRINT_IFRAME_ID,
   PRINT_BUTTON_INSERT_POSITION,
 } from './consts'
@@ -29,7 +30,7 @@ export async function createPrint() {
 
     const checkModal = () => {
       // 查找弹窗插入位置（您的自定义选择器）
-      const modalContainer = document.querySelector<HTMLElement>(CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME)
+      const modalContainer = document.querySelector<HTMLElement>(`.${CUSTOM_PRINT_BUTTON_INSERT_PLACE_CLASSNAME}`)
 
       if (modalContainer) {
         console.log('-----------------------------------modalContainer')
@@ -51,7 +52,7 @@ export async function createPrint() {
 
   const extractProductListFromModal = (): PrintProduct[] => {
     // 查找抽屉内容区域
-    const container = document.querySelector<HTMLElement>('.index-module__drawer-body___3-jUp')
+    const container = document.querySelector<HTMLElement>(`.${CUSTOM_PRINT_DRAW_BODY_CLASSNAME}`)
     if (!container) {
       alert('未找到发货单抽屉区域，请确认弹窗已完全打开。')
       return []

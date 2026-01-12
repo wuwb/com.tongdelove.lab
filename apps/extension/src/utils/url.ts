@@ -44,7 +44,7 @@ function getUrlContext(urlStr: string) {
     return {
       host: url.hostname,
       path: url.pathname,
-      searchParams: Object.fromEntries(url.searchParams.entries())
+      searchParams: Object.fromEntries(url.searchParams.entries()),
     }
   } catch (e) {
     return { host: '', path: urlStr, searchParams: {} }

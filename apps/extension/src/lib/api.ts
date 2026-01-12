@@ -59,11 +59,7 @@ function buildUrl(endpoint: string): string {
 /**
  * 构建请求选项
  */
-function buildRequestOptions(
-  method: string,
-  data?: any,
-  customHeaders?: Record<string, string>,
-): RequestInit {
+function buildRequestOptions(method: string, data?: any, customHeaders?: Record<string, string>): RequestInit {
   const headers = {
     ...DEFAULT_CONFIG.headers,
     ...globalConfig.headers,
@@ -116,17 +112,14 @@ async function request<T = any>(
   endpoint: string,
   method: string = 'GET',
   data?: any,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   const url = buildUrl(endpoint)
   const options = buildRequestOptions(method, data, customHeaders)
 
   try {
     const controller = new AbortController()
-    const timeoutId = setTimeout(
-      () => controller.abort(),
-      globalConfig.timeout || DEFAULT_CONFIG.timeout,
-    )
+    const timeoutId = setTimeout(() => controller.abort(), globalConfig.timeout || DEFAULT_CONFIG.timeout)
 
     const response = await fetch(url, {
       ...options,
@@ -155,7 +148,7 @@ async function request<T = any>(
  */
 export async function apiGet<T = any>(
   endpoint: string,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   return request<T>(endpoint, 'GET', undefined, customHeaders)
 }
@@ -166,7 +159,7 @@ export async function apiGet<T = any>(
 export async function apiPost<T = any>(
   endpoint: string,
   data?: any,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   return request<T>(endpoint, 'POST', data, customHeaders)
 }
@@ -177,7 +170,7 @@ export async function apiPost<T = any>(
 export async function apiPut<T = any>(
   endpoint: string,
   data?: any,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   return request<T>(endpoint, 'PUT', data, customHeaders)
 }
@@ -188,7 +181,7 @@ export async function apiPut<T = any>(
 export async function apiPatch<T = any>(
   endpoint: string,
   data?: any,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   return request<T>(endpoint, 'PATCH', data, customHeaders)
 }
@@ -198,7 +191,7 @@ export async function apiPatch<T = any>(
  */
 export async function apiDelete<T = any>(
   endpoint: string,
-  customHeaders?: Record<string, string>,
+  customHeaders?: Record<string, string>
 ): Promise<ApiResponse<T>> {
   return request<T>(endpoint, 'DELETE', undefined, customHeaders)
 }
@@ -244,4 +237,3 @@ export async function sendBatchResponseDataToServer(dataList: ResponseData[]): P
     console.error('[API] 批量发送响应数据异常:', error)
   }
 }
-
