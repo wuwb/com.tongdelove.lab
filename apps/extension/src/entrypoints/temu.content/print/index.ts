@@ -8,7 +8,7 @@ import {
 } from './consts'
 import { createIframe, writeIframeContent } from '@/utils/iframe'
 import { map } from './map'
-import { generatePrintContent } from './utils'
+import { generatePrintContent, generatePrintSingleStickerContent } from './utils'
 
 export async function createPrint() {
   /**
@@ -38,6 +38,7 @@ export async function createPrint() {
         if (!modalContainer.querySelector(`.${CUSTOM_PRINT_BUTTON_CLASSNAME}`)) {
           console.log('-----------------------------------modalContainer insert')
           insertCustomPrintButton(modalContainer)
+          insertCustomPrintSingleStickerButton(modalContainer)
         }
         clearInterval(pollingTimer)
       } else if (++attempts >= MAX_ATTEMPTS) {
@@ -153,65 +154,92 @@ export async function createPrint() {
     return productList
   }
 
+  const handlePrintButtonClick = async (options?: { isSingleSticker?: boolean }) => {
+    const oldIframe = document.getElementById(CUSTOM_PRINT_IFRAME_ID) as HTMLIFrameElement | null
+    if (oldIframe) {
+      oldIframe.remove()
+    }
+
+    const iframe = createIframe(CUSTOM_PRINT_IFRAME_ID)
+    document.body.appendChild(iframe)
+
+    // const productList = [
+    //   {
+    //     sku: '26940309089',
+    //     skuLabel: 'Z_hei_100',
+    //     mainAttr: '',
+    //     subAttr: '60M (196 Feet)',
+    //     address: 'Made in China',
+    //     count: 2,
+    //     inputCount: 2,
+    //   },
+    //   {
+    //     sku: '40644651821',
+    //     skuLabel: 'Q_lv-B_100',
+    //     mainAttr: '',
+    //     subAttr: '60M (196 Feet)',
+    //     address: 'Made in China',
+    //     count: 3,
+    //     inputCount: 3,
+    //   }
+    // ]
+
+    const productList = extractProductListFromModal()
+
+    // 使用统一生成函数
+    let contentHtml = ''
+    if (options?.isSingleSticker) {
+      contentHtml = generatePrintSingleStickerContent(productList, map)
+    } else {
+      contentHtml = generatePrintContent(productList, map)
+    }
+
+    writeIframeContent(iframe, contentHtml)
+
+    iframe.onload = () => {
+      setTimeout(() => {
+        try {
+          iframe.contentWindow?.focus()
+          iframe.contentWindow?.print()
+        } catch (err) {
+          console.error('打印失败:', err)
+          alert('打印失败，请重试。')
+        }
+      }, 150)
+    }
+  }
+
   const insertCustomPrintButton = (container: HTMLElement) => {
     const button = document.createElement('button')
     button.className = PRINT_BUTTON_INSERT_POSITION
     button.type = 'button'
     button.style.backgroundColor = 'red'
     button.style.borderColor = 'red'
-
     const span = document.createElement('span')
     span.textContent = '高级打印'
     button.appendChild(span)
 
-    button.addEventListener('click', async () => {
-      const oldIframe = document.getElementById(CUSTOM_PRINT_IFRAME_ID) as HTMLIFrameElement | null
-      if (oldIframe) {
-        oldIframe.remove()
-      }
+    button.addEventListener('click', () => {
+      handlePrintButtonClick()
+    })
 
-      const iframe = createIframe(CUSTOM_PRINT_IFRAME_ID)
-      document.body.appendChild(iframe)
+    container.prepend(button)
+  }
 
-      // const productList = [
-      //   {
-      //     sku: '26940309089',
-      //     skuLabel: 'Z_hei_100',
-      //     mainAttr: '',
-      //     subAttr: '60M (196 Feet)',
-      //     address: 'Made in China',
-      //     count: 2,
-      //     inputCount: 2,
-      //   },
-      //   {
-      //     sku: '40644651821',
-      //     skuLabel: 'Q_lv-B_100',
-      //     mainAttr: '',
-      //     subAttr: '60M (196 Feet)',
-      //     address: 'Made in China',
-      //     count: 3,
-      //     inputCount: 3,
-      //   }
-      // ]
+  const insertCustomPrintSingleStickerButton = (container: HTMLElement) => {
+    const button = document.createElement('button')
+    button.className = PRINT_BUTTON_INSERT_POSITION
+    button.type = 'button'
+    button.style.backgroundColor = 'red'
+    button.style.borderColor = 'red'
+    const span = document.createElement('span')
+    span.textContent = '打印完整贴纸'
+    button.appendChild(span)
 
-      const productList = extractProductListFromModal()
-
-      // 使用统一生成函数
-      const contentHtml = generatePrintContent(productList, map)
-
-      writeIframeContent(iframe, contentHtml)
-
-      iframe.onload = () => {
-        setTimeout(() => {
-          try {
-            iframe.contentWindow?.focus()
-            iframe.contentWindow?.print()
-          } catch (err) {
-            console.error('打印失败:', err)
-            alert('打印失败，请重试。')
-          }
-        }, 150)
-      }
+    button.addEventListener('click', () => {
+      handlePrintButtonClick({
+        isSingleSticker: true,
+      })
     })
 
     container.prepend(button)
@@ -287,7 +315,7 @@ export async function createPrint() {
       },
     ]
 
-    const contentHtml = generatePrintContent(productList, map)
+    const contentHtml = generatePrintSingleStickerContent(productList, map)
 
     const debugWin = window.open('', '_blank')
     if (debugWin) {
