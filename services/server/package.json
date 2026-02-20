@@ -1,11 +1,10 @@
 {
   "name": "@wuwenbin/server",
   "version": "0.0.1",
-  "description": "",
   "private": true,
-  "author": "",
+  "description": "",
   "homepage": "https://api.tongdelove.com",
-  "issues": "",
+  "author": "",
   "scripts": {
     "-prebuild": "rimraf dist && pnpm run generate",
     "api": "pnpm swagger-to-graphql --swagger-schema=./api-docs.json > api.schema.graphql",
@@ -211,6 +210,7 @@
     "typescript": "^5.4.5",
     "winston": "3.10.0"
   },
+  "issues": "",
   "prisma": {
     "seed": "ts-node scripts/seed.ts",
     "schema": "../../prisma/prisma/schema.prisma"

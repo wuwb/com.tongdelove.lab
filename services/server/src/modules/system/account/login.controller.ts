@@ -31,10 +31,7 @@ export class LoginController {
   @HttpCode(HttpStatus.OK)
   @Version('1')
   @Post()
-  async adminLogin(
-    @Body() loginDto: LoginDto,
-    @IpAddress() ipAddress: string
-  ): Promise<LoginResDto> {
+  async adminLogin(@Body() loginDto: LoginDto, @IpAddress() ipAddress: string) {
     this.logger.log(`用户登录：${loginDto.username}`)
     return this.loginService.adminLogin(loginDto, ipAddress)
   }

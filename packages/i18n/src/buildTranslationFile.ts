@@ -145,7 +145,7 @@ export function resolveCodeConflict(data: string) {
   const resolvedData = data.replace(
     /<<<<<<< HEAD[\s\S]*||||||| parent of [\w\d]+[\s\S]*=======[\s\S]*>>>>>>> \w+[\s\S]*/,
     (match) => {
-      return match.split('|||||||')[0].replace('<<<<<<< HEAD', '').trim()
+      return match.split('|||||||')[0]?.replace('<<<<<<< HEAD', '').trim() ?? ''
     }
   )
   return resolvedData

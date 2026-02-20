@@ -37,7 +37,7 @@ export class PostController {
     private readonly postService: PostService,
     private readonly userService: UserService,
     private readonly prisma: PrismaService
-  ) { }
+  ) {}
 
   @Get()
   async getPublishedPosts(@Query() query) {
@@ -54,7 +54,7 @@ export class PostController {
     return this.postService.findDrafts()
   }
 
-  async getPosts() { }
+  async getPosts() {}
 
   @Get(':id')
   async getPostById(@Param('id') id: string) {
@@ -173,10 +173,10 @@ export class PostController {
   }
 
   @Post(':id/comments')
-  async createCommentForPost() { }
+  async createCommentForPost() {}
 
   @Get(':id/comments')
-  async getCommentsOfPost() { }
+  async getCommentsOfPost() {}
 
   @Get('feed')
   async feed(
@@ -187,11 +187,11 @@ export class PostController {
   ) {
     const or = searchString
       ? {
-        OR: [
-          { postTitle: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+          OR: [
+            { postTitle: { contains: searchString } },
+            { content: { contains: searchString } },
+          ],
+        }
       : {}
 
     return this.prisma.post.findMany({

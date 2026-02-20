@@ -28,7 +28,7 @@ export class Popularity {
 
     const value: string[] = []
     for (let i = 0; i < 8; i++) {
-      value.push(r[i] + g[i] + b[i])
+      value.push(r[i] ?? '' + g[i] ?? '' + b[i] ?? '')
     }
     this.colors.push(value)
     const colorKey = value.slice(0, this.level).join('-')
@@ -53,9 +53,9 @@ export class Popularity {
           .split('-')
           .reduce(
             (acc, cur) => {
-              acc[0] = acc[0] + cur[0]
-              acc[1] = acc[1] + cur[1]
-              acc[2] = acc[2] + cur[2]
+              acc[0] = acc?.[0] ?? '' + cur[0]
+              acc[1] = acc?.[1] ?? '' + cur[1]
+              acc[2] = acc?.[2] ?? '' + cur[2]
               return acc
             },
             ['', '', '']
@@ -65,9 +65,9 @@ export class Popularity {
           return suffix
             .reduce(
               (acc, cur) => {
-                acc[0] = acc[0] + cur[0]
-                acc[1] = acc[1] + cur[1]
-                acc[2] = acc[2] + cur[2]
+                acc[0] = acc?.[0] ?? '' + cur[0]
+                acc[1] = acc?.[1] ?? '' + cur[1]
+                acc[2] = acc?.[2] ?? '' + cur[2]
                 return acc
               },
               ['', '', '']
@@ -76,19 +76,19 @@ export class Popularity {
         })
         const colorsLength = colorsSuffix.length
         const middle = Math.floor(colorsLength / 2)
-        const themeColorSuffixRed = colorsSuffix.sort((a, b) => a[0] - b[0])[
+        const themeColorSuffixRed = colorsSuffix.sort((a, b) => a[0]! - b[0]!)[
           middle
-        ][0]
-        const themeColorSuffixGreen = colorsSuffix.sort((a, b) => a[1] - b[1])[
+        ]?.[0]
+        const themeColorSuffixGreen = colorsSuffix.sort((a, b) => a[1]! - b[1]!)[
           middle
-        ][0]
-        const themeColorSuffixBlue = colorsSuffix.sort((a, b) => a[2] - b[2])[
+        ]?.[0]
+        const themeColorSuffixBlue = colorsSuffix.sort((a, b) => a[2]! - b[2]!)[
           middle
-        ][0]
+        ]?.[0]
         const themeColor: [number, number, number] = [
-          colorPrefix[0] + themeColorSuffixRed,
-          colorPrefix[1] + themeColorSuffixGreen,
-          colorPrefix[2] + themeColorSuffixBlue,
+          colorPrefix[0] ?? 0 + (themeColorSuffixRed ?? 0),
+          colorPrefix[1] ?? 0 + (themeColorSuffixGreen ?? 0),
+          colorPrefix[2] ?? 0 + (themeColorSuffixBlue ?? 0),
         ]
         return themeColor
       })

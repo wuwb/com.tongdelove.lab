@@ -48,9 +48,9 @@ export class OctreeNode {
   // 递归插入节点
   private acceptNode(color: Color) {
     const value =
-      color.r[this.level + 1] +
-      color.g[this.level + 1] +
-      color.b[this.level + 1]
+      color.r?.[this.level + 1] ?? '' +
+      color.g?.[this.level + 1] +
+      color.b?.[this.level + 1]
     if (!this.isLeaf) {
       const exists = this.children.map((child) => child.value).indexOf(value)
       if (exists === -1) {
@@ -59,7 +59,7 @@ export class OctreeNode {
         this.children.push(newNode)
         newNode.acceptNode(color)
       } else {
-        this.children[exists].acceptNode(color)
+        this.children?.[exists]?.acceptNode(color)
       }
     } else {
       // 只有末端叶子计数不为零, 并且accValue等于value

@@ -59,11 +59,11 @@ export class YuanjisongService {
         auditAt: new Date(),
         handleAt: new Date(),
       }
-      ;(task.sourceId = task.url?.replace(
+      ;((task.sourceId = task.url?.replace(
         'https://www.yuanjisong.com/job/',
         ''
       )),
-        tasks.push(task)
+        tasks.push(task))
     })
 
     await asyncForEach(tasks, async (task) => {

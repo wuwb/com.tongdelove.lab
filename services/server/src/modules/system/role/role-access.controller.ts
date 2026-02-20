@@ -41,7 +41,7 @@ export class RoleAccessController {
   async roleToAccess(
     @Param('roleId') roleId: string,
     @Body() roleAccessReqDto: RoleAccessReqDto
-  ): Promise<string> {
+  ) {
     return this.roleAccessService.roleToAccess(roleId, roleAccessReqDto)
   }
 
@@ -50,7 +50,7 @@ export class RoleAccessController {
     description: '获取全部的菜单(可授权)',
   })
   @Get('all_menus')
-  async allMenus(): Promise<AllMenusResDto[]> {
+  async allMenus() {
     return this.roleAccessService.allMenus()
   }
 
@@ -59,7 +59,7 @@ export class RoleAccessController {
     description: '获取全部的API(可授权)',
   })
   @Get('all_api')
-  async allApi(): Promise<AllApiResDto[]> {
+  async allApi() {
     return this.roleAccessService.allApi()
   }
 
@@ -79,7 +79,7 @@ export class RoleAccessController {
   async accessListByRoleId(
     @Param('roleId') roleId: string,
     @Param('type', new ParseIntPipe()) type: number
-  ): Promise<RoleAccessResDto[]> {
+  ) {
     return this.roleAccessService.accessListByRoleId(roleId, type)
   }
 }

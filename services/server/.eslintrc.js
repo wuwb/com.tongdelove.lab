@@ -6,7 +6,7 @@ module.exports = {
     project: 'tsconfig.json',
     tsconfigRootDir: __dirname,
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   env: {
     browser: false,

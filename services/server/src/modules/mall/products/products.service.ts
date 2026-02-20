@@ -1,21 +1,13 @@
 import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { Injectable, Logger } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Like, Repository } from 'typeorm'
-import { CreateProductDto } from './dto/create-product.dto'
 import { UpdateProductDto } from './dto/update-product.dto'
-import { Product } from './entities/product.entity'
 import { Prisma } from '@prisma/client'
 
 @Injectable()
 export class ProductsService {
   private readonly logger = new Logger(ProductsService.name)
 
-  constructor(
-    private prisma: PrismaService,
-    @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>
-  ) {
+  constructor(private prisma: PrismaService) {
     this.logger.debug('ProductsService', prisma)
   }
 

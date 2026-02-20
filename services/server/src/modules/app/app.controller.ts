@@ -30,7 +30,7 @@ export class AppController {
     // private readonly authService: AuthService,
     // private readonly linksService: LinksService,
     // private readonly photoService: PhotoService,
-  ) { }
+  ) {}
 
   @Get('/')
   appInfo() {
@@ -38,7 +38,7 @@ export class AppController {
   }
 
   @Get('/favicon.ico')
-  favicon() { }
+  favicon() {}
 
   // @Get('/self')
   // findAll(): Observable<AxiosResponse<any>> {

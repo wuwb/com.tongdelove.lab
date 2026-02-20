@@ -76,6 +76,8 @@ eslint-plugin-prettier 允许 eslint 使用 prettier 格式化代码
 - services
   - node-api express 后端
   - server nestjs 后端
+  - python-api python 后端
+  - go-api go 后端
 - packages
 
 ### Tech stacks
@@ -217,3 +219,14 @@ Error
 ## 资源
 
 - https://docs.google.com/spreadsheets/u/0/d/1Ky8NU5nhSi_zYHBbvxvofOmMRZf0r3MwiM0apoe8Pvk/htmlview?pli=1#
+
+
+# Code style
+
+- Use ES modules (import/export) syntax, not CommonJS (require)
+- Destructure imports when possible (eg. import { foo } from 'bar')
+
+# Workflow
+
+- Be sure to typecheck when you’re done making a series of code changes
+- Prefer running single tests, and not the whole test suite, for performance

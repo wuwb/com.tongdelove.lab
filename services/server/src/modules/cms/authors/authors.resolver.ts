@@ -2,17 +2,16 @@ import { Resolver } from 'dns'
 import { Query } from '@nestjs/common'
 // import { Args, ResolveProperty, Parent, Mutation, Subscription } from '@nestjs/graphql';
 // import { PubSub } from 'graphql-subscriptions';
-import { AuthorsService } from './authors.service'
-import { PostService } from '../post/post.service'
+// import { AuthorsService } from './authors.service'
+// import { PostService } from '../post/post.service'
 
 // const pubSub = new PubSub();
 
 // @Resolver('Author')
 export class AuthorResolver {
-  constructor(
-    private readonly authorsService: AuthorsService,
-    private readonly postService: PostService
-  ) {}
+  constructor() // private readonly authorsService: AuthorsService,
+  // private readonly postService: PostService
+  {}
 
   // @Query('author')
   // async getAuthor(@Args('id') id: string) {

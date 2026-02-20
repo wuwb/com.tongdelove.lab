@@ -59,9 +59,7 @@ export class AccountController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  async createAccount(
-    @Body() createAccountDto: CreateAccountDto
-  ): Promise<string> {
+  async createAccount(@Body() createAccountDto: CreateAccountDto) {
     return this.accountService.createAccount(createAccountDto)
   }
 
@@ -72,7 +70,7 @@ export class AccountController {
   @ApiCreatedResponse({ type: String, description: '重置密码返回值' })
   @HttpCode(HttpStatus.OK)
   @Post('reset_password')
-  async resetPassword(@Body() data: { id: string }): Promise<string> {
+  async resetPassword(@Body() data: { id: string }) {
     const { id } = data
     return this.accountService.resetPassword(id)
   }
@@ -87,7 +85,7 @@ export class AccountController {
   async updatePassWordById(
     @CurrentUser() userInfo: ICurrentUserType,
     @Body() modifyPasswordDto: ModifyPasswordDto
-  ): Promise<string> {
+  ) {
     const { id } = userInfo
     return this.accountService.modifyPassWordById(id, modifyPasswordDto)
   }
@@ -99,7 +97,7 @@ export class AccountController {
   })
   @HttpCode(HttpStatus.OK)
   @Delete(':id')
-  async removeById(@Param('id') id: string): Promise<string> {
+  async removeById(@Param('id') id: string) {
     return this.accountService.destroyById(id)
   }
 
@@ -116,7 +114,7 @@ export class AccountController {
   async updateById(
     @Param('id') id: string,
     @Body() updateAccountDto: UpdateAccountDto
-  ): Promise<string> {
+  ) {
     return this.accountService.modifyById(id, updateAccountDto)
   }
 
@@ -131,7 +129,7 @@ export class AccountController {
   // @PermissionMeta('根据id查询单条账号信息')
   @HttpCode(HttpStatus.OK)
   @Get(':id')
-  async accountById(@Param('id') id: string): Promise<AccountResDto | null> {
+  async accountById(@Param('id') id: string) {
     return this.accountService.accountById(id)
   }
 
@@ -150,9 +148,7 @@ export class AccountController {
   //   @PermissionMeta('账号列表')
   @HttpCode(HttpStatus.OK)
   @Get()
-  async accountList(
-    @Query() accountReqDto: AccountReqDto
-  ): Promise<AccountListResDtoDto> {
+  async accountList(@Query() accountReqDto: AccountReqDto) {
     return this.accountService.accountList(accountReqDto)
   }
 }

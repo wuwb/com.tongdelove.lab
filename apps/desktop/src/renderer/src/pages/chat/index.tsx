@@ -1,9 +1,10 @@
-import { HStack, VStack, Center, Text } from '@chakra-ui/react'
+import { HStack, VStack, Center, Text, Box } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { useSessions } from '../../hooks/useSessions'
 import { useSettings } from '../../hooks/useSettings'
 import { useAiChat } from '../../hooks/useAiChat'
-import { Sidebar } from '../../components/chat/Sidebar'
+import { AssistantList } from '../../components/chat/AssistantList'
+import { TopicList } from '../../components/chat/TopicList'
 import { MessageList } from '../../components/chat/MessageList'
 import { ChatInput } from '../../components/chat/ChatInput'
 import type { ChatMessage } from '../../../../shared/ipc'
@@ -52,15 +53,8 @@ export function ChatPage() {
 
     const userMsg: ChatMessage = { role: 'user', content }
     addMessage(sessionId!, userMsg)
-
-    // Get messages including the new one
-    // Note: activeSession ref might be stale if we just created it? 
-    // Actually createSession updates state but setState is async. 
-    // However createSession returns the ID. useSessions logic saves to localStorage immediately but state update is async.
-    // So activeSession might be undefined here if just created. 
-    // But we know it's empty history + userMsg.
     
-    // Better strategy: construct history here.
+    // Construct history for instant feedback and context
     const history = activeSession ? [...activeSession.messages] : []
     history.push(userMsg)
 
@@ -68,23 +62,56 @@ export function ChatPage() {
     if (model.includes('llama')) provider = 'ollama' as any
     // For now defaulting to openai unless mock or specified.
     
-    // Check if we are in Mock mode (debugging) or Real.
-    // Logic: if api key is empty, maybe use mock? Or just fail.
-    // Let's use 'openai' provider as default.
-    
     await start(model, history, provider, sessionId)
   }
 
-  const modelOptions = [
-    { label: 'GPT-3.5 Turbo', value: 'gpt-3.5-turbo' },
-    { label: 'GPT-4', value: 'gpt-4' },
-    { label: 'Llama 2', value: 'llama2' },
-    { label: 'Mock', value: 'mock' }
-  ]
 
   return (
-    <HStack h="100vh" w="full" gap={0}>
-      <Sidebar
+    <HStack h="100vh" w="full" gap={0} align="stretch" bg="white" _dark={{ bg: 'black' }}>
+      {/* Left Sidebar: Assistants */}
+      <AssistantList />
+
+      {/* Main Chat Area */}
+      <VStack flex={1} h="full" gap={0} bg="white" _dark={{ bg: 'gray.900' }} position="relative">
+        <Box flex={1} w="full" overflow="hidden" display="flex" flexDirection="column">
+            {activeSessionId ? (
+            <>
+                {/* Header for Chat Area */}
+                <HStack p={4} borderBottomWidth={1} borderColor="gray.100" _dark={{ borderColor: 'gray.800' }}>
+                    <Text fontWeight="bold">默认助手</Text>
+                    <Text color="gray.400">/</Text>
+                    <Text color="gray.500">{currentModel}</Text>
+                </HStack>
+
+                <MessageList 
+                    messages={activeSession?.messages || []} 
+                    streamingMessage={loading ? text : undefined}
+                />
+                <Box p={4} maxW="4xl" mx="auto" w="full">
+                    <ChatInput
+                        onSend={handleSend}
+                        onCancel={cancel}
+                        loading={loading}
+                    />
+                </Box>
+            </>
+            ) : (
+            <Center flex={1} flexDirection="column" gap={4}>
+                <Text fontSize="2xl" color="gray.300">Select or create a chat to start</Text>
+                <Box w="full" maxW="2xl" px={4}>
+                     <ChatInput
+                        onSend={handleSend}
+                        onCancel={cancel}
+                        loading={loading}
+                    />
+                </Box>
+            </Center>
+            )}
+        </Box>
+      </VStack>
+
+      {/* Right Sidebar: Topics */}
+      <TopicList
         sessions={sessions}
         activeSessionId={activeSessionId}
         onSelectSession={setActiveSessionId}
@@ -94,38 +121,6 @@ export function ChatPage() {
         }}
         onDeleteSession={deleteSession}
       />
-      
-      <VStack flex={1} h="full" gap={0} bg="bg.canvas">
-        {activeSessionId ? (
-          <>
-             <MessageList 
-               messages={activeSession?.messages || []} 
-               streamingMessage={loading ? text : undefined}
-             />
-             <ChatInput
-               onSend={handleSend}
-               onCancel={cancel}
-               loading={loading}
-               models={modelOptions}
-               currentModel={currentModel}
-               onModelChange={setCurrentModel}
-             />
-          </>
-        ) : (
-          <Center flex={1} flexDirection="column" gap={4}>
-            <Text fontSize="2xl" color="fg.muted">Select or create a chat to start</Text>
-            <ChatInput
-               onSend={handleSend}
-               onCancel={cancel}
-               loading={loading}
-               models={modelOptions}
-               currentModel={currentModel}
-               onModelChange={setCurrentModel}
-             />
-             {/* Show input even on empty state to easier start */}
-          </Center>
-        )}
-      </VStack>
     </HStack>
   )
 }

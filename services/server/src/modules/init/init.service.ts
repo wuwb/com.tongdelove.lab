@@ -1,23 +1,11 @@
-import { AccessEntity } from '@/modules/system/access/entities/access.entity'
-import { AccountEntity } from '@/modules/system/account/entities/account.entity'
 import { Injectable, Logger } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
 import { PrismaService } from '@/core/database/prisma/prisma.service'
 
 @Injectable()
 export class InitService {
   private readonly logger = new Logger(InitService.name)
 
-  constructor(
-    @InjectRepository(AccountEntity)
-    private readonly accountRepository: Repository<AccountEntity>,
-    @InjectRepository(AccessEntity)
-    private readonly accessRepository: Repository<AccessEntity>,
-    private readonly configService: ConfigService,
-    private readonly prisma: PrismaService
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   onModuleInit() {
     this.logger.log('init onModuleInit ')
@@ -30,22 +18,21 @@ export class InitService {
    * @Description: 初始化账号
    */
   private async initAccount(): Promise<void> {
-    const username = this.configService.get('defaultAccount')
-    const password = this.configService.get('defaultPassword')
-
-    const isExist = await this.accountRepository.findOne({
-      where: {
-        username,
-      },
-    })
-    if (!isExist) {
-      const account = this.accountRepository.create({
-        username,
-        password,
-        isSuper: 1,
-      })
-      await this.accountRepository.save(account)
-    }
+    // const username = this.configService.get('defaultAccount')
+    // const password = this.configService.get('defaultPassword')
+    // const isExist = await this.accountRepository.findOne({
+    //   where: {
+    //     username,
+    //   },
+    // })
+    // if (!isExist) {
+    //   const account = this.accountRepository.create({
+    //     username,
+    //     password,
+    //     isSuper: 1,
+    //   })
+    //   await this.accountRepository.save(account)
+    // }
   }
 
   /**
@@ -114,12 +101,12 @@ export class InitService {
         method: 'PATCH',
       },
     ]
-    // 如果不存在的时候就插入数据
-    const isExist = await this.accessRepository.count()
-    if (!isExist) {
-      // 批量插入数据
-      await this.accessRepository.insert(accessList)
-    }
+    // // 如果不存在的时候就插入数据
+    // const isExist = await this.accessRepository.count()
+    // if (!isExist) {
+    //   // 批量插入数据
+    //   await this.accessRepository.insert(accessList)
+    // }
   }
 
   private async initAccessPrisma(): Promise<void> {

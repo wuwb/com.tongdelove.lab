@@ -8,8 +8,7 @@ export class ResImageCaptchaDto {
   uuid: string
 }
 
-export class LoginResDto extends UserInfo {
-}
+export class LoginResDto extends UserInfo {}
 
 export class UserInfoResDto {
   /* 权限标识 */

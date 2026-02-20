@@ -5,21 +5,13 @@ import {
   OnModuleInit,
   Inject,
 } from '@nestjs/common'
-import { DatabaseModule } from '@/core/database/database/database.module'
 import { UserController } from './user.controller'
 import { UserService } from './user.service'
 import { MailModule } from '@/core/mail/mail/mail.module'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { UserEntity } from './entities/user.entity'
 import { AuthModule } from '../auth/auth.module'
 
 @Module({
-  imports: [
-    DatabaseModule,
-    MailModule,
-    forwardRef(() => AuthModule),
-    TypeOrmModule.forFeature([UserEntity]),
-  ],
+  imports: [MailModule, forwardRef(() => AuthModule)],
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],

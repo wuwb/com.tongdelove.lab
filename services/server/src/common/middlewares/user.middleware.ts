@@ -45,7 +45,6 @@ export class UserMiddleware implements NestMiddleware {
         const userID = (payload as any).id
         let userToken: string
         let user
-
         ;[userToken, user] = await Promise.all([
           this.cacheService.getUserToken(userID),
           this.cacheService.getUser(userID),

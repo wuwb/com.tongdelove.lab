@@ -43,9 +43,7 @@ export class AccountRoleController {
   })
   @HttpCode(HttpStatus.OK)
   @Get(':accountId')
-  async accountRoleListByAccountId(
-    @Param('accountId') accountId: string
-  ): Promise<AccountRoleListResDto[] | undefined> {
+  async accountRoleListByAccountId(@Param('accountId') accountId: string) {
     return this.accountRoleService.accountRoleListByAccountId(accountId)
   }
 
@@ -59,9 +57,7 @@ export class AccountRoleController {
   })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async distributionRole(
-    @Body() distributionRoleDto: DistributionRoleDto
-  ): Promise<string> {
+  async distributionRole(@Body() distributionRoleDto: DistributionRoleDto) {
     return this.accountRoleService.distributionRole(distributionRoleDto)
   }
 

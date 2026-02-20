@@ -9,14 +9,14 @@ const staticURL = `http://${domain}:9906`
 
 export const ConfigDefault = {
   db: {
-    type: 'mysql',
+    type: 'postgres',
     host: 'localhost',
-    port: 3306,
+    port: 5432,
     charset: 'utf8mb4',
-    username: 'root',
-    password: '202402.',
-    database: 'test',
-    synchronize: false,
+    username: 'user',
+    password: 'password',
+    database: 'mydb',
+    synchronize: true,
     entities: [path.join(__dirname, '../entity/**/*.entity{.ts,.js}')],
     logging: 'all', // query, error, schema, warn, info, log, all
     logger: 'simple-console',

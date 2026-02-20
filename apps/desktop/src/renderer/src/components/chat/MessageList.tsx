@@ -1,5 +1,5 @@
-import { Box, VStack, Text, HStack } from '@chakra-ui/react'
-import { User, Bot } from 'lucide-react'
+import { Box, VStack, Text } from '@chakra-ui/react'
+import { User, Sparkles } from 'lucide-react'
 import type { ChatMessage } from '../../../../shared/ipc'
 import { useEffect, useRef } from 'react'
 import { Avatar } from '../ui/avatar'
@@ -17,48 +17,67 @@ export function MessageList({ messages, streamingMessage }: MessageListProps) {
   }, [messages, streamingMessage])
 
   return (
-    <VStack flex={1} overflowY="auto" p={4} gap={6} align="stretch" pb={8}>
+    <VStack flex={1} overflowY="auto" p={6} gap={6} align="stretch" pb={10} css={{
+      '&::-webkit-scrollbar': { width: '4px' },
+      '&::-webkit-scrollbar-thumb': { background: '#EDF2F7', borderRadius: '4px' },
+    }}>
       {messages.map((msg, i) => (
-        <HStack key={i} align="start" gap={4} flexDirection={msg.role === 'user' ? 'row-reverse' : 'row'}>
-          <Avatar 
-             name={msg.role === 'user' ? 'User' : 'AI'}
-             icon={msg.role === 'user' ? <User /> : <Bot />}
-             bg={msg.role === 'user' ? 'blue.500' : 'green.500'}
-             color="white"
-          />
+        <Box key={i} display="flex" flexDirection={msg.role === 'user' ? 'row-reverse' : 'row'} gap={4}>
+          {msg.role === 'user' ? (
+             <Avatar 
+                name="User" 
+                size="sm"
+                bg="gray.200" 
+                color="gray.600"
+                icon={<User size={16} />}
+             />
+          ) : (
+             <Avatar 
+                name="AI" 
+                size="sm"
+                bg="transparent" 
+                color="orange.400"
+                src="" // If we had an icon url
+                icon={<Sparkles size={18} />}
+             />
+          )}
+
           <Box
-            bg={msg.role === 'user' ? 'blue.subtle' : 'bg.muted'}
-            p={3}
-            borderRadius="md"
-            maxW="80%"
-            borderTopRightRadius={msg.role === 'user' ? 0 : 'md'}
-            borderTopLeftRadius={msg.role === 'user' ? 'md' : 0}
-            whiteSpace="pre-wrap"
+            bg={msg.role === 'user' ? 'gray.100' : 'transparent'}
+            _dark={{ bg: msg.role === 'user' ? 'gray.800' : 'transparent', color: msg.role === 'user' ? 'inherit' : 'gray.100' }}
+            p={msg.role === 'user' ? 3 : 0}
+            px={msg.role === 'user' ? 4 : 0}
+            borderRadius="2xl"
+            maxW="85%"
+            lineHeight="1.6"
+            fontSize="md"
+            color={msg.role === 'user' ? 'inherit' : 'gray.800'}
           >
-            <Text fontSize="sm">{msg.content}</Text>
+            <Text whiteSpace="pre-wrap">{msg.content}</Text>
           </Box>
-        </HStack>
+        </Box>
       ))}
       
       {streamingMessage && (
-        <HStack align="start" gap={4}>
-          <Avatar 
-             name="AI"
-             icon={<Bot />}
-             bg="green.500"
-             color="white"
-          />
+        <Box display="flex" flexDirection="row" gap={4}>
+           <Avatar 
+                name="AI" 
+                size="sm"
+                bg="transparent" 
+                color="orange.400"
+                icon={<Sparkles size={18} />}
+             />
           <Box
-            bg="bg.muted"
-            p={3}
-            borderRadius="md"
-            maxW="80%"
-            borderTopLeftRadius={0}
-            whiteSpace="pre-wrap"
+            p={0}
+            maxW="85%"
+            lineHeight="1.6"
+            fontSize="md"
+            color="gray.800"
+            _dark={{ color: 'gray.100' }}
           >
-            <Text fontSize="sm">{streamingMessage}</Text>
+            <Text whiteSpace="pre-wrap">{streamingMessage}</Text>
           </Box>
-        </HStack>
+        </Box>
       )}
       <div ref={bottomRef} />
     </VStack>

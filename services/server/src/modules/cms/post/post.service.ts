@@ -1,9 +1,4 @@
 import { Injectable, HttpException, Logger, HttpStatus } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, getRepository, Connection } from 'typeorm'
-import { PostEntity } from './entities/post.entity'
-import { CreatePostDto } from './dto/create-post.dto'
-import { UpdatePostDto } from './dto/update-post.dto'
 import { Prisma, Post } from '@prisma/client'
 import { PrismaService } from '@/core/database/prisma/prisma.service'
 
@@ -11,12 +6,7 @@ import { PrismaService } from '@/core/database/prisma/prisma.service'
 export class PostService {
   private readonly logger = new Logger(PostService.name)
 
-  constructor(
-    @InjectRepository(PostEntity)
-    private postRepository: Repository<PostEntity>,
-    private connection: Connection,
-    private prisma: PrismaService
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
   get model() {
     return this.prisma.post
@@ -55,34 +45,6 @@ export class PostService {
     }
   }
 
-  async tgetPost(id: string) {
-    return this.postRepository
-      .findOne({
-        where: {
-          id,
-        },
-      })
-      .then((res) => res)
-      .catch((e) => {
-        throw new HttpException(
-          e.message || 'database action fail',
-          HttpStatus.INTERNAL_SERVER_ERROR
-        )
-      })
-  }
-
-  async tlistPosts() {
-    return this.postRepository
-      .find()
-      .then((res) => res)
-      .catch((e) => {
-        throw new HttpException(
-          e.message || 'database action fail',
-          HttpStatus.INTERNAL_SERVER_ERROR
-        )
-      })
-  }
-
   async findPostByPostName(postName: string): Promise<Post> {
     const post = await this.prisma.post.findUnique({
       where: {
@@ -107,37 +69,6 @@ export class PostService {
     return _post
   }
 
-  async findManyPost(
-    keyword?: string,
-    skip = 0,
-    limit = 10
-  ): Promise<PostEntity[]> {
-    // if (keyword) {
-    //   return this.postRepository.find({
-    //     where: {
-    //       title: {
-    //         $regex: `.*${keyword}.*`,
-    //       }
-    //     },
-    //   });
-    // } else {
-    return this.postRepository.find()
-    // }
-  }
-
-  async findAndCount() {
-    // const [posts, postsCount] =  this.postRepository.findAndCount();
-    const qb = await getRepository(PostEntity)
-      .createQueryBuilder('post')
-      .leftJoinAndSelect('post.author', 'author')
-    const postsCount = await qb.getCount()
-    const posts = await qb.getMany()
-    return { posts, postsCount }
-  }
-
-  /**
-   * 创建文章
-   */
   async createPost(
     post: Prisma.PostCreateInput,
     category: Prisma.CategoryCreateInput
@@ -167,31 +98,6 @@ export class PostService {
     }
   }
 
-  async createManyPost(posts: PostEntity[]) {
-    const queryRunner = this.connection.createQueryRunner()
-
-    await queryRunner.connect()
-    await queryRunner.startTransaction()
-    try {
-      await queryRunner.manager.save(posts[0])
-      await queryRunner.manager.save(posts[1])
-
-      await queryRunner.commitTransaction()
-    } catch (err) {
-      // since we have errors lets rollback the changes we made
-      await queryRunner.rollbackTransaction()
-    } finally {
-      // you need to release a queryRunner which was manually instantiated
-      await queryRunner.release()
-    }
-
-    // 方法二：
-    // await this.connection.transaction(async manager => {
-    //     await manager.save(posts[0]);
-    //     await manager.save(posts[1]);
-    // });
-  }
-
   // 更新文章
   async updatePost(params: {
     where: Prisma.PostWhereUniqueInput
@@ -202,42 +108,6 @@ export class PostService {
       data,
       where,
     })
-  }
-
-  async tupdate(dto: UpdatePostDto) {
-    if (dto.id) {
-      this.postRepository
-        .update(
-          {
-            id: dto.id,
-          },
-          dto
-        )
-        .then(() => {
-          return 'update success'
-        })
-        .catch((e) => {
-          throw new HttpException(
-            e.message || 'database action fail',
-            HttpStatus.INTERNAL_SERVER_ERROR
-          )
-        })
-    } else {
-      const post = this.postRepository.create(dto)
-      return this.postRepository
-        .save(post)
-        .then((data) => {
-          return {
-            id: data.id,
-          }
-        })
-        .catch((e) => {
-          throw new HttpException(
-            e.message || 'database action fail',
-            HttpStatus.INTERNAL_SERVER_ERROR
-          )
-        })
-    }
   }
 
   /**

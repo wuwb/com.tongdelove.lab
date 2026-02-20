@@ -41,16 +41,14 @@ export class AccessController {
   })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async createAccess(
-    @Body() createAccessDto: CreateAccessDto
-  ): Promise<string> {
+  async createAccess(@Body() createAccessDto: CreateAccessDto) {
     return this.accessService.createAccess(createAccessDto)
   }
 
   @ApiOperation({ summary: '删除资源', description: '根据资源ID删除资源' })
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async destroyAccessById(@Param('id') id: string): Promise<string> {
+  async destroyAccessById(@Param('id') id: string) {
     return this.accessService.destroyAccessById(id)
   }
 
@@ -63,7 +61,7 @@ export class AccessController {
   async modifyAccessById(
     @Param('id') id: string,
     @Body() updateAccessDto: UpdateAccessDto
-  ): Promise<string> {
+  ) {
     return this.accessService.modifyAccessById(id, updateAccessDto)
   }
 
@@ -78,7 +76,7 @@ export class AccessController {
   })
   @HttpCode(HttpStatus.OK)
   @Get('access_list')
-  async accessList(): Promise<AccessResDto[]> {
+  async accessList() {
     return this.accessService.accessList()
   }
 
@@ -95,9 +93,7 @@ export class AccessController {
     description: '分页获取资源列表',
   })
   @Get()
-  async accessListPage(
-    @Query() accessReqDto: AccessReqDto
-  ): Promise<AccessListResDtoDto> {
+  async accessListPage(@Query() accessReqDto: AccessReqDto) {
     return this.accessService.accessListPage(accessReqDto)
   }
 }

@@ -10,11 +10,11 @@ export class AccountService {
     private readonly configService: ConfigService,
     private readonly prisma: PrismaService,
     private readonly helperService: HelperService
-  ) { }
+  ) {}
 
-  async account() { }
+  async account() {}
 
-  async accountById() { }
+  async accountById() {}
 
   async findAccountByOpenid(openid: string): Promise<Account | null> {
     return this.prisma.account.findUnique({
@@ -25,7 +25,7 @@ export class AccountService {
     })
   }
 
-  async accounts() { }
+  async accounts() {}
 
   async createAccount(data): Promise<any> {
     const { username, email, mobile } = data
@@ -52,7 +52,7 @@ export class AccountService {
     })
   }
 
-  async updateAccount() { }
+  async updateAccount() {}
 
   async resetPassword(id: string): Promise<any> {
     const pass = this.helperService.makePassword(
@@ -75,5 +75,5 @@ export class AccountService {
     }
   }
 
-  async deleteAccount() { }
+  async deleteAccount() {}
 }

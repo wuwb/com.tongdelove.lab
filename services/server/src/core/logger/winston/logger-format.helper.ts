@@ -30,10 +30,7 @@ const reservedFields = {
 //    - {Boolean} opts.convertReqRes - Whether to convert logged `req` and `res`
 //      HTTP request and response fields to ECS HTTP, User agent, and URL
 //      fields. Default false.
-function ecsTransform(
-  info: TransformableInfo,
-  opts: any
-) {
+function ecsTransform(info: TransformableInfo, opts: any) {
   const { convertErr = true, convertReqRes = false } = opts || {}
 
   const ecsFields: any = {

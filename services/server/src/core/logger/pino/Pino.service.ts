@@ -11,7 +11,7 @@ class LogData {
 export class PinoService {
   private writeLog(logMethod: string, logData: LogData) {
     logData = logData || { message: '', data: {} }
-      ; (logData as any).timeLocal = dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')
+    ;(logData as any).timeLocal = dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')
     logger[logMethod](logData)
   }
 

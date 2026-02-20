@@ -33,14 +33,13 @@
       "(?:'|\"|`)([^']*)(?:'|\"|`)"
     ]
   ],
-  "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
+  "tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
     "next/router.d.ts",
     "next/dist/client/router.d.ts"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
-
   "prettier.requireConfig": true,
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,

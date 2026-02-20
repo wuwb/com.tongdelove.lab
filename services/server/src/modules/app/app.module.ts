@@ -51,19 +51,22 @@ import { ToolModule } from '@/modules/tool/tool.module'
 import { AuthModule } from '@/modules/system/auth/auth.module'
 import { UserModule } from '@/modules/system/user/user.module'
 import { UserVerificationModule } from '@/modules/system/user/user-verification.module'
+import { TemuRequestModule } from '@/modules/temu-request/temu-request.module'
 
 // root
 import { AppController } from './app.controller'
 import { AppResolver } from './app.resolver'
 import { AppService } from './app.service'
-import { SentryModule } from "@sentry/nestjs/setup";
 import {
   SqsModule,
   SqsConfig,
   SqsConfigOption,
   SqsQueueType,
-  SqsService
-} from '@nestjs-packages/sqs';
+  SqsService,
+} from '@nestjs-packages/sqs'
+// import { TypeOrmModule } from '@nestjs/typeorm'
+// import { TypeOrmConfigService } from '@/core/database/typeorm/typeorm-config.service'
+import { ConfigService } from '@nestjs/config'
 
 @Module({
   imports: [
@@ -84,8 +87,24 @@ import {
     UserModule,
     UserVerificationModule,
     AuthModule,
+    TemuRequestModule,
 
-    SentryModule.forRoot(),
+    // SentryModule.forRoot(),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: 'localhost',
+    //   port: 54321,
+    //   username: 'postgres',
+    //   password: 'postgres',
+    //   database: 'postgres',
+    //   entities: [],
+    //   synchronize: false,
+    //   autoLoadEntities: true,
+    // }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   useClass: TypeOrmConfigService,
+    // }),
     // SqsModule.forRootAsync({
     //   useFactory: () => {
     //     const config: SqsConfigOption = {
@@ -166,8 +185,6 @@ export class AppModule implements NestModule, OnApplicationShutdown {
   // static isDev: boolean;
 
   // private isAuthEnabled: boolean;
-
-  constructor(private readonly dataSource: DataSource) { }
 
   configure(consumer: MiddlewareConsumer) {
     const middlewares = [

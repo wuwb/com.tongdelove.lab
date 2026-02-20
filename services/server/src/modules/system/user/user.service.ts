@@ -5,22 +5,10 @@ import {
   HttpStatus,
   NotFoundException,
 } from '@nestjs/common'
-import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm'
-import { EntityManager, Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto'
 import { User, Prisma } from '@prisma/client'
 import { PrismaService } from '@/core/database/prisma/prisma.service'
-import { UserEntity } from './entities/user.entity'
-import bcryptjs from 'bcryptjs'
-import { isEmpty } from 'lodash'
 import { ApiException } from '@/common/exceptions/api.exception'
-import { QQService } from '@/shared/services/qq.service'
-import { generateRandomValue } from '@/utils/base/string.util'
-import { ConfigService } from '@nestjs/config'
-import UserRole from './entities/user-role.entity'
-import { IUserService } from './interfaces/IUserService'
-import { UpdatePasswordDto } from './dto/update-password.dto'
-import { PaginationDto } from '@/shared/dto/pagination.dto'
 import { QueryUserDto } from './dto/query-user.dto'
 
 const userWithRoles = Prisma.validator<any>()({
@@ -45,140 +33,121 @@ type UserWithRoles = Prisma.UserGetPayload<typeof userWithRoles>
 export class UserService {
   private readonly logger = new Logger(UserService.name)
 
-  constructor(
-    @InjectEntityManager()
-    private entityManager: EntityManager,
-
-    @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
-
-    private readonly configService: ConfigService,
-    private readonly prisma: PrismaService,
-    private qqService: QQService
-  ) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   // typeorm
 
   // 根据用户名查找已经启用的用户
-  async tfindByLogin(login: string): Promise<UserEntity | null> {
-    return this.userRepository.findOneBy({
-      login: login,
-      status: 1,
-    })
+  async tfindByLogin(login: string) {
+    // return this.userRepository.findOneBy({
+    //   login: login,
+    //   status: 1,
+    // })
   }
 
-  async tfindByEmail(email: string): Promise<UserEntity> {
-    const user = await this.userRepository.findOne({
-      where: {
-        email,
-      },
-    })
-    if (!user) {
-      throw new HttpException(
-        'A user with this email does not exist.',
-        HttpStatus.NOT_FOUND
-      )
-    }
-    return user
+  async tfindByEmail(email: string) {
+    // const user = await this.userRepository.findOne({
+    //   where: {
+    //     email,
+    //   },
+    // })
+    // if (!user) {
+    //   throw new HttpException(
+    //     'A user with this email does not exist.',
+    //     HttpStatus.NOT_FOUND
+    //   )
+    // }
+    // return user
   }
 
   // 更新个人信息
   async updateAccountInfo(id: string, info): Promise<void> {
-    const user = await this.userRepository.findOneBy({
-      id,
-    })
-    if (isEmpty(user)) {
-      throw new ApiException(10017)
-    }
-    const data = {
-      ...(info.nickName ? { nickName: info.nickName } : null),
-      ...(info.avatar ? { avatar: info.avatar } : null),
-      ...(info.email ? { email: info.email } : null),
-      ...(info.phone ? { phone: info.phone } : null),
-      ...(info.qq ? { qq: info.qq } : null),
-      ...(info.remark ? { remark: info.remark } : null),
-    }
-
-    // 自动获取 QQ 头像，todo，提供手动设置头像的功能
-    if (!info.avatar && info.qq) {
-      // 如果qq不等于原qq，则更新qq头像
-      if (info.qq !== user.qq) {
-        data.avatar = await this.qqService.getAvatar(info.qq)
-      }
-    }
-    await this.userRepository.update(id, data)
+    // const user = await this.userRepository.findOneBy({
+    //   id,
+    // })
+    // if (isEmpty(user)) {
+    //   throw new ApiException(10017)
+    // }
+    // const data = {
+    //   ...(info.nickName ? { nickName: info.nickName } : null),
+    //   ...(info.avatar ? { avatar: info.avatar } : null),
+    //   ...(info.email ? { email: info.email } : null),
+    //   ...(info.phone ? { phone: info.phone } : null),
+    //   ...(info.qq ? { qq: info.qq } : null),
+    //   ...(info.remark ? { remark: info.remark } : null),
+    // }
+    // // 自动获取 QQ 头像，todo，提供手动设置头像的功能
+    // if (!info.avatar && info.qq) {
+    //   // 如果qq不等于原qq，则更新qq头像
+    //   if (info.qq !== user.qq) {
+    //     data.avatar = await this.qqService.getAvatar(info.qq)
+    //   }
+    // }
+    // await this.userRepository.update(id, data)
   }
 
   async tcreate(dto: CreateUserDto) {
-    const user = this.userRepository.create(dto)
-    const salt = bcryptjs.genSaltSync(10)
-
-    user.pass = bcryptjs.hashSync(user.pass, salt)
-
-    return this.userRepository
-      .save(user)
-      .then((res) => {
-        return {
-          id: res.id,
-        }
-      })
-      .catch((err) => {
-        throw new HttpException('Forbidden', HttpStatus.FORBIDDEN)
-      })
+    // const user = this.userRepository.create(dto)
+    // const salt = bcryptjs.genSaltSync(10)
+    // user.pass = bcryptjs.hashSync(user.pass, salt)
+    // return this.userRepository
+    //   .save(user)
+    //   .then((res) => {
+    //     return {
+    //       id: res.id,
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN)
+    //   })
   }
 
   // 添加用户
   async tcreate2(param: CreateUserDto): Promise<void> {
-    const exists = await this.userRepository.findOne({
-      where: {},
-    })
-
-    if (!isEmpty(exists)) {
-      throw new ApiException(10001)
-    }
-
-    await this.entityManager.transaction(async (manager) => {
-      const salt = generateRandomValue(32)
-
-      // 查找配置的初始密码
-      const initPassword = await this.configService.get('prisma.initPassword')
-
-      const password = ''
-      const u = manager.create(UserEntity, {
-        departmentId: param.departmentId,
-        login: param.login,
-        pass: password,
-        nicename: 'TD_xxx', // 自动生成，用于显示在链接中
-        email: param.email,
-        phone: param.phone,
-      })
-      const result = await manager.save(u)
-      const { roles } = param
-      const insertRoles = roles.map((e) => {
-        return {
-          roleId: e,
-          userId: result.id,
-        }
-      })
-      // 分配角色
-      await manager.insert(UserRole, insertRoles)
-    })
+    // const exists = await this.userRepository.findOne({
+    //   where: {},
+    // })
+    // if (!isEmpty(exists)) {
+    //   throw new ApiException(10001)
+    // }
+    // await this.entityManager.transaction(async (manager) => {
+    //   const salt = generateRandomValue(32)
+    //   // 查找配置的初始密码
+    //   const initPassword = await this.configService.get('prisma.initPassword')
+    //   const password = ''
+    //   const u = manager.create(UserEntity, {
+    //     departmentId: param.departmentId,
+    //     login: param.login,
+    //     pass: password,
+    //     nicename: 'TD_xxx', // 自动生成，用于显示在链接中
+    //     email: param.email,
+    //     phone: param.phone,
+    //   })
+    //   const result = await manager.save(u)
+    //   const { roles } = param
+    //   const insertRoles = roles.map((e) => {
+    //     return {
+    //       roleId: e,
+    //       userId: result.id,
+    //     }
+    //   })
+    //   // 分配角色
+    //   await manager.insert(UserRole, insertRoles)
+    // })
   }
 
   // 获取用户信息
   async getAccountInfo(id: string): Promise<any> {
-    const user = await this.userRepository.findOneBy({
-      id,
-    })
-
-    if (isEmpty(user)) {
-      throw new ApiException(10017)
-    }
-
-    return {
-      login: user.login,
-      nicename: user.nicename,
-    }
+    // const user = await this.userRepository.findOneBy({
+    //   id,
+    // })
+    // if (isEmpty(user)) {
+    //   throw new ApiException(10017)
+    // }
+    // return {
+    //   login: user.login,
+    //   nicename: user.nicename,
+    // }
   }
 
   // prisma
@@ -380,9 +349,9 @@ export class UserService {
     return user
   }
 
-  async findByResetKey() { }
+  async findByResetKey() {}
 
-  async findByUsername() { }
+  async findByUsername() {}
 
   // 创建普通账号，创建谷歌登录账号
   async create(args): Promise<User> {
@@ -390,10 +359,10 @@ export class UserService {
   }
 
   // Add a role to the user
-  async addUserRole(userId: string, roleId: string) { }
+  async addUserRole(userId: string, roleId: string) {}
 
   // Delete a role from the user
-  async deleteUserRole(userId: string, roleId: string) { }
+  async deleteUserRole(userId: string, roleId: string) {}
 
   async recycleOrBanUser(id: string, action: 'recycle' | 'ban'): Promise<void> {
     const user = await this.findById(id)
@@ -412,7 +381,7 @@ export class UserService {
     return this.prisma.user.update<T>(args)
   }
 
-  async updateStatus(userId: string, status, operatorRole) { }
+  async updateStatus(userId: string, status, operatorRole) {}
 
   // 更新用户信息(头像、职位、公司、个人介绍、个人主页)
   async updateUserInfo(userId, updateUserInfoDto) {
@@ -490,9 +459,7 @@ export class UserService {
     return this.prisma.user.delete(args)
   }
 
-  async remove(where: Partial<Prisma.UserWhereUniqueInput>) {
-
-  }
+  async remove(where: Partial<Prisma.UserWhereUniqueInput>) {}
 
   async removeById(id: string) {
     const user = await this.findById(id)
@@ -520,15 +487,15 @@ export class UserService {
 
   // others
 
-  async existsByUsername() { }
+  async existsByUsername() {}
 
-  async existsByEmail() { }
+  async existsByEmail() {}
 
-  async getProfileImageBuffer() { }
+  async getProfileImageBuffer() {}
 
-  async uploadProfileImage() { }
+  async uploadProfileImage() {}
 
-  async deleteProfileImage() { }
+  async deleteProfileImage() {}
 
   // get relations
 
@@ -546,13 +513,13 @@ export class UserService {
     }
   }
 
-  async banOrUnbanUser() { }
+  async banOrUnbanUser() {}
 
-  async verifyUpdatedEmail(token: string) { }
+  async verifyUpdatedEmail(token: string) {}
 
-  async disableUser() { }
+  async disableUser() {}
 
-  async activateUser() { }
+  async activateUser() {}
 
-  async sendActivationMail() { }
+  async sendActivationMail() {}
 }

@@ -1,12 +1,4 @@
-import {
-  PrimaryGeneratedColumn,
-  Column,
-  Entity,
-  BeforeUpdate,
-  ManyToOne,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm'
+import { PrimaryGeneratedColumn, Entity } from 'typeorm'
 
 @Entity()
 export class Ad {

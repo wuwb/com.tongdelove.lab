@@ -63,7 +63,7 @@ export class RoleController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  async createRole(@Body() createRoleDto: CreateRoleDto): Promise<string> {
+  async createRole(@Body() createRoleDto: CreateRoleDto) {
     return this.roleService.createRole(createRoleDto)
   }
 
@@ -74,7 +74,7 @@ export class RoleController {
   })
   @HttpCode(HttpStatus.OK)
   @Delete(':id')
-  async destroyRoleById(@Param('id') id: string): Promise<string> {
+  async destroyRoleById(@Param('id') id: string) {
     return this.roleService.destroyRoleById(id)
   }
 
@@ -88,7 +88,7 @@ export class RoleController {
   async modifyRoleById(
     @Param('id') id: string,
     @Body() updateRoleDto: UpdateRoleDto
-  ): Promise<string> {
+  ) {
     return this.roleService.modifyRoleById(id, updateRoleDto)
   }
 
@@ -99,7 +99,7 @@ export class RoleController {
   })
   @HttpCode(HttpStatus.OK)
   @Get(':id')
-  async roleById(@Param('id') id: string): Promise<RoleResDto | null> {
+  async roleById(@Param('id') id: string) {
     return this.roleService.roleById(id)
   }
 }

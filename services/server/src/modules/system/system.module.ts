@@ -1,5 +1,4 @@
 import { Module, forwardRef } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
 
 // import { MODULE_PATH } from '@nestjs/common/constants'
 
@@ -31,14 +30,14 @@ import { RoleModule } from './role/role.module'
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      AccountEntity,
-      AccountLastLoginEntity,
-      AccountRoleEntity,
-      RoleEntity,
-      AccessEntity,
-      RoleAccessEntity,
-    ]),
+    // TypeOrmModule.forFeature([
+    //   AccountEntity,
+    //   AccountLastLoginEntity,
+    //   AccountRoleEntity,
+    //   RoleEntity,
+    //   AccessEntity,
+    //   RoleAccessEntity,
+    // ]),
     forwardRef(() => AuthModule),
     RoleModule,
   ],

@@ -8,7 +8,7 @@ import { LinkService } from './link.service'
 export class LinkResolver {
   private readonly logger = new Logger(LinkResolver.name)
 
-  constructor(private linkService: LinkService) { }
+  constructor(private linkService: LinkService) {}
 
   // @Query(returns => Link)
   // async recipe(@Args('id') id: string): Promise<Link> {

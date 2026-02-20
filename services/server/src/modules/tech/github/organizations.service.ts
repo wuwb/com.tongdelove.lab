@@ -1,19 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, getRepository } from 'typeorm'
 import { Organization } from './organization.entity'
 import { CreateOrganizationDto } from './dto/create-organization.dto'
-import { Cron, CronExpression } from '@nestjs/schedule'
-import { Octokit } from 'octokit'
 
 @Injectable()
 export class OrganizationsService {
   private readonly logger = new Logger(OrganizationsService.name)
-
-  constructor(
-    @InjectRepository(Organization)
-    private readonly organizationRepository: Repository<Organization>
-  ) {}
 
   public async create(createGithubOrganizationData: CreateOrganizationDto) {
     const githubOrganization = new Organization()
@@ -51,7 +42,7 @@ export class OrganizationsService {
     githubOrganization.updatedAt = createGithubOrganizationData.updated_at
     githubOrganization.type = createGithubOrganizationData.type
 
-    return this.organizationRepository.save(githubOrganization)
+    // return this.organizationRepository.save(githubOrganization)
   }
 
   // @Cron('45 * * * * *')

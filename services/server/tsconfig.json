@@ -16,21 +16,13 @@
     "noLib": false,
     "rootDir": ".",
     "baseUrl": ".",
-    "types": [
-      "node",
-      "reflect-metadata",
-      "Multer"
-    ],
+    "types": ["node", "reflect-metadata", "Multer"],
     // https://stackoverflow.com/questions/61687679/nest-js-build-does-does-not-generate-the-dist-folder
     "noEmit": false,
     "noEmitOnError": false,
     "noEmitHelpers": true,
     "incremental": false, // 避免打包失败
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     // 支持
     "resolveJsonModule": false,
     // 允许
@@ -50,28 +42,15 @@
     "allowJs": true,
     "strict": true,
     "paths": {
-      "@/scripts/*": [
-        "scripts/*"
-      ],
-      "@/*": [
-        "src/*"
-      ]
+      "@/scripts/*": ["scripts/*"],
+      "@/*": ["src/*"]
     }
   },
-  "include": [
-    "**/*",
-    "src/**/*",
-    "tests/**/*",
-    "scripts/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["**/*", "src/**/*", "tests/**/*", "scripts/**/*"],
+  "exclude": ["node_modules"],
   "ts-node": {
     "esm": true,
     // Do not forget to `npm i -D tsconfig-paths`
-    "require": [
-      "tsconfig-paths/register"
-    ]
+    "require": ["tsconfig-paths/register"]
   }
 }

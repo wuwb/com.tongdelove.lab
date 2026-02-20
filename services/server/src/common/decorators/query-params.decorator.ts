@@ -1,4 +1,11 @@
-import { isUndefined, isString, merge, isObject, isInteger, difference } from 'lodash'
+import {
+  isUndefined,
+  isString,
+  merge,
+  isObject,
+  isInteger,
+  difference,
+} from 'lodash'
 import { createParamDecorator } from '@nestjs/common'
 import { HttpForbiddenError } from '@/common/errors/forbidden.error'
 import { HttpBadRequestError } from '@/common/errors/bad-request.error'
@@ -141,9 +148,7 @@ export const QueryParams = createParamDecorator(
       {
         name: '目标页/page',
         field: EQueryParamsField.Page,
-        isAllowed:
-          isUndefined(page) ||
-          (isInteger(page) && Number(page) > 0),
+        isAllowed: isUndefined(page) || (isInteger(page) && Number(page) > 0),
         isIllegal: false,
         setValue() {
           if (page != null) {
@@ -168,8 +173,7 @@ export const QueryParams = createParamDecorator(
         name: '日期查询/date',
         field: EQueryParamsField.Date,
         isAllowed:
-          isUndefined(date) ||
-          new Date(date).toString() !== 'Invalid Date',
+          isUndefined(date) || new Date(date).toString() !== 'Invalid Date',
         isIllegal: false,
         setValue() {
           if (date != null) {

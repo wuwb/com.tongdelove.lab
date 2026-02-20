@@ -7,7 +7,7 @@ import { UpdateLinkDTO } from './dto/update-link.dto'
 export class LinkService {
   private readonly logger = new Logger(LinkService.name)
 
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async findOneById(id: string) {
     return this.prisma.link.findUnique({
@@ -88,7 +88,7 @@ export class LinkService {
             id: userId,
           },
         },
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
     })
   }

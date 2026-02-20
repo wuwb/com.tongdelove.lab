@@ -25,12 +25,9 @@ export function IndexPage() {
   return (
     <main className="h-screen flex flex-col">
       Hi, {userName}!
-      <button type="button" className="text-3xl font-bold underline text-white" onClick={ipcHandle}>
+      <Button className="text-3xl font-bold underline text-white" onClick={ipcHandle}>
         Send IPC
-      </button>
-      <button type="button" className="text-3xl font-bold underline text-white" onClick={ipcHandle}>
-        Send IPC
-      </button>
+      </Button>
       <Button className="bg-sky-500 hover:bg-sky-700" onClick={handleClick}>
         Click me {count}
       </Button>

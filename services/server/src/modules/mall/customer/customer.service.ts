@@ -1,8 +1,4 @@
 import { Injectable, HttpException, Logger } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
-import { Observable, of } from 'rxjs'
-import { makeSalt, encryptPassword } from '@/utils/cryptogram'
 import { User, Prisma, TaobaoOrderRaw, Address } from '@prisma/client'
 import { PrismaService } from '@/core/database/prisma/prisma.service'
 

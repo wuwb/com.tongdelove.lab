@@ -1,23 +1,17 @@
-import { Box, Button, HStack, Textarea,  NativeSelect } from '@chakra-ui/react'
-import { Send, StopCircle } from 'lucide-react'
+import { Box, Button, HStack, Textarea, IconButton } from '@chakra-ui/react'
+import { Send, StopCircle, Paperclip, Globe, Image as ImageIcon } from 'lucide-react'
 import { useState, useRef } from 'react'
 
 interface ChatInputProps {
   onSend: (message: string) => void
   onCancel: () => void
   loading: boolean
-  models: { label: string; value: string }[]
-  currentModel: string
-  onModelChange: (model: string) => void
 }
 
 export function ChatInput({
   onSend,
   onCancel,
-  loading,
-  models,
-  currentModel,
-  onModelChange
+  loading
 }: ChatInputProps) {
   const [input, setInput] = useState('')
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -36,41 +30,63 @@ export function ChatInput({
   }
 
   return (
-    <Box p={4} borderTopWidth={1} bg="bg.panel">
-      <HStack mb={2} justify="space-between">
-        <Box width="200px">
-           <NativeSelect.Root size="sm">
-             <NativeSelect.Field 
-                value={currentModel} 
-                onChange={(e) => onModelChange(e.currentTarget.value)}
-             >
-                {models.map(m => (
-                  <option key={m.value} value={m.value}>{m.label}</option>
-                ))}
-             </NativeSelect.Field>
-           </NativeSelect.Root>
-        </Box>
-      </HStack>
+    <Box 
+        bg="gray.50" 
+        _dark={{ bg: 'gray.800', borderColor: 'gray.700' }} 
+        borderRadius="xl" 
+        p={2} 
+        boxShadow="sm"
+        borderWidth="1px"
+        borderColor="gray.200"
+    >
+      <Textarea
+        ref={textareaRef}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="在这里输入消息，按 Enter 发送"
+        resize="none"
+        rows={1}
+        minH="40px"
+        maxH="200px"
+        variant="outline"
+        border="none"
+        bg="transparent"
+        _focus={{ boxShadow: 'none' }}
+        p={3}
+        fontSize="sm"
+        autoFocus
+      />
       
-      <HStack align="flex-end">
-        <Textarea
-          ref={textareaRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Type a message..."
-          resize="none"
-          rows={3}
-          autoFocus
-        />
-        <Button
-          onClick={loading ? onCancel : handleSend}
-          colorPalette={loading ? 'red' : 'blue'}
-          variant="solid"
-          h="full"
-        >
-          {loading ? <StopCircle /> : <Send />}
-        </Button>
+      <HStack justify="space-between" px={2} pb={1} pt={2}>
+        <HStack gap={1} color="gray.400">
+            <IconButton aria-label="Add file" variant="ghost" size="xs" color="gray.400" _hover={{ color: 'gray.600', bg: 'gray.100' }}>
+                 <Paperclip size={18} />
+            </IconButton>
+            <IconButton aria-label="Web search" variant="ghost" size="xs" color="gray.400" _hover={{ color: 'gray.600', bg: 'gray.100' }}>
+                 <Globe size={18} />
+            </IconButton>
+            <IconButton aria-label="Image generation" variant="ghost" size="xs" color="gray.400" _hover={{ color: 'gray.600', bg: 'gray.100' }}>
+                 <ImageIcon size={18} />
+            </IconButton>
+        </HStack>
+        
+        <HStack>
+            <Box fontSize="xs" color="gray.400" mr={2}>
+                {loading ? 'Thinking...' : `${input.length} chars`}
+            </Box>
+
+            <Button
+                onClick={loading ? onCancel : handleSend}
+                size="sm"
+                rounded="lg"
+                colorPalette={loading ? 'red' : 'gray'}
+                variant={input.trim() ? "solid" : "ghost"}
+                disabled={!input.trim() && !loading}
+            >
+                {loading ? <StopCircle size={16} /> : <Send size={16} />}
+            </Button>
+        </HStack>
       </HStack>
     </Box>
   )

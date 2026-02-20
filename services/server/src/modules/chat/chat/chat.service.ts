@@ -7,7 +7,7 @@ import { ClientProxy } from '@nestjs/microservices'
 export class ChatService {
   private client: ClientProxy
 
-  constructor() { }
+  constructor() {}
 
   // https://www.lepton.ai/playground/sdxl?model=open-dalle
   generateLeptonImage() {

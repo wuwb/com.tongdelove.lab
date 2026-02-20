@@ -47,7 +47,7 @@ export class WechatAuthService {
     ) {
       // 使用httpService请求accessToken数据
       // : AxiosResponse<WechatError & AccessConfig, any>
-      const res = await lastValueFrom(
+      const res: any = await lastValueFrom(
         this.httpService.get(
           `${apiServer}/sns/oauth2/access_token?appid=${APPID}&secret=${APPSECRET}&code=${code}&grant_type=authorization_code`
         )

@@ -6,7 +6,6 @@ import { ThrottlerModule } from '@nestjs/throttler'
 import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor'
 import { TransformInterceptor } from '@/common/interceptors/transform.interceptor'
 import { HealthModule } from '@/core/health/health.module'
-import { DatabaseModule } from '@/core/database/database/database.module'
 import { PrismaModule } from '@/core/database/prisma/prisma.module'
 import { MailModule } from '@/core/mail/mail/mail.module'
 import { CacheModule } from '@/core/cache/cache/cache.module'
@@ -33,7 +32,6 @@ import { JwtModule } from './auth/jwt/jwt.module'
     JwtModule,
 
     HealthModule,
-    DatabaseModule,
     LoggerModule,
     PrismaModule,
     // InitModule,
@@ -67,7 +65,6 @@ import { JwtModule } from './auth/jwt/jwt.module'
   ],
   exports: [
     HealthModule,
-    DatabaseModule,
     LoggerModule,
     PrismaModule,
     // InitModule,

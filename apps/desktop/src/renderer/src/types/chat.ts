@@ -11,3 +11,11 @@ export interface Session {
 }
 
 export type CreateSessionParams = Pick<Session, 'model' | 'provider'>
+
+export interface Assistant {
+  id: string
+  name: string
+  description: string
+  icon?: any // lucide icon component or string url
+  color?: string
+}

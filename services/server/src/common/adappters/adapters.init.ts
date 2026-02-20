@@ -8,7 +8,6 @@ import * as Sentry from '@sentry/node'
 import * as viewfilter from '@/utils/viewfilter'
 import * as path from 'path'
 import * as Tracing from '@sentry/tracing'
-import { Client } from '@sentry/types'
 import express from 'express'
 
 export const initExpress = async () => {

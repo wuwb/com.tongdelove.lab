@@ -1,8 +1,5 @@
 import { Module, Global } from '@nestjs/common'
 import { HttpModule } from '@nestjs/axios'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { AccessEntity } from '@/modules/system/access/entities/access.entity'
-import { AccountRoleEntity } from '@/modules/system/account/entities/account-role.entity'
 
 import { QQService } from './services/qq.service'
 import { ApiAuthService } from './services/api-auth.service'
@@ -28,7 +25,7 @@ const services = [
 @Global()
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AccessEntity, AccountRoleEntity]),
+    // TypeOrmModule.forFeature([AccessEntity, AccountRoleEntity]),
     HttpModule,
   ],
   providers: [QQService, ApiAuthService, ...services],

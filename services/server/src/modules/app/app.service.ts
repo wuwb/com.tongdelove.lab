@@ -10,8 +10,7 @@ import {
 export class AppService {
   private client: ClientProxy
 
-  constructor() // @Logger('AppService') private logger: LoggerService
-  {
+  constructor() { // @Logger('AppService') private logger: LoggerService
     this.client = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {

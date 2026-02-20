@@ -6,13 +6,10 @@ import { OrderService } from './order.service'
 
 @Injectable()
 export class OrderController {
-  constructor(protected readonly orderService: OrderService) { }
+  constructor(protected readonly orderService: OrderService) {}
 
   @Get('/:id/customer')
-  async findOneCustomer(
-    @Query() query,
-    @Param() params: any
-  ): Promise<any> {
+  async findOneCustomer(@Query() query, @Param() params: any): Promise<any> {
     // 注册用户购买的，没有 customer 信息
     if (!params.id) {
       throw new NotFoundException()
