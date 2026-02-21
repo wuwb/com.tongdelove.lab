@@ -1,10 +1,10 @@
-import type { ChatMessage } from '../../../shared/ipc'
+import type { ChatMessage, ProviderName } from '../../../shared/ipc'
 
 export interface Session {
   id: string
   title: string
   model: string
-  provider: 'mock' | 'openai' | 'ollama'
+  provider: ProviderName
   messages: ChatMessage[]
   createdAt: number
   updatedAt: number
@@ -16,6 +16,7 @@ export interface Assistant {
   id: string
   name: string
   description: string
-  icon?: any // lucide icon component or string url
+  icon?: any
   color?: string
+  provider?: ProviderName
 }

@@ -5,8 +5,11 @@ const DEFAULT_SETTINGS: AppSettings = {
   apiKeys: {},
   models: {
     openai: 'gpt-3.5-turbo',
-    ollama: 'llama2'
-  }
+    anthropic: 'claude-3-5-sonnet-20241022',
+    google: 'gemini-1.5-pro',
+    ollama: 'qwen3:8b'
+  },
+  providers: {}
 }
 
 export function useSettings() {

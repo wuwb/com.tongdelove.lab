@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { Session, CreateSessionParams } from '../types/chat'
-import type { ChatMessage } from '../../../shared/ipc'
+import type { ChatMessage, ProviderName } from '../../../shared/ipc'
 
 const STORAGE_KEY = 'chat_sessions_v1'
 
@@ -41,7 +41,7 @@ export function useSessions() {
   }
 
   const deleteSession = (id: string) => {
-    const newSessions = sessions.filter(s => s.id !== id)
+    const newSessions = sessions.filter((s) => s.id !== id)
     saveSessions(newSessions)
     if (activeSessionId === id) {
       setActiveSessionId(null)
@@ -49,25 +49,39 @@ export function useSessions() {
   }
 
   const updateSession = (id: string, updates: Partial<Session>) => {
-    const newSessions = sessions.map(s => (s.id === id ? { ...s, ...updates, updatedAt: Date.now() } : s))
+    const newSessions = sessions.map((s) =>
+      s.id === id ? { ...s, ...updates, updatedAt: Date.now() } : s
+    )
     saveSessions(newSessions)
   }
 
-  const addMessage = (sessionId: string, message: ChatMessage) => {
-    const session = sessions.find(s => s.id === sessionId)
-    if (!session) return
+  const addMessage = useCallback(
+    (
+      sessionId: string,
+      message: ChatMessage,
+      modelUpdate?: { model?: string; provider?: ProviderName }
+    ) => {
+      const session = sessions.find((s) => s.id === sessionId)
+      if (!session) return
 
-    const newMessages = [...session.messages, message]
-    // Update title if it's the first user message
-    let title = session.title
-    if (session.messages.length === 0 && message.role === 'user') {
-      title = message.content.slice(0, 30)
-    }
+      const newMessages = [...session.messages, message]
 
-    updateSession(sessionId, { messages: newMessages, title })
-  }
+      let title = session.title
+      if (session.messages.length === 0 && message.role === 'user') {
+        title = message.content.slice(0, 30)
+      }
 
-  const activeSession = sessions.find(s => s.id === activeSessionId)
+      const updates: Partial<Session> = {
+        messages: newMessages,
+        title,
+        ...modelUpdate
+      }
+      updateSession(sessionId, updates)
+    },
+    [sessions, updateSession]
+  )
+
+  const activeSession = sessions.find((s) => s.id === activeSessionId)
 
   return {
     sessions,

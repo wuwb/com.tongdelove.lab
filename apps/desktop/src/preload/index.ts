@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import type { ChatRequest, ChatChunk, AppSettings } from '../shared/ipc'
+import type { ChatStreamRequest, ChatChunk, AppSettings } from '../shared/ipc'
 import { IPC } from '../shared/ipc'
 
 // Custom APIs for renderer
@@ -20,7 +20,7 @@ const appAPI = {
 }
 
 const ai = {
-  start: (req: ChatRequest & { provider?: 'mock' | 'openai' | 'ollama' }) => ipcRenderer.invoke(IPC.AI.START, req),
+  start: (req: ChatStreamRequest) => ipcRenderer.invoke(IPC.AI.START, req),
   cancel: (sessionId: string) => ipcRenderer.invoke(IPC.AI.CANCEL, sessionId),
   onChunk: (listener: (chunk: ChatChunk) => void) => {
     const l = (_: any, chunk: ChatChunk) => listener(chunk)

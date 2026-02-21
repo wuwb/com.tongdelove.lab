@@ -26,17 +26,14 @@ export function AssistantList() {
     <Box w="280px" h="100%" borderRightWidth={1} bg="white" _dark={{ bg: 'gray.900' }} display="flex" flexDirection="column">
       {/* Header / Search */}
       <Box p={4} borderBottomWidth={0}>
-        <HStack mb={4} justify="space-between">
-            <Text fontWeight="medium">助手</Text>
-        </HStack>
         <Button variant="ghost" justifyContent="start" w="full" color="gray.500" mb={2}>
-             <Plus size={16} /><Text ml={2}>添加助手</Text>
+          <Plus size={16} /><Text ml={2}>添加助手</Text>
         </Button>
         <Box position="relative">
-             <Input placeholder="搜索助手" bg="gray.100" _dark={{bg: 'gray.800'}} border="none" pl={9} h="36px" fontSize="sm" />
-             <Box position="absolute" left={3} top="10px" color="gray.400">
-                 <Search size={16} />
-             </Box>
+          <Input placeholder="搜索助手" bg="gray.100" _dark={{ bg: 'gray.800' }} border="none" pl={9} h="36px" fontSize="sm" />
+          <Box position="absolute" left={3} top="10px" color="gray.400">
+            <Search size={16} />
+          </Box>
         </Box>
       </Box>
 
@@ -54,16 +51,16 @@ export function AssistantList() {
             onClick={() => setSelectedId(assistant.id)}
             gap={3}
           >
-            <Box 
-                p={2} 
-                bg={assistant.id === 'default' ? 'orange.100': 'gray.100'} 
-                rounded="full" 
-                color={assistant.color}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
+            <Box
+              p={2}
+              bg={assistant.id === 'default' ? 'orange.100' : 'gray.100'}
+              rounded="full"
+              color={assistant.color}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
             >
-                <assistant.icon size={18} />
+              <assistant.icon size={18} />
             </Box>
             <Box flex={1} overflow="hidden">
               <Text truncate fontSize="sm" fontWeight={selectedId === assistant.id ? 'medium' : 'normal'}>
@@ -71,9 +68,9 @@ export function AssistantList() {
               </Text>
             </Box>
             {selectedId === assistant.id && (
-                <IconButton aria-label="More" variant="ghost" size="xs" color="gray.400">
-                    <MoreVertical size={14} />
-                </IconButton>
+              <IconButton aria-label="More" variant="ghost" size="xs" color="gray.400">
+                <MoreVertical size={14} />
+              </IconButton>
             )}
           </HStack>
         ))}
@@ -83,16 +80,16 @@ export function AssistantList() {
 }
 
 function Button({ children, ...props }: any) {
-    return (
-        <HStack 
-            as="button" 
-            p={2} 
-            rounded="md" 
-            transition="all 0.2s" 
-            _hover={{ bg: 'gray.100' }}
-            {...props}
-        >
-            {children}
-        </HStack>
-    )
+  return (
+    <HStack
+      as="button"
+      p={2}
+      rounded="md"
+      transition="all 0.2s"
+      _hover={{ bg: 'gray.100' }}
+      {...props}
+    >
+      {children}
+    </HStack>
+  )
 }

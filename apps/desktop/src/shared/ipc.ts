@@ -10,6 +10,8 @@ export const IPC = {
   }
 } as const
 
+export type ProviderName = 'mock' | 'openai' | 'anthropic' | 'google' | 'ollama'
+
 export type ChatRole = 'user' | 'assistant' | 'system'
 
 export type ChatMessage = {
@@ -17,11 +19,18 @@ export type ChatMessage = {
   content: string
 }
 
-export type ChatRequest = {
+export type ChatStreamRequest = {
   sessionId: string
   model: string
+  provider?: ProviderName
   messages: ChatMessage[]
-  options?: { temperature?: number; top_p?: number }
+  options?: {
+    temperature?: number
+    top_p?: number
+    top_k?: number
+    max_tokens?: number
+    [key: string]: any
+  }
 }
 
 export type ChatChunk = {
@@ -35,10 +44,17 @@ export type ChatChunk = {
 export type AppSettings = {
   apiKeys: {
     openai?: string
+    anthropic?: string
+    google?: string
     ollama?: string
   }
   models: {
     openai?: string
+    anthropic?: string
+    google?: string
     ollama?: string
+  }
+  providers: {
+    [key: string]: any
   }
 }
