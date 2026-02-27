@@ -30,7 +30,7 @@ export async function* ollamaChatStream(
     if (!response.ok) {
       const errorText = await response.text()
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: `Ollama Error ${response.status}: ${errorText}. Please ensure Ollama is running.`,
         done: true
@@ -40,7 +40,7 @@ export async function* ollamaChatStream(
 
     if (!response.body) {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: 'No response body from Ollama',
         done: true
@@ -69,33 +69,33 @@ export async function* ollamaChatStream(
             const parsed = JSON.parse(trimmed)
             const content = parsed.message?.content
             if (content && parsed.done === false) {
-              yield { sessionId: req.sessionId, delta: content }
+              yield { conversationId: req.conversationId, delta: content }
             }
           } catch (e) {}
         }
       }
     } catch (error: any) {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: error.message,
         done: true
       }
     } finally {
       reader.releaseLock()
-      yield { sessionId: req.sessionId, delta: '', done: true }
+      yield { conversationId: req.conversationId, delta: '', done: true }
     }
   } catch (error: any) {
     if (error.code === 'ECONNREFUSED') {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: `Cannot connect to Ollama at ${baseUrl}. Please ensure Ollama is installed and running.`,
         done: true
       }
     } else {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: error.message,
         done: true

@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { createWindow } from '@/lib/electron-app/factories/windows/create'
 import { ENVIRONMENT } from '@/shared/constants'
 import { displayName } from '~/package.json'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../../resources/icon.png?asset'
 
 export async function AboutWindow() {
   let window = createWindow({

@@ -1,17 +1,10 @@
 import type { ElectronAPI } from '@electron-toolkit/preload'
+import type { WindowApiType } from './index'
 
+/** you don't need to declare this in your code, it's automatically generated */
 declare global {
   interface Window {
     electron: ElectronAPI
-    api: unknown
-    app: any
-    ai: {
-      start: (req: import('../shared/ipc').ChatRequest & { provider?: 'mock' | 'openai' | 'ollama' }) => Promise<{ ok: boolean; sessionId: string }>
-      cancel: (sessionId: string) => Promise<{ ok: boolean }>
-      onChunk: (listener: (chunk: import('../shared/ipc').ChatChunk) => void) => () => void
-    }
-    custom: {
-      invoke(channel: string, ...args: any[]): Promise<any>
-    }
+    api: WindowApiType
   }
 }

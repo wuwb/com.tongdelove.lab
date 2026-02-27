@@ -1,7 +1,16 @@
 appId: com.electron.app
 productName: react-ts
+electronLanguages:
+  - zh-CN
+  - zh_CN # for macOS
+  - en # for macOS
+  - en-US
 directories:
   buildResources: build
+protocols:
+  - name: ZhiGongFang
+    schemes:
+      - zhigongfang
 files:
   - '!**/.vscode/*'
   - '!src/*'
@@ -10,34 +19,79 @@ files:
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
-  - src/resources/**
+  - resources/**
+  - "**/*.{metal,exp,lib}"
+  - "node_modules/@img/sharp-libvips-*/**"
+
 win:
-  executableName: react-ts
+  executableName: Zhi Gong Fang
+  artifactName: ${productName}-${version}-${arch}-setup.${ext}
+  target:
+    - target: nsis
+    - target: portable
+  signtoolOptions:
+    sign: scripts/win-sign.js
+  verifyUpdateCodeSignature: false
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  allowToChangeInstallationDirectory: true
+  oneClick: false
+  include: build/nsis-installer.nsh
+  buildUniversalInstaller: false
+  differentialPackage: false
+portable:
+  artifactName: ${productName}-${version}-${arch}-portable.${ext}
+  buildUniversalInstaller: false
 mac:
   entitlementsInherit: build/entitlements.mac.plist
+  notarize: false
+    artifactName: ${productName}-${version}-${arch}.${ext}
   extendInfo:
     - NSCameraUsageDescription: Application requests access to the device's camera.
     - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
-  notarize: false
+  target:
+    - target: dmg
+    - target: zip
 dmg:
   artifactName: ${name}-${version}.${ext}
+  writeUpdateInfo: false
 linux:
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  executableName: ZhiGongFang
   target:
-    - AppImage
-    - snap
-    - deb
+    - target: AppImage
+    - target: snap
+    - target: deb
+    - target: rpm
   maintainer: electronjs.org
   category: Utility
+  desktop:
+    entry:
+      Name: Cherry Studio
+      StartupWMClass: ZhiGongFang
+  mimeTypes:
+    - x-scheme-handler/zhigongfang
+rpm:
+  # Workaround for electron build issue on rpm package:
+  # https://github.com/electron/forge/issues/3594
+  fpm: ["--rpm-rpmbuild-define=_build_id_links none"]
+publish:
+  provider: generic
+  url: https://lab.tongdelove.com/desktop/release
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/
+# beforePack: scripts/before-pack.js
+# afterPack: scripts/after-pack.js
+# afterSign: scripts/notarize.js
+# artifactBuildCompleted: scripts/artifact-build-completed.js
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
-publish:
-  provider: generic
-  url: https://example.com/auto-updates
+releaseInfo:
+  releaseNotes: |
+    - Release Notes

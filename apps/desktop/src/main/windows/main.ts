@@ -3,22 +3,23 @@ import { join } from 'node:path'
 import { createWindow } from '@/lib/electron-app/factories/windows/create'
 import { ENVIRONMENT } from '@/shared/constants'
 import { displayName } from '~/package.json'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../../resources/icon.png?asset'
 import { registerAiIpc } from '../ipc/ai'
-import { registerSettingsIpc } from '../ipc/settings'
-
 export async function MainWindow() {
   let window = createWindow({
     id: 'main',
     title: displayName,
-    width: 900,
-    height: 670,
+    width: 1200,
+    height: 832, // 增加32px用于自定义标题栏
     show: false,
     center: false,
     movable: true,
     resizable: true,
     alwaysOnTop: false,
-    autoHideMenuBar: true,
+    // 平台特定配置
+    frame: process.platform !== 'darwin', // macOS 使用原生标题栏，Windows/Linux 隐藏
+    titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'hidden',
+    backgroundColor: '#ffffff',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -28,10 +29,9 @@ export async function MainWindow() {
     }
   })
 
-  // register AI IPC once webContents is ready
+  // register AI IPC (uses webContents for broadcasting)
   registerAiIpc(window.webContents)
-  registerSettingsIpc()
-
+  
   window.webContents.on('did-finish-load', () => {
     if (ENVIRONMENT.IS_DEV) {
       window.webContents.openDevTools({ mode: 'detach' })
@@ -39,8 +39,6 @@ export async function MainWindow() {
 
     window.show()
   })
-
-  // window.on('ready-to-show', () => {
   // })
 
   // window.webContents.setWindowOpenHandler((details) => {

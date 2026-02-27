@@ -22,7 +22,7 @@ export function createChatStream(
   if (!config) {
     return (async function* () {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: `Unknown provider: ${provider}`,
         done: true
@@ -34,7 +34,7 @@ export function createChatStream(
   if (!entry) {
     return (async function* () {
       yield {
-        sessionId: req.sessionId,
+        conversationId: req.conversationId,
         delta: '',
         error: `Provider not registered: ${resolvedProvider}`,
         done: true

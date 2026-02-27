@@ -1,3 +1,6 @@
 provider: generic
-url: https://example.com/auto-updates
+url: https://lab.tongdelove.com/desktop/release
 updaterCacheDirName: 20250304_electron_vite-updater
+# provider: github
+# repo: zhigongfang
+# owner: 

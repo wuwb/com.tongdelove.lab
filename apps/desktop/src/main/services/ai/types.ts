@@ -28,7 +28,7 @@ export interface Provider {
 
 // 聊天请求
 export interface ChatStreamRequest {
-  sessionId: string
+  conversationId: string
   model: string
   messages: ChatMessage[]
   options?: {
@@ -42,7 +42,7 @@ export interface ChatStreamRequest {
 
 // 聊天响应分块
 export interface ChatStreamChunk {
-  sessionId: string
+  conversationId: string
   delta: string
   done?: boolean
   error?: string

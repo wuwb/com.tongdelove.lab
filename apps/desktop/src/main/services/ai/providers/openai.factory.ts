@@ -11,7 +11,7 @@ export async function* openaiChatStream(
 
   if (!apiKey && config.requiresAuth) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: `${config.name} API Key not found in settings.`,
       done: true
@@ -38,7 +38,7 @@ export async function* openaiChatStream(
   if (!response.ok) {
     const errorText = await response.text()
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: `${config.name} Error ${response.status}: ${errorText}`,
       done: true
@@ -48,7 +48,7 @@ export async function* openaiChatStream(
 
   if (!response.body) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: 'No response body from API',
       done: true
@@ -80,20 +80,20 @@ export async function* openaiChatStream(
           const parsed = JSON.parse(data)
           const delta = parsed.choices?.[0]?.delta?.content ?? ''
           if (delta) {
-            yield { sessionId: req.sessionId, delta }
+            yield { conversationId: req.conversationId, delta }
           }
         } catch (e) {}
       }
     }
   } catch (error: any) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: error.message,
       done: true
     }
   } finally {
     reader.releaseLock()
-    yield { sessionId: req.sessionId, delta: '', done: true }
+    yield { conversationId: req.conversationId, delta: '', done: true }
   }
 }

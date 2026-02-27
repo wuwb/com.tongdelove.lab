@@ -1,7 +1,17 @@
 {
+  "tsDecorders": "legacy",
   "files": [],
   "references": [
     { "path": "./tsconfig.node.json" }, 
     { "path": "./tsconfig.web.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": true,
+    "baseUrl": ".",
+    "paths": {
+      "@renderer/*": ["src/renderer/src/*"]
+    }
+  }
 }

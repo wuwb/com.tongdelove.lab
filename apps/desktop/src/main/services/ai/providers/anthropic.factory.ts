@@ -11,7 +11,7 @@ export async function* anthropicChatStream(
 
   if (!apiKey && config.requiresAuth) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: `${config.name} API Key not found in settings.`,
       done: true
@@ -39,7 +39,7 @@ export async function* anthropicChatStream(
   if (!response.ok) {
     const errorText = await response.text()
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: `${config.name} Error ${response.status}: ${errorText}`,
       done: true
@@ -49,7 +49,7 @@ export async function* anthropicChatStream(
 
   if (!response.body) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: 'No response body from API',
       done: true
@@ -81,7 +81,7 @@ export async function* anthropicChatStream(
           const parsed = JSON.parse(data)
           if (parsed.type === 'content_block_delta' && parsed.delta?.type === 'text_delta') {
             yield {
-              sessionId: req.sessionId,
+              conversationId: req.conversationId,
               delta: parsed.delta.text
             }
           }
@@ -90,13 +90,13 @@ export async function* anthropicChatStream(
     }
   } catch (error: any) {
     yield {
-      sessionId: req.sessionId,
+      conversationId: req.conversationId,
       delta: '',
       error: error.message,
       done: true
     }
   } finally {
     reader.releaseLock()
-    yield { sessionId: req.sessionId, delta: '', done: true }
+    yield { conversationId: req.conversationId, delta: '', done: true }
   }
 }

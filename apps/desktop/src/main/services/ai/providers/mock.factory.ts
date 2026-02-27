@@ -9,10 +9,10 @@ export async function* mockChatStream(
 
   for (let i = 0; i < text.length; i++) {
     await new Promise((r) => setTimeout(r, 20))
-    yield { sessionId: req.sessionId, delta: text[i] }
+    yield { conversationId: req.conversationId, delta: text[i] }
   }
   yield {
-    sessionId: req.sessionId,
+    conversationId: req.conversationId,
     delta: '',
     done: true,
     usage: {
