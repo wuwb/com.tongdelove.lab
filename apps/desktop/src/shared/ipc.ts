@@ -1,70 +1,71 @@
-export const IPC = {
-  WINDOW: {
-    MINIMIZE: 'window:minimize',
-    MAXIMIZE: 'window:maximize',
-    UNMAXIMIZE: 'window:unmaximize',
-    CLOSE: 'window:close'
-  },
-  AI: {
-    START: 'ai:chat:start',
-    CANCEL: 'ai:chat:cancel',
-    CHUNK: 'ai:chat:chunk'
-  },
-  SETTINGS: {
-    GET: 'settings:get',
-    SET: 'settings:set'
-  },
-  DATABASE: {
-    // Prompts
-    PROMPTS_GET_ALL: 'database:prompts:get-all',
-    PROMPT_GET: 'database:prompt:get',
-    PROMPT_CREATE: 'database:prompt:create',
-    PROMPT_UPDATE: 'database:prompt:update',
-    PROMPT_DELETE: 'database:prompt:delete',
+export const IPC_CANNELS = {
+  WINDOW_MINIMIZE: 'window:minimize',
+  WINDOW_MAXIMIZE: 'window:maximize',
+  WINDOW_UNMAXIMIZE: 'window:unmaximize',
+  WINDOW_CLOSE: 'window:close',
 
-    // Conversations
-    CONVERSATIONS_GET_ALL: 'database:conversations:get-all',
-    CONVERSATION_GET: 'database:conversation:get',
-    CONVERSATION_CREATE: 'database:conversation:create',
-    CONVERSATION_UPDATE: 'database:conversation:update',
-    CONVERSATION_DELETE: 'database:conversation:delete',
-    CONVERSATION_GET_ASSISTANT_SESSIONS: 'database:conversation:get-prompt-conversations',
-    CONVERSATION_GET_BY_TAG: 'database:conversation:get-by-tag',
+  AI_START: 'ai:chat:start',
+  AI_CANCEL: 'ai:chat:cancel',
+  AI_CHUNK: 'ai:chat:chunk',
 
-    // Messages
-    MESSAGES_GET: 'database:messages:get',
-    MESSAGES_GET_FOR_PROMPT: 'database:messages:get-for-prompt',
-    MESSAGES_GET_ALL: 'database:messages:get-all',
-    MESSAGE_CREATE: 'database:message:create',
-    MESSAGE_UPDATE: 'database:message:update',
+  SETTINGS_GET: 'settings:get',
+  SETTINGS_SET: 'settings:set',
 
-    // Assistants
-    ASSISTANTS_GET_ALL: 'database:assistants:get-all',
-    ASSISTANT_GET: 'database:assistant:get',
-    ASSISTANT_CREATE: 'database:assistant:create',
-    ASSISTANT_UPDATE: 'database:assistant:update',
-    ASSISTANT_DELETE: 'database:assistant:delete',
+  // Prompts
+  DATABASE_PROMPTS_GET_ALL: 'database:prompts:get-all',
+  DATABASE_PROMPT_GET: 'database:prompt:get',
+  DATABASE_PROMPT_CREATE: 'database:prompt:create',
+  DATABASE_PROMPT_UPDATE: 'database:prompt:update',
+  DATABASE_PROMPT_DELETE: 'database:prompt:delete',
 
-    // Export/Import
-    EXPORT_CONVERSATION: 'database:export-conversation',
-    EXPORT_ALL: 'database:export-all',
-    IMPORT_LOCALSTORAGE: 'database:import-localstorage',
-    CLEAR_ALL: 'database:clear-all'
-  },
-  OLLAMA: {
-    LIST_MODELS: 'ollama:list-models'
-  },
-  VERSION: {
-    GET: 'version:get',
-    GET_ALL: 'version:get-all',
-    CHECK: 'version:check',
-    CHECK_ALL: 'version:check-all',
-    INSTALL: 'version:install',
-    UPDATE: 'version:update',
-    UPDATE_ALL: 'version:update-all',
-    GET_CONFIG: 'version:get-config',
-    SET_CONFIG: 'version:set-config'
-  },
+  // Conversations
+  DATABASE_CONVERSATIONS_GET_ALL: 'database:conversations:get-all',
+  DATABASE_CONVERSATION_GET: 'database:conversation:get',
+  DATABASE_CONVERSATION_CREATE: 'database:conversation:create',
+  DATABASE_CONVERSATION_UPDATE: 'database:conversation:update',
+  DATABASE_CONVERSATION_DELETE: 'database:conversation:delete',
+  DATABASE_CONVERSATION_GET_ASSISTANT_SESSIONS: 'database:conversation:get-prompt-conversations',
+  DATABASE_CONVERSATION_GET_BY_TAG: 'database:conversation:get-by-tag',
+
+  // Messages
+  DATABASE_MESSAGES_GET: 'database:messages:get',
+  DATABASE_MESSAGES_GET_FOR_PROMPT: 'database:messages:get-for-prompt',
+  DATABASE_MESSAGES_GET_ALL: 'database:messages:get-all',
+  DATABASE_MESSAGE_CREATE: 'database:message:create',
+  DATABASE_MESSAGE_UPDATE: 'database:message:update',
+
+  // Assistants
+  DATABASE_ASSISTANTS_GET_ALL: 'database:assistants:get-all',
+  DATABASE_ASSISTANT_GET: 'database:assistant:get',
+  DATABASE_ASSISTANT_CREATE: 'database:assistant:create',
+  DATABASE_ASSISTANT_UPDATE: 'database:assistant:update',
+  DATABASE_ASSISTANT_DELETE: 'database:assistant:delete',
+
+  // Categories
+  DATABASE_CATEGORIES_GET_ALL: 'database:categories:get-all',
+  DATABASE_CATEGORY_GET: 'database:category:get',
+  DATABASE_CATEGORY_CREATE: 'database:category:create',
+  DATABASE_CATEGORY_UPDATE: 'database:category:update',
+  DATABASE_CATEGORY_DELETE: 'database:category:delete',
+
+  // Export/Import
+  DATABASE_EXPORT_CONVERSATION: 'database:export-conversation',
+  DATABASE_EXPORT_ALL: 'database:export-all',
+  DATABASE_IMPORT_LOCALSTORAGE: 'database:import-localstorage',
+  DATABASE_CLEAR_ALL: 'database:clear-all',
+
+  OLLAMA_LIST_MODELS: 'ollama:list-models',
+
+  // version
+  VERSION_GET: 'version:get',
+  VERSION_GET_ALL: 'version:get-all',
+  VERSION_CHECK: 'version:check',
+  VERSION_CHECK_ALL: 'version:check-all',
+  VERSION_INSTALL: 'version:install',
+  VERSION_UPDATE: 'version:update',
+  VERSION_UPDATE_ALL: 'version:update-all',
+  VERSION_GET_CONFIG: 'version:get-config',
+  VERSION_SET_CONFIG: 'version:set-config'
 } as const
 
 export type ProviderName = 'mock' | 'openai' | 'anthropic' | 'google' | 'ollama'
@@ -152,6 +153,8 @@ export type ProviderConfig = {
   defaultModel?: string
   models: ModelConfig[] // Array of models configured for this provider
   apiSettings: ProviderApiSettings // Additional API settings
+  remark?: string // Service provider remarks/notes
+  officialUrl?: string // Official website URL
 }
 
 export type AppSettings = {
@@ -260,6 +263,13 @@ export type InsertPrompt = Omit<Prompt, 'id' | 'createdAt' | 'updatedAt'>
 export type InsertConversation = Omit<Conversation, 'id' | 'createdAt' | 'updatedAt'>
 export type InsertMessage = Omit<Message, 'id' | 'createdAt'>
 
+// IPC Response Types
+export type IpcResponse<T = unknown> = {
+  success: boolean
+  data?: T
+  error?: string
+}
+
 // Version Types
 export type VersionStatus = 'installed' | 'not_installed' | 'error'
 
@@ -277,4 +287,9 @@ export type VersionInfo = {
 export type VersionConfig = {
   versionCheckInterval: number
   autoUpdateEnabled: boolean
+}
+
+export type VersionUpdateResult = {
+  name: string
+  success: boolean
 }

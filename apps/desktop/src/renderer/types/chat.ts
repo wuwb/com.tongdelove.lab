@@ -1,4 +1,4 @@
-import type { ChatMessage, ProviderName } from '../../../shared/ipc'
+import type { ChatMessage, ProviderName } from '@/shared/ipc'
 
 export interface Conversation {
   id: string

@@ -1,5 +1,3 @@
-import { IPC } from "@/shared/ipc"
-
 export interface VersionInfo {
   name: string
   version: string | null
@@ -16,7 +14,6 @@ export interface VersionConfig {
   autoUpdateEnabled: boolean
 }
 
-// 获取单个版本信息
 export const getVersion = async (name: string): Promise<VersionInfo | null> => {
   try {
     const result = await window.api.invoke('version:get', name)
@@ -32,23 +29,19 @@ export const getVersion = async (name: string): Promise<VersionInfo | null> => {
   }
 }
 
-// 获取所有版本信息
 export const getAllVersions = async (): Promise<VersionInfo[]> => {
   try {
-    const result = await window.api.version(IPC.VERSION.GET)
+    const result = await window.api.version.getAllVersions()
     if (result.success) {
       return result.data || []
     } else {
-      console.error('Failed to get all versions:', result.error)
-      return []
+      throw new Error('Failed to get all versions')
     }
   } catch (error) {
-    console.error('Version API error:', error)
-    return []
+    throw error
   }
 }
 
-// 检查版本更新
 export const checkVersion = async (name: string): Promise<VersionInfo | null> => {
   try {
     const result = await window.api.invoke('version:check', name)
@@ -64,10 +57,9 @@ export const checkVersion = async (name: string): Promise<VersionInfo | null> =>
   }
 }
 
-// 检查所有版本更新
 export const checkAllVersions = async (): Promise<VersionInfo[]> => {
   try {
-    const result = await window.api.invoke('version:check-all')
+    const result = await window.api.version.checkAllVersions()
     if (result.success) {
       return result.data || []
     } else {
@@ -80,7 +72,6 @@ export const checkAllVersions = async (): Promise<VersionInfo[]> => {
   }
 }
 
-// 安装版本
 export const installVersion = async (name: string): Promise<boolean> => {
   try {
     const result = await window.api.invoke('version:install', name)
@@ -96,7 +87,6 @@ export const installVersion = async (name: string): Promise<boolean> => {
   }
 }
 
-// 更新版本
 export const updateVersion = async (name: string): Promise<boolean> => {
   try {
     const result = await window.api.invoke('version:update', name)
@@ -112,7 +102,6 @@ export const updateVersion = async (name: string): Promise<boolean> => {
   }
 }
 
-// 更新所有版本
 export const updateAllVersions = async (): Promise<{ name: string; success: boolean }[]> => {
   try {
     const result = await window.api.invoke('version:update-all')
@@ -128,7 +117,6 @@ export const updateAllVersions = async (): Promise<{ name: string; success: bool
   }
 }
 
-// 获取版本配置
 export const getConfig = async (): Promise<VersionConfig | null> => {
   try {
     const result = await window.api.invoke('version:get-config')
@@ -144,7 +132,6 @@ export const getConfig = async (): Promise<VersionConfig | null> => {
   }
 }
 
-// 设置版本配置
 export const setConfig = async (config: Partial<VersionConfig>): Promise<boolean> => {
   try {
     const result = await window.api.invoke('version:set-config', config)

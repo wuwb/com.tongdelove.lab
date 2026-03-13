@@ -41,6 +41,14 @@ const TOP_NAV_ITEMS: NavItem[] = [
       <Sparkles size={size} color={color} />
     )
   },
+  {
+    id: 'categories',
+    label: '分类管理',
+    path: '/categories',
+    icon: ({ size, color }: { size?: number; color?: string }) => (
+      <Sparkles size={size} color={color} />
+    )
+  },
 ]
 
 const BOTTOM_NAV_ITEMS: NavItem[] = [

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { ChatMessage, ChatStreamRequest, ChatChunk, ProviderName } from '../../shared/ipc'
+import type { ChatMessage, ChatStreamRequest, ChatChunk, ProviderName } from '@/shared/ipc'
 
 export function useAiChat(conversationId: string, onFinish?: (content: string) => void) {
   const [text, setText] = useState('')

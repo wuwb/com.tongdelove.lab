@@ -1,23 +1,25 @@
 import { Route } from 'react-router'
 import { Router } from '@/lib/electron-router-dom'
 import { AppShell } from './layouts/AppShell'
-import { IndexPage } from './pages/index'
-import { AboutPage } from './pages/about'
-import { SettingPage } from './pages/settings'
-import { ChatPage } from './pages/chat'
-import { AssistantsPage } from './pages/assistants'
-import { SettingsModels } from './pages/settings/Models'
-import { SettingsGeneral } from './pages/settings/General'
+import { IndexPage } from './pages/Index'
+import { AboutPage } from './pages/About'
+import { SettingPage } from './pages/Settings'
+import { Chat as ChatPage } from './pages/Chat'
+import { AssistantsPage } from './pages/Assistants'
+import { SettingsModels } from './pages/Settings/Models'
+import { SettingsGeneral } from './pages/Settings/General'
 import { PlaceholderSettings } from './pages/settings/PlaceholderSettings'
-import { NotFoundPage } from './pages/not-found'
+import { NotFoundPage } from './pages/NotFound'
 import { DashboardPage } from './pages/Dashboard'
 import { Usage as DashboardUsage } from './pages/Dashboard/Usage'
 import { Versions as DashboardVersions } from './pages/Dashboard/Versions'
+import { MiniApp } from './pages/MiniApp'
+import { Playground } from '@/renderer/pages/Playground'
+import { CategoriesPage } from '@/renderer/pages/categories'
 
 export function AppRoutes() {
   return (
     <Router
-      about={<Route path="/" element={<AboutPage />} />}
       main={
         <Route path="/" element={<AppShell />}>
           <Route path="/" element={<IndexPage />} />
@@ -30,7 +32,7 @@ export function AppRoutes() {
           <Route path="/assistants" element={<AssistantsPage />} />
           <Route path="/drawing" element={<PlaceholderSettings title="绘图" />} />
           <Route path="/miniapp" element={<PlaceholderSettings title="小程序" />} />
-          <Route path="/playground" element={<PlaceholderSettings title="Playground" />} />
+          <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/setting/*" element={<SettingPage />}>
             <Route path="" element={<SettingsModels />} />
             <Route path="models" element={<SettingsModels />} />
@@ -45,6 +47,8 @@ export function AppRoutes() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       }
+      miniapp={<Route path="/" element={<MiniApp />} />}
+      about={<Route path="/" element={<AboutPage />} />}
     />
   )
 }

@@ -3,37 +3,21 @@ import { makeAppWithSingleInstanceLock } from '@/lib/electron-app/factories/app/
 import { makeAppSetup } from '@/lib/electron-app/factories/app/setup'
 import { MainWindow } from './windows/main'
 import { AboutWindow } from './windows/about'
+import { registerIPC } from './ipc/index'
 
 makeAppWithSingleInstanceLock(async () => {
   await app.whenReady()
-  
+
   console.log('App ready, creating window...')
-  
-  // 在 app ready 后立即注册 IPC handlers（在创建窗口之前）
+
   try {
-    const { registerOllamaIpc } = await import('./ipc/ollama')
-    registerOllamaIpc()
-    
-    const { registerSettingsIpc } = await import('./ipc/settings')
-    registerSettingsIpc()
-    
-    const { registerAssistantsIpc } = await import('./ipc/assistants')
-    registerAssistantsIpc()
-    
-    const { registerDatabaseIpc } = await import('./ipc/database')
-    registerDatabaseIpc()
+    registerIPC()
 
-    const { registerVersionIpc } = await import('./ipc/handlers/version')
-    registerVersionIpc()
-
-    const { registerWindowIpc } = await import('./ipc/window')
-    registerWindowIpc()
-    
     console.log('✅ All IPC handlers registered')
   } catch (err) {
     console.error('❌ Failed to register IPC handlers:', err)
   }
-  
+
   await makeAppSetup(MainWindow)
   console.log('✅ Window created')
 })

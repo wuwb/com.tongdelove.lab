@@ -16,7 +16,7 @@ import type {
   InsertAssistant,
   QuickPhrase,
   AssistantCustomParameter
-} from '../../../shared/ipc'
+} from '@/shared/ipc'
 import { ChevronDownIcon, PlusIcon, Trash2Icon, XIcon } from 'lucide-react'
 
 interface AssistantEditorProps {

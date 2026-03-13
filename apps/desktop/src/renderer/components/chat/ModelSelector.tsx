@@ -1,13 +1,15 @@
 import { Button, Dialog, VStack, HStack, Text, Badge, Input, Box } from '@chakra-ui/react'
 import { Settings2 } from 'lucide-react'
 import { useState, useMemo } from 'react'
-import type { ProviderName, AppSettings } from '../../../shared/ipc'
+import type { ProviderName, AppSettings } from '@/shared/ipc'
 
 type ProviderConfig = {
   id: string
   name: string
   type: string
   avatar: string
+  remark?: string
+  officialUrl?: string
   enabled: boolean
   models: Array<{
     id: string
@@ -29,6 +31,8 @@ const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
     name: 'OpenAI',
     type: 'openai',
     avatar: '🔮',
+    remark: '领先的AI研究实验室，提供GPT系列模型',
+    officialUrl: 'https://openai.com',
     enabled: true,
     models: [
       { id: 'gpt-4o', name: 'gpt-4o' },
@@ -43,6 +47,8 @@ const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
     name: 'Anthropic Claude',
     type: 'anthropic',
     avatar: '🎭',
+    remark: '专注于安全AI的Claude系列模型',
+    officialUrl: 'https://www.anthropic.com',
     enabled: true,
     models: [
       { id: 'claude-3-7-sonnet-20250219', name: 'claude-3-7-sonnet-20250219' },
@@ -56,6 +62,8 @@ const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
     name: 'Google Gemini',
     type: 'gemini',
     avatar: '🌐',
+    remark: 'Google开发的Gemini多模态AI模型',
+    officialUrl: 'https://deepmind.google/technologies/gemini/',
     enabled: true,
     models: [
       { id: 'gemini-2.5-flash-preview-04-17', name: 'gemini-2.5-flash-preview-04-17' },
@@ -69,6 +77,8 @@ const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
     name: 'Ollama',
     type: 'ollama',
     avatar: '🤖',
+    remark: '本地运行的LLM服务框架',
+    officialUrl: 'https://ollama.ai',
     enabled: true,
     models: []
   },
@@ -119,6 +129,8 @@ export function ModelSelector({
         name: provider.name,
         type: provider.type,
         avatar: provider.avatar || '🔧',
+        remark: provider.remark,
+        officialUrl: provider.officialUrl,
         enabled: provider.enabled ?? true,
         models: (provider.models || []).map((m: any) => ({
           id: m.id || m.name,
@@ -202,13 +214,20 @@ export function ModelSelector({
                   {filteredModels.map(([provider, config]) => (
                     <Box key={provider} borderWidth={1} rounded="md" p={3}>
                       <HStack justify="space-between" mb={3}>
-                        <HStack gap={2}>
-                          <Text fontSize="xl">{config.avatar}</Text>
-                          <Badge colorScheme={getProviderColor(provider)}>{config.name}</Badge>
-                          <Text fontSize="sm" color="gray.500" fontWeight="medium">
-                            {config.models.length} 个模型
-                          </Text>
-                        </HStack>
+                        <VStack align="start" gap={1}>
+                          <HStack gap={2}>
+                            <Text fontSize="xl">{config.avatar}</Text>
+                            <Badge colorScheme={getProviderColor(provider)}>{config.name}</Badge>
+                            <Text fontSize="sm" color="gray.500" fontWeight="medium">
+                              {config.models.length} 个模型
+                            </Text>
+                          </HStack>
+                          {config.remark && (
+                            <Text fontSize="xs" color="gray.400" maxW="300px" noOfLines={2}>
+                              {config.remark}
+                            </Text>
+                          )}
+                        </VStack>
                       </HStack>
 
                       <VStack gap={1} maxH="200" overflowY="auto">

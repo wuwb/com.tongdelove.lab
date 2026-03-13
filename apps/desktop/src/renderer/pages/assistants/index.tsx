@@ -87,7 +87,7 @@ export function AssistantsPage() {
           </Text>
           <Badge colorScheme="blue">{assistants.length}</Badge>
         </HStack>
-        <Button colorScheme="blue" leftIcon={<Plus size={16} />} onClick={() => openEditor()}>
+        <Button colorScheme="blue" onClick={() => openEditor()}>
           创建助手
         </Button>
       </HStack>
@@ -118,11 +118,6 @@ export function AssistantsPage() {
         <Box
           flex={1}
           overflowY="auto"
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '4'
-          }}
         >
           {filteredAssistants.map((assistant) => (
             <Card.Root
@@ -136,9 +131,9 @@ export function AssistantsPage() {
             >
               <VStack gap={3}>
                 <HStack justifyContent="space-between" align="start">
-                  <Avatar size="md" src={assistant.avatar}>
+                  <Avatar.Root size="md">
                     {assistant.avatar}
-                  </Avatar>
+                  </Avatar.Root>
                   <HStack>
                     <IconButton
                       size="xs"
@@ -166,18 +161,18 @@ export function AssistantsPage() {
                 </HStack>
 
                 <Box>
-                  <Text fontWeight="medium" noOfLines={1}>
+                  <Text fontWeight="medium">
                     {assistant.name}
                   </Text>
                   {assistant.description && (
-                    <Text fontSize="sm" color="gray.500" noOfLines={2} mt={1}>
+                    <Text fontSize="sm" color="gray.500">
                       {assistant.description}
                     </Text>
                   )}
                 </Box>
 
                 {assistant.systemPrompt && (
-                  <Text fontSize="xs" color="gray.400" noOfLines={2} mt={2} fontStyle="italic">
+                  <Text fontSize="xs" color="gray.400" fontStyle="italic">
                     {assistant.systemPrompt.slice(0, 80)}...
                   </Text>
                 )}
@@ -221,7 +216,7 @@ export function AssistantsPage() {
       />
 
       {/* Delete Confirmation Dialog */}
-      <DialogRoot open={isConfirmDialogOpen} onOpenChange={setIsConfirmDialogOpen}>
+      <DialogRoot open={isConfirmDialogOpen} onOpenChange={(details) => setIsConfirmDialogOpen(details.open)}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>确认删除</DialogTitle>

@@ -7,16 +7,11 @@
 
 ---
 
-## 
-
-- @chakra-ui/react 版本 ^3.8.2
-
 ## Architecture Overview
 
 The desktop application is built using **Electron** with a three-tier architecture pattern:
 
 ```
-apps/desktop/
 ├── src/
 │   ├── main/                     # Main Process (Node.js)
 │   │   ├── index.ts             # Electron entry point
@@ -91,47 +86,6 @@ export * as OllamaProvider from './providers/ollama.factory'
 
 ---
 
-## 📁 Directory Details
-
-### `/src/main/` - Main Process
-
-#### **IPC Handlers** (`/src/main/ipc/`)
-
-Each IPC handler is a standalone module:
-
-| File          | Purpose                   | Example                             |
-| ------------- | ------------------------- | ----------------------------------- |
-| `ollama.ts`   | Ollama CLI commands       | `ollama ls`, model loading          |
-| `settings.ts` | App settings CRUD         | Get/set provider, model config      |
-| `database.ts` | Local database operations | Prompts, conversations, messages    |
-| `ai.ts`       | AI chat streaming         | Start chat, cancel, chunk streaming |
-| `window.ts`   | Window controls           | Minimize, maximize, close           |
-
-**Pattern**:
-
-```typescript
-export function registerOllamaIpc() {
-  ipcMain.handle(IPC.OLLAMA.LIST_MODELS, async () => {
-    return await executeOllamaLs()
-  })
-}
-```
-
-#### **Window Management** (`/src/main/windows/`)
-
-- `main.ts` - Main application window
-- `about.ts` - About dialog window
-
-Window creation uses factories from `/src/lib/electron-app/factories/windows/create.ts`
-
-#### **Services** (`/src/main/services/`)
-
-| Directory   | Purpose                               |
-| ----------- | ------------------------------------- |
-| `database/` | SQLite wrapper, schema management     |
-| `ai/`       | Provider factories, streaming logic   |
-| `store.ts`  | In-memory state store for shared data |
-
 ### `/src/preload/` - Preload Script
 
 **Entry Point**: `index.ts` (148 lines)
@@ -144,13 +98,6 @@ Window creation uses factories from `/src/lib/electron-app/factories/windows/cre
 
 ```typescript
 window.api // General app controls
-window.app // App metadata
-window.ai // AI chat operations
-window.settings // Settings management
-window.database // Local database
-window.windowControl // Window controls
-window.ollama // Ollama-specific operations
-window.custom // Generic IPC invoke
 ```
 
 ### `/src/renderer/` - Renderer Process (React)
@@ -266,11 +213,11 @@ export function useSettings() {
   const [settings, setSettings] = useState<AppSettings>(defaultSettings)
 
   useEffect(() => {
-    window.settings.get().then(setSettings)
+    window.api.settings.get().then(setSettings)
   }, [])
 
   const updateSetting = useCallback(async (key: keyof AppSettings, value: any) => {
-    await window.settings.set(key, value)
+    await window.api.settings.set(key, value)
     setSettings((prev) => ({ ...prev, [key]: value }))
   }, [])
 
@@ -341,10 +288,10 @@ pnpm dist
 
    ```typescript
    import { ipcMain } from 'electron'
-   import { IPC } from '../../shared/ipc'
+   import { IPC_CANNELS } from '@/shared/ipc'
 
    export function registerMyFeatureIpc() {
-     ipcMain.handle(IPC.MY_FEATURE.ACTION, async (event, ...args) => {
+     ipcMain.handle(IPC_CANNELS.MY_FEATURE_ACTION, async (event, ...args) => {
        // Implementation
        return result
      })
@@ -457,7 +404,7 @@ pnpm dist
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 When working on the desktop app:
 
@@ -467,9 +414,9 @@ When working on the desktop app:
 4. Register new IPC handlers in main process
 
 - 文件名用大写驼峰，不要有中划线
-- 不添加非必要注释
-- 不使用 emoji 图标
-- 使用函数式编程，不使用类实现
+- 不加非必要注释
+- 不用 emoji
+- 使用函数式编程，不用类实现
 
 ---
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import type { Prompt, InsertPrompt } from '../../shared/ipc'
+import type { Prompt, InsertPrompt } from '@/shared/ipc'
 
 export function usePrompts() {
   const [prompts, setPrompts] = useState<Prompt[]>([])

@@ -3,7 +3,7 @@ import { Button } from '@tongdelove/ui/components/button'
 import { Card } from '@tongdelove/ui/components/card'
 import { Badge } from '@tongdelove/ui/components/badge'
 import { usePrompts } from '../../hooks/usePrompts'
-import type { Prompt as PromptType } from '../../../shared/ipc'
+import type { Prompt as PromptType } from '@/shared/ipc'
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@tongdelove/ui/components/dialog'
 

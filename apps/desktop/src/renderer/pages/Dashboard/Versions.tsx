@@ -8,6 +8,7 @@ import {
   updateAllVersions,
 } from '../../lib/version-api'
 import type { VersionInfo } from '../../lib/version-api'
+import { toast } from "sonner"
 
 const TOOL_DISPLAY_NAMES: Record<string, string> = {
   claude: 'Claude',
@@ -33,7 +34,7 @@ export const Versions = () => {
       const versionData = await getAllVersions()
       setVersions(versionData)
     } catch (error) {
-      console.error('Failed to load versions:', error)
+      toast("Failed to load versions.")
       setVersions([])
     } finally {
       setLoading(false)
@@ -46,7 +47,7 @@ export const Versions = () => {
       await checkAllVersions()
       await loadVersions()
     } catch (error) {
-      console.error('Failed to check all versions:', error)
+      toast("Failed to check all versions.")
     } finally {
       setLoading(false)
     }
@@ -437,24 +438,24 @@ export const Versions = () => {
             {versions.some(
               v => v.status === 'installed' && v.updateAvailable
             ) && (
-              <button
-                onClick={handleUpdateAll}
-                disabled={updatingAll || loading}
-                style={{
-                  padding: '8px 16px',
-                  borderRadius: '6px',
-                  border: '1px solid #3b82f6',
-                  backgroundColor:
-                    updatingAll || loading ? '#93c5fd' : '#3b82f6',
-                  color: 'white',
-                  fontSize: '13px',
-                  cursor: updatingAll || loading ? 'not-allowed' : 'pointer',
-                  transition: 'all 0.2s',
-                }}
-              >
-                {updatingAll ? '更新中...' : '一键升级全部'}
-              </button>
-            )}
+                <button
+                  onClick={handleUpdateAll}
+                  disabled={updatingAll || loading}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    border: '1px solid #3b82f6',
+                    backgroundColor:
+                      updatingAll || loading ? '#93c5fd' : '#3b82f6',
+                    color: 'white',
+                    fontSize: '13px',
+                    cursor: updatingAll || loading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {updatingAll ? '更新中...' : '一键升级全部'}
+                </button>
+              )}
           </div>
         </div>
       </div>

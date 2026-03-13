@@ -1,6 +1,6 @@
 import { Box, VStack, Text } from '@chakra-ui/react'
 import { User, Sparkles } from 'lucide-react'
-import type { ChatMessage } from '../../../shared/ipc'
+import type { ChatMessage } from '@/shared/ipc'
 import { useEffect, useRef } from 'react'
 import { Avatar } from '../ui/avatar'
 

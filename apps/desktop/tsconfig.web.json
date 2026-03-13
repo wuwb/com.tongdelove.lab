@@ -1,20 +1,15 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
-    "electron.vite.config.*",
-    "electron-builder.ts",
-    "index.d.ts",
+    "src/renderer/src/**/*",
+    "src/preload/*.d.ts",
+    "tests/__mocks__/**/*",
     "src/lib/*",
     "src/lib/**/*",
     "src/shared/**/*",
-    "src/renderer/src/**/*",
-    "src/renderer/src/**/*.tsx",
+    "src/renderer/**/*",
     "src/preload/*.d.ts",
     "src/preload/index.d.ts",
-    "local/src/renderer/**/*",
-    "src/renderer/src/**/*",
-    "src/main/integration/cherryai/index.js",
-    "tests/__mocks__/**/*"
   ],
   "compilerOptions": {
     "composite": true,
@@ -25,6 +20,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": true,
+    
     "skipLibCheck": true,
     "strict": true,
     "importHelpers": true,
@@ -41,18 +37,8 @@
       "@renderer/*": ["./src/renderer/src/*"],
       "@shared/*": ["./packages/shared/*"],
       "@types": ["./src/renderer/src/types/index.ts"],
-      "*": [
-        "src/*"
-      ],
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "./*"
-      ],
-      "react": [
-        "./node_modules/@types/react"
-      ]
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
     }
   }
 }

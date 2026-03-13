@@ -8,9 +8,10 @@ import { TopicList } from '../../components/chat/TopicList'
 import { MessageList } from '../../components/chat/MessageList'
 import { ChatInput } from '../../components/chat/ChatInput'
 import { ModelSelector } from '../../components/chat/ModelSelector'
-import type { ChatMessage, ProviderName } from '../../../shared/ipc'
+import { BotSelector } from '../../components/chat/BotSelector'
+import type { ChatMessage, ProviderName, Assistant } from '@/shared/ipc'
 
-export function ChatPage() {
+export const Chat = () => {
   const {
     conversations,
     activeConversationId,
@@ -68,27 +69,21 @@ export function ChatPage() {
   }
 
   return (
-    <HStack h="100vh" w="full" gap={0} align="stretch" bg="white" _dark={{ bg: 'black' }}>
+    <div className='flex flex-1 flex-row h-full'>
       {/* <PromptList /> */}
 
-      <VStack flex={1} h="full" gap={0} bg="white" _dark={{ bg: 'gray.900' }} position="relative">
-        <HStack
-          p={4}
-          borderBottomWidth={1}
-          borderColor="gray.100"
-          _dark={{ borderColor: 'gray.800' }}
-        >
-          <ModelSelector
-            currentModel={currentModel}
-            currentProvider={currentProvider}
-            settings={settings}
-            onSelect={(model, provider) => {
-              setCurrentModel(model)
-              setCurrentProvider(provider)
-            }}
-          />
-        </HStack>
-
+      <div>
+        <ModelSelector
+          currentModel={currentModel}
+          currentProvider={currentProvider}
+          settings={settings}
+          onSelect={(model, provider) => {
+            setCurrentModel(model)
+            setCurrentProvider(provider)
+          }}
+        />
+      </div>
+      <div className="flex flex-1 overflow-hidden">
         <Box flex={1} w="full" overflow="hidden" display="flex" flexDirection="column">
           {activeConversationId ? (
             <>
@@ -111,20 +106,19 @@ export function ChatPage() {
             </Center>
           )}
         </Box>
-      </VStack>
-
-      <TopicList
-        conversations={conversations}
-        activeConversationId={activeConversationId}
-        onSelectConversation={setActiveConversationId}
-        onCreateConversation={() => {
-          const provider = currentProvider
-          const model = currentModel || settings.models[provider] || 'gpt-4o'
-          const id = createConversation({ model, provider })
-          setActiveConversationId(id)
-        }}
-        onDeleteConversation={deleteConversation}
-      />
-    </HStack>
+        <TopicList
+          conversations={conversations}
+          activeConversationId={activeConversationId}
+          onSelectConversation={setActiveConversationId}
+          onCreateConversation={() => {
+            const provider = currentProvider
+            const model = currentModel || settings.models[provider] || 'gpt-4o'
+            const id = createConversation({ model, provider })
+            setActiveConversationId(id)
+          }}
+          onDeleteConversation={deleteConversation}
+        />
+      </div>
+    </div>
   )
 }

@@ -7,6 +7,7 @@ import Database from 'better-sqlite3'
 import { app } from 'electron'
 import { join } from 'node:path'
 import { SQL_CREATE_TABLES, parseTags, serializeTags } from './schema'
+import { Assistant, AssistantCategory, InsertAssistant, InsertAssistantCategory } from '@/shared/ipc'
 
 const DB_PATH = join(app.getPath('userData'), 'chat.db')
 
@@ -52,7 +53,20 @@ type InsertMessage = Omit<Message, 'id' | 'createdAt'>
 class DatabaseService {
   private db: Database.Database | null = null
 
-  constructor() {}
+  constructor() { }
+
+  private mapCategoryRow = (row: any): AssistantCategory => {
+    return {
+      id: row.id,
+      name: row.name,
+      icon: row.icon || undefined,
+      color: row.color || undefined,
+      description: row.description || undefined,
+      order: row.order || 100,
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt
+    }
+  }
 
   initialize(): Database.Database {
     if (!this.db) {
@@ -340,6 +354,102 @@ class DatabaseService {
     if (!this.db) return false
 
     const stmt = this.db.prepare('DELETE FROM assistants WHERE id = ?')
+    const result = stmt.run(id)
+    return result.changes > 0
+  }
+
+  /* ============================
+     ASSISTANT CATEGORIES OPERATIONS
+     ============================ */
+
+  getAllCategories(): AssistantCategory[] {
+    if (!this.db) return []
+    const rows = this.db.prepare('SELECT * FROM assistant_categories ORDER BY "order" ASC, createdAt DESC').all() as any[]
+    return rows.map((row) => this.mapCategoryRow(row))
+  }
+
+  getCategory(id: string): AssistantCategory | null {
+    if (!this.db) return null
+    const row = this.db.prepare('SELECT * FROM assistant_categories WHERE id = ?').get(id) as any
+    return row ? this.mapCategoryRow(row) : null
+  }
+
+  createCategory(category: InsertAssistantCategory): AssistantCategory {
+    const now = Date.now()
+    const id = `category_${now}_${Math.random().toString(36).slice(2, 10)}`
+
+    const stmt = this.db.prepare(`
+      INSERT INTO assistant_categories (
+        id, name, icon, color, description, "order", createdAt, updatedAt
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `)
+
+    stmt.run(
+      id,
+      category.name,
+      category.icon || '📁',
+      category.color || 'gray',
+      category.description || '',
+      category.order ?? 100,
+      now,
+      now
+    )
+
+    return this.getCategory(id)!
+  }
+
+  updateCategory(id: string, updates: Partial<Omit<InsertAssistantCategory, 'id' | 'createdAt'>>): boolean {
+    if (!this.db) return false
+
+    const fields: string[] = []
+    const values: any[] = []
+
+    if (updates.name !== undefined) {
+      fields.push('name = ?')
+      values.push(updates.name)
+    }
+    if (updates.icon !== undefined) {
+      fields.push('icon = ?')
+      values.push(updates.icon)
+    }
+    if (updates.color !== undefined) {
+      fields.push('color = ?')
+      values.push(updates.color)
+    }
+    if (updates.description !== undefined) {
+      fields.push('description = ?')
+      values.push(updates.description)
+    }
+    if (updates.order !== undefined) {
+      fields.push('"order" = ?')
+      values.push(updates.order)
+    }
+
+    if (fields.length === 0) return false
+
+    fields.push('updatedAt = ?')
+    values.push(Date.now())
+    values.push(id)
+
+    const sql = `UPDATE assistant_categories SET ${fields.join(', ')} WHERE id = ?`
+    const stmt = this.db.prepare(sql)
+    const result = stmt.run(...values)
+    return result.changes > 0
+  }
+
+  deleteCategory(id: string): boolean {
+    if (!this.db) return false
+
+    // 先检查是否有assistant使用了这个分类
+    const usedByAssistants = this.db.prepare('SELECT COUNT(*) as count FROM assistants WHERE categoryId = ?').get(id) as any
+    if (usedByAssistants.count > 0) {
+      // 如果有assistant在使用，将categoryId设置为空
+      const updateStmt = this.db.prepare('UPDATE assistants SET categoryId = NULL WHERE categoryId = ?')
+      updateStmt.run(id)
+    }
+
+    const stmt = this.db.prepare('DELETE FROM assistant_categories WHERE id = ?')
     const result = stmt.run(id)
     return result.changes > 0
   }
@@ -682,7 +792,7 @@ class DatabaseService {
       createdAt: row.createdAt,
       updatedAt: row.updatedAt
     }
-}
+  }
 
 
 }
@@ -695,3 +805,4 @@ export function getDatabase() {
 export function closeDatabase() {
   dbService.close()
 }
+

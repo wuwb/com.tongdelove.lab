@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron'
-import { IPC } from '../../shared/ipc'
+import { IPC_CANNELS } from '@/shared/ipc'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 
@@ -106,9 +106,9 @@ function parseSize(sizeStr: string): number {
 
 export function registerOllamaIpc() {
   console.log('📝 Registering Ollama IPC handlers...')
-  console.log('📝 Channel:', IPC.OLLAMA.LIST_MODELS)
+  console.log('📝 Channel:', IPC_CANNELS.OLLAMA_LIST_MODELS)
   
-  ipcMain.handle(IPC.OLLAMA.LIST_MODELS, async () => {
+  ipcMain.handle(IPC_CANNELS.OLLAMA_LIST_MODELS, async () => {
     console.log('🔍 Ollama LIST_MODELS called')
     const models = await executeOllamaLs()
     return models

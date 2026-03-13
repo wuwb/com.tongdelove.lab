@@ -7,11 +7,13 @@ import {
   ModelConfig,
   ProviderConfig as IPCProviderConfig,
   ProviderApiSettings
-} from '../../shared/ipc'
+} from '@/shared/ipc'
 
 type CustomProviderConfig = Omit<IPCProviderConfig, 'enabled' | 'apiSettings'> & {
   enabled?: boolean
   apiSettings?: ProviderApiSettings
+  remark?: string
+  officialUrl?: string
 }
 
 type ProviderConfig = CustomProviderConfig
@@ -34,25 +36,33 @@ const BUILTIN_PROVIDERS: Omit<
       id: 'openai',
       name: 'OpenAI',
       type: 'openai',
-      avatar: '🔮'
+      avatar: '🔮',
+      remark: '领先的AI研究实验室，提供GPT系列模型',
+      officialUrl: 'https://openai.com'
     },
     {
       id: 'anthropic',
       name: 'Anthropic Claude',
       type: 'anthropic',
-      avatar: '🎭'
+      avatar: '🎭',
+      remark: '专注于安全AI的Claude系列模型',
+      officialUrl: 'https://www.anthropic.com'
     },
     {
       id: 'google',
       name: 'Google Gemini',
       type: 'gemini',
-      avatar: '🌐'
+      avatar: '🌐',
+      remark: 'Google开发的Gemini多模态AI模型',
+      officialUrl: 'https://deepmind.google/technologies/gemini/'
     },
     {
       id: 'ollama',
       name: 'Ollama',
       type: 'ollama',
-      avatar: '🤖'
+      avatar: '🤖',
+      remark: '本地运行的LLM服务框架',
+      officialUrl: 'https://ollama.ai'
     }
   ]
 
@@ -160,7 +170,7 @@ export function SettingsModels() {
   // 加载 Ollama 模型的核心函数
   const loadOllamaModelsAutomatically = async () => {
     try {
-      const models = await (window as any).ollama.listModels()
+      const models = await window.api.ollama.listModels()
       if (!models || models.length === 0) {
         console.log('No Ollama models found or Ollama is not available')
         return
@@ -639,11 +649,25 @@ export function SettingsModels() {
                       <span>{provider.avatar}</span>
                     )}
                   </div>
-                  <span style={{ fontSize: '14px', fontWeight: isActive ? '500' : 'normal' }}>
-                    {provider.name}
-                  </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: '14px', fontWeight: isActive ? '500' : 'normal' }}>
+                      {provider.name}
+                    </div>
+                    {provider.remark && (
+                      <div style={{
+                        fontSize: '11px',
+                        color: isActive ? 'rgba(255,255,255,0.8)' : '#6b7280',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        maxWidth: '120px'
+                      }}>
+                        {provider.remark}
+                      </div>
+                    )}
+                  </div>
                   {!provider.enabled && (
-                    <span style={{ fontSize: '11px', color: '#9ca3af' }}>(已禁用)</span>
+                    <span style={{ fontSize: '11px', color: '#9ca3af', marginLeft: '4px' }}>(已禁用)</span>
                   )}
                 </div>
 
@@ -791,9 +815,37 @@ export function SettingsModels() {
                     <span>启用</span>
                   </label>
                 </div>
-                <p style={{ fontSize: '14px', color: '#6b7280', margin: '4px 0 0 0' }}>
-                  类型: {mergedProvider.type}
-                </p>
+                <div style={{ marginTop: '4px' }}>
+                  <p style={{ fontSize: '14px', color: '#6b7280', margin: '4px 0' }}>
+                    类型: {mergedProvider.type}
+                  </p>
+                  {mergedProvider.remark && (
+                    <p style={{ fontSize: '13px', color: '#9ca3af', margin: '4px 0', fontStyle: 'italic' }}>
+                      备注: {mergedProvider.remark}
+                    </p>
+                  )}
+                  {mergedProvider.officialUrl && (
+                    <a
+                      href={mergedProvider.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontSize: '13px',
+                        color: '#3b82f6',
+                        textDecoration: 'none',
+                        margin: '4px 0'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.textDecoration = 'underline'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.textDecoration = 'none'
+                      }}
+                    >
+                      官网: {mergedProvider.officialUrl}
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
             {/* API 密钥 */}

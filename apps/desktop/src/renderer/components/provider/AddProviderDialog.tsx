@@ -6,6 +6,8 @@ interface Provider {
   name: string
   type: string
   avatar: string
+  remark?: string // Service provider remarks/notes
+  officialUrl?: string // Official website URL
   baseUrl?: string
   apiKeys?: string[]
   defaultModel?: string
@@ -64,14 +66,18 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
   const [avatar, setAvatar] = useState('🤖')
   const [avatarType, setAvatarType] = useState<'builtin' | 'custom'>('builtin')
   const [avatarUrl, setAvatarUrl] = useState('')
+  const [remark, setRemark] = useState('') // Service provider remarks/notes
+  const [officialUrl, setOfficialUrl] = useState('') // Official website URL
   const [showAvatarPicker, setShowAvatarPicker] = useState(false)
 
   useEffect(() => {
     if (editingProvider) {
-      setName(editingProvider.name)
-      setType(editingProvider.type)
-      setAvatar(editingProvider.avatar)
-      setAvatarType(editingProvider.avatar.startsWith('http') ? 'custom' : 'builtin')
+      setName(editingProvider.name || '')
+      setType(editingProvider.type || 'openai')
+      setAvatar(editingProvider.avatar || '🤖')
+      setAvatarType((editingProvider.avatar || '').startsWith('http') ? 'custom' : 'builtin')
+      setRemark(editingProvider.remark || '')
+      setOfficialUrl(editingProvider.officialUrl || '')
       setShowAvatarPicker(false)
     } else {
       // Reset to defaults
@@ -80,6 +86,8 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
       setAvatar('🤖')
       setAvatarType('builtin')
       setAvatarUrl('')
+      setRemark('')
+      setOfficialUrl('')
       setShowAvatarPicker(false)
     }
   }, [editingProvider, isOpen])
@@ -132,14 +140,18 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
         ...editingProvider,
         name: name.trim(),
         type,
-        avatar: finalAvatar
+        avatar: finalAvatar,
+        remark: remark || undefined,
+        officialUrl: officialUrl || undefined
       })
     } else {
       // 添加新服务商
       onAdd({
         name: name.trim(),
         type,
-        avatar: finalAvatar
+        avatar: finalAvatar,
+        remark: remark || undefined,
+        officialUrl: officialUrl || undefined
       })
     }
 
@@ -452,6 +464,48 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
                 </option>
               ))}
             </select>
+          </div>
+
+          {/* 服务商备注 */}
+          <div style={{ marginBottom: '24px' }}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+              服务商备注
+            </label>
+            <textarea
+              value={remark}
+              onChange={(e) => setRemark(e.target.value)}
+              placeholder="输入服务商的备注信息，如价格、特点等..."
+              rows={3}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                fontSize: '14px',
+                resize: 'vertical',
+                fontFamily: 'inherit'
+              }}
+            />
+          </div>
+
+          {/* 官方链接 */}
+          <div style={{ marginBottom: '24px' }}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+              官方链接
+            </label>
+            <input
+              type="url"
+              value={officialUrl}
+              onChange={(e) => setOfficialUrl(e.target.value)}
+              placeholder="https://example.com"
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                fontSize: '14px'
+              }}
+            />
           </div>
 
           {/* 操作按钮 */}

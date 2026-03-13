@@ -4,7 +4,7 @@ import { Button } from '@tongdelove/ui/components/button'
 import { PromptList } from './PromptList'
 import { CreatePromptDialog } from './CreatePromptDialog'
 import { DataMigrator } from './DataMigrator'
-import type { Prompt } from '../../../shared/ipc'
+import type { Prompt } from '@/shared/ipc'
 
 export function PromptManager({ onSelect }: { onSelect: (prompt: Prompt) => void }) {
   const [showCreateDialog, setShowCreateDialog] = useState(false)

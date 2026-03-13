@@ -1,18 +1,23 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
   "include": [
+    "electron.vite.config.*",
+    "scripts",
+    "src/main/**/*",
+    "src/main/env.d.ts",
+    "src/preload/**/*",
+    "src/renderer/services/traceApi.ts",
+    "src/renderer/types/*",
     "src/lib/**/*",
     "src/shared/**/*",
     "electron.vite.config.*",
     "src/main/**/*",
     "src/preload/**/*",
-    "src/preload/index.d.ts",
+    "src/preload/preload.ts",
     "./src",
     "electron-builder.ts",
     "index.d.ts",
-    "scripts",
-    "src/renderer/src/services/traceApi.ts",
-    "src/renderer/src/types/*"
+    "scripts"
   ],
   "compilerOptions": {
     "composite": true,
@@ -28,14 +33,6 @@
     "useDefineForClassFields": true,
 
 
-    "strict": true,
-    "target": "esnext",
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ],
-    "jsx": "react-jsx",
     "importHelpers": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -46,8 +43,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "module": "esnext",
-    "baseUrl": ".",
     "paths": {
       "@logger": ["./src/main/services/LoggerService"],
       "@main/*": ["./src/main/*"],
@@ -55,18 +50,8 @@
       "@shared/*": ["./packages/shared/*"],
       "@mcp-trace/*": ["./packages/mcp-trace/*"],
       "@modelcontextprotocol/sdk/*": ["./node_modules/@modelcontextprotocol/sdk/dist/esm/*"],
-      "*": [
-        "src/*"
-      ],
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "./*"
-      ],
-      "react": [
-        "./node_modules/@types/react"
-      ]
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
     }
   }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import type { AppSettings } from '../../shared/ipc'
+import type { AppSettings } from '@/shared/ipc'
 
 const DEFAULT_SETTINGS: AppSettings = {
   apiKeys: {},
@@ -22,7 +22,7 @@ export function useSettings() {
 
   const loadSettings = async () => {
     try {
-      const data = await window.settings.get()
+      const data = await window.api.settings.get()
       setSettingsState(data || DEFAULT_SETTINGS)
     } catch (err) {
       console.error('Failed to load settings:', err)
@@ -33,7 +33,7 @@ export function useSettings() {
 
   const updateSettings = async (key: keyof AppSettings, value: any) => {
     try {
-      await window.settings.set(key, value)
+      await window.api.settings.set(key, value)
       setSettingsState((prev) => ({ ...prev, [key]: value }))
     } catch (err) {
       console.error('Failed to update settings:', err)

@@ -3,7 +3,7 @@
  * 参考 Cherry Studio 的架构设计
  */
 
-import type { ChatMessage } from '../../../shared/ipc'
+import type { ChatMessage } from '@/shared/ipc'
 
 // Provider 标识符
 export type ProviderName = 'openai' | 'anthropic' | 'google' | 'ollama' | 'mock'

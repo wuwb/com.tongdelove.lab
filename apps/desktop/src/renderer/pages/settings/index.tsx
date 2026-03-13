@@ -108,19 +108,6 @@ export function SettingPage() {
           padding: '16px'
         }}
       >
-        <h2
-          style={{
-            fontSize: '12px',
-            fontWeight: '600',
-            color: isDark ? '#6b7280' : '#9ca3af',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            marginBottom: '12px'
-          }}
-        >
-          设置
-        </h2>
-
         <div
           style={{
             display: 'flex',

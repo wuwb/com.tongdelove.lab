@@ -1,93 +1,132 @@
 import { useState, useEffect } from 'react'
-import type { Assistant, InsertAssistant, AssistantCategory } from '../../shared/ipc'
+import { useIpc } from '@/renderer/lib/ipc'
+import { IPC_CANNELS } from '@/shared/ipc'
 
-export function useAssistants() {
+export interface Assistant {
+  id: string
+  name: string
+  avatar?: string
+  icon?: string
+  description?: string
+  systemPrompt?: string
+  knowledgeBaseIds?: string[]
+  defaultModel?: string
+  temperature?: number
+  topP?: number
+  contextWindow?: number
+  maxTokens?: number
+  streamingEnabled?: boolean
+  toolCallMethod?: 'function' | 'prompt'
+  customParameters?: any[]
+  mcpServerMode?: 'disabled' | 'auto' | 'manual'
+  quickPhrases?: any[]
+  globalMemoryEnabled?: boolean
+  categoryId?: string
+  createdAt: number
+  updatedAt: number
+}
+
+interface UseAssistantsReturn {
+  assistants: Assistant[]
+  loading: boolean
+  error: string | null
+  createAssistant: (assistant: Omit<Assistant, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>
+  updateAssistant: (id: string, updates: Partial<Omit<Assistant, 'id' | 'createdAt'>>) => Promise<void>
+  deleteAssistant: (id: string) => Promise<void>
+  reload: () => Promise<void>
+}
+
+export function useAssistants(): UseAssistantsReturn {
   const [assistants, setAssistants] = useState<Assistant[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const ipc = useIpc()
 
-  const reload = async () => {
-    setLoading(true)
-    setError(null)
+  useEffect(() => {
+    reload()
+  }, [])
+
+  const loadAssistants = async () => {
     try {
-      const data = await (window as any).assistants.getAllAssistants()
-      setAssistants(data || [])
+      setLoading(true)
+      setError(null)
+      const result = await ipc.invoke(IPC_CANNELS.DATABASE_ASSISTANTS_GET_ALL)
+      setAssistants(result || [])
     } catch (err) {
       console.error('Failed to load assistants:', err)
       setError('加载助手失败')
+      setAssistants([])
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    reload()
+    loadAssistants()
   }, [])
 
-  const createAssistant = async (assistant: InsertAssistant): Promise<Assistant | null> => {
+  const createAssistant = async (assistant: Omit<Assistant, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
-      const created = await (window as any).assistants.createAssistant(assistant)
-      if (created) {
-        setAssistants((prev) => [...prev, created])
-        return created
-      }
-      return null
+      setLoading(true)
+      setError(null)
+      const newAssistant = await ipc.invoke(IPC_CANNELS.DATABASE_ASSISTANT_CREATE, assistant)
+      setAssistants(prev => [...prev, newAssistant])
     } catch (err) {
       console.error('Failed to create assistant:', err)
+      setError('创建助手失败')
       throw err
+    } finally {
+      setLoading(false)
     }
   }
 
-  const updateAssistant = async (
-    id: string,
-    updates: Partial<Omit<Assistant, 'id' | 'createdAt'>>
-  ) => {
+  const updateAssistant = async (id: string, updates: Partial<Omit<Assistant, 'id' | 'createdAt'>>) => {
     try {
-      const success = await (window as any).assistants.updateAssistant(id, updates)
+      setLoading(true)
+      setError(null)
+      const success = await ipc.invoke(IPC_CANNELS.DATABASE_ASSISTANT_UPDATE, id, updates)
       if (success) {
-        setAssistants((prev) =>
-          prev.map((a) => (a.id === id ? { ...a, ...updates, updatedAt: Date.now() } : a))
+        setAssistants(prev =>
+          prev.map(assistant =>
+            assistant.id === id ? { ...assistant, ...updates, updatedAt: Date.now() } : assistant
+          )
         )
-        return true
       }
-      return false
     } catch (err) {
       console.error('Failed to update assistant:', err)
+      setError('更新助手失败')
       throw err
+    } finally {
+      setLoading(false)
     }
   }
 
   const deleteAssistant = async (id: string) => {
     try {
-      const success = await (window as any).assistants.deleteAssistant(id)
+      setLoading(true)
+      setError(null)
+      const success = await ipc.invoke(IPC_CANNELS.DATABASE_ASSISTANT_DELETE, id)
       if (success) {
-        setAssistants((prev) => prev.filter((a) => a.id !== id))
-        return true
+        setAssistants(prev => prev.filter(assistant => assistant.id !== id))
       }
-      return false
     } catch (err) {
       console.error('Failed to delete assistant:', err)
+      setError('删除助手失败')
       throw err
+    } finally {
+      setLoading(false)
     }
   }
 
-  const getAssistant = async (id: string): Promise<Assistant | null> => {
-    try {
-      return await (window as any).assistants.getAssistant(id)
-    } catch (err) {
-      console.error('Failed to get assistant:', err)
-      return null
-    }
-  }
+  const reload = loadAssistants
 
   return {
     assistants,
     loading,
     error,
-    reload,
     createAssistant,
     updateAssistant,
     deleteAssistant,
-    getAssistant
+    reload
   }
 }

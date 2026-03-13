@@ -7,19 +7,19 @@ import injectProcessEnvPlugin from 'rollup-plugin-inject-process-env'
 import { dirname, normalize, resolve } from 'node:path'
 import { main, resources } from './package.json'
 import { settings } from './src/lib/electron-router-dom'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 import pkg from './package.json'
 
 const [nodeModules, devFolder] = normalize(dirname(main)).split(/\/|\\/g)
 const devPath = [nodeModules, devFolder].join('/')
 
-// console.log('nodeModules: ', nodeModules)
-// console.log('devFolder: ', devFolder)
-// console.log('devPath: ', devPath)
+const visualizerPlugin = (type: 'renderer' | 'main') => {
+  return process.env[`VISUALIZER_${type.toUpperCase()}`] ? [visualizer({ open: true })] : []
+}
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
-
 
 const tsconfigPaths = tsconfigPathsPlugin({
   projects: [
@@ -35,8 +35,19 @@ export default defineConfig({
       tsconfigPaths,
       externalizeDepsPlugin({
         include: ['better-sqlite3', 'electron']
-      })
+      }),
+      ...visualizerPlugin('main'),
     ],
+    resolve: {
+      alias: {
+        '@main': resolve('src/main'),
+        '@types': resolve('src/renderer/src/types'),
+        '@shared': resolve('packages/shared'),
+        '@logger': resolve('src/main/services/LoggerService'),
+        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
+        '@mcp-trace/trace-node': resolve('packages/mcp-trace/trace-node')
+      }
+    },
     build: {
       rollupOptions: {
         external: [
@@ -46,13 +57,9 @@ export default defineConfig({
           'utf-8-validate', 
           ...Object.keys(pkg.dependencies)
         ],
-        input: {
-          index: resolve('src/main/index.ts')
-        },
         output: {
-          dir: resolve(devPath, 'main'),
-          // manualChunks: undefined, // 彻底禁用代码分割 - 返回 null 强制单文件打包
-          // inlineDynamicImports: true // 内联所有动态导入，这是关键配置
+          manualChunks: undefined, // 彻底禁用代码分割 - 返回 null 强制单文件打包
+          inlineDynamicImports: true // 内联所有动态导入，这是关键配置
         },
         onwarn(warning, warn) {
           if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') return
@@ -74,8 +81,13 @@ export default defineConfig({
       tsconfigPaths, 
       externalizeDepsPlugin()
     ],
+    resolve: {
+      alias: {
+        '@shared': resolve('packages/shared'),
+        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core')
+      }
+    },
     build: {
-      outDir: resolve(devPath, 'preload'),
       sourcemap: isDev
     }
   },
@@ -95,10 +107,26 @@ export default defineConfig({
       }),
       ...(isDev ? [CodeInspectorPlugin({ 
         bundler: 'vite',
-        hotKeys: ['altKey'],
-        hideConsole: true
+        // hotKeys: ['altKey'],
+        // hideConsole: true
       })] : []),
+      ...visualizerPlugin('renderer')
     ],
+     resolve: {
+      alias: {
+        '@renderer': resolve('src/renderer/src'),
+        '@shared': resolve('packages/shared'),
+        '@types': resolve('src/renderer/src/types'),
+        '@logger': resolve('src/renderer/src/services/LoggerService'),
+        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
+        '@mcp-trace/trace-web': resolve('packages/mcp-trace/trace-web'),
+        '@cherrystudio/ai-core/provider': resolve('packages/aiCore/src/core/providers'),
+        '@cherrystudio/ai-core/built-in/plugins': resolve('packages/aiCore/src/core/plugins/built-in'),
+        '@cherrystudio/ai-core': resolve('packages/aiCore/src'),
+        '@cherrystudio/extension-table-plus': resolve('packages/extension-table-plus/src'),
+        '@cherrystudio/ai-sdk-provider': resolve('packages/ai-sdk-provider/src')
+      }
+    },
     optimizeDeps: {
       exclude: ['pyodide'],
       esbuildOptions: {
@@ -109,14 +137,11 @@ export default defineConfig({
       format: 'es'
     },
 
-    publicDir: resolve(resources, 'public'),
     build: {
       target: 'esnext', // for build
-      outDir: resolve(devPath, 'renderer'),
       rollupOptions: {
         plugins: [
           injectProcessEnvPlugin({
-            NODE_ENV: 'production',
             platform: process.platform
           })
         ] as any,
@@ -128,10 +153,6 @@ export default defineConfig({
           if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') return
           warn(warning)
         },
-
-        output: {
-          dir: resolve(devPath, 'renderer')
-        }
       }
     },
     esbuild: isProd ? { legalComments: 'none' } : {}

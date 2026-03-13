@@ -6,7 +6,7 @@ import { Textarea } from '@tongdelove/ui/components/textarea'
 import { Label } from '@tongdelove/ui/components/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@tongdelove/ui/components/select'
 import { usePrompts } from '../../hooks/usePrompts'
-import type { InsertPrompt } from '../../../shared/ipc'
+import type { InsertPrompt } from '@/shared/ipc'
 import { Plus, X } from 'lucide-react'
 
 const PROVIDER_OPTIONS = [

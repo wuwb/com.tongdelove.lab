@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { Conversation, CreateConversationParams } from '../types/chat'
-import type { ChatMessage, ProviderName, Message as DBMessage } from '../../shared/ipc'
+import type { ChatMessage, ProviderName, Message as DBMessage } from '@/shared/ipc'
 
 export function useConversations() {
   const [conversations, setConversations] = useState<Conversation[]>([])

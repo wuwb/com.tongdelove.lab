@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { XIcon, ChevronDownIcon, ChevronRightIcon } from 'lucide-react'
-import { ModelType, ModelConfig } from '../../../shared/ipc'
+import { ModelType, ModelConfig } from '@/shared/ipc'
 
 interface AddModelDialogProps {
   isOpen: boolean
