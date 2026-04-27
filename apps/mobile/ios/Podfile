@@ -1,12 +1,12 @@
+use_frameworks!
 require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
-# require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
+require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
 
 require 'json'
 podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties.json'))) rescue {}
 
 ENV['RCT_NEW_ARCH_ENABLED'] = '0' if podfile_properties['newArchEnabled'] == 'false'
 ENV['EX_DEV_CLIENT_NETWORK_INSPECTOR'] = podfile_properties['EX_DEV_CLIENT_NETWORK_INSPECTOR']
-
 
 def node_require(script)
   # Resolve script with node to allow for hoisting
@@ -22,9 +22,39 @@ node_require('react-native/scripts/react_native_pods.rb')
 node_require('react-native-permissions/scripts/setup.rb')
 
 
-platform :ios, podfile_properties['ios.deploymentTarget'] || '15.1'
+platform :ios, min_ios_version_supported
 install! 'cocoapods', :deterministic_uuids => false
 prepare_react_native_project!
+
+# ⬇️ uncomment wanted permissions
+setup_permissions([
+  # 'AppTrackingTransparency',
+  # 'Bluetooth',
+  # 'Calendars',
+  # 'CalendarsWriteOnly',
+  # 'Camera',
+  # 'Contacts',
+  # 'FaceID',
+  # 'LocationAccuracy',
+  # 'LocationAlways',
+  # 'LocationWhenInUse',
+#   'MediaLibrary',
+  # 'Microphone',
+  # 'Motion',
+  # 'Notifications',
+   'PhotoLibrary',
+  # 'PhotoLibraryAddOnly',
+  # 'Reminders',
+  # 'Siri',
+  # 'SpeechRecognition',
+  # 'StoreKit',
+])
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
 
 
 target 'mobile' do
@@ -43,10 +73,30 @@ target 'mobile' do
     ]
   end
 
-  config = use_native_modules!(config_command)
+  post_integrate do |installer|
+    begin
+      expo_patch_react_imports!(installer)
+    rescue => e
+      Pod::UI.warn e
+    end
+  end
 
-  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
-  use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
+  config = use_native_modules!(config_command)
+  use_frameworks! :linkage => :static
+
+  pre_install do |installer|
+    installer.pod_targets.each do |pod|
+      if ['React-cxxreact', 'React-jsinspector'].include?(pod.name)
+        puts "👉 Setting #{pod.name} as dynamic framework"
+        def pod.build_type;
+          Pod::BuildType.dynamic_framework
+        end
+      end
+    end
+  end
+  
+  $RNFirebaseAsStaticFramework = true
+  $RNFirebaseAnalyticsEnableAdSupport = true
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -57,46 +107,56 @@ target 'mobile' do
     :privacy_file_aggregation_enabled => podfile_properties['apple.privacyManifestAggregationEnabled'] != 'false',
   )
 
-    # common
+    # # common
     # pod 'AppsFlyerFramework'
     # pod 'Alamofire'
-    # pod 'SDWebImage', '~> 5.19.1'
+    # pod 'SDWebImage', '~> 5.21.0'
     # pod "OpenSSL-Universal", "~> 1.1.2200"
     # pod 'Socket.IO-Client-Swift', :git => 'https://github.com/FlowGPT/socket.io-client-swift.git'
 
-    # applovin ads
+    # # applovin ads
     # pod 'AppLovinMediationGoogleAdapter'
     # pod 'AppLovinMediationIronSourceAdapter'
     # pod 'AppLovinMediationFacebookAdapter'
     # pod 'AppLovinMediationMintegralAdapter'
     # pod 'AppLovinMediationByteDanceAdapter'
     # pod 'AppLovinMediationUnityAdsAdapter'
-    # pod 'FirebaseAnalyticsOnDeviceConversion'
+    # pod 'AppLovinMediationVungleAdapter'
+    # pod 'AppLovinMediationGoogleAdManagerAdapter'
+    # pod 'AppLovinMediationMolocoAdapter'
+    
+    # pod 'GoogleMobileAdsMediationAppLovin'
+    # pod 'GoogleMobileAdsMediationUnity'
+    # pod 'GoogleMobileAdsMediationPangle'
+    # pod 'GoogleMobileAdsMediationMintegral'
+    # pod 'GoogleMobileAdsMediationIronSource'
+    # pod 'GoogleMobileAdsMediationFacebook'
+    # pod 'GoogleAdsOnDeviceConversion'
+    
+    target 'mobileTests' do
+      inherit! :complete
+      # Pods for testing
+    end
 
-    # target 'mobileTests' do
-    #   inherit! :complete
-    #   # Pods for testing
-    # end
-
-    # pre_install do |installer|    
-    #   system('node ../node_modules/react-native/scripts/generate-codegen-artifacts.js -p ../ -t "ios"')
-    # end
+    pre_install do |installer|    
+      system('node ../node_modules/react-native/scripts/generate-codegen-artifacts.js -p ../ -t "ios"')
+    end
 
   post_install do |installer|
-    # system('ruby ./AppLovinQualityServiceSetup-ios.rb update')
+    system('ruby ./AppLovinQualityServiceSetup-ios.rb update')
 
-    # installer.pods_project.build_configurations.each do |config|
-    #     config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
-    #     config.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
-    #     config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
-    # end
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
+        config.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
+        config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+    end
 
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false,
-      :ccache_enabled => podfile_properties['apple.ccacheEnabled'] == 'true',
+      # :ccache_enabled => podfile_properties['apple.ccacheEnabled'] == 'true',
     )
 
     # This is necessary for Xcode 14, because it signs resource bundles by default
@@ -108,14 +168,6 @@ target 'mobile' do
           config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
         end
       end
-    end
-  end
-
-  post_integrate do |installer|
-    begin
-      expo_patch_react_imports!(installer)
-    rescue => e
-      Pod::UI.warn e
     end
   end
 end

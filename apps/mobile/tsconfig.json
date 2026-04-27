@@ -1,15 +1,20 @@
 {
-  "extends": ["@tongdelove/typescript-config/base.json"],
+  "extends": [
+    "@tongdelove/typescript-config/base.json"
+  ],
   "compilerOptions": {
     "strict": true,
-
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "jsx": "react-native",
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "types": ["nativewind/types"],
+    "types": [
+      "nativewind/types"
+    ],
     "checkJs": false
   },
   "include": [
@@ -21,7 +26,10 @@
     "*.ts",
     "*.js",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

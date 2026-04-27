@@ -6,3 +6,5 @@
 //
 
 import Foundation
+
+// Required to link Swift runtime for FBAudienceNetwork
