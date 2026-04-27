@@ -52,6 +52,17 @@ export const UserModelSchema = z.object({
   customerId: z.string().nullish(),
   variantId: z.number().int().nullish(),
   currentPeriodEnd: z.number().int().nullish(),
+  isDeleted: z.boolean(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  registered: z.date(),
+  qq: z.string().nullish(),
+  wangwang: z.string().nullish(),
+  departmentId: z.string(),
+  psalt: z.string(),
+  birthDay: z.date(),
 })
 
 export interface CompleteUser extends z.infer<typeof UserModelSchema> {
@@ -59,21 +70,21 @@ export interface CompleteUser extends z.infer<typeof UserModelSchema> {
   sessions: CompleteSession[]
   Authenticator: CompleteAuthenticator[]
   roles: CompleteRole[]
-  link: CompleteLink[]
+  links: CompleteLink[]
   dept?: CompleteDept | null
-  post: CompletePost[]
-  order: CompleteOrder[]
-  payMehod: CompletePayMehod[]
+  posts: CompletePost[]
+  orders: CompleteOrder[]
+  payMehods: CompletePayMehod[]
   telephone?: CompleteTelephone | null
-  cart: CompleteCart[]
-  book: CompleteBook[]
-  bookChapter: CompleteBookChapter[]
-  bookStar: CompleteBookStar[]
-  handbook: CompleteHandBook[]
-  handbookChapter: CompleteHandBookChapter[]
-  article: CompleteArticle[]
-  comment: CompleteComment[]
-  CreditTransaction: CompleteCreditTransaction[]
+  carts: CompleteCart[]
+  books: CompleteBook[]
+  bookChapters: CompleteBookChapter[]
+  bookStars: CompleteBookStar[]
+  handbooks: CompleteHandBook[]
+  handbookChapters: CompleteHandBookChapter[]
+  articles: CompleteArticle[]
+  comments: CompleteComment[]
+  CreditTransactions: CompleteCreditTransaction[]
 }
 
 /**
@@ -86,19 +97,19 @@ export const RelatedUserModelSchema: z.ZodSchema<CompleteUser> = z.lazy(() => Us
   sessions: RelatedSessionModelSchema.array(),
   Authenticator: RelatedAuthenticatorModelSchema.array(),
   roles: RelatedRoleModelSchema.array(),
-  link: RelatedLinkModelSchema.array(),
+  links: RelatedLinkModelSchema.array(),
   dept: RelatedDeptModelSchema.nullish(),
-  post: RelatedPostModelSchema.array(),
-  order: RelatedOrderModelSchema.array(),
-  payMehod: RelatedPayMehodModelSchema.array(),
+  posts: RelatedPostModelSchema.array(),
+  orders: RelatedOrderModelSchema.array(),
+  payMehods: RelatedPayMehodModelSchema.array(),
   telephone: RelatedTelephoneModelSchema.nullish(),
-  cart: RelatedCartModelSchema.array(),
-  book: RelatedBookModelSchema.array(),
-  bookChapter: RelatedBookChapterModelSchema.array(),
-  bookStar: RelatedBookStarModelSchema.array(),
-  handbook: RelatedHandBookModelSchema.array(),
-  handbookChapter: RelatedHandBookChapterModelSchema.array(),
-  article: RelatedArticleModelSchema.array(),
-  comment: RelatedCommentModelSchema.array(),
-  CreditTransaction: RelatedCreditTransactionModelSchema.array(),
+  carts: RelatedCartModelSchema.array(),
+  books: RelatedBookModelSchema.array(),
+  bookChapters: RelatedBookChapterModelSchema.array(),
+  bookStars: RelatedBookStarModelSchema.array(),
+  handbooks: RelatedHandBookModelSchema.array(),
+  handbookChapters: RelatedHandBookChapterModelSchema.array(),
+  articles: RelatedArticleModelSchema.array(),
+  comments: RelatedCommentModelSchema.array(),
+  CreditTransactions: RelatedCreditTransactionModelSchema.array(),
 }))

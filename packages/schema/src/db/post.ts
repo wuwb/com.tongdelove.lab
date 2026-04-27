@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteUser, RelatedUserModelSchema, CompleteProduct, RelatedProductModelSchema } from "./index"
+import { CompleteUser, RelatedUserModelSchema, CompleteProduct, RelatedProductModelSchema, CompleteComment, RelatedCommentModelSchema } from "./index"
 
 export const PostModelSchema = z.object({
   id: z.string(),
@@ -37,11 +37,23 @@ export const PostModelSchema = z.object({
   link: z.string().nullish(),
   image: z.string().nullish(),
   publishedAt: z.date().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  keyword: z.string(),
+  description: z.string(),
+  status: z.boolean(),
+  tagList: z.string().array(),
+  authorId: z.string().nullish(),
+  favoriteCount: z.number().int(),
+  audit: z.boolean(),
 })
 
 export interface CompletePost extends z.infer<typeof PostModelSchema> {
   user: CompleteUser
   Product: CompleteProduct[]
+  comments: CompleteComment[]
 }
 
 /**
@@ -52,4 +64,5 @@ export interface CompletePost extends z.infer<typeof PostModelSchema> {
 export const RelatedPostModelSchema: z.ZodSchema<CompletePost> = z.lazy(() => PostModelSchema.extend({
   user: RelatedUserModelSchema,
   Product: RelatedProductModelSchema.array(),
+  comments: RelatedCommentModelSchema.array(),
 }))

@@ -6,7 +6,7 @@ import {
   RequestMethod,
 } from '@nestjs/common'
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core'
-import { DataSource } from 'typeorm'
+// import { DataSource } from 'typeorm'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { ThrottlerModule } from '@nestjs/throttler'
 

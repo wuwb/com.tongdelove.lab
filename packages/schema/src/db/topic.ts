@@ -9,4 +9,10 @@ export const TopicModelSchema = z.object({
   isDeleted: z.boolean(),
   createdAt: z.date().nullish(),
   updatedAt: z.date(),
+  description: z.string(),
+  category: z.string(),
+  relate_topics: z.string(),
+  filename: z.string(),
+  views: z.number().int(),
+  isPublished: z.boolean(),
 })

@@ -70,7 +70,7 @@ export const Chat = () => {
 
   return (
     <div className='flex flex-1 flex-row h-full'>
-      {/* <PromptList /> */}
+      <PromptList />
 
       <div>
         <ModelSelector

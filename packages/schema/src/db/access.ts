@@ -16,4 +16,8 @@ export const AccessModelSchema = z.object({
   sort: z.number().int(),
   status: z.number().int().nullish(),
   description: z.string().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
 })

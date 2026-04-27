@@ -250,7 +250,7 @@ const createUser = async (data: unknown) => {
     "zod": "^3.23.8"
   },
   "peerDependencies": {
-    "@prisma/client": "^5.20.0"
+    "@prisma/client": "^7.4.0"
   },
   "devDependencies": {
     "typescript": "^5.4.5",

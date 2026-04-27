@@ -13,4 +13,8 @@ export const AccountTokenModelSchema = z.object({
   createdAt: z.date().nullish(),
   updatedAt: z.date(),
   isDeleted: z.boolean(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
 })

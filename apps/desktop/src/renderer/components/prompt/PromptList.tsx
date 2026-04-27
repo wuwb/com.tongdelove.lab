@@ -114,7 +114,19 @@ interface PromptListProps {
 }
 
 export function PromptList({ onSelect }: PromptListProps) {
-  const { prompts, isLoading } = usePrompts()
+  const { prompts, isLoading, createPrompt } = usePrompts()
+
+  const handleCreatePrompt = () => {
+    createPrompt({
+      name: '新助手',
+      description: '新助手',
+      provider: 'openai',
+      model: 'gpt-3.5-turbo',
+      prompt: '你好，我是新助手',
+      icon: '🤖',
+      color: '#6366f1'
+    })
+  }
 
   if (isLoading) {
     return <div className="text-center py-8 text-muted-foreground">加载中...</div>
@@ -125,7 +137,7 @@ export function PromptList({ onSelect }: PromptListProps) {
       <div className="text-center py-12">
         <MessageSquare className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-20" />
         <h3 className="font-semibold text-lg mb-2">还没有助手</h3>
-        <p className="text-muted-foreground mb-4">创建您的第一个自定义助手来开始聊天</p>
+        <p className="text-muted-foreground mb-4" onClick={handleCreatePrompt}>创建您的第一个自定义助手来开始聊天</p>
       </div>
     )
   }

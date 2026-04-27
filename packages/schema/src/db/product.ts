@@ -1,5 +1,20 @@
 import * as z from "zod"
+import { Decimal } from "decimal.js"
 import { CompleteProductSku, RelatedProductSkuModelSchema, CompletePost, RelatedPostModelSchema, CompleteBrand, RelatedBrandModelSchema } from "./index"
+
+// Helper schema for Decimal fields
+z
+  .instanceof(Decimal)
+  .or(z.string())
+  .or(z.number())
+  .refine((value) => {
+    try {
+      return new Decimal(value)
+    } catch (error) {
+      return false
+    }
+  })
+  .transform((value) => new Decimal(value))
 
 export const ProductModelSchema = z.object({
   id: z.string(),
@@ -39,6 +54,11 @@ export const ProductModelSchema = z.object({
   biz_type: z.number().int(),
   postId: z.string().nullish(),
   brandId: z.string().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  name: z.string(),
 })
 
 export interface CompleteProduct extends z.infer<typeof ProductModelSchema> {

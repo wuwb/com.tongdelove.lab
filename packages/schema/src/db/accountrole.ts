@@ -7,4 +7,8 @@ export const AccountRoleModelSchema = z.object({
   isDeleted: z.boolean(),
   accountId: z.string(),
   roleId: z.string(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
 })

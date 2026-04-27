@@ -1,5 +1,5 @@
 import { registerAssistantsIpc } from "./assistants"
-// import { registerDatabaseIpc } from "./database"
+import { registerDatabaseIpc } from "./database"
 import { registerOllamaIpc } from "./ollama"
 import { registerSettingsIpc } from "./settings"
 import { registerVersionIpc } from './version'
@@ -10,7 +10,7 @@ export const registerIPC = () => {
   registerOllamaIpc()
   registerSettingsIpc()
   registerAssistantsIpc()
-  // registerDatabaseIpc()
+  registerDatabaseIpc()
   registerVersionIpc()
   registerWindowIpc()
 }

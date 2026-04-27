@@ -8,4 +8,8 @@ export const RoleAccessModelSchema = z.object({
   roleId: z.string(),
   accessId: z.string(),
   type: z.number().int(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
 })

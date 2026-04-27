@@ -78,16 +78,18 @@ export class TemuCleaningProcessor {
       }
 
       job.progress(cleanedCount + failedCount)
-    } catch (error) {
-      this.logger.error(`❌ 清洗任务失败: ${jobId}`, error)
-      await this.prisma.dataCleaningQueue.update({
-        where: { id: jobId },
-        data: {
-          status: 'failed',
-          completedAt: new Date(),
-          errorMessage: error.message,
-        },
-      })
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        this.logger.error(`❌ 清洗任务失败: ${jobId}`, error)
+        await this.prisma.dataCleaningQueue.update({
+          where: { id: jobId },
+          data: {
+            status: 'failed',
+            completedAt: new Date(),
+            errorMessage: error.message,
+          },
+        })
+      }
       throw error
     }
   }

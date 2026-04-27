@@ -1,4 +1,19 @@
 import * as z from "zod"
+import { Decimal } from "decimal.js"
+
+// Helper schema for Decimal fields
+z
+  .instanceof(Decimal)
+  .or(z.string())
+  .or(z.number())
+  .refine((value) => {
+    try {
+      return new Decimal(value)
+    } catch (error) {
+      return false
+    }
+  })
+  .transform((value) => new Decimal(value))
 
 export const CouponModelSchema = z.object({
   id: z.string(),
@@ -24,4 +39,10 @@ export const CouponModelSchema = z.object({
   startAt: z.date(),
   endAt: z.date(),
   tag: z.string(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  maxReceiveCount: z.number().int(),
+  count: z.number().int(),
 })

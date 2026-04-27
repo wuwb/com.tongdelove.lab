@@ -18,6 +18,15 @@ export const CategoryModelSchema = z.object({
   level: z.string(),
   sort: z.number().int(),
   articleId: z.string().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  label: z.string(),
+  value: z.string(),
+  order: z.number().int(),
+  onlyChild: z.boolean(),
+  parentId: z.string().nullish(),
 })
 
 export interface CompleteCategory extends z.infer<typeof CategoryModelSchema> {

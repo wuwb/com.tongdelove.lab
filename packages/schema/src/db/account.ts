@@ -18,6 +18,18 @@ export const AccountModelSchema = z.object({
   updatedAt: z.date(),
   isDeleted: z.boolean(),
   refresh_token_expires_in: z.number().int().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  remark: z.string().nullish(),
+  version: z.number().int(),
+  username: z.string(),
+  password: z.string(),
+  mobile: z.string().nullish(),
+  email: z.string().nullish(),
+  avatar: z.string(),
+  status: z.number().int().nullish(),
+  platform: z.number().int().nullish(),
+  isSuper: z.number().int(),
 })
 
 export interface CompleteAccount extends z.infer<typeof AccountModelSchema> {

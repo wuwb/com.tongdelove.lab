@@ -1,14 +1,14 @@
 import * as z from "zod"
 
-export const PostCategoryModelSchema = z.object({
+export const UserRoleModelSchema = z.object({
   id: z.string(),
-  postId: z.string(),
-  categoryId: z.string(),
-  createdAt: z.date().nullish(),
   isDeleted: z.boolean(),
   createdBy: z.string(),
   updatedBy: z.string(),
+  createdAt: z.date(),
   updatedAt: z.date(),
   remark: z.string().nullish(),
   version: z.number().int(),
+  userId: z.string(),
+  roleId: z.string(),
 })

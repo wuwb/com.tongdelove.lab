@@ -1,5 +1,20 @@
 import * as z from "zod"
+import { Decimal } from "decimal.js"
 import { CompleteUser, RelatedUserModelSchema, CompleteCustomer, RelatedCustomerModelSchema, CompleteOrderDetail, RelatedOrderDetailModelSchema } from "./index"
+
+// Helper schema for Decimal fields
+z
+  .instanceof(Decimal)
+  .or(z.string())
+  .or(z.number())
+  .refine((value) => {
+    try {
+      return new Decimal(value)
+    } catch (error) {
+      return false
+    }
+  })
+  .transform((value) => new Decimal(value))
 
 export const OrderModelSchema = z.object({
   id: z.string(),

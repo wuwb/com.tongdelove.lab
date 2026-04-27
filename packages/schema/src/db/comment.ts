@@ -1,8 +1,10 @@
 import * as z from "zod"
 import { CommentStatus } from "@prisma/client"
-import { CompleteUser, RelatedUserModelSchema, CompleteArticle, RelatedArticleModelSchema } from "./index"
+import { CompletePost, RelatedPostModelSchema, CompleteUser, RelatedUserModelSchema, CompleteArticle, RelatedArticleModelSchema } from "./index"
 
 export const CommentModelSchema = z.object({
+  body: z.string(),
+  postId: z.string().nullish(),
   id: z.string(),
   commentPostId: z.string(),
   commentAuthor: z.string(),
@@ -40,6 +42,7 @@ export const CommentModelSchema = z.object({
 })
 
 export interface CompleteComment extends z.infer<typeof CommentModelSchema> {
+  post?: CompletePost | null
   user: CompleteUser
   Article?: CompleteArticle | null
 }
@@ -50,6 +53,7 @@ export interface CompleteComment extends z.infer<typeof CommentModelSchema> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedCommentModelSchema: z.ZodSchema<CompleteComment> = z.lazy(() => CommentModelSchema.extend({
+  post: RelatedPostModelSchema.nullish(),
   user: RelatedUserModelSchema,
   Article: RelatedArticleModelSchema.nullish(),
 }))

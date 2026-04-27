@@ -19,6 +19,9 @@ export const RoleModelSchema = z.object({
   updatedAt: z.date(),
   isDeleted: z.boolean(),
   permissionId: z.string().nullish(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  version: z.number().int(),
 })
 
 export interface CompleteRole extends z.infer<typeof RoleModelSchema> {

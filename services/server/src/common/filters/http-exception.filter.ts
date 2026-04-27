@@ -8,7 +8,7 @@ import {
   Logger,
 } from '@nestjs/common'
 import { BaseExceptionFilter } from '@nestjs/core'
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
+import { Prisma } from '@prisma/client'
 import type { Request, Response } from 'express'
 import { ResOp } from '@/shared/classes/res.class'
 
@@ -65,7 +65,7 @@ export class HttpExceptionFilter
 
       if (exception instanceof HttpException) {
         message = exception.message
-      } else if (exception instanceof PrismaClientKnownRequestError) {
+      } else if (exception instanceof Prisma.PrismaClientKnownRequestError) {
         const statusCode = this.errorCodesStatusMapping[exception.code]
         if (exception.code === 'P2002') {
           // Handling Unique Key Constraint Violation Error

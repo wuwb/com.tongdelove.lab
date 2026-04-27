@@ -1,6 +1,6 @@
 import { Global, Module, Logger } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
-import { PrismaModule as BasePrismaModule, loggingMiddleware } from 'prisma'
+// import { PrismaModule as BasePrismaModule, loggingMiddleware } from 'prisma'
 
 @Module({
   imports: [
