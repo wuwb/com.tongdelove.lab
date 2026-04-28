@@ -27,5 +27,3 @@ nohoist:
   - '**/react-dom'
   - '**/@chakra-ui/react'
   - '**/@chakra-ui/icons'
-onlyBuiltDependencies:
-  - '@vercel/speed-insights'

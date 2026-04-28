@@ -8,5 +8,7 @@
     "server/api/**/*.ts": {
       "maxDuration": 10
     }
-  }
+  },
+  "installCommand": "corepack enable && corepack prepare pnpm@10.6.5 --activate && pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build"
 }
