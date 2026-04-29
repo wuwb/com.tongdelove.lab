@@ -2,8 +2,12 @@ import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import React, { Children, ReactElement, useEffect, useState } from 'react'
 
+type ActiveLinkChildProps = {
+  className?: string
+}
+
 type ActiveLinkProps = LinkProps & {
-  children: ReactElement
+  children: ReactElement<ActiveLinkChildProps>
   activeClassName: string
 }
 
@@ -14,7 +18,7 @@ export const ActiveLink = ({
 }: ActiveLinkProps) => {
   const { asPath, isReady } = useRouter()
 
-  const child = Children.only(children)
+  const child = Children.only(children) as ReactElement<ActiveLinkChildProps>
   const childClassName = child.props.className || ''
   const [className, setClassName] = useState(childClassName)
 

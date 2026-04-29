@@ -7,7 +7,9 @@ export interface InputGroupProps extends BoxProps {
   endElementProps?: InputElementProps
   startElement?: React.ReactNode
   endElement?: React.ReactNode
-  children: React.ReactElement
+  // React 19 types default props to `unknown`; we need an object type here to
+  // safely spread `children.props` into cloneElement.
+  children: React.ReactElement<any>
 }
 
 export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
@@ -31,7 +33,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
         {React.cloneElement(children, {
           ...(startElement && { ps: 'calc(var(--input-height) - 6px)' }),
           ...(endElement && { pe: 'calc(var(--input-height) - 6px)' }),
-          ...children.props,
+          ...(children.props as Record<string, unknown>),
         })}
         {endElement && (
           <InputElement placement="end" {...endElementProps}>
