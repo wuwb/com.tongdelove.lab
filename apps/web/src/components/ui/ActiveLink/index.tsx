@@ -20,8 +20,7 @@ export const ActiveLink = ({
 
   const className = asPath === rest.href ? activeClassName : ''
   const childClassName = children.props.className ?? ''
-  const mergedClassName =
-    `${childClassName} ${className}`.trim() || undefined
+  const mergedClassName = `${childClassName} ${className}`.trim() || undefined
 
   return (
     <Link {...rest}>

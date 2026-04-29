@@ -3,7 +3,7 @@ import Link from 'next/link'
 export const Logo = ({
   href = '/',
   color = '#000',
-  title = '海维包装',
+  title = '半祥包装',
   ...props
 }) => {
   return (

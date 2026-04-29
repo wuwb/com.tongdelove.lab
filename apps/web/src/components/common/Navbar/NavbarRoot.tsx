@@ -27,7 +27,7 @@ export const NavbarRoot = ({ children }: NavbarRootProps) => {
   return (
     <div
       className={clsx(
-        'sticky top-0 z-40 min-h-[74px] bg-primary transition-all duration-150',
+        'bg-primary sticky top-0 z-40 min-h-[74px] transition-all duration-150',
         { 'shadow-magical': hasScrolled }
       )}
     >

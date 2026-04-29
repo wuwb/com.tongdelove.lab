@@ -1,40 +1,47 @@
-import type { ButtonProps as ChakraButtonProps } from '@chakra-ui/react'
-import {
-  AbsoluteCenter,
-  Button as ChakraButton,
-  Span,
-  Spinner,
-} from '@chakra-ui/react'
 import * as React from 'react'
+import {
+  Button as ShadButton,
+  buttonVariants,
+} from '@tongdelove/ui/components/button'
+import { cn } from '@tongdelove/ui/lib/utils'
+import { Loader2 } from 'lucide-react'
 
 interface ButtonLoadingProps {
   loading?: boolean
   loadingText?: React.ReactNode
 }
 
-export interface ButtonProps extends ChakraButtonProps, ButtonLoadingProps {}
+export interface ButtonProps
+  extends React.ComponentProps<typeof ShadButton>,
+    ButtonLoadingProps {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
-    const { loading, disabled, loadingText, children, ...rest } = props
+    const { loading, disabled, loadingText, children, className, ...rest } =
+      props
     return (
-      <ChakraButton disabled={loading || disabled} ref={ref} {...rest}>
+      <ShadButton
+        disabled={loading || disabled}
+        ref={ref}
+        className={cn(className)}
+        {...rest}
+      >
         {loading && !loadingText ? (
           <>
-            <AbsoluteCenter display="inline-flex">
-              <Spinner size="inherit" color="inherit" />
-            </AbsoluteCenter>
-            <Span opacity={0}>{children}</Span>
+            <Loader2 className="size-4 animate-spin" />
+            <span className="sr-only">{children}</span>
           </>
         ) : loading && loadingText ? (
           <>
-            <Spinner size="inherit" color="inherit" />
+            <Loader2 className="size-4 animate-spin" />
             {loadingText}
           </>
         ) : (
           children
         )}
-      </ChakraButton>
+      </ShadButton>
     )
   }
 )
+
+export { buttonVariants }

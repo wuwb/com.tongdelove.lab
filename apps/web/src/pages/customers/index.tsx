@@ -45,7 +45,7 @@ const Home = () => {
               <Link href="/customers/weisinong">
                 <div className="case-item-title">味司浓</div>
                 <div className="case-item-desc">
-                  通过海维包装来降低成本和提升质量，为义务的持续增长提供保障。
+                  通过半祥包装来降低成本和提升质量，为义务的持续增长提供保障。
                   Uses to improve costs and quality control for rapid growth.
                 </div>
               </Link>

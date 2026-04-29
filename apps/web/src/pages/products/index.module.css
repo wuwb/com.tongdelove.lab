@@ -20,7 +20,7 @@
   @apply text-4xl font-extrabold tracking-tight text-gray-900;
 }
 .mainContent {
-  @apply pb-4 pt-0;
+  @apply pt-0 pb-4;
   padding-top: 1rem;
   border-top: var(--stroke-thin) solid var(--color-outline);
 }

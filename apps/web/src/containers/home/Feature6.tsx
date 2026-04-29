@@ -1,8 +1,8 @@
 import React from 'react'
 import {
   AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
+  AccordionContent,
+  AccordionTrigger,
   AccordionRoot,
 } from '@/components/ui/accordion'
 

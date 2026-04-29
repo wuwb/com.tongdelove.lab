@@ -1,11 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
+@import 'tailwindcss';
+@import '@tongdelove/ui/globals.css';
+@source "./**/*.{ts,tsx}";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-accent-0: #ffffff;
+  --color-accent-1: #fafafa;
+  --color-accent-2: #eaeaea;
+  --color-accent-3: #999999;
+  --color-accent-4: #888888;
+  --color-accent-5: #666666;
+  --color-accent-6: #444444;
+  --color-accent-7: #333333;
+  --color-accent-8: #111111;
+  --color-accent-9: #000000;
+}
 
 :root {
-  color-scheme: light dark;
-
   --primary: #ffffff;
   --primary-2: #f1f3f5;
   --secondary: #000000;
@@ -46,15 +58,17 @@
   --accent-8: #111111;
   --accent-9: #000;
 
-  --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
-    'Helvetica', sans-serif;
+  --font-sans:
+    -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica',
+    sans-serif;
 
-  --font-stack: 'Messina Sans Lumi', -apple-system, BlinkMacSystemFont, Roboto,
-    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
-  --font-stack-system: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI',
+  --font-stack:
+    'Messina Sans Lumi', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI',
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
+  --font-stack-system:
+    -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-stack-serif: Georgia, serif;
   --font-normal: 100%;
   --font-small: 96%;
@@ -187,10 +201,12 @@
   --color-success-bg: var(--color-green-tint);
   --color-success-border: var(--color-green-hover);
   --color-success: var(--color-green-hover);
-  --hover-shadow: 0 0 0 1px rgba(50, 50, 50, 0.01),
-    0 7px 14px 0 rgba(50, 50, 50, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+  --hover-shadow:
+    0 0 0 1px rgba(50, 50, 50, 0.01), 0 7px 14px 0 rgba(50, 50, 50, 0.1),
+    0 3px 6px 0 rgba(0, 0, 0, 0.02);
   --btn-shadow: 0 2px 2px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.02);
-  --btn-shadow-hover: 0 3px 4px rgba(0, 0, 0, 0.06),
+  --btn-shadow-hover:
+    0 3px 4px rgba(0, 0, 0, 0.06),
     0 1px 1px rgba(0, 0, 0, 0.02) /* 参考 */ --aa-search-input-height: 44px;
   --aa-input-icon-size: 20px;
   --aa-base-unit: 16;
@@ -365,7 +381,7 @@ a {
 
 @layer components {
   .wwb-btn-primary {
-    @apply rounded-lg px-4 py-2 font-semibold text-white shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75;
+    @apply rounded-lg px-4 py-2 font-semibold text-white shadow-md hover:bg-gray-700 focus:ring-2 focus:ring-gray-400/75 focus:outline-none;
   }
 }
 

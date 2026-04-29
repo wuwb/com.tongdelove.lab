@@ -169,7 +169,7 @@ const Page = () => {
               <div className="dashboard center flex">
                 <div className="dashboard__features">
                   <h3 className="title">
-                    从源头到交付, 海维包装优化了您的包装供应链
+                    从源头到交付, 半祥包装优化了您的包装供应链
                     <Link href="/features" className="action">
                       了解更多
                     </Link>
@@ -217,10 +217,10 @@ const Page = () => {
                     <div className="div">
                       <div className="">
                         <h4 className="strong">
-                          无论您是每月运送数千或数百万个订单，您的购买力都会因加入海维包装而放大。
+                          无论您是每月运送数千或数百万个订单，您的购买力都会因加入半祥包装而放大。
                         </h4>
                         <p>
-                          海维包装汇集了像您这样的数千家企业的需求，为世界上最好的工厂提供无与伦比的价格。
+                          半祥包装汇集了像您这样的数千家企业的需求，为世界上最好的工厂提供无与伦比的价格。
                         </p>
                       </div>
                     </div>
@@ -231,7 +231,7 @@ const Page = () => {
                         </h4>
                         <p>
                           现在可能工作的东西可能在六个月内不起作用。
-                          随着您的业务增长，海维包装有助于预测隐藏的成本并定期重新评估您的包装，以确保您无缝扩展。
+                          随着您的业务增长，半祥包装有助于预测隐藏的成本并定期重新评估您的包装，以确保您无缝扩展。
                         </p>
                       </div>
                     </div>
@@ -239,12 +239,12 @@ const Page = () => {
                 </div>
               </div>
 
-              <div className="mx-8 pb-4 pt-4">
+              <div className="mx-8 pt-4 pb-4">
                 <div className="wrap-m" style={{ width: '800px' }}>
                   <h3 className="c">Case studies</h3>
 
                   <a href="/case-studies/parachute">
-                    <div className="bg-gray-light mb-8 mt-2">
+                    <div className="bg-gray-light mt-2 mb-8">
                       <div className="div div-no-padding flex justify-center">
                         <div className="div-6 mr-2">
                           <Image

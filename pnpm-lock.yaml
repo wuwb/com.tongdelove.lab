@@ -512,7 +512,7 @@ importers:
         version: 4.4.11(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(stylelint@13.13.1)(typescript@5.9.3)
       '@umijs/max':
         specifier: ^4.2.5
-        version: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+        version: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/openapi':
         specifier: ^1.8.5
         version: 1.13.0(chokidar@3.6.0)(encoding@0.1.13)(typescript@5.9.3)
@@ -560,7 +560,7 @@ importers:
         version: 5.9.3
       umi-presets-pro:
         specifier: ^2.0.3
-        version: 2.0.3(1858a128a85584dd160f1d9f0b9a81d0)
+        version: 2.0.3(162b12e8232d0188db41b50f6070746b)
       umi-serve:
         specifier: ^1.9.11
         version: 1.9.11(@babel/core@7.4.5)
@@ -3296,9 +3296,6 @@ importers:
       '@ant-design/cssinjs':
         specifier: 1.23.0
         version: 1.23.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@chakra-ui/react':
-        specifier: ^3.2.3
-        version: 3.19.2(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@emotion/react':
         specifier: ^11.13.3
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
@@ -3310,10 +3307,13 @@ importers:
         version: 15.3.3(next@14.2.5(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.89.1))(react@19.2.4)
       '@tailwindcss/typography':
         specifier: ^0.5.15
-        version: 0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))
+        version: 0.5.16(tailwindcss@4.1.17)
       '@tongdelove/design':
         specifier: workspace:^
         version: link:../../packages/design
+      '@tongdelove/ui':
+        specifier: workspace:^
+        version: link:../../packages/ui
       axios:
         specifier: ^1.12.2
         version: 1.13.6(debug@4.4.3)
@@ -3423,12 +3423,12 @@ importers:
       '@builder.io/partytown':
         specifier: ^0.10.2
         version: 0.10.3
-      '@chakra-ui/cli':
-        specifier: ^3.1.2
-        version: 3.19.1(@chakra-ui/react@3.19.2(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@storybook/react':
         specifier: ^7.6.17
         version: 7.6.20(encoding@0.1.13)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+      '@tailwindcss/postcss':
+        specifier: ^4.1.11
+        version: 4.1.13
       '@testing-library/react':
         specifier: ^16.3.0
         version: 16.3.2(@testing-library/dom@10.4.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -3455,7 +3455,7 @@ importers:
         version: 4.4.12(@types/react@19.2.14)
       autoprefixer:
         specifier: ^10.4.19
-        version: 10.4.21(postcss@8.5.4)
+        version: 10.4.21(postcss@8.5.8)
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
@@ -3466,23 +3466,26 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       postcss:
-        specifier: ^8.4.39
-        version: 8.5.4
+        specifier: ^8.5.6
+        version: 8.5.8
       postcss-flexbugs-fixes:
         specifier: ^5.0.2
-        version: 5.0.2(postcss@8.5.4)
+        version: 5.0.2(postcss@8.5.8)
       postcss-import:
         specifier: ^14.0.2
-        version: 14.1.0(postcss@8.5.4)
+        version: 14.1.0(postcss@8.5.8)
       postcss-preset-env:
-        specifier: ^7.0.1
-        version: 7.8.3(postcss@8.5.4)
+        specifier: ^9.5.4
+        version: 9.6.0(postcss@8.5.8)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.5
         version: 0.6.12(@ianvs/prettier-plugin-sort-imports@4.4.2(@vue/compiler-sfc@3.5.24)(prettier@3.6.2))(prettier-plugin-organize-imports@3.2.4(prettier@3.6.2)(typescript@5.9.3))(prettier@3.6.2)
       tailwindcss:
-        specifier: ^3.4.6
-        version: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
+        specifier: ^4.1.11
+        version: 4.1.17
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@4.1.17)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -4057,7 +4060,7 @@ importers:
         version: 2.3.5
       tsup:
         specifier: 7.2.0
-        version: 7.2.0(@swc/core@1.15.18(@swc/helpers@0.5.17))(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))(typescript@5.9.3)
+        version: 7.2.0(@swc/core@1.15.18(@swc/helpers@0.5.17))(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))(typescript@5.9.3)
       tsx:
         specifier: 3.13.0
         version: 3.13.0
@@ -4747,15 +4750,18 @@ importers:
 
   tooling/tailwind-config:
     dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.11
+        version: 4.1.17(vite@7.1.7(@types/node@25.5.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0)(tsx@4.20.6)(yaml@2.8.2))
       postcss:
-        specifier: ^8.4.38
-        version: 8.5.4
+        specifier: ^8.5.6
+        version: 8.5.8
       tailwindcss:
-        specifier: ^3.4.3
-        version: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3))
+        specifier: ^4.1.11
+        version: 4.1.17
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3)))
+        version: 1.0.7(tailwindcss@4.1.17)
     devDependencies:
       '@tongdelove/eslint-config':
         specifier: workspace:*
@@ -7480,12 +7486,6 @@ packages:
   '@chakra-ui/anatomy@2.3.4':
     resolution: {integrity: sha512-fFIYN7L276gw0Q7/ikMMlZxP7mvnjRaWJ7f3Jsf9VtDOi6eAYIBRrhQe6+SZ0PGmoOkRaBc7gSE5oeIbgFFyrw==}
 
-  '@chakra-ui/cli@3.19.1':
-    resolution: {integrity: sha512-7mkT7ZFmFVTkL15BwAShuO4VPjDflhpY/UJtPJpBwCM/ku3f/dpnyKSM/Uw82kHk1zwjlz03526c3eFXDwIRaQ==}
-    hasBin: true
-    peerDependencies:
-      '@chakra-ui/react': '>=3.0.0-next.0'
-
   '@chakra-ui/color-mode@2.2.0':
     resolution: {integrity: sha512-niTEA8PALtMWRI9wJ4LL0CSBDo8NBfLNp4GD6/0hstcm3IlbBHTVKxN6HwSaoNYfphDQLxCjT4yG+0BJA5tFpg==}
     peerDependencies:
@@ -7648,14 +7648,8 @@ packages:
   '@chevrotain/utils@11.0.3':
     resolution: {integrity: sha512-YslZMgtJUyuMbZ+aKvfF3x1f5liK4mWNxghFRv7jqRR9C3R3fAOGTTKvxXDa2Y1s9zSbcpuO0cAxDYsc9SrXoQ==}
 
-  '@clack/core@0.4.2':
-    resolution: {integrity: sha512-NYQfcEy8MWIxrT5Fj8nIVchfRFA26yYKJcvBS7WlUIlw2OmQOY9DhGGXMovyI5J5PpxrCPGkgUi207EBrjpBvg==}
-
   '@clack/core@0.5.0':
     resolution: {integrity: sha512-p3y0FIOwaYRUPRcMO7+dlmLh8PSRcrjuTndsiA0WAFbWES0mLZlrjVoBRZ9DzkPFJZG6KGkJmoEAY0ZcVWTkow==}
-
-  '@clack/prompts@0.10.1':
-    resolution: {integrity: sha512-Q0T02vx8ZM9XSv9/Yde0jTmmBQufZhPJfYAg2XrrrxWWaZgq1rr8nU8Hv710BQ1dhoP8rtY7YUdpGej2Qza/cw==}
 
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
@@ -20140,9 +20134,6 @@ packages:
   '@types/cli-progress@3.11.6':
     resolution: {integrity: sha512-cE3+jb9WRlu+uOSAugewNpITJDt1VF8dHOopPO4IABFc3SXYL5WE/+PTz/FCdZRRfIujiWW3n3aMbv1eIGVRWA==}
 
-  '@types/cli-table@0.3.4':
-    resolution: {integrity: sha512-GsALrTL69mlwbAw/MHF1IPTadSLZQnsxe7a80G8l4inN/iEXCOcVeT/S7aRc6hbhqzL9qZ314kHPDQnQ3ev+HA==}
-
   '@types/concat-stream@2.0.3':
     resolution: {integrity: sha512-3qe4oQAPNwVNwK4C9c8u+VJqv9kez+2MR4qJpoPFfXtgxxif1QbFusvXzK0/Wra2VX07smostI2VMmJNSpZjuQ==}
 
@@ -22031,11 +22022,6 @@ packages:
 
   '@vimeo/player@2.29.0':
     resolution: {integrity: sha512-9JjvjeqUndb9otCCFd0/+2ESsLk7VkDE6sxOBy9iy2ukezuQbplVRi+g9g59yAurKofbmTi/KcKxBGO/22zWRw==}
-
-  '@visulima/boxen@1.0.30':
-    resolution: {integrity: sha512-izo776RvDFeipY7tJspA0wFrcq/Ih0Qhe/zu6v7O4OlURy2ViFmy+2ZSUYTHSSwKrmVeZWrUUJSpaepZPLPMMQ==}
-    engines: {node: '>=18.0.0 <=23.x'}
-    os: [darwin, linux, win32]
 
   '@vitejs/plugin-react-swc@3.11.0':
     resolution: {integrity: sha512-YTJCGFdNMHCMfjODYtxRNVAYmTWQ1Lb8PulP/2/f/oEEtglw8oKxKIZmmRkyXrVrHfsKOaVkAc3NT9/dMutO5w==}
@@ -24001,9 +23987,6 @@ packages:
     resolution: {integrity: sha512-cOKPRFCWvHcYPJQAHN6V7Jp/wAfnyqQRXQ+2fgWIL6Gao20rpu7xQ1cGGo1APOfmbQmmHngEPg9Fy7nJ3giRkQ==}
     engines: {node: '>=18'}
     hasBin: true
-
-  bundle-n-require@1.1.2:
-    resolution: {integrity: sha512-bEk2jakVK1ytnZ9R2AAiZEeK/GxPUM8jvcRxHZXifZDMcjkI4EG/GlsJ2YGSVYT9y/p/gA9/0yDY8rCGsSU6Tg==}
 
   bundle-name@3.0.0:
     resolution: {integrity: sha512-PKA4BeSvBpQKQ8iPOGCSiell+N8P+Tf1DlwqmYhpe2gAhKPHn8EYOxVT+ShuGmhg8lN8XiSlS80yiExKXrURlw==}
@@ -29808,10 +29791,6 @@ packages:
     resolution: {integrity: sha512-s3Fq41ZVh7vbbe2PN3nrW7yC7U7MFVc5c98/iTl9c2GawNMKx/J648KQRW6WKkuU8GIbbh2IXfIRQjOZnXcTnw==}
     engines: {node: '>=18'}
 
-  globby@14.1.0:
-    resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
-    engines: {node: '>=18'}
-
   globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
 
@@ -33122,9 +33101,6 @@ packages:
     resolution: {integrity: sha512-Ajzxb8CM6WAnFjgiloPsI3bF+WCxcvhdIG3KNA2KN962+tdBsHcuQ4k4qX/EcS/2CRkcc0iAkR956Nib6aXU/Q==}
     engines: {node: '>=0.10.0'}
 
-  look-it-up@2.1.0:
-    resolution: {integrity: sha512-nMoGWW2HurtuJf6XAL56FWTDCWLOTSsanrgwOyaR5Y4e3zfG5N/0cU5xWZSEU3tBxhQugRbV1xL9jb+ug7yZww==}
-
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
@@ -33265,9 +33241,6 @@ packages:
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
-
-  magic-string@0.30.19:
-    resolution: {integrity: sha512-2N21sPY9Ws53PZvsEpVtNuSW+ScYbQdp4b9qUaL+9QkHUrGFKo56Lg9Emg5s9V/qrtNBmiR01sYhUOwu3H+VOw==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -34841,10 +34814,6 @@ packages:
   node-ensure@0.0.0:
     resolution: {integrity: sha512-DRI60hzo2oKN1ma0ckc6nQWlHU69RH6xN0sjQTjMpChPfTYvKZdcQFfdYK2RWbJcKyUizSIy/l8OTGxMAM1QDw==}
 
-  node-eval@2.0.0:
-    resolution: {integrity: sha512-Ap+L9HznXAVeJj3TJ1op6M6bg5xtTq8L5CU/PJxtkhea/DrIxdTknGKIECKd/v/Lgql95iuMAYvIzBNd0pmcMg==}
-    engines: {node: '>= 4'}
-
   node-fetch-h2@2.3.0:
     resolution: {integrity: sha512-ofRW94Ab0T4AOh5Fk8t0h8OBWrmjb0SSB20xh1H8YnPV9EJ+f5AMoYSUQ2zgJ4Iq2HAK0I2l5/Nequ8YzFS3Hg==}
     engines: {node: 4.x || >=6.0.0}
@@ -35760,9 +35729,6 @@ packages:
     resolution: {integrity: sha512-cbH9IAIJHNj9uXi196JVsRlt7cHKak6u/e6AkL/bkRelZ7rlL3X1YKxsZwa36xipOEKAsdtmaG6aAJoM1fx2zA==}
     engines: {node: '>=14.16'}
 
-  package-manager-detector@1.2.0:
-    resolution: {integrity: sha512-PutJepsOtsqVfUsxCzgTTpyXmiAgvKptIgY4th5eq5UXXFhj5PxfQ9hnGkypMeovpAvVshFRItoFHYO18TCOqA==}
-
   package-manager-detector@1.5.0:
     resolution: {integrity: sha512-uBj69dVlYe/+wxj8JOpr97XfsxH/eumMt6HqjNTmJDf/6NO9s+0uxeOneIz3AsPt2m6y9PqzDzd3ATcU17MNfw==}
 
@@ -36061,10 +36027,6 @@ packages:
   path-type@5.0.0:
     resolution: {integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg==}
     engines: {node: '>=12'}
-
-  path-type@6.0.0:
-    resolution: {integrity: sha512-Vj7sf++t5pBD637NSfkxpHSMfWaeig5+DKWLhcqIYx6mWQz5hdJTGDVMQiJcw1ZYkhs7AazKDGpRVji1LJCZUQ==}
-    engines: {node: '>=18'}
 
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
@@ -37184,11 +37146,6 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
-    engines: {node: '>=14'}
     hasBin: true
 
   prettier@3.6.2:
@@ -43126,10 +43083,6 @@ packages:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
     engines: {node: '>=18'}
 
-  unicorn-magic@0.3.0:
-    resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
-    engines: {node: '>=18'}
-
   unified-engine@10.1.0:
     resolution: {integrity: sha512-5+JDIs4hqKfHnJcVCxTid1yBoI/++FfF/1PFdSMpaftZZZY+qg2JFruRbf7PaIwa9KgLotXQV3gSjtY0IdcFGQ==}
 
@@ -46977,68 +46930,6 @@ snapshots:
       '@zag-js/utils': 1.12.2
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-
-  '@ark-ui/react@5.9.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@internationalized/date': 3.8.0
-      '@zag-js/accordion': 1.12.2
-      '@zag-js/anatomy': 1.12.2
-      '@zag-js/angle-slider': 1.12.2
-      '@zag-js/auto-resize': 1.12.2
-      '@zag-js/avatar': 1.12.2
-      '@zag-js/carousel': 1.12.2
-      '@zag-js/checkbox': 1.12.2
-      '@zag-js/clipboard': 1.12.2
-      '@zag-js/collapsible': 1.12.2
-      '@zag-js/collection': 1.12.2
-      '@zag-js/color-picker': 1.12.2
-      '@zag-js/color-utils': 1.12.2
-      '@zag-js/combobox': 1.12.2
-      '@zag-js/core': 1.12.2
-      '@zag-js/date-picker': 1.12.2(@internationalized/date@3.8.0)
-      '@zag-js/date-utils': 1.12.2(@internationalized/date@3.8.0)
-      '@zag-js/dialog': 1.12.2
-      '@zag-js/dom-query': 1.12.2
-      '@zag-js/editable': 1.12.2
-      '@zag-js/file-upload': 1.12.2
-      '@zag-js/file-utils': 1.12.2
-      '@zag-js/floating-panel': 1.12.2
-      '@zag-js/focus-trap': 1.12.2
-      '@zag-js/highlight-word': 1.12.2
-      '@zag-js/hover-card': 1.12.2
-      '@zag-js/i18n-utils': 1.12.2
-      '@zag-js/listbox': 1.12.2
-      '@zag-js/menu': 1.12.2
-      '@zag-js/number-input': 1.12.2
-      '@zag-js/pagination': 1.12.2
-      '@zag-js/pin-input': 1.12.2
-      '@zag-js/popover': 1.12.2
-      '@zag-js/presence': 1.12.2
-      '@zag-js/progress': 1.12.2
-      '@zag-js/qr-code': 1.12.2
-      '@zag-js/radio-group': 1.12.2
-      '@zag-js/rating-group': 1.12.2
-      '@zag-js/react': 1.12.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@zag-js/select': 1.12.2
-      '@zag-js/signature-pad': 1.12.2
-      '@zag-js/slider': 1.12.2
-      '@zag-js/splitter': 1.12.2
-      '@zag-js/steps': 1.12.2
-      '@zag-js/switch': 1.12.2
-      '@zag-js/tabs': 1.12.2
-      '@zag-js/tags-input': 1.12.2
-      '@zag-js/time-picker': 1.12.2(@internationalized/date@3.8.0)
-      '@zag-js/timer': 1.12.2
-      '@zag-js/toast': 1.12.2
-      '@zag-js/toggle': 1.12.2
-      '@zag-js/toggle-group': 1.12.2
-      '@zag-js/tooltip': 1.12.2
-      '@zag-js/tour': 1.12.2
-      '@zag-js/tree-view': 1.12.2
-      '@zag-js/types': 1.12.2
-      '@zag-js/utils': 1.12.2
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
 
   '@asamuzakjp/css-color@3.2.0':
     dependencies:
@@ -52102,31 +51993,6 @@ snapshots:
 
   '@chakra-ui/anatomy@2.3.4': {}
 
-  '@chakra-ui/cli@3.19.1(@chakra-ui/react@3.19.2(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
-    dependencies:
-      '@chakra-ui/react': 3.19.2(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@clack/prompts': 0.10.1
-      '@pandacss/is-valid-prop': 0.53.6
-      '@types/cli-table': 0.3.4
-      '@types/debug': 4.1.12
-      '@visulima/boxen': 1.0.30
-      bundle-n-require: 1.1.2
-      chokidar: 3.6.0
-      cli-table: 0.3.11
-      commander: 12.1.0
-      debug: 4.4.3
-      globby: 14.1.0
-      https-proxy-agent: 7.0.6
-      look-it-up: 2.1.0
-      node-fetch: 3.3.2
-      package-manager-detector: 1.2.0
-      prettier: 3.5.3
-      scule: 1.3.0
-      sucrase: 3.35.0
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - supports-color
-
   '@chakra-ui/color-mode@2.2.0(react@19.2.4)':
     dependencies:
       '@chakra-ui/react-use-safe-layout-effect': 2.1.0(react@19.2.4)
@@ -52182,20 +52048,6 @@ snapshots:
       fast-safe-stringify: 2.1.1
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-
-  '@chakra-ui/react@3.19.2(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@ark-ui/react': 5.9.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@emotion/is-prop-valid': 1.3.1
-      '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@emotion/serialize': 1.3.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.2.4)
-      '@emotion/utils': 1.4.2
-      '@pandacss/is-valid-prop': 0.53.6
-      csstype: 3.1.3
-      fast-safe-stringify: 2.1.1
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
 
   '@chakra-ui/shared-utils@2.0.3': {}
 
@@ -52447,19 +52299,8 @@ snapshots:
 
   '@chevrotain/utils@11.0.3': {}
 
-  '@clack/core@0.4.2':
-    dependencies:
-      picocolors: 1.1.0
-      sisteransi: 1.0.5
-
   '@clack/core@0.5.0':
     dependencies:
-      picocolors: 1.1.0
-      sisteransi: 1.0.5
-
-  '@clack/prompts@0.10.1':
-    dependencies:
-      '@clack/core': 0.4.2
       picocolors: 1.1.0
       sisteransi: 1.0.5
 
@@ -53018,16 +52859,22 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  '@csstools/postcss-cascade-layers@4.0.6(postcss@8.5.8)':
+    dependencies:
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   '@csstools/postcss-color-function@1.1.1(postcss@8.5.4)':
     dependencies:
       '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.4)
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-color-function@1.1.1(postcss@8.5.6)':
+  '@csstools/postcss-color-function@1.1.1(postcss@8.5.8)':
     dependencies:
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      postcss: 8.5.6
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-color-function@3.0.19(postcss@8.5.4)':
@@ -53039,6 +52886,15 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-color-function@3.0.19(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-color-mix-function@2.0.19(postcss@8.5.4)':
     dependencies:
       '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
@@ -53048,6 +52904,15 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-color-mix-function@2.0.19(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-content-alt-text@1.0.0(postcss@8.5.4)':
     dependencies:
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
@@ -53056,6 +52921,14 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-content-alt-text@1.0.0(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-exponential-functions@1.0.9(postcss@8.5.4)':
     dependencies:
       '@csstools/css-calc': 1.2.4(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
@@ -53063,14 +52936,21 @@ snapshots:
       '@csstools/css-tokenizer': 2.4.1
       postcss: 8.5.4
 
+  '@csstools/postcss-exponential-functions@1.0.9(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-calc': 1.2.4(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      postcss: 8.5.8
+
   '@csstools/postcss-font-format-keywords@1.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-font-format-keywords@1.0.1(postcss@8.5.6)':
+  '@csstools/postcss-font-format-keywords@1.0.1(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-font-format-keywords@3.0.2(postcss@8.5.4)':
@@ -53079,12 +52959,25 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  '@csstools/postcss-font-format-keywords@3.0.2(postcss@8.5.8)':
+    dependencies:
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   '@csstools/postcss-gamut-mapping@1.0.11(postcss@8.5.4)':
     dependencies:
       '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-tokenizer': 2.4.1
       postcss: 8.5.4
+
+  '@csstools/postcss-gamut-mapping@1.0.11(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      postcss: 8.5.8
 
   '@csstools/postcss-gradients-interpolation-method@4.0.20(postcss@8.5.4)':
     dependencies:
@@ -53095,14 +52988,23 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-gradients-interpolation-method@4.0.20(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-hwb-function@1.0.2(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-hwb-function@1.0.2(postcss@8.5.6)':
+  '@csstools/postcss-hwb-function@1.0.2(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-hwb-function@3.0.18(postcss@8.5.4)':
@@ -53114,16 +53016,25 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-hwb-function@3.0.18(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-ic-unit@1.0.1(postcss@8.5.4)':
     dependencies:
       '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.4)
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-ic-unit@1.0.1(postcss@8.5.6)':
+  '@csstools/postcss-ic-unit@1.0.1(postcss@8.5.8)':
     dependencies:
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      postcss: 8.5.6
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-ic-unit@3.0.7(postcss@8.5.4)':
@@ -53133,9 +53044,20 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  '@csstools/postcss-ic-unit@3.0.7(postcss@8.5.8)':
+    dependencies:
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   '@csstools/postcss-initial@1.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+
+  '@csstools/postcss-initial@1.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
 
   '@csstools/postcss-is-pseudo-class@2.0.7(postcss@8.5.4)':
     dependencies:
@@ -53143,16 +53065,22 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  '@csstools/postcss-is-pseudo-class@2.0.7(postcss@8.5.6)':
+  '@csstools/postcss-is-pseudo-class@2.0.7(postcss@8.5.8)':
     dependencies:
       '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-is-pseudo-class@4.0.8(postcss@8.5.4)':
     dependencies:
       '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+
+  '@csstools/postcss-is-pseudo-class@4.0.8(postcss@8.5.8)':
+    dependencies:
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-light-dark-function@1.0.8(postcss@8.5.4)':
@@ -53163,21 +53091,46 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-light-dark-function@1.0.8(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-logical-float-and-clear@2.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+
+  '@csstools/postcss-logical-float-and-clear@2.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
 
   '@csstools/postcss-logical-overflow@1.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
 
+  '@csstools/postcss-logical-overflow@1.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
+
   '@csstools/postcss-logical-overscroll-behavior@1.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
 
+  '@csstools/postcss-logical-overscroll-behavior@1.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
+
   '@csstools/postcss-logical-resize@2.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+
+  '@csstools/postcss-logical-resize@2.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-logical-viewport-units@2.0.11(postcss@8.5.4)':
@@ -53185,6 +53138,12 @@ snapshots:
       '@csstools/css-tokenizer': 2.4.1
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
+
+  '@csstools/postcss-logical-viewport-units@2.0.11(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
 
   '@csstools/postcss-media-minmax@1.1.8(postcss@8.5.4)':
     dependencies:
@@ -53194,12 +53153,27 @@ snapshots:
       '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
       postcss: 8.5.4
 
+  '@csstools/postcss-media-minmax@1.1.8(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-calc': 1.2.4(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      postcss: 8.5.8
+
   '@csstools/postcss-media-queries-aspect-ratio-number-values@2.0.11(postcss@8.5.4)':
     dependencies:
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-tokenizer': 2.4.1
       '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
       postcss: 8.5.4
+
+  '@csstools/postcss-media-queries-aspect-ratio-number-values@2.0.11(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      postcss: 8.5.8
 
   '@csstools/postcss-nested-calc@1.0.0(postcss@8.5.4)':
     dependencies:
@@ -53212,19 +53186,30 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  '@csstools/postcss-nested-calc@3.0.2(postcss@8.5.8)':
+    dependencies:
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   '@csstools/postcss-normalize-display-values@1.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-normalize-display-values@1.0.1(postcss@8.5.6)':
+  '@csstools/postcss-normalize-display-values@1.0.1(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-normalize-display-values@3.0.2(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+
+  '@csstools/postcss-normalize-display-values@3.0.2(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-oklab-function@1.1.1(postcss@8.5.4)':
@@ -53233,10 +53218,10 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-oklab-function@1.1.1(postcss@8.5.6)':
+  '@csstools/postcss-oklab-function@1.1.1(postcss@8.5.8)':
     dependencies:
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      postcss: 8.5.6
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-oklab-function@3.0.19(postcss@8.5.4)':
@@ -53248,19 +53233,33 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-oklab-function@3.0.19(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-progressive-custom-properties@1.3.0(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-progressive-custom-properties@1.3.0(postcss@8.5.6)':
+  '@csstools/postcss-progressive-custom-properties@1.3.0(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-progressive-custom-properties@3.3.0(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+
+  '@csstools/postcss-progressive-custom-properties@3.3.0(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-relative-color-syntax@2.0.19(postcss@8.5.4)':
@@ -53272,9 +53271,23 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  '@csstools/postcss-relative-color-syntax@2.0.19(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   '@csstools/postcss-scope-pseudo-class@3.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+
+  '@csstools/postcss-scope-pseudo-class@3.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   '@csstools/postcss-stepped-value-functions@1.0.1(postcss@8.5.4)':
@@ -53282,9 +53295,9 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  '@csstools/postcss-stepped-value-functions@1.0.1(postcss@8.5.6)':
+  '@csstools/postcss-stepped-value-functions@1.0.1(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-stepped-value-functions@3.0.10(postcss@8.5.4)':
@@ -53293,6 +53306,13 @@ snapshots:
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-tokenizer': 2.4.1
       postcss: 8.5.4
+
+  '@csstools/postcss-stepped-value-functions@3.0.10(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-calc': 1.2.4(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      postcss: 8.5.8
 
   '@csstools/postcss-text-decoration-shorthand@1.0.0(postcss@8.5.4)':
     dependencies:
@@ -53303,6 +53323,12 @@ snapshots:
     dependencies:
       '@csstools/color-helpers': 4.2.1
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+
+  '@csstools/postcss-text-decoration-shorthand@3.0.7(postcss@8.5.8)':
+    dependencies:
+      '@csstools/color-helpers': 4.2.1
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   '@csstools/postcss-trigonometric-functions@1.0.2(postcss@8.5.4)':
@@ -53317,17 +53343,28 @@ snapshots:
       '@csstools/css-tokenizer': 2.4.1
       postcss: 8.5.4
 
+  '@csstools/postcss-trigonometric-functions@3.0.10(postcss@8.5.8)':
+    dependencies:
+      '@csstools/css-calc': 1.2.4(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      postcss: 8.5.8
+
   '@csstools/postcss-unset-value@1.0.2(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
 
-  '@csstools/postcss-unset-value@1.0.2(postcss@8.5.6)':
+  '@csstools/postcss-unset-value@1.0.2(postcss@8.5.8)':
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   '@csstools/postcss-unset-value@3.0.1(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+
+  '@csstools/postcss-unset-value@3.0.1(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
 
   '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.2)':
     dependencies:
@@ -53344,6 +53381,10 @@ snapshots:
   '@csstools/utilities@1.0.0(postcss@8.5.4)':
     dependencies:
       postcss: 8.5.4
+
+  '@csstools/utilities@1.0.0(postcss@8.5.8)':
+    dependencies:
+      postcss: 8.5.8
 
   '@ctrl/tinycolor@3.6.1': {}
 
@@ -66073,7 +66114,7 @@ snapshots:
       express: 4.21.2
       find-cache-dir: 3.3.2
       fs-extra: 11.3.2
-      magic-string: 0.30.17
+      magic-string: 0.30.21
       remark-external-links: 8.0.0
       remark-slug: 6.1.0
       rollup: 3.29.5
@@ -66096,7 +66137,7 @@ snapshots:
       es-module-lexer: 1.7.0
       fork-ts-checker-webpack-plugin: 8.0.0(typescript@5.9.3)(webpack@5.88.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(esbuild@0.19.12))
       html-webpack-plugin: 5.6.3(webpack@5.88.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(esbuild@0.19.12))
-      magic-string: 0.30.17
+      magic-string: 0.30.21
       path-browserify: 1.0.1
       process: 0.11.10
       semver: 7.7.1
@@ -66575,7 +66616,7 @@ snapshots:
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@5.9.3)(webpack@5.88.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(esbuild@0.19.12))
       '@types/semver': 7.7.1
       find-up: 5.0.0
-      magic-string: 0.30.17
+      magic-string: 0.30.21
       react: 19.2.4
       react-docgen: 7.1.1
       react-dom: 19.2.4(react@19.2.4)
@@ -66841,22 +66882,22 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.0
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss@8.5.6)
+      postcss-syntax: 0.36.2(postcss@8.5.8)
     transitivePeerDependencies:
       - supports-color
 
-  '@stylelint/postcss-css-in-js@0.38.0(postcss-syntax@0.36.2(postcss@8.5.6))(postcss@8.5.6)':
+  '@stylelint/postcss-css-in-js@0.38.0(postcss-syntax@0.36.2(postcss@8.5.8))(postcss@8.5.6)':
     dependencies:
       '@babel/core': 7.29.0
       postcss: 8.5.6
-      postcss-syntax: 0.36.2(postcss@8.5.6)
+      postcss-syntax: 0.36.2(postcss@8.5.8)
     transitivePeerDependencies:
       - supports-color
 
   '@stylelint/postcss-markdown@0.36.2(postcss-syntax@0.36.2)(postcss@7.0.39)':
     dependencies:
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss@8.5.6)
+      postcss-syntax: 0.36.2(postcss@8.5.8)
       remark: 13.0.0
       unist-util-find-all-after: 3.0.2
     transitivePeerDependencies:
@@ -67325,16 +67366,8 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.1.13
       '@tailwindcss/oxide': 4.1.13
-      postcss: 8.5.6
+      postcss: 8.5.8
       tailwindcss: 4.1.13
-
-  '@tailwindcss/typography@0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))':
-    dependencies:
-      lodash.castarray: 4.4.0
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
 
   '@tailwindcss/typography@0.5.16(tailwindcss@4.1.17)':
     dependencies:
@@ -67357,6 +67390,13 @@ snapshots:
       '@tailwindcss/oxide': 4.1.17
       tailwindcss: 4.1.17
       vite: 7.1.7(@types/node@24.10.4)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0)(tsx@4.20.6)(yaml@2.8.2)
+
+  '@tailwindcss/vite@4.1.17(vite@7.1.7(@types/node@25.5.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0)(tsx@4.20.6)(yaml@2.8.2))':
+    dependencies:
+      '@tailwindcss/node': 4.1.17
+      '@tailwindcss/oxide': 4.1.17
+      tailwindcss: 4.1.17
+      vite: 7.1.7(@types/node@25.5.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0)(tsx@4.20.6)(yaml@2.8.2)
 
   '@tanstack/eslint-plugin-query@4.39.1(eslint@9.39.1(jiti@2.6.1))':
     dependencies:
@@ -68288,8 +68328,6 @@ snapshots:
   '@types/cli-progress@3.11.6':
     dependencies:
       '@types/node': 24.10.4
-
-  '@types/cli-table@0.3.4': {}
 
   '@types/concat-stream@2.0.3':
     dependencies:
@@ -70411,16 +70449,16 @@ snapshots:
       '@umijs/bundler-utils': 4.4.11
       '@umijs/utils': 4.4.11
       enhanced-resolve: 5.9.3
-      postcss: 8.5.6
-      postcss-flexbugs-fixes: 5.0.2(postcss@8.5.6)
-      postcss-preset-env: 7.5.0(postcss@8.5.6)
+      postcss: 8.5.8
+      postcss-flexbugs-fixes: 5.0.2(postcss@8.5.8)
+      postcss-preset-env: 7.5.0(postcss@8.5.8)
     transitivePeerDependencies:
       - supports-color
 
-  '@umijs/bundler-mako@0.11.10(postcss@8.5.6)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
+  '@umijs/bundler-mako@0.11.10(postcss@8.5.8)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
     dependencies:
       '@umijs/bundler-utils': 4.4.11
-      '@umijs/mako': 0.11.10(postcss@8.5.6)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      '@umijs/mako': 0.11.10(postcss@8.5.8)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       chalk: 4.1.2
       compression: 1.8.0
       connect-history-api-fallback: 2.0.0
@@ -70451,18 +70489,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@umijs/bundler-vite@4.4.11(@types/node@24.10.4)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)':
+  '@umijs/bundler-vite@4.4.11(@types/node@24.10.4)(lightningcss@1.30.2)(postcss@8.5.8)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)':
     dependencies:
       '@svgr/core': 6.5.1
       '@umijs/bundler-utils': 4.4.11
       '@umijs/utils': 4.4.11
-      '@vitejs/plugin-react': 4.0.0(vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0))
+      '@vitejs/plugin-react': 4.0.0(vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0))
       core-js: 3.34.0
       less: 4.1.3
-      postcss-preset-env: 7.5.0(postcss@8.5.6)
+      postcss-preset-env: 7.5.0(postcss@8.5.8)
       rollup-plugin-visualizer: 5.9.0(rollup@3.29.5)
       systemjs: 6.15.1
-      vite: 4.5.2(@types/node@24.10.4)(less@4.1.3)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)
+      vite: 4.5.2(@types/node@24.10.4)(less@4.1.3)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)
     transitivePeerDependencies:
       - '@types/node'
       - lightningcss
@@ -70493,8 +70531,8 @@ snapshots:
       jest-worker: 29.4.3
       lightningcss: 1.22.1
       node-libs-browser: 2.2.1
-      postcss: 8.5.6
-      postcss-preset-env: 7.5.0(postcss@8.5.6)
+      postcss: 8.5.8
+      postcss-preset-env: 7.5.0(postcss@8.5.8)
       react-error-overlay: 6.0.9
       react-refresh: 0.14.0
     transitivePeerDependencies:
@@ -70606,7 +70644,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.23.6
       '@babel/eslint-parser': 7.23.3(@babel/core@7.23.6)(eslint@8.35.0)
-      '@stylelint/postcss-css-in-js': 0.38.0(postcss-syntax@0.36.2(postcss@8.5.6))(postcss@8.5.6)
+      '@stylelint/postcss-css-in-js': 0.38.0(postcss-syntax@0.36.2(postcss@8.5.8))(postcss@8.5.6)
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.9.3))(eslint@8.35.0)(typescript@5.9.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.35.0)(typescript@5.9.3)
       '@umijs/babel-preset-umi': 4.4.11
@@ -70632,7 +70670,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.23.6
       '@babel/eslint-parser': 7.23.3(@babel/core@7.23.6)(eslint@8.35.0)
-      '@stylelint/postcss-css-in-js': 0.38.0(postcss-syntax@0.36.2(postcss@8.5.6))(postcss@8.5.6)
+      '@stylelint/postcss-css-in-js': 0.38.0(postcss-syntax@0.36.2(postcss@8.5.8))(postcss@8.5.6)
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.9.3))(eslint@8.35.0)(typescript@5.9.3)
       '@typescript-eslint/parser': 5.62.0(eslint@8.35.0)(typescript@5.9.3)
       '@umijs/babel-preset-umi': 4.4.11
@@ -70678,7 +70716,7 @@ snapshots:
   '@umijs/mako-win32-x64-msvc@0.11.10':
     optional: true
 
-  '@umijs/mako@0.11.10(postcss@8.5.6)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
+  '@umijs/mako@0.11.10(postcss@8.5.8)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
     dependencies:
       '@module-federation/webpack-bundler-runtime': 0.8.12
       '@swc/helpers': 0.5.1
@@ -70692,7 +70730,7 @@ snapshots:
       lodash: 4.17.23
       node-libs-browser-okam: 2.2.5
       piscina: 4.9.2
-      postcss-loader: 8.1.1(postcss@8.5.6)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      postcss-loader: 8.1.1(postcss@8.5.8)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       react-error-overlay: 6.0.9
       react-refresh: 0.14.2
       resolve: 1.22.10
@@ -70729,14 +70767,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@umijs/max@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
+  '@umijs/max@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
     dependencies:
       '@umijs/lint': 4.4.11(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(stylelint@14.8.2)(typescript@5.9.3)
       '@umijs/plugins': 4.4.11(@babel/core@7.4.5)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(antd@4.24.16(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
       antd: 4.24.16(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       eslint: 8.35.0
       stylelint: 14.8.2
-      umi: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@14.8.2)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      umi: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@14.8.2)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
     transitivePeerDependencies:
       - '@babel/core'
       - '@rspack/core'
@@ -70903,16 +70941,16 @@ snapshots:
       - react-native
       - supports-color
 
-  '@umijs/preset-umi@4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
+  '@umijs/preset-umi@4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))':
     dependencies:
       '@iconify/utils': 2.1.1
       '@svgr/core': 6.5.1
       '@umijs/ast': 4.4.11
       '@umijs/babel-preset-umi': 4.4.11
       '@umijs/bundler-esbuild': 4.4.11
-      '@umijs/bundler-mako': 0.11.10(postcss@8.5.6)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      '@umijs/bundler-mako': 0.11.10(postcss@8.5.8)(sass@1.89.1)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/bundler-utils': 4.4.11
-      '@umijs/bundler-vite': 4.4.11(@types/node@24.10.4)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)
+      '@umijs/bundler-vite': 4.4.11(@types/node@24.10.4)(lightningcss@1.30.2)(postcss@8.5.8)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)
       '@umijs/bundler-webpack': 4.4.11(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/core': 4.4.11
       '@umijs/did-you-know': 1.0.3
@@ -70935,8 +70973,8 @@ snapshots:
       html-webpack-plugin: 5.5.0(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       less-plugin-resolve: 1.0.2
       path-to-regexp: 1.7.0
-      postcss: 8.5.6
-      postcss-prefix-selector: 1.16.0(postcss@8.5.6)
+      postcss: 8.5.8
+      postcss-prefix-selector: 1.16.0(postcss@8.5.8)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-router: 6.3.0(react@18.3.1)
@@ -71001,13 +71039,13 @@ snapshots:
       react-helmet-async: 1.3.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-router-dom: 6.3.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
-  '@umijs/request-record@1.1.4(umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))))':
+  '@umijs/request-record@1.1.4(umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))))':
     dependencies:
       chokidar: 3.6.0
       express: 4.21.2
       lodash: 4.17.21
       prettier: 2.8.8
-      umi: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      umi: 4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
     transitivePeerDependencies:
       - supports-color
 
@@ -71264,8 +71302,6 @@ snapshots:
       native-promise-only: 0.8.1
       weakmap-polyfill: 2.0.4
 
-  '@visulima/boxen@1.0.30': {}
-
   '@vitejs/plugin-react-swc@3.11.0(@swc/helpers@0.5.17)(rolldown-vite@7.3.0(@types/node@24.10.4)(esbuild@0.25.5)(jiti@2.6.1)(less@4.3.0)(sass@1.89.1)(terser@5.40.0)(tsx@4.20.6)(yaml@2.8.1))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-beta.27
@@ -71285,13 +71321,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.0.0(vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0))':
+  '@vitejs/plugin-react@4.0.0(vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0))':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.29.0)
       '@babel/plugin-transform-react-jsx-source': 7.27.1(@babel/core@7.29.0)
       react-refresh: 0.14.2
-      vite: 4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)
+      vite: 4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -72185,15 +72221,6 @@ snapshots:
       '@zag-js/utils': 1.12.2
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-
-  '@zag-js/react@1.12.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      '@zag-js/core': 1.12.2
-      '@zag-js/store': 1.12.2
-      '@zag-js/types': 1.12.2
-      '@zag-js/utils': 1.12.2
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
 
   '@zag-js/rect-utils@1.12.2': {}
 
@@ -73603,6 +73630,16 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  autoprefixer@10.4.21(postcss@8.5.8):
+    dependencies:
+      browserslist: 4.25.0
+      caniuse-lite: 1.0.30001720
+      fraction.js: 4.3.7
+      normalize-range: 0.1.2
+      picocolors: 1.1.1
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   autoprefixer@10.4.22(postcss@8.5.4):
     dependencies:
       browserslist: 4.28.0
@@ -73621,6 +73658,16 @@ snapshots:
       normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.6
+      postcss-value-parser: 4.2.0
+
+  autoprefixer@10.4.22(postcss@8.5.8):
+    dependencies:
+      browserslist: 4.28.0
+      caniuse-lite: 1.0.30001755
+      fraction.js: 5.3.4
+      normalize-range: 0.1.2
+      picocolors: 1.1.1
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   autoprefixer@9.8.8:
@@ -74824,11 +74871,6 @@ snapshots:
       yaml: 2.8.1
     transitivePeerDependencies:
       - magicast
-
-  bundle-n-require@1.1.2:
-    dependencies:
-      esbuild: 0.25.5
-      node-eval: 2.0.0
 
   bundle-name@3.0.0:
     dependencies:
@@ -76522,14 +76564,19 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  css-blank-pseudo@3.0.3(postcss@8.5.6):
+  css-blank-pseudo@3.0.3(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   css-blank-pseudo@6.0.2(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+
+  css-blank-pseudo@6.0.2(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   css-box-model@1.2.1:
@@ -76545,15 +76592,22 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  css-has-pseudo@3.0.4(postcss@8.5.6):
+  css-has-pseudo@3.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   css-has-pseudo@6.0.5(postcss@8.5.4):
     dependencies:
       '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+      postcss-value-parser: 4.2.0
+
+  css-has-pseudo@6.0.5(postcss@8.5.8):
+    dependencies:
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
@@ -76573,12 +76627,12 @@ snapshots:
 
   css-loader@6.11.0(webpack@5.88.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(esbuild@0.19.12)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.6)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.6)
-      postcss-modules-scope: 3.2.1(postcss@8.5.6)
-      postcss-modules-values: 4.0.0(postcss@8.5.6)
+      icss-utils: 5.1.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.8)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.8)
+      postcss-modules-scope: 3.2.1(postcss@8.5.8)
+      postcss-modules-values: 4.0.0(postcss@8.5.8)
       postcss-value-parser: 4.2.0
       semver: 7.7.1
     optionalDependencies:
@@ -76586,12 +76640,12 @@ snapshots:
 
   css-loader@6.7.1(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.6)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.6)
-      postcss-modules-scope: 3.2.1(postcss@8.5.6)
-      postcss-modules-values: 4.0.0(postcss@8.5.6)
+      icss-utils: 5.1.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.8)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.8)
+      postcss-modules-scope: 3.2.1(postcss@8.5.8)
+      postcss-modules-values: 4.0.0(postcss@8.5.8)
       postcss-value-parser: 4.2.0
       semver: 7.7.1
       webpack: 5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))
@@ -76600,13 +76654,17 @@ snapshots:
     dependencies:
       postcss: 8.5.4
 
-  css-prefers-color-scheme@6.0.3(postcss@8.5.6):
+  css-prefers-color-scheme@6.0.3(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   css-prefers-color-scheme@9.0.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+
+  css-prefers-color-scheme@9.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
 
   css-select@4.3.0:
     dependencies:
@@ -79851,13 +79909,13 @@ snapshots:
   eslint-plugin-tailwindcss@3.13.0(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))):
     dependencies:
       fast-glob: 3.3.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
 
   eslint-plugin-tailwindcss@3.18.0(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3))):
     dependencies:
       fast-glob: 3.3.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3))
 
   eslint-plugin-tailwindcss@3.18.2(tailwindcss@4.1.17):
@@ -82418,15 +82476,6 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.1.0
 
-  globby@14.1.0:
-    dependencies:
-      '@sindresorhus/merge-streams': 2.3.0
-      fast-glob: 3.3.3
-      ignore: 7.0.5
-      path-type: 6.0.0
-      slash: 5.1.0
-      unicorn-magic: 0.3.0
-
   globjoin@0.1.4: {}
 
   globrex@0.1.2: {}
@@ -83403,9 +83452,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.6):
+  icss-utils@5.1.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   idb-keyval@6.2.2: {}
 
@@ -86203,8 +86252,6 @@ snapshots:
 
   longest@2.0.1: {}
 
-  look-it-up@2.1.0: {}
-
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
@@ -86311,10 +86358,6 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
 
   magic-string@0.30.17:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
-
-  magic-string@0.30.19:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
@@ -88859,10 +88902,6 @@ snapshots:
 
   node-ensure@0.0.0: {}
 
-  node-eval@2.0.0:
-    dependencies:
-      path-is-absolute: 1.0.1
-
   node-fetch-h2@2.3.0:
     dependencies:
       http2-client: 1.3.5
@@ -90080,8 +90119,6 @@ snapshots:
       registry-url: 6.0.1
       semver: 7.7.1
 
-  package-manager-detector@1.2.0: {}
-
   package-manager-detector@1.5.0: {}
 
   pacote@12.0.3:
@@ -90417,8 +90454,6 @@ snapshots:
   path-type@4.0.0: {}
 
   path-type@5.0.0: {}
-
-  path-type@6.0.0: {}
 
   pathe@2.0.3: {}
 
@@ -90831,9 +90866,9 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-attribute-case-insensitive@5.0.2(postcss@8.5.6):
+  postcss-attribute-case-insensitive@5.0.2(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-attribute-case-insensitive@6.0.3(postcss@8.5.4):
@@ -90841,14 +90876,19 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-attribute-case-insensitive@6.0.3(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-clamp@4.1.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-clamp@4.1.0(postcss@8.5.6):
+  postcss-clamp@4.1.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-color-functional-notation@4.2.4(postcss@8.5.4):
@@ -90856,9 +90896,9 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-color-functional-notation@4.2.4(postcss@8.5.6):
+  postcss-color-functional-notation@4.2.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-color-functional-notation@6.0.14(postcss@8.5.4):
@@ -90870,14 +90910,23 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  postcss-color-functional-notation@6.0.14(postcss@8.5.8):
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   postcss-color-hex-alpha@8.0.4(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-color-hex-alpha@8.0.4(postcss@8.5.6):
+  postcss-color-hex-alpha@8.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-color-hex-alpha@9.0.4(postcss@8.5.4):
@@ -90886,20 +90935,32 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-color-hex-alpha@9.0.4(postcss@8.5.8):
+    dependencies:
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-color-rebeccapurple@7.1.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-color-rebeccapurple@7.1.1(postcss@8.5.6):
+  postcss-color-rebeccapurple@7.1.1(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-color-rebeccapurple@9.0.3(postcss@8.5.4):
     dependencies:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+
+  postcss-color-rebeccapurple@9.0.3(postcss@8.5.8):
+    dependencies:
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-custom-media@10.0.8(postcss@8.5.4):
@@ -90910,14 +90971,22 @@ snapshots:
       '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
       postcss: 8.5.4
 
+  postcss-custom-media@10.0.8(postcss@8.5.8):
+    dependencies:
+      '@csstools/cascade-layer-name-parser': 1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      postcss: 8.5.8
+
   postcss-custom-media@8.0.2(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-custom-media@8.0.2(postcss@8.5.6):
+  postcss-custom-media@8.0.2(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-custom-properties@12.1.11(postcss@8.5.4):
@@ -90925,9 +90994,9 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-custom-properties@12.1.11(postcss@8.5.6):
+  postcss-custom-properties@12.1.11(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-custom-properties@13.3.12(postcss@8.5.4):
@@ -90939,14 +91008,23 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-custom-properties@13.3.12(postcss@8.5.8):
+    dependencies:
+      '@csstools/cascade-layer-name-parser': 1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-custom-selectors@6.0.3(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-custom-selectors@6.0.3(postcss@8.5.6):
+  postcss-custom-selectors@6.0.3(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-custom-selectors@7.1.12(postcss@8.5.4):
@@ -90957,19 +91035,32 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-custom-selectors@7.1.12(postcss@8.5.8):
+    dependencies:
+      '@csstools/cascade-layer-name-parser': 1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-dir-pseudo-class@6.0.5(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-dir-pseudo-class@6.0.5(postcss@8.5.6):
+  postcss-dir-pseudo-class@6.0.5(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-dir-pseudo-class@8.0.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+
+  postcss-dir-pseudo-class@8.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-double-position-gradients@3.1.2(postcss@8.5.4):
@@ -90978,10 +91069,10 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-double-position-gradients@3.1.2(postcss@8.5.6):
+  postcss-double-position-gradients@3.1.2(postcss@8.5.8):
     dependencies:
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      postcss: 8.5.6
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-double-position-gradients@5.0.7(postcss@8.5.4):
@@ -90991,32 +91082,39 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-double-position-gradients@5.0.7(postcss@8.5.8):
+    dependencies:
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-env-function@4.0.6(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-env-function@4.0.6(postcss@8.5.6):
+  postcss-env-function@4.0.6(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-flexbugs-fixes@5.0.2(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-flexbugs-fixes@5.0.2(postcss@8.5.6):
+  postcss-flexbugs-fixes@5.0.2(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-focus-visible@6.0.4(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-focus-visible@6.0.4(postcss@8.5.6):
+  postcss-focus-visible@6.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-focus-visible@9.0.1(postcss@8.5.4):
@@ -91024,14 +91122,19 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-focus-visible@9.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-focus-within@5.0.4(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-focus-within@5.0.4(postcss@8.5.6):
+  postcss-focus-within@5.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-focus-within@8.0.1(postcss@8.5.4):
@@ -91039,40 +91142,49 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-focus-within@8.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-font-variant@5.0.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-font-variant@5.0.0(postcss@8.5.6):
+  postcss-font-variant@5.0.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-gap-properties@3.0.5(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-gap-properties@3.0.5(postcss@8.5.6):
+  postcss-gap-properties@3.0.5(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-gap-properties@5.0.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
+  postcss-gap-properties@5.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+
   postcss-html@0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39):
     dependencies:
       htmlparser2: 3.10.1
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss@8.5.6)
+      postcss-syntax: 0.36.2(postcss@8.5.8)
 
   postcss-image-set-function@4.0.7(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-image-set-function@4.0.7(postcss@8.5.6):
+  postcss-image-set-function@4.0.7(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-image-set-function@6.0.3(postcss@8.5.4):
@@ -91081,9 +91193,22 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-image-set-function@6.0.3(postcss@8.5.8):
+    dependencies:
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-import@14.1.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.10
+
+  postcss-import@14.1.0(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
@@ -91095,13 +91220,20 @@ snapshots:
       read-cache: 1.0.0
       resolve: 1.22.10
 
+  postcss-import@15.1.0(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.10
+
   postcss-initial@4.0.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-initial@4.0.1(postcss@8.5.6):
+  postcss-initial@4.0.1(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-js@4.0.1(postcss@8.5.4):
     dependencies:
@@ -91113,16 +91245,21 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.5.6
 
+  postcss-js@4.0.1(postcss@8.5.8):
+    dependencies:
+      camelcase-css: 2.0.1
+      postcss: 8.5.8
+
   postcss-lab-function@4.2.1(postcss@8.5.4):
     dependencies:
       '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.4)
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-lab-function@4.2.1(postcss@8.5.6):
+  postcss-lab-function@4.2.1(postcss@8.5.8):
     dependencies:
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      postcss: 8.5.6
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-lab-function@6.0.19(postcss@8.5.4):
@@ -91134,13 +91271,22 @@ snapshots:
       '@csstools/utilities': 1.0.0(postcss@8.5.4)
       postcss: 8.5.4
 
+  postcss-lab-function@6.0.19(postcss@8.5.8):
+    dependencies:
+      '@csstools/css-color-parser': 2.0.5(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
+      '@csstools/css-tokenizer': 2.4.1
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/utilities': 1.0.0(postcss@8.5.8)
+      postcss: 8.5.8
+
   postcss-less@3.1.4:
     dependencies:
       postcss: 7.0.39
 
   postcss-less@4.0.1:
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-load-config@4.0.2(postcss@8.5.4)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)):
     dependencies:
@@ -91166,6 +91312,14 @@ snapshots:
       postcss: 8.5.6
       ts-node: 10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3)
 
+  postcss-load-config@4.0.2(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)):
+    dependencies:
+      lilconfig: 3.1.3
+      yaml: 2.8.1
+    optionalDependencies:
+      postcss: 8.5.8
+      ts-node: 10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)
+
   postcss-load-config@4.0.2(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3)):
     dependencies:
       lilconfig: 3.1.3
@@ -91185,11 +91339,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  postcss-loader@8.1.1(postcss@8.5.6)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
+  postcss-loader@8.1.1(postcss@8.5.8)(typescript@5.9.3)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
     dependencies:
       cosmiconfig: 9.0.1(typescript@5.9.3)
       jiti: 1.21.7
-      postcss: 8.5.6
+      postcss: 8.5.8
       semver: 7.7.1
     optionalDependencies:
       webpack: 5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))
@@ -91200,22 +91354,27 @@ snapshots:
     dependencies:
       postcss: 8.5.4
 
-  postcss-logical@5.0.4(postcss@8.5.6):
+  postcss-logical@5.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-logical@7.0.1(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-logical@7.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-media-minmax@5.0.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-media-minmax@5.0.0(postcss@8.5.6):
+  postcss-media-minmax@5.0.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-media-query-parser@0.2.3: {}
 
@@ -91227,26 +91386,26 @@ snapshots:
       postcss-simple-vars: 7.0.1(postcss@8.5.4)
       sugarss: 4.0.1(postcss@8.5.4)
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.6):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.6):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.8):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
+      icss-utils: 5.1.0(postcss@8.5.8)
+      postcss: 8.5.8
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.6):
+  postcss-modules-scope@3.2.1(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 7.1.0
 
-  postcss-modules-values@4.0.0(postcss@8.5.6):
+  postcss-modules-values@4.0.0(postcss@8.5.8):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
+      icss-utils: 5.1.0(postcss@8.5.8)
+      postcss: 8.5.8
 
   postcss-nested@6.2.0(postcss@8.5.4):
     dependencies:
@@ -91258,16 +91417,21 @@ snapshots:
       postcss: 8.5.6
       postcss-selector-parser: 6.1.2
 
+  postcss-nested@6.2.0(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-nesting@10.2.0(postcss@8.5.4):
     dependencies:
       '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-nesting@10.2.0(postcss@8.5.6):
+  postcss-nesting@10.2.0(postcss@8.5.8):
     dependencies:
       '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.1.2)
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-nesting@12.1.5(postcss@8.5.4):
@@ -91277,26 +91441,37 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-nesting@12.1.5(postcss@8.5.8):
+    dependencies:
+      '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.1.2)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-opacity-percentage@1.1.3(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-opacity-percentage@1.1.3(postcss@8.5.6):
+  postcss-opacity-percentage@1.1.3(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-opacity-percentage@2.0.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+
+  postcss-opacity-percentage@2.0.0(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
 
   postcss-overflow-shorthand@3.0.4(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-overflow-shorthand@3.0.4(postcss@8.5.6):
+  postcss-overflow-shorthand@3.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-overflow-shorthand@5.0.1(postcss@8.5.4):
@@ -91304,22 +91479,27 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
+  postcss-overflow-shorthand@5.0.1(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
+
   postcss-page-break@3.0.4(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-page-break@3.0.4(postcss@8.5.6):
+  postcss-page-break@3.0.4(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-place@7.0.5(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-place@7.0.5(postcss@8.5.6):
+  postcss-place@7.0.5(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-value-parser: 4.2.0
 
   postcss-place@9.0.1(postcss@8.5.4):
@@ -91327,57 +91507,62 @@ snapshots:
       postcss: 8.5.4
       postcss-value-parser: 4.2.0
 
-  postcss-prefix-selector@1.16.0(postcss@8.5.6):
+  postcss-place@9.0.1(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
+      postcss-value-parser: 4.2.0
 
-  postcss-preset-env@7.5.0(postcss@8.5.6):
+  postcss-prefix-selector@1.16.0(postcss@8.5.8):
     dependencies:
-      '@csstools/postcss-color-function': 1.1.1(postcss@8.5.6)
-      '@csstools/postcss-font-format-keywords': 1.0.1(postcss@8.5.6)
-      '@csstools/postcss-hwb-function': 1.0.2(postcss@8.5.6)
-      '@csstools/postcss-ic-unit': 1.0.1(postcss@8.5.6)
-      '@csstools/postcss-is-pseudo-class': 2.0.7(postcss@8.5.6)
-      '@csstools/postcss-normalize-display-values': 1.0.1(postcss@8.5.6)
-      '@csstools/postcss-oklab-function': 1.1.1(postcss@8.5.6)
-      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.6)
-      '@csstools/postcss-stepped-value-functions': 1.0.1(postcss@8.5.6)
-      '@csstools/postcss-unset-value': 1.0.2(postcss@8.5.6)
-      autoprefixer: 10.4.22(postcss@8.5.6)
+      postcss: 8.5.8
+
+  postcss-preset-env@7.5.0(postcss@8.5.8):
+    dependencies:
+      '@csstools/postcss-color-function': 1.1.1(postcss@8.5.8)
+      '@csstools/postcss-font-format-keywords': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-hwb-function': 1.0.2(postcss@8.5.8)
+      '@csstools/postcss-ic-unit': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-is-pseudo-class': 2.0.7(postcss@8.5.8)
+      '@csstools/postcss-normalize-display-values': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-oklab-function': 1.1.1(postcss@8.5.8)
+      '@csstools/postcss-progressive-custom-properties': 1.3.0(postcss@8.5.8)
+      '@csstools/postcss-stepped-value-functions': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-unset-value': 1.0.2(postcss@8.5.8)
+      autoprefixer: 10.4.22(postcss@8.5.8)
       browserslist: 4.28.1
-      css-blank-pseudo: 3.0.3(postcss@8.5.6)
-      css-has-pseudo: 3.0.4(postcss@8.5.6)
-      css-prefers-color-scheme: 6.0.3(postcss@8.5.6)
+      css-blank-pseudo: 3.0.3(postcss@8.5.8)
+      css-has-pseudo: 3.0.4(postcss@8.5.8)
+      css-prefers-color-scheme: 6.0.3(postcss@8.5.8)
       cssdb: 6.6.3
-      postcss: 8.5.6
-      postcss-attribute-case-insensitive: 5.0.2(postcss@8.5.6)
-      postcss-clamp: 4.1.0(postcss@8.5.6)
-      postcss-color-functional-notation: 4.2.4(postcss@8.5.6)
-      postcss-color-hex-alpha: 8.0.4(postcss@8.5.6)
-      postcss-color-rebeccapurple: 7.1.1(postcss@8.5.6)
-      postcss-custom-media: 8.0.2(postcss@8.5.6)
-      postcss-custom-properties: 12.1.11(postcss@8.5.6)
-      postcss-custom-selectors: 6.0.3(postcss@8.5.6)
-      postcss-dir-pseudo-class: 6.0.5(postcss@8.5.6)
-      postcss-double-position-gradients: 3.1.2(postcss@8.5.6)
-      postcss-env-function: 4.0.6(postcss@8.5.6)
-      postcss-focus-visible: 6.0.4(postcss@8.5.6)
-      postcss-focus-within: 5.0.4(postcss@8.5.6)
-      postcss-font-variant: 5.0.0(postcss@8.5.6)
-      postcss-gap-properties: 3.0.5(postcss@8.5.6)
-      postcss-image-set-function: 4.0.7(postcss@8.5.6)
-      postcss-initial: 4.0.1(postcss@8.5.6)
-      postcss-lab-function: 4.2.1(postcss@8.5.6)
-      postcss-logical: 5.0.4(postcss@8.5.6)
-      postcss-media-minmax: 5.0.0(postcss@8.5.6)
-      postcss-nesting: 10.2.0(postcss@8.5.6)
-      postcss-opacity-percentage: 1.1.3(postcss@8.5.6)
-      postcss-overflow-shorthand: 3.0.4(postcss@8.5.6)
-      postcss-page-break: 3.0.4(postcss@8.5.6)
-      postcss-place: 7.0.5(postcss@8.5.6)
-      postcss-pseudo-class-any-link: 7.1.6(postcss@8.5.6)
-      postcss-replace-overflow-wrap: 4.0.0(postcss@8.5.6)
-      postcss-selector-not: 5.0.0(postcss@8.5.6)
+      postcss: 8.5.8
+      postcss-attribute-case-insensitive: 5.0.2(postcss@8.5.8)
+      postcss-clamp: 4.1.0(postcss@8.5.8)
+      postcss-color-functional-notation: 4.2.4(postcss@8.5.8)
+      postcss-color-hex-alpha: 8.0.4(postcss@8.5.8)
+      postcss-color-rebeccapurple: 7.1.1(postcss@8.5.8)
+      postcss-custom-media: 8.0.2(postcss@8.5.8)
+      postcss-custom-properties: 12.1.11(postcss@8.5.8)
+      postcss-custom-selectors: 6.0.3(postcss@8.5.8)
+      postcss-dir-pseudo-class: 6.0.5(postcss@8.5.8)
+      postcss-double-position-gradients: 3.1.2(postcss@8.5.8)
+      postcss-env-function: 4.0.6(postcss@8.5.8)
+      postcss-focus-visible: 6.0.4(postcss@8.5.8)
+      postcss-focus-within: 5.0.4(postcss@8.5.8)
+      postcss-font-variant: 5.0.0(postcss@8.5.8)
+      postcss-gap-properties: 3.0.5(postcss@8.5.8)
+      postcss-image-set-function: 4.0.7(postcss@8.5.8)
+      postcss-initial: 4.0.1(postcss@8.5.8)
+      postcss-lab-function: 4.2.1(postcss@8.5.8)
+      postcss-logical: 5.0.4(postcss@8.5.8)
+      postcss-media-minmax: 5.0.0(postcss@8.5.8)
+      postcss-nesting: 10.2.0(postcss@8.5.8)
+      postcss-opacity-percentage: 1.1.3(postcss@8.5.8)
+      postcss-overflow-shorthand: 3.0.4(postcss@8.5.8)
+      postcss-page-break: 3.0.4(postcss@8.5.8)
+      postcss-place: 7.0.5(postcss@8.5.8)
+      postcss-pseudo-class-any-link: 7.1.6(postcss@8.5.8)
+      postcss-replace-overflow-wrap: 4.0.0(postcss@8.5.8)
+      postcss-selector-not: 5.0.0(postcss@8.5.8)
       postcss-value-parser: 4.2.0
 
   postcss-preset-env@7.8.3(postcss@8.5.4):
@@ -91466,7 +91651,7 @@ snapshots:
       '@csstools/postcss-trigonometric-functions': 3.0.10(postcss@8.5.4)
       '@csstools/postcss-unset-value': 3.0.1(postcss@8.5.4)
       autoprefixer: 10.4.22(postcss@8.5.4)
-      browserslist: 4.25.0
+      browserslist: 4.28.1
       css-blank-pseudo: 6.0.2(postcss@8.5.4)
       css-has-pseudo: 6.0.5(postcss@8.5.4)
       css-prefers-color-scheme: 9.0.1(postcss@8.5.4)
@@ -91498,6 +91683,71 @@ snapshots:
       postcss-replace-overflow-wrap: 4.0.0(postcss@8.5.4)
       postcss-selector-not: 7.0.2(postcss@8.5.4)
 
+  postcss-preset-env@9.6.0(postcss@8.5.8):
+    dependencies:
+      '@csstools/postcss-cascade-layers': 4.0.6(postcss@8.5.8)
+      '@csstools/postcss-color-function': 3.0.19(postcss@8.5.8)
+      '@csstools/postcss-color-mix-function': 2.0.19(postcss@8.5.8)
+      '@csstools/postcss-content-alt-text': 1.0.0(postcss@8.5.8)
+      '@csstools/postcss-exponential-functions': 1.0.9(postcss@8.5.8)
+      '@csstools/postcss-font-format-keywords': 3.0.2(postcss@8.5.8)
+      '@csstools/postcss-gamut-mapping': 1.0.11(postcss@8.5.8)
+      '@csstools/postcss-gradients-interpolation-method': 4.0.20(postcss@8.5.8)
+      '@csstools/postcss-hwb-function': 3.0.18(postcss@8.5.8)
+      '@csstools/postcss-ic-unit': 3.0.7(postcss@8.5.8)
+      '@csstools/postcss-initial': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-is-pseudo-class': 4.0.8(postcss@8.5.8)
+      '@csstools/postcss-light-dark-function': 1.0.8(postcss@8.5.8)
+      '@csstools/postcss-logical-float-and-clear': 2.0.1(postcss@8.5.8)
+      '@csstools/postcss-logical-overflow': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-logical-overscroll-behavior': 1.0.1(postcss@8.5.8)
+      '@csstools/postcss-logical-resize': 2.0.1(postcss@8.5.8)
+      '@csstools/postcss-logical-viewport-units': 2.0.11(postcss@8.5.8)
+      '@csstools/postcss-media-minmax': 1.1.8(postcss@8.5.8)
+      '@csstools/postcss-media-queries-aspect-ratio-number-values': 2.0.11(postcss@8.5.8)
+      '@csstools/postcss-nested-calc': 3.0.2(postcss@8.5.8)
+      '@csstools/postcss-normalize-display-values': 3.0.2(postcss@8.5.8)
+      '@csstools/postcss-oklab-function': 3.0.19(postcss@8.5.8)
+      '@csstools/postcss-progressive-custom-properties': 3.3.0(postcss@8.5.8)
+      '@csstools/postcss-relative-color-syntax': 2.0.19(postcss@8.5.8)
+      '@csstools/postcss-scope-pseudo-class': 3.0.1(postcss@8.5.8)
+      '@csstools/postcss-stepped-value-functions': 3.0.10(postcss@8.5.8)
+      '@csstools/postcss-text-decoration-shorthand': 3.0.7(postcss@8.5.8)
+      '@csstools/postcss-trigonometric-functions': 3.0.10(postcss@8.5.8)
+      '@csstools/postcss-unset-value': 3.0.1(postcss@8.5.8)
+      autoprefixer: 10.4.22(postcss@8.5.8)
+      browserslist: 4.28.1
+      css-blank-pseudo: 6.0.2(postcss@8.5.8)
+      css-has-pseudo: 6.0.5(postcss@8.5.8)
+      css-prefers-color-scheme: 9.0.1(postcss@8.5.8)
+      cssdb: 8.3.0
+      postcss: 8.5.8
+      postcss-attribute-case-insensitive: 6.0.3(postcss@8.5.8)
+      postcss-clamp: 4.1.0(postcss@8.5.8)
+      postcss-color-functional-notation: 6.0.14(postcss@8.5.8)
+      postcss-color-hex-alpha: 9.0.4(postcss@8.5.8)
+      postcss-color-rebeccapurple: 9.0.3(postcss@8.5.8)
+      postcss-custom-media: 10.0.8(postcss@8.5.8)
+      postcss-custom-properties: 13.3.12(postcss@8.5.8)
+      postcss-custom-selectors: 7.1.12(postcss@8.5.8)
+      postcss-dir-pseudo-class: 8.0.1(postcss@8.5.8)
+      postcss-double-position-gradients: 5.0.7(postcss@8.5.8)
+      postcss-focus-visible: 9.0.1(postcss@8.5.8)
+      postcss-focus-within: 8.0.1(postcss@8.5.8)
+      postcss-font-variant: 5.0.0(postcss@8.5.8)
+      postcss-gap-properties: 5.0.1(postcss@8.5.8)
+      postcss-image-set-function: 6.0.3(postcss@8.5.8)
+      postcss-lab-function: 6.0.19(postcss@8.5.8)
+      postcss-logical: 7.0.1(postcss@8.5.8)
+      postcss-nesting: 12.1.5(postcss@8.5.8)
+      postcss-opacity-percentage: 2.0.0(postcss@8.5.8)
+      postcss-overflow-shorthand: 5.0.1(postcss@8.5.8)
+      postcss-page-break: 3.0.4(postcss@8.5.8)
+      postcss-place: 9.0.1(postcss@8.5.8)
+      postcss-pseudo-class-any-link: 9.0.2(postcss@8.5.8)
+      postcss-replace-overflow-wrap: 4.0.0(postcss@8.5.8)
+      postcss-selector-not: 7.0.2(postcss@8.5.8)
+
   postcss-preset-mantine@1.17.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
@@ -91509,9 +91759,9 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
-  postcss-pseudo-class-any-link@7.1.6(postcss@8.5.6):
+  postcss-pseudo-class-any-link@7.1.6(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-pseudo-class-any-link@9.0.2(postcss@8.5.4):
@@ -91519,13 +91769,18 @@ snapshots:
       postcss: 8.5.4
       postcss-selector-parser: 6.1.2
 
+  postcss-pseudo-class-any-link@9.0.2(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
+      postcss-selector-parser: 6.1.2
+
   postcss-replace-overflow-wrap@4.0.0(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
 
-  postcss-replace-overflow-wrap@4.0.0(postcss@8.5.6):
+  postcss-replace-overflow-wrap@4.0.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-resolve-nested-selector@0.1.6: {}
 
@@ -91533,9 +91788,9 @@ snapshots:
     dependencies:
       postcss: 7.0.39
 
-  postcss-safe-parser@6.0.0(postcss@8.5.6):
+  postcss-safe-parser@6.0.0(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-sass@0.4.4:
     dependencies:
@@ -91546,10 +91801,10 @@ snapshots:
     dependencies:
       postcss: 7.0.39
 
-  postcss-selector-not@5.0.0(postcss@8.5.6):
+  postcss-selector-not@5.0.0(postcss@8.5.8):
     dependencies:
       balanced-match: 1.0.2
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-selector-not@6.0.1(postcss@8.5.4):
     dependencies:
@@ -91559,6 +91814,11 @@ snapshots:
   postcss-selector-not@7.0.2(postcss@8.5.4):
     dependencies:
       postcss: 8.5.4
+      postcss-selector-parser: 6.1.2
+
+  postcss-selector-not@7.0.2(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
       postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.0.10:
@@ -91580,10 +91840,10 @@ snapshots:
     dependencies:
       postcss: 8.5.4
 
-  postcss-sorting@6.0.0(postcss@8.5.6):
+  postcss-sorting@6.0.0(postcss@8.5.8):
     dependencies:
       lodash: 4.17.23
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   postcss-syntax@0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39):
     dependencies:
@@ -91596,6 +91856,10 @@ snapshots:
   postcss-syntax@0.36.2(postcss@8.5.6):
     dependencies:
       postcss: 8.5.6
+
+  postcss-syntax@0.36.2(postcss@8.5.8):
+    dependencies:
+      postcss: 8.5.8
 
   postcss-value-parser@4.2.0: {}
 
@@ -91789,16 +92053,14 @@ snapshots:
 
   prettier-plugin-two-style-order@1.0.1(prettier@2.8.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-less: 4.0.1
-      postcss-sorting: 6.0.0(postcss@8.5.6)
+      postcss-sorting: 6.0.0(postcss@8.5.8)
       prettier: 2.8.8
 
   prettier@1.15.3: {}
 
   prettier@2.8.8: {}
-
-  prettier@3.5.3: {}
 
   prettier@3.6.2: {}
 
@@ -96083,7 +96345,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.6
+      postcss: 8.5.8
       source-map: 0.6.1
 
   resolve-workspace-root@2.0.0: {}
@@ -96523,7 +96785,7 @@ snapshots:
 
   rrweb-snapshot@2.0.0-alpha.18:
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
 
   rrweb@2.0.0-alpha.18:
     dependencies:
@@ -98127,7 +98389,7 @@ snapshots:
       '@types/stylis': 4.2.7
       css-to-react-native: 3.2.0
       csstype: 3.2.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       shallowequal: 1.1.0
@@ -98321,10 +98583,10 @@ snapshots:
       normalize-path: 3.0.0
       normalize-selector: 0.2.0
       picocolors: 1.1.0
-      postcss: 8.5.6
+      postcss: 8.5.8
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 6.0.0(postcss@8.5.6)
+      postcss-safe-parser: 6.0.0(postcss@8.5.8)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -98381,9 +98643,9 @@ snapshots:
     dependencies:
       postcss: 8.5.4
 
-  sugarss@4.0.1(postcss@8.5.6):
+  sugarss@4.0.1(postcss@8.5.8):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.8
     optional: true
 
   sumchecker@3.0.1:
@@ -98690,10 +98952,6 @@ snapshots:
 
   tailwind-merge@3.4.0: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3))):
-    dependencies:
-      tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@25.5.0)(typescript@5.9.3))
-
   tailwindcss-animate@1.0.7(tailwindcss@4.1.17):
     dependencies:
       tailwindcss: 4.1.17
@@ -98768,11 +99026,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.6
-      postcss-import: 15.1.0(postcss@8.5.6)
-      postcss-js: 4.0.1(postcss@8.5.6)
-      postcss-load-config: 4.0.2(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
-      postcss-nested: 6.2.0(postcss@8.5.6)
+      postcss: 8.5.8
+      postcss-import: 15.1.0(postcss@8.5.8)
+      postcss-js: 4.0.1(postcss@8.5.8)
+      postcss-load-config: 4.0.2(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
+      postcss-nested: 6.2.0(postcss@8.5.8)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.10
       sucrase: 3.35.0
@@ -99552,7 +99810,7 @@ snapshots:
   tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.18.1
+      enhanced-resolve: 5.18.3
       tapable: 2.2.2
       tsconfig-paths: 4.2.0
 
@@ -99614,7 +99872,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  tsup@7.2.0(@swc/core@1.15.18(@swc/helpers@0.5.17))(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))(typescript@5.9.3):
+  tsup@7.2.0(@swc/core@1.15.18(@swc/helpers@0.5.17))(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.18.20)
       cac: 6.7.14
@@ -99624,7 +99882,7 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
+      postcss-load-config: 4.0.2(postcss@8.5.8)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3))
       resolve-from: 5.0.0
       rollup: 3.29.5
       source-map: 0.8.0-beta.0
@@ -99632,7 +99890,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       '@swc/core': 1.15.18(@swc/helpers@0.5.17)
-      postcss: 8.5.6
+      postcss: 8.5.8
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -100051,12 +100309,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  umi-presets-pro@2.0.3(1858a128a85584dd160f1d9f0b9a81d0):
+  umi-presets-pro@2.0.3(162b12e8232d0188db41b50f6070746b):
     dependencies:
       '@alita/plugins': 3.5.5(@babel/core@7.4.5)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(antd@5.27.0(date-fns@4.1.0)(luxon@3.6.1)(moment@2.30.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
       '@umijs/max-plugin-openapi': 2.0.3(chokidar@3.6.0)(encoding@0.1.13)(typescript@5.9.3)
       '@umijs/plugins': 4.4.11(@babel/core@7.4.5)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(antd@5.27.0(date-fns@4.1.0)(luxon@3.6.1)(moment@2.30.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(debug@4.4.3)(dva@2.5.0-beta.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(rc-field-form@2.7.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-native@0.79.6(@babel/core@7.4.5)(@react-native-community/cli@15.0.1(typescript@5.9.3))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
-      '@umijs/request-record': 1.1.4(umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))))
+      '@umijs/request-record': 1.1.4(umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))))
       swagger-ui-dist: 4.19.1
     transitivePeerDependencies:
       - '@babel/core'
@@ -100110,14 +100368,14 @@ snapshots:
       prettier: 1.15.3
       slash2: 2.0.0
 
-  umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
+  umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@13.13.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
     dependencies:
       '@babel/runtime': 7.23.6
       '@umijs/bundler-utils': 4.4.11
       '@umijs/bundler-webpack': 4.4.11(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/core': 4.4.11
       '@umijs/lint': 4.4.11(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(stylelint@13.13.1)(typescript@5.9.3)
-      '@umijs/preset-umi': 4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      '@umijs/preset-umi': 4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/renderer-react': 4.4.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@umijs/server': 4.4.11
       '@umijs/test': 4.4.11(@babel/core@7.4.5)
@@ -100160,14 +100418,14 @@ snapshots:
       - webpack-hot-middleware
       - webpack-plugin-serve
 
-  umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@14.8.2)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
+  umi@4.4.11(@babel/core@7.4.5)(@types/node@24.10.4)(@types/react@19.2.14)(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@3.29.5)(sass@1.89.1)(stylelint@14.8.2)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17))):
     dependencies:
       '@babel/runtime': 7.23.6
       '@umijs/bundler-utils': 4.4.11
       '@umijs/bundler-webpack': 4.4.11(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/core': 4.4.11
       '@umijs/lint': 4.4.11(eslint@8.35.0)(jest@29.7.0(@types/node@24.10.4)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(ts-node@10.9.2(@swc/core@1.15.18(@swc/helpers@0.5.17))(@types/node@24.10.4)(typescript@5.9.3)))(stylelint@14.8.2)(typescript@5.9.3)
-      '@umijs/preset-umi': 4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
+      '@umijs/preset-umi': 4.4.11(@types/node@24.10.4)(@types/react@19.2.14)(lightningcss@1.30.2)(rollup@3.29.5)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0)(type-fest@4.41.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.97.1(@swc/core@1.15.18(@swc/helpers@0.5.17)))
       '@umijs/renderer-react': 4.4.11(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@umijs/server': 4.4.11
       '@umijs/test': 4.4.11(@babel/core@7.4.5)
@@ -100267,8 +100525,6 @@ snapshots:
 
   unicorn-magic@0.1.0: {}
 
-  unicorn-magic@0.3.0: {}
-
   unified-engine@10.1.0:
     dependencies:
       '@types/concat-stream': 2.0.3
@@ -100334,7 +100590,7 @@ snapshots:
       estree-walker: 3.0.3
       fast-glob: 3.3.3
       local-pkg: 1.1.1
-      magic-string: 0.30.19
+      magic-string: 0.30.21
       mlly: 1.7.4
       pathe: 2.0.3
       picomatch: 4.0.3
@@ -101311,7 +101567,7 @@ snapshots:
   vite@4.4.10(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0):
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 3.29.5
     optionalDependencies:
       '@types/node': 24.10.4
@@ -101321,10 +101577,10 @@ snapshots:
       sass: 1.89.1
       terser: 5.40.0
 
-  vite@4.5.2(@types/node@24.10.4)(less@4.1.3)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0):
+  vite@4.5.2(@types/node@24.10.4)(less@4.1.3)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0):
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 3.29.5
     optionalDependencies:
       '@types/node': 24.10.4
@@ -101332,13 +101588,13 @@ snapshots:
       less: 4.1.3
       lightningcss: 1.30.2
       sass: 1.89.1
-      sugarss: 4.0.1(postcss@8.5.6)
+      sugarss: 4.0.1(postcss@8.5.8)
       terser: 5.40.0
 
-  vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.6))(terser@5.40.0):
+  vite@4.5.2(@types/node@24.10.4)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(sugarss@4.0.1(postcss@8.5.8))(terser@5.40.0):
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 3.29.5
     optionalDependencies:
       '@types/node': 24.10.4
@@ -101346,7 +101602,7 @@ snapshots:
       less: 4.3.0
       lightningcss: 1.30.2
       sass: 1.89.1
-      sugarss: 4.0.1(postcss@8.5.6)
+      sugarss: 4.0.1(postcss@8.5.8)
       terser: 5.40.0
 
   vite@7.1.7(@types/node@24.10.4)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.30.2)(sass@1.89.1)(terser@5.40.0)(tsx@3.13.0)(yaml@2.8.2):
@@ -101354,7 +101610,7 @@ snapshots:
       esbuild: 0.25.5
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.52.3
       tinyglobby: 0.2.15
     optionalDependencies:
@@ -101373,7 +101629,7 @@ snapshots:
       esbuild: 0.25.5
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.52.3
       tinyglobby: 0.2.15
     optionalDependencies:
@@ -101392,7 +101648,7 @@ snapshots:
       esbuild: 0.25.5
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.52.3
       tinyglobby: 0.2.15
     optionalDependencies:
@@ -101411,7 +101667,7 @@ snapshots:
       esbuild: 0.25.5
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
-      postcss: 8.5.6
+      postcss: 8.5.8
       rollup: 4.52.3
       tinyglobby: 0.2.15
     optionalDependencies:
@@ -101979,7 +102235,7 @@ snapshots:
       acorn: 8.15.0
       browserslist: 4.28.1
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.1
+      enhanced-resolve: 5.18.3
       es-module-lexer: 1.7.0
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -102009,7 +102265,7 @@ snapshots:
       acorn: 8.15.0
       browserslist: 4.28.1
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.1
+      enhanced-resolve: 5.18.3
       es-module-lexer: 1.7.0
       eslint-scope: 5.1.1
       events: 3.3.0

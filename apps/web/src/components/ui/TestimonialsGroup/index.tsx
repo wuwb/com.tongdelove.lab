@@ -7,7 +7,7 @@ export const TestimonialsGroup = ({ data }) => {
   const selectedTestimonial = data.testimonials[selectedTestimonialIndex]
 
   return (
-    <section className="bg-gray-200 pb-16 pt-12 text-center text-lg">
+    <section className="bg-gray-200 pt-12 pb-16 text-center text-lg">
       <h2 className="title mb-4">{data.title}</h2>
       <p className="mb-4 text-gray-700">{data.description}</p>
       {/*<CustomLink link={data.link}>*/}
@@ -21,7 +21,7 @@ export const TestimonialsGroup = ({ data }) => {
           {/*<NextImage media={selectedTestimonial.picture} />*/}
           image here
         </div>
-        <div className="flex flex-col justify-between px-4 py-4 sm:px-12 sm:pb-4 sm:pt-12">
+        <div className="flex flex-col justify-between px-4 py-4 sm:px-12 sm:pt-12 sm:pb-4">
           <div>
             {/*<NextImage*/}
             {/*  width="120"*/}

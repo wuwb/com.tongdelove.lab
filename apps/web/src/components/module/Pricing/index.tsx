@@ -9,7 +9,7 @@ export const Pricing = ({ data }) => {
           <div
             className={clsx(
               // Common classes
-              'md:w-lg flex-1 rounded-md border-2 px-4 py-4',
+              'flex-1 rounded-md border-2 px-4 py-4 md:w-lg',
               // Normal plan
               {
                 'border-gray-300 bg-gray-100 text-gray-900':

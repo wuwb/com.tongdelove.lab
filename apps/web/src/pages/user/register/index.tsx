@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Field } from '@/components/ui/field'
 import { Button } from '@/components/ui/button'
-import { Input, NativeSelectField, NativeSelectRoot } from '@chakra-ui/react'
-import { ProgressBar, ProgressRoot } from '@/components/ui/progress'
+import { Input } from '@/components/ui/input'
+import { Progress } from '@tongdelove/ui/components/progress'
 import {
-  PopoverArrow,
-  PopoverBody,
   PopoverContent,
   PopoverRoot,
-  PopoverTitle,
   PopoverTrigger,
 } from '@/components/ui/popover'
 
@@ -218,15 +215,9 @@ const UserRegisterPage = (props) => {
             // ]}
           >
             <div className="flex space-x-2">
-              <NativeSelectRoot
-                size="sm"
-                width="240px"
-                // value={prefix}
-              >
-                <NativeSelectField placeholder="Select option">
-                  <option value="86">+86</option>
-                </NativeSelectField>
-              </NativeSelectRoot>
+              <select className="border-input h-9 w-24 rounded-md border bg-transparent px-2 text-sm">
+                <option value="86">+86</option>
+              </select>
               <Input placeholder="手机号" />
             </div>
           </Field>

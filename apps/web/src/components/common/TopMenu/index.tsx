@@ -17,7 +17,7 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
     <ul className={s.headerMenu}>
       <li className={s.menuItem}>
         <Link href="/introduce">介绍</Link>
-        <ul className={clsx(s.subMenu, 'flex flex-col')} aria-label="submenu">
+        <ul className={s.subMenu} aria-label="submenu">
           <li className={clsx(s.subMenuItem)}>
             <Link href="/why">为什么选我们</Link>
           </li>
@@ -31,7 +31,7 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
       </li>
       <li className={s.menuItem}>
         <Link href="/products">产品分类</Link>
-        <ul className={clsx(s.subMenu, 'flex flex-col')} aria-label="submenu">
+        <ul className={s.subMenu} aria-label="submenu">
           <li className={clsx(s.subMenuItem)}>
             <Link href="/products">纸质包装</Link>
           </li>
@@ -45,7 +45,7 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
       </li>
       <li className={s.menuItem}>
         <Link href="/solutions">解决方案</Link>
-        <ul className={clsx(s.subMenu, 'flex flex-col')} aria-label="submenu">
+        <ul className={s.subMenu} aria-label="submenu">
           <li className={clsx(s.subMenuItem)}>
             <Link href="/solutions/baked-fish">烤鱼包装</Link>
           </li>
@@ -65,7 +65,7 @@ export const TopMenu = ({ toggleDarkMode }: any) => {
       </li>
       <li className={s.menuItem}>
         <Link href="/services">服务</Link>
-        <ul className={clsx(s.subMenu, 'flex flex-col')} aria-label="submenu">
+        <ul className={s.subMenu} aria-label="submenu">
           <li className={s.subMenuItem}>
             <Link href="/products">设计服务</Link>
           </li>

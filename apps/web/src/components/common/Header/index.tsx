@@ -1,11 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  PopoverArrow,
-  PopoverBody,
   PopoverContent,
   PopoverRoot,
-  PopoverTitle,
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Avatar } from '@/components/ui/avatar'
@@ -63,7 +60,7 @@ export const Header = (props) => {
       <div id="header" className={clsx(s.styledHeader, 'bg-white')}>
         <div className={s.styledHeaderContent}>
           <div className="flex">
-            <Logo className="ml-4 mr-2 flex items-center" />
+            <Logo className="mr-2 ml-4 flex items-center" />
 
             <TopMenu />
 
@@ -82,12 +79,9 @@ export const Header = (props) => {
                 <PopoverTrigger asChild>
                   <Avatar src={data.avatarUrl} />
                 </PopoverTrigger>
-                <PopoverContent>
-                  <PopoverArrow />
-                  <PopoverBody>
-                    <PopoverTitle fontWeight="medium">{text}</PopoverTitle>
-                    {content}
-                  </PopoverBody>
+                <PopoverContent className="w-48">
+                  <div className="mb-2 text-sm font-medium">{text}</div>
+                  {content}
                 </PopoverContent>
               </PopoverRoot>
             )}

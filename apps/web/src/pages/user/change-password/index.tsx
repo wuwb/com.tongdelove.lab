@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { toaster } from '@/components/ui/toaster'
-import { Input } from '@chakra-ui/react'
+import { toast } from '@/components/ui/toaster'
+import { Input } from '@/components/ui/input'
 import { Field } from '@/components/ui/field'
 
 const formItemLayout = {
@@ -39,10 +39,7 @@ class ChangePassword extends React.Component<any, any> {
       if (!err) {
         let { newPassword, confirmPassword, password } = values
         if (newPassword !== confirmPassword) {
-          toaster.create({
-            title: '新密码与确认密码不一致',
-            type: 'error',
-          })
+          toast.error('新密码与确认密码不一致')
           return
         }
 

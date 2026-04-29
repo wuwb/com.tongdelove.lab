@@ -1,14 +1,17 @@
-import { Tag as ChakraTag } from '@chakra-ui/react'
-import * as React from 'react'
+'use client'
 
-export interface TagProps extends ChakraTag.RootProps {
+import * as React from 'react'
+import { Badge } from '@tongdelove/ui/components/badge'
+import { X } from 'lucide-react'
+
+export interface TagProps extends React.ComponentProps<typeof Badge> {
   startElement?: React.ReactNode
   endElement?: React.ReactNode
   onClose?: VoidFunction
   closable?: boolean
 }
 
-export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
+export const Tag = React.forwardRef<React.ElementRef<typeof Badge>, TagProps>(
   function Tag(props, ref) {
     const {
       startElement,
@@ -16,24 +19,24 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
       onClose,
       closable = !!onClose,
       children,
+      className,
       ...rest
     } = props
 
     return (
-      <ChakraTag.Root ref={ref} {...rest}>
-        {startElement && (
-          <ChakraTag.StartElement>{startElement}</ChakraTag.StartElement>
-        )}
-        <ChakraTag.Label>{children}</ChakraTag.Label>
-        {endElement && (
-          <ChakraTag.EndElement>{endElement}</ChakraTag.EndElement>
-        )}
+      <Badge ref={ref} className={className} {...rest}>
+        {startElement && <span className="mr-1">{startElement}</span>}
+        {children}
+        {endElement && <span className="ml-1">{endElement}</span>}
         {closable && (
-          <ChakraTag.EndElement>
-            <ChakraTag.CloseTrigger onClick={onClose} />
-          </ChakraTag.EndElement>
+          <button
+            onClick={onClose}
+            className="ml-1 rounded-full p-0.5 transition-colors hover:bg-white/20"
+          >
+            <X className="size-3" />
+          </button>
         )}
-      </ChakraTag.Root>
+      </Badge>
     )
   }
 )

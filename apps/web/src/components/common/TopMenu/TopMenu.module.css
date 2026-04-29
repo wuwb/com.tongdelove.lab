@@ -4,7 +4,10 @@
   background: none;
   border-bottom: none;
   display: none;
-  @media screen(lg) {
+}
+
+@media (min-width: 1024px) {
+  .headerMenu {
     display: flex;
   }
 }
@@ -32,19 +35,22 @@
   min-width: 200px;
   background: #eee;
   display: none;
+  flex-direction: column;
 }
 /* This compound selector will still work in IE 11 because :focus-within isn't mixed in */
 .menuItem:hover > .subMenu,
-.menuItem .subMenu:hover .menuItem .subMenu:focus {
+.menuItem:hover .subMenu,
+.menuItem .subMenu:hover,
+.menuItem .subMenu:focus {
   visibility: visible;
   opacity: 1;
-  display: block;
+  display: flex;
 }
 /* IE 11 won't get this, but at least the top-level menus will work */
 .menuItem:focus-within > .subMenu {
   visibility: visible;
   opacity: 1;
-  display: block;
+  display: flex;
 }
 .menuItem .subMenu .subMenuItem {
   padding: 10px;

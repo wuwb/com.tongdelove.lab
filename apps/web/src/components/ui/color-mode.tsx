@@ -1,10 +1,9 @@
 'use client'
 
-import type { IconButtonProps } from '@chakra-ui/react'
-import { ClientOnly, IconButton, Skeleton } from '@chakra-ui/react'
 import { ThemeProvider, useTheme } from 'next-themes'
 import type { ThemeProviderProps } from 'next-themes'
 import * as React from 'react'
+import { Button } from './button'
 import { LuMoon, LuSun } from 'react-icons/lu'
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
@@ -34,10 +33,15 @@ export function useColorModeValue<T>(light: T, dark: T) {
 
 export function ColorModeIcon() {
   const { colorMode } = useColorMode()
-  return colorMode === 'light' ? <LuSun /> : <LuMoon />
+  return colorMode === 'light' ? (
+    <LuSun className="h-5 w-5" />
+  ) : (
+    <LuMoon className="h-5 w-5" />
+  )
 }
 
-interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}
+export interface ColorModeButtonProps
+  extends React.ComponentProps<typeof Button> {}
 
 export const ColorModeButton = React.forwardRef<
   HTMLButtonElement,
@@ -45,23 +49,14 @@ export const ColorModeButton = React.forwardRef<
 >(function ColorModeButton(props, ref) {
   const { toggleColorMode } = useColorMode()
   return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="ghost"
-        aria-label="Toggle color mode"
-        size="sm"
-        ref={ref}
-        {...props}
-        css={{
-          _icon: {
-            width: '5',
-            height: '5',
-          },
-        }}
-      >
-        <ColorModeIcon />
-      </IconButton>
-    </ClientOnly>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleColorMode}
+      ref={ref}
+      {...props}
+    >
+      <ColorModeIcon />
+    </Button>
   )
 })

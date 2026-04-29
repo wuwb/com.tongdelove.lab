@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Tag } from '@/components/ui/tag'
-import { Card } from '@chakra-ui/react'
+import { Card, CardHeader, CardContent } from '@tongdelove/ui/components/card'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import clsx from 'clsx'
@@ -15,8 +15,8 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ projectId, created, repo }: ProjectCardProps) => {
   return (
-    <Card.Root className={clsx(s.card, 'p-0')}>
-      <Card.Header>
+    <Card className={clsx(s.card, 'p-0')}>
+      <CardHeader>
         <Link
           key="rope"
           href={`https://github.com/${repo}`}
@@ -24,11 +24,11 @@ export const ProjectCard = ({ projectId, created, repo }: ProjectCardProps) => {
         >
           <p className="mr-3 text-base font-medium">{repo}</p>
         </Link>
-      </Card.Header>
-      <Card.Body>
+      </CardHeader>
+      <CardContent>
         <div className={s.title}>
           <h3>{projectId}</h3>
-          <Button className={s.visitButton} size="md">
+          <Button className={s.visitButton} size="default">
             Visit
           </Button>
         </div>
@@ -50,7 +50,7 @@ export const ProjectCard = ({ projectId, created, repo }: ProjectCardProps) => {
             <span className={s.created}>{created}</span>
           </div>
         </div>
-      </Card.Body>
-    </Card.Root>
+      </CardContent>
+    </Card>
   )
 }

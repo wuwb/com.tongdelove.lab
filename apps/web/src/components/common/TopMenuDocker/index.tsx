@@ -5,8 +5,8 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import s from './TopMenuDocker.module.css'
 import {
   AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
+  AccordionContent,
+  AccordionTrigger,
   AccordionRoot,
 } from '@/components/ui/accordion'
 
@@ -33,10 +33,10 @@ export const TopMenuDocker = (props) => {
           hidden: !showContent,
         })}
       >
-        <AccordionRoot>
+        <AccordionRoot type="single" collapsible>
           <AccordionItem key="1" value="1">
-            <AccordionItemTrigger>产品</AccordionItemTrigger>
-            <AccordionItemContent>
+            <AccordionTrigger>产品</AccordionTrigger>
+            <AccordionContent>
               <ul>
                 <li>
                   <Link href="/products/folding-carton">折叠纸盒</Link>
@@ -45,17 +45,17 @@ export const TopMenuDocker = (props) => {
                   <Link href="/products/accessories">包装附件</Link>
                 </li>
               </ul>
-            </AccordionItemContent>
+            </AccordionContent>
           </AccordionItem>
           <AccordionItem key="2" value="2">
-            <AccordionItemTrigger>解决方案</AccordionItemTrigger>
-            <AccordionItemContent>
+            <AccordionTrigger>解决方案</AccordionTrigger>
+            <AccordionContent>
               <ul>
                 <li>
                   <Link href="/solutions/baked-fish">烤鱼自热包装</Link>
                 </li>
               </ul>
-            </AccordionItemContent>
+            </AccordionContent>
           </AccordionItem>
         </AccordionRoot>
         <div>

@@ -1,6 +1,5 @@
-const defaultTheme = require(`tailwindcss/defaultTheme`)
-const colors = require('tailwindcss/colors')
 // https://tailwindcss.com/docs/upgrade-guide#configure-content-sources
+const baseConfig = require('@tongdelove/tailwind-config/web')
 
 module.exports = {
   // future: {
@@ -15,6 +14,7 @@ module.exports = {
   //     },
   //   },
   // },
+  presets: [baseConfig],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -68,13 +68,5 @@ module.exports = {
     },
     // screens: {},
     // container: {}
-  },
-  plugins: [
-    // from 3.3, include default
-    // require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography'),
-  ],
-  corePlugins: {
-    preflight: true,
   },
 }

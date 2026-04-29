@@ -6,8 +6,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { useRouter } from 'next/router'
 import { UserService } from '@/services'
 import { useAuth } from '@/contexts/auth'
-import { toaster } from '@/components/ui/toaster'
-import { Input } from '@chakra-ui/react'
+import { toast } from '@/components/ui/toaster'
+import { Input } from '@/components/ui/input'
 import { Field } from '@/components/ui/field'
 import { PasswordInput } from '@/components/ui/password-input'
 
@@ -36,15 +36,9 @@ const UserLoginPage = (props) => {
       router.push('/')
     } catch (err) {
       if (err instanceof Error) {
-        toaster.create({
-          title: err.message,
-          type: 'error',
-        })
+        toast.error(err.message)
       } else {
-        toaster.create({
-          title: `error`,
-          type: 'error',
-        })
+        toast.error('error')
       }
     }
   }
@@ -92,7 +86,7 @@ const UserLoginPage = (props) => {
             </p>
             <div>
               <div className="mt-3 flex items-center justify-center space-x-4">
-                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
+                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium text-indigo-500 uppercase shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
@@ -105,7 +99,7 @@ const UserLoginPage = (props) => {
                   </svg>
                   Github
                 </button>
-                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium uppercase text-indigo-500 shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
+                <button className="flex transform items-center rounded border border-transparent bg-white px-4 py-2 text-sm font-medium text-indigo-500 uppercase shadow-md transition hover:-translate-y-0.5 hover:border-transparent hover:bg-gray-100 hover:text-gray-700 hover:shadow-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="mr-3 h-6 w-6"

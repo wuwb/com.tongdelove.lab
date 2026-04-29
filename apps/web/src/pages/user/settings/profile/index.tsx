@@ -6,14 +6,11 @@ import {
   SelectLabel,
   SelectRoot,
   SelectTrigger,
-  SelectValueText,
+  SelectValue,
 } from '@/components/ui/select'
-import { Group, Input, InputAddon, Textarea } from '@chakra-ui/react'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@tongdelove/ui/components/textarea'
 import { Field } from '@/components/ui/field'
-import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from '@/components/ui/native-select'
 
 const formItemLayout = {
   labelCol: {
@@ -181,17 +178,13 @@ const RegistrationForm = (props) => {
             }
             style={{ width: '100%' }}
           /> */}
-          <Group attached>
-            <InputAddon>
-              <NativeSelectRoot style={{ width: 70 }}>
-                <NativeSelectField placeholder="Select option">
-                  <option value="86">+86</option>
-                  <option value="87">+87</option>
-                </NativeSelectField>
-              </NativeSelectRoot>
-            </InputAddon>
+          <div className="flex space-x-2">
+            <select className="border-input h-9 w-20 rounded-md border bg-transparent px-2 text-sm">
+              <option value="86">+86</option>
+              <option value="87">+87</option>
+            </select>
             <Input placeholder="Phone number..." />
-          </Group>
+          </div>
         </Field>
         <Field
         // {...formItemLayout}
@@ -199,12 +192,10 @@ const RegistrationForm = (props) => {
         // label={<span className="form-item-label">性别</span>}
         // rules={[{ required: false, message: 'Please input your sex!' }]}
         >
-          <NativeSelectRoot>
-            <NativeSelectField placeholder="Select option">
-              <option value="男">男</option>
-              <option value="女">女</option>
-            </NativeSelectField>
-          </NativeSelectRoot>
+          <select className="border-input h-9 rounded-md border bg-transparent px-3 text-sm">
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
         </Field>
         <Field {...tailFormItemLayout}>
           <Button type="submit">更新</Button>

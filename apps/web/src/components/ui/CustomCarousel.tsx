@@ -1,6 +1,5 @@
-import { Box } from '@chakra-ui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css' // Import Swiper styles
+import 'swiper/swiper-bundle.css'
 
 import Image, { StaticImageData } from 'next/image'
 
@@ -15,9 +14,9 @@ export const CustomCarousel = ({ images }: CustomCarouselProps) => {
     <Swiper spaceBetween={30} pagination={{ clickable: true }} navigation loop>
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <Box>
+          <div>
             <Image src={image.url} alt="" />
-          </Box>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

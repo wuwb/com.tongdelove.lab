@@ -1,9 +1,16 @@
 import { Button } from '@/components/ui/button'
-import { Table } from '@chakra-ui/react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@tongdelove/ui/components/table'
 import { Layout } from '@/components/common'
 
 const Home = () => {
-  const columns = [
+  const columns: { title: string; dataIndex: string; key: string }[] = [
     {
       title: '',
       dataIndex: 'condation',
@@ -24,31 +31,31 @@ const Home = () => {
   const networkData = [
     {
       key: '1',
-      condation: '工厂审查和积分卡', // "Factory vetting and scorecards",
+      condation: '工厂审查和积分卡',
       other: '-',
       us: '✓',
     },
     {
       key: '2',
-      condation: '标准化的质量控制', // "Standardized quality control",
+      condation: '标准化的质量控制',
       other: '-',
       us: '✓',
     },
     {
       key: '3',
-      condation: '透明的价格', // "Price transparency",
+      condation: '透明的价格',
       other: '-',
       us: '✓',
     },
     {
       key: '4',
-      condation: '中国各个地区的工厂', // "Factories in every region of the US and Asia",
+      condation: '中国各个地区的工厂',
       other: '-',
       us: '✓',
     },
     {
       key: '5',
-      condation: '覆盖所有电商包装类型', // "Factories for all ecommerce packaging types",
+      condation: '覆盖所有电商包装类型',
       other: '-',
       us: '✓',
     },
@@ -63,7 +70,7 @@ const Home = () => {
   const softwarePlatformData = [
     {
       key: '1',
-      condation: '规范管理', // "Specifications management",
+      condation: '规范管理',
       other: '-',
       us: '✓',
     },
@@ -75,37 +82,37 @@ const Home = () => {
     },
     {
       key: '3',
-      condation: '采购和报价', //  "Sourcing and quoting",
+      condation: '采购和报价',
       other: '-',
       us: '✓',
     },
     {
       key: '4',
-      condation: '采购工作流', // "Purchasing workflows",
+      condation: '采购工作流',
       other: '-',
       us: '✓',
     },
     {
       key: '5',
-      condation: '过程审批和文档存储', // "Proof approval and document storage",
+      condation: '过程审批和文档存储',
       other: '-',
       us: '✓',
     },
     {
       key: '6',
-      condation: '实时生产跟踪', // "Real-time production tracking",
+      condation: '实时生产跟踪',
       other: '-',
       us: '✓',
     },
     {
       key: '7',
-      condation: '实时货运跟踪', // "Real-time freight tracking",
+      condation: '实时货运跟踪',
       other: '-',
       us: '✓',
     },
     {
       key: '8',
-      condation: '在线支付处理', // "Online payment processing",
+      condation: '在线支付处理',
       other: '-',
       us: '✓',
     },
@@ -120,49 +127,49 @@ const Home = () => {
   const expertServicesData = [
     {
       key: '1',
-      condation: '专用账户支持', // "Dedicated account support",
+      condation: '专用账户支持',
       other: '✓',
       us: '✓',
     },
     {
       key: '2',
-      condation: '规范导入', // "Specifications import",
+      condation: '规范导入',
       other: '-',
       us: '✓',
     },
     {
       key: '3',
-      condation: '托管 RFP', // "Managed RFP",
+      condation: '托管 RFP',
       other: '-',
       us: '✓',
     },
     {
       key: '4',
-      condation: '账单合并', // "Billing consolidation",
+      condation: '账单合并',
       other: '-',
       us: '✓',
     },
     {
       key: '5',
-      condation: '打样和预生产', // "Proofing and preproduction",
+      condation: '打样和预生产',
       other: '✓',
       us: '✓',
     },
     {
       key: '6',
-      condation: '生产管理', // Production management
+      condation: '生产管理',
       other: '✓',
       us: '✓',
     },
     {
       key: '7',
-      condation: '货运订舱和物流', // "Freight booking and logistics",
+      condation: '货运订舱和物流',
       other: '✓',
       us: '✓',
     },
     {
       key: '8',
-      condation: '解决质量问题', // "Quality issue resolution",
+      condation: '解决质量问题',
       other: '✓',
       us: '✓',
     },
@@ -199,99 +206,75 @@ const Home = () => {
         <div>
           <div>
             <div>
-              <h3 className="title text-xl font-bold">海维包装提供哪些服务?</h3>
+              <h3 className="title text-xl font-bold">半祥包装提供哪些服务?</h3>
               <div className="section mt-5">
                 <div className="title mb-2 text-lg">工厂网络</div>
-                <Table.Root>
-                  <Table.Header>
-                    {columns.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
-                          <Table.ColumnHeader>
-                            {item.dataIndex}
-                          </Table.ColumnHeader>
-                          <Table.ColumnHeader textAlign="end">
-                            {item.key}
-                          </Table.ColumnHeader>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Header>
-                  <Table.Body>
-                    {networkData.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.Cell>{item.condation}</Table.Cell>
-                          <Table.Cell>{item.other}</Table.Cell>
-                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                </Table.Root>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{columns[0]?.title || ''}</TableHead>
+                      <TableHead>{columns[1]?.title || ''}</TableHead>
+                      <TableHead className="text-right">
+                        {columns[2]?.title || ''}
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {networkData.map((item) => (
+                      <TableRow key={item.key}>
+                        <TableCell>{item.condation}</TableCell>
+                        <TableCell>{item.other}</TableCell>
+                        <TableCell className="text-right">{item.us}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
               <div className="section mt-10">
                 <div className="title mb-2 text-lg">软件平台</div>
-                <Table.Root>
-                  <Table.Header>
-                    {columns.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
-                          <Table.ColumnHeader>
-                            {item.dataIndex}
-                          </Table.ColumnHeader>
-                          <Table.ColumnHeader textAlign="end">
-                            {item.key}
-                          </Table.ColumnHeader>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Header>
-                  <Table.Body>
-                    {softwarePlatformData.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.Cell>{item.condation}</Table.Cell>
-                          <Table.Cell>{item.other}</Table.Cell>
-                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                </Table.Root>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{columns[0]?.title || ''}</TableHead>
+                      <TableHead>{columns[1]?.title || ''}</TableHead>
+                      <TableHead className="text-right">
+                        {columns[2]?.title || ''}
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {softwarePlatformData.map((item) => (
+                      <TableRow key={item.key}>
+                        <TableCell>{item.condation}</TableCell>
+                        <TableCell>{item.other}</TableCell>
+                        <TableCell className="text-right">{item.us}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
               <div className="section mt-10">
                 <div className="title mb-2 text-lg">专业服务</div>
-                <Table.Root>
-                  <Table.Header>
-                    {columns.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.ColumnHeader>{item.title}</Table.ColumnHeader>
-                          <Table.ColumnHeader>
-                            {item.dataIndex}
-                          </Table.ColumnHeader>
-                          <Table.ColumnHeader textAlign="end">
-                            {item.key}
-                          </Table.ColumnHeader>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Header>
-                  <Table.Body>
-                    {expertServicesData.map((item, index) => {
-                      return (
-                        <Table.Row key={item.key}>
-                          <Table.Cell>{item.condation}</Table.Cell>
-                          <Table.Cell>{item.other}</Table.Cell>
-                          <Table.Cell textAlign="end">{item.us}</Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                </Table.Root>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{columns[0]?.title || ''}</TableHead>
+                      <TableHead>{columns[1]?.title || ''}</TableHead>
+                      <TableHead className="text-right">
+                        {columns[2]?.title || ''}
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {expertServicesData.map((item) => (
+                      <TableRow key={item.key}>
+                        <TableCell>{item.condation}</TableCell>
+                        <TableCell>{item.other}</TableCell>
+                        <TableCell className="text-right">{item.us}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </div>
             <div className="py-32">
@@ -313,7 +296,7 @@ const Home = () => {
 
           <div className="py-36 text-center">
             <p className="text-2xl font-bold">
-              来看看海维包装如何优化你的供应链吧。
+              来看看半祥包装如何优化你的供应链吧。
             </p>
             <Button className="mt-10">Get started →</Button>
           </div>

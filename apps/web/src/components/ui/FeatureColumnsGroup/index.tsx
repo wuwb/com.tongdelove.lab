@@ -4,7 +4,7 @@ export const FeatureColumnsGroup = ({ data }) => {
       {data.features.map((feature) => (
         <div className="flex-1 text-lg" key={feature.id}>
           <div className="h-10 w-10">image here</div>
-          <h3 className="mb-4 mt-4 font-bold">{feature.title}</h3>
+          <h3 className="mt-4 mb-4 font-bold">{feature.title}</h3>
           <p>{feature.description}</p>
         </div>
       ))}

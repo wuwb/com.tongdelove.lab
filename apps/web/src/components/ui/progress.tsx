@@ -1,34 +1,27 @@
-import { Progress as ChakraProgress } from '@chakra-ui/react'
-import { InfoTip } from './toggle-tip'
+'use client'
+
 import * as React from 'react'
+import { Progress } from '@tongdelove/ui/components/progress'
 
-export const ProgressBar = React.forwardRef<
-  HTMLDivElement,
-  ChakraProgress.TrackProps
->(function ProgressBar(props, ref) {
-  return (
-    <ChakraProgress.Track {...props} ref={ref}>
-      <ChakraProgress.Range />
-    </ChakraProgress.Track>
-  )
-})
+export const ProgressRoot = Progress
+export const ProgressBar = Progress
 
-export interface ProgressLabelProps extends ChakraProgress.LabelProps {
-  info?: React.ReactNode
-}
+export const ProgressLabel = ({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'div'>) => (
+  <div className={`text-sm font-medium ${className || ''}`} {...props}>
+    {children}
+  </div>
+)
 
-export const ProgressLabel = React.forwardRef<
-  HTMLDivElement,
-  ProgressLabelProps
->(function ProgressLabel(props, ref) {
-  const { children, info, ...rest } = props
-  return (
-    <ChakraProgress.Label {...rest} ref={ref}>
-      {children}
-      {info && <InfoTip>{info}</InfoTip>}
-    </ChakraProgress.Label>
-  )
-})
-
-export const ProgressRoot = ChakraProgress.Root
-export const ProgressValueText = ChakraProgress.ValueText
+export const ProgressValueText = ({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<'span'> & { value?: number }) => (
+  <span className={`text-sm font-medium ${className || ''}`} {...props}>
+    {value}%
+  </span>
+)

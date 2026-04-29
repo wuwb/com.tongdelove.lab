@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { List } from '@chakra-ui/react'
 import { Layout } from '@/components/common'
 
 const Page = () => {
@@ -17,7 +16,7 @@ const Page = () => {
   ]
 
   return (
-    <div className="services pb-10 pt-10">
+    <div className="services pt-10 pb-10">
       <div>
         <div className="banner">
           <h3>包装工程</h3>
@@ -42,11 +41,11 @@ const Page = () => {
           <h3>联系我们的团队获取更多的服务</h3>
           <Link href="/">开始→</Link>
         </div>
-        <List.Root>
+        <ul className="list-inside list-disc space-y-2">
           {data.map((item) => {
-            return <List.Item key={item}>{item}</List.Item>
+            return <li key={item}>{item}</li>
           })}
-        </List.Root>
+        </ul>
       </div>
     </div>
   )

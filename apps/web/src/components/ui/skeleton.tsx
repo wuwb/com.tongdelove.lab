@@ -1,47 +1,36 @@
-import type {
-  SkeletonProps as ChakraSkeletonProps,
-  CircleProps,
-} from '@chakra-ui/react'
-import { Skeleton as ChakraSkeleton, Circle, Stack } from '@chakra-ui/react'
+'use client'
+
 import * as React from 'react'
+import { Skeleton as ShadSkeleton } from '@tongdelove/ui/components/skeleton'
 
-export interface SkeletonCircleProps extends ChakraSkeletonProps {
-  size?: CircleProps['size']
-}
-
-export const SkeletonCircle = React.forwardRef<
-  HTMLDivElement,
-  SkeletonCircleProps
->(function SkeletonCircle(props, ref) {
-  const { size, ...rest } = props
-  return (
-    <Circle size={size} asChild ref={ref}>
-      <ChakraSkeleton {...rest} />
-    </Circle>
-  )
-})
-
-export interface SkeletonTextProps extends ChakraSkeletonProps {
+export interface SkeletonTextProps
+  extends React.ComponentProps<typeof ShadSkeleton> {
   noOfLines?: number
 }
 
-export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
-  function SkeletonText(props, ref) {
-    const { noOfLines = 3, gap, ...rest } = props
-    return (
-      <Stack gap={gap} width="full" ref={ref}>
-        {Array.from({ length: noOfLines }).map((_, index) => (
-          <ChakraSkeleton
-            height="4"
-            key={index}
-            {...props}
-            _last={{ maxW: '80%' }}
-            {...rest}
-          />
-        ))}
-      </Stack>
-    )
-  }
+export const SkeletonText = React.forwardRef<
+  React.ElementRef<typeof ShadSkeleton>,
+  SkeletonTextProps
+>(function SkeletonText(props, ref) {
+  const { noOfLines = 3, className, ...rest } = props
+  return (
+    <div className="space-y-2" ref={ref as React.Ref<HTMLDivElement>}>
+      {Array.from({ length: noOfLines }).map((_, index) => (
+        <ShadSkeleton
+          key={index}
+          className={`h-4 ${index === noOfLines - 1 ? 'w-4/5' : ''} ${className || ''}`}
+          {...rest}
+        />
+      ))}
+    </div>
+  )
+})
+
+export const SkeletonCircle = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof ShadSkeleton>) => (
+  <ShadSkeleton className={`rounded-full ${className || ''}`} {...props} />
 )
 
-export const Skeleton = ChakraSkeleton
+export const Skeleton = ShadSkeleton

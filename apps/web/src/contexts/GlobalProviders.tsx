@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 // import { GrowthBookProvider } from '@growthbook/growthbook-react'
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -7,13 +9,14 @@ import NextNProgress from 'nextjs-progressbar'
 // import { gb } from '@/components/Experiment/GrowthBook'
 // import { GradientIconDef } from '@flowgpt/design/components/Icons/GradientIcon'
 import { Provider } from '@/components/ui/provider'
+import { ThemeProvider } from 'next-themes'
 
 export const GlobalProviders = ({
   children,
 }: {
   children: React.ReactNode
 }) => (
-  <Provider>
+  <ThemeProvider attribute="data-mode" disableTransitionOnChange>
     <NextNProgress
       color="rgb(156, 163, 175, 0.9)"
       startPosition={0.3}
@@ -22,7 +25,7 @@ export const GlobalProviders = ({
       showOnShallow={false}
       options={{ showSpinner: false }}
     />
-    {/* 
+    {/*
     <AWSWAFCaptchaModal />
     <GradientIconDef />
     <GrowthBookProvider growthbook={gb}> */}
@@ -30,5 +33,5 @@ export const GlobalProviders = ({
     {/* <ReactQueryDevtools initialIsOpen={false} />
       <Analytics />
     </GrowthBookProvider> */}
-  </Provider>
+  </ThemeProvider>
 )

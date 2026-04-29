@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { toaster } from '@/components/ui/toaster'
+import { toast } from '@/components/ui/toaster'
 
 import {
   AiOutlineExclamationCircle,
@@ -9,15 +9,12 @@ import { Layout } from '@/components/common'
 
 const SolutionsBackedFishPage = () => {
   const info = () => {
-    toaster.create({
-      description: (
-        <>
-          请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span>{' '}
-          详细沟通。
-        </>
-      ),
-      type: 'info',
-    })
+    toast.info(
+      <>
+        请加微信 <span style={{ color: '#1890ff' }}>highwaypack</span>{' '}
+        详细沟通。
+      </>
+    )
   }
 
   return (

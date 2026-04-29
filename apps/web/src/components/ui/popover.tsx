@@ -1,59 +1,63 @@
-import { Popover as ChakraPopover, Portal } from '@chakra-ui/react'
-import { CloseButton } from './close-button'
+'use client'
+
 import * as React from 'react'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@tongdelove/ui/components/popover'
+import { CloseButton } from './close-button'
 
-interface PopoverContentProps extends ChakraPopover.ContentProps {
-  portalled?: boolean
-  portalRef?: React.RefObject<HTMLElement>
-}
-
-export const PopoverContent = React.forwardRef<
-  HTMLDivElement,
-  PopoverContentProps
->(function PopoverContent(props, ref) {
-  const { portalled = true, portalRef, ...rest } = props
-  return (
-    <Portal disabled={!portalled} container={portalRef}>
-      <ChakraPopover.Positioner>
-        <ChakraPopover.Content ref={ref} {...rest} />
-      </ChakraPopover.Positioner>
-    </Portal>
-  )
-})
-
-export const PopoverArrow = React.forwardRef<
-  HTMLDivElement,
-  ChakraPopover.ArrowProps
->(function PopoverArrow(props, ref) {
-  return (
-    <ChakraPopover.Arrow {...props} ref={ref}>
-      <ChakraPopover.ArrowTip />
-    </ChakraPopover.Arrow>
-  )
-})
+export { Popover as PopoverRoot, PopoverContent, PopoverTrigger }
 
 export const PopoverCloseTrigger = React.forwardRef<
-  HTMLButtonElement,
-  ChakraPopover.CloseTriggerProps
+  React.ElementRef<'button'>,
+  React.ComponentProps<'button'>
 >(function PopoverCloseTrigger(props, ref) {
   return (
-    <ChakraPopover.CloseTrigger
-      position="absolute"
-      top="1"
-      insetEnd="1"
-      {...props}
-      asChild
-      ref={ref}
-    >
+    <button ref={ref} className="absolute top-1 right-1" {...props}>
       <CloseButton size="sm" />
-    </ChakraPopover.CloseTrigger>
+    </button>
   )
 })
 
-export const PopoverTitle = ChakraPopover.Title
-export const PopoverDescription = ChakraPopover.Description
-export const PopoverFooter = ChakraPopover.Footer
-export const PopoverHeader = ChakraPopover.Header
-export const PopoverRoot = ChakraPopover.Root
-export const PopoverBody = ChakraPopover.Body
-export const PopoverTrigger = ChakraPopover.Trigger
+export const PopoverTitle = ({
+  className,
+  ...props
+}: React.ComponentProps<'h4'>) => (
+  <h4 className={`text-sm font-semibold ${className || ''}`} {...props} />
+)
+
+export const PopoverDescription = ({
+  className,
+  ...props
+}: React.ComponentProps<'p'>) => (
+  <p
+    className={`text-muted-foreground text-sm ${className || ''}`}
+    {...props}
+  />
+)
+
+export const PopoverHeader = ({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) => (
+  <div className={`flex flex-col gap-1.5 ${className || ''}`} {...props} />
+)
+
+export const PopoverBody = ({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) => (
+  <div className={`flex flex-col gap-4 ${className || ''}`} {...props} />
+)
+
+export const PopoverFooter = ({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) => (
+  <div
+    className={`flex items-center justify-end gap-2 ${className || ''}`}
+    {...props}
+  />
+)

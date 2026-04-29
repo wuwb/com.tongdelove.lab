@@ -1,9 +1,9 @@
-import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Header } from '@/components/common/Header'
 import { Footer } from '@/components/common/Footer'
 import { useAcceptCookies } from '@/hooks/useAcceptCookies'
 import { FeatureBar } from '@/components/common/FeatureBar'
+import { Button } from '@/components/ui/button'
 
 export const Layout = (props) => {
   const { children, pageContext } = props
@@ -20,17 +20,8 @@ export const Layout = (props) => {
 
   return (
     <div>
-      {/*{notificationBanner && bannerIsShown && (*/}
-      {/*  <NotificationBanner*/}
-      {/*    data={notificationBanner}*/}
-      {/*    closeSelf={() => setBannerIsShown(false)}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/* <GlobalNav /> */}
       <Header />
-      {/* <Navbar links={navBarlinks} /> */}
       <main className="fit">{children}</main>
-      {/* <Footer pages={props.pages} /> */}
       <Footer />
       <FeatureBar
         title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."

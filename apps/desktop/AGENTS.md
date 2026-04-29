@@ -415,7 +415,6 @@ When working on the desktop app:
 
 - 文件名用大写驼峰，不要有中划线
 - 不加非必要注释
-- 不用 emoji
 - 使用函数式编程，不用类实现
 
 ---

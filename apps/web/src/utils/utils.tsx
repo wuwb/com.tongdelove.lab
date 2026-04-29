@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 import axios from 'axios'
 import {
   POSTS_API_URL,

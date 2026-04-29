@@ -36,7 +36,7 @@ const Page = () => (
       <div className="flex justify-center">
         <div>
           <div className={s.pageHeading}>
-            <h1 className={s.pageTitle}>我们是海维包装</h1>
+            <h1 className={s.pageTitle}>我们是半祥包装</h1>
             <p>
               我们的专业知识来自于从采购到审计，结构工程，数据科学，物流，
               <br />

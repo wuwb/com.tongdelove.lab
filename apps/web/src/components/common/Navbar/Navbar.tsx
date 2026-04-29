@@ -26,7 +26,7 @@ export const Navbar = ({ links }: NavbarProps) => (
           <nav className="ml-6 hidden space-x-4 lg:block">
             <Link
               href="/search"
-              className="inline-flex cursor-pointer items-center leading-6 text-accent-5 transition duration-75 ease-in-out hover:text-accent-9 focus:text-accent-8 focus:outline-none"
+              className="text-accent-5 hover:text-accent-9 focus:text-accent-8 inline-flex cursor-pointer items-center leading-6 transition duration-75 ease-in-out focus:outline-none"
             >
               All
             </Link>
@@ -34,7 +34,7 @@ export const Navbar = ({ links }: NavbarProps) => (
               <Link
                 href={l.href}
                 key={l.href}
-                className="inline-flex cursor-pointer items-center leading-6 text-accent-5 transition duration-75 ease-in-out hover:text-accent-9 focus:text-accent-8 focus:outline-none"
+                className="text-accent-5 hover:text-accent-9 focus:text-accent-8 inline-flex cursor-pointer items-center leading-6 transition duration-75 ease-in-out focus:outline-none"
               >
                 {l.label}
               </Link>

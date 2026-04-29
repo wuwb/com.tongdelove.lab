@@ -1,31 +1,39 @@
-import { Blockquote as ChakraBlockquote } from '@chakra-ui/react'
+'use client'
+
 import * as React from 'react'
 
-export interface BlockquoteProps extends ChakraBlockquote.RootProps {
+export interface BlockquoteProps
+  extends Omit<React.ComponentProps<'blockquote'>, 'cite'> {
   cite?: React.ReactNode
   citeUrl?: string
-  icon?: React.ReactNode
   showDash?: boolean
 }
 
-export const Blockquote = React.forwardRef<HTMLDivElement, BlockquoteProps>(
+export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
   function Blockquote(props, ref) {
-    const { children, cite, citeUrl, showDash, icon, ...rest } = props
-
+    const { children, cite, citeUrl, showDash, ...rest } = props
     return (
-      <ChakraBlockquote.Root ref={ref} {...rest}>
-        {icon}
-        <ChakraBlockquote.Content cite={citeUrl}>
-          {children}
-        </ChakraBlockquote.Content>
+      <blockquote
+        ref={ref}
+        className="border-primary text-muted-foreground border-l-2 pl-4 italic"
+        {...rest}
+      >
+        {children}
         {cite && (
-          <ChakraBlockquote.Caption>
-            {showDash ? <>&mdash;</> : null} <cite>{cite}</cite>
-          </ChakraBlockquote.Caption>
+          <footer className="mt-2 text-sm not-italic">
+            {showDash && <span>&mdash;</span>}
+            {citeUrl ? (
+              <cite>
+                <a href={citeUrl} className="text-primary hover:underline">
+                  {cite}
+                </a>
+              </cite>
+            ) : (
+              <cite>{cite}</cite>
+            )}
+          </footer>
         )}
-      </ChakraBlockquote.Root>
+      </blockquote>
     )
   }
 )
-
-export const BlockquoteIcon = ChakraBlockquote.Icon

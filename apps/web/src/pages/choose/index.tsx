@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { Card } from '@chakra-ui/react'
 import { Layout } from '@/components/common/Layout'
 import s from './Choose.module.css'
 

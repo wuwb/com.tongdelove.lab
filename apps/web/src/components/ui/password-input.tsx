@@ -1,23 +1,9 @@
 'use client'
 
-import type {
-  ButtonProps,
-  GroupProps,
-  InputProps,
-  StackProps,
-} from '@chakra-ui/react'
-import {
-  Box,
-  HStack,
-  IconButton,
-  Input,
-  Stack,
-  mergeRefs,
-  useControllableState,
-} from '@chakra-ui/react'
 import * as React from 'react'
+import { Input } from './input'
+import { Button } from './button'
 import { LuEye, LuEyeOff } from 'react-icons/lu'
-import { InputGroup } from './input-group'
 
 export interface PasswordVisibilityProps {
   defaultVisible?: boolean
@@ -27,78 +13,57 @@ export interface PasswordVisibilityProps {
 }
 
 export interface PasswordInputProps
-  extends InputProps,
-    PasswordVisibilityProps {
-  rootProps?: GroupProps
-}
+  extends React.ComponentProps<typeof Input>,
+    PasswordVisibilityProps {}
 
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
   PasswordInputProps
 >(function PasswordInput(props, ref) {
   const {
-    rootProps,
     defaultVisible,
     visible: visibleProp,
     onVisibleChange,
-    visibilityIcon = { on: <LuEye />, off: <LuEyeOff /> },
+    visibilityIcon = {
+      on: <LuEye className="h-4 w-4" />,
+      off: <LuEyeOff className="h-4 w-4" />,
+    },
+    className,
     ...rest
   } = props
 
-  const [visible, setVisible] = useControllableState({
-    value: visibleProp,
-    defaultValue: defaultVisible || false,
-    onChange: onVisibleChange,
-  })
+  const [visible, setVisible] = React.useState(defaultVisible || false)
 
-  const inputRef = React.useRef<HTMLInputElement>(null)
+  const handleVisibleChange = () => {
+    const newValue = !visible
+    setVisible(newValue)
+    onVisibleChange?.(newValue)
+  }
 
   return (
-    <InputGroup
-      width="full"
-      endElement={
-        <VisibilityTrigger
-          disabled={rest.disabled}
-          onPointerDown={(e) => {
-            if (rest.disabled) return
-            if (e.button !== 0) return
-            e.preventDefault()
-            setVisible(!visible)
-          }}
-        >
-          {visible ? visibilityIcon.off : visibilityIcon.on}
-        </VisibilityTrigger>
-      }
-      {...rootProps}
-    >
+    <div className="relative">
       <Input
-        {...rest}
-        ref={mergeRefs(ref, inputRef)}
+        ref={ref}
         type={visible ? 'text' : 'password'}
+        className={className}
+        {...rest}
       />
-    </InputGroup>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        className="absolute top-1/2 right-0 h-full -translate-y-1/2 rounded-none rounded-r-md"
+        onClick={handleVisibleChange}
+        disabled={rest.disabled}
+      >
+        {visible ? visibilityIcon.off : visibilityIcon.on}
+      </Button>
+    </div>
   )
 })
 
-const VisibilityTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function VisibilityTrigger(props, ref) {
-    return (
-      <IconButton
-        tabIndex={-1}
-        ref={ref}
-        me="-2"
-        aspectRatio="square"
-        size="sm"
-        variant="ghost"
-        height="calc(100% - {spacing.2})"
-        aria-label="Toggle password visibility"
-        {...props}
-      />
-    )
-  }
-)
-
-interface PasswordStrengthMeterProps extends StackProps {
+export interface PasswordStrengthMeterProps
+  extends React.ComponentProps<'div'> {
   max?: number
   value: number
 }
@@ -107,42 +72,35 @@ export const PasswordStrengthMeter = React.forwardRef<
   HTMLDivElement,
   PasswordStrengthMeterProps
 >(function PasswordStrengthMeter(props, ref) {
-  const { max = 4, value, ...rest } = props
+  const { max = 4, value, className, ...rest } = props
 
   const percent = (value / max) * 100
-  const { label, colorPalette } = getColorPalette(percent)
+  const { label, colorClass } = getColorClass(percent)
 
   return (
-    <Stack align="flex-end" gap="1" ref={ref} {...rest}>
-      <HStack width="full" ref={ref} {...rest}>
+    <div ref={ref} className={`flex flex-col gap-1 ${className}`} {...rest}>
+      <div className="flex gap-1">
         {Array.from({ length: max }).map((_, index) => (
-          <Box
+          <div
             key={index}
-            height="1"
-            flex="1"
-            rounded="sm"
-            data-selected={index < value ? '' : undefined}
-            layerStyle="fill.subtle"
-            colorPalette="gray"
-            _selected={{
-              colorPalette,
-              layerStyle: 'fill.solid',
-            }}
+            className={`h-2 flex-1 rounded-full transition-all ${
+              index < value ? colorClass : 'bg-muted'
+            }`}
           />
         ))}
-      </HStack>
-      {label && <HStack textStyle="xs">{label}</HStack>}
-    </Stack>
+      </div>
+      {label && <span className="text-xs">{label}</span>}
+    </div>
   )
 })
 
-function getColorPalette(percent: number) {
+function getColorClass(percent: number) {
   switch (true) {
     case percent < 33:
-      return { label: 'Low', colorPalette: 'red' }
+      return { label: 'Low', colorClass: 'bg-red-500' }
     case percent < 66:
-      return { label: 'Medium', colorPalette: 'orange' }
+      return { label: 'Medium', colorClass: 'bg-orange-500' }
     default:
-      return { label: 'High', colorPalette: 'green' }
+      return { label: 'High', colorClass: 'bg-green-500' }
   }
 }

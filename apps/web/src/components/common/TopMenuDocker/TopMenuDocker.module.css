@@ -1,6 +1,9 @@
 .topMenuDocker {
   display: block;
-  @media screen(lg) {
+}
+
+@media (min-width: 1024px) {
+  .topMenuDocker {
     display: none;
   }
 }

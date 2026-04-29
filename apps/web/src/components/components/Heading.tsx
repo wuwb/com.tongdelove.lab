@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 import s from './Heading.module.css'
 import { Avatar } from '@/components/ui/avatar'
 
@@ -9,8 +9,7 @@ export const Heading = () => {
     <div className={s.root}>
       <div className={s.content}>
         <Avatar
-          size="md"
-          className="mr-10"
+          className="mr-10 h-10 w-10"
           src="https://zeit.co/api/www/avatar/?u=evilrabbit&s=180"
         />
         <div className={s.name}>

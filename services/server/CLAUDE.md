@@ -171,8 +171,8 @@ services/server/
   "@nestjs/passport": "^10.0.0", // Passport集成
   "@nestjs/schedule": "^3.0.1", // 定时任务
   "@nestjs/websockets": "^10.1.0", // WebSocket支持
-  "prisma": "^7.3.0", // Prisma ORM
-  "@prisma/client": "^7.3.0", // Prisma客户端
+  "prisma": "^7.4.0", // Prisma ORM
+  "@prisma/client": "^7.4.0", // Prisma客户端
   "graphql": "^16.7.1", // GraphQL核心
   "apollo-server-core": "^3.12.0" // Apollo服务器
 }

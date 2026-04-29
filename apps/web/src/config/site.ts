@@ -2,7 +2,7 @@ export const SiteConfig = {
   author: 'Wenbin',
   title: '海维网络',
   description:
-    '印刷,海维包装,印刷厂,胶印,凹版印刷, 中国最大最好的包装印刷管理平台。',
+    '印刷,半祥包装,印刷厂,胶印,凹版印刷, 中国最大最好的包装印刷管理平台。',
   // "Hi, I'm Witt. A JavaScript full stack engineer, I'm creating apps and libs to help improve the developer experience.",
   summary: 'JavaScript 工程师，对开发者体验感兴趣。',
   language: 'zh-cn',

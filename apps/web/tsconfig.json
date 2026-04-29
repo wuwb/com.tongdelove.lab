@@ -2,11 +2,7 @@
   "extends": "@tongdelove/typescript-config/nextjs.json",
   "compilerOptions": {
     "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "noUnusedParameters": false,
@@ -26,24 +22,14 @@
     "noUnusedLocals": false,
     "noImplicitOverride": false,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-      "@chakra-ui/styled-system": [
-        "./node_modules/@chakra-ui/styled-system"
-      ],
-      "@tongdelove/design/*": [
-        "../../packages/design/src/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/public/*": ["./public/*"],
+      "@chakra-ui/styled-system": ["./node_modules/@chakra-ui/styled-system"],
+      "@tongdelove/design/*": ["../../packages/design/src/*"]
     },
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "noErrorTruncation": true
   },
   "include": [

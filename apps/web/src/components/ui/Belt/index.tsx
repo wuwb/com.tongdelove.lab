@@ -7,7 +7,7 @@ export const Belt = (props) => {
       {props.link ? (
         <Link href={props.link}>{props.linkTitle}</Link>
       ) : (
-        <div className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded px-4 py-2 text-white disabled:opacity-50">
+        <div className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50">
           {props.button}
         </div>
       )}

@@ -12,7 +12,7 @@ const Home = () => (
           可持续性发展框架 Sustainability Framework{' '}
         </h1>
         <p className="mt-5">
-          海维包装创建可持续发展框架，以帮助客户确定可持续性包装策略并探索匹配的产品。每处资产均获得最新研究的支持。
+          半祥包装创建可持续发展框架，以帮助客户确定可持续性包装策略并探索匹配的产品。每处资产均获得最新研究的支持。
         </p>
         <p className="mt-2">
           Haiwei created this framework to help you define your sustainable

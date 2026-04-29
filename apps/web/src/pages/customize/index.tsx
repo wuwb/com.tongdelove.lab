@@ -2,11 +2,16 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Radio, RadioGroup } from '@/components/ui/radio'
 import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/common/Layout'
-import { Tabs, List } from '@chakra-ui/react'
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@tongdelove/ui/components/tabs'
 import {
   AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
+  AccordionContent,
+  AccordionTrigger,
   AccordionRoot,
 } from '@/components/ui/accordion'
 
@@ -235,53 +240,55 @@ const Home = () => {
     <div className="p-10">
       <div className="grid">
         <div className="">
-          <Tabs.Root defaultValue="1">
-            <Tabs.List>
-              <Tabs.Trigger value="大小">大小</Tabs.Trigger>
-              <Tabs.Trigger value="材质">材质</Tabs.Trigger>
-              <Tabs.Trigger value="设计">设计</Tabs.Trigger>
-              <Tabs.Trigger value="数量">数量</Tabs.Trigger>
-            </Tabs.List>
-            <Tabs.Content value="大小" key="0">
-              <AccordionRoot
-                collapsible
-                defaultValue={['1']}
-                onChange={callback}
-              >
-                <AccordionItem value="常用长宽高" key="1">
-                  <List.Root>
-                    {data.map((item, index) => {
-                      return <List.Item key={item}>{item}</List.Item>
-                    })}
-                  </List.Root>
-                  <div>尺寸的单位是厘米</div>
-                  <div>不清楚自己需要多大尺寸？可以联系我们。</div>
+          <Tabs defaultValue="1">
+            <TabsList>
+              <TabsTrigger value="大小">大小</TabsTrigger>
+              <TabsTrigger value="材质">材质</TabsTrigger>
+              <TabsTrigger value="设计">设计</TabsTrigger>
+              <TabsTrigger value="数量">数量</TabsTrigger>
+            </TabsList>
+            <TabsContent value="大小">
+              <AccordionRoot type="single" defaultValue="1">
+                <AccordionItem value="常用长宽高">
+                  <AccordionTrigger>常用长宽高</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="list-inside list-disc space-y-1">
+                      {data.map((item, index) => {
+                        return <li key={item}>{item}</li>
+                      })}
+                    </ul>
+                    <div className="mt-2">尺寸的单位是厘米</div>
+                    <div>不清楚自己需要多大尺寸？可以联系我们。</div>
+                  </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="自定义长宽高" key="2">
-                  <List.Root>
-                    <List.Item>
-                      <span>长</span>
-                      <span>
-                        <input type="text" value={x} onChange={changeX} />
-                      </span>
-                    </List.Item>
-                    <List.Item>
-                      <span>宽</span>
-                      <span>
-                        <input type="text" value={y} onChange={changeY} />
-                      </span>
-                    </List.Item>
-                    <List.Item>
-                      <span>高</span>
-                      <span>
-                        <input type="text" value={z} onChange={changeZ} />
-                      </span>
-                    </List.Item>
-                  </List.Root>
+                <AccordionItem value="自定义长宽高">
+                  <AccordionTrigger>自定义长宽高</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span>长</span>
+                        <span>
+                          <input type="text" value={x} onChange={changeX} />
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span>宽</span>
+                        <span>
+                          <input type="text" value={y} onChange={changeY} />
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span>高</span>
+                        <span>
+                          <input type="text" value={z} onChange={changeZ} />
+                        </span>
+                      </div>
+                    </div>
+                  </AccordionContent>
                 </AccordionItem>
               </AccordionRoot>
-            </Tabs.Content>
-            <Tabs.Content value="材质" key="1">
+            </TabsContent>
+            <TabsContent value="材质">
               <RadioGroup onChange={onChange} value={material}>
                 <Radio style={radioStyle} value="1">
                   传统白板
@@ -294,99 +301,101 @@ const Home = () => {
                   <div>自然棕色卡纸上油</div>
                 </Radio>
               </RadioGroup>
-            </Tabs.Content>
-            <Tabs.Content value="设计" key="2">
-              <AccordionRoot
-                collapsible
-                defaultValue={['1']}
-                onChange={callback}
-              >
-                <AccordionItem value="在线设计" key="1">
-                  <div className="{Style['selectors']}">
-                    <div className="{Style['cover-selector']}">
-                      <div>位置</div>
-                      <div className="{Style.outer}">
-                        <div className="{Style.scope}">外部</div>
-                        <div className="{Style.types}">
-                          <div>前面</div>
-                          <div>后面</div>
-                          <div>底部</div>
-                          <div>顶部</div>
-                          <div>左边</div>
-                          <div>右边</div>
+            </TabsContent>
+            <TabsContent value="设计">
+              <AccordionRoot type="single" defaultValue="1">
+                <AccordionItem value="在线设计">
+                  <AccordionTrigger>在线设计</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="{Style['selectors']}">
+                      <div className="{Style['cover-selector']}">
+                        <div>位置</div>
+                        <div className="{Style.outer}">
+                          <div className="{Style.scope}">外部</div>
+                          <div className="{Style.types}">
+                            <div>前面</div>
+                            <div>后面</div>
+                            <div>底部</div>
+                            <div>顶部</div>
+                            <div>左边</div>
+                            <div>右边</div>
+                          </div>
+                        </div>
+                        <div className="{Style.inner}">
+                          <div className="{Style.scope}">内部</div>
+                          <div className="{Style.types}">
+                            <div>前面</div>
+                            <div>后面</div>
+                            <div>底部</div>
+                            <div>顶部</div>
+                            <div>左边</div>
+                            <div>右边</div>
+                          </div>
                         </div>
                       </div>
-                      <div className="{Style.inner}">
-                        <div className="{Style.scope}">内部</div>
-                        <div className="{Style.types}">
-                          <div>前面</div>
-                          <div>后面</div>
-                          <div>底部</div>
-                          <div>顶部</div>
-                          <div>左边</div>
-                          <div>右边</div>
-                        </div>
+                      <div className="{Style['color-selctor']}">
+                        <div>颜色</div>
+                        <canvas
+                          ref={colorCanvasRef}
+                          width="1020"
+                          height="1020"
+                          style={{ width: '510px', height: '510px' }}
+                        ></canvas>
+                      </div>
+                      <div className="">
+                        <div>图片</div>
+                      </div>
+                      <div className="{Style['text-selector']}">
+                        <div>文字</div>
                       </div>
                     </div>
-                    <div className="{Style['color-selctor']}">
-                      <div>颜色</div>
-                      <canvas
-                        ref={colorCanvasRef}
-                        width="1020"
-                        height="1020"
-                        style={{ width: '510px', height: '510px' }}
-                      ></canvas>
-                    </div>
-                    <div className="">
-                      <div>图片</div>
-                    </div>
-                    <div className="{Style['text-selector']}">
-                      <div>文字</div>
-                    </div>
-                  </div>
+                  </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="离线设计" key="2">
-                  <div>
-                    <Button>下载设计模板</Button>
-                    <Button>上传模板</Button>
-                  </div>
-                  <div>匹配包装设计专家</div>
+                <AccordionItem value="离线设计">
+                  <AccordionTrigger>离线设计</AccordionTrigger>
+                  <AccordionContent>
+                    <div>
+                      <Button>下载设计模板</Button>
+                      <Button>上传模板</Button>
+                    </div>
+                    <div>匹配包装设计专家</div>
+                  </AccordionContent>
                 </AccordionItem>
               </AccordionRoot>
-            </Tabs.Content>
-            <Tabs.Content value="数量" key="3">
+            </TabsContent>
+            <TabsContent value="数量">
               <div>
-                <List.Root>
-                  <List.Item>
+                <ul className="space-y-2">
+                  <li className="flex justify-between">
                     <span>选择数量</span>
                     <span>单价</span>
-                  </List.Item>
-                  <List.Item>
+                  </li>
+                  <li className="flex justify-between">
                     <span>&lg;=10,000</span>
                     <span>Request</span>
-                  </List.Item>
-                  <List.Item>
+                  </li>
+                  <li className="flex justify-between">
                     <span>=2,000</span>
                     <span>Request</span>
-                  </List.Item>
-                  <List.Item>
+                  </li>
+                  <li className="flex justify-between">
                     <span>2,000</span>
                     <span>1.29</span>
-                  </List.Item>
-                  <List.Item>
+                  </li>
+                  <li className="flex justify-between">
                     <span>1,000</span>
                     <span>1.41</span>
-                  </List.Item>
-                  <List.Item>
+                  </li>
+                  <li className="flex justify-between">
                     <span>自定义数量</span>
                     <span>
                       <input type="text" value={n} onChange={changeN} />
                     </span>
-                  </List.Item>
-                </List.Root>
+                  </li>
+                </ul>
               </div>
-            </Tabs.Content>
-          </Tabs.Root>
+            </TabsContent>
+          </Tabs>
         </div>
         <div>
           <canvas

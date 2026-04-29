@@ -25,11 +25,11 @@ const Home = () => (
     />
     <div>
       <div>
-        <div className="col-12 mt30">
+        <div className="mt30 col-12">
           <div className="p-[120px]">
             <h1 className="text-center">帮助重塑制造业。</h1>
             <div>
-              在海维包装，我们建立了包装软件和供应链，帮助您喜爱的在线品牌更精美，可持续和经济地生产产品。
+              在半祥包装，我们建立了包装软件和供应链，帮助您喜爱的在线品牌更精美，可持续和经济地生产产品。
               听起来是不是很有趣？你会喜欢这里的。
             </div>
           </div>

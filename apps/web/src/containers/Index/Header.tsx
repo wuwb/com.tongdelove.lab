@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 import styled from '@emotion/styled'
 
 const popoverContent = () => (
@@ -67,7 +67,7 @@ export const Menu = ({ toggleDarkMode }: any) => {
             </svg>
 
             <HeaderTitle>
-              <Link href="/">海维包装</Link>
+              <Link href="/">半祥包装</Link>
             </HeaderTitle>
           </div>
           <Sidebar>

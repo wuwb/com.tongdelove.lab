@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Style from './detail.module.css'
 import { Layout } from '@/components/common'
-import { Radio, RadioGroup } from '@/components/ui/radio'
 import {
-  BreadcrumbCurrentLink,
-  BreadcrumbLink,
+  RadioGroup,
+  RadioGroupItem,
+} from '@tongdelove/ui/components/radio-group'
+import {
   BreadcrumbRoot,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { HStack } from '@chakra-ui/react'
 
 interface DetailPageProps {
   name?: string
@@ -101,8 +104,11 @@ const DetailPage = ({
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
-  function handleChange(data) {
-    setSelectedColor(data)
+  function handleChange(data: string) {
+    const color = product.colors.find((c) => c.value === data)
+    if (color) {
+      setSelectedColor(color)
+    }
   }
 
   return (
@@ -110,13 +116,18 @@ const DetailPage = ({
       <div className="pt-6">
         <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <BreadcrumbRoot>
-            <BreadcrumbLink>Home</BreadcrumbLink>
-            <BreadcrumbLink href="">Catalog</BreadcrumbLink>
-            <BreadcrumbCurrentLink>Page</BreadcrumbCurrentLink>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Catalog</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem className="font-medium">Page</BreadcrumbItem>
           </BreadcrumbRoot>
         </div>
 
-        {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
             <Image
@@ -150,15 +161,13 @@ const DetailPage = ({
           </div>
         </div>
 
-        {/* Product info */}
-        <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+        <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
               {product.name}
             </h1>
           </div>
 
-          {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h1 className={Style['p-name']}>{name}</h1>
             <p className={Style['p-subtitle']}>{subtitle}</p>
@@ -181,7 +190,6 @@ const DetailPage = ({
               </span>
             </div>
 
-            {/* Reviews */}
             <div className="mt-6">
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
@@ -199,29 +207,34 @@ const DetailPage = ({
             </div>
 
             <form className="mt-10">
-              {/* Colors */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
 
                 <RadioGroup
                   value={selectedColor?.value}
-                  onValueChange={(e) => {
-                    handleChange(e.value)
-                  }}
-                  className="mt-4"
+                  onValueChange={handleChange}
+                  className="mt-4 flex gap-6"
                 >
-                  <HStack gap="6">
-                    {product.colors.map((item) => (
-                      <Radio value={item.value}>{item.label}</Radio>
-                    ))}
-
-                    <Radio value="2">Option 2</Radio>
-                    <Radio value="3">Option 3</Radio>
-                  </HStack>
+                  {product.colors.map((item) => (
+                    <RadioGroupItem
+                      key={item.value}
+                      value={item.value}
+                      id={`color-${item.value}`}
+                    >
+                      <label htmlFor={`color-${item.value}`}>
+                        {item.label}
+                      </label>
+                    </RadioGroupItem>
+                  ))}
+                  <RadioGroupItem value="2" id="color-2">
+                    <label htmlFor="color-2">Option 2</label>
+                  </RadioGroupItem>
+                  <RadioGroupItem value="3" id="color-3">
+                    <label htmlFor="color-3">Option 3</label>
+                  </RadioGroupItem>
                 </RadioGroup>
               </div>
 
-              {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
@@ -236,15 +249,14 @@ const DetailPage = ({
 
               <button
                 type="submit"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
               >
                 加入购物车
               </button>
             </form>
           </div>
 
-          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-            {/* Description and details */}
+          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
             <div>
               <h3 className="sr-only">Description</h3>
 

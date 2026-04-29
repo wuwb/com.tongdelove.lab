@@ -1,21 +1,15 @@
-import { Card } from '@chakra-ui/react'
-import { PostPreview } from '../components/post-preview'
+import { Card, CardContent } from '@tongdelove/ui/components/card'
+import { PostPreview } from './post-preview'
 
 export const MoreStories = ({ posts }) => {
   return (
     <>
       <h2>More Stories</h2>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div className="flex justify-between gap-4">
         {posts.map((post) => (
-          <Card.Root width="320px">
-            <Card.Body gap="2" key={post.slug} style={{ width: 300 }}>
+          <Card key={post.slug} className="w-[320px]">
+            <CardContent className="gap-2">
               <PostPreview
-                key={post.slug}
                 title={post.title}
                 coverImage={post.coverImage}
                 date={post.date}
@@ -23,8 +17,8 @@ export const MoreStories = ({ posts }) => {
                 slug={post.slug}
                 excerpt={post.excerpt}
               />
-            </Card.Body>
-          </Card.Root>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </>

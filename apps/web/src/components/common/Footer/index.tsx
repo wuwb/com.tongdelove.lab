@@ -353,7 +353,7 @@ export const Footer = () => {
                 className="nav-link"
                 href="http://cptech.taobao.com/"
               >
-                海维包装厂
+                半祥包装厂
               </a>
             </li>
             <li className="nav-item">

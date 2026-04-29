@@ -60,14 +60,10 @@ module.exports = withPlugins([], {
     outputFileTracingExcludes: {
       '*': ['node_modules/canvas', 'node_modules/.pnpm/canvas@2.11.2'],
     },
-    optimizePackageImports: ['@chakra-ui/react'],
     webVitalsAttribution: ['CLS', 'LCP'],
-    swcPlugins: [['next-superjson-plugin', {}]],
-    nextScriptWorkers: true,
   },
   staticPageGenerationTimeout: 1000,
   transpilePackages: ['@tongdelove'],
-
   // webpack(config) {
   //   return config;
   // },

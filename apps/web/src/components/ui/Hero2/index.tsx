@@ -6,9 +6,9 @@ export const Hero = ({ data }) => {
       {/* Left column for content */}
       <div className="flex-1 sm:pr-8">
         {/* Hero section label */}
-        <p className="font-semibold uppercase tracking-wide">{data.label}</p>
+        <p className="font-semibold tracking-wide uppercase">{data.label}</p>
         {/* Big title */}
-        <h1 className="title mb-4 mt-2 sm:mb-2 sm:mt-0">{data.title}</h1>
+        <h1 className="title mt-2 mb-4 sm:mt-0 sm:mb-2">{data.title}</h1>
         {/* Description paragraph */}
         <p className="mb-6 text-xl">{data.description}</p>
         {/* Buttons row */}

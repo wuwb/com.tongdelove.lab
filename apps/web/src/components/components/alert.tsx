@@ -17,7 +17,7 @@ export const Alert = ({ preview }) => {
               This is page is a preview.{' '}
               <a
                 href="/api/exit-preview"
-                className="underline transition-colors duration-200 hover:text-cyan"
+                className="hover:text-cyan underline transition-colors duration-200"
               >
                 Click here
               </a>{' '}

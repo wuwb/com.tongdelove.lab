@@ -7,36 +7,31 @@ import {
   AiOutlineFilter,
   AiOutlineAppstore,
 } from 'react-icons/ai'
-import { toaster } from '@/components/ui/toaster'
-import { Radio, RadioGroup } from '@/components/ui/radio'
+import { toast } from '@/components/ui/toaster'
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from '@tongdelove/ui/components/radio-group'
 import { ProductCard } from '@/containers/product'
 import s from './index.module.css'
 import {
+  Accordion,
+  AccordionContent,
   AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
+  AccordionTrigger,
 } from '@/components/ui/accordion'
 import {
-  DrawerBody,
+  Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from '@/components/ui/drawer'
 import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from '@/components/ui/menu'
-import {
-  CheckboxGroup,
-  DrawerRoot,
-  Fieldset,
-  HStack,
-  Menu,
-} from '@chakra-ui/react'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 
 const ProductPage = () => {
@@ -86,23 +81,16 @@ const ProductPage = () => {
     { label: 'Sustainable inks', value: '' },
   ]
 
-  const handleMiniumQuantityChange = (e) => {
-    setMiniumQuantity(e.target.value)
+  const handleMiniumQuantityChange = (value: string) => {
+    setMiniumQuantity(value)
   }
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value)
+  const handleCategoryChange = (value: string) => {
+    setCategory(value)
   }
 
-  const onChange = (checkedValues) => {
-    console.log('checked:', checkedValues)
-  }
-
-  const handleMenuClick = (e) => {
-    toaster.create({
-      description: 'Click on menu item.',
-      type: 'info',
-    })
+  const handleMenuClick = () => {
+    toast('Click on menu item.')
   }
 
   const handleCloseDrawer = () => {
@@ -110,144 +98,173 @@ const ProductPage = () => {
   }
 
   const menu = (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" onClick={handleMenuClick}>
           Open
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <Menu.Item value="new-txt">
-          <AiOutlineUser />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>
+          <AiOutlineUser className="mr-2 h-4 w-4" />
           New Text File
-        </Menu.Item>
-        <Menu.Item value="new-file">New File...</Menu.Item>
-        <Menu.Item value="new-win">New Window</Menu.Item>
-        <Menu.Item value="open-file">Open File...</Menu.Item>
-        <Menu.Item value="export">Export</Menu.Item>
-      </MenuContent>
-    </MenuRoot>
+        </DropdownMenuItem>
+        <DropdownMenuItem>New File...</DropdownMenuItem>
+        <DropdownMenuItem>New Window</DropdownMenuItem>
+        <DropdownMenuItem>Open File...</DropdownMenuItem>
+        <DropdownMenuItem>Export</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 
   return (
     <>
-      <DrawerRoot
-        open={mobileFiltersOpen}
-        onOpenChange={(e) => setMobileFiltersOpen(e.open)}
-      >
+      <Drawer open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>Basic DrawerRoot</DrawerTitle>
+            <DrawerTitle>Basic Drawer</DrawerTitle>
           </DrawerHeader>
-          <DrawerBody>sidebar content</DrawerBody>
+          <div className="p-4">sidebar content</div>
         </DrawerContent>
-      </DrawerRoot>
+      </Drawer>
 
       <div className="flex flex-row">
         <div className={s.leftSidebar}>
           <div className={s.sidebarPanel}>
-            <AccordionRoot defaultValue={['1', '2', '3', '4']}>
-              <AccordionItem value="最小起订量" key="1">
-                <AccordionItemTrigger>最小起订量</AccordionItemTrigger>
-                <AccordionItemContent>
+            <Accordion type="multiple" defaultValue={['1', '2', '3', '4']}>
+              <AccordionItem value="1">
+                <AccordionTrigger>最小起订量</AccordionTrigger>
+                <AccordionContent>
                   <RadioGroup
-                    onChange={handleMiniumQuantityChange}
                     value={minimumQuantity}
+                    onValueChange={handleMiniumQuantityChange}
                   >
-                    <HStack>
-                      <Radio value={'0'}>任意数量</Radio>
-                      <Radio value={'500'}>500单位或更少</Radio>
-                      <Radio value={'1000'}>1,000单位或更少</Radio>
-                      <Radio value={'10000'}>10,000单位或更少</Radio>
-                    </HStack>
+                    <div className="flex flex-wrap gap-2">
+                      <RadioGroupItem value="0" id="qty-0">
+                        <label htmlFor="qty-0">任意数量</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="500" id="qty-500">
+                        <label htmlFor="qty-500">500单位或更少</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="1000" id="qty-1000">
+                        <label htmlFor="qty-1000">1,000单位或更少</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="10000" id="qty-10000">
+                        <label htmlFor="qty-10000">10,000单位或更少</label>
+                      </RadioGroupItem>
+                    </div>
                   </RadioGroup>
-                </AccordionItemContent>
+                </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="分类" key="2">
-                <AccordionItemTrigger>分类</AccordionItemTrigger>
-                <AccordionItemContent>
-                  <RadioGroup onChange={handleCategoryChange} value={category}>
-                    <HStack>
-                      <Radio value="0">Boxes</Radio>
-                      <Radio value="2">Child Resistant</Radio>
-                      <Radio value="3">Collateral</Radio>
-                      <Radio value="4">Inner Bags</Radio>
-                      <Radio value="5">Insulation</Radio>
-                      <Radio value="6">Mailers</Radio>
-                      <Radio value="7">Publications</Radio>
-                      <Radio value="8">Retail Bags</Radio>
-                      <Radio value="9">Sewn Bags</Radio>
-                      <Radio value="10">Stickers and Labels</Radio>
-                      <Radio value="11">Tape</Radio>
-                      <Radio value="12">Tubes</Radio>
-                      <Radio value="13">Void Fill</Radio>
-                    </HStack>
+              <AccordionItem value="2">
+                <AccordionTrigger>分类</AccordionTrigger>
+                <AccordionContent>
+                  <RadioGroup
+                    value={category}
+                    onValueChange={handleCategoryChange}
+                  >
+                    <div className="flex flex-wrap gap-2">
+                      <RadioGroupItem value="0" id="cat-0">
+                        <label htmlFor="cat-0">Boxes</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="2" id="cat-2">
+                        <label htmlFor="cat-2">Child Resistant</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="3" id="cat-3">
+                        <label htmlFor="cat-3">Collateral</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="4" id="cat-4">
+                        <label htmlFor="cat-4">Inner Bags</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="5" id="cat-5">
+                        <label htmlFor="cat-5">Insulation</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="6" id="cat-6">
+                        <label htmlFor="cat-6">Mailers</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="7" id="cat-7">
+                        <label htmlFor="cat-7">Publications</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="8" id="cat-8">
+                        <label htmlFor="cat-8">Retail Bags</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="9" id="cat-9">
+                        <label htmlFor="cat-9">Sewn Bags</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="10" id="cat-10">
+                        <label htmlFor="cat-10">Stickers and Labels</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="11" id="cat-11">
+                        <label htmlFor="cat-11">Tape</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="12" id="cat-12">
+                        <label htmlFor="cat-12">Tubes</label>
+                      </RadioGroupItem>
+                      <RadioGroupItem value="13" id="cat-13">
+                        <label htmlFor="cat-13">Void Fill</label>
+                      </RadioGroupItem>
+                    </div>
                   </RadioGroup>
-                </AccordionItemContent>
+                </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="材质" key="3">
-                <AccordionItemTrigger>材质</AccordionItemTrigger>
-                <AccordionItemContent>
-                  <Fieldset.Root>
-                    <CheckboxGroup
-                      defaultValue={[]}
-                      name="材质"
-                      onCheckedChange={onChange}
-                    >
-                      <Fieldset.Legend fontSize="sm" mb="2">
-                        材质
-                      </Fieldset.Legend>
-                      <Fieldset.Content>
-                        {materialsOptions.map((item) => {
-                          return (
-                            <Checkbox value={item.value}>{item.label}</Checkbox>
-                          )
-                        })}
-                      </Fieldset.Content>
-                    </CheckboxGroup>
-                  </Fieldset.Root>
-                </AccordionItemContent>
+              <AccordionItem value="3">
+                <AccordionTrigger>材质</AccordionTrigger>
+                <AccordionContent>
+                  <fieldset className="space-y-2">
+                    <legend className="mb-2 text-sm font-medium">材质</legend>
+                    <div className="space-y-1">
+                      {materialsOptions.map((item, index) => (
+                        <label key={index} className="flex items-center gap-2">
+                          <Checkbox />
+                          {item.label}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="环保标准" key="4">
-                <AccordionItemTrigger>环保标准</AccordionItemTrigger>
-                <AccordionItemContent>
-                  <Fieldset.Root>
-                    <CheckboxGroup
-                      defaultValue={[]}
-                      name="环保标准"
-                      onCheckedChange={onChange}
-                    >
-                      <Fieldset.Legend fontSize="sm" mb="2">
-                        环保标准
-                      </Fieldset.Legend>
-                      <Fieldset.Content>
-                        {sustainabilityOptions.map((item) => {
-                          return (
-                            <Checkbox value={item.value}>{item.label}</Checkbox>
-                          )
-                        })}
-                      </Fieldset.Content>
-                    </CheckboxGroup>
-                  </Fieldset.Root>
-                </AccordionItemContent>
+              <AccordionItem value="4">
+                <AccordionTrigger>环保标准</AccordionTrigger>
+                <AccordionContent>
+                  <fieldset className="space-y-2">
+                    <legend className="mb-2 text-sm font-medium">
+                      环保标准
+                    </legend>
+                    <div className="space-y-1">
+                      {sustainabilityOptions.map((item, index) => (
+                        <label key={index} className="flex items-center gap-2">
+                          <Checkbox />
+                          {item.label}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                </AccordionContent>
               </AccordionItem>
-            </AccordionRoot>
+            </Accordion>
           </div>
         </div>
         <div className={s.mainPanel}>
-          <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pb-6 pt-6">
+          <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pt-6 pb-6">
             <div className={s.mainTitle}>包装产品分类</div>
             <div className="flex items-center">
-              <MenuRoot>
-                <MenuTrigger asChild>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
                   <a
                     className="ant-dropdown-link"
                     onClick={(e) => e.preventDefault()}
                   >
                     Sort <AiOutlineDown />
                   </a>
-                </MenuTrigger>
-              </MenuRoot>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {sortOptions.map((option) => (
+                    <DropdownMenuItem key={option.name}>
+                      {option.name}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
               <button
                 type="button"
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
