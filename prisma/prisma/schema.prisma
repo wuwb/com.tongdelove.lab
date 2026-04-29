@@ -1,8 +1,6 @@
 datasource db {
   // sqlite, postgresql, mysql, sqlserver, mongodb
-  provider  = "postgresql"
-  url       = env("DATABASE_URL") // uses connection pooling
-  directUrl = env("DIRECT_URL") // uses a direct connection
+  provider = "postgresql"
 
   // local sqlite
   // provider = "sqlite"
@@ -19,12 +17,13 @@ datasource db {
 
 // learn more about it: https://pris.ly/d/prisma-schema
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client"
+  output = "../generated/prisma"
   // jsonProtocol 已经实现，不用 preview
   // interactiveTransactions 已经实现，不用 preview
   // preview feature "fullTextSearch" has been renamed to "fullTextSearchPostgres"
-  previewFeatures = ["metrics"]
-  // output   = "../node_modules/.prisma/client"
+  // metrics 已废弃
+  previewFeatures = []
   // binaryTargets   = ["native"]
 }
 
@@ -64,12 +63,12 @@ generator zod {
 // }
 
 // 提供 prisma 数据模型到 graphql 类型的转换
-generator nestgraphql {
-  // provider = "node node_modules/prisma-nestjs-graphql"
-  provider = "prisma-nestjs-graphql"
-  output   = "../generated/prisma-nestjs-graphql"
-  reExport = "Directories"
-}
+// generator nestgraphql {
+//   // provider = "node node_modules/prisma-nestjs-graphql"
+//   provider = "prisma-nestjs-graphql"
+//   output   = "../generated/prisma-nestjs-graphql"
+//   reExport = "Directories"
+// }
 
 // generator typegraphql {
 //   provider           = "typegraphql-prisma"
@@ -345,6 +344,13 @@ model Product {
   postId        String?
   Brand         Brand?       @relation(fields: [brandId], references: [id])
   brandId       String?
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
+  name String
 
   @@map(name: "product")
 }
@@ -825,6 +831,20 @@ model Post {
   image       String?   @db.VarChar(300)
   publishedAt DateTime? @map(name: "published_at")
 
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
+  keyword       String   @db.Text
+  description   String   @default("")
+  status        Boolean
+  tagList       String[]
+  authorId      String?
+  favoriteCount Int      @default(0)
+  audit         Boolean  @default(false)
+
+  @@unique([id], name: "post_id")
   @@index([postType, postStatus, postDate, id])
   @@index([postParent])
   @@index([postAuthor])
@@ -873,6 +893,13 @@ model PostCategory {
   categoryId String    @map(name: "category_id")
   createdAt  DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
 
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdBy String   @default("") @map("created_by")
+  updatedBy String   @default("") @map("updated_by")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  remark    String?  @default("")
+  version   Int      @default(1)
+
   @@map(name: "post_category")
 }
 
@@ -891,6 +918,10 @@ enum CommentType {
 
 // 评价，根据类型分为，文章评价，商品评价，专题评价等
 model Comment {
+  body   String
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
+
   id                 String        @id @default(cuid())
   commentPostId      String        @unique @default("") @map(name: "comment_post_id")
   commentAuthor      String        @default("") @map(name: "comment_author")
@@ -927,7 +958,6 @@ model Comment {
   sourceId           Int
   Article            Article?      @relation(fields: [articleId], references: [id])
   articleId          String?
-  post               Post?         @relation(fields: [commentPostId], references: [id])
 
   @@map(name: "comment")
 }
@@ -949,6 +979,13 @@ model Topic {
   isDeleted Boolean   @default(false) @map(name: "is_delete")
   createdAt DateTime? @default(now()) @map(name: "created_at") @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
+
+  description   String  @db.Text
+  category      String
+  relate_topics String
+  filename      String
+  views         Int
+  isPublished   Boolean
 
   @@map(name: "topic")
 }
@@ -993,6 +1030,12 @@ model Region {
 model Photo {
   id String @id @default(cuid())
 
+  name        String  @db.VarChar(500)
+  description String  @db.Text
+  filename    String
+  views       Int
+  isPublished Boolean
+
   @@map(name: "photo")
 }
 
@@ -1020,6 +1063,11 @@ model Access {
   sort        Int       @default(1) // 排序
   status      Int?      @default(1) // 状态,0表示禁止,1表示正常
   description String?   @db.VarChar(100) // 描述
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
 
   @@unique([actionName, isDeleted], map: "action_name_delete_at")
   @@unique([moduleName, isDeleted], map: "module_name_delete_at")
@@ -1054,7 +1102,25 @@ model Account {
   // for github @see https://next-auth.js.org/providers/github
   refresh_token_expires_in Int?
 
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
+  username String  @db.VarChar(50)
+  password String  @db.VarChar(100)
+  mobile   String? @db.VarChar(11)
+  email    String? @db.VarChar(50)
+  avatar   String  @default("")
+  status   Int?    @default(1)
+  platform Int?    @default(0)
+  isSuper  Int     @default(0)
+
   @@unique([provider, providerAccountId])
+  @@unique([username, mobile, email], name: "username_mobile_email_unique")
+  @@index([username])
+  @@index([mobile])
+  @@index([email])
   @@map(name: "accounts")
 }
 
@@ -1085,6 +1151,11 @@ model AccountToken {
   updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at") @db.Timestamp(6)
   isDeleted  Boolean   @default(false) @map(name: "is_deleted") // 是否删除
 
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
   @@map(name: "account_token")
 }
 
@@ -1095,6 +1166,11 @@ model AccountRole {
   isDeleted Boolean   @default(false) @map(name: "is_deleted") // 是否删除
   accountId String    @map(name: "account_id")
   roleId    String    @map(name: "role_id")
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
 
   @@unique([accountId, roleId, isDeleted], map: "account_role_deleted")
   @@map(name: "account_role")
@@ -1119,6 +1195,18 @@ model Category {
   Article     Article?  @relation(fields: [articleId], references: [id])
   articleId   String?
   Link        Link[]
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
+  label     String
+  value     String
+  order     Int
+  onlyChild Boolean @default(false)
+
+  parentId String?
 
   @@map(name: "category")
 }
@@ -1218,6 +1306,11 @@ model Role {
   Permission        Permission? @relation(fields: [permissionId], references: [id])
   permissionId      String?
 
+  createdBy String @default("") @map("created_by")
+  updatedBy String @default("") @map("updated_by")
+  version   Int    @default(1)
+
+  @@index([name])
   @@map(name: "roles")
 }
 
@@ -1248,6 +1341,11 @@ model RoleAccess {
   roleId    String    @map(name: "role_id")
   accessId  String    @map(name: "access_id")
   type      Int // 资源类型:2:表示菜单,3:表示接口(API)
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
 
   @@unique([roleId, accessId, type, isDeleted], map: "role_access_type_deleted")
   @@map(name: "role_access")
@@ -1358,6 +1456,19 @@ model User {
   customerId       String?
   variantId        Int?
   currentPeriodEnd Int?
+
+  isDeleted Boolean @default(false) @map("is_deleted")
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1) // Prisma does not have a direct equivalent for @VersionColumn, manual handling might be needed.
+
+  registered   DateTime @map("user_registered")
+  qq           String?
+  wangwang     String?
+  departmentId String   @map("department_id")
+  psalt        String   @db.VarChar(32)
+  birthDay     DateTime
 
   @@index([login, phone, email])
   @@map(name: "users")
@@ -1488,6 +1599,14 @@ model Coupon {
   startAt     DateTime  @map(name: "start_at")
   endAt       DateTime  @map(name: "end_at")
   tag         String    @default("")
+
+  createdBy String  @default("") @map("created_by")
+  updatedBy String  @default("") @map("updated_by")
+  remark    String? @default("")
+  version   Int     @default(1)
+
+  maxReceiveCount Int @map("max_receive_count")
+  count           Int
 
   @@map(name: "coupon")
 }
@@ -2234,4 +2353,228 @@ enum UserLanguageCode {
   sv_SE
   uk_UA
   ms_MY
+}
+
+enum BoxType {
+  BOX
+}
+
+enum PaperType {
+  Paper
+}
+
+enum LidType {
+  Lid
+}
+
+enum BottomType {
+  Bottom
+}
+
+enum DetailType {
+  Detail
+}
+
+enum CommoditiesCategoryEnum {
+  ETF
+  Metal
+  Agricultural
+}
+
+enum PlatformEnum {
+  USER
+  ADMIN
+  MERCHANT
+}
+
+model Cat {
+  id          String  @id @default(uuid())
+  name        String  @db.VarChar(500)
+  description String  @db.Text
+  filename    String
+  views       Int
+  isPublished Boolean
+}
+
+model Autohotbox {
+  id            String @id @default(uuid())
+  code          String @db.VarChar(500)
+  btcode        String
+  name          String
+  desc          String
+  specification String
+  size          Int
+  volume        Float
+  weight        Float
+  boxWeight     Float
+}
+
+model BoxStructure {
+  id        String   @id @default(uuid())
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdBy String   @default("") @map("created_by")
+  updatedBy String   @default("") @map("updated_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  remark    String?  @default("")
+  version   Int      @default(1)
+}
+
+model BoxUses {
+  id        String   @id @default(uuid())
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdBy String   @default("") @map("created_by")
+  updatedBy String   @default("") @map("updated_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  remark    String?  @default("")
+  version   Int      @default(1)
+}
+
+model Box {
+  id        String   @id @default(uuid())
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdBy String   @default("") @map("created_by")
+  updatedBy String   @default("") @map("updated_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  remark    String?  @default("")
+  version   Int      @default(1)
+
+  boxType    BoxType
+  paperType  PaperType
+  lidType    Int
+  bottomType Int
+  detailType DetailType
+  title      String
+  imgList    String[]
+  salesCount Int        @default(0)
+}
+
+model CommoditiesPrice {
+  id        String   @id @default(uuid())
+  type      String
+  time      DateTime
+  price     Float
+  change    Float
+  createdAt String   @map("create_at")
+  updatedAt String   @map("update_at")
+}
+
+model Commodities {
+  id        String                  @id @default(uuid())
+  name      String
+  enName    String
+  category  CommoditiesCategoryEnum @default(ETF)
+  createdAt String                  @map("create_at")
+  updatedAt String                  @map("update_at")
+}
+
+model UserRole {
+  id        String   @id @default(uuid())
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdBy String   @default("") @map("created_by")
+  updatedBy String   @default("") @map("updated_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  remark    String?  @default("")
+  version   Int      @default(1)
+
+  userId String @map("user_id")
+  roleId String @map("role_id")
+}
+
+model Software {
+  id           String  @id @default(uuid())
+  avatar_url   String
+  description  String
+  name         String
+  download_url String
+  source_url   String
+  url          String
+  category     String
+  platform     String
+  recommend    Boolean
+  createdAt    String  @map("create_at")
+  updatedAt    String  @map("update_at")
+}
+
+model Avatar {
+  id       String @id @default(uuid())
+  filename String
+  mimetype String
+}
+
+// Temu 请求拦截数据模型
+model TemuRequest {
+  id              String    @id @default(cuid())
+
+  // 请求信息
+  url             String    @db.Text
+  method          String
+  requestId       String?   @unique @map("request_id") @db.VarChar(255)
+  path            String?    @db.VarChar(500)
+
+  // 请求头和体
+  requestHeaders  Json?     @map("request_headers")
+  requestBody     Json?     @map("request_body")
+
+  // 响应信息
+  responseStatus  Int       @map("response_status")
+  responseText    String?   @map("response_text") @db.VarChar(100)
+  responseHeaders Json?     @map("response_headers")
+  responseBody    Json?     @map("response_body")
+
+  // 元数据
+  requestType     String    @map("request_type") @default("fetch") // fetch/xhr
+  platform        String    @default("temu")
+  userAgent       String?   @map("user_agent") @db.Text
+
+  // 时间戳
+  capturedAt      DateTime  @default(now()) @map("captured_at")
+
+  // 关联
+  userId          String?   @map("user_id")
+  cleaningJob     DataCleaningQueue? @relation(fields: [cleaningJobId], references: [id])
+  cleaningJobId   String?   @map("cleaning_job_id")
+
+  // 数据清洗状态
+  isCleaned       Boolean   @default(false) @map("is_cleaned")
+  cleanedAt       DateTime? @map("cleaned_at")
+
+  @@index([url])
+  @@index([capturedAt(sort: Desc)])
+  @@index([userId, capturedAt(sort: Desc)])
+  @@index([requestId])
+  @@index([isCleaned])
+  @@map("temu_requests")
+}
+
+// 数据清洗队列模型
+model DataCleaningQueue {
+  id              String    @id @default(cuid())
+
+  // 清洗任务信息
+  status          String    @default("pending") // pending/processing/completed/failed
+  totalRecords    Int       @default(0) @map("total_records")
+  cleanedRecords  Int       @default(0) @map("cleaned_records")
+  failedRecords   Int       @default(0) @map("failed_records")
+
+  // 清洗配置
+  config          Json?
+
+  // 时间信息
+  startedAt       DateTime? @map("started_at")
+  completedAt     DateTime? @map("completed_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  // 错误信息
+  errorMessage    String?   @map("error_message") @db.Text
+
+  // 关联
+  temuRequests    TemuRequest[]
+
+  @@index([status, createdAt(sort: Desc)])
+  @@map("data_cleaning_queue")
 }

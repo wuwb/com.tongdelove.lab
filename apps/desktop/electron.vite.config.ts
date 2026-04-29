@@ -40,21 +40,21 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        '@main': resolve('src/main'),
-        '@types': resolve('src/renderer/src/types'),
-        '@shared': resolve('packages/shared'),
-        '@logger': resolve('src/main/services/LoggerService'),
-        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
-        '@mcp-trace/trace-node': resolve('packages/mcp-trace/trace-node')
+        // '@main': resolve('src/main'),
+        // '@types': resolve('src/renderer/src/types'),
+        // '@shared': resolve('packages/shared'),
+        // '@logger': resolve('src/main/services/LoggerService'),
+        // '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
+        // '@mcp-trace/trace-node': resolve('packages/mcp-trace/trace-node')
       }
     },
     build: {
       rollupOptions: {
         external: [
-          'better-sqlite3', 
+          'better-sqlite3',
           'electron',
-          'bufferutil', 
-          'utf-8-validate', 
+          'bufferutil',
+          'utf-8-validate',
           ...Object.keys(pkg.dependencies)
         ],
         output: {
@@ -78,13 +78,13 @@ export default defineConfig({
       reactPlugin({
         tsDecorators: true
       }),
-      tsconfigPaths, 
+      tsconfigPaths,
       externalizeDepsPlugin()
     ],
     resolve: {
       alias: {
-        '@shared': resolve('packages/shared'),
-        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core')
+        // '@shared': resolve('packages/shared'),
+        // '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core')
       }
     },
     build: {
@@ -105,26 +105,26 @@ export default defineConfig({
       reactPlugin({
         tsDecorators: true
       }),
-      ...(isDev ? [CodeInspectorPlugin({ 
+      ...(isDev ? [CodeInspectorPlugin({
         bundler: 'vite',
         // hotKeys: ['altKey'],
         // hideConsole: true
       })] : []),
       ...visualizerPlugin('renderer')
     ],
-     resolve: {
+    resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src'),
-        '@shared': resolve('packages/shared'),
-        '@types': resolve('src/renderer/src/types'),
-        '@logger': resolve('src/renderer/src/services/LoggerService'),
-        '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
-        '@mcp-trace/trace-web': resolve('packages/mcp-trace/trace-web'),
-        '@cherrystudio/ai-core/provider': resolve('packages/aiCore/src/core/providers'),
-        '@cherrystudio/ai-core/built-in/plugins': resolve('packages/aiCore/src/core/plugins/built-in'),
-        '@cherrystudio/ai-core': resolve('packages/aiCore/src'),
-        '@cherrystudio/extension-table-plus': resolve('packages/extension-table-plus/src'),
-        '@cherrystudio/ai-sdk-provider': resolve('packages/ai-sdk-provider/src')
+        // '@renderer': resolve('src/renderer/src'),
+        // '@shared': resolve('packages/shared'),
+        // '@types': resolve('src/renderer/src/types'),
+        // '@logger': resolve('src/renderer/src/services/LoggerService'),
+        // '@mcp-trace/trace-core': resolve('packages/mcp-trace/trace-core'),
+        // '@mcp-trace/trace-web': resolve('packages/mcp-trace/trace-web'),
+        // '@cherrystudio/ai-core/provider': resolve('packages/aiCore/src/core/providers'),
+        // '@cherrystudio/ai-core/built-in/plugins': resolve('packages/aiCore/src/core/plugins/built-in'),
+        // '@cherrystudio/ai-core': resolve('packages/aiCore/src'),
+        // '@cherrystudio/extension-table-plus': resolve('packages/extension-table-plus/src'),
+        // '@cherrystudio/ai-sdk-provider': resolve('packages/ai-sdk-provider/src')
       }
     },
     optimizeDeps: {
@@ -147,7 +147,6 @@ export default defineConfig({
         ] as any,
         input: {
           index: resolve(__dirname, 'src/renderer/index.html'),
-          miniWindow: resolve(__dirname, 'src/renderer/miniApp.html'),
         },
         onwarn(warning, warn) {
           if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') return

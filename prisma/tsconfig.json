@@ -2,16 +2,19 @@
   "extends": "@tongdelove/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": "./src",
-    "module": "ES2020",
     "noEmit": false,
     "incremental": true,
     "paths": {},
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "composite": true
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     ".eslintrc.*",

@@ -1,7 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
   "extends": "./base",
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "declaration": false,
     "declarationMap": false,
     "noEmit": true,
@@ -19,7 +25,7 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",

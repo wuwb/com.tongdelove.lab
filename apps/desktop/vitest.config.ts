@@ -45,18 +45,6 @@ export default defineConfig({
           include: ['scripts/**/*.{test,spec}.{ts,tsx}', 'scripts/**/__tests__/**/*.{test,spec}.{ts,tsx}']
         }
       },
-      // aiCore 包单元测试配置
-      {
-        extends: 'packages/aiCore/vitest.config.ts',
-        test: {
-          name: 'aiCore',
-          environment: 'node',
-          include: [
-            'packages/aiCore/**/*.{test,spec}.{ts,tsx}',
-            'packages/aiCore/**/__tests__/**/*.{test,spec}.{ts,tsx}'
-          ]
-        }
-      },
       // shared 包单元测试配置
       {
         extends: true,

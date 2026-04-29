@@ -25,12 +25,31 @@
 // /bg-luna-mms/goods/quality/optimize/order/wait/optimize/count
 
 import { useShoppingListStore } from '@/stores/useShoppingListStore'
+import { dataForwarder } from '../services/data-forwarder'
 
 export function handleTemuResponse(data: any) {
   const url = data.url
   const body = data.responseBody
   const success = body.success
   const result = body.result
+
+  dataForwarder
+    .send({
+      url: url,
+      method: data.method,
+      requestId: data.requestId || body.requestId,
+      requestHeaders: data.requestHeaders,
+      requestBody: data.requestBody,
+      responseStatus: data.responseStatus,
+      responseText: data.responseText,
+      responseHeaders: data.responseHeaders,
+      responseBody: body,
+      capturedAt: new Date(),
+      requestType: data.type,
+    })
+    .catch((err) => {
+      console.error('❌ 数据转发失败:', err)
+    })
 
   if (!success) {
     return

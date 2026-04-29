@@ -1,10 +1,31 @@
 {
   "git.autofetch": "all",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "cva\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cx\\(([^)]*)\\)",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
+  ],
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "next/router.d.ts",
+    "next/dist/client/router.d.ts"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.detectIndentation": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "prisma.fileWatcher": true,
+  "search.exclude": {
+    "package-lock.json": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "biome.enabled": true,
   "eslint.rules.customizations": [
     {
       "rule": "*",
@@ -23,33 +44,31 @@
       "pattern": "tooling/*/"
     }
   ],
-  "tailwindCSS.experimental.classRegex": [
-    [
-      "cva\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "cx\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ]
-  ],
-  "tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "next/router.d.ts",
-    "next/dist/client/router.d.ts"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.requireConfig": true,
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
-  "editor.detectIndentation": false,
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "prisma.fileWatcher": true,
-  "search.exclude": {
-    "package-lock.json": true
+  "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.formatOnSave": true
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  },
+  }
 }

@@ -28,7 +28,7 @@ export class Popularity {
 
     const value: string[] = []
     for (let i = 0; i < 8; i++) {
-      value.push(r[i] ?? '' + g[i] ?? '' + b[i] ?? '')
+      value.push(r[i] ?? '' + g[i] + b[i])
     }
     this.colors.push(value)
     const colorKey = value.slice(0, this.level).join('-')

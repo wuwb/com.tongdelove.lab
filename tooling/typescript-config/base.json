@@ -1,7 +1,9 @@
 {
-  // www.typescriptlang.org/tsconfig
   "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "TongdeLove TypeScript Base Config",
   "compilerOptions": {
+    // "module": "NodeNext",
+    // "moduleResolution": "NodeNext",
     /** Base Options */
     "esModuleInterop": true, // 通过为导入内容创建命名空间，实现 CommonJS 和 ES 模块之间的互操作性
     "skipLibCheck": true, // 跳过导入第三方 lib 声明文件的类型检查，默认为 true
@@ -9,17 +11,17 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext",
+      "es2022",
       "WebWorker"
     ],
-    "resolveJsonModule": false,
-    // "moduleDetection": "force",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
     // "isolatedModules": true,
     /** Keep TSC performant in monorepos */
     // "incremental": true,
     // "disableSourceOfProjectReferenceRedirect": true,
     "strict": true, /* Enable all strict type-checking options. */
-    // "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": true,
     // "checkJs": true, /* Report errors in .js files. */
     /** Transpile using Bundler (not tsc) */
     "module": "commonjs", // "Preserve",

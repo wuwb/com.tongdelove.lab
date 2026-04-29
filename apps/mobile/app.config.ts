@@ -20,7 +20,7 @@ const config = ({ config }: ConfigContext): ExpoConfig => {
     orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'automatic',
-    newArchEnabled: true,
+    newArchEnabled: false,
     platforms: ['ios', 'android', 'web'],
     runtimeVersion: '0.0.1',
     updates: {
@@ -54,19 +54,23 @@ const config = ({ config }: ConfigContext): ExpoConfig => {
       },
       favicon: "./assets/images/favicon.png"
     },
-    autolinking: {
-      android: {
-        exclude: ['expo-keep-awake', 'expo-font', '@expo/vector-icons'],
-      },
-      ios: {
-        exclude: ['expo-keep-awake', 'expo-font', '@expo/vector-icons'],
-      },
-    },
     extra: {
     // All values in extra will be passed to your app.
     //   eas: {
     //     projectId: "your-eas-project-id",
     //   },
+      autolinking: {
+        android: {
+          exclude: ['expo-keep-awake', 'expo-font', '@expo/vector-icons'],
+        },
+        ios: {
+          exclude: ['expo-keep-awake', 'expo-font', '@expo/vector-icons'],
+        },
+      },
+      "react-native-google-mobile-ads": {
+        "android_app_id": "ca-app-pub-3940256099942544~3347511713",
+        "ios_app_id": "ca-app-pub-3940256099942544~1458002511"
+      }
     },
     experiments: {
       tsconfigPaths: true,
@@ -99,12 +103,12 @@ const config = ({ config }: ConfigContext): ExpoConfig => {
           paymentProvider: 'Play Store',
         },
       ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/perf",
+      "@react-native-firebase/crashlytics",
+      "@react-native-firebase/messaging",
     ],
   }
 }
 
-export default withSentry(config, {
-  url: 'https://sentry.tongdelove.com/',
-  project: 'mobile',
-  organization: 'wuwenbin',
-})
+export default config
