@@ -22,19 +22,7 @@ export const parseRelativeUrl = (path: string) => {
  * @param {string} key 获取单独的一个key
  * @return {*}
  */
-export const getUrlQuery = (
-  urlPath: string,
-  key?: string
-): string | object | undefined => {
-  const query = url.parse(urlPath, true).query
-  if (key) {
-    return query[key]
-  } else {
-    return query
-  }
-}
-
-export const getUrlQuery2 = (urlPath: string, key: string): string | null => {
+export const getUrlQuery = (urlPath: string, key: string): string | null => {
   const theUrl = new url.URL(urlPath, 'https://www.')
   const params = new URLSearchParams(theUrl.search.substring(1))
   return params.get(key)

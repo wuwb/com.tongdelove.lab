@@ -26,7 +26,6 @@
     "db:push": "prisma db push && cd ../../packages/schema && pnpm build",
     "db:studio": "prisma studio",
     "db:migrate:create": "prisma migrate dev --create-only",
-    "postinstall": "prisma generate",
     "build-stats": "ANALYZE=true npm run build",
     "pm2-start": "pm2 start npm --name \"lab\" -- start",
     "export": "next build && next export",
