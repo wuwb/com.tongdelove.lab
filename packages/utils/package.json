@@ -23,8 +23,8 @@
     "@tongdelove/eslint-config": "workspace:^",
     "@tongdelove/typescript-config": "workspace:^",
     "@types/bcryptjs": "^2.4.6",
-    "typescript": "^5.4.5",
+    "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.0.5"
+    "vitest": "^3.2.4"
   }
 }

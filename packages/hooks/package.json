@@ -17,10 +17,10 @@
     "@tongdelove/utils": "workspace:^"
   },
   "devDependencies": {
-    "@tongdelove/typescript-config": "workspace:^",
     "@tongdelove/eslint-config": "workspace:^",
-    "@types/react": "^18.3.3",
-    "typescript": "^5.4.5"
+    "@tongdelove/typescript-config": "workspace:^",
+    "@types/react": "^19.2.7",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": "^18.3.1"

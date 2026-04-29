@@ -10,7 +10,7 @@
   "author": "",
   "license": "UNLICENSE",
   "dependencies": {
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^7.4.0",
     "cheerio": "1.0.0-rc.12"
   }
 }

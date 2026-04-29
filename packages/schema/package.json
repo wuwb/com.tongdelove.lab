@@ -15,9 +15,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5.4.5",
+    "@tongdelove/eslint-config": "workspace:^",
     "@tongdelove/typescript-config": "workspace:^",
-    "@tongdelove/eslint-config": "workspace:^"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "@prisma/client": "^7.4.0"

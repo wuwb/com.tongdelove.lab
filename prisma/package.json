@@ -12,7 +12,6 @@
     "dev": "tsup --watch",
     "fix-all-files": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs --fix",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.cjs,.mjs --cache --cache-location ../../.cache/eslint/prisma.eslintcache",
-    "postinstall": "prisma generate",
     "prisma-generate": "prisma generate",
     "prisma-db-push": "pnpx prisma db push",
     "prisma-db-seed": "pnpx prisma db seed",
@@ -25,35 +24,33 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "prisma": "^7.3.0",
-    "prisma-erd-generator": "^1.11.1",
-    "@prisma/client": "^5.20.0"
+    "@prisma/adapter-pg": "^7.4.0",
+    "@prisma/client": "^7.4.0",
+    "dotenv": "^17.3.1",
+    "pg": "^8.11.1",
+    "prisma": "^7.4.0",
+    "prisma-erd-generator": "^2.4.2"
   },
   "devDependencies": {
-    "prisma-nestjs-graphql": "^21.2.0",
-    "@tongdelove/typescript-config": "workspace:^",
     "@soluble/dsn-parser": "^1.9.2",
     "@tongdelove/eslint-config": "workspace:^",
-    "@types/node": "^20.12.8",
+    "@tongdelove/typescript-config": "workspace:^",
+    "@types/node": "24.10.4",
     "@vegardit/prisma-generator-nestjs-dto": "^1.5.1",
     "@vitest/coverage-v8": "1.2.2",
-    "graphql": "16.8.1",
     "is-port-reachable": "4.0.0",
     "keyword-extractor": "0.0.27",
     "npm-run-all": "4.1.5",
     "picocolors": "1.0.1",
-    "prettier": "^3.2.5",
-    "rimraf": "5.0.5",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
     "transliteration": "2.3.5",
     "tsup": "7.2.0",
     "tsx": "3.13.0",
-    "typescript": "^5.4.5",
+    "typescript": "^5.9.3",
     "vite": "4.4.10",
     "vite-tsconfig-paths": "4.2.1",
-    "vitest": "^1"
-  },
-  "peerDependencies": {
-    "graphql": "^16.6.0"
+    "vitest": "^3.2.4"
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
