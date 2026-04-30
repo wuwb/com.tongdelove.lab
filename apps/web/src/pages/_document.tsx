@@ -3,6 +3,11 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 import type { DocumentContext } from 'next/document'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-26TZGP2HCH'
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-KD5H2RG'
+
+const isProduction = process.env.NODE_ENV === 'production'
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -11,20 +16,34 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="zh-cn" suppressHydrationWarning>
-        <Head />
+      <Html lang="zh-CN" suppressHydrationWarning>
+        <Head>
+          {isProduction && GTM_ID && (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+              }}
+            />
+          )}
+        </Head>
         <body>
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-KD5H2RG"
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            ></iframe>
-          </noscript>
+          {isProduction && GTM_ID && (
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+            </noscript>
+          )}
           <Main />
           <NextScript />
-          <GoogleAnalytics gaId="G-26TZGP2HCH" />
+          {isProduction && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
         </body>
       </Html>
     )

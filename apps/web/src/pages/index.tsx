@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { Seo } from '@/components/common/Seo'
 import { Col4Demo } from '@/containers/Index'
 import { Solution } from '@/containers/Index/Solution'
 import { Customers } from '@/containers/Index/Customers'
@@ -11,11 +11,12 @@ import Banner2 from '@/containers/Index/2.png'
 const IndexPage = (props) => {
   return (
     <>
-      <Head>
-        <title>半祥包装</title>
-        <meta name="description" content="印刷,包装,包装供应链" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title="首页"
+        description="半祥包装 - 专业的印刷包装解决方案提供商，提供胶印、凹版印刷、包装盒定制等一站式包装印刷服务。"
+        url="/"
+        type="website"
+      />
       <CustomCarousel
         images={[
           {

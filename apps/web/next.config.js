@@ -49,6 +49,19 @@ module.exports = withPlugins([], {
     ]
   },
 
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap.xml',
+      },
+      {
+        source: '/robots.txt',
+        destination: '/api/robots.txt',
+      },
+    ]
+  },
+
   eslint: {
     ignoreDuringBuilds: true,
   },

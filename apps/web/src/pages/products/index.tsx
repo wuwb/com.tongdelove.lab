@@ -13,6 +13,7 @@ import {
   RadioGroupItem,
 } from '@tongdelove/ui/components/radio-group'
 import { ProductCard } from '@/containers/product'
+import { Seo } from '@/components/common/Seo'
 import s from './index.module.css'
 import {
   Accordion,
@@ -119,6 +120,12 @@ const ProductPage = () => {
 
   return (
     <>
+      <Seo
+        title="产品中心"
+        description="半祥包装提供各类高品质包装产品，包括纸箱、彩盒、手提袋、标签等。支持定制化服务，满足不同行业的包装需求。"
+        url="/products"
+        type="website"
+      />
       <Drawer open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
         <DrawerContent>
           <DrawerHeader>

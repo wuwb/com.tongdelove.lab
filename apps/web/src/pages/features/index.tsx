@@ -1,15 +1,18 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/common'
+import { Seo } from '@/components/common/Seo'
 
 const Home = () => {
   return (
     <>
-      <Head>
-        <title>Features</title>
-      </Head>
+      <Seo
+        title="功能特性"
+        description="半祥包装提供强大的包装供应链管理功能，包括在线协作开发、工厂采购、订单管理、生产跟踪、数据分析等一站式服务。"
+        url="/features"
+        type="website"
+      />
 
       <div className="py-20 text-center">
         <h1 className="text-2xl">将你的包装工作链路迁移到线上。</h1>

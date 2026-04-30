@@ -298,23 +298,6 @@ export function useDomClean() {
 }
 ```
 
-### 5. Configuration Pattern
-
-**Site Configuration** (`/src/config/`):
-
-```typescript
-// src/config/site.ts
-export const siteConfig = {
-  name: 'Packaging Solutions',
-  url: 'https://packaging.example.com',
-  ogImage: '/og-image.jpg',
-  links: {
-    twitter: 'https://twitter.com/packaging',
-    github: 'https://github.com/packaging',
-  },
-}
-```
-
 ---
 
 ## 🔧 Development Workflow
