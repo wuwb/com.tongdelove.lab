@@ -39,7 +39,7 @@ export function registerVersionIpc() {
   ipcMain.handle('version:check-all', async () => {
     try {
       const versions = await versionService.checkAllVersions()
-      return { success: true, data: versions.map(v => versionService.getVersionForIPC(v.name)) }
+      return { success: true, data: versions.map((v) => versionService.getVersionForIPC(v.name)) }
     } catch (error) {
       console.error('Failed to check all versions:', error)
       return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
@@ -74,7 +74,7 @@ export function registerVersionIpc() {
   ipcMain.handle('version:update-all', async () => {
     try {
       const results = await versionService.updateAllVersions()
-      const updatedVersions = results.map(result => ({
+      const updatedVersions = results.map((result) => ({
         name: result.name,
         success: result.success,
         data: versionService.getVersionForIPC(result.name)

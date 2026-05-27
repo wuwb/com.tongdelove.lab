@@ -98,20 +98,14 @@ export function useConversations() {
         tags: updates.tags || []
       }
       await window.database.updateConversation(id, dbUpdates)
-      setConversations((prev) =>
-        prev.map((s) => (s.id === id ? { ...s, ...updates, updatedAt: Date.now() } : s))
-      )
+      setConversations((prev) => prev.map((s) => (s.id === id ? { ...s, ...updates, updatedAt: Date.now() } : s)))
     } catch (e) {
       console.error('Failed to update conversation', id, e)
     }
   }
 
   const addMessage = useCallback(
-    async (
-      conversationId: string,
-      message: ChatMessage,
-      modelUpdate?: { model?: string; provider?: ProviderName }
-    ) => {
+    async (conversationId: string, message: ChatMessage, modelUpdate?: { model?: string; provider?: ProviderName }) => {
       const conversation = conversations.find((s) => s.id === conversationId)
       if (!conversation) return
 
@@ -144,9 +138,7 @@ export function useConversations() {
         // 更新本地状态
         setConversations((prev) =>
           prev.map((s) =>
-            s.id === conversationId
-              ? { ...s, title, messages: newMessages, ...modelUpdate, updatedAt: Date.now() }
-              : s
+            s.id === conversationId ? { ...s, title, messages: newMessages, ...modelUpdate, updatedAt: Date.now() } : s
           )
         )
       } catch (e) {

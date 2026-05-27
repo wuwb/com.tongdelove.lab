@@ -1,7 +1,16 @@
-import { Button, Dialog, VStack, HStack, Text, Badge, Input, Box } from '@chakra-ui/react'
 import { Settings2 } from 'lucide-react'
 import { useState, useMemo } from 'react'
 import type { ProviderName, AppSettings } from '@/shared/ipc'
+import { Button } from '@/renderer/components/ui/button'
+import { Input } from '@/renderer/components/ui/input'
+import { Badge } from '@/renderer/components/ui/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from '@/renderer/components/ui/dialog'
+import { cn } from '@/renderer/lib/utils'
 
 type ProviderConfig = {
   id: string
@@ -24,7 +33,6 @@ interface ModelSelectorProps {
   settings: AppSettings
 }
 
-// 默认内置提供商配置
 const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
   openai: {
     id: 'openai',
@@ -92,36 +100,26 @@ const DEFAULT_PROVIDERS: Record<string, ProviderConfig> = {
   }
 }
 
-export function ModelSelector({
-  currentModel,
-  currentProvider,
-  onSelect,
-  settings
-}: ModelSelectorProps) {
+export function ModelSelector({ currentModel, currentProvider, onSelect, settings }: ModelSelectorProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
-  // 从 settings 构建提供商配置
   const providerConfigs = useMemo(() => {
     const providers: Record<string, ProviderConfig> = { ...DEFAULT_PROVIDERS }
 
-    // 从 settings.providers.builtinConfigs 更新内置提供商模型
     const builtinConfigs = (settings.providers as any)?.builtinConfigs || {}
     Object.entries(builtinConfigs).forEach(([providerId, config]: [string, any]) => {
       if (providers[providerId]) {
-        // 更新现有提供商的模型
         if (config.models && config.models.length > 0) {
           providers[providerId].models = config.models.map((m: any) => ({
             id: m.id || m.name,
             name: m.name || m.id
           }))
         }
-        // 更新启用状态
         providers[providerId].enabled = config.enabled ?? true
       }
     })
 
-    // 添加自定义提供商
     const customProviders = (settings.providers as any)?.customProviders || []
     customProviders.forEach((provider: any) => {
       providers[provider.id] = {
@@ -170,7 +168,6 @@ export function ModelSelector({
       ollama: 'purple',
       mock: 'gray'
     }
-    // 为自定义提供商生成基于 hash 的颜色
     if (!colorMap[providerId]) {
       const colors = ['red', 'cyan', 'pink', 'indigo', 'teal', 'yellow']
       const hash = providerId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
@@ -183,110 +180,103 @@ export function ModelSelector({
     <>
       <Button
         size="sm"
-        variant={currentModel ? 'solid' : 'outline'}
-        colorScheme="gray"
+        variant={currentModel ? 'default' : 'outline'}
         onClick={() => setIsOpen(true)}
       >
-        <Settings2 size={14} style={{ marginRight: '8px' }} />
+        <Settings2 className="h-3.5 w-3.5 mr-2" />
         {currentModel || '选择模型'}
       </Button>
 
-      <Dialog.Root open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
-        <Dialog.Backdrop />
-        <Dialog.Positioner>
-          <Dialog.Content bg="white" _dark={{ bg: 'gray.900' }}>
-            <Dialog.Header>
-              <Dialog.Title>选择模型</Dialog.Title>
-              <Dialog.CloseTrigger />
-            </Dialog.Header>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle>选择模型</DialogTitle>
+          </DialogHeader>
 
-            <Dialog.Body>
-              <VStack gap={4} align="stretch">
-                <Input
-                  placeholder="搜索模型（如：gpt-4o, claude, 最新, 免费...）"
-                  bg="gray.100"
-                  _dark={{ bg: 'gray.800' }}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+          <div className="flex flex-col gap-4 flex-1 overflow-hidden">
+            <Input
+              placeholder="搜索模型（如：gpt-4o, claude, 最新, 免费...）"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-gray-100 dark:bg-gray-800"
+            />
 
-                <VStack gap={4} align="stretch">
-                  {filteredModels.map(([provider, config]) => (
-                    <Box key={provider} borderWidth={1} rounded="md" p={3}>
-                      <HStack justify="space-between" mb={3}>
-                        <VStack align="start" gap={1}>
-                          <HStack gap={2}>
-                            <Text fontSize="xl">{config.avatar}</Text>
-                            <Badge colorScheme={getProviderColor(provider)}>{config.name}</Badge>
-                            <Text fontSize="sm" color="gray.500" fontWeight="medium">
-                              {config.models.length} 个模型
-                            </Text>
-                          </HStack>
-                          {config.remark && (
-                            <Text fontSize="xs" color="gray.400" maxW="300px" noOfLines={2}>
-                              {config.remark}
-                            </Text>
-                          )}
-                        </VStack>
-                      </HStack>
-
-                      <VStack gap={1} maxH="200" overflowY="auto">
-                        {config.models.length === 0 ? (
-                          <Text fontSize="sm" color="gray.400" textAlign="center" py={4}>
-                            无可用模型
-                          </Text>
-                        ) : (
-                          config.models.map((model) => (
-                            <HStack
-                              key={model.id}
-                              p={2}
-                              rounded="md"
-                              cursor="pointer"
-                              bg={
-                                currentModel === model.name && currentProvider === provider
-                                  ? 'gray.100'
-                                  : 'transparent'
-                              }
-                              _dark={{
-                                bg:
-                                  currentModel === model.name && currentProvider === provider
-                                    ? 'gray.800'
-                                    : 'transparent'
-                              }}
-                              _hover={{ bg: 'gray.50', _dark: { bg: 'gray.800' } }}
-                              onClick={() =>
-                                handleSelectModel(model.name, provider as ProviderName)
-                              }
-                              justify="space-between"
-                            >
-                              <Text
-                                fontSize="sm"
-                                fontWeight={currentModel === model.name ? 'medium' : 'normal'}
-                              >
-                                {model.name}
-                              </Text>
-                              {currentModel === model.name && currentProvider === provider && (
-                                <Badge size="xs" colorScheme="green">
-                                  当前
-                                </Badge>
-                              )}
-                            </HStack>
-                          ))
-                        )}
-                      </VStack>
-                    </Box>
-                  ))}
-                  {filteredModels.length === 0 && (
-                    <Text fontSize="sm" color="gray.400" textAlign="center" py={8}>
-                      未找到匹配的模型
-                    </Text>
+            <div className="flex flex-col gap-4 flex-1 overflow-y-auto">
+              {filteredModels.map(([provider, config]) => (
+                <div
+                  key={provider}
+                  className={cn(
+                    'border rounded-md p-3',
+                    'border-gray-200 dark:border-gray-700'
                   )}
-                </VStack>
-              </VStack>
-            </Dialog.Body>
-          </Dialog.Content>
-        </Dialog.Positioner>
-      </Dialog.Root>
+                >
+                  <div className="flex justify-between mb-3">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex gap-2 items-center">
+                        <span className="text-xl">{config.avatar}</span>
+                        <Badge variant={getProviderColor(provider) as any}>
+                          {config.name}
+                        </Badge>
+                        <span className="text-sm text-gray-500 font-medium">
+                          {config.models.length} 个模型
+                        </span>
+                      </div>
+                      {config.remark && (
+                        <span className="text-xs text-gray-400 max-w-sm line-clamp-2">
+                          {config.remark}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1 max-h-48 overflow-y-auto">
+                    {config.models.length === 0 ? (
+                      <div className="flex justify-center py-4">
+                        <span className="text-sm text-gray-400">无可用模型</span>
+                      </div>
+                    ) : (
+                      config.models.map((model) => (
+                        <div
+                          key={model.id}
+                          className={cn(
+                            'p-2 rounded-md cursor-pointer flex justify-between items-center',
+                            'hover:bg-gray-50 dark:hover:bg-gray-800',
+                            currentModel === model.name && currentProvider === provider
+                              ? 'bg-gray-100 dark:bg-gray-800'
+                              : 'transparent'
+                          )}
+                          onClick={() => handleSelectModel(model.name, provider as ProviderName)}
+                        >
+                          <span
+                            className={cn(
+                              'text-sm',
+                              currentModel === model.name && 'font-medium'
+                            )}
+                          >
+                            {model.name}
+                          </span>
+                          {currentModel === model.name && currentProvider === provider && (
+                            <Badge variant="green">
+                              当前
+                            </Badge>
+                          )}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              ))}
+              {filteredModels.length === 0 && (
+                <div className="flex justify-center py-8">
+                  <span className="text-sm text-gray-400 text-center">
+                    未找到匹配的模型
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

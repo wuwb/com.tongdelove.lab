@@ -5,8 +5,8 @@ export function AboutPage() {
   const [params] = useSearchParams()
 
   return (
-    <div className="flex flex-col p-6 items-center justify-center gap-1">
-      <span className="text-primary-foreground bg-primary rounded-sm px-1">
+    <div className="flex flex-col items-center justify-center gap-1 p-6">
+      <span className="rounded-sm bg-primary px-1 text-primary-foreground">
         Current version: {params.get('version')}
       </span>
       <Versions />

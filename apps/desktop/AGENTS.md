@@ -1,7 +1,7 @@
 # AGENTS.md - Desktop Application (Electron)
 
 > **Last Updated**: 2025-02-27
-> **Framework**: Electron + React + TypeScript + tailwind + redux-toolkit + @chakra-ui/react
+> **Framework**: Electron + React + TypeScript + tailwind + redux-toolkit
 > **Build Tool**: electron-vite (Vite 7.x)
 > **Architecture**: Three-tier (Main Process | Preload | Renderer)
 
@@ -114,7 +114,7 @@ src/
 │   ├── prompt/            # Prompt templates
 │   ├── model/             # Model configuration
 │   ├── Header/            # Application header
-│   ├── ui/                # Reusable UI components (shadcn/chakra)
+│   ├── ui/                # Reusable UI components (shadcn)
 │   └── layouts/           # Page layouts
 ├── pages/
 │   ├── index.tsx          # Chat page (default)
@@ -288,10 +288,10 @@ pnpm dist
 
    ```typescript
    import { ipcMain } from 'electron'
-   import { IPC_CANNELS } from '@/shared/ipc'
+   import { IPC_CHANNELS } from '@/shared/ipc'
 
    export function registerMyFeatureIpc() {
-     ipcMain.handle(IPC_CANNELS.MY_FEATURE_ACTION, async (event, ...args) => {
+     ipcMain.handle(IPC_CHANNELS.MY_FEATURE_ACTION, async (event, ...args) => {
        // Implementation
        return result
      })
@@ -416,6 +416,16 @@ When working on the desktop app:
 - 文件名用大写驼峰，不要有中划线
 - 不加非必要注释
 - 使用函数式编程，不用类实现
+
+## 
+
+react 组件中，按一下顺序定义变量和方法
+
+- 全局变量
+- 局部变量
+- 方法
+- 副作用
+- 渲染模板
 
 ---
 

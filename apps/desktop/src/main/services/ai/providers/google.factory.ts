@@ -19,27 +19,24 @@ export async function* googleChatStream(
     return
   }
 
-  const response = await fetch(
-    `${baseUrl}/models/${req.model}:streamGenerateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        contents: req.messages.map((msg) => ({
-          role: msg.role === 'prompt' ? 'model' : 'user',
-          parts: [{ text: msg.content }]
-        })),
-        generationConfig: {
-          temperature: req.options?.temperature ?? 0.7,
-          topP: req.options?.top_p ?? 1,
-          topK: req.options?.top_k,
-          maxOutputTokens: req.options?.max_tokens
-        }
-      })
-    }
-  )
+  const response = await fetch(`${baseUrl}/models/${req.model}:streamGenerateContent?key=${apiKey}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      contents: req.messages.map((msg) => ({
+        role: msg.role === 'prompt' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      })),
+      generationConfig: {
+        temperature: req.options?.temperature ?? 0.7,
+        topP: req.options?.top_p ?? 1,
+        topK: req.options?.top_k,
+        maxOutputTokens: req.options?.max_tokens
+      }
+    })
+  })
 
   if (!response.ok) {
     const errorText = await response.text()

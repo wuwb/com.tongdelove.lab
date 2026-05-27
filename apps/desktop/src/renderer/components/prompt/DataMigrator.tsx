@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@tongdelove/ui/components/dialog'
-import { Button } from '@tongdelove/ui/components/button'
-import { Alert, AlertDescription } from '@tongdelove/ui/components/alert'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/renderer/components/ui/dialog'
+import { Button } from '@/renderer/components/ui/button'
+import { Alert, AlertDescription } from '@/renderer/components/ui/alert'
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 
 interface DataMigratorProps {
@@ -80,10 +80,10 @@ export function DataMigrator({ open, onOpenChange, onMigrate }: DataMigratorProp
                     <CheckCircle2 className="h-4 w-4" />
                     <AlertDescription>找到 {foundKeys.length} 个数据源需要迁移</AlertDescription>
                   </Alert>
-                  <ul className="text-sm space-y-1">
+                  <ul className="space-y-1 text-sm">
                     {foundKeys.map((key) => (
                       <li key={key} className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full" />
+                        <span className="h-2 w-2 rounded-full bg-blue-500" />
                         {key}
                       </li>
                     ))}
@@ -104,22 +104,17 @@ export function DataMigrator({ open, onOpenChange, onMigrate }: DataMigratorProp
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <span className="text-sm">{message}</span>
               </div>
-              <div className="w-full bg-secondary rounded-full h-2">
-                <div
-                  className="bg-primary h-2 rounded-full transition-all"
-                  style={{ width: `${progress}%` }}
-                />
+              <div className="h-2 w-full rounded-full bg-secondary">
+                <div className="h-2 rounded-full bg-primary transition-all" style={{ width: `${progress}%` }} />
               </div>
-              <div className="text-right text-xs text-muted-foreground">{progress}%</div>
+              <div className="text-right text-muted-foreground text-xs">{progress}%</div>
             </div>
           )}
 
           {status === 'success' && (
             <Alert variant="default" className="border-green-500">
               <CheckCircle2 className="h-4 w-4 text-green-500" />
-              <AlertDescription className="text-green-700 dark:text-green-400">
-                {message}
-              </AlertDescription>
+              <AlertDescription className="text-green-700 dark:text-green-400">{message}</AlertDescription>
             </Alert>
           )}
 
@@ -132,16 +127,10 @@ export function DataMigrator({ open, onOpenChange, onMigrate }: DataMigratorProp
         </div>
 
         <div className="flex justify-end gap-2">
-          <Button
-            variant="outline"
-            onClick={() => onOpenChange(false)}
-            disabled={status === 'migrating'}
-          >
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={status === 'migrating'}>
             取消
           </Button>
-          {status === 'idle' && foundKeys.length > 0 && (
-            <Button onClick={handleMigrate}>开始迁移</Button>
-          )}
+          {status === 'idle' && foundKeys.length > 0 && <Button onClick={handleMigrate}>开始迁移</Button>}
         </div>
       </DialogContent>
     </Dialog>

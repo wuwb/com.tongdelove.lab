@@ -1,5 +1,5 @@
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
-import reactPlugin from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'electron-vite'
+import reactPlugin from '@vitejs/plugin-react'
 import { CodeInspectorPlugin } from 'code-inspector-plugin'
 import tailwindcss from '@tailwindcss/vite'
 import tsconfigPathsPlugin from 'vite-tsconfig-paths'
@@ -22,21 +22,14 @@ const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
 
 const tsconfigPaths = tsconfigPathsPlugin({
-  projects: [
-    resolve('tsconfig.json'),
-    resolve('tsconfig.node.json'),
-    resolve('tsconfig.web.json')
-  ]
+  projects: [resolve('tsconfig.json'), resolve('tsconfig.node.json'), resolve('tsconfig.web.json')]
 })
 
 export default defineConfig({
   main: {
     plugins: [
       tsconfigPaths,
-      externalizeDepsPlugin({
-        include: ['better-sqlite3', 'electron']
-      }),
-      ...visualizerPlugin('main'),
+      ...visualizerPlugin('main')
     ],
     resolve: {
       alias: {
@@ -49,12 +42,15 @@ export default defineConfig({
       }
     },
     build: {
-      rollupOptions: {
+      externalizeDeps: {
+        include: ['better-sqlite3', 'electron']
+      },
+      rolldownOptions: {
         external: [
-          'better-sqlite3',
-          'electron',
-          'bufferutil',
-          'utf-8-validate',
+          'better-sqlite3', 
+          'electron', 
+          'bufferutil', 
+          'utf-8-validate', 
           ...Object.keys(pkg.dependencies)
         ],
         output: {
@@ -62,8 +58,9 @@ export default defineConfig({
           inlineDynamicImports: true // 内联所有动态导入，这是关键配置
         },
         onwarn(warning, warn) {
-          if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') return
-          warn(warning)
+          if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') {
+            return warn(warning)
+          }
         }
       },
       sourcemap: isDev
@@ -76,10 +73,9 @@ export default defineConfig({
   preload: {
     plugins: [
       reactPlugin({
-        tsDecorators: true
+        exclude: [/\/pdf\//, /\.solid\.tsx$/, /\/node_modules\//]
       }),
       tsconfigPaths,
-      externalizeDepsPlugin()
     ],
     resolve: {
       alias: {
@@ -89,6 +85,7 @@ export default defineConfig({
     },
     build: {
       sourcemap: isDev
+      
     }
   },
   renderer: {
@@ -103,13 +100,17 @@ export default defineConfig({
       tsconfigPaths,
       tailwindcss(),
       reactPlugin({
-        tsDecorators: true
+        exclude: [/\/pdf\//, /\.solid\.tsx$/, /\/node_modules\//]
       }),
-      ...(isDev ? [CodeInspectorPlugin({
-        bundler: 'vite',
-        // hotKeys: ['altKey'],
-        // hideConsole: true
-      })] : []),
+      ...(isDev
+        ? [
+            CodeInspectorPlugin({
+              bundler: 'vite'
+              // hotKeys: ['altKey'],
+              // hideConsole: true
+            })
+          ]
+        : []),
       ...visualizerPlugin('renderer')
     ],
     resolve: {
@@ -129,9 +130,6 @@ export default defineConfig({
     },
     optimizeDeps: {
       exclude: ['pyodide'],
-      esbuildOptions: {
-        target: 'esnext' // for dev
-      }
     },
     worker: {
       format: 'es'
@@ -139,19 +137,19 @@ export default defineConfig({
 
     build: {
       target: 'esnext', // for build
-      rollupOptions: {
+      rolldownOptions: {
         plugins: [
           injectProcessEnvPlugin({
             platform: process.platform
           })
         ] as any,
         input: {
-          index: resolve(__dirname, 'src/renderer/index.html'),
+          index: resolve(__dirname, 'src/renderer/index.html')
         },
         onwarn(warning, warn) {
           if (warning.code === 'COMMONJS_VARIABLE_IN_ESM') return
           warn(warning)
-        },
+        }
       }
     },
     esbuild: isProd ? { legalComments: 'none' } : {}

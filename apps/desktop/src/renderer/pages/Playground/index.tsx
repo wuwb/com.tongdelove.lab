@@ -1,8 +1,6 @@
-import { BotManagementTest } from "@/renderer/pages/Playground/BotManagementTest"
-import { PlaceholderSettings } from "@/renderer/pages/settings/PlaceholderSettings"
+import { BotManagementTest } from '@/renderer/pages/Playground/BotManagementTest'
 
 export const Playground = () => {
-
   return (
     <div>
       <BotManagementTest />

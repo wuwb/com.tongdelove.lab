@@ -720,7 +720,6 @@ export const designTokens = {
 **文件**: `src/renderer/src/layout/AppShell.tsx`
 
 ```tsx
-import { Box } from '@chakra-ui/react'
 import { WindowTitleBar } from '../components/Header/CustomTitleBar'
 import { AppSidebar } from './Sidebar'
 
@@ -728,12 +727,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <WindowTitleBar />
-      <Box display="flex" height="calc(100vh - 32px)">
+      <div display="flex" height="calc(100vh - 32px)">
         <AppSidebar />
-        <Box flex={1} overflow="auto">
+        <div flex={1} overflow="auto">
           {children}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   )
 }
@@ -995,7 +994,6 @@ src/renderer/src/
 
 ✅ 已有:
 
-- `@chakra-ui/react` ^3.8.2
 - `lucide-react` ^0.541.0
 - `@tongdelove/ui`
 - `react` ^19.1.1

@@ -1,5 +1,5 @@
 import { ipcMain, BrowserWindow } from 'electron'
-import { IPC_CANNELS } from '@/shared/ipc'
+import { IPC_CHANNELS } from '@/shared/ipc'
 
 export function registerWindowIpc() {
   // Get the main window
@@ -9,7 +9,7 @@ export function registerWindowIpc() {
   }
 
   // Minimize window
-  ipcMain.handle(IPC_CANNELS.WINDOW_MINIMIZE, async () => {
+  ipcMain.handle(IPC_CHANNELS.WINDOW_MINIMIZE, async () => {
     const window = getMainWindow()
     if (window) {
       window.minimize()
@@ -18,7 +18,7 @@ export function registerWindowIpc() {
   })
 
   // Maximize window
-  ipcMain.handle(IPC_CANNELS.WINDOW_MAXIMIZE, async () => {
+  ipcMain.handle(IPC_CHANNELS.WINDOW_MAXIMIZE, async () => {
     const window = getMainWindow()
     if (window) {
       window.maximize()
@@ -27,7 +27,7 @@ export function registerWindowIpc() {
   })
 
   // Unmaximize window
-  ipcMain.handle(IPC_CANNELS.WINDOW_UNMAXIMIZE, async () => {
+  ipcMain.handle(IPC_CHANNELS.WINDOW_UNMAXIMIZE, async () => {
     const window = getMainWindow()
     if (window) {
       window.unmaximize()
@@ -36,7 +36,7 @@ export function registerWindowIpc() {
   })
 
   // Close window
-  ipcMain.handle(IPC_CANNELS.WINDOW_CLOSE, async () => {
+  ipcMain.handle(IPC_CHANNELS.WINDOW_CLOSE, async () => {
     const window = getMainWindow()
     if (window) {
       window.close()

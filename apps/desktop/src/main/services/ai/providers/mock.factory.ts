@@ -1,9 +1,6 @@
 import type { ChatStreamRequest, ChatStreamChunk, ProviderConfig } from '../types'
 
-export async function* mockChatStream(
-  req: ChatStreamRequest,
-  config: ProviderConfig
-): AsyncGenerator<ChatStreamChunk> {
+export async function* mockChatStream(req: ChatStreamRequest, config: ProviderConfig): AsyncGenerator<ChatStreamChunk> {
   const last = req.messages.at(-1)?.content ?? ''
   const text = `${config.name} (${req.model}): ${last}`
 

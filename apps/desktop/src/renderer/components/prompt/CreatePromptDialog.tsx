@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@tongdelove/ui/components/dialog'
-import { Button } from '@tongdelove/ui/components/button'
-import { Input } from '@tongdelove/ui/components/input'
-import { Textarea } from '@tongdelove/ui/components/textarea'
-import { Label } from '@tongdelove/ui/components/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@tongdelove/ui/components/select'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/renderer/components/ui/dialog'
+import { Button } from '@/renderer/components/ui/button'
+import { Input } from '@/renderer/components/ui/input'
+import { Textarea } from '@/renderer/components/ui/textarea'
+import { Label } from '@/renderer/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/renderer/components/ui/select'
 import { usePrompts } from '../../hooks/usePrompts'
 import type { InsertPrompt } from '@/shared/ipc'
 import { Plus, X } from 'lucide-react'
@@ -93,7 +93,7 @@ export function CreatePromptDialog({ open, onOpenChange }: CreatePromptDialogPro
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle>创建新助手</DialogTitle>
           <DialogDescription>配置您的自定义 AI 助手</DialogDescription>
@@ -103,12 +103,7 @@ export function CreatePromptDialog({ open, onOpenChange }: CreatePromptDialogPro
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">名称 *</Label>
-              <Input
-                id="name"
-                placeholder="例如: 编程助手"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <Input id="name" placeholder="例如: 编程助手" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
 
             <div className="space-y-2">
@@ -160,12 +155,7 @@ export function CreatePromptDialog({ open, onOpenChange }: CreatePromptDialogPro
 
             <div className="space-y-2">
               <Label htmlFor="model">模型 *</Label>
-              <Input
-                id="model"
-                placeholder="gpt-3.5-turbo"
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-              />
+              <Input id="model" placeholder="gpt-3.5-turbo" value={model} onChange={(e) => setModel(e.target.value)} />
             </div>
           </div>
 
@@ -199,12 +189,9 @@ export function CreatePromptDialog({ open, onOpenChange }: CreatePromptDialogPro
               </Button>
             </div>
             {tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                  <div
-                    key={tag}
-                    className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-1 text-sm"
-                  >
+                  <div key={tag} className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-1 text-sm">
                     {tag}
                     <button onClick={() => removeTag(tag)} className="hover:text-destructive">
                       <X className="h-3 w-3" />

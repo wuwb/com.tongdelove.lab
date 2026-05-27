@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react'
-import { X, Upload, User, RefreshCw } from 'lucide-react'
+import { Upload, RefreshCw } from 'lucide-react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/renderer/components/ui/dialog'
+import { Button } from '@/renderer/components/ui/button'
+import { Input } from '@/renderer/components/ui/input'
+import { Label } from '@/renderer/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/renderer/components/ui/select'
+import { Textarea } from '@/renderer/components/ui/textarea'
+import { Card, CardContent } from '@/renderer/components/ui/card'
+import { Badge } from '@/renderer/components/ui/badge'
 
 interface Provider {
   id: string
   name: string
   type: string
   avatar: string
-  remark?: string // Service provider remarks/notes
-  officialUrl?: string // Official website URL
+  remark?: string
+  officialUrl?: string
   baseUrl?: string
   apiKeys?: string[]
   defaultModel?: string
@@ -24,29 +32,29 @@ interface AddProviderDialogProps {
 }
 
 const BUILTIN_AVATARS = [
-  '🤖', // 机器人
-  '🧠', // 大脑
-  '🦾', // 麋克
-  '⚡', // 闪电
-  '🚀', // 火箭
-  '💎', // 钻石
-  '🌟', // 星星
-  '🔮', // 宝石
-  '🎯', // 靶心
-  '🎨', // 调色板
-  '🧪', // 试管
-  '🔬', // 显微镜
-  '📊', // 图表
-  '⚙️', // 齮子
-  '🌐', // 地球
-  '☁️', // 云
-  '🔑', // 钥匙
-  '🎭', // 面具
-  '🎪', // 马戏头
-  '📎', // 别针
-  '🎁', // 礼物
-  '🏭', // 工厂
-  '🔔'  // 铃铛
+  '🤖',
+  '🧠',
+  '🦾',
+  '⚡',
+  '🚀',
+  '💎',
+  '🌟',
+  '🔮',
+  '🎯',
+  '🎨',
+  '🧪',
+  '🔬',
+  '📊',
+  '⚙️',
+  '🌐',
+  '☁️',
+  '🔑',
+  '🎭',
+  '🎪',
+  '📎',
+  '🎁',
+  '🏭',
+  '🔔'
 ]
 
 const PROVIDER_TYPES = [
@@ -66,29 +74,30 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
   const [avatar, setAvatar] = useState('🤖')
   const [avatarType, setAvatarType] = useState<'builtin' | 'custom'>('builtin')
   const [avatarUrl, setAvatarUrl] = useState('')
-  const [remark, setRemark] = useState('') // Service provider remarks/notes
-  const [officialUrl, setOfficialUrl] = useState('') // Official website URL
+  const [remark, setRemark] = useState('')
+  const [officialUrl, setOfficialUrl] = useState('')
   const [showAvatarPicker, setShowAvatarPicker] = useState(false)
 
   useEffect(() => {
-    if (editingProvider) {
-      setName(editingProvider.name || '')
-      setType(editingProvider.type || 'openai')
-      setAvatar(editingProvider.avatar || '🤖')
-      setAvatarType((editingProvider.avatar || '').startsWith('http') ? 'custom' : 'builtin')
-      setRemark(editingProvider.remark || '')
-      setOfficialUrl(editingProvider.officialUrl || '')
-      setShowAvatarPicker(false)
-    } else {
-      // Reset to defaults
-      setName('')
-      setType('openai')
-      setAvatar('🤖')
-      setAvatarType('builtin')
-      setAvatarUrl('')
-      setRemark('')
-      setOfficialUrl('')
-      setShowAvatarPicker(false)
+    if (isOpen) {
+      if (editingProvider) {
+        setName(editingProvider.name || '')
+        setType(editingProvider.type || 'openai')
+        setAvatar(editingProvider.avatar || '🤖')
+        setAvatarType((editingProvider.avatar || '').startsWith('http') ? 'custom' : 'builtin')
+        setRemark(editingProvider.remark || '')
+        setOfficialUrl(editingProvider.officialUrl || '')
+        setShowAvatarPicker(false)
+      } else {
+        setName('')
+        setType('openai')
+        setAvatar('🤖')
+        setAvatarType('builtin')
+        setAvatarUrl('')
+        setRemark('')
+        setOfficialUrl('')
+        setShowAvatarPicker(false)
+      }
     }
   }, [editingProvider, isOpen])
 
@@ -102,7 +111,6 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
     const file = e.target.files?.[0]
     if (!file) return
 
-    // 检查文件类型和大小
     if (!file.type.startsWith('image/')) {
       alert('请选择图片文件')
       return
@@ -135,7 +143,6 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
     const finalAvatar = avatarType === 'custom' ? avatarUrl : avatar
 
     if (editingProvider) {
-      // 更新现有服务商
       onAdd({
         ...editingProvider,
         name: name.trim(),
@@ -145,7 +152,6 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
         officialUrl: officialUrl || undefined
       })
     } else {
-      // 添加新服务商
       onAdd({
         name: name.trim(),
         type,
@@ -163,387 +169,153 @@ export function AddProviderDialog({ isOpen, onClose, onAdd, editingProvider }: A
     onClose()
   }
 
-  if (!isOpen) return null
-
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000
-      }}
-      onClick={handleClose}
-    >
-      <div
-        style={{
-          backgroundColor: 'white',
-          borderRadius: '12px',
-          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-          width: '100%',
-          maxWidth: '600px',
-          maxHeight: '90vh',
-          overflowY: 'auto'
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* 标题栏 */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '20px 24px',
-            borderBottom: '1px solid #e5e7eb'
-          }}
-        >
-          <h3 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>
-            {editingProvider ? '编辑服务商' : '添加服务商'}
-          </h3>
-          <button
-            onClick={handleClose}
-            style={{
-              padding: '4px',
-              border: 'none',
-              background: 'transparent',
-              color: '#6b7280',
-              cursor: 'pointer',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <X size={20} />
-          </button>
-        </div>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>{editingProvider ? '编辑服务商' : '添加服务商'}</DialogTitle>
+        </DialogHeader>
 
-        <form onSubmit={handleSubmit} style={{ padding: '24px' }}>
-          {/* 头像选择 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '12px', fontSize: '14px', fontWeight: '500' }}>
-              服务商头像
-            </label>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-              {/* 头像预览 */}
-              <div
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '50%',
-                  backgroundColor: '#f3f4f6',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '32px',
-                  border: '2px solid #e5e7eb',
-                  overflow: 'hidden'
-                }}
-              >
-                {avatarType === 'custom' && avatarUrl ? (
-                  <img
-                    src={avatarUrl}
-                    alt="Avatar"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                ) : (
-                  <span>{avatar}</span>
-                )}
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <div className="space-y-3">
+              <Label>服务商头像</Label>
+              <div className="flex items-start gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-border bg-muted text-3xl overflow-hidden">
+                  {avatarType === 'custom' && avatarUrl ? (
+                    <img src={avatarUrl} alt="Avatar" className="h-full w-full object-cover" />
+                  ) : (
+                    <span>{avatar}</span>
+                  )}
+                </div>
 
-              {/* 头像选择按钮 */}
-              <div style={{ flex: 1 }}>
-                <button
-                  type="button"
-                  onClick={() => setShowAvatarPicker(!showAvatarPicker)}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#3b82f6',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    marginBottom: '8px'
-                  }}
-                >
-                  {avatarType === 'builtin' ? '选择内置头像' : '更换头像'}
-                </button>
+                <div className="flex-1 space-y-2">
+                  <Button
+                    type="button"
+                    variant="default"
+                    size="sm"
+                    onClick={() => setShowAvatarPicker(!showAvatarPicker)}>
+                    {avatarType === 'builtin' ? '选择内置头像' : '更换头像'}
+                  </Button>
 
-                {showAvatarPicker && (
-                  <div
-                    style={{
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      padding: '16px',
-                      backgroundColor: '#f9fafb'
-                    }}
-                  >
-                    {/* 内置头像 */}
-                    <div style={{ marginBottom: '16px' }}>
-                      <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '8px' }}>
-                        内置头像
-                      </label>
-                      <div
-                        style={{
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(auto-fill, minmax(44px, 1fr))',
-                          gap: '8px'
-                        }}
-                      >
-                        {BUILTIN_AVATARS.map((emoji, index) => (
-                          <button
-                            key={index}
+                  {showAvatarPicker && (
+                    <Card>
+                      <CardContent className="space-y-4 p-4">
+                        <div className="space-y-2">
+                          <Label className="text-xs text-muted-foreground">内置头像</Label>
+                          <div className="grid grid-cols-8 gap-2">
+                            {BUILTIN_AVATARS.map((emoji, index) => (
+                              <button
+                                key={index}
+                                type="button"
+                                onClick={() => {
+                                  setAvatar(emoji)
+                                  setAvatarType('builtin')
+                                  setAvatarUrl('')
+                                  setShowAvatarPicker(false)
+                                }}
+                                className={`flex h-11 w-11 items-center justify-center rounded-lg border text-2xl transition-colors hover:bg-accent ${
+                                  avatar === emoji ? 'border-primary bg-primary/10' : 'border-border'
+                                }`}>
+                                {emoji}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label className="text-xs text-muted-foreground">上传头像</Label>
+                          <Label className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border-2 border-dashed border-border p-3 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary hover:bg-primary/5">
+                            <Upload className="h-4 w-4" />
+                            <input type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+                            <span>点击上传图片</span>
+                          </Label>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Button
                             type="button"
-                            onClick={() => {
-                              setAvatar(emoji)
-                              setAvatarType('builtin')
-                              setAvatarUrl('')
-                              setShowAvatarPicker(false)
-                            }}
-                            style={{
-                              width: '44px',
-                              height: '44px',
-                              fontSize: '24px',
-                              backgroundColor: 'white',
-                              border: avatar === emoji ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                              borderRadius: '8px',
-                              cursor: 'pointer',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              transition: 'all 0.15s ease',
-                              hover: avatar === emoji ? '#eff6ff' : 'transparent'
-                            }}
-                          >
-                            {emoji}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* 上传头像 */}
-                    <div style={{ marginBottom: '16px' }}>
-                      <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '8px' }}>
-                        上传头像
-                      </label>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <label
-                          style={{
-                            flex: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '8px',
-                            padding: '12px',
-                            border: '2px dashed #d1d5db',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            backgroundColor: 'white',
-                            color: '#6b7280',
-                            fontSize: '13px',
-                            transition: 'all 0.15s ease'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.borderColor = '#3b82f6'
-                            e.currentTarget.style.color = '#3b82f6'
-                            e.currentTarget.style.backgroundColor = '#eff6ff'
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.borderColor = '#d1d5db'
-                            e.currentTarget.style.color = '#6b7280'
-                            e.currentTarget.style.backgroundColor = 'white'
-                          }}
-                        >
-                          <Upload size={18} />
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileUpload}
-                            style={{ display: 'none' }}
-                          />
-                          <span>点击上传图片</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* 重置头像 */}
-                    <button
-                      type="button"
-                      onClick={handleResetAvatar}
-                      style={{
-                        padding: '8px 12px',
-                        backgroundColor: '#f3f4f6',
-                        color: '#6b7280',
-                        border: '1px solid #e5e7eb',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '13px',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#e5e7eb'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#f3f4f6'
-                      }}
-                    >
-                      <RefreshCw size={14} />
-                      重置为默认
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setShowAvatarPicker(false)}
-                      style={{
-                        padding: '6px 12px',
-                        backgroundColor: 'transparent',
-                        color: '#6b7280',
-                        border: 'none',
-                        cursor: 'pointer',
-                        fontSize: '13px',
-                        marginLeft: '8px'
-                      }}
-                    >
-                      取消
-                    </button>
-                  </div>
-                )}
+                            variant="outline"
+                            size="sm"
+                            onClick={handleResetAvatar}
+                            className="text-xs">
+                            <RefreshCw className="mr-1 h-3 w-3" />
+                            重置为默认
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setShowAvatarPicker(false)}
+                            className="text-xs text-muted-foreground">
+                            取消
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
               </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="provider-name">服务商名称 *</Label>
+              <Input
+                id="provider-name"
+                placeholder="例如: Azure OpenAI"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoFocus={!editingProvider}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="provider-type">服务商类型</Label>
+              <Select value={type} onValueChange={setType}>
+                <SelectTrigger id="provider-type">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {PROVIDER_TYPES.map(({ value, label }) => (
+                    <SelectItem key={value} value={value}>
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="provider-remark">服务商备注</Label>
+              <Textarea
+                id="provider-remark"
+                placeholder="输入服务商的备注信息，如价格、特点等..."
+                value={remark}
+                onChange={(e) => setRemark(e.target.value)}
+                rows={3}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="provider-url">官方链接</Label>
+              <Input
+                id="provider-url"
+                type="url"
+                placeholder="https://example.com"
+                value={officialUrl}
+                onChange={(e) => setOfficialUrl(e.target.value)}
+              />
             </div>
           </div>
 
-          {/* 服务商名称 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
-              服务商名称 *
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="例如: Azure OpenAI"
-              required
-              autoFocus={!editingProvider}
-              style={{
-                width: '100%',
-                padding: '8px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                fontSize: '14px'
-              }}
-            />
-          </div>
-
-          {/* 服务商类型 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
-              服务商类型
-            </label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '8px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                fontSize: '14px',
-                backgroundColor: 'white',
-                cursor: 'pointer'
-              }}
-            >
-              {PROVIDER_TYPES.map(({ value, label }) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* 服务商备注 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
-              服务商备注
-            </label>
-            <textarea
-              value={remark}
-              onChange={(e) => setRemark(e.target.value)}
-              placeholder="输入服务商的备注信息，如价格、特点等..."
-              rows={3}
-              style={{
-                width: '100%',
-                padding: '8px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                fontSize: '14px',
-                resize: 'vertical',
-                fontFamily: 'inherit'
-              }}
-            />
-          </div>
-
-          {/* 官方链接 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
-              官方链接
-            </label>
-            <input
-              type="url"
-              value={officialUrl}
-              onChange={(e) => setOfficialUrl(e.target.value)}
-              placeholder="https://example.com"
-              style={{
-                width: '100%',
-                padding: '8px 12px',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                fontSize: '14px'
-              }}
-            />
-          </div>
-
-          {/* 操作按钮 */}
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-            <button
-              type="button"
-              onClick={handleClose}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#fff',
-                color: '#374151',
-                border: '1px solid #e5e7eb',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500'
-              }}
-            >
+          <div className="flex justify-end gap-3">
+            <Button type="button" variant="outline" onClick={handleClose}>
               取消
-            </button>
-            <button
-              type="submit"
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500'
-              }}
-            >
-              {editingProvider ? '保存' : '添加'}
-            </button>
+            </Button>
+            <Button type="submit">{editingProvider ? '保存' : '添加'}</Button>
           </div>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   )
 }

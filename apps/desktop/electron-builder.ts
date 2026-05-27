@@ -1,15 +1,7 @@
 /** biome-ignore-all lint/suspicious/noTemplateCurlyInString: <> */
 import type { Configuration } from 'electron-builder'
 
-import {
-  main,
-  name,
-  version,
-  resources,
-  description,
-  displayName,
-  author as _author
-} from './package.json'
+import { main, name, version, resources, description, displayName, author as _author } from './package.json'
 
 import { getDevFolder } from './src/lib/electron-app/release/utils/path'
 

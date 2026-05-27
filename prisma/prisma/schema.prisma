@@ -1206,7 +1206,9 @@ model Category {
   order     Int
   onlyChild Boolean @default(false)
 
-  parentId String?
+  children  Category[] @relation("CategoryHierarchy")
+  parent    Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  parentId  String?
 
   @@map(name: "category")
 }

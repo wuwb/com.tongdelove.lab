@@ -31,7 +31,7 @@ export async function MainWindow() {
 
   // register AI IPC (uses webContents for broadcasting)
   registerAiIpc(window.webContents)
-  
+
   window.webContents.on('did-finish-load', () => {
     if (ENVIRONMENT.IS_DEV) {
       window.webContents.openDevTools({ mode: 'detach' })

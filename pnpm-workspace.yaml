@@ -15,6 +15,7 @@ packages:
   - packages/design
   - packages/ui
   - packages/validators
+  - packages/db
   - services/server
   - tasks/jobs/apple-guide-spider
   - tooling/eslint-config

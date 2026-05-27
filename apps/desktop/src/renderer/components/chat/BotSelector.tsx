@@ -1,52 +1,60 @@
-import { Button, Dialog, VStack, HStack, Text, Badge, Input, Box, Avatar } from '@chakra-ui/react'
 import { Bot, Sparkles } from 'lucide-react'
 import { useState, useMemo } from 'react'
-import type { Assistant } from '@/shared/ipc'
-import { useAssistants } from '../../hooks/useAssistants'
+import type { Prompt } from '@/shared/ipc'
+import { usePrompts } from '../../hooks/usePrompts'
 import { useCategories } from '../../hooks/useCategories'
+import { Button } from '@/renderer/components/ui/button'
+import { Input } from '@/renderer/components/ui/input'
+import { Avatar, AvatarFallback, AvatarImage } from '@/renderer/components/ui/avatar'
+import { Badge } from '@/renderer/components/ui/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from '@/renderer/components/ui/dialog'
+import { cn } from '@/renderer/lib/utils'
 
 interface BotSelectorProps {
-  currentAssistantId?: string
-  onSelect: (assistant: Assistant | null) => void
+  currentPromptId?: string
+  onSelect: (prompt: Prompt | null) => void
 }
 
-export function BotSelector({ currentAssistantId, onSelect }: BotSelectorProps) {
+export function BotSelector({ currentPromptId, onSelect }: BotSelectorProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const { assistants, loading } = useAssistants()
+  const { prompts, loading } = usePrompts()
   const { categories } = useCategories()
 
-  // 过滤助手
-  const filteredAssistants = useMemo(() => {
-    return assistants.filter((assistant) => {
+  const filteredPrompts = useMemo(() => {
+    return prompts.filter((prompt) => {
       if (!searchQuery) return true
 
       const queryLower = searchQuery.toLowerCase()
       return (
-        assistant.name.toLowerCase().includes(queryLower) ||
-        (assistant.description && assistant.description.toLowerCase().includes(queryLower)) ||
-        (assistant.systemPrompt && assistant.systemPrompt.toLowerCase().includes(queryLower))
+        prompt.name.toLowerCase().includes(queryLower) ||
+        (prompt.description && prompt.description.toLowerCase().includes(queryLower)) ||
+        (prompt.systemPrompt && prompt.systemPrompt.toLowerCase().includes(queryLower))
       )
     })
-  }, [assistants, searchQuery])
+  }, [prompts, searchQuery])
 
-  // 按分类分组助手
-  const groupedAssistants = useMemo(() => {
-    const groups: Record<string, Assistant[]> = {}
+  const groupedPrompts = useMemo(() => {
+    const groups: Record<string, Prompt[]> = {}
 
-    filteredAssistants.forEach((assistant) => {
-      const categoryId = assistant.categoryId || 'uncategorized'
+    filteredPrompts.forEach((prompt) => {
+      const categoryId = prompt.categoryId || 'uncategorized'
       if (!groups[categoryId]) {
         groups[categoryId] = []
       }
-      groups[categoryId].push(assistant)
+      groups[categoryId].push(prompt)
     })
 
     return groups
-  }, [filteredAssistants])
+  }, [filteredPrompts])
 
-  const handleSelectAssistant = (assistant: Assistant | null) => {
-    onSelect(assistant)
+  const handleSelectPrompt = (prompt: Prompt | null) => {
+    onSelect(prompt)
     setIsOpen(false)
     setSearchQuery('')
   }
@@ -63,150 +71,145 @@ export function BotSelector({ currentAssistantId, onSelect }: BotSelectorProps) 
     return category?.color || 'gray'
   }
 
-  const currentAssistant = assistants.find(a => a.id === currentAssistantId)
+  const currentPrompt = prompts.find((p) => p.id === currentPromptId)
 
   return (
     <>
       <Button
         size="sm"
-        variant={currentAssistant ? 'solid' : 'outline'}
-        colorScheme={currentAssistant ? 'blue' : 'gray'}
+        variant={currentPrompt ? 'default' : 'outline'}
         onClick={() => setIsOpen(true)}
-        leftIcon={currentAssistant ? <Bot size={14} /> : <Sparkles size={14} />}
-        isLoading={loading}
+        disabled={loading}
+        className={cn(
+          currentPrompt && 'bg-blue-600 hover:bg-blue-700 text-white'
+        )}
       >
-        {currentAssistant ? currentAssistant.name : '选择Bot'}
+        {currentPrompt ? (
+          <Bot className="h-3.5 w-3.5 mr-2" />
+        ) : (
+          <Sparkles className="h-3.5 w-3.5 mr-2" />
+        )}
+        {currentPrompt ? currentPrompt.name : '选择Bot'}
       </Button>
 
-      <Dialog.Root open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
-        <Dialog.Backdrop />
-        <Dialog.Positioner>
-          <Dialog.Content bg="white" _dark={{ bg: 'gray.900' }} maxW="600px">
-            <Dialog.Header>
-              <Dialog.Title>选择Bot助手</Dialog.Title>
-              <Dialog.CloseTrigger />
-            </Dialog.Header>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle>选择Bot提示词</DialogTitle>
+          </DialogHeader>
 
-            <Dialog.Body>
-              <VStack gap={4} align="stretch">
-                {/* 搜索框 */}
-                <Input
-                  placeholder="搜索Bot（名称、描述、提示词...）"
-                  bg="gray.100"
-                  _dark={{ bg: 'gray.800' }}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+          <div className="flex flex-col gap-4 flex-1 overflow-hidden">
+            <Input
+              placeholder="搜索Bot（名称、描述、提示词...）"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-gray-100 dark:bg-gray-800"
+            />
 
-                {/* 无Bot选项 */}
-                <Box
-                  p={3}
-                  borderWidth={1}
-                  rounded="md"
-                  cursor="pointer"
-                  bg={!currentAssistantId ? 'blue.50' : 'transparent'}
-                  _dark={{ bg: !currentAssistantId ? 'blue.900' : 'transparent' }}
-                  _hover={{ bg: 'gray.50', _dark: { bg: 'gray.800' } }}
-                  onClick={() => handleSelectAssistant(null)}
-                >
-                  <HStack gap={3}>
-                    <Avatar size="sm" bg="gray.200" _dark={{ bg: 'gray.700' }}>
-                      <Bot size={16} />
-                    </Avatar>
-                    <VStack align="start" gap={0}>
-                      <Text fontWeight="medium">默认助手</Text>
-                      <Text fontSize="sm" color="gray.500">使用基础模型，无特殊提示词</Text>
-                    </VStack>
-                    {!currentAssistantId && (
-                      <Badge colorScheme="blue" ml="auto">当前</Badge>
-                    )}
-                  </HStack>
-                </Box>
+            <div
+              className={cn(
+                'p-3 border rounded-md cursor-pointer',
+                'bg-white dark:bg-gray-900',
+                'border-gray-200 dark:border-gray-700',
+                !currentPromptId && 'bg-blue-50 dark:bg-blue-900/20',
+                'hover:bg-gray-50 dark:hover:bg-gray-800'
+              )}
+              onClick={() => handleSelectPrompt(null)}
+            >
+              <div className="flex gap-3 items-center">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src="" />
+                  <AvatarFallback className="bg-gray-200 dark:bg-gray-700">
+                    <Bot className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col gap-0">
+                  <span className="font-medium">默认助手</span>
+                  <span className="text-sm text-gray-500">使用基础模型，无特殊提示词</span>
+                </div>
+                {!currentPromptId && (
+                  <Badge variant="blue" className="ml-auto">
+                    当前
+                  </Badge>
+                )}
+              </div>
+            </div>
 
-                {/* Bot列表 */}
-                <VStack gap={4} align="stretch" maxH="400px" overflowY="auto">
-                  {Object.entries(groupedAssistants).map(([categoryId, categoryAssistants]) => (
-                    <Box key={categoryId}>
-                      {/* 分类标题 */}
-                      <HStack gap={2} mb={3}>
-                        <Badge colorScheme={getCategoryColor(categoryId)}>
-                          {getCategoryName(categoryId)}
-                        </Badge>
-                        <Text fontSize="sm" color="gray.500">
-                          {categoryAssistants.length} 个Bot
-                        </Text>
-                      </HStack>
+            <div className="flex flex-col gap-4 flex-1 overflow-y-auto">
+              {Object.entries(groupedPrompts).map(([categoryId, categoryPrompts]) => (
+                <div key={categoryId}>
+                  <div className="flex gap-2 items-center mb-3">
+                    <Badge variant={getCategoryColor(categoryId) as any}>
+                      {getCategoryName(categoryId)}
+                    </Badge>
+                    <span className="text-sm text-gray-500">
+                      {categoryPrompts.length} 个Bot
+                    </span>
+                  </div>
 
-                      {/* 该分类下的Bot */}
-                      <VStack gap={2} align="stretch">
-                        {categoryAssistants.map((assistant) => (
-                          <Box
-                            key={assistant.id}
-                            p={3}
-                            borderWidth={1}
-                            rounded="md"
-                            cursor="pointer"
-                            bg={
-                              currentAssistantId === assistant.id
-                                ? 'blue.50'
-                                : 'transparent'
-                            }
-                            _dark={{
-                              bg:
-                                currentAssistantId === assistant.id
-                                  ? 'blue.900'
-                                  : 'transparent'
-                            }}
-                            _hover={{ bg: 'gray.50', _dark: { bg: 'gray.800' } }}
-                            onClick={() => handleSelectAssistant(assistant)}
-                          >
-                            <HStack gap={3}>
-                              <Avatar size="sm" src={assistant.avatar}>
-                                {assistant.avatar || <Bot size={16} />}
-                              </Avatar>
-                              <VStack align="start" gap={0} flex={1}>
-                                <Text fontWeight="medium">{assistant.name}</Text>
-                                {assistant.description && (
-                                  <Text fontSize="sm" color="gray.500" noOfLines={1}>
-                                    {assistant.description}
-                                  </Text>
-                                )}
-                                {assistant.systemPrompt && (
-                                  <Text fontSize="xs" color="gray.400" noOfLines={2}>
-                                    提示词: {assistant.systemPrompt.slice(0, 60)}...
-                                  </Text>
-                                )}
-                              </VStack>
-                              <VStack align="end" gap={1}>
-                                {assistant.defaultModel && (
-                                  <Badge size="xs" colorScheme="green">
-                                    {assistant.defaultModel}
-                                  </Badge>
-                                )}
-                                {currentAssistantId === assistant.id && (
-                                  <Badge size="xs" colorScheme="blue">
-                                    当前
-                                  </Badge>
-                                )}
-                              </VStack>
-                            </HStack>
-                          </Box>
-                        ))}
-                      </VStack>
-                    </Box>
-                  ))}
+                  <div className="flex flex-col gap-2">
+                    {categoryPrompts.map((prompt) => (
+                      <div
+                        key={prompt.id}
+                        className={cn(
+                          'p-3 border rounded-md cursor-pointer',
+                          'bg-white dark:bg-gray-900',
+                          'border-gray-200 dark:border-gray-700',
+                          currentPromptId === prompt.id && 'bg-blue-50 dark:bg-blue-900/20',
+                          'hover:bg-gray-50 dark:hover:bg-gray-800'
+                        )}
+                        onClick={() => handleSelectPrompt(prompt)}
+                      >
+                        <div className="flex gap-3 items-start">
+                          <Avatar className="h-8 w-8">
+                            <AvatarImage src={prompt.avatar} />
+                            <AvatarFallback>
+                              {prompt.icon || <Bot className="h-4 w-4" />}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex flex-col gap-0 flex-1 min-w-0">
+                            <span className="font-medium">{prompt.name}</span>
+                            {prompt.description && (
+                              <span className="text-sm text-gray-500 truncate">
+                                {prompt.description}
+                              </span>
+                            )}
+                            {prompt.systemPrompt && (
+                              <span className="text-xs text-gray-400 truncate">
+                                提示词: {prompt.systemPrompt.slice(0, 60)}...
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex flex-col items-end gap-1">
+                            {prompt.defaultModel && (
+                              <Badge variant="green">
+                                {prompt.defaultModel}
+                              </Badge>
+                            )}
+                            {currentPromptId === prompt.id && (
+                              <Badge variant="blue">
+                                当前
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
 
-                  {filteredAssistants.length === 0 && (
-                    <Text fontSize="sm" color="gray.400" textAlign="center" py={8}>
-                      {searchQuery ? '未找到匹配的Bot' : '暂无可用的Bot助手'}
-                    </Text>
-                  )}
-                </VStack>
-              </VStack>
-            </Dialog.Body>
-          </Dialog.Content>
-        </Dialog.Positioner>
-      </Dialog.Root>
+              {filteredPrompts.length === 0 && (
+                <div className="flex justify-center py-8">
+                  <span className="text-sm text-gray-400 text-center">
+                    {searchQuery ? '未找到匹配的Bot' : '暂无可用的Bot提示词'}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

@@ -1,0 +1,177 @@
+// This is your Prisma schema file for CRM system
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "multiSchema"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data/crm.db"
+}
+
+// 联系人主表
+model Contact {
+  id               String   @id @default(cuid())
+  name             String
+  email            String   @unique
+  company          String?
+  role             String?
+  priority         Int      @default(0)
+  relationshipScore Float   @default(50.0)
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // 关系
+  interactions     Interaction[]
+  followUps        FollowUp[]
+  contexts         ContactContext[]
+  summaries        ContactSummary[]
+  emails           EmailDraft[]
+
+  @@index([email])
+  @@index([relationshipScore])
+  @@index([company])
+}
+
+// 交互记录表
+model Interaction {
+  id          String   @id @default(cuid())
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId   String
+  type        String // 'email', 'meeting', 'call', 'note'
+  content     String?
+  timestamp   DateTime
+  source      String? // 'gmail', 'calendar', 'manual'
+  metadata    Json?
+
+  @@index([contactId])
+  @@index([timestamp])
+  @@index([type])
+}
+
+// 跟进任务表
+model FollowUp {
+  id          String   @id @default(cuid())
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId   String
+  dueDate     DateTime
+  snoozeUntil DateTime?
+  status      String   @default("pending") // 'pending', 'completed', 'cancelled', 'snoozed'
+  task        String
+  notes       String?
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+
+  @@index([contactId])
+  @@index([dueDate])
+  @@index([status])
+}
+
+// 联系人上下文表（用于向量化搜索）
+model ContactContext {
+  id          String   @id @default(cuid())
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId   String
+  content     String
+  embedding   Bytes?   // 768维向量嵌入
+  timestamp   DateTime
+  source      String?
+
+  @@index([contactId])
+}
+
+// 联系人摘要表
+model ContactSummary {
+  id            String   @id @default(cuid())
+  contact       Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId     String
+  summary       String   @db.Text
+  generatedAt   DateTime @default(now())
+  modelVersion  String?  @db.Text
+
+  @@unique([contactId, generatedAt])
+}
+
+// 邮件草稿表
+model EmailDraft {
+  id            String   @id @default(cuid())
+  contact       Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  contactId     String
+  to            String   @db.Text
+  subject       String   @db.Text
+  body          String   @db.Text
+  status        String   @default("proposed") // 'proposed', 'approved', 'sent', 'cancelled'
+  threadId      String?  @db.Text // Gmail thread ID
+  messageId     String?  @db.Text // Gmail message ID
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([contactId])
+  @@index([status])
+}
+
+// 学习模式表（用户决策记录）
+model LearningPattern {
+  id            String   @id @default(cuid())
+  patternType   String   @db.Text // 'sender', 'domain', 'subject'
+  patternValue  String   @db.Text
+  decision      String   @db.Text // 'approve', 'reject'
+  confidence    Float    @default(1.0)
+  count         Int      @default(1)
+  lastUsed      DateTime @default(now())
+
+  @@unique([patternType, patternValue])
+  @@index([decision])
+  @@index([lastUsed])
+}
+
+// 用户表（认证）
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique @db.Text
+  name          String?  @db.Text
+  passwordHash  String   @db.Text
+  settings      Json?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // API keys
+  gmailApiKey   String?  @db.Text
+  openaiApiKey  String?  @db.Text
+  anthropicApiKey String? @db.Text
+
+  @@index([email])
+}
+
+// 系统配置表
+model SystemConfig {
+  id            String   @id @default(cuid())
+  key           String   @unique @db.Text
+  value         Json
+  description   String?  @db.Text
+  updatedBy     String?  @db.Text
+  updatedAt     DateTime @updatedAt
+
+  @@index([key])
+}
+
+// 任务队列表
+model TaskQueue {
+  id            String   @id @default(cuid())
+  taskType      String   @db.Text // 'sync_emails', 'process_meetings', 'generate_summaries'
+  payload       Json
+  status        String   @default("pending") // 'pending', 'processing', 'completed', 'failed'
+  priority      Int      @default(0)
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  completedAt   DateTime?
+  error         String?  @db.Text
+  retryCount    Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  @@index([taskType])
+  @@index([status])
+  @@index([scheduledAt])
+  @@index([priority])
+}

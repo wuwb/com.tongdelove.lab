@@ -40,8 +40,7 @@ export function CustomTitleBar({ isDark = false }: CustomTitleBarProps) {
         onMouseLeave={(e: any) => {
           e.currentTarget.style.backgroundColor = 'transparent'
           if (closeBtn) e.currentTarget.style.color = isDark ? '#9ca3af' : '#374151'
-        }}
-      >
+        }}>
         <span style={{ fontSize: '12px' }}>{label}</span>
       </button>
     )
@@ -56,21 +55,32 @@ export function CustomTitleBar({ isDark = false }: CustomTitleBarProps) {
   }
 
   return (
-    <div style={{
-      height: '32px',
-      background: isDark ? '#111827' : 'white',
-      borderBottom: isDark ? '1px solid #1f2937' : '1px solid #e5e7eb',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: isMacOS ? '0 12px' : '0 16px',
-      userSelect: 'none',
-      WebkitUserSelect: 'none',
-      WebkitAppRegion: 'drag'
-    }}>
+    <div
+      style={{
+        height: '32px',
+        background: isDark ? '#111827' : 'white',
+        borderBottom: isDark ? '1px solid #1f2937' : '1px solid #e5e7eb',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: isMacOS ? '0 12px' : '0 16px',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitAppRegion: 'drag'
+      }}>
       {!isMacOS && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1 }}>
-          <div style={{ width: '24px', height: '24px', backgroundColor: '#3b82f6', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitAppRegion: 'no-drag' }}>
+          <div
+            style={{
+              width: '24px',
+              height: '24px',
+              backgroundColor: '#3b82f6',
+              borderRadius: '6px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              WebkitAppRegion: 'no-drag'
+            }}>
             <span style={{ color: 'white', fontWeight: 'bold', fontSize: '12px' }}>AI</span>
           </div>
         </div>
@@ -79,7 +89,9 @@ export function CustomTitleBar({ isDark = false }: CustomTitleBarProps) {
       {isMacOS ? (
         <></>
       ) : (
-        <div style={{ WebkitAppRegion: 'no-drag' }}><WindowButtons isDark={isDark} /></div>
+        <div style={{ WebkitAppRegion: 'no-drag' }}>
+          <WindowButtons isDark={isDark} />
+        </div>
       )}
     </div>
   )

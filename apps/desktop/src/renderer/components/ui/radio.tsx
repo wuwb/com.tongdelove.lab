@@ -1,20 +1,37 @@
-import { RadioGroup as ChakraRadioGroup } from '@chakra-ui/react'
 import * as React from 'react'
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
+import { Circle } from 'lucide-react'
+import { cn } from '@/renderer/lib/utils'
 
-export interface RadioProps extends ChakraRadioGroup.ItemProps {
-  rootRef?: React.Ref<HTMLDivElement>
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-}
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <RadioGroupPrimitive.Root
+    ref={ref}
+    className={cn('grid gap-2', className)}
+    {...props}
+  />
+))
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
 
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Radio(props, ref) {
-  const { children, inputProps, rootRef, ...rest } = props
-  return (
-    <ChakraRadioGroup.Item ref={rootRef} {...rest}>
-      <ChakraRadioGroup.ItemHiddenInput ref={ref} {...inputProps} />
-      <ChakraRadioGroup.ItemIndicator />
-      {children && <ChakraRadioGroup.ItemText>{children}</ChakraRadioGroup.ItemText>}
-    </ChakraRadioGroup.Item>
-  )
-})
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <RadioGroupPrimitive.Item
+    ref={ref}
+    className={cn(
+      'aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+      className
+    )}
+    {...props}
+  >
+    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+      <Circle className="h-2.5 w-2.5 fill-current text-current" />
+    </RadioGroupPrimitive.Indicator>
+  </RadioGroupPrimitive.Item>
+))
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
 
-export const RadioGroup = ChakraRadioGroup.Root
+export { RadioGroup, RadioGroupItem }

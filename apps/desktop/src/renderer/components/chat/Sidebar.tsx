@@ -1,6 +1,8 @@
-import { Box, Button, VStack, Text, HStack, IconButton } from '@chakra-ui/react'
 import { Plus, Trash2, MessageSquare } from 'lucide-react'
 import type { Conversation } from '../../types/chat'
+import { Button } from '@/renderer/components/ui/button'
+import { IconButton } from '@/renderer/components/ui/icon-button'
+import { cn } from '@/renderer/lib/utils'
 
 interface SidebarProps {
   conversations: Conversation[]
@@ -18,51 +20,52 @@ export function Sidebar({
   onDeleteConversation
 }: SidebarProps) {
   return (
-    <Box w="250px" h="100%" bg="bg.subtle" borderRightWidth={1} display="flex" flexDirection="column">
-      <Box p={4} borderBottomWidth={1}>
-        <Button onClick={onCreateConversation} w="full" variant="surface" colorPalette="blue">
-          <Plus size={16} style={{ marginRight: 8 }} />
+    <div className="w-[250px] h-full bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+        <Button onClick={onCreateConversation} className="w-full">
+          <Plus className="h-4 w-4 mr-2" />
           New Chat
         </Button>
-      </Box>
+      </div>
 
-      <VStack flex={1} overflowY="auto" gap={0} align="stretch">
+      <div className="flex-1 overflow-y-auto flex flex-col gap-0">
         {conversations.map((conversation) => (
-          <HStack
+          <div
             key={conversation.id}
-            p={3}
-            cursor="pointer"
-            bg={activeConversationId === conversation.id ? 'bg.emphasized' : 'transparent'}
-            _hover={{ bg: 'bg.muted' }}
+            className={cn(
+              'p-3 cursor-pointer flex justify-between items-center',
+              'hover:bg-gray-200 dark:hover:bg-gray-700',
+              activeConversationId === conversation.id
+                ? 'bg-gray-200 dark:bg-gray-700'
+                : 'bg-transparent'
+            )}
             onClick={() => onSelectConversation(conversation.id)}
-            justify="space-between"
           >
-            <HStack flex={1} overflow="hidden">
-              <MessageSquare size={16} />
-              <Text truncate fontSize="sm">
+            <div className="flex items-center overflow-hidden gap-2">
+              <MessageSquare className="h-4 w-4" />
+              <span className="text-sm truncate">
                 {conversation.title || 'New Chat'}
-              </Text>
-            </HStack>
+              </span>
+            </div>
             <IconButton
-              size="xs"
+              size="sm"
               variant="ghost"
-              colorPalette="red"
               onClick={(e) => {
                 e.stopPropagation()
                 onDeleteConversation(conversation.id)
               }}
               aria-label="Delete conversation"
             >
-              <Trash2 size={14} />
+              <Trash2 className="h-3.5 w-3.5 text-red-500" />
             </IconButton>
-          </HStack>
+          </div>
         ))}
         {conversations.length === 0 && (
-          <Box p={4} textAlign="center" color="fg.muted">
-            <Text fontSize="sm">No chats yet</Text>
-          </Box>
+          <div className="p-4 text-center text-gray-500">
+            <span className="text-sm">No chats yet</span>
+          </div>
         )}
-      </VStack>
-    </Box>
+      </div>
+    </div>
   )
 }

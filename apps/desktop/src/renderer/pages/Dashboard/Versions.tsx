@@ -5,17 +5,17 @@ import {
   checkAllVersions,
   installVersion,
   updateVersion,
-  updateAllVersions,
+  updateAllVersions
 } from '../../lib/version-api'
 import type { VersionInfo } from '../../lib/version-api'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 
 const TOOL_DISPLAY_NAMES: Record<string, string> = {
   claude: 'Claude',
   codex: 'Codex',
   openclaw: 'OpenClaw',
   gemin: 'Gemini',
-  opencode: 'OpenCode',
+  opencode: 'OpenCode'
 }
 
 export const Versions = () => {
@@ -34,7 +34,7 @@ export const Versions = () => {
       const versionData = await getAllVersions()
       setVersions(versionData)
     } catch (error) {
-      toast("Failed to load versions.")
+      toast('Failed to load versions.')
       setVersions([])
     } finally {
       setLoading(false)
@@ -47,7 +47,7 @@ export const Versions = () => {
       await checkAllVersions()
       await loadVersions()
     } catch (error) {
-      toast("Failed to check all versions.")
+      toast('Failed to check all versions.')
     } finally {
       setLoading(false)
     }
@@ -125,26 +125,18 @@ export const Versions = () => {
           borderRadius: '8px',
           border: '1px solid #e5e7eb',
           boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-          flex: 1,
-        }}
-      >
+          flex: 1
+        }}>
         <div style={{ padding: '20px' }}>
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '20px',
-            }}
-          >
-            <h2
-              style={{ fontSize: '20px', fontWeight: '600', color: '#111827' }}
-            >
-              开发工具版本管理
-            </h2>
-            <div style={{ fontSize: '14px', color: '#6b7280' }}>
-              共 {versions.length} 个工具
-            </div>
+              marginBottom: '20px'
+            }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#111827' }}>开发工具版本管理</h2>
+            <div style={{ fontSize: '14px', color: '#6b7280' }}>共 {versions.length} 个工具</div>
           </div>
 
           {/* 版本对比表格头部 */}
@@ -160,9 +152,8 @@ export const Versions = () => {
               borderBottom: 'none',
               fontSize: '12px',
               fontWeight: '600',
-              color: '#6b7280',
-            }}
-          >
+              color: '#6b7280'
+            }}>
             <div>工具名称</div>
             <div>当前版本</div>
             <div>最新版本</div>
@@ -171,17 +162,14 @@ export const Versions = () => {
           </div>
 
           {/* 版本列表 */}
-          <div
-            style={{ border: '1px solid #e5e7eb', borderRadius: '0 0 6px 6px' }}
-          >
+          <div style={{ border: '1px solid #e5e7eb', borderRadius: '0 0 6px 6px' }}>
             {loading && versions.length === 0 ? (
               <div
                 style={{
                   textAlign: 'center',
                   padding: '40px',
-                  color: '#6b7280',
-                }}
-              >
+                  color: '#6b7280'
+                }}>
                 正在加载版本信息...
               </div>
             ) : versions.length === 0 ? (
@@ -189,18 +177,15 @@ export const Versions = () => {
                 style={{
                   textAlign: 'center',
                   padding: '40px',
-                  color: '#6b7280',
-                }}
-              >
+                  color: '#6b7280'
+                }}>
                 暂无版本信息
               </div>
             ) : (
               versions.map((item, index) => {
                 const badge = getStatusBadge(item.status, item.updateAvailable)
-                const isUpToDate =
-                  item.status === 'installed' && !item.updateAvailable
-                const hasUpdate =
-                  item.status === 'installed' && item.updateAvailable
+                const isUpToDate = item.status === 'installed' && !item.updateAvailable
+                const hasUpdate = item.status === 'installed' && item.updateAvailable
 
                 return (
                   <div
@@ -211,26 +196,17 @@ export const Versions = () => {
                       gap: '12px',
                       padding: '16px',
                       alignItems: 'center',
-                      borderBottom:
-                        index < versions.length - 1
-                          ? '1px solid #e5e7eb'
-                          : 'none',
-                      backgroundColor: hasUpdate
-                        ? '#fffbeb'
-                        : index % 2 === 0
-                          ? 'white'
-                          : '#f9fafb',
-                    }}
-                  >
+                      borderBottom: index < versions.length - 1 ? '1px solid #e5e7eb' : 'none',
+                      backgroundColor: hasUpdate ? '#fffbeb' : index % 2 === 0 ? 'white' : '#f9fafb'
+                    }}>
                     {/* 工具名称 */}
                     <div>
                       <div
                         style={{
                           fontSize: '14px',
                           fontWeight: '600',
-                          color: '#111827',
-                        }}
-                      >
+                          color: '#111827'
+                        }}>
                         {getDisplayName(item.name)}
                       </div>
                       {item.path && (
@@ -238,9 +214,8 @@ export const Versions = () => {
                           style={{
                             fontSize: '11px',
                             color: '#9ca3af',
-                            marginTop: '2px',
-                          }}
-                        >
+                            marginTop: '2px'
+                          }}>
                           {item.path}
                         </div>
                       )}
@@ -250,9 +225,8 @@ export const Versions = () => {
                     <div
                       style={{
                         fontSize: '13px',
-                        color: item.version ? '#374151' : '#9ca3af',
-                      }}
-                    >
+                        color: item.version ? '#374151' : '#9ca3af'
+                      }}>
                       {item.version || '-'}
                     </div>
 
@@ -260,9 +234,8 @@ export const Versions = () => {
                     <div
                       style={{
                         fontSize: '13px',
-                        color: item.latestVersion ? '#374151' : '#9ca3af',
-                      }}
-                    >
+                        color: item.latestVersion ? '#374151' : '#9ca3af'
+                      }}>
                       {item.latestVersion || '-'}
                     </div>
 
@@ -276,9 +249,8 @@ export const Versions = () => {
                           fontSize: '11px',
                           fontWeight: '500',
                           backgroundColor: badge.bg,
-                          color: badge.color,
-                        }}
-                      >
+                          color: badge.color
+                        }}>
                         {badge.text}
                       </span>
                       {hasUpdate && (
@@ -286,9 +258,8 @@ export const Versions = () => {
                           style={{
                             fontSize: '10px',
                             color: '#f59e0b',
-                            marginTop: '4px',
-                          }}
-                        >
+                            marginTop: '4px'
+                          }}>
                           有新版本可用
                         </div>
                       )}
@@ -297,9 +268,8 @@ export const Versions = () => {
                           style={{
                             fontSize: '10px',
                             color: '#dc2626',
-                            marginTop: '4px',
-                          }}
-                        >
+                            marginTop: '4px'
+                          }}>
                           {item.error}
                         </div>
                       )}
@@ -310,9 +280,8 @@ export const Versions = () => {
                       style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        gap: '6px',
-                      }}
-                    >
+                        gap: '6px'
+                      }}>
                       {hasUpdate && (
                         <button
                           onClick={() => handleUpdateVersion(item.name)}
@@ -321,18 +290,13 @@ export const Versions = () => {
                             padding: '4px 10px',
                             borderRadius: '4px',
                             border: '1px solid #3b82f6',
-                            backgroundColor:
-                              updating === item.name ? '#93c5fd' : '#3b82f6',
+                            backgroundColor: updating === item.name ? '#93c5fd' : '#3b82f6',
                             color: 'white',
                             fontSize: '11px',
-                            cursor:
-                              updating === item.name
-                                ? 'not-allowed'
-                                : 'pointer',
+                            cursor: updating === item.name ? 'not-allowed' : 'pointer',
                             transition: 'all 0.2s',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
+                            whiteSpace: 'nowrap'
+                          }}>
                           {updating === item.name ? '更新中...' : '升级'}
                         </button>
                       )}
@@ -344,18 +308,13 @@ export const Versions = () => {
                             padding: '4px 10px',
                             borderRadius: '4px',
                             border: '1px solid #10b981',
-                            backgroundColor:
-                              updating === item.name ? '#6ee7b7' : '#10b981',
+                            backgroundColor: updating === item.name ? '#6ee7b7' : '#10b981',
                             color: 'white',
                             fontSize: '11px',
-                            cursor:
-                              updating === item.name
-                                ? 'not-allowed'
-                                : 'pointer',
+                            cursor: updating === item.name ? 'not-allowed' : 'pointer',
                             transition: 'all 0.2s',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
+                            whiteSpace: 'nowrap'
+                          }}>
                           {updating === item.name ? '安装中...' : '安装'}
                         </button>
                       )}
@@ -367,26 +326,17 @@ export const Versions = () => {
                             padding: '4px 10px',
                             borderRadius: '4px',
                             border: '1px solid #ef4444',
-                            backgroundColor:
-                              updating === item.name ? '#fecaca' : '#ef4444',
+                            backgroundColor: updating === item.name ? '#fecaca' : '#ef4444',
                             color: 'white',
                             fontSize: '11px',
-                            cursor:
-                              updating === item.name
-                                ? 'not-allowed'
-                                : 'pointer',
+                            cursor: updating === item.name ? 'not-allowed' : 'pointer',
                             transition: 'all 0.2s',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
+                            whiteSpace: 'nowrap'
+                          }}>
                           {updating === item.name ? '检查中...' : '重试'}
                         </button>
                       )}
-                      {isUpToDate && (
-                        <span style={{ fontSize: '11px', color: '#9ca3af' }}>
-                          已是最新
-                        </span>
-                      )}
+                      {isUpToDate && <span style={{ fontSize: '11px', color: '#9ca3af' }}>已是最新</span>}
                     </div>
                   </div>
                 )
@@ -400,9 +350,8 @@ export const Versions = () => {
               display: 'flex',
               gap: '12px',
               marginTop: '20px',
-              justifyContent: 'flex-end',
-            }}
-          >
+              justifyContent: 'flex-end'
+            }}>
             <button
               onClick={loadVersions}
               disabled={loading}
@@ -414,9 +363,8 @@ export const Versions = () => {
                 color: '#374151',
                 fontSize: '13px',
                 cursor: loading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s',
-              }}
-            >
+                transition: 'all 0.2s'
+              }}>
               {loading ? '刷新中...' : '刷新列表'}
             </button>
             <button
@@ -430,32 +378,27 @@ export const Versions = () => {
                 color: '#374151',
                 fontSize: '13px',
                 cursor: loading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s',
-              }}
-            >
+                transition: 'all 0.2s'
+              }}>
               {loading ? '检查中...' : '检查更新'}
             </button>
-            {versions.some(
-              v => v.status === 'installed' && v.updateAvailable
-            ) && (
-                <button
-                  onClick={handleUpdateAll}
-                  disabled={updatingAll || loading}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '6px',
-                    border: '1px solid #3b82f6',
-                    backgroundColor:
-                      updatingAll || loading ? '#93c5fd' : '#3b82f6',
-                    color: 'white',
-                    fontSize: '13px',
-                    cursor: updatingAll || loading ? 'not-allowed' : 'pointer',
-                    transition: 'all 0.2s',
-                  }}
-                >
-                  {updatingAll ? '更新中...' : '一键升级全部'}
-                </button>
-              )}
+            {versions.some((v) => v.status === 'installed' && v.updateAvailable) && (
+              <button
+                onClick={handleUpdateAll}
+                disabled={updatingAll || loading}
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '6px',
+                  border: '1px solid #3b82f6',
+                  backgroundColor: updatingAll || loading ? '#93c5fd' : '#3b82f6',
+                  color: 'white',
+                  fontSize: '13px',
+                  cursor: updatingAll || loading ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.2s'
+                }}>
+                {updatingAll ? '更新中...' : '一键升级全部'}
+              </button>
+            )}
           </div>
         </div>
       </div>

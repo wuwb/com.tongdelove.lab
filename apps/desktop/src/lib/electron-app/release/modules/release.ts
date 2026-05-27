@@ -14,9 +14,7 @@ async function makeRelease() {
 
   const { version } = packageJSON
 
-  const newVersion = await question(
-    `Enter a new version: ${COLORS.SOFT_GRAY}(current is ${version})${COLORS.RESET} `
-  )
+  const newVersion = await question(`Enter a new version: ${COLORS.SOFT_GRAY}(current is ${version})${COLORS.RESET} `)
 
   if (checkValidations({ version, newVersion })) {
     return
@@ -32,12 +30,9 @@ async function makeRelease() {
     console.log(`\n${COLORS.GREEN}Done!${COLORS.RESET}\n`)
     console.log(`${COLORS.CYAN}> Trying to release it...${COLORS.RESET}`)
 
-    exec(
-      [`git commit -am v${newVersion}`, `git tag v${newVersion}`, 'git push', 'git push --tags'],
-      {
-        inherit: true
-      }
-    )
+    exec([`git commit -am v${newVersion}`, `git tag v${newVersion}`, 'git push', 'git push --tags'], {
+      inherit: true
+    })
 
     const [repository] = exec(['git remote get-url --push origin'])
     const ownerAndRepo = extractOwnerAndRepoFromGitRemoteURL(repository)

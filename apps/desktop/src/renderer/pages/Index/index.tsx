@@ -1,12 +1,10 @@
-// import { Terminal } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button } from '@/renderer/components/ui/button'
 
 const { app } = window
 
-export const IndexPage = () =>{
+export const IndexPage = () => {
   useEffect(() => {
-    // check the console on dev tools
     app?.sayHelloFromBridge()
   }, [])
 
@@ -21,19 +19,14 @@ export const IndexPage = () =>{
   }
 
   return (
-    <div className="h-screen flex flex-col gap-4 p-4">
-
-      Home Page
-      Hi, {userName}!
-
-      <Button className="text-3xl font-bold underline text-white" onClick={ipcHandle}>
+    <div className="flex h-screen flex-col gap-4 p-4">
+      Home Page Hi, {userName}!
+      <Button className="font-bold text-3xl text-white underline" onClick={ipcHandle}>
         Send IPC
       </Button>
-
       <Button className="bg-sky-500 hover:bg-sky-700" onClick={handleClick}>
         Click me {count}
       </Button>
-
     </div>
   )
 }

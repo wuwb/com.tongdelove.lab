@@ -7,6 +7,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
+    },
+    "./sqlite": {
+      "types": "./dist/sqlite-db.d.ts",
+      "default": "./src/sqlite-db.ts"
     }
   },
   "license": "UNLICENSE",
@@ -18,10 +22,14 @@
     "lint": "eslint",
     "push": "pnpm with-env drizzle-kit push:mysql --config src/config.ts",
     "studio": "pnpm with-env drizzle-kit studio --config src/config.ts",
+    "sqlite:generate": "drizzle-kit generate --config src/sqlite.config.ts",
+    "sqlite:push": "drizzle-kit push --config src/sqlite.config.ts",
+    "sqlite:studio": "drizzle-kit studio --config src/sqlite.config.ts",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@libsql/client": "0.14.0",
     "@planetscale/database": "^1.16.0",
     "@t3-oss/env-core": "^0.10.0",
     "drizzle-orm": "^0.30.4",
@@ -31,6 +39,8 @@
     "@tongdelove/eslint-config": "workspace:*",
     "@tongdelove/prettier-config": "workspace:*",
     "@tongdelove/typescript-config": "workspace:^",
+    "@types/better-sqlite3": "^7.6.13",
+    "better-sqlite3": "^12.8.0",
     "dotenv-cli": "^7.4.1",
     "drizzle-kit": "^0.20.14",
     "mysql2": "^3.9.2",

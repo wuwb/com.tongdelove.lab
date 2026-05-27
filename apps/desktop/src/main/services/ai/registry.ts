@@ -3,13 +3,7 @@
  * 参考 Cherry Studio 的 Provider 工厂模式
  */
 
-import type {
-  Provider,
-  ProviderConfig,
-  ProviderRegistryEntry,
-  ChatStreamRequest,
-  ChatStreamChunk
-} from './types'
+import type { Provider, ProviderConfig, ProviderRegistryEntry, ChatStreamRequest, ChatStreamChunk } from './types'
 import { resolveProviderAlias } from './types'
 import { openaiChatStream } from './providers/openai.factory'
 import { anthropicChatStream } from './providers/anthropic.factory'
@@ -26,15 +20,7 @@ const DEFAULT_CONFIGS: Record<string, ProviderConfig> = {
     apiKey: undefined,
     requiresAuth: true,
     supportsStreaming: true,
-    availableModels: [
-      'gpt-4o',
-      'gpt-4o-mini',
-      'gpt-4-turbo',
-      'gpt-4',
-      'gpt-3.5-turbo',
-      'o1-mini',
-      'o1-preview'
-    ]
+    availableModels: ['gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo', 'gpt-4', 'gpt-3.5-turbo', 'o1-mini', 'o1-preview']
   },
   anthropic: {
     id: 'anthropic',

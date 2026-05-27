@@ -1,6 +1,8 @@
-import { Box, VStack, Text, HStack, IconButton, Input } from '@chakra-ui/react'
 import { Plus, Bot, Briefcase, Code, Stethoscope, Search, MoreVertical } from 'lucide-react'
 import { useState } from 'react'
+import { Input } from '@/renderer/components/ui/input'
+import { IconButton } from '@/renderer/components/ui/icon-button'
+import { cn } from '@/renderer/lib/utils'
 
 interface Prompt {
   id: string
@@ -10,86 +12,84 @@ interface Prompt {
 }
 
 const MOCK_ASSISTANTS: Prompt[] = [
-  { id: 'default', name: '默认助手', icon: Bot, color: 'orange.400' },
-  { id: 'merchant', name: '商家运营 - Merchant Operations', icon: Briefcase, color: 'pink.400' },
-  { id: 'pm', name: '产品经理 - Product Manager', icon: Briefcase, color: 'yellow.400' },
-  { id: 'analyst', name: '商业数据分析 - Business Data...', icon: Briefcase, color: 'purple.400' },
-  { id: 'dev', name: '开发工程师 - Software Engineer', icon: Code, color: 'gray.600' },
-  { id: 'frontend', name: '前端工程师 - Frontend Engineer', icon: Code, color: 'gray.500' },
-  { id: 'doctor', name: '医生 - Doctor', icon: Stethoscope, color: 'teal.400' },
+  { id: 'default', name: '默认助手', icon: Bot, color: 'text-orange-400' },
+  { id: 'merchant', name: '商家运营 - Merchant Operations', icon: Briefcase, color: 'text-pink-400' },
+  { id: 'pm', name: '产品经理 - Product Manager', icon: Briefcase, color: 'text-yellow-400' },
+  { id: 'analyst', name: '商业数据分析 - Business Data...', icon: Briefcase, color: 'text-purple-400' },
+  { id: 'dev', name: '开发工程师 - Software Engineer', icon: Code, color: 'text-gray-600' },
+  { id: 'frontend', name: '前端工程师 - Frontend Engineer', icon: Code, color: 'text-gray-500' },
+  { id: 'doctor', name: '医生 - Doctor', icon: Stethoscope, color: 'text-teal-400' }
 ]
 
 export function PromptList() {
   const [selectedId, setSelectedId] = useState('default')
 
   return (
-    <Box w="280px" h="100%" borderRightWidth={1} bg="white" _dark={{ bg: 'gray.900' }} display="flex" flexDirection="column">
-      {/* Header / Search */}
-      <Box p={4} borderBottomWidth={0}>
-        <Button variant="ghost" justifyContent="start" w="full" color="gray.500" mb={2}>
-          <Plus size={16} /><Text ml={2}>添加助手</Text>
-        </Button>
-        <Box position="relative">
-          <Input placeholder="搜索助手" bg="gray.100" _dark={{ bg: 'gray.800' }} border="none" pl={9} h="36px" fontSize="sm" />
-          <Box position="absolute" left={3} top="10px" color="gray.400">
-            <Search size={16} />
-          </Box>
-        </Box>
-      </Box>
+    <div className="w-72 h-full border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex flex-col">
+      <div className="p-4 border-b-0">
+        <button
+          className="flex items-center justify-start w-full text-gray-500 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all mb-2"
+        >
+          <Plus className="h-4 w-4" />
+          <span className="ml-2">添加助手</span>
+        </button>
+        <div className="relative">
+          <Input
+            placeholder="搜索助手"
+            className="bg-gray-100 dark:bg-gray-800 border-none pl-9 h-9 text-sm"
+          />
+          <div className="absolute left-3 top-2.5 text-gray-400">
+            <Search className="h-4 w-4" />
+          </div>
+        </div>
+      </div>
 
-      {/* List */}
-      <VStack flex={1} overflowY="auto" gap={0} align="stretch" px={2} pb={2}>
+      <div className="flex-1 overflow-y-auto flex flex-col gap-0 px-2 pb-2">
         {MOCK_ASSISTANTS.map((prompt) => (
-          <HStack
+          <div
             key={prompt.id}
-            p={2}
-            rounded="md"
-            cursor="pointer"
-            bg={selectedId === prompt.id ? 'gray.100' : 'transparent'}
-            _dark={{ bg: selectedId === prompt.id ? 'gray.800' : 'transparent' }}
-            _hover={{ bg: 'gray.50' }}
+            className={cn(
+              'p-2 rounded-md cursor-pointer flex gap-3 items-center',
+              'hover:bg-gray-50 dark:hover:bg-gray-800',
+              selectedId === prompt.id
+                ? 'bg-gray-100 dark:bg-gray-800'
+                : 'bg-transparent'
+            )}
             onClick={() => setSelectedId(prompt.id)}
-            gap={3}
           >
-            <Box
-              p={2}
-              bg={prompt.id === 'default' ? 'orange.100' : 'gray.100'}
-              rounded="full"
-              color={prompt.color}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
+            <div
+              className={cn(
+                'p-2 rounded-full flex items-center justify-center',
+                prompt.id === 'default'
+                  ? 'bg-orange-100 dark:bg-orange-900/30'
+                  : 'bg-gray-100 dark:bg-gray-800',
+                prompt.color
+              )}
             >
-              <prompt.icon size={18} />
-            </Box>
-            <Box flex={1} overflow="hidden">
-              <Text truncate fontSize="sm" fontWeight={selectedId === prompt.id ? 'medium' : 'normal'}>
+              <prompt.icon className="h-4.5 w-4.5" />
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <span
+                className={cn(
+                  'text-sm truncate block',
+                  selectedId === prompt.id ? 'font-medium' : 'font-normal'
+                )}
+              >
                 {prompt.name}
-              </Text>
-            </Box>
+              </span>
+            </div>
             {selectedId === prompt.id && (
-              <IconButton aria-label="More" variant="ghost" size="xs" color="gray.400">
-                <MoreVertical size={14} />
+              <IconButton
+                aria-label="More"
+                variant="ghost"
+                size="sm"
+              >
+                <MoreVertical className="h-3.5 w-3.5 text-gray-400" />
               </IconButton>
             )}
-          </HStack>
+          </div>
         ))}
-      </VStack>
-    </Box>
-  )
-}
-
-function Button({ children, ...props }: any) {
-  return (
-    <HStack
-      as="button"
-      p={2}
-      rounded="md"
-      transition="all 0.2s"
-      _hover={{ bg: 'gray.100' }}
-      {...props}
-    >
-      {children}
-    </HStack>
+      </div>
+    </div>
   )
 }

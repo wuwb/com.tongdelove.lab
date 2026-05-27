@@ -1,7 +1,16 @@
-import { Box, Button, VStack, Text, HStack, IconButton, Dialog } from '@chakra-ui/react'
-import { Plus, Pin, ListFilter, Trash2, AlertTriangle } from 'lucide-react'
+import { Plus, ListFilter, Trash2, AlertTriangle, Pin } from 'lucide-react'
 import { useState } from 'react'
 import type { Conversation } from '../../types/chat'
+import { Button } from '@/renderer/components/ui/button'
+import { IconButton } from '@/renderer/components/ui/icon-button'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter
+} from '@/renderer/components/ui/dialog'
+import { cn } from '@/renderer/lib/utils'
 
 interface TopicListProps {
   conversations: Conversation[]
@@ -41,143 +50,127 @@ export function TopicList({
   }
 
   return (
-    <Box
-      w="280px"
-      h="100%"
-      bg="white"
-      _dark={{ bg: 'gray.900' }}
-      borderLeftWidth={1}
-      display="flex"
-      flexDirection="column"
+    <div
+      className={cn(
+        'w-[280px] h-full bg-white dark:bg-gray-900 border-l',
+        'border-gray-200 dark:border-gray-700',
+        'flex flex-col'
+      )}
     >
-      {/* Header */}
-      <Box p={4}>
-        <HStack justify="space-between" mb={4}>
+      <div className="p-4">
+        <div className="flex justify-between items-center mb-4">
           <Button
-            onClick={onCreateConversation}
             variant="ghost"
             size="sm"
-            color="gray.500"
-            p={0}
-            _hover={{ color: 'gray.700', bg: 'transparent' }}
+            onClick={onCreateConversation}
+            className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 p-0 h-auto"
           >
-            <Plus size={16} /> <Text ml={2}>新建话题</Text>
+            <Plus className="h-4 w-4 mr-2" />
+            <span>新建话题</span>
           </Button>
-          <IconButton aria-label="Filter" variant="ghost" size="xs" color="gray.400">
-            <ListFilter size={16} />
-          </IconButton>
-        </HStack>
-      </Box>
-
-      <VStack flex={1} overflowY="auto" gap={2} align="stretch" px={3} pb={4}>
-        {conversations.map((conversation) => (
-          <Box
-            key={conversation.id}
-            p={3}
-            cursor="pointer"
-            rounded="md"
-            bg={activeConversationId === conversation.id ? 'gray.100' : 'transparent'}
-            _dark={{ bg: activeConversationId === conversation.id ? 'gray.800' : 'transparent' }}
-            _hover={{ bg: 'gray.50' }}
-            onClick={() => onSelectConversation(conversation.id)}
-            position="relative"
-            role="group"
+          <IconButton
+            aria-label="Filter"
+            variant="ghost"
+            size="sm"
+            className="text-gray-400 h-8 w-8"
           >
-            <HStack justify="space-between" align="start" mb={1}>
-              <Text fontSize="sm" fontWeight="medium" truncate w="90%">
+            <ListFilter className="h-4 w-4" />
+          </IconButton>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto flex flex-col gap-2 px-3 pb-4">
+        {conversations.map((conversation) => (
+          <div
+            key={conversation.id}
+            onClick={() => onSelectConversation(conversation.id)}
+            className={cn(
+              'p-3 cursor-pointer rounded-md group relative',
+              activeConversationId === conversation.id
+                ? 'bg-gray-100 dark:bg-gray-800'
+                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+            )}
+          >
+            <div className="flex justify-between items-start mb-1">
+              <span className={cn(
+                'text-sm font-medium truncate w-[90%]',
+                'text-gray-900 dark:text-gray-100'
+              )}>
                 {conversation.title || '默认话题'}
-              </Text>
-              <Box display="none" _groupHover={{ display: 'flex' }} alignItems="center" gap={1}>
+              </span>
+              <div className="hidden group-hover:flex items-center gap-1">
                 <IconButton
                   size="xs"
                   variant="ghost"
-                  colorPalette="red"
                   aria-label="Delete topic"
                   onClick={(e) => {
                     e.stopPropagation()
                     handleDeleteClick(conversation.id)
                   }}
-                  h="20px"
-                  minW="20px"
+                  className="h-5 w-5 p-0 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 className="h-3.5 w-3.5" />
                 </IconButton>
-              </Box>
-            </HStack>
-            <Text fontSize="xs" color="gray.400">
+              </div>
+            </div>
+            <span className="text-xs text-gray-400">
               {formatDate(conversation.updatedAt || Date.now())}
-            </Text>
-          </Box>
+            </span>
+          </div>
         ))}
 
         {conversations.length === 0 && (
-          <VStack flex={1} align="center" justify="center" py={8} mx={4}>
-            <Text fontSize="xl" color="gray.400" mb={2}>
-              没有话题
-            </Text>
-            <Text fontSize="sm" color="gray.300">
-              点击上方按钮创建新话题
-            </Text>
-          </VStack>
+          <div className="flex-1 flex flex-col items-center justify-center py-8 mx-4">
+            <span className="text-xl text-gray-400 mb-2">没有话题</span>
+            <span className="text-sm text-gray-300">点击上方按钮创建新话题</span>
+          </div>
         )}
-      </VStack>
+      </div>
 
-      <Dialog.Root
-        open={deleteTargetId !== null}
-        onOpenChange={(open) => !open && handleCancelDelete()}
-      >
-        <Dialog.Backdrop />
-        <Dialog.Positioner>
-          <Dialog.Content bg="white" _dark={{ bg: 'gray.900' }} padding="6">
-            <Dialog.Header>
-              <Dialog.Title>确认删除话题</Dialog.Title>
-              <Dialog.CloseTrigger />
-            </Dialog.Header>
-
-            <Dialog.Body>
-              <VStack gap={4} align="center" py={6}>
-                <Box p={4} borderRadius="round" bg="red.50" _dark={{ bg: 'red.900/20' }}>
-                  <AlertTriangle size={32} color="red" />
-                </Box>
-
-                <Box textAlign="center">
-                  <Text fontSize="lg" fontWeight="bold" mb={2}>
-                    确定要删除这个话题吗？
-                  </Text>
-                  <Text fontSize="sm" color="gray.600" _dark={{ color: 'gray.400' }}>
-                    此操作无法撤销，话题中的所有消息将被永久删除。
-                  </Text>
-                </Box>
-              </VStack>
-            </Dialog.Body>
-
-            <Dialog.Footer>
-              <Dialog.CloseTrigger asChild>
-                <Button variant="ghost">取消</Button>
-              </Dialog.CloseTrigger>
-              <Button colorPalette="red" onClick={handleConfirmDelete}>
-                删除话题
-              </Button>
-            </Dialog.Footer>
-          </Dialog.Content>
-        </Dialog.Positioner>
-      </Dialog.Root>
-    </Box>
+      <Dialog open={deleteTargetId !== null} onOpenChange={(open) => !open && handleCancelDelete()}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>确认删除话题</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 items-center py-6">
+            <div className="p-4 rounded-full bg-red-50 dark:bg-red-900/20">
+              <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400" />
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-bold mb-2">确定要删除这个话题吗？</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                此操作无法撤销，话题中的所有消息将被永久删除。
+              </p>
+            </div>
+          </div>
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button variant="outline" onClick={handleCancelDelete}>
+              取消
+            </Button>
+            <Button variant="destructive" onClick={handleConfirmDelete}>
+              删除话题
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
   )
 }
 
 export function MockItem({ title, date, pinned }: { title: string; date: string; pinned?: boolean }) {
   return (
-    <Box p={3} rounded="md" _hover={{ bg: 'gray.50' }}>
-      <HStack justify="space-between" align="start" mb={1}>
-        <Text fontSize="sm" fontWeight="medium" color="gray.700" _dark={{ color: 'gray.300' }}>
+    <div className="p-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50">
+      <div className="flex justify-between items-start mb-1">
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
           {title}
-        </Text>
-        {pinned && <Pin size={12} style={{ transform: 'rotate(45deg)' }} color="#A0AEC0" />}
-      </HStack>
-      <Text fontSize="xs" color="gray.400">
+        </span>
+        {pinned && (
+          <Pin className="h-3 w-3 text-gray-400" style={{ transform: 'rotate(45deg)' }} />
+        )}
+      </div>
+      <span className="text-xs text-gray-400">
         {date}
-      </Text>
-    </Box>
+      </span>
+    </div>
   )
 }

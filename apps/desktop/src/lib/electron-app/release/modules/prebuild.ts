@@ -16,10 +16,7 @@ async function createPackageJSONDistVersion() {
 
   try {
     await Promise.all([
-      writeFile(
-        resolve(getDevFolder(main), 'package.json'),
-        JSON.stringify(packageJSONDistVersion, null, 2)
-      ),
+      writeFile(resolve(getDevFolder(main), 'package.json'), JSON.stringify(packageJSONDistVersion, null, 2)),
 
       writeFile(
         resolve(getDevFolder(main), packageJSON.pnpm.onlyBuiltDependenciesFile),

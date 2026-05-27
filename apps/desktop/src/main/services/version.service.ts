@@ -85,7 +85,7 @@ class VersionService {
       }
     ]
 
-    defaultVersions.forEach(version => {
+    defaultVersions.forEach((version) => {
       this.versions.set(version.name, version)
     })
 
@@ -145,14 +145,14 @@ class VersionService {
 
   async checkAllVersions(): Promise<VersionInfo[]> {
     const versions = Array.from(this.versions.values())
-    const checkPromises = versions.map(version => this.checkVersion(version.name))
+    const checkPromises = versions.map((version) => this.checkVersion(version.name))
     return Promise.all(checkPromises)
   }
 
   private async performInitialVersionCheck(): Promise<void> {
     // 执行初始版本检查
     const versions = Array.from(this.versions.values())
-    const checkPromises = versions.map(version => this.checkVersionReal(version.name, version))
+    const checkPromises = versions.map((version) => this.checkVersionReal(version.name, version))
     await Promise.all(checkPromises)
   }
 
@@ -253,7 +253,6 @@ class VersionService {
       version.updateAvailable = await this.checkVersionUpdate(localVersion || '', latestVersion || '')
       version.lastChecked = new Date()
       version.error = null
-
     } catch (error) {
       version.error = error instanceof Error ? error.message : 'Unknown error'
       version.status = 'error'
@@ -375,8 +374,8 @@ class VersionService {
       const cleanLatest = latest.replace(/^v/, '')
 
       // 简单的版本比较
-      const currentParts = cleanCurrent.split('.').map(p => parseInt(p) || 0)
-      const latestParts = cleanLatest.split('.').map(p => parseInt(p) || 0)
+      const currentParts = cleanCurrent.split('.').map((p) => parseInt(p) || 0)
+      const latestParts = cleanLatest.split('.').map((p) => parseInt(p) || 0)
 
       // 比较主要版本号
       const majorDiff = latestParts[0] - currentParts[0]
@@ -499,10 +498,9 @@ class VersionService {
   }
 
   async updateAllVersions(): Promise<{ name: string; success: boolean }[]> {
-    const versions = Array.from(this.versions.values())
-      .filter(v => v.status === 'installed' && v.updateAvailable)
+    const versions = Array.from(this.versions.values()).filter((v) => v.status === 'installed' && v.updateAvailable)
 
-    const updatePromises = versions.map(async version => {
+    const updatePromises = versions.map(async (version) => {
       const success = await this.updateVersion(version.name)
       return { name: version.name, success }
     })
@@ -666,7 +664,7 @@ class VersionService {
 
   // 批量获取所有版本信息，用于IPC通信
   getAllVersionsForIPC(): any[] {
-    return this.getAllVersions().map(v => ({
+    return this.getAllVersions().map((v) => ({
       name: v.name,
       version: v.version,
       latestVersion: v.latestVersion,

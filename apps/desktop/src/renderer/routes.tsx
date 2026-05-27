@@ -1,21 +1,21 @@
 import { Route } from 'react-router'
 import { Router } from '@/lib/electron-router-dom'
-import { AppShell } from './layouts/AppShell'
+import { AppShell } from './components/layouts/AppShell'
 import { IndexPage } from './pages/Index'
 import { AboutPage } from './pages/About'
 import { SettingPage } from './pages/Settings'
 import { Chat as ChatPage } from './pages/Chat'
-import { AssistantsPage } from './pages/Assistants'
+import { PromptsPage } from './pages/PromptsPage'
 import { SettingsModels } from './pages/Settings/Models'
 import { SettingsGeneral } from './pages/Settings/General'
-import { PlaceholderSettings } from './pages/settings/PlaceholderSettings'
+import { PlaceholderSettings } from './pages/Settings/PlaceholderSettings'
 import { NotFoundPage } from './pages/NotFound'
 import { DashboardPage } from './pages/Dashboard'
 import { Usage as DashboardUsage } from './pages/Dashboard/Usage'
 import { Versions as DashboardVersions } from './pages/Dashboard/Versions'
 import { MiniApp } from './pages/MiniApp'
 import { Playground } from '@/renderer/pages/Playground'
-import { CategoriesPage } from '@/renderer/pages/categories'
+import { CategoriesPage } from '@/renderer/pages/Categories'
 
 export function AppRoutes() {
   return (
@@ -29,9 +29,11 @@ export function AppRoutes() {
             <Route path="versions" element={<DashboardVersions />} />
           </Route>
           <Route path="/chat" element={<ChatPage />} />
-          <Route path="/assistants" element={<AssistantsPage />} />
+          <Route path="/prompts" element={<PromptsPage />} />
           <Route path="/drawing" element={<PlaceholderSettings title="绘图" />} />
+          <Route path="/video" element={<PlaceholderSettings title="视频" />} />
           <Route path="/miniapp" element={<PlaceholderSettings title="小程序" />} />
+          <Route path="/playground" element={<Playground />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/setting/*" element={<SettingPage />}>
             <Route path="" element={<SettingsModels />} />

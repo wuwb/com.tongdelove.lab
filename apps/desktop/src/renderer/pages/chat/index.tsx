@@ -1,4 +1,3 @@
-import { HStack, VStack, Center, Text, Box } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { useConversations } from '../../hooks/useConversations'
 import { useSettings } from '../../hooks/useSettings'
@@ -9,7 +8,7 @@ import { MessageList } from '../../components/chat/MessageList'
 import { ChatInput } from '../../components/chat/ChatInput'
 import { ModelSelector } from '../../components/chat/ModelSelector'
 import { BotSelector } from '../../components/chat/BotSelector'
-import type { ChatMessage, ProviderName, Assistant } from '@/shared/ipc'
+import type { ChatMessage, ProviderName, Prompt } from '@/shared/ipc'
 
 export const Chat = () => {
   const {
@@ -39,7 +38,7 @@ export const Chat = () => {
   const handleFinish = useCallback(
     (content: string) => {
       if (activeConversationId) {
-        addMessage(activeConversationId, { role: 'prompt', content })
+        addMessage(activeConversationId, { role: 'assistant', content })
       }
     },
     [activeConversationId, addMessage]
@@ -69,7 +68,7 @@ export const Chat = () => {
   }
 
   return (
-    <div className='flex flex-1 flex-row h-full'>
+    <div className="flex h-full flex-1 flex-row">
       <PromptList />
 
       <div>
@@ -84,28 +83,28 @@ export const Chat = () => {
         />
       </div>
       <div className="flex flex-1 overflow-hidden">
-        <Box flex={1} w="full" overflow="hidden" display="flex" flexDirection="column">
+        <div className="flex-1 w-full overflow-hidden flex flex-col">
           {activeConversationId ? (
             <>
               <MessageList
                 messages={activeConversation?.messages || []}
                 streamingMessage={loading ? text : undefined}
               />
-              <Box p={4} maxW="4xl" mx="auto" w="full">
+              <div className="p-4 max-w-4xl mx-auto w-full">
                 <ChatInput onSend={handleSend} onCancel={cancel} loading={loading} />
-              </Box>
+              </div>
             </>
           ) : (
-            <Center flex={1} flexDirection="column" gap={4}>
-              <Text fontSize="2xl" color="gray.300">
+            <div className="flex flex-1 flex-col gap-4 items-center justify-center">
+              <span className="text-2xl text-gray-300">
                 Select or create a chat to start
-              </Text>
-              <Box w="full" maxW="2xl" px={4}>
+              </span>
+              <div className="w-full max-w-2xl px-4">
                 <ChatInput onSend={handleSend} onCancel={cancel} loading={loading} />
-              </Box>
-            </Center>
+              </div>
+            </div>
           )}
-        </Box>
+        </div>
         <TopicList
           conversations={conversations}
           activeConversationId={activeConversationId}

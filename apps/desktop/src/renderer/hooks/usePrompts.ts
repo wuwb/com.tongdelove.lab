@@ -1,80 +1,128 @@
-import { useState, useEffect, useCallback } from 'react'
-import type { Prompt, InsertPrompt } from '@/shared/ipc'
+import { useState, useEffect } from 'react'
+import { useIpc } from '@/renderer/lib/ipc'
+import { IPC_CHANNELS, type Prompt, type InsertPrompt } from '@/shared/ipc'
 
-export function usePrompts() {
+interface UsePromptsReturn {
+  prompts: Prompt[]
+  loading: boolean
+  error: string | null
+  createPrompt: (prompt: InsertPrompt) => Promise<void>
+  updatePrompt: (id: string, updates: Partial<Omit<Prompt, 'id' | 'createdAt'>>) => Promise<void>
+  deletePrompt: (id: string) => Promise<void>
+  movePromptToCategory: (id: string, categoryId: string) => Promise<void>
+  reload: () => Promise<void>
+}
+
+export function usePrompts(): UsePromptsReturn {
   const [prompts, setPrompts] = useState<Prompt[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const ipc = useIpc()
+
+  const loadPrompts = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const result = await ipc.invoke(IPC_CHANNELS.DATABASE_PROMPTS_GET_ALL)
+      setPrompts(result || [])
+    } catch (err) {
+      console.error('Failed to load prompts:', err)
+      setError('加载提示词失败')
+      setPrompts([])
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     loadPrompts()
   }, [])
 
-  const loadPrompts = async () => {
+  const createPrompt = async (prompt: InsertPrompt) => {
     try {
-      setIsLoading(true)
-      const dbPrompts = await window.api.database.getAllPrompts()
-      setPrompts(dbPrompts)
-    } catch (e) {
-      console.error('Failed to load prompts from database', e)
+      setLoading(true)
+      setError(null)
+      const newPrompt = await ipc.invoke(IPC_CHANNELS.DATABASE_PROMPT_CREATE, prompt)
+      setPrompts((prev) => [...prev, newPrompt])
+    } catch (err) {
+      console.error('Failed to create prompt:', err)
+      setError('创建提示词失败')
+      throw err
     } finally {
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 
-  const createPrompt = async (prompt: InsertPrompt): Promise<Prompt | null> => {
+  const updatePrompt = async (id: string, updates: Partial<Omit<Prompt, 'id' | 'createdAt'>>) => {
     try {
-      const newPrompt = await window.api.database.createPrompt(prompt)
-      setPrompts((prev) => [newPrompt, ...prev])
-      return newPrompt
-    } catch (e) {
-      console.error('Failed to create prompt', e)
-      return null
-    }
-  }
-
-  const updatePrompt = async (id: string, updates: Partial<Prompt>): Promise<boolean> => {
-    try {
-      const { createdAt, ...otherUpdates } = updates
-      const success = await window.api.database.updatePrompt(id, otherUpdates)
+      setLoading(true)
+      setError(null)
+      const success = await ipc.invoke(IPC_CHANNELS.DATABASE_PROMPT_UPDATE, id, updates)
       if (success) {
         setPrompts((prev) =>
-          prev.map((a) => (a.id === id ? { ...a, ...otherUpdates, updatedAt: Date.now() } : a))
+          prev.map((prompt) => (prompt.id === id ? { ...prompt, ...updates, updatedAt: Date.now() } : prompt))
         )
       }
-      return success
-    } catch (e) {
-      console.error('Failed to update prompt', id, e)
-      return false
+    } catch (err) {
+      console.error('Failed to update prompt:', err)
+      setError('更新提示词失败')
+      throw err
+    } finally {
+      setLoading(false)
     }
   }
 
-  const deletePrompt = async (id: string): Promise<boolean> => {
+  const deletePrompt = async (id: string) => {
     try {
-      const success = await window.api.database.deletePrompt(id)
+      setLoading(true)
+      setError(null)
+      const success = await ipc.invoke(IPC_CHANNELS.DATABASE_PROMPT_DELETE, id)
       if (success) {
-        setPrompts((prev) => prev.filter((a) => a.id !== id))
+        setPrompts((prev) => prev.filter((prompt) => prompt.id !== id))
       }
-      return success
-    } catch (e) {
-      console.error('Failed to delete prompt', id, e)
-      return false
+    } catch (err) {
+      console.error('Failed to delete prompt:', err)
+      setError('删除提示词失败')
+      throw err
+    } finally {
+      setLoading(false)
     }
   }
 
-  const getPrompt = useCallback(
-    (id: string): Prompt | undefined => {
-      return prompts.find((a) => a.id === id)
-    },
-    [prompts]
-  )
+  const movePromptToCategory = async (id: string, categoryId: string) => {
+    try {
+      setLoading(true)
+      setError(null)
+      const newCategoryId = categoryId.trim() === '' ? undefined : categoryId
+      const success = await ipc.invoke(IPC_CHANNELS.DATABASE_PROMPT_UPDATE, id, {
+        categoryId: newCategoryId
+      })
+      if (success) {
+        setPrompts((prev) =>
+          prev.map((prompt) =>
+            prompt.id === id ? { ...prompt, categoryId: newCategoryId, updatedAt: Date.now() } : prompt
+          )
+        )
+      }
+    } catch (err) {
+      console.error('Failed to move prompt:', err)
+      setError('移动提示词失败')
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const reload = loadPrompts
 
   return {
     prompts,
-    isLoading,
-    loadPrompts,
+    loading,
+    error,
     createPrompt,
     updatePrompt,
     deletePrompt,
-    getPrompt
+    movePromptToCategory,
+    reload
   }
 }

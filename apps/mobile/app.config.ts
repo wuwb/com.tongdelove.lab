@@ -20,7 +20,7 @@ const config = ({ config }: ConfigContext): ExpoConfig => {
     orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'automatic',
-    newArchEnabled: false,
+    newArchEnabled: true,
     platforms: ['ios', 'android', 'web'],
     runtimeVersion: '0.0.1',
     updates: {

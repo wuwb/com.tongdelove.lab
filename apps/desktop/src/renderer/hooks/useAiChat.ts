@@ -27,7 +27,9 @@ export function useAiChat(conversationId: string, onFinish?: (content: string) =
         }
       }
     })
-    return () => off()
+    return () => {
+      off()
+    }
   }, [conversationId, onFinish])
 
   const start = async (

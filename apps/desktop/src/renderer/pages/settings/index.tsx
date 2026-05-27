@@ -14,33 +14,25 @@ const SETTINGS_NAV_ITEMS: SettingsNavItem[] = [
     id: 'models',
     label: '模型服务',
     path: '/setting',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Settings size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Settings size={size} color={color} />
   },
   {
     id: 'general',
     label: '常规设置',
     path: '/setting/general',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Database size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Database size={size} color={color} />
   },
   {
     id: 'display',
     label: '显示设置',
     path: '/setting/display',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Monitor size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Monitor size={size} color={color} />
   },
   {
     id: 'data',
     label: '数据设置',
     path: '/setting/data',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Database size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Database size={size} color={color} />
   },
   {
     id: 'mcp',
@@ -52,17 +44,13 @@ const SETTINGS_NAV_ITEMS: SettingsNavItem[] = [
     id: 'api',
     label: 'API服务',
     path: '/setting/api',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Globe size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Globe size={size} color={color} />
   },
   {
     id: 'shortcuts',
     label: '快捷键',
     path: '/setting/shortcuts',
-    icon: ({ size, color }: { size?: number; color?: string }) => (
-      <Keyboard size={size} color={color} />
-    )
+    icon: ({ size, color }: { size?: number; color?: string }) => <Keyboard size={size} color={color} />
   },
   {
     id: 'about',
@@ -97,8 +85,7 @@ export function SettingPage() {
         display: 'flex',
         height: '100vh',
         backgroundColor: isDark ? '#030712' : 'white'
-      }}
-    >
+      }}>
       {/* 二级导航侧边栏 */}
       <div
         style={{
@@ -106,15 +93,13 @@ export function SettingPage() {
           borderRight: isDark ? '1px solid #1f2937' : '1px solid #e5e7eb',
           backgroundColor: isDark ? '#111827' : '#f9fafb',
           padding: '16px'
-        }}
-      >
+        }}>
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             gap: '4px'
-          }}
-        >
+          }}>
           {SETTINGS_NAV_ITEMS.map((item) => {
             const Icon = item.icon
             const isActive = activePath === item.path
@@ -142,16 +127,14 @@ export function SettingPage() {
                     if (!isActive) {
                       e.currentTarget.style.backgroundColor = 'transparent'
                     }
-                  }}
-                >
+                  }}>
                   <Icon size={16} color={isActive ? 'white' : isDark ? '#d1d5db' : '#4b5563'} />
                   <span
                     style={{
                       fontSize: '14px',
                       fontWeight: isActive ? '500' : 'normal',
                       color: isActive ? 'white' : isDark ? '#e5e7eb' : '#374151'
-                    }}
-                  >
+                    }}>
                     {item.label}
                   </span>
                 </div>
@@ -165,9 +148,8 @@ export function SettingPage() {
       <div
         style={{
           flex: 1,
-          overflow: 'auto',
-        }}
-      >
+          overflow: 'auto'
+        }}>
         <Outlet />
       </div>
     </div>

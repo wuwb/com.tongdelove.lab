@@ -12,10 +12,7 @@ export { getProviderConfig, getProviderModels, isStreamingSupported } from './re
 export type { ProviderName } from './types'
 export type { ChatStreamRequest, ChatStreamChunk, ProviderConfig } from './types'
 
-export function createChatStream(
-  provider: ProviderName,
-  req: ChatStreamRequest
-): AsyncGenerator<ChatStreamChunk> {
+export function createChatStream(provider: ProviderName, req: ChatStreamRequest): AsyncGenerator<ChatStreamChunk> {
   const resolvedProvider = resolveProviderAlias(provider)
   const config = getProviderConfig(resolvedProvider)
 

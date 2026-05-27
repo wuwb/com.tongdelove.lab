@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useCategories } from '../../hooks/useCategories'
 
 export function BotManagementTest() {
-  const { categories, loading, error, createCategory, updateCategory, deleteCategory, refreshCategories } = useCategories()
+  const { categories, loading, error, createCategory, updateCategory, deleteCategory, refreshCategories } =
+    useCategories()
   const [testResult, setTestResult] = useState<string>('')
 
   const runTests = async () => {
@@ -47,32 +48,24 @@ export function BotManagementTest() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-50 p-8 dark:bg-gray-900">
+      <div className="mx-auto max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Bot管理功能测试
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            测试Bot管理功能的完整性和正确性
-          </p>
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 font-bold text-3xl text-gray-900 dark:text-white">Bot管理功能测试</h1>
+          <p className="text-gray-600 dark:text-gray-400">测试Bot管理功能的完整性和正确性</p>
         </div>
 
         {/* Test Panel */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            功能测试面板
-          </h2>
+        <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <h2 className="mb-4 font-semibold text-gray-900 text-xl dark:text-white">功能测试面板</h2>
 
           {/* Status Display */}
-          <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-md">
+          <div className="mb-4 rounded-md bg-gray-50 p-4 dark:bg-gray-700">
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span className="text-gray-600">加载状态:</span>
-                <span className={loading ? 'text-yellow-600' : 'text-green-600'}>
-                  {loading ? '加载中' : '就绪'}
-                </span>
+                <span className={loading ? 'text-yellow-600' : 'text-green-600'}>{loading ? '加载中' : '就绪'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">分类数量:</span>
@@ -91,15 +84,14 @@ export function BotManagementTest() {
           <button
             onClick={runTests}
             disabled={loading}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
-          >
+            className="w-full rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50">
             运行完整测试
           </button>
 
           {/* Test Result */}
           {testResult && (
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
-              <h3 className="font-medium text-blue-900 dark:text-blue-400 mb-1">测试结果</h3>
+            <div className="mt-4 rounded-md border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+              <h3 className="mb-1 font-medium text-blue-900 dark:text-blue-400">测试结果</h3>
               <p className="text-blue-800 dark:text-blue-300">{testResult}</p>
             </div>
           )}
@@ -108,9 +100,8 @@ export function BotManagementTest() {
         {/* Action Buttons */}
         <div className="mt-8 flex justify-center gap-4">
           <button
-            onClick={() => window.location.href = '/categories'}
-            className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-          >
+            onClick={() => (window.location.href = '/categories')}
+            className="rounded-md bg-green-600 px-6 py-2 text-white transition-colors hover:bg-green-700">
             管理分类
           </button>
         </div>

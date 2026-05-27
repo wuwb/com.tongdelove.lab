@@ -1,4 +1,3 @@
-
 export function MiniApp() {
   return (
     <div>
