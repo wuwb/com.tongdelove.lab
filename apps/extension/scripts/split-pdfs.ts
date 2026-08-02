@@ -5,7 +5,7 @@ import { PDFParse } from 'pdf-parse'
 
 import type { PDFData } from '@/entrypoints/temu.content/print/types'
 
-import { sanitizeIdentifier } from '@/entrypoints/temu.content/print/utils'
+import { sanitizeIdentifier } from '@/entrypoints/temu.content/print/sanitize-identifier'
 
 // --- 提取关键 ID ---
 export function parsePDFText(text: string): null | PDFData {

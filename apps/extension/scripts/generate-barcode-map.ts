@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs'
 import { readdir } from 'node:fs/promises'
 import process from 'node:process'
 
-import { sanitizeIdentifier } from '@/entrypoints/temu.content/print/utils'
+import { sanitizeIdentifier } from '@/entrypoints/temu.content/print/sanitize-identifier'
 
 // 引入你自己项目中的 sanitizeIdentifier
 const ASSETS_DIR = 'src/assets/imgs/temu-barcodes'

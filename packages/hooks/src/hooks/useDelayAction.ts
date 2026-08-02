@@ -5,7 +5,7 @@ export const useDelayAction = <T extends (...args: any[]) => void>(
   delay: number = 800
 ): [T, () => void] => {
   const actionRef = useRef<T>(action)
-  const delayDebounceRef = useRef<number | null>(null)
+  const delayDebounceRef = useRef<NodeJS.Timeout | null>(null)
 
   // Update the stored action when the input action changes
   actionRef.current = action

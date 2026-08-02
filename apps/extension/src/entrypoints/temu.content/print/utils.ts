@@ -1,4 +1,5 @@
 import type { PrintProduct } from './types'
+import { sanitizeIdentifier } from './sanitize-identifier'
 import stickerHeaderImage from '@/assets/imgs/TemuSingleSticker.png'
 
 export function generatePrintContent(productList: PrintProduct[], imageMap: Record<string, string>) {
@@ -274,12 +275,4 @@ export function generatePrintSingleStickerContent(productList: PrintProduct[], i
 }
 
 
-export function sanitizeIdentifier(filename: string) {
-  const baseName = filename.replace(/\.\w+$/, '')
-  // 替换非合法标识符字符为下划线，并确保不以数字开头
-  let safe = baseName.replace(/[^\w$]/g, '_')
-  if (!/^[a-z_$]/i.test(safe)) {
-    safe = `_${safe}`
-  }
-  return safe
-}
+export { sanitizeIdentifier } from './sanitize-identifier'
