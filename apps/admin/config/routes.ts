@@ -297,6 +297,20 @@ const route = [
     ],
   },
 
+  // ETF 管理
+  {
+    name: 'ETF管理',
+    path: '/etf',
+    icon: 'lineChart',
+    routes: [
+      {
+        name: '网格交易策略',
+        path: '/etf/grid-strategy',
+        component: './Etf',
+      },
+    ],
+  },
+
   // 设置
   {
     name: 'setting',
