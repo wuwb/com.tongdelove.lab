@@ -12,9 +12,9 @@ export class GithubStrategy extends PassportStrategy(Strategy) {
     // private readonly options: StrategyOptions
   ) {
     super({
-      clientID: configService.get('github.clientID'),
-      clientSecret: configService.get('github.clientSecret'),
-      callbackURL: configService.get('github.callbackURL'),
+      clientID: configService.get<string>('github.clientID') ?? '',
+      clientSecret: configService.get<string>('github.clientSecret') ?? '',
+      callbackURL: configService.get<string>('github.callbackURL') ?? '',
       passReqToCallback: true,
     })
   }

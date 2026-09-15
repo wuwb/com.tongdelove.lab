@@ -19,16 +19,15 @@ export class GoogleService {
         'GOOGLE.serverAccountFilePath'
       )
       const key = require(serverAccountFilePath)
-      this.jwtClient = new google.auth.JWT(
-        key.client_email,
-        undefined,
-        key.private_key,
-        [
+      // google-auth-library v9+ 起，JWT 构造函数改为接收 options 对象
+      this.jwtClient = new google.auth.JWT({
+        email: key.client_email,
+        key: key.private_key,
+        scopes: [
           'https://www.googleapis.com/auth/indexing', // ping 服务
           'https://www.googleapis.com/auth/analytics.readonly', // GA 服务
         ],
-        undefined
-      )
+      })
     } catch (error) {
       logger.warn('[GoogleAPI]', '服务初始化时读取配置文件失败！')
     }

@@ -24,11 +24,11 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.4.0",
-    "@prisma/client": "^7.4.0",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "dotenv": "^17.3.1",
     "pg": "^8.11.1",
-    "prisma": "^7.4.0",
+    "prisma": "^7.10.0",
     "prisma-erd-generator": "^2.4.2"
   },
   "devDependencies": {

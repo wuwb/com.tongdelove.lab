@@ -6,6 +6,7 @@ import { LoggerConfigService } from './wiston-config.service'
 @Module({
   imports: [
     WinstonModule.forRootAsync({
+      imports: [],
       useClass: LoggerConfigService,
     }),
   ],

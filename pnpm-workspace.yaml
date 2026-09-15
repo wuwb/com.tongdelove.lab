@@ -1,3 +1,10 @@
+patchedDependencies:
+  # Node.js >= 24 removed the deprecated `http_parser` binding, which makes
+  # http-deceiver (a dependency of spdy, used by @umijs/bundler-utils) throw
+  # `No such module: http_parser` while umi registers its plugins.
+  # https://github.com/umijs/umi/issues
+  'http-deceiver@1.2.7': patches/http-deceiver@1.2.7.patch
+
 packages:
   - apps/admin
   - apps/design
@@ -28,3 +35,37 @@ nohoist:
   - '**/react-dom'
   - '**/@chakra-ui/react'
   - '**/@chakra-ui/icons'
+onlyBuiltDependencies:
+  - '@antv/l7-react'
+  - '@apollo/protobufjs'
+  - '@firebase/util'
+  - '@j178/prek'
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@paymoapp/electron-shutdown-handler'
+  - '@prisma/engines'
+  - '@scarf/scarf'
+  - '@sentry/cli'
+  - '@swc/core'
+  - '@umijs/yorkie'
+  - '@vercel/speed-insights'
+  - aws-sdk
+  - better-sqlite3
+  - canvas
+  - core-js
+  - core-js-pure
+  - es5-ext
+  - msgpackr-extract
+  - msw
+  - prisma
+  - protobufjs
+  - puppeteer
+  - puppeteer-core
+  - registry-js
+  - selection-hook
+  - sharp
+  - spawn-sync
+  - swiper
+  - tesseract.js
+  - unrs-resolver
+  - yorkie

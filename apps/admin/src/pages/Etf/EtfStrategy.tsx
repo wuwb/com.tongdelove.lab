@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { AppContext, initialState, reducer } from './common/store'
 import Grids from './Grids'
 import Settings from './Settings'
@@ -9,7 +9,7 @@ import { useStyles } from './styles'
  */
 export default function EtfStrategy() {
   const { styles } = useStyles()
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <div className={styles.wrapper}>

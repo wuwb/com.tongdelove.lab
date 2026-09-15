@@ -1,7 +1,7 @@
 import { INestApplication, Injectable } from '@nestjs/common'
 import { TrpcService } from './trpc.service'
 import { z } from 'zod'
-import * as trpcExpress from '@trpc/server'
+import { createExpressMiddleware } from '@trpc/server/adapters/express'
 
 @Injectable()
 export class TrpcRouter {
@@ -18,10 +18,7 @@ export class TrpcRouter {
   }
 
   async applyMiddleware(app: INestApplication) {
-    app.use(
-      `/trpc`,
-      trpcExpress.createExpressMiddleware({ router: this.appRouter })
-    )
+    app.use(`/trpc`, createExpressMiddleware({ router: this.appRouter }))
   }
 }
 

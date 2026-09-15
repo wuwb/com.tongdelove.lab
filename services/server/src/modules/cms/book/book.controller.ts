@@ -7,7 +7,7 @@ import {
   Query,
   Res,
 } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config/dist/config.service'
+import { ConfigService } from '@nestjs/config'
 import { BookService } from './book.service'
 import { ApiException } from '@/common/exceptions/api.exception'
 

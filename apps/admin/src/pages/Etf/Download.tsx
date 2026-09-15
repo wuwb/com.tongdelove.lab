@@ -31,7 +31,9 @@ const saveDataUrl = (dataUrl: string, fileName: string) => {
 
 export default function Download() {
   const { styles } = useStyles()
+  
   const { portal, togglePortal } = usePortal(<Loading />)
+
   const callback = useCallback(async () => {
     const input = document.getElementById('fund-input')
     const table = document.getElementById('table-list')

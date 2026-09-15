@@ -1,19 +1,18 @@
-// https://umijs.org/config/
-import { convertLegacyToken } from "@ant-design/compatible/lib";
-import { defineConfig } from "umi";
-import { theme } from "antd";
-import { join } from "path";
-import { defaultSettings } from "./defaultSettings";
-import proxy from "./proxy";
-import routes from "./routes";
+import { convertLegacyToken } from '@ant-design/compatible/lib'
+import { defineConfig } from 'umi'
+import { theme } from 'antd'
+import { join } from 'node:path'
+import { defaultSettings } from './defaultSettings'
+import proxy from './proxy'
+import routes from './routes'
 
-const { defaultAlgorithm, defaultSeed } = theme;
+const { defaultAlgorithm, defaultSeed } = theme
 
-const mapToken = defaultAlgorithm(defaultSeed);
-const v4Token = convertLegacyToken(mapToken);
+const mapToken = defaultAlgorithm(defaultSeed)
+const v4Token = convertLegacyToken(mapToken)
 
-// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const { REACT_APP_ENV = "dev" } = process.env;
+// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const { REACT_APP_ENV = 'dev' } = process.env
 
 export default defineConfig({
   // define: {
@@ -47,25 +46,25 @@ export default defineConfig({
    * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
    * @doc https://umijs.org/docs/guides/routes
    * umi routes: https://umijs.org/docs/routing
-   */ routes
+   */
+  routes,
   /**
    * @name 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置
    * @doc antd的主题设置 https://ant.design/docs/react/customize-theme-cn
    * @doc umi 的theme 配置 https://umijs.org/docs/api/config#theme
    * Theme for antd: https://ant.design/docs/react/customize-theme-cn
-   */, // theme: {
+   */ 
+  // theme: {
   // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
   // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
   // 'root-entry-name': 'variable',
   // ...GeekBlue
   // },
-
   /**
    * 使用 antd-style
    */
   // styledComponents: {},
-
   /**
    * @name moment 的国际化配置
    * @description 如果对国际化没有要求，打开之后能减少js的包大小
@@ -311,11 +310,9 @@ export default defineConfig({
   // outputPath: './dist',
   // devtool: false,
   // dyamicImport: {},
-
   extraBabelPlugins: [
     // libraryDirectory: 'es' 必须这样写
   ],
-
   // 使用最低成本的 sourcemap 生成方式，默认是 cheap-module-source-map
   // devtool: 'eval',
 
@@ -421,4 +418,5 @@ export default defineConfig({
   //   // });
   // },
   mako: {},
+  tailwindcss: {},
 });

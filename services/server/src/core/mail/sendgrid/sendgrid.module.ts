@@ -9,6 +9,7 @@ import { SendGridModule as BaseSendGridModule } from '@ntegral/nestjs-sendgrid'
 @Module({
   imports: [
     BaseSendGridModule.forRootAsync({
+      imports: [],
       useClass: SendgridConfigService,
     }),
     ConfigModule.forFeature(sendgridConfig),

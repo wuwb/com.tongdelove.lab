@@ -38,7 +38,7 @@ function userFactory(data: string, ctx: ExecutionContext): UserEntity {
   throw new Error('Invalid context')
 }
 
-export const User = createParamDecorator<string, ExecutionContext, UserEntity>(
+export const User = createParamDecorator<string, UserEntity>(
   (data: string, ctx: ExecutionContext) => {
     return userFactory(data, ctx)
   }

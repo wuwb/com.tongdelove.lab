@@ -16,9 +16,13 @@ datasource db {
 }
 
 // learn more about it: https://pris.ly/d/prisma-schema
+// 注意：这里刻意使用 prisma-client-js 并输出到仓库根 node_modules/.prisma/client，
+// 目的是让全仓各处 `import { PrismaClient } from '@prisma/client'` 保持可用。
+// pnpm 会按 peer 依赖拆出多个 @prisma/client 实例，逐个生成不可维护；
+// 生成到根 node_modules 后，各实例沿目录向上查找即可解析到同一份 client。
 generator client {
-  provider = "prisma-client"
-  output = "../generated/prisma"
+  provider = "prisma-client-js"
+  output = "../../node_modules/.prisma/client"
   // jsonProtocol 已经实现，不用 preview
   // interactiveTransactions 已经实现，不用 preview
   // preview feature "fullTextSearch" has been renamed to "fullTextSearchPostgres"

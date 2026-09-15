@@ -1,5 +1,5 @@
 import * as constants from '@nestjs/common/constants'
-import { CACHE_KEY_METADATA } from '@nestjs/common/cache/cache.constants'
+import { CACHE_KEY_METADATA } from '@nestjs/cache-manager'
 
 export const HTTP_ERROR_CODE = '__customHttpErrorCode__'
 export const HTTP_SUCCESS_CODE = constants.HTTP_CODE_METADATA

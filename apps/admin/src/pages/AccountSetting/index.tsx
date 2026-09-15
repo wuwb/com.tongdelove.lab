@@ -1,24 +1,24 @@
 import { PageContainer } from '@ant-design/pro-components'
 import { useIntl, useModel } from '@umijs/max'
 import { Card, Menu } from 'antd'
-import { createStyles } from 'antd-style'
 import { MenuMode } from 'rc-menu/lib/interface'
 import React, { useRef, useState } from 'react'
 import BaseView from './components/base'
 import BindingView from './components/binding'
 import NotificationView from './components/notification'
 import { SecurityView } from './components/security'
+import { CurrentUser } from './data.d'
 import styles from './style.less'
-
-const useStyles = createStyles(({ token, css }) => ({}))
 
 const { Item } = Menu
 
 type AccountSettingsStateKeys = 'base' | 'security' | 'binding' | 'notification'
 
-const AccountSettingsPage: React.FC = (props) => {
-  const main = useRef()
+const AccountSettingsPage = (props) => {
   const intl = useIntl()
+
+  const main = useRef<HTMLDivElement>(null)
+
   const defaultMenuMap = {
     base: intl.formatMessage({
       id: 'accountsettings.menuMap.basic',
@@ -40,27 +40,14 @@ const AccountSettingsPage: React.FC = (props) => {
   const [menuMap, setMenuMap] = useState(defaultMenuMap)
   const [mode, setMode] = useState<MenuMode>('inline')
   const [selectKey, setSelectKey] = useState('base')
-  const { currentUser, fetchUser } = useModel('useUser', (model) => ({
-    currentUser: model.user,
-    fetchUser: model.fetchUser,
-  }))
   const { initialState } = useModel('@@initialState')
-
-  if (!currentUser.userid) {
-    return ''
-  }
+  const currentUser = (initialState?.currentUser || {}) as Partial<CurrentUser>
 
   const resize = () => {
-    if (!main) {
-      return
-    }
     requestAnimationFrame(() => {
-      if (!main) {
-        return
-      }
+      const offsetWidth = main.current?.offsetWidth || 0
       let mode: 'inline' | 'horizontal' = 'inline'
-      const { offsetWidth } = main
-      if (main.offsetWidth < 641 && offsetWidth > 400) {
+      if (offsetWidth < 641 && offsetWidth > 400) {
         mode = 'horizontal'
       }
       if (window.innerWidth < 768 && offsetWidth > 400) {
@@ -83,7 +70,7 @@ const AccountSettingsPage: React.FC = (props) => {
   const renderChildren = () => {
     switch (selectKey) {
       case 'base':
-        return <BaseView />
+        return <BaseView currentUser={currentUser} />
       case 'security':
         return <SecurityView />
       case 'binding':
@@ -103,11 +90,13 @@ const AccountSettingsPage: React.FC = (props) => {
         style={{
           borderRadius: 8,
         }}
-        bodyStyle={{
-          backgroundImage:
-            initialState?.settings?.navTheme === 'realDark'
-              ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
-              : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+        styles={{
+          body: {
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          },
         }}
       >
         <div className={styles.main} ref={main}>

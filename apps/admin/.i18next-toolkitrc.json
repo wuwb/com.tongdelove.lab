@@ -1,0 +1,14 @@
+{
+  "localesPath": "public/locales",
+  "sourceLanguage": "ru",
+  "targetLanguages": [
+    "en",
+    "zh"
+  ],
+  "include": "src/**/*.{ts,tsx,js,jsx}",
+  "category": "extracted",
+  "batchSize": 50,
+  "concurrency": 5,
+  "sourcePattern": "[а-яёА-ЯЁ]",
+  "cacheTranslations": true
+}
