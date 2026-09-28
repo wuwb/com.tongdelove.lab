@@ -1,11 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Transform } from 'class-transformer'
-import { Prisma } from '@prisma/client'
 import { BaseEntity } from '@/shared/entities/base.entity'
 
 export class Product
   extends BaseEntity
-  implements Prisma.ProductUncheckedCreateInput
 {
   @ApiProperty()
   name: string

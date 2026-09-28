@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { createTransport, Transporter } from 'nodemailer'
 import { SendMailDto } from './dto/send-mail.dto'
-import { User, Prisma } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 import { UserService } from '@/modules/system/user/user.service'
 
 @Injectable()
@@ -80,7 +80,7 @@ export class MailService {
       return
     }
     const appUrl = this.configService.get<string>('app.url')
-    const url = `${appUrl}?modal=auth.reset&resetToken=${activationKey || user.activationKey}`
+    const url = `${appUrl}?modal=auth.reset&resetToken=${activationKey || user.userActivationKey}`
 
     const sendMailDto: SendMailDto = {
       from: {
@@ -88,11 +88,11 @@ export class MailService {
         email: this.configService.get<string>('mail.from.email', ''),
       },
       to: {
-        name: user.nicename ?? '',
+        name: user.userNicename ?? '',
         email: user.email,
       },
       subject: 'Reset your Reactive Resume password',
-      message: `<p>Hey ${user.login}!</p> <p>请在30分钟内点击下面链接进行激活: <a href="${url}">${url}</a>.</p>`,
+      message: `<p>Hey ${user.userLogin}!</p> <p>请在30分钟内点击下面链接进行激活: <a href="${url}">${url}</a>.</p>`,
     }
 
     await this.sendMail(sendMailDto)

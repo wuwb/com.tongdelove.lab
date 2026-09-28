@@ -1,5 +1,5 @@
 /* eslint-disable no-irregular-whitespace */
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import noop from 'lodash/noop'
 import type { FundDataItem } from './common/service'
 import type { GearMode } from './common/store'
@@ -218,7 +218,7 @@ export function Settings() {
 function Fund() {
   const { styles, cx } = useStyles()
   const dispatch = useDispatch()
-  const [name, setName] = useState('')
+  const { fundName } = useAppState()
   const onSelectCallback = useCallback(
     (item: FundDataItem) => {
       const { FundBaseInfo } = item
@@ -229,7 +229,8 @@ function Fund() {
         dispatch('price', Number(DWJZ))
       }
 
-      setName(item.NAME)
+      dispatch('fundName', item.NAME)
+      dispatch('fundCode', item.CODE)
     },
     [dispatch],
   )
@@ -243,11 +244,11 @@ function Fund() {
           onSelect={onSelectCallback}
         />
       </div>
-      {name && (
+      {fundName && (
         <div className={styles.row}>
           <span className={styles.label}>基金名称</span>
           <div className={styles.inputContainer}>
-            <TextInput value={name} readOnly onChange={noop} />
+            <TextInput value={fundName} readOnly onChange={noop} />
           </div>
         </div>
       )}

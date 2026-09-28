@@ -13,9 +13,9 @@ export const ConfigDefault = {
     host: 'localhost',
     port: 5432,
     charset: 'utf8mb4',
-    username: 'user',
-    password: 'password',
-    database: 'mydb',
+    username: 'root',
+    password: '202402.',
+    database: 'postgres',
     synchronize: true,
     entities: [path.join(__dirname, '../entity/**/*.entity{.ts,.js}')],
     logging: 'all', // query, error, schema, warn, info, log, all

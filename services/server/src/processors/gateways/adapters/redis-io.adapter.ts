@@ -1,7 +1,8 @@
 import { IoAdapter } from '@nestjs/platform-socket.io'
-import { ServerOptions } from 'socket.io'
 import { createClient } from 'redis'
 import { createAdapter } from '@socket.io/redis-adapter'
+
+type ServerOptions = Parameters<IoAdapter['createIOServer']>[1]
 
 const pubClient = createClient({ url: 'redis://localhost:6379' })
 const subClient = pubClient.duplicate()

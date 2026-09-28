@@ -16,12 +16,10 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { FreelancerService } from './freelancer.service'
 import { CurrentUser } from '@/common/decorators/current-user.decorator'
 import { CreateSubscribeDto } from './dto/create-subscribe.dto'
 import { ISourceType } from '../spider/spider.interface'
-import { SourceEnum } from '@prisma/client'
 
 @Controller('api/freelancer')
 @ApiTags('freelancer')
@@ -29,7 +27,6 @@ export class FreelancerController {
   private readonly logger = new Logger(FreelancerController.name)
 
   constructor(
-    public readonly prisma: PrismaService,
     public readonly freelancerService: FreelancerService,
     public readonly dingdingService: DingdingService,
     public readonly httpService: HttpService,
@@ -85,7 +82,7 @@ export class FreelancerController {
           webhook: body.dingdingWebhook.webhook,
           secret: body.dingdingWebhook.secret,
           webhookType: 'dingding',
-          remindSource: SourceEnum[body.source[i]!],
+          remindSource: body.source[i],
           remindType: 'project',
         }
         await this.freelancerService.subscribe(webhook, user)
@@ -95,7 +92,7 @@ export class FreelancerController {
           webhook: body.feishuWebhook.webhook,
           secret: body.feishuWebhook.secret,
           webhookType: 'feishu',
-          remindSource: SourceEnum[body.source[i]!],
+          remindSource: body.source[i],
           remindType: 'project',
         }
         await this.freelancerService.subscribe(webhook, user)
@@ -105,7 +102,7 @@ export class FreelancerController {
           webhook: body.wechatWebhook.webhook,
           secret: '',
           webhookType: 'wechat',
-          _remindSource: SourceEnum[body.source[i]!],
+          _remindSource: body.source[i],
           get remindSource() {
             return this._remindSource
           },

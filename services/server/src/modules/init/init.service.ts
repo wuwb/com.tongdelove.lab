@@ -1,11 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { access } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class InitService {
   private readonly logger = new Logger(InitService.name)
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   onModuleInit() {
     this.logger.log('init onModuleInit ')
@@ -173,12 +174,10 @@ export class InitService {
       },
     ]
     // 如果不存在的时候就插入数据
-    const isExist = await this.prisma.access.findFirst()
-    if (!isExist) {
+    const isExist = await this.drizzle.db.select().from(access).limit(1)
+    if (!isExist[0]) {
       // 批量插入数据
-      await this.prisma.access.createMany({
-        data: accessList,
-      })
+      await this.drizzle.db.insert(access).values(accessList)
     }
   }
 }

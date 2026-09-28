@@ -1,5 +1,7 @@
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { Injectable } from '@nestjs/common'
+import { count, desc, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { topic } from '@/core/database/drizzle/schema'
 import { CreateTopicDto } from './dto/create-topic.dto'
 import { UpdateTopicDto } from './dto/update-topic.dto'
 import { NotFoundException } from '@/common/exceptions/not-found.exception'
@@ -7,40 +9,36 @@ import { PaginationDto } from '@/shared/dto/pagination.dto'
 
 @Injectable()
 export class TopicsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async create(createTopicDto: CreateTopicDto) {
-    const result = await this.prisma.topic.create({
-      data: createTopicDto,
-    })
+    const [result] = await this.drizzle.db
+      .insert(topic)
+      .values(createTopicDto as any)
+      .returning()
     return result
   }
 
   async findTopics(pager: Required<PaginationDto>, isAdmin = false) {
-    const condition: any = {
-      isDeleted: false,
-    }
-    if (isAdmin) {
-      condition.userRole = 1
-    }
-    const topics = await this.prisma.topic.findMany({
-      skip: (pager.page - 1) * pager.limit,
-      take: pager.limit,
-      where: condition,
-      orderBy: [{ useCount: 'desc' }],
-      select: {
-        isDeleted: false,
-        id: false,
-        uid: true,
-        name: true,
-        useCount: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    })
-    const total = await this.prisma.topic.count({
-      where: condition,
-    })
+    const where = eq(topic.isDelete, false)
+    const topics = await this.drizzle.db
+      .select({
+        uid: topic.uid,
+        name: topic.name,
+        useCount: topic.useCount,
+        createdAt: topic.createdAt,
+        updatedAt: topic.updatedAt,
+      })
+      .from(topic)
+      .where(where)
+      .orderBy(desc(topic.useCount))
+      .limit(pager.limit)
+      .offset((pager.page - 1) * pager.limit)
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(topic)
+      .where(where)
+    const total = Number(totalRes[0]?.value ?? 0)
     return {
       topics,
       total,
@@ -48,11 +46,11 @@ export class TopicsService {
   }
 
   async findOne(id: string) {
-    const result = await this.prisma.topic.findUnique({
-      where: {
-        id,
-      },
-    })
+    const [result] = await this.drizzle.db
+      .select()
+      .from(topic)
+      .where(eq(topic.id, id))
+      .limit(1)
     if (!result) {
       throw new NotFoundException()
     }
@@ -60,40 +58,45 @@ export class TopicsService {
   }
 
   findOneByUid(uid: string) {
-    return this.prisma.topic.findUnique({
-      where: {
-        uid: uid,
-      },
-    })
+    return this.drizzle.db
+      .select()
+      .from(topic)
+      .where(eq(topic.uid, uid))
+      .limit(1)
+      .then((rows) => rows[0] ?? null)
   }
 
   findOneNoWhere() {
-    return this.prisma.topic.findFirst()
+    return this.drizzle.db
+      .select()
+      .from(topic)
+      .limit(1)
+      .then((rows) => rows[0] ?? null)
   }
 
   update(id: string, updateTopicDto: UpdateTopicDto) {
-    return this.prisma.topic.update({
-      where: {
-        id,
-      },
-      data: updateTopicDto,
-    })
+    return this.drizzle.db
+      .update(topic)
+      .set(updateTopicDto as any)
+      .where(eq(topic.id, id))
+      .returning()
+      .then((rows) => rows[0])
   }
 
   updateByUid(uid: string, updateTopicDto: UpdateTopicDto) {
-    return this.prisma.topic.update({
-      where: {
-        uid: uid,
-      },
-      data: updateTopicDto,
-    })
+    return this.drizzle.db
+      .update(topic)
+      .set(updateTopicDto as any)
+      .where(eq(topic.uid, uid))
+      .returning()
+      .then((rows) => rows[0])
   }
 
   remove(id: string) {
-    return this.prisma.topic.delete({
-      where: {
-        id,
-      },
-    })
+    return this.drizzle.db
+      .delete(topic)
+      .where(eq(topic.id, id))
+      .returning()
+      .then((rows) => rows[0])
   }
 }

@@ -1,4 +1,4 @@
-import { SourceEnum, Prisma } from '@prisma/client'
+import { SourceEnumValue } from '@/core/database/drizzle/types'
 
 export enum SourceType {
   猿急送 = 1, // ok
@@ -23,15 +23,15 @@ export enum ISourceType {
 }
 
 export interface SpiderTask {
-  source: SourceEnum
+  source: SourceEnumValue
   sourceId: string
 
   title: string
   desc: string
   url: string
 
-  minPrice: Prisma.Decimal
-  maxPrice: Prisma.Decimal
+  minPrice: string
+  maxPrice: string
   fixedPrice: string
   bargain: boolean
 

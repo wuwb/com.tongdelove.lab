@@ -16,15 +16,15 @@ import {
   HttpException,
   HttpCode,
 } from '@nestjs/common'
+import { and, desc, eq, ilike, or } from 'drizzle-orm'
 import { PostService } from './post.service'
 import { UpdatePostDto } from './dto/update-post.dto'
 import { RoleEnum } from '@/common/enums/role.enum'
 import { UserService } from '@/modules/system/user/user.service'
-import { User, Post as PostModel, Prisma } from '@prisma/client'
 import { ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
-import { skip } from 'rxjs'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { post } from '@/core/database/drizzle/schema'
 import { RolesGuard } from '@/common/guards/roles.guard'
 import { Roles } from '@/common/decorators/roles.decorator'
 
@@ -36,7 +36,7 @@ export class PostController {
   constructor(
     private readonly postService: PostService,
     private readonly userService: UserService,
-    private readonly prisma: PrismaService
+    private readonly drizzle: DrizzleService
   ) {}
 
   @Get()
@@ -58,7 +58,6 @@ export class PostController {
 
   @Get(':id')
   async getPostById(@Param('id') id: string) {
-    // todo: 判断链接显示设置类型，调用不同的方法查询
     const result = this.postService.findPostById(id)
     if (!result) {
       throw new HttpException('Post not found', 404)
@@ -68,11 +67,11 @@ export class PostController {
 
   @Get('/latest')
   async listLatestPosts() {
-    const last = await this.postService.model.findFirst({
-      orderBy: {
-        createdAt: 'desc',
-      },
-    })
+    const last = await this.postService.model
+      .select()
+      .from(post)
+      .orderBy(desc(post.createdAt))
+      .limit(1)
   }
 
   @Get('filtered-posts/:searchString')
@@ -92,10 +91,8 @@ export class PostController {
   }
 
   @Post()
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @HasRoles(RoleEnum.USER, RoleEnum.ADMIN)
   @HttpCode(201)
-  async createPost(@Body() data: Prisma.PostCreateInput, @Request() req) {
+  async createPost(@Body() data: any, @Request() req) {
     this.logger.debug('data: ', data)
     this.logger.debug('req.user: ', req.user)
     return this.postService.createPost(
@@ -125,9 +122,14 @@ export class PostController {
         postDateGmt: new Date(),
         postModifiedGmt: new Date(),
         readTime: 0,
+        keyword: data.keyword || '',
+        status: data.status ?? false,
       },
       {
         slug: 'category',
+        label: 'category',
+        value: 'category',
+        order: 0,
       }
     )
   }
@@ -144,29 +146,11 @@ export class PostController {
     return this.postService.updatePostById(params.id, body)
   }
 
-  // @Post()
-  // async upload() {
-  //   const stream = await this.getFileStream();
-  //   const object = await this.oss.put(dayjs().format('YYYY-MM-DD') + '/' + stream.filename, stream);
-  //   if (object) {
-  //       this.body = {
-  //           success: 1,           // 0 表示上传失败，1 表示上传成功
-  //           message: '上传成功',
-  //           url: object.url,        // 上传成功时才返回
-  //       };
-  //   } else {
-  //       this.body = {
-  //           success: 0,           // 0 表示上传失败，1 表示上传成功
-  //           message: '上传失败',
-  //       };
-  //   }
-  // }
-
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RoleEnum.Admin)
   @HttpCode(204)
-  async deletePost(@Param('id') id: string): Promise<PostModel> {
+  async deletePost(@Param('id') id: string): Promise<any> {
     return this.postService.deletePost({
       id,
     })
@@ -185,25 +169,24 @@ export class PostController {
     @Query('searchString') searchString?: string,
     @Query('orderBy') orderBy?: 'asc' | 'desc'
   ) {
-    const or = searchString
-      ? {
-          OR: [
-            { postTitle: { contains: searchString } },
-            { content: { contains: searchString } },
-          ],
-        }
-      : {}
+    const conditions: any[] = [eq(post.postStatus, 'published')]
+    if (searchString) {
+      conditions.push(
+        or(
+          ilike(post.postTitle, `%${searchString}%`),
+          ilike(post.content, `%${searchString}%`),
+        ),
+      )
+    }
 
-    return this.prisma.post.findMany({
-      where: {
-        postStatus: 'published',
-        ...or,
-      },
-      take: Number(take) || undefined,
-      skip: Number(skip) || undefined,
-      orderBy: {
-        updatedAt: orderBy,
-      },
-    })
+    const where = conditions.length ? and(...conditions) : undefined
+
+    return this.drizzle.db
+      .select()
+      .from(post)
+      .where(where as any)
+      .orderBy(orderBy === 'asc' ? post.updatedAt : desc(post.updatedAt))
+      .limit(Number(take) || 10)
+      .offset(Number(skip) || 0)
   }
 }

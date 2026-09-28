@@ -1,12 +1,13 @@
 import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { and, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { freelancerTask } from '@/core/database/drizzle/schema'
 import { HttpService } from '@nestjs/axios'
 import { InjectQueue } from '@nestjs/bull'
 import { Injectable } from '@nestjs/common'
 import { Queue } from 'bull'
 import { MayigeekTask } from '../interfaces/mayigeek.interface'
 import { SourceType, SpiderTask } from '../../spider.interface'
-import { SourceEnum, Prisma } from '@prisma/client'
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array)
@@ -19,7 +20,7 @@ export class MayigeekService {
   url: string
 
   constructor(
-    private readonly prisma: PrismaService,
+    private readonly drizzle: DrizzleService,
     private readonly httpService: HttpService,
     private readonly freelancerService: FreelancerService,
     @InjectQueue('urls')
@@ -49,7 +50,7 @@ export class MayigeekService {
 
     await asyncForEach(data.info.list, async (item: MayigeekTask) => {
       const task: Partial<SpiderTask> = {
-        source: SourceEnum['mayigeek'],
+        source: 'mayigeek' as any,
         sourceId: item.id,
         title: item.name,
         desc: item.desc,
@@ -58,38 +59,58 @@ export class MayigeekService {
         bargain: false,
         cycle: +item.day,
         cycleName: '天',
-        date: new Date(item.create_date),
+        date: new Date(item.create_date).toISOString() as any,
         applyCount: Number(item.apply_times),
         visitCount: Number(item.browse_times),
         status: item.status,
         auditStatus: 0,
         auditReason: '',
-        auditAt: new Date(),
+        auditAt: new Date().toISOString() as any,
         handleStatus: 0,
-        handleAt: new Date(),
+        handleAt: new Date().toISOString() as any,
         userId: '',
         type: 0,
         application: 0,
         tags: '',
       }
 
-      let isExist = await this.prisma.freelancerTask.findFirst({
-        where: {
-          source: SourceEnum['mayigeek'],
-          title: task.title,
-        },
-      })
+      const [isExist] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, 'mayigeek'),
+            eq(freelancerTask.title, task.title ?? ''),
+          ),
+        )
+        .limit(1)
 
-      let remindTask = await this.prisma.freelancerTask.upsert({
-        where: {
-          source_title: {
-            source: SourceEnum['mayigeek'],
-            title: `${task.title}`,
-          },
-        },
-        create: <any>task,
-        update: <any>task,
-      })
+      const [existing] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, 'mayigeek'),
+            eq(freelancerTask.title, `${task.title}`),
+          ),
+        )
+        .limit(1)
+
+      let remindTask
+      if (existing) {
+        const [updated] = await this.drizzle.db
+          .update(freelancerTask)
+          .set(task as any)
+          .where(eq(freelancerTask.id, existing.id))
+          .returning()
+        remindTask = updated
+      } else {
+        const [created] = await this.drizzle.db
+          .insert(freelancerTask)
+          .values(task as any)
+          .returning()
+        remindTask = created
+      }
 
       if (!isExist) {
         // 链接添加到 redis 队列

@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common'
 import { UserService } from '@/modules/system/user/user.service'
 import { ConfigService } from '@nestjs/config'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { OAuth2Client } from 'google-auth-library'
 import { MailService } from '@/core/mail/mail/mail.service'
 import { SchedulerRegistry } from '@nestjs/schedule'
@@ -38,7 +37,6 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly cacheService: CacheService,
     private readonly mailService: MailService,
-    private readonly prisma: PrismaService,
     private readonly userService: UserService,
     private readonly userVerificationService: UserVerificationService,
     private readonly passwordService: PasswordService,
@@ -84,23 +82,22 @@ export class AuthService {
 
     const newActivationKey = uuidv4()
 
-    const result = await this.prisma.$transaction(async (prisma) => {
+    const result = await (async () => {
       const createdUser = await this.userService.create({
-        data: {
-          login: username,
-          pass: userPass, // 废弃
-          password: userPass,
-          email,
-          activationKey: newActivationKey,
-          username: username,
-          gender: 0,
-          birthday: '',
-          last_login_time: '',
-          last_login_ip: '',
-          level: 0,
-          weixin_openid: '',
-          session_key: '',
-        },
+        userLogin: username,
+        userPass: userPass, // 废弃
+        password: userPass,
+        email,
+        userActivationKey: newActivationKey,
+        username: username,
+        gender: 0,
+        birthday: '',
+        lastLoginTime: '',
+        lastLoginIp: '',
+        level: 0,
+        weixinOpenid: '',
+        sessionKey: '',
+        updatedAt: new Date().toISOString(),
       })
 
       const timeout = setTimeout(
@@ -111,7 +108,7 @@ export class AuthService {
       )
 
       const sendMail = await this.mailService.sendActivationKeyEmail(
-        createdUser,
+        createdUser as any,
         newActivationKey
       )
 
@@ -127,13 +124,13 @@ export class AuthService {
       // });
 
       return createdUser
-    })
+    })()
     const { accessToken, refreshToken } =
-      await this.tokenService.createTokens(result)
+      await this.tokenService.createTokens(result as any)
     return {
       user: {
         id: result.id,
-        login: result.login,
+        login: result.userLogin,
         email: result.email,
       },
       accessToken,
@@ -201,7 +198,7 @@ export class AuthService {
     console.log('certificate user: ', user)
     const payload = {
       username: user.userLogin,
-      sub: user.ID,
+      sub: user.id,
       realName: user.userNicename,
       role: user.role,
     }
@@ -246,7 +243,7 @@ export class AuthService {
       throw new HttpException('用户不存在', HttpStatus.UNAUTHORIZED)
     }
     // 会自动生成完整用户信息
-    const { pass, password, ...result } = user
+    const { password, ...result } = user
     return result
     // return {
     //     id: payload.sub,
@@ -348,7 +345,7 @@ export class AuthService {
 
     await this.userService.updateById(user.id, {
       password,
-      resetToken: null,
+      userResetKey: null,
     })
 
     try {

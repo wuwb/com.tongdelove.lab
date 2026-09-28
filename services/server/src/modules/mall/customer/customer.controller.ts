@@ -18,7 +18,6 @@ import { CustomerService } from './customer.service'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { createReadStream } from 'fs'
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface'
-import { Prisma } from '@prisma/client'
 
 @ApiTags('customer')
 @Controller('api/customer')

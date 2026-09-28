@@ -5,6 +5,7 @@ import {
   toFixedString,
   useGrids,
 } from './hooks/useGrids'
+import { SavePlan } from './SavePlan'
 import { useStyles } from './styles'
 
 const LazyDownload = lazy(() => import('./Download'))
@@ -42,9 +43,12 @@ export function Grids() {
     <div className={styles.tableContainer}>
       <p className={styles.title}>
         <span>操作示意表</span>
-        <Suspense fallback={null}>
-          <LazyDownload />
-        </Suspense>
+        <span className={styles.titleActions}>
+          <SavePlan />
+          <Suspense fallback={null}>
+            <LazyDownload />
+          </Suspense>
+        </span>
       </p>
       <div className={styles.content}>
         <table id="table-list" className={styles.table}>

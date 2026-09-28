@@ -308,6 +308,11 @@ const route = [
         path: '/etf/grid-strategy',
         component: './Etf',
       },
+      {
+        name: '网格交易方案',
+        path: '/etf/grid-plan',
+        component: './Etf/Plan',
+      },
     ],
   },
 

@@ -1,16 +1,39 @@
 import { Field, ObjectType } from '@nestjs/graphql'
 import { ApiProperty } from '@nestjs/swagger'
-import { Prisma } from '@prisma/client'
 
 @ObjectType()
-export class CreateTopicDto implements Prisma.TopicCreateInput {
+export class CreateTopicDto {
   @Field()
   @ApiProperty()
   name: string
 
   @Field()
-  userId: string
+  userId?: string
 
   @Field()
-  userRole: number
+  userRole?: number
+
+  @Field()
+  @ApiProperty()
+  description: string
+
+  @Field()
+  @ApiProperty()
+  category: string
+
+  @Field()
+  @ApiProperty()
+  relate_topics: string
+
+  @Field()
+  @ApiProperty()
+  filename: string
+
+  @Field()
+  @ApiProperty()
+  views: number
+
+  @Field()
+  @ApiProperty()
+  isPublished: boolean
 }

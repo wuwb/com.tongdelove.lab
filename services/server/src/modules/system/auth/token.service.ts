@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService, JwtSignOptions } from '@nestjs/jwt'
-import { User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 import {
   INVALID_PASSWORD_ERROR,
   INVALID_USERNAME_ERROR,

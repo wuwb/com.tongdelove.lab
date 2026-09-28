@@ -15,9 +15,7 @@ import * as path from 'path'
 
 import '@sentry/tracing'
 import { SentryInterceptor } from '@/common/interceptors/sentry.interceptor'
-import { PrismaClientExceptionFilter } from '@/common/filters/prisma-client-exception.filter'
 import { CacheService } from '@/core/cache/cache/cache.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { AppService } from '@/modules/app/app.service'
 import { AuthService } from '@/modules/system/auth/auth.service'
 import { setupSwagger } from './setup-swagger'
@@ -99,7 +97,6 @@ export async function bootstrap(app, listening: boolean = true) {
   // service
   const configService = app.get(ConfigService)
   const appService = app.get(AppService)
-  const prismaService = app.get(PrismaService)
   const httpAdapterHost = app.get(HttpAdapterHost)
   // const myLogger = app.get(MyLogger);
 
@@ -141,12 +138,8 @@ export async function bootstrap(app, listening: boolean = true) {
   // app.use(csurf());
 
   // 全局所有异常过滤器
-  // Prisma Client Exception Filter for unhandled exceptions
   // 把所有的异常都转换成{code：code，data：null，message：message}
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost.httpAdapter))
-  app.useGlobalFilters(
-    new PrismaClientExceptionFilter(httpAdapterHost.httpAdapter)
-  )
 
   // 拦截日志
   app.useGlobalInterceptors(new LoggingInterceptor())
@@ -226,11 +219,8 @@ export async function bootstrap(app, listening: boolean = true) {
   // 禁止提示
   // app.disable('x-powered-by');
 
-  // https://docs.nestjs.com/recipes/prisma
-  // Remove listeners created by Prisma
   process.removeAllListeners('SIGTERM')
   process.removeAllListeners('SIGINT')
-  await prismaService.enableShutdownHooks(app)
   await app.enableShutdownHooks()
 
   await app.startAllMicroservices()

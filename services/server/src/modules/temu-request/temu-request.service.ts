@@ -1,24 +1,29 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { randomUUID } from 'crypto'
+import { and, count, desc, eq, gte, ilike, inArray, lte } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { temuRequests } from '@/core/database/drizzle/schema'
 import { BatchCreateTemuRequestDto, QueryTemuRequestDto } from './dto'
 
 @Injectable()
 export class TemuRequestService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async createBatch(dto: BatchCreateTemuRequestDto) {
-    const { requests, userId, deviceId } = dto
+    const { requests, userId } = dto
 
-    const existingIds = await this.prisma.temuRequest.findMany({
-      where: {
-        requestId: {
-          in: requests.filter((r) => r.requestId).map((r) => r.requestId!),
-        },
-      },
-      select: { requestId: true },
-    })
+    const requestIdList = requests
+      .filter((r) => r.requestId)
+      .map((r) => r.requestId!)
 
-    const existingIdSet = new Set(existingIds.map((r) => r.requestId))
+    const existingRows = requestIdList.length
+      ? await this.drizzle.db
+          .select({ requestId: temuRequests.requestId })
+          .from(temuRequests)
+          .where(inArray(temuRequests.requestId, requestIdList))
+      : []
+
+    const existingIdSet = new Set(existingRows.map((r) => r.requestId))
     const newRequests = requests.filter((r) => !existingIdSet.has(r.requestId!))
 
     if (newRequests.length === 0) {
@@ -31,26 +36,31 @@ export class TemuRequestService {
     }
 
     try {
-      await this.prisma.temuRequest.createMany({
-        data: newRequests.map((req) => ({
-          url: req.url,
-          method: req.method,
-          requestId: req.requestId,
-          path: this.extractPath(req.url),
-          requestHeaders: req.requestHeaders,
-          requestBody: this.sanitizeBody(req.requestBody),
-          responseStatus: req.responseStatus,
-          responseText: req.responseText,
-          responseHeaders: req.responseHeaders,
-          responseBody: this.sanitizeBody(req.responseBody),
-          requestType: req.requestType || 'fetch',
-          platform: 'temu',
-          userAgent: req.userAgent,
-          capturedAt: req.capturedAt ? new Date(req.capturedAt) : new Date(),
-          userId,
-        })),
-        skipDuplicates: true,
-      })
+      await this.drizzle.db
+        .insert(temuRequests)
+        .values(
+          newRequests.map((req) => ({
+            id: randomUUID(),
+            url: req.url,
+            method: req.method,
+            requestId: req.requestId,
+            path: this.extractPath(req.url),
+            requestHeaders: req.requestHeaders,
+            requestBody: this.sanitizeBody(req.requestBody),
+            responseStatus: req.responseStatus,
+            responseText: req.responseText,
+            responseHeaders: req.responseHeaders,
+            responseBody: this.sanitizeBody(req.responseBody),
+            requestType: req.requestType || 'fetch',
+            platform: 'temu',
+            userAgent: req.userAgent,
+            capturedAt: req.capturedAt
+              ? new Date(req.capturedAt).toISOString()
+              : new Date().toISOString(),
+            userId,
+          })),
+        )
+        .onConflictDoNothing()
 
       return {
         success: true,
@@ -79,56 +89,71 @@ export class TemuRequestService {
       maxStatus,
     } = query
 
-    const where: any = {}
+    const conditions: any[] = []
 
     if (url) {
-      where.url = { contains: url, mode: 'insensitive' }
+      conditions.push(ilike(temuRequests.url, `%${url}%`))
     }
 
     if (method) {
-      where.method = method.toUpperCase()
+      conditions.push(eq(temuRequests.method, method.toUpperCase()))
     }
 
     if (isCleaned !== undefined) {
-      where.isCleaned = isCleaned
+      conditions.push(eq(temuRequests.isCleaned, isCleaned))
     }
 
-    if (startDate || endDate) {
-      where.capturedAt = {}
-      if (startDate) where.capturedAt.gte = new Date(startDate)
-      if (endDate) where.capturedAt.lte = new Date(endDate)
+    if (startDate) {
+      conditions.push(
+        gte(temuRequests.capturedAt, new Date(startDate).toISOString()),
+      )
+    }
+
+    if (endDate) {
+      conditions.push(
+        lte(temuRequests.capturedAt, new Date(endDate).toISOString()),
+      )
     }
 
     if (userId) {
-      where.userId = userId
+      conditions.push(eq(temuRequests.userId, userId))
     }
 
-    if (minStatus || maxStatus) {
-      where.responseStatus = {}
-      if (minStatus) where.responseStatus.gte = minStatus
-      if (maxStatus) where.responseStatus.lte = maxStatus
+    if (minStatus) {
+      conditions.push(gte(temuRequests.responseStatus, Number(minStatus)))
     }
 
-    const [total, items] = await Promise.all([
-      this.prisma.temuRequest.count({ where }),
-      this.prisma.temuRequest.findMany({
-        where,
-        take: pageSize,
-        skip: (page - 1) * pageSize,
-        orderBy: { capturedAt: 'desc' },
-        select: {
-          id: true,
-          url: true,
-          method: true,
-          requestId: true,
-          responseStatus: true,
-          responseText: true,
-          capturedAt: true,
-          isCleaned: true,
-          cleanedAt: true,
-        },
-      }),
+    if (maxStatus) {
+      conditions.push(lte(temuRequests.responseStatus, Number(maxStatus)))
+    }
+
+    const where = conditions.length ? and(...conditions) : undefined
+
+    const [totalRes, items] = await Promise.all([
+      this.drizzle.db
+        .select({ value: count() })
+        .from(temuRequests)
+        .where(where),
+      this.drizzle.db
+        .select({
+          id: temuRequests.id,
+          url: temuRequests.url,
+          method: temuRequests.method,
+          requestId: temuRequests.requestId,
+          responseStatus: temuRequests.responseStatus,
+          responseText: temuRequests.responseText,
+          capturedAt: temuRequests.capturedAt,
+          isCleaned: temuRequests.isCleaned,
+          cleanedAt: temuRequests.cleanedAt,
+        })
+        .from(temuRequests)
+        .where(where)
+        .orderBy(desc(temuRequests.capturedAt))
+        .limit(pageSize)
+        .offset((page - 1) * pageSize),
     ])
+
+    const total = Number(totalRes[0]?.value ?? 0)
 
     return {
       items,
@@ -142,9 +167,11 @@ export class TemuRequestService {
   }
 
   async findOne(id: string) {
-    const record = await this.prisma.temuRequest.findUnique({
-      where: { id },
-    })
+    const [record] = await this.drizzle.db
+      .select()
+      .from(temuRequests)
+      .where(eq(temuRequests.id, id))
+      .limit(1)
 
     if (!record) {
       throw new HttpException('记录不存在', HttpStatus.NOT_FOUND)

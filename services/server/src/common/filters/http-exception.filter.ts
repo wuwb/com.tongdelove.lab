@@ -8,7 +8,6 @@ import {
   Logger,
 } from '@nestjs/common'
 import { BaseExceptionFilter } from '@nestjs/core'
-import { Prisma } from '@prisma/client'
 import type { Request, Response } from 'express'
 import { ResOp } from '@/shared/classes/res.class'
 
@@ -65,30 +64,6 @@ export class HttpExceptionFilter
 
       if (exception instanceof HttpException) {
         message = exception.message
-      } else if (exception instanceof Prisma.PrismaClientKnownRequestError) {
-        const statusCode = this.errorCodesStatusMapping[exception.code]
-        if (exception.code === 'P2002') {
-          // Handling Unique Key Constraint Violation Error
-          const fields = (exception.meta as { target: string[] }).target
-          message = `Another record with the requested (${fields.join(
-            ', '
-          )}) already exists`
-        } else {
-          message =
-            `[${exception.code}]: ` +
-            this.exceptionShortMessage(exception.message)
-        }
-
-        if (
-          !Object.keys(this.errorCodesStatusMapping).includes(exception.code)
-        ) {
-          return super.catch(exception, host)
-        }
-
-        result = {
-          message: message,
-          statusCode: statusCode,
-        }
       } else if (exception instanceof ForbiddenException) {
         message = '未登录'
       } else {

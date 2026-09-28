@@ -148,7 +148,7 @@ export class LoginService {
 
     const updated = await this.userService.updatePassword(
       user.id,
-      user.pass,
+      user.userPass ?? '',
       updatePasswordDto.password
     )
 

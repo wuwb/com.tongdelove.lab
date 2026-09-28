@@ -4,9 +4,9 @@ import {
   HealthCheckService,
   HttpHealthIndicator,
   HealthCheck,
-  TypeOrmHealthIndicator,
 } from '@nestjs/terminus'
 import { ApiTags } from '@nestjs/swagger'
+import { DrizzleHealthIndicator } from './prisma.health'
 
 @ApiTags('core')
 @Controller('_health')
@@ -14,7 +14,7 @@ export class HealthController {
   constructor(
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
-    private db: TypeOrmHealthIndicator
+    private db: DrizzleHealthIndicator,
     // private dogHealthIndicator: DogHealthIndicator,
   ) {}
 

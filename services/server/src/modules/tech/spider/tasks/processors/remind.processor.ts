@@ -1,7 +1,7 @@
 import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
 import { JOB_REF, OnQueueActive, Process, Processor } from '@nestjs/bull'
 import { Inject, Logger } from '@nestjs/common'
-import { FreelancerTask } from '@prisma/client'
+import { FreelancerTask } from '@/core/database/drizzle/types'
 import { Job } from 'bull'
 import dayjs from 'dayjs'
 
@@ -20,9 +20,7 @@ export class RemindProcessor {
   async transcode(job: Job<FreelancerTask>) {
     this.logger.debug('Start transcoding...')
     this.logger.debug(job.data)
-    job.data.date = dayjs(job.data.date).format(
-      'YYYY-MM-DD HH:ss'
-    ) as unknown as Date
+    job.data.date = dayjs(job.data.date).format('YYYY-MM-DD HH:ss')
     this.freelancerService.remind(job.data)
     this.logger.debug('Transcoding completed')
     // let progress = 0;

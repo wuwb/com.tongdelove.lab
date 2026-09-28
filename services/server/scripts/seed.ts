@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import * as hasher from 'wordpress-hash-node'
 import { customSeed } from './customSeed'
 import { User, Prisma } from '@prisma/client'
@@ -6,7 +7,10 @@ import { User, Prisma } from '@prisma/client'
 async function seed(bcryptSalt?) {
   console.log(`Start seeding ...`)
 
-  const client = new PrismaClient()
+  const connectionString =
+    process.env.DATABASE_URL ||
+    `postgresql://${process.env.DATABASE_USERNAME || 'postgres'}:${process.env.DATABASE_PASSWORD || 'postgres'}@${process.env.DATABASE_HOST || 'localhost'}:${Number(process.env.DATABASE_PORT) || 54321}/${process.env.DATABASE_DATABASE || 'postgres'}`
+  const client = new PrismaClient({ adapter: new PrismaPg(connectionString) })
 
   const aliceData: Prisma.UserCreateInput = {
     login: 'admin',
@@ -19,6 +23,10 @@ async function seed(bcryptSalt?) {
     pass: hasher.HashPassword('123456'),
     password: hasher.HashPassword('123456'),
     activationKey: '',
+    registered: new Date(),
+    departmentId: '',
+    psalt: '',
+    birthDay: new Date(),
     roles: {
       create: [
         {
@@ -61,6 +69,10 @@ async function seed(bcryptSalt?) {
     pass: hasher.HashPassword('123456'),
     password: hasher.HashPassword('123456'),
     activationKey: '',
+    registered: new Date(),
+    departmentId: '',
+    psalt: '',
+    birthDay: new Date(),
     roles: {
       connectOrCreate: [
         {

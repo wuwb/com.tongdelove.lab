@@ -1,4 +1,4 @@
-import { SourceEnum } from '@prisma/client'
+import { SourceEnumValue } from '@/core/database/drizzle/types'
 import { Type } from 'class-transformer'
 import {
   IsEmail,
@@ -33,7 +33,7 @@ export class CreateSubscribeDto {
   @MaxLength(20, {
     each: true,
   })
-  source: SourceEnum[]
+  source: SourceEnumValue[]
 
   @Type(() => Wehbook)
   @ValidateNested()

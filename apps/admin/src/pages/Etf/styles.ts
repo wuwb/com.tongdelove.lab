@@ -215,7 +215,13 @@ export const useStyles = createStyles(({ css }) => ({
     margin-bottom: 1em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.2em;
+  `,
+  titleActions: css`
+    display: flex;
+    align-items: center;
+    gap: 8px;
   `,
   content: css`
     max-width: 100%;

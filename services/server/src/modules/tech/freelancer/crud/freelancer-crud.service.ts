@@ -1,21 +1,24 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
-import { CrudService } from '@/core/crud/crud.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
-import { FreelancerTaskMapType } from './freelancer-map-type.class'
+import { count } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { freelancerTask } from '@/core/database/drizzle/schema'
 
 @Injectable()
-export class FreelancerCrudService extends CrudService<
-  Prisma.FreelancerTaskDelegate<any>,
-  FreelancerTaskMapType
-> {
-  constructor(private readonly prisma: PrismaService) {
-    super(prisma.freelancerTask)
-  }
+export class FreelancerCrudService {
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async foo() {
-    return await this.count({
-      where: {},
-    })
+    const res = await this.drizzle.db
+      .select({ value: count() })
+      .from(freelancerTask)
+    return res[0]?.value ?? 0
+  }
+
+  async findMany(args?: any) {
+    return this.drizzle.db
+      .select()
+      .from(freelancerTask)
+      .limit(args?.take ?? 10)
+      .offset(args?.skip ?? 0)
   }
 }

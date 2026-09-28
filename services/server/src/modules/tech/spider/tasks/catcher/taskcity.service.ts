@@ -1,11 +1,9 @@
 import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { SourceType, SpiderTask } from '@/modules/tech/spider/spider.interface'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import * as cheerio from 'cheerio'
 import { TaskcityDemo } from './taskcity.demo'
-import { SourceEnum, Prisma } from '@prisma/client'
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array)
@@ -17,7 +15,6 @@ async function asyncForEach(array, callback) {
 @Injectable()
 export class TaskcityService {
   constructor(
-    private readonly prisma: PrismaService,
     private readonly httpService: HttpService,
     private readonly freelancerService: FreelancerService
   ) {}
@@ -45,13 +42,13 @@ export class TaskcityService {
       console.log('rightTest: ', rightTest)
 
       let task: Partial<SpiderTask> = {
-        source: SourceEnum['taskcity'],
+        source: 'taskcity' as any,
         title: $item.find('.col-sm-8 .media-heading a').text(),
         url:
           'https://taskcity.com' +
           $item.find('.col-sm-8 .media-heading a').attr('href'),
         desc: $item.find('.col-sm-8 p').text(),
-        minPrice: new Prisma.Decimal(0),
+        minPrice: '0' as any,
         fixedPrice: <any>rightTest.match(/项目预算：[\u4e00-\u9fa5]+/g),
         date: <any>(
           rightTest.match(

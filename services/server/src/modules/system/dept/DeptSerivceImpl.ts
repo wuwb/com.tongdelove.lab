@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { DeptCreateReqVO } from './vo/DeptCreateReqVO'
 import { DeptUpdateReqVO } from './vo/DeptUpdateReqVO'
 import { DeptListReqVO } from './vo/DeptListReqVO'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { depts } from '@/core/database/drizzle/schema'
 import { ApiException } from '@/common/exceptions/api.exception'
 import { CommonStatusEnum } from '@/common/enums/CommonStatus.enum'
 import { TenantContextHolder } from '@/core/tenant/context/TenantContextHolder'
@@ -13,16 +14,16 @@ export class DeptServiceImpl {
 
   parentDeptCache
 
-  constructor(private prisma: PrismaService) {
+  constructor(private readonly drizzle: DrizzleService) {
     this.initLocalCache()
   }
 
   async initLocalCache() {
     // 第一步：查询数据
-    let depts = await this.prisma.dept.findMany()
+    const deptList = await this.drizzle.db.select().from(depts)
 
     // 第二步：构建缓存
-    depts.forEach((dept) => {
+    deptList.forEach((dept) => {
       this.deptCache[dept.id] = dept
       this.parentDeptCache[dept.parentId] = dept
     })

@@ -1,7 +1,7 @@
 import { Injectable, NestMiddleware } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
 import { ConfigService } from '@nestjs/config'
-import { User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 import { MyLoggerService } from '@/core/logger/winston/logger.service'
 import { UserService } from '@/modules/system/user/user.service'
 import { CacheService } from '@/core/cache/cache/cache.service'

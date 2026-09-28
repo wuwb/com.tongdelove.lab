@@ -1,9 +1,15 @@
 import { DingdingService } from '@/core/sms/dingding/dingding.service'
 import { WebhookService } from '@/core/sms/webhook/webhook.service'
 import { Injectable, Logger } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { randomUUID } from 'crypto'
+import { count, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import {
+  freelancerTask,
+  subscribesWebhook,
+  subscribesWebhook2User,
+} from '@/core/database/drizzle/schema'
 import { ISourceType } from '../spider/spider.interface'
-import { SourceEnum } from '@prisma/client'
 import { ApiException } from '@/common/exceptions/api.exception'
 
 @Injectable()
@@ -11,19 +17,23 @@ export class FreelancerService {
   private readonly logger = new Logger(FreelancerService.name)
 
   constructor(
-    public readonly prisma: PrismaService,
+    public readonly drizzle: DrizzleService,
     private readonly dingdingService: DingdingService,
     private readonly webhookService: WebhookService
   ) {}
 
-  async getFreeProjects(page, limit) {
+  async getFreeProjects(page: number, limit: number) {
     const skip = (page - 1) * limit
 
-    const data = await this.prisma.freelancerTask.findMany({
-      skip: skip,
-      take: limit,
-    })
-    const total = await this.prisma.freelancerTask.count()
+    const data = await this.drizzle.db
+      .select()
+      .from(freelancerTask)
+      .limit(limit)
+      .offset(skip)
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(freelancerTask)
+    const total = Number(totalRes[0]?.value ?? 0)
 
     if (!data) {
       throw new ApiException(10011, `No data found`)
@@ -35,21 +45,19 @@ export class FreelancerService {
   }
 
   async getTaskById(id: string) {
-    const result = await this.prisma.freelancerTask.findUnique({
-      where: {
-        id,
-      },
-    })
-
-    return result
+    const [result] = await this.drizzle.db
+      .select()
+      .from(freelancerTask)
+      .where(eq(freelancerTask.id, id))
+      .limit(1)
+    return result ?? null
   }
 
-  async remind(data) {
-    const remindTarget = await this.prisma.subscribesWebhook.findMany({
-      where: {
-        remindSource: SourceEnum[data.source], // 'codemar',
-      },
-    })
+  async remind(data: any) {
+    const remindTarget = await this.drizzle.db
+      .select()
+      .from(subscribesWebhook)
+      .where(eq(subscribesWebhook.remindSource, data.source))
 
     if (!remindTarget || remindTarget.length === 0) {
       return
@@ -77,25 +85,32 @@ export class FreelancerService {
     return result
   }
 
-  async subscribe(webhook, user) {
+  async subscribe(webhook: any, user: any) {
     // 加入事物
     try {
-      const subscribesWebhook = await this.prisma.subscribesWebhook.create({
-        data: {
+      const [subscribesWebhookRow] = await this.drizzle.db
+        .insert(subscribesWebhook)
+        .values({
+          id: randomUUID(),
           webhook: webhook.webhook,
           secret: webhook.secret,
           webhookType: webhook.webhookType,
-          remindSource: SourceEnum[webhook.remindSource], // 转 enum
+          remindSource: webhook.remindSource,
           remindType: webhook.remindType,
-        },
-      })
-      this.logger.log('subscribesWebhook: ', subscribesWebhook)
-      const bind = await this.prisma.subscribesWebhook2user.create({
-        data: {
-          webhookId: subscribesWebhook.id,
+        })
+        .returning()
+      this.logger.log('subscribesWebhook: ', subscribesWebhookRow)
+      if (!subscribesWebhookRow) {
+        throw new Error('订阅创建失败')
+      }
+      const [bind] = await this.drizzle.db
+        .insert(subscribesWebhook2User)
+        .values({
+          id: randomUUID(),
+          webhookId: subscribesWebhookRow.id,
           userId: user.id,
-        },
-      })
+        })
+        .returning()
       return bind
     } catch (err) {
       this.logger.log(err)

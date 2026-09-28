@@ -5,288 +5,144 @@ import {
   HttpStatus,
   NotFoundException,
 } from '@nestjs/common'
-import { CreateUserDto } from './dto/create-user.dto'
-import { User, Prisma } from '@prisma/client'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { and, eq, or, sql, type AnyColumn, type InferSelectModel } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { users, roles, roleToUser, depts } from '@/core/database/drizzle/schema'
 import { ApiException } from '@/common/exceptions/api.exception'
 import { QueryUserDto } from './dto/query-user.dto'
 
-const userWithRoles = Prisma.validator<any>()({
-  include: {
-    roles: {
-      select: {
-        id: true,
-        key: true,
-      },
-    },
-    dept: {
-      select: {
-        id: true,
-        name: true,
-      },
-    },
-  },
-})
-type UserWithRoles = Prisma.UserGetPayload<typeof userWithRoles>
+type UserRow = InferSelectModel<typeof users>
+type UserWithRoles = UserRow & {
+  roles?: { id: string; key: string }[]
+  dept?: { id: string; name: string } | null
+}
 
 @Injectable()
 export class UserService {
   private readonly logger = new Logger(UserService.name)
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
-  // typeorm
-
-  // 根据用户名查找已经启用的用户
-  async tfindByLogin(login: string) {
-    // return this.userRepository.findOneBy({
-    //   login: login,
-    //   status: 1,
-    // })
+  async all(): Promise<UserRow[]> {
+    return this.drizzle.db.select().from(users)
   }
 
-  async tfindByEmail(email: string) {
-    // const user = await this.userRepository.findOne({
-    //   where: {
-    //     email,
-    //   },
-    // })
-    // if (!user) {
-    //   throw new HttpException(
-    //     'A user with this email does not exist.',
-    //     HttpStatus.NOT_FOUND
-    //   )
-    // }
-    // return user
-  }
-
-  // 更新个人信息
-  async updateAccountInfo(id: string, info): Promise<void> {
-    // const user = await this.userRepository.findOneBy({
-    //   id,
-    // })
-    // if (isEmpty(user)) {
-    //   throw new ApiException(10017)
-    // }
-    // const data = {
-    //   ...(info.nickName ? { nickName: info.nickName } : null),
-    //   ...(info.avatar ? { avatar: info.avatar } : null),
-    //   ...(info.email ? { email: info.email } : null),
-    //   ...(info.phone ? { phone: info.phone } : null),
-    //   ...(info.qq ? { qq: info.qq } : null),
-    //   ...(info.remark ? { remark: info.remark } : null),
-    // }
-    // // 自动获取 QQ 头像，todo，提供手动设置头像的功能
-    // if (!info.avatar && info.qq) {
-    //   // 如果qq不等于原qq，则更新qq头像
-    //   if (info.qq !== user.qq) {
-    //     data.avatar = await this.qqService.getAvatar(info.qq)
-    //   }
-    // }
-    // await this.userRepository.update(id, data)
-  }
-
-  async tcreate(dto: CreateUserDto) {
-    // const user = this.userRepository.create(dto)
-    // const salt = bcryptjs.genSaltSync(10)
-    // user.pass = bcryptjs.hashSync(user.pass, salt)
-    // return this.userRepository
-    //   .save(user)
-    //   .then((res) => {
-    //     return {
-    //       id: res.id,
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN)
-    //   })
-  }
-
-  // 添加用户
-  async tcreate2(param: CreateUserDto): Promise<void> {
-    // const exists = await this.userRepository.findOne({
-    //   where: {},
-    // })
-    // if (!isEmpty(exists)) {
-    //   throw new ApiException(10001)
-    // }
-    // await this.entityManager.transaction(async (manager) => {
-    //   const salt = generateRandomValue(32)
-    //   // 查找配置的初始密码
-    //   const initPassword = await this.configService.get('prisma.initPassword')
-    //   const password = ''
-    //   const u = manager.create(UserEntity, {
-    //     departmentId: param.departmentId,
-    //     login: param.login,
-    //     pass: password,
-    //     nicename: 'TD_xxx', // 自动生成，用于显示在链接中
-    //     email: param.email,
-    //     phone: param.phone,
-    //   })
-    //   const result = await manager.save(u)
-    //   const { roles } = param
-    //   const insertRoles = roles.map((e) => {
-    //     return {
-    //       roleId: e,
-    //       userId: result.id,
-    //     }
-    //   })
-    //   // 分配角色
-    //   await manager.insert(UserRole, insertRoles)
-    // })
-  }
-
-  // 获取用户信息
-  async getAccountInfo(id: string): Promise<any> {
-    // const user = await this.userRepository.findOneBy({
-    //   id,
-    // })
-    // if (isEmpty(user)) {
-    //   throw new ApiException(10017)
-    // }
-    // return {
-    //   login: user.login,
-    //   nicename: user.nicename,
-    // }
-  }
-
-  // prisma
-  async all(): Promise<User[]> {
-    return []
-  }
-
-  async findUsers<T extends Prisma.UserFindManyArgs>(
+  async findUsers(
     query: QueryUserDto,
-    page,
-    limit,
-    args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
+    page: number,
+    limit: number,
+    options?: { include?: Record<string, unknown>; select?: Record<string, unknown> },
   ) {
     this.logger.debug(query)
     const skip = (page - 1) * limit
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.user.findMany({
-        where: query,
-        skip,
-        take: limit,
-        ...(args as any),
-      }),
-      this.prisma.user.count({
-        where: query,
-      }),
+    const where = query ? this.buildUserWhere(query) : undefined
+    const [data, totalRes] = await Promise.all([
+      this.drizzle.db
+        .select()
+        .from(users)
+        .where(where)
+        .limit(limit)
+        .offset(skip),
+      this.drizzle.db.select({ value: sql<number>`count(*)` }).from(users).where(where),
     ])
-    return { data, total }
+    return { data, total: Number(totalRes[0]?.value ?? 0) }
   }
 
-  async get<T extends Prisma.UserFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>
-  ) {
-    this.logger.log(`findOne args: ${args}`)
-    const user = await this.prisma.user.findUnique(args)
+  private buildUserWhere(query: any) {
+    const conditions: ReturnType<typeof eq>[] = []
+    if (query?.username) {
+      conditions.push(eq(users.username, String(query.username)))
+    }
+    if (query?.email) {
+      conditions.push(eq(users.email, String(query.email)))
+    }
+    if (query?.userLogin) {
+      conditions.push(eq(users.userLogin, String(query.userLogin)))
+    }
+    return conditions.length ? and(...conditions) : undefined
+  }
 
-    if (!user) {
+  async get(args: { where: { id?: string }; select?: Record<string, unknown> }) {
+    this.logger.log(`findOne args: ${JSON.stringify(args)}`)
+    const user = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(args.where.id ? eq(users.id, args.where.id) : undefined)
+      .limit(1)
+    if (!user[0]) {
       throw new ApiException(10001, '未找到用户')
     }
-
-    return user
+    return user[0]
   }
 
   async getByUsername(username: string) {
     this.logger.log('login: ', username)
-    return this.prisma.user.findUnique({
-      where: {
-        username,
-      },
-    })
+    return this.findByField(users.username, username)
   }
 
   async getByUsernameState(username: string) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        login: username,
-      },
-      select: {
-        id: true,
-        password: true,
-      },
-    })
-    return user
+    const result = await this.drizzle.db
+      .select({ id: users.id, password: users.password })
+      .from(users)
+      .where(eq(users.userLogin, username))
+      .limit(1)
+    return result[0] ?? null
   }
 
-  // 返回用户公开的基本信息
-  async basicInfo(id: string): Promise<Partial<User> | null> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        id,
-      },
-      select: {
-        id: true,
-        username: true,
-        createdAt: true,
-      },
-    })
-    return user
+  async basicInfo(id: string): Promise<Partial<UserRow> | null> {
+    const result = await this.drizzle.db
+      .select({
+        id: users.id,
+        username: users.username,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .where(eq(users.id, id))
+      .limit(1)
+    return result[0] ?? null
   }
 
-  async detailInfo(id: string): Promise<Partial<User> | null> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        id,
-      },
-      select: {
-        id: true,
-        username: true,
-        createdAt: true,
-      },
-    })
-    return user
+  async detailInfo(id: string): Promise<Partial<UserRow> | null> {
+    return this.basicInfo(id)
   }
 
-  async findById(id: string): Promise<Partial<UserWithRoles> | null> {
-    const params = {
-      where: {
-        id,
-      },
-      include: {
-        roles: {
-          select: {
-            id: true,
-            key: true,
-          },
-        },
-        dept: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-      },
+  async findById(id: string): Promise<UserWithRoles | null> {
+    const [user] = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(eq(users.id, id))
+      .limit(1)
+    if (!user) {
+      return null
     }
-    return this.prisma.user.findUnique(params)
+    const [roleRows, deptRows] = await Promise.all([
+      this.drizzle.db
+        .select({ id: roles.id, key: roles.key })
+        .from(roleToUser)
+        .innerJoin(roles, eq(roleToUser.b, roles.id))
+        .where(eq(roleToUser.a, user.id)),
+      user.deptId
+        ? this.drizzle.db
+            .select({ id: depts.id, name: depts.name })
+            .from(depts)
+            .where(eq(depts.id, user.deptId))
+            .limit(1)
+        : Promise.resolve([]),
+    ])
+    return { ...user, roles: roleRows, dept: deptRows[0] ?? null }
   }
 
-  async findByLogin(login: string): Promise<User | null> {
+  async findByLogin(login: string): Promise<UserRow | null> {
     this.logger.log('login: ', login)
-    return this.prisma.user.findUnique({
-      where: {
-        login,
-      },
-    })
+    return this.findByField(users.userLogin, login)
   }
 
-  async findByMobilePhone(login: string): Promise<User | null> {
-    return this.prisma.user.findUnique({
-      where: {
-        login,
-      },
-    })
+  async findByMobilePhone(login: string): Promise<UserRow | null> {
+    return this.findByField(users.userLogin, login)
   }
 
-  async findOneWithRoles(loginName: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        login: loginName,
-      },
-    })
+  async findOneWithRoles(loginName: string): Promise<UserRow> {
+    const user = await this.findByField(users.userLogin, loginName)
     if (!user) {
       throw new HttpException('User does not exist', 404)
     }
@@ -294,232 +150,173 @@ export class UserService {
   }
 
   async findByResetToken(resetKey: string) {
-    const user = this.prisma.user.findFirst({
-      where: {
-        resetKey,
-      },
-    })
-
-    if (!user) {
+    const user = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(eq(users.userResetKey, resetKey))
+      .limit(1)
+    if (!user[0]) {
       throw new HttpException(
         'A user with this email does not exist.',
-        HttpStatus.NOT_FOUND
+        HttpStatus.NOT_FOUND,
       )
     }
-
-    return user
+    return user[0]
   }
 
-  async findByEmail(email: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        email,
-      },
-    })
+  async findByEmail(email: string): Promise<UserRow> {
+    const user = await this.findByField(users.email, email)
     if (!user) {
       throw new HttpException(
         'A user with this email does not exist.',
-        HttpStatus.NOT_FOUND
+        HttpStatus.NOT_FOUND,
       )
     }
     return user
   }
 
-  async findByIdentifier(identifier: string): Promise<User> {
-    const user = await this.prisma.user.findFirst({
-      where: {
-        OR: [
-          {
-            login: identifier,
-          },
-          {
-            email: identifier,
-          },
-        ],
-      },
-    })
-
-    if (!user) {
+  async findByIdentifier(identifier: string): Promise<UserRow> {
+    const user = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(or(eq(users.userLogin, identifier), eq(users.email, identifier)))
+      .limit(1)
+    if (!user[0]) {
       throw new HttpException(
         'A user with this username/email does not exist.',
-        HttpStatus.NOT_FOUND
+        HttpStatus.NOT_FOUND,
       )
     }
-
-    return user
+    return user[0]
   }
 
-  async findByResetKey() {}
-
-  async findByUsername() {}
-
-  // 创建普通账号，创建谷歌登录账号
-  async create(args): Promise<User> {
-    return this.prisma.user.create(args)
+  private async findByField(field: AnyColumn, value: string) {
+    const result = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(eq(field, value))
+      .limit(1)
+    return result[0] ?? null
   }
 
-  // Add a role to the user
-  async addUserRole(userId: string, roleId: string) {}
-
-  // Delete a role from the user
-  async deleteUserRole(userId: string, roleId: string) {}
-
-  async recycleOrBanUser(id: string, action: 'recycle' | 'ban'): Promise<void> {
-    const user = await this.findById(id)
-    // if (action === 'recycle') {
-    //     user.recycle = true;
-    // }
-    // if (action === 'ban') {
-    //     user.banned = true;
-    // }
-    // return this.prisma.user.save(user);
-  }
-
-  async update<T extends Prisma.UserUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserUpdateArgs>
-  ): Promise<User> {
-    return this.prisma.user.update<T>(args)
-  }
-
-  async updateStatus(userId: string, status, operatorRole) {}
-
-  // 更新用户信息(头像、职位、公司、个人介绍、个人主页)
-  async updateUserInfo(userId, updateUserInfoDto) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        login: updateUserInfoDto.login,
-      },
-      select: {
-        id: true,
-      },
-    })
-    if (user) {
-      throw new ApiException(10001, `已经存在名为`)
+  async create(data: Partial<UserRow>): Promise<UserRow> {
+    const [created] = await this.drizzle.db
+      .insert(users)
+      .values(data as any)
+      .returning()
+    if (!created) {
+      throw new NotFoundException('user not found')
     }
-    return await this.prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        ...updateUserInfoDto,
-      },
-    })
+    return created
   }
 
-  async updateById(id: string, data) {
-    const updatedUser = await this.prisma.user.update({
-      where: {
-        id,
-      },
-      data,
-    })
-    return updatedUser
+  // 兼容旧调用名（user.controller 使用）
+  async tcreate(data: any) {
+    return this.create(data)
   }
 
-  async updateByRemoveActivationKey(id) {
-    let undefinedActivationKey
-    return this.prisma.user.update({
-      where: {
-        id,
-      },
-      data: {
-        activationKey: undefinedActivationKey,
-      },
-    })
+  async updateById(id: string, data: Partial<UserRow>) {
+    const [updated] = await this.drizzle.db
+      .update(users)
+      .set(data as any)
+      .where(eq(users.id, id))
+      .returning()
+    return updated
   }
 
-  async updatePassword(userId, oldPass, pass): Promise<boolean> {
-    let user = await this.prisma.user.findUnique({
-      where: {
-        id: userId,
-      },
-    })
+  async updateUserInfo(userId: string, updateUserInfoDto: { login: string; [k: string]: unknown }) {
+    const existing = await this.drizzle.db
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.userLogin, updateUserInfoDto.login))
+      .limit(1)
+    if (existing[0]) {
+      throw new ApiException(10001, `已经存在名为${updateUserInfoDto.login}`)
+    }
+    const { login, ...rest } = updateUserInfoDto
+    const [updated] = await this.drizzle.db
+      .update(users)
+      .set(rest as any)
+      .where(eq(users.id, userId))
+      .returning()
+    return updated
+  }
 
-    if (!user) {
+  async updatePassword(
+    userId: string,
+    oldPass: string,
+    newPass: string
+  ): Promise<boolean> {
+    const user = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1)
+    if (!user[0]) {
       throw new ApiException(10001, '未找到用户')
     }
-
-    // 验证老密码
-
-    // 更新新密码
-    user = await this.prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        pass: pass,
-      },
-    })
+    await this.drizzle.db
+      .update(users)
+      .set({ password: newPass })
+      .where(eq(users.id, userId))
     return true
   }
 
-  async delete<T extends Prisma.UserDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
-  ): Promise<User> {
-    return this.prisma.user.delete(args)
+  async verifyUpdatedEmail(token: string) {
+    const [user] = await this.drizzle.db
+      .select()
+      .from(users)
+      .where(eq(users.userActivationKey, token))
+      .limit(1)
+    if (!user) {
+      throw new NotFoundException('user not found')
+    }
+    const [updated] = await this.drizzle.db
+      .update(users)
+      .set({ emailVerified: new Date().toISOString() })
+      .where(eq(users.id, user.id))
+      .returning()
+    return updated
   }
-
-  async remove(where: Partial<Prisma.UserWhereUniqueInput>) {}
 
   async removeById(id: string) {
     const user = await this.findById(id)
     if (!user) {
       throw new NotFoundException('user not found')
     }
-    // 同时删除角色信息
-    return this.prisma.user.delete({
-      where: {
-        id,
-      },
-    })
+    const [deleted] = await this.drizzle.db
+      .delete(users)
+      .where(eq(users.id, id))
+      .returning()
+    return deleted
   }
 
-  async revertBannedOrRecycledUser(id: string, status: 'recycle' | 'banned') {
-    const user = await this.findById(id)
-    // if (status === 'recycled') {
-    //     user.recycle = false;
-    // }
-    // if (status === 'banned') {
-    //     user.banned = false;
-    // }
-    // await this.userRepo.save(user);
-  }
-
-  // others
-
-  async existsByUsername() {}
-
-  async existsByEmail() {}
-
-  async getProfileImageBuffer() {}
-
-  async uploadProfileImage() {}
-
-  async deleteProfileImage() {}
-
-  // get relations
-
-  async getVotes() {
-    //
-  }
-
-  async getCurrentUserId() {
-    //
-  }
-
-  async getUserOption(option, user) {
-    if (!user) {
-      user = this.getCurrentUserId()
+  // 以下为原 Prisma 泛型方法的兼容占位，保持接口签名，内部走 drizzle。
+  async update(args: { where: { id: string }; data: Partial<UserRow> }): Promise<UserRow> {
+    const updated = await this.updateById(args.where.id, args.data)
+    if (!updated) {
+      throw new NotFoundException('user not found')
     }
+    return updated
   }
 
-  async banOrUnbanUser() {}
+  async delete(args: { where: { id: string } }): Promise<UserRow> {
+    const [deleted] = await this.drizzle.db
+      .delete(users)
+      .where(eq(users.id, args.where.id))
+      .returning()
+    if (!deleted) {
+      throw new NotFoundException('user not found')
+    }
+    return deleted
+  }
 
-  async verifyUpdatedEmail(token: string) {}
-
-  async disableUser() {}
-
-  async activateUser() {}
-
-  async sendActivationMail() {}
+  async updateByRemoveActivationKey(id: string) {
+    const [updated] = await this.drizzle.db
+      .update(users)
+      .set({ userActivationKey: null })
+      .where(eq(users.id, id))
+      .returning()
+    return updated
+  }
 }

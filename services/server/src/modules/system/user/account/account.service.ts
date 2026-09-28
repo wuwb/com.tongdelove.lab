@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Account, Prisma } from '@prisma/client'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { randomUUID } from 'crypto'
+import { and, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { accounts, users } from '@/core/database/drizzle/schema'
 import { HelperService } from '@/shared/helper/helper.service'
 
 @Injectable()
 export class AccountService {
   constructor(
     private readonly configService: ConfigService,
-    private readonly prisma: PrismaService,
+    private readonly drizzle: DrizzleService,
     private readonly helperService: HelperService
   ) {}
 
@@ -16,13 +18,18 @@ export class AccountService {
 
   async accountById() {}
 
-  async findAccountByOpenid(openid: string): Promise<Account | null> {
-    return this.prisma.account.findUnique({
-      where: {
-        provider: 'wechat',
-        providerAccountId: openid,
-      } as Prisma.AccountWhereUniqueInput,
-    })
+  async findAccountByOpenid(openid: string): Promise<any | null> {
+    const [row] = await this.drizzle.db
+      .select()
+      .from(accounts)
+      .where(
+        and(
+          eq(accounts.provider, 'wechat'),
+          eq(accounts.providerAccountId, openid),
+        ),
+      )
+      .limit(1)
+    return row ?? null
   }
 
   async accounts() {}
@@ -32,24 +39,29 @@ export class AccountService {
   }
 
   async createAccountByWechat(userInfo) {
-    return this.prisma.account.create({
-      data: {
+    const [created] = await this.drizzle.db
+      .insert(accounts)
+      .values({
+        id: randomUUID(),
         provider: 'wechat',
         providerAccountId: userInfo.openid,
         userId: '',
+        username: userInfo.openid,
+        password: userInfo.openid,
         type: 'user',
-        refresh_token: userInfo.refreshToken,
-        access_token: userInfo.accessToken,
-        expires_at: null,
-        token_type: '',
+        refreshToken: userInfo.refreshToken,
+        accessToken: userInfo.accessToken,
+        expiresAt: null,
+        tokenType: '',
         scope: 'local',
-        id_token: '',
-        session_state: '',
-        createdAt: '',
-        updatedAt: '',
+        idToken: '',
+        sessionState: '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         isDeleted: false,
-      },
-    })
+      })
+      .returning()
+    return created
   }
 
   async updateAccount() {}
@@ -59,14 +71,11 @@ export class AccountService {
       this.configService.get('defaultPassword', '123456')
     )
 
-    const result = await this.prisma.user.update({
-      data: {
-        pass,
-      },
-      where: {
-        id,
-      },
-    })
+    const [result] = await this.drizzle.db
+      .update(users)
+      .set({ userPass: pass })
+      .where(eq(users.id, id))
+      .returning()
 
     if (result) {
       return '重置成功'

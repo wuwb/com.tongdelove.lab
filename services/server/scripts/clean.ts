@@ -3,6 +3,7 @@
  */
 
 import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 
 if (require.main === module) {
   clean().catch((error) => {
@@ -13,7 +14,10 @@ if (require.main === module) {
 
 async function clean() {
   console.info('Dropping all tables in the database...')
-  const prisma = new PrismaClient()
+  const connectionString =
+    process.env.DATABASE_URL ||
+    `postgresql://${process.env.DATABASE_USERNAME || 'postgres'}:${process.env.DATABASE_PASSWORD || 'postgres'}@${process.env.DATABASE_HOST || 'localhost'}:${Number(process.env.DATABASE_PORT) || 54321}/${process.env.DATABASE_DATABASE || 'postgres'}`
+  const prisma = new PrismaClient({ adapter: new PrismaPg(connectionString) })
   const tables = await getTables(prisma)
   const types = await getTypes(prisma)
   await dropTables(prisma, tables)

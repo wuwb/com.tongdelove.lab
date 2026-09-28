@@ -1,43 +1,44 @@
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { Injectable, Logger } from '@nestjs/common'
 import { UpdateProductDto } from './dto/update-product.dto'
-import { Prisma } from '@prisma/client'
+import { eq, ilike, desc, count } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { product, productSku } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class ProductsService {
   private readonly logger = new Logger(ProductsService.name)
 
-  constructor(private prisma: PrismaService) {
-    this.logger.debug('ProductsService', prisma)
+  constructor(private readonly drizzle: DrizzleService) {
+    this.logger.debug('ProductsService')
   }
 
   // crud
 
-  async create(data: Prisma.ProductCreateInput) {
-    return this.prisma.product.create({
-      data,
-    })
+  async create(data: any) {
+    const [created] = await this.drizzle.db
+      .insert(product)
+      .values(data as any)
+      .returning()
+    return created
   }
 
-  async findAll(query) {
-    const take = query.take || 10
-    const skip = query.skip || 0
-    const keyword = query.keyword || ''
+  async findAll(query: any) {
+    const take = query?.take || 10
+    const skip = query?.skip || 0
+    const keyword = query?.keyword || ''
 
-    const total = await this.prisma.product.count()
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(product)
+    const total = Number(totalRes[0]?.value ?? 0)
 
-    const data = await this.prisma.product.findMany({
-      skip: skip,
-      take: take,
-      where: {
-        title: {
-          contains: keyword,
-        },
-      },
-      orderBy: {
-        title: 'desc',
-      },
-    })
+    const data = await this.drizzle.db
+      .select()
+      .from(product)
+      .where(ilike(product.title, `%${keyword}%`))
+      .orderBy(desc(product.title))
+      .limit(take)
+      .offset(skip)
 
     return {
       data,
@@ -46,45 +47,53 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
-    return this.prisma.product.findUnique({
-      where: {
-        id,
-      },
-    })
+    const [row] = await this.drizzle.db
+      .select()
+      .from(product)
+      .where(eq(product.id, id))
+      .limit(1)
+    return row ?? null
   }
 
   async findPage() {
-    return this.prisma.product.findMany({ where: { published: true } })
+    return this.drizzle.db
+      .select()
+      .from(product)
+      .where(eq(product.published, true))
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    return this.prisma.product.update({
-      where: { id: id },
-      data: updateProductDto,
-    })
+    const [updated] = await this.drizzle.db
+      .update(product)
+      .set(updateProductDto as any)
+      .where(eq(product.id, id))
+      .returning()
+    return updated
   }
 
   async remove(id: string) {
-    return this.prisma.product.delete({
-      where: {
-        id,
-      },
-    })
+    const [deleted] = await this.drizzle.db
+      .delete(product)
+      .where(eq(product.id, id))
+      .returning()
+    return deleted
   }
 
   // relations
 
   async findDrafts() {
-    return this.prisma.product.findMany({ where: { published: false } })
+    return this.drizzle.db
+      .select()
+      .from(product)
+      .where(eq(product.published, false))
   }
 
-  async getProductSku(productId: string, args: Prisma.ProductFindManyArgs) {
-    return this.prisma.product
-      .findUniqueOrThrow({
-        where: {
-          id: productId,
-        },
-      })
-      .productSku()
+  async getProductSku(productId: string, args?: any) {
+    return this.drizzle.db
+      .select()
+      .from(productSku)
+      .where(eq(productSku.productId, productId))
+      .limit(args?.take ?? 100)
+      .offset(args?.skip ?? 0)
   }
 }

@@ -1,15 +1,15 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
+import { count, eq } from 'drizzle-orm'
+import { PageEnum, StatusEnum } from '@/common/enums'
 import { CreateRoleDto } from '../dto/create.role.dto'
 import { UpdateRoleDto } from '../dto/update.role.dto'
-import { RoleResDto, RoleListResDto } from '../dto/role.res.dto'
 import { RoleReqDto } from '../dto/role.req.dto'
-import { PageEnum, StatusEnum } from '@/common/enums'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
-import { Role } from '@prisma/client'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { roles } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class RoleService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   /**
    * 创建角色
@@ -144,15 +144,19 @@ export class RoleService {
     // }
   }
 
-  async findRoles(queryRoleDto) {
+  async findRoles(queryRoleDto: any) {
     const { limit = PageEnum.PAGE_NUMBER, page = PageEnum.PAGE_SIZE } =
       queryRoleDto
     const skip = (page - 1) * limit
-    const data = await this.prisma.role.findMany({
-      skip,
-      take: limit,
-    })
-    const total = await this.prisma.role.count({})
+    const data = await this.drizzle.db
+      .select()
+      .from(roles)
+      .limit(limit)
+      .offset(skip)
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(roles)
+    const total = Number(totalRes[0]?.value ?? 0)
     return {
       data,
       total,
@@ -166,23 +170,24 @@ export class RoleService {
   }
 
   // 根据角色 id 查询角色
-  async findById(id: string): Promise<Role | null> {
-    return this.prisma.role.findUnique({
-      where: {
-        id,
-      },
-    })
+  async findById(id: string): Promise<any | null> {
+    const [role] = await this.drizzle.db
+      .select()
+      .from(roles)
+      .where(eq(roles.id, id))
+      .limit(1)
+    return role ?? null
   }
 
-  async findMany(roleReqDTO) {}
+  async findMany(roleReqDTO: any) {}
 
-  async findAll(): Promise<Role[]> {
-    return this.prisma.role.findMany()
+  async findAll(): Promise<any[]> {
+    return this.drizzle.db.select().from(roles)
   }
 
-  async create(createRoleDto) {}
+  async create(createRoleDto: any) {}
 
-  async updateById(id: string, updateRoleDTO) {}
+  async updateById(id: string, updateRoleDTO: any) {}
 
   async removeById(id: string) {}
 }

@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { sql } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
 
 @Injectable()
 export class HealthService {
-  constructor(protected readonly prisma: PrismaService) {}
+  constructor(protected readonly drizzle: DrizzleService) {}
 
   async isDbReady(): Promise<boolean> {
     try {
-      await this.prisma.$queryRaw`SELECT 1`
+      await this.drizzle.db.execute(sql`SELECT 1`)
       return true
     } catch (error) {
       return false

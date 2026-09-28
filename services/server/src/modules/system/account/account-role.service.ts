@@ -3,10 +3,15 @@ import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common'
 import { AccountRoleEntity } from './entities/account-role.entity'
 import { RoleAccountListDto } from './dto/account-role.res.dto'
 import { DistributionRoleDto } from './dto/distribution.role.dto'
+import { eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { roles } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class AccountRoleService {
   private readonly logger: Logger = new Logger(AccountRoleService.name)
+
+  constructor(private readonly drizzle: DrizzleService) {}
 
   /**
    * 根据账号 id 获取授权的角色列表
@@ -16,6 +21,17 @@ export class AccountRoleService {
     //   where: { accountId },
     //   select: ['id', 'roleId'],
     // })
+  }
+
+  /**
+   * 获取全部角色列表（分配角色时使用）
+   */
+  async roleList(): Promise<RoleAccountListDto[]> {
+    const result = await this.drizzle.db
+      .select({ id: roles.id, name: roles.name })
+      .from(roles)
+      .where(eq(roles.isDeleted, false))
+    return result.map((role) => ({ id: role.id, name: role.name }))
   }
 
   /**

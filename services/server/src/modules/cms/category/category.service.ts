@@ -1,69 +1,94 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { and, asc, count, eq, inArray } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { category } from '@/core/database/drizzle/schema'
 import { CreateCategoryDto, UpdateCategoryDto, MoveCategoryDto } from './dto/create-categories.dto'
 import { CategoryWithChildren } from './entities/categories.entity'
 
 @Injectable()
 export class CategoryService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async findAll() {
-    return this.prisma.category.findMany({
-      where: { isDeleted: false },
-      orderBy: { sort: 'asc' },
-    })
+    return this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.isDeleted, false))
+      .orderBy(asc(category.sort))
   }
 
   async findTree(): Promise<CategoryWithChildren[]> {
-    const categories = await this.prisma.category.findMany({
-      where: { isDeleted: false },
-      orderBy: { sort: 'asc' },
-    })
+    const categories = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.isDeleted, false))
+      .orderBy(asc(category.sort))
 
     return this.buildTree(categories as unknown as CategoryWithChildren[])
   }
 
   async findOne(id: string) {
-    const category = await this.prisma.category.findUnique({
-      where: { id },
-      include: {
-        children: {
-          where: { isDeleted: false },
-          orderBy: { sort: 'asc' },
-        },
-        parent: true,
-      },
-    })
+    const [cat] = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.id, id))
+      .limit(1)
 
-    if (!category || category.isDeleted) {
+    if (!cat || cat.isDeleted) {
       throw new NotFoundException(`Category with ID ${id} not found`)
     }
 
-    return category
+    const children = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(
+        and(
+          eq(category.parentId, id),
+          eq(category.isDeleted, false),
+        ),
+      )
+      .orderBy(asc(category.sort))
+
+    const parent = cat.parentId
+      ? await this.drizzle.db
+          .select()
+          .from(category)
+          .where(eq(category.id, cat.parentId))
+          .limit(1)
+          .then((rows) => rows[0] ?? null)
+      : null
+
+    return { ...cat, children, parent }
   }
 
   async create(createCategoryDto: CreateCategoryDto) {
     if (createCategoryDto.parentId) {
-      const parent = await this.prisma.category.findUnique({
-        where: { id: createCategoryDto.parentId },
-      })
+      const [parent] = await this.drizzle.db
+        .select()
+        .from(category)
+        .where(eq(category.id, createCategoryDto.parentId))
+        .limit(1)
       if (!parent || parent.isDeleted) {
         throw new BadRequestException('Parent category not found')
       }
     }
 
-    return this.prisma.category.create({
-      data: {
-        ...createCategoryDto,
+    const [created] = await this.drizzle.db
+      .insert(category)
+      .values({
+        ...(createCategoryDto as any),
         level: createCategoryDto.parentId ? 'L2' : 'L1',
-      },
-    })
+      })
+      .returning()
+    return created
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    const existing = await this.prisma.category.findUnique({
-      where: { id },
-    })
+    const [existing] = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.id, id))
+      .limit(1)
 
     if (!existing || existing.isDeleted) {
       throw new NotFoundException(`Category with ID ${id} not found`)
@@ -79,27 +104,33 @@ export class CategoryService {
         throw new BadRequestException('Cannot move category to its own descendant')
       }
 
-      const parent = await this.prisma.category.findUnique({
-        where: { id: updateCategoryDto.parentId },
-      })
+      const [parent] = await this.drizzle.db
+        .select()
+        .from(category)
+        .where(eq(category.id, updateCategoryDto.parentId))
+        .limit(1)
       if (!parent || parent.isDeleted) {
         throw new BadRequestException('Parent category not found')
       }
     }
 
-    return this.prisma.category.update({
-      where: { id },
-      data: {
-        ...updateCategoryDto,
-        updatedAt: new Date(),
-      },
-    })
+    const [updated] = await this.drizzle.db
+      .update(category)
+      .set({
+        ...(updateCategoryDto as any),
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(category.id, id))
+      .returning()
+    return updated
   }
 
   async move(id: string, moveCategoryDto: MoveCategoryDto) {
-    const existing = await this.prisma.category.findUnique({
-      where: { id },
-    })
+    const [existing] = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.id, id))
+      .limit(1)
 
     if (!existing || existing.isDeleted) {
       throw new NotFoundException(`Category with ID ${id} not found`)
@@ -115,52 +146,59 @@ export class CategoryService {
         throw new BadRequestException('Cannot move category to its own descendant')
       }
 
-      const targetParent = await this.prisma.category.findUnique({
-        where: { id: moveCategoryDto.targetParentId },
-      })
+      const [targetParent] = await this.drizzle.db
+        .select()
+        .from(category)
+        .where(eq(category.id, moveCategoryDto.targetParentId))
+        .limit(1)
       if (!targetParent || targetParent.isDeleted) {
         throw new BadRequestException('Target parent category not found')
       }
     }
 
-    return this.prisma.category.update({
-      where: { id },
-      data: {
+    const [updated] = await this.drizzle.db
+      .update(category)
+      .set({
         parentId: moveCategoryDto.targetParentId || null,
         level: moveCategoryDto.targetParentId ? 'L2' : 'L1',
-        updatedAt: new Date(),
-      },
-    })
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(category.id, id))
+      .returning()
+    return updated
   }
 
   async remove(id: string, recursive: boolean = false) {
-    const existing = await this.prisma.category.findUnique({
-      where: { id },
-      include: {
-        children: {
-          where: { isDeleted: false },
-        },
-      },
-    })
+    const [existing] = await this.drizzle.db
+      .select()
+      .from(category)
+      .where(eq(category.id, id))
+      .limit(1)
 
     if (!existing || existing.isDeleted) {
       throw new NotFoundException(`Category with ID ${id} not found`)
     }
 
-    if (existing.children.length > 0 && !recursive) {
-      throw new BadRequestException(
-        `Cannot delete category with children. Use recursive=true to delete all children.`
-      )
+    if (!recursive) {
+      const childCount = await this.drizzle.db
+        .select({ value: count() })
+        .from(category)
+        .where(eq(category.parentId, id))
+      if (Number(childCount[0]?.value ?? 0) > 0) {
+        throw new BadRequestException(
+          `Cannot delete category with children. Use recursive=true to delete all children.`,
+        )
+      }
     }
 
-    return this.prisma.$transaction(async (tx) => {
-      const allIds = await this.getDescendantIds(id, tx as any)
+    return this.drizzle.db.transaction(async (tx) => {
+      const allIds = await this.getDescendantIds(id, tx)
       allIds.push(id)
 
-      await tx.category.updateMany({
-        where: { id: { in: allIds } },
-        data: { isDeleted: true, updatedAt: new Date() },
-      })
+      await tx
+        .update(category)
+        .set({ isDeleted: true, updatedAt: new Date().toISOString() })
+        .where(inArray(category.id, allIds))
 
       return { deleted: allIds.length, ids: allIds }
     })
@@ -170,14 +208,14 @@ export class CategoryService {
     const map = new Map<string, CategoryWithChildren>()
     const roots: CategoryWithChildren[] = []
 
-    for (const category of categories) {
-      map.set(category.id!, { ...category, children: [] })
+    for (const cat of categories) {
+      map.set(cat.id!, { ...cat, children: [] })
     }
 
-    for (const category of categories) {
-      const node = map.get(category.id!)!
-      if (category.parentId && map.has(category.parentId)) {
-        const parent = map.get(category.parentId)!
+    for (const cat of categories) {
+      const node = map.get(cat.id!)!
+      if (cat.parentId && map.has(cat.parentId)) {
+        const parent = map.get(cat.parentId)!
         parent.children!.push(node)
       } else {
         roots.push(node)
@@ -199,17 +237,22 @@ export class CategoryService {
 
   private async getDescendantIds(
     id: string,
-    prisma: PrismaService = this.prisma
+    db: any = this.drizzle.db,
   ): Promise<string[]> {
     const ids: string[] = []
     const queue: string[] = [id]
 
     while (queue.length > 0) {
       const currentId = queue.shift()!
-      const children = await prisma.category.findMany({
-        where: { parentId: currentId, isDeleted: false },
-        select: { id: true },
-      })
+      const children = await db
+        .select({ id: category.id })
+        .from(category)
+        .where(
+          and(
+            eq(category.parentId, currentId),
+            eq(category.isDeleted, false),
+          ),
+        )
       for (const child of children) {
         ids.push(child.id)
         queue.push(child.id)

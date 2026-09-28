@@ -6,7 +6,7 @@ import { PUBLIC_KEY_METADATA } from '@/common/constants/decorator.constant'
 
 export class BasicAuthGuard extends JwtAuthGuard {
   constructor(readonly reflector: Reflector) {
-    super(reflector)
+    super()
   }
 
   canActivate(

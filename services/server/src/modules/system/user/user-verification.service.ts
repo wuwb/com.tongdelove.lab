@@ -5,13 +5,14 @@ import {
   HttpStatus,
   NotFoundException,
 } from '@nestjs/common'
-import { User, Prisma } from '@prisma/client'
+import { eq } from 'drizzle-orm'
+import { randomBytes } from 'crypto'
 import { MailService } from '@/core/mail/mail/mail.service'
 import { UserService } from './user.service'
 import { ConfigService } from '@nestjs/config'
 import { SendMailDto } from '@/core/mail/mail/dto/send-mail.dto'
-import { randomBytes } from 'crypto'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { users } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class UserVerificationService {
@@ -21,7 +22,7 @@ export class UserVerificationService {
     private readonly configService: ConfigService,
     private readonly mailService: MailService,
     private readonly userService: UserService,
-    private readonly prisma: PrismaService
+    private readonly drizzle: DrizzleService
   ) {}
 
   async resendVerificationEmail(userId: string) {
@@ -33,16 +34,16 @@ export class UserVerificationService {
       throw new Error('USER_NOT_FOUND')
     }
     // 已经验证的状态
-    if (user.status) {
+    if (user.userStatus) {
       this.logger.log(
         `User ${userId} is already verified, not sending verify email`
       )
       return
     }
-    await this.mailService.sendActivationKeyEmail(user)
+    await this.mailService.sendActivationKeyEmail(user as any)
   }
 
-  async sendForgotPasswordEmail(user: User, resetToken: string): Promise<void> {
+  async sendForgotPasswordEmail(user: any, resetToken: string): Promise<void> {
     const appUrl = this.configService.get<string>('app.url')
     const url = `${appUrl}?modal=auth.reset&resetToken=${resetToken}`
 
@@ -56,11 +57,11 @@ export class UserVerificationService {
         email: this.configService.get<string>('mail.from.email', ''),
       },
       to: {
-        name: user.nicename ?? '',
+        name: user.userNicename ?? '',
         email: user.email,
       },
       subject: 'Reset your Reactive Resume password',
-      message: `<p>Hey ${user.nicename}!</p> <p>You can reset your password by visiting this link: <a href="${url}">${url}</a>.</p> <p>But hurry, because it will expire in 30 minutes.</p>`,
+      message: `<p>Hey ${user.userNicename}!</p> <p>You can reset your password by visiting this link: <a href="${url}">${url}</a>.</p> <p>But hurry, because it will expire in 30 minutes.</p>`,
     }
 
     await this.mailService.sendMail(sendMailDto)
@@ -74,33 +75,23 @@ export class UserVerificationService {
 
       const timeout = setTimeout(
         async () => {
-          await this.prisma.user.update({
-            where: {
-              id: user.id,
-            },
-            data: {
-              resetKey: undefinedRestKey,
-            },
-          })
+          await this.drizzle.db
+            .update(users)
+            .set({ userResetKey: null })
+            .where(eq(users.id, user.id))
         },
         30 * 60 * 1000
       )
 
       try {
-        await this.prisma.$transaction(async (prisma) => {
-          await this.prisma.user.update({
-            where: {
-              id: user.id,
-            },
-            data: {
-              resetKey,
-            },
-          })
+        await this.drizzle.db
+          .update(users)
+          .set({ userResetKey: resetKey })
+          .where(eq(users.id, user.id))
 
-          // this.schedulerRegistry.addTimeout(`clear-resetToken-${user.id}`, timeout);
+        // this.schedulerRegistry.addTimeout(`clear-resetToken-${user.id}`, timeout);
 
-          await this.sendForgotPasswordEmail(user, resetKey)
-        })
+        await this.sendForgotPasswordEmail(user, resetKey)
       } catch (err) {
         // Handle the rollback...
         throw new HttpException(

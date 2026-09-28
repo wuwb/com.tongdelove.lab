@@ -1,12 +1,13 @@
 import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
 import { SpiderTask } from '@/modules/tech/spider/spider.interface'
+import { and, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { freelancerTask } from '@/core/database/drizzle/schema'
 import { HttpService } from '@nestjs/axios'
 import { InjectQueue } from '@nestjs/bull'
 import { Injectable } from '@nestjs/common'
 import { Queue } from 'bull'
 import { OschinaTask } from '../interfaces/oschina.interface'
-import { SourceEnum } from '@prisma/client'
 
 // https://zb.oschina.net/project/contractor-browse-project-and-reward
 
@@ -21,7 +22,7 @@ export class OschinaService {
   url: string
 
   constructor(
-    private readonly prisma: PrismaService,
+    private readonly drizzle: DrizzleService,
     private readonly httpService: HttpService,
     private readonly freelancerService: FreelancerService,
     @InjectQueue('urls') private urlsQueue: Queue
@@ -47,7 +48,7 @@ export class OschinaService {
 
     asyncForEach(data.data, async (item: OschinaTask) => {
       const task: Partial<SpiderTask> = {
-        source: SourceEnum['oschina'],
+        source: 'oschina' as any,
         sourceId: `${item.id}`,
         title: item.name,
         desc: '',
@@ -57,7 +58,7 @@ export class OschinaService {
         bargain: false,
         cycle: item.cycle,
         cycleName: '天',
-        date: new Date(item.publishTime),
+        date: new Date(item.publishTime).toISOString() as any,
         applyCount: item.applyCount ? +item.applyCount : 0,
         visitCount: +item.viewCount,
 
@@ -65,10 +66,10 @@ export class OschinaService {
 
         auditStatus: 0,
         auditReason: '',
-        auditAt: new Date(),
+        auditAt: new Date().toISOString() as any,
 
         handleStatus: 0,
-        handleAt: new Date(),
+        handleAt: new Date().toISOString() as any,
 
         userId: '0',
         type: 0,
@@ -76,23 +77,36 @@ export class OschinaService {
         tags: '',
       }
 
-      const isExist = await this.prisma.freelancerTask.findFirst({
-        where: {
-          source: SourceEnum['oschina'],
-          title: task.title,
-        },
-      })
+      const [isExist] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, 'oschina'),
+            eq(freelancerTask.title, task.title ?? ''),
+          ),
+        )
+        .limit(1)
 
-      await this.prisma.freelancerTask.upsert({
-        where: {
-          source_title: {
-            source: SourceEnum['oschina'],
-            title: `${task.title}`,
-          },
-        },
-        create: <any>task,
-        update: <any>task,
-      })
+      const [existing] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, 'oschina'),
+            eq(freelancerTask.title, `${task.title}`),
+          ),
+        )
+        .limit(1)
+
+      if (existing) {
+        await this.drizzle.db
+          .update(freelancerTask)
+          .set(task as any)
+          .where(eq(freelancerTask.id, existing.id))
+      } else {
+        await this.drizzle.db.insert(freelancerTask).values(task as any)
+      }
 
       if (!isExist) {
         // 任务加入到提醒队列，给 给webhook 发送任务更新提醒

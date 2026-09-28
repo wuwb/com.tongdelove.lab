@@ -7,11 +7,11 @@ import { UpdateAccountDto } from './dto/update.account.dto'
 import { ModifyPasswordDto } from './dto/modify.password.dto'
 import { AccountResDto } from './dto/account.res.dto'
 import { AccountReqDto } from './dto/account.req.dto'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
 
 @Injectable()
 export class AccountService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   /**
    * 创建账号

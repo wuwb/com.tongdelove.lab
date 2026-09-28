@@ -26,7 +26,7 @@ import { JwtAuthGuard } from '@/modules/system/auth/guards/jwt-auth.guard'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { Prisma, User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 import { RateLimit } from 'nestjs-rate-limiter'
 import { AuthGuard } from '@/common/guards/auth.guard'
 import { QueryUserDto } from './dto/query-user.dto'
@@ -67,18 +67,8 @@ export class UserController {
   }
 
   @Post()
-  async create(@Body() data: Prisma.UserCreateInput): Promise<User> {
-    return await this.userService.create({
-      data,
-      select: {
-        createdAt: true,
-        firstName: true,
-        id: true,
-        lastName: true,
-        roles: true,
-        updatedAt: true,
-      },
-    })
+  async create(@Body() data: any): Promise<User> {
+    return (await this.userService.create(data as any)) as any
   }
 
   @Get()
@@ -129,7 +119,7 @@ export class UserController {
     // });
   }
 
-  @Delete(':/id')
+  @Delete('/:id')
   removeUser(@Param('id') id: string) {
     return this.userService.removeById(id)
   }

@@ -14,7 +14,6 @@ import {
   IsOptional,
 } from 'class-validator'
 import { ApiProperty, PartialType } from '@nestjs/swagger'
-import { Prisma } from '@prisma/client/extension'
 
 export class CreateUserDto {
   @ApiProperty({

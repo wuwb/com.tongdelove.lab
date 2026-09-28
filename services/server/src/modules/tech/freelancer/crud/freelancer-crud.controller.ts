@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
 import { CreateFreelancerDto } from '../dto/create-freelancer.dto'
 import { UpdateFreelancerDto } from '../dto/update-freelancer.dto'
 import { FreelancerCrudService } from './freelancer-crud.service'
@@ -19,7 +18,7 @@ export class FreelancerCrudController {
 
   @Get()
   async findAll() {
-    const dto: Prisma.FreelancerTaskFindManyArgs = {
+    const dto: any = {
       where: {},
     }
     return await this.catsCrudService.findMany(dto)

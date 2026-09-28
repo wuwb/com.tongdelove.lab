@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common'
 import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql'
-import { User as UserEntity } from '@prisma/client'
+import { User as UserEntity } from '@/core/database/drizzle/types'
 
 export enum UserEnum {
   'userId' = 'id',

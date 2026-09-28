@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { menu } from '@/core/database/drizzle/schema'
 
 @Injectable()
 export class MenuService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async getMenuList(isAdmin: boolean, roleIdArr: string[]) {
-    const menu = await this.prisma.menu.findMany()
-    return menu
+    const menuList = await this.drizzle.db.select().from(menu)
+    return menuList
   }
 
   // 首字母大写

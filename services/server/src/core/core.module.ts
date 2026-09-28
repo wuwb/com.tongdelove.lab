@@ -6,7 +6,7 @@ import { ThrottlerModule } from '@nestjs/throttler'
 import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor'
 import { TransformInterceptor } from '@/common/interceptors/transform.interceptor'
 import { HealthModule } from '@/core/health/health.module'
-import { PrismaModule } from '@/core/database/prisma/prisma.module'
+import { DrizzleModule } from '@/core/database/drizzle/drizzle.module'
 import { MailModule } from '@/core/mail/mail/mail.module'
 import { CacheModule } from '@/core/cache/cache/cache.module'
 import { AliossModule } from '@/core/storage/ali-oss/alioss.module'
@@ -33,7 +33,7 @@ import { JwtModule } from './auth/jwt/jwt.module'
 
     HealthModule,
     LoggerModule,
-    PrismaModule,
+    DrizzleModule,
     // InitModule,
     MailModule,
 
@@ -66,7 +66,7 @@ import { JwtModule } from './auth/jwt/jwt.module'
   exports: [
     HealthModule,
     LoggerModule,
-    PrismaModule,
+    DrizzleModule,
     // InitModule,
     MailModule,
     CacheModule,

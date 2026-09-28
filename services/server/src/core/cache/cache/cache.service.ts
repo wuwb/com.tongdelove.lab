@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config'
 import { Cache } from 'cache-manager'
 import { isEmptyByAllTypes, isEmpty } from '@/utils/type'
 import { USER_USERINFO_KEY } from '@/common/constants/redis.constant'
-import { User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 
 type unitType = 'h' | 'm' | 's' | 'ms'
 

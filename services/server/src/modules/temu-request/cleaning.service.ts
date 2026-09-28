@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { randomUUID } from 'crypto'
+import { count, desc, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { dataCleaningQueue } from '@/core/database/drizzle/schema'
 import { CreateCleaningJobDto } from './dto'
 
 @Injectable()
 export class CleaningService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
   async createJob(dto: CreateCleaningJobDto) {
-    const totalRecords = await this.prisma.dataCleaningQueue.count({
-      where: { isCleaned: false },
-    })
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(dataCleaningQueue)
+      .where(eq(dataCleaningQueue.status, 'pending'))
+    const totalRecords = Number(totalRes[0]?.value ?? 0)
 
     if (totalRecords === 0) {
       return {
@@ -18,15 +23,22 @@ export class CleaningService {
       }
     }
 
-    const job = await this.prisma.dataCleaningQueue.create({
-      data: {
+    const [job] = await this.drizzle.db
+      .insert(dataCleaningQueue)
+      .values({
+        id: randomUUID(),
         status: 'pending',
         totalRecords,
         cleanedRecords: 0,
         failedRecords: 0,
-        config: dto,
-      },
-    })
+        config: dto as any,
+        updatedAt: new Date().toISOString(),
+      })
+      .returning()
+
+    if (!job) {
+      throw new Error('任务创建失败')
+    }
 
     return {
       message: '清洗任务已创建',
@@ -36,9 +48,11 @@ export class CleaningService {
   }
 
   async getJobStatus(id: string) {
-    const job = await this.prisma.dataCleaningQueue.findUnique({
-      where: { id },
-    })
+    const [job] = await this.drizzle.db
+      .select()
+      .from(dataCleaningQueue)
+      .where(eq(dataCleaningQueue.id, id))
+      .limit(1)
 
     if (!job) {
       throw new Error('任务不存在')
@@ -61,18 +75,18 @@ export class CleaningService {
   }
 
   async getRecentJobs(limit: number = 10) {
-    return this.prisma.dataCleaningQueue.findMany({
-      take: limit,
-      orderBy: { createdAt: 'desc' },
-      select: {
-        id: true,
-        status: true,
-        totalRecords: true,
-        cleanedRecords: true,
-        failedRecords: true,
-        createdAt: true,
-        completedAt: true,
-      },
-    })
+    return this.drizzle.db
+      .select({
+        id: dataCleaningQueue.id,
+        status: dataCleaningQueue.status,
+        totalRecords: dataCleaningQueue.totalRecords,
+        cleanedRecords: dataCleaningQueue.cleanedRecords,
+        failedRecords: dataCleaningQueue.failedRecords,
+        createdAt: dataCleaningQueue.createdAt,
+        completedAt: dataCleaningQueue.completedAt,
+      })
+      .from(dataCleaningQueue)
+      .orderBy(desc(dataCleaningQueue.createdAt))
+      .limit(limit)
   }
 }

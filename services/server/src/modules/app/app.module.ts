@@ -46,6 +46,7 @@ import { SharedModule } from '@/shared/shared.module'
 // modules
 import { LoginModule } from '@/modules/login/login.module'
 import { StockModule } from '@/modules/stock/stock.module'
+import { EtfGridPlanModule } from '@/modules/etf/grid-plan/grid-plan.module'
 import { SystemModule } from '@/modules/system/system.module'
 import { ToolModule } from '@/modules/tool/tool.module'
 import { AuthModule } from '@/modules/system/auth/auth.module'
@@ -82,6 +83,7 @@ import { ConfigService } from '@nestjs/config'
     // modules
     LoginModule,
     StockModule,
+    EtfGridPlanModule,
     SystemModule,
     ToolModule,
     UserModule,

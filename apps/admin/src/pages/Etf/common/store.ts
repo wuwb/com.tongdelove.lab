@@ -1,5 +1,5 @@
 import type React from 'react'
-import { createContext, useContext } from 'react'
+import { createContext, useCallback, useContext } from 'react'
 
 // 档位方式
 export enum GearMode {
@@ -26,6 +26,10 @@ export type State = {
   gearMode: GearMode
   // 档位（百分比方式为 0~1 之间的小数，价格方式为元的绝对值）
   gearValue: number
+  // 关联基金名称（用于保存/展示方案）
+  fundName: string
+  // 关联基金代码
+  fundCode: string
 }
 
 export const initialState: State = {
@@ -46,6 +50,9 @@ export const initialState: State = {
   // 默认百分比档位，与原有的小网幅度保持一致
   gearMode: GearMode.percent,
   gearValue: 0.05,
+  // 关联基金，默认空
+  fundName: '',
+  fundCode: '',
 }
 
 // 百分比档位的上限，即 100%
@@ -97,11 +104,17 @@ type Payload = {
   value: (typeof initialState)[Keys]
 }
 
-type Action = {
-  type: 'changeSetting'
-  key: Keys
-  payload: Payload
-}
+type Action =
+  | {
+      type: 'changeSetting'
+      key: Keys
+      payload: Payload
+    }
+  // 整体覆盖配置（用于加载已保存的方案）
+  | {
+      type: 'loadPlan'
+      payload: Partial<State>
+    }
 
 export function reducer(state: State, action: Action): State {
   const { type, key, payload } = action
@@ -111,6 +124,12 @@ export function reducer(state: State, action: Action): State {
       state = {
         ...state,
         [key]: payload.value,
+      }
+      break
+    case 'loadPlan':
+      state = {
+        ...state,
+        ...payload,
       }
       break
     default:
@@ -144,4 +163,19 @@ export function useDispatch() {
 export function useAppState() {
   const { state } = useContext(AppContext)
   return state
+}
+
+// 加载已保存方案：整体覆盖全局配置
+export function useLoadPlan() {
+  const { dispatch } = useContext(AppContext)
+
+  return useCallback(
+    (config: Partial<State>) => {
+      dispatch({
+        type: 'loadPlan',
+        payload: config,
+      })
+    },
+    [dispatch],
+  )
 }

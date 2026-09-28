@@ -1,8 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common'
+import { desc, eq, count } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { company } from '@/core/database/drizzle/schema'
 import { CreateCompanyDto } from './dto/create-company.dto'
 import { UpdateCompanyDto } from './dto/update-company.dto'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
-import { Prisma } from '@prisma/client'
 
 enum CompaniesType {
   SUPPLY = 1,
@@ -12,33 +13,36 @@ enum CompaniesType {
 export class CompaniesService {
   private readonly logger = new Logger(CompaniesService.name)
 
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly drizzle: DrizzleService) {}
 
-  create(param: Prisma.CompanyCreateInput) {
+  create(param: any) {
     return 'This action adds a new company'
   }
 
-  async createSupply(param: Prisma.CompanyCreateInput) {
-    return this.prisma.company.create({
-      data: param,
-    })
+  async createSupply(param: any) {
+    const [created] = await this.drizzle.db
+      .insert(company)
+      .values(param as any)
+      .returning()
+    return created
   }
 
-  async findAll(query) {
-    const take = query.take || 10
-    const skip = query.skip || 0
-    const keyword = query.keyword || ''
+  async findAll(query: any) {
+    const take = query?.take || 10
+    const skip = query?.skip || 0
+    const keyword = query?.keyword || ''
 
-    const total = await this.prisma.company.count()
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(company)
+    const total = Number(totalRes[0]?.value ?? 0)
 
-    const data = await this.prisma.company.findMany({
-      skip: skip,
-      take: take,
-      where: {},
-      orderBy: {
-        name: 'desc',
-      },
-    })
+    const data = await this.drizzle.db
+      .select()
+      .from(company)
+      .orderBy(desc(company.name))
+      .limit(take)
+      .offset(skip)
 
     return {
       data,
@@ -46,23 +50,24 @@ export class CompaniesService {
     }
   }
 
-  async findSupplies(query) {
-    const take = query.take || 10
-    const skip = query.skip || 0
-    const keyword = query.keyword || ''
+  async findSupplies(query: any) {
+    const take = query?.take || 10
+    const skip = query?.skip || 0
+    const keyword = query?.keyword || ''
 
-    const total = await this.prisma.company.count()
+    const totalRes = await this.drizzle.db
+      .select({ value: count() })
+      .from(company)
+      .where(eq(company.type, CompaniesType.SUPPLY))
+    const total = Number(totalRes[0]?.value ?? 0)
 
-    const data = await this.prisma.company.findMany({
-      skip: skip,
-      take: take,
-      where: {
-        type: CompaniesType.SUPPLY, //
-      },
-      orderBy: {
-        name: 'desc',
-      },
-    })
+    const data = await this.drizzle.db
+      .select()
+      .from(company)
+      .where(eq(company.type, CompaniesType.SUPPLY))
+      .orderBy(desc(company.name))
+      .limit(take)
+      .offset(skip)
 
     return {
       data,

@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 
 @ObjectType()
 export class UserInfo implements Partial<User> {

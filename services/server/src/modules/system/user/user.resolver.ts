@@ -1,5 +1,5 @@
 import { Resolver } from '@nestjs/graphql'
-import { User } from '@prisma/client'
+import { User } from '@/core/database/drizzle/types'
 import { UserService } from './user.service'
 
 @Resolver()

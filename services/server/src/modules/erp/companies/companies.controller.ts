@@ -10,7 +10,6 @@ import {
   Logger,
 } from '@nestjs/common'
 import { CompaniesService } from './companies.service'
-import { Prisma } from '@prisma/client'
 import { ApiTags } from '@nestjs/swagger'
 
 @ApiTags('company')
@@ -21,7 +20,7 @@ export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
   @Post('/supplies')
-  create(@Body() data: Prisma.CompanyCreateInput) {
+  create(@Body() data: any) {
     this.logger.log(`create company: ${JSON.stringify(data)}`)
     if (typeof data.registryAt === 'string' && data.registryAt.length > 0) {
       data.registryAt = new Date(data.registryAt).toISOString()
@@ -52,7 +51,7 @@ export class CompaniesController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateCompanyDto: Prisma.CompanyUpdateInput
+    @Body() updateCompanyDto: any
   ) {
     return this.companiesService.update(id, updateCompanyDto)
   }

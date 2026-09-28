@@ -1,11 +1,12 @@
 import { FreelancerService } from '@/modules/tech/freelancer/freelancer.service'
-import { PrismaService } from '@/core/database/prisma/prisma.service'
+import { and, eq } from 'drizzle-orm'
+import { DrizzleService } from '@/core/database/drizzle/drizzle.service'
+import { freelancerTask } from '@/core/database/drizzle/schema'
 import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import * as cheerio from 'cheerio'
 import { SourceType, SpiderTask } from '../../spider.interface'
 import iconv from 'iconv-lite'
-import { SourceEnum, Prisma } from '@prisma/client'
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -18,7 +19,7 @@ async function asyncForEach(array, callback) {
 @Injectable()
 export class A5Service {
   constructor(
-    private readonly prisma: PrismaService,
+    private readonly drizzle: DrizzleService,
     private readonly httpService: HttpService,
     private readonly freelancerService: FreelancerService
   ) {}
@@ -45,14 +46,12 @@ export class A5Service {
       console.log('date: ', $item.find('.col-sm-3 .m-tk-times').text())
       console.log(
         'date: ',
-        new Prisma.Decimal(
-          +$item.find('.col-sm-7 h3 a i.fa-cny').text().replace('&nbsp;', '')
-        )
+        +$item.find('.col-sm-7 h3 a i.fa-cny').text().replace('&nbsp;', '')
       )
-      console.log('date: ', new Prisma.Decimal(0))
+      console.log('date: ', '0')
 
       let task: Partial<SpiderTask> = {
-        source: SourceEnum['a5'],
+        source: 'a5' as any,
         title: $item.find('.col-sm-7 h3 a').text(),
         desc: $item.find('.col-sm-7 .m-tk-infos').text(),
         url: $item.find('.col-sm-7 h3 a').attr('href') ?? '',
@@ -62,15 +61,15 @@ export class A5Service {
         bargain: false,
         cycle: 0,
         cycleName: '天',
-        date: new Date(),
+        date: new Date().toISOString() as any,
         applyCount: Number($item.find('.col-sm-3 p em').text()), // 已经投递人,
         visitCount: 0,
         status: '',
         auditStatus: 0,
         auditReason: '',
-        auditAt: new Date(),
+        auditAt: new Date().toISOString() as any,
         handleStatus: 0,
-        handleAt: new Date(),
+        handleAt: new Date().toISOString() as any,
         userId: '',
         type: 0,
         application: 0,
@@ -82,23 +81,44 @@ export class A5Service {
     })
 
     await asyncForEach(tasks, async (task) => {
-      let isExist = await this.prisma.freelancerTask.findFirst({
-        where: {
-          source: task.source,
-          title: task.title,
-        },
-      })
+      const [isExist] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, task.source as any),
+            eq(freelancerTask.title, task.title),
+          ),
+        )
+        .limit(1)
       console.log('task: ', task)
-      let remindTask = await this.prisma.freelancerTask.upsert({
-        where: {
-          source_title: {
-            source: task.source,
-            title: `${task.title}`,
-          },
-        },
-        create: <any>task,
-        update: <any>task,
-      })
+
+      const [existing] = await this.drizzle.db
+        .select()
+        .from(freelancerTask)
+        .where(
+          and(
+            eq(freelancerTask.source, task.source as any),
+            eq(freelancerTask.title, `${task.title}`),
+          ),
+        )
+        .limit(1)
+
+      let remindTask
+      if (existing) {
+        const [updated] = await this.drizzle.db
+          .update(freelancerTask)
+          .set(task as any)
+          .where(eq(freelancerTask.id, existing.id))
+          .returning()
+        remindTask = updated
+      } else {
+        const [created] = await this.drizzle.db
+          .insert(freelancerTask)
+          .values(task as any)
+          .returning()
+        remindTask = created
+      }
 
       if (!isExist) {
         this.freelancerService.remind(remindTask)

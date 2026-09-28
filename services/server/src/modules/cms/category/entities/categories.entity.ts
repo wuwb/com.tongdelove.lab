@@ -1,6 +1,5 @@
-import { Prisma } from '@prisma/client'
 
-export class Category implements Prisma.CategoryUncheckedCreateInput {
+export class Category {
   id?: string
   createdAt?: string | Date
   updatedAt?: string | Date
@@ -21,9 +20,9 @@ export class Category implements Prisma.CategoryUncheckedCreateInput {
   updatedBy?: string
   remark?: string
   version?: number
-  label?: string
-  value?: string
-  order?: number
+  label: string
+  value: string
+  order: number
   onlyChild?: boolean
   parentId?: string
 }
