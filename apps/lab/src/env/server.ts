@@ -8,9 +8,9 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   server: {
-    // database
-    DATABASE_URL: z.string(),
-    DIRECT_URL: z.string(),
+    // 后端服务地址（services/server）。
+    // lab 为纯前端，不再直连数据库，所有数据访问均通过该服务完成。
+    LAB_API_SERVER_URL: z.string().url().default('http://localhost:8001'),
 
     // nextjs auth
     AUTH_URL: z

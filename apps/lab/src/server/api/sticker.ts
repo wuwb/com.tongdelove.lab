@@ -1,15 +1,6 @@
-import { prisma } from '@/server/db/prisma'
+import { labStickerApi } from '@/server/backend/lab-content.api'
 
-export async function createSticker({
-  object,
-  color,
-  accessory,
-  doing,
-  style,
-  url,
-  deviceId,
-  userId,
-}: {
+export async function createSticker(input: {
   object: string
   color: string
   accessory: string
@@ -19,19 +10,7 @@ export async function createSticker({
   deviceId?: string
   userId?: string
 }) {
-  const result = await prisma.sticker.create({
-    data: {
-      object,
-      color,
-      accessory,
-      doing,
-      style,
-      url,
-      deviceId,
-      userId,
-    },
-  })
-  return result
+  return labStickerApi.create(input)
 }
 
 export async function listStickers({
@@ -45,55 +24,13 @@ export async function listStickers({
   take: number
   live?: boolean
 }) {
-  const where: any = {}
-  if (userId) {
-    where.userId = userId
-  }
-  if (live) {
-    where.live = live
-  }
-  const result = await prisma.sticker.findMany({
-    skip: (page - 1) * take,
-    take: take,
-    where: where,
-    select: {
-      id: true,
-      url: true,
-      createdAt: true,
-      object: true,
-      live: true,
-    },
-    orderBy: [
-      {
-        createdAt: 'desc',
-      },
-    ],
-  })
-
-  return result
+  return labStickerApi.list({ userId, page, take, live })
 }
 
 export async function hideSticker({ id }: { id: string }) {
-  const result = await prisma.sticker.update({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-    },
-    data: {
-      live: false,
-    },
-  })
-  return result
+  return labStickerApi.hide({ id })
 }
 
 export async function getById({ id }: { id: string }) {
-  const result = await prisma.sticker.findUnique({
-    where: {
-      id,
-      live: true,
-    },
-  })
-  return result
+  return labStickerApi.getById(id)
 }

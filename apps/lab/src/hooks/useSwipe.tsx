@@ -1,3 +1,5 @@
+'use client'
+
 import { RefObject, useRef, useState } from 'react'
 import { useEventListener } from './useEventListener'
 

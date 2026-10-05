@@ -1,3 +1,5 @@
+'use client'
+
 // source: https://github.com/jpalumickas/use-window-focus/blob/main/src/index.ts
 
 import { useEffect, useState } from 'react'

@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
 import path from 'path'
@@ -6,9 +5,12 @@ import { fileURLToPath } from 'url'
 
 dotenv.config()
 
-console.log('DATABASE_URL:', process.env.DATABASE_URL)
+const LAB_API_SERVER_URL =
+  process.env.LAB_API_SERVER_URL ??
+  process.env.NEXT_PUBLIC_EXPRESS_SERVER_URL ??
+  'http://localhost:8001'
 
-const prisma = new PrismaClient()
+console.log('LAB_API_SERVER_URL:', LAB_API_SERVER_URL)
 
 interface UrlObject {
   url: string
@@ -35,17 +37,27 @@ export async function fetchPromises() {
   try {
     const urls = await readUrlsFromFile()
 
-    const count = await prisma.sticker.createMany({
-      data: urls.map((item) => {
-        return {
+    // 通过 services/server 写入，lab 不再直连数据库
+    for (const item of urls) {
+      const res = await fetch(`${LAB_API_SERVER_URL}/api/lab/sticker/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           object: 'object',
+          color: '',
+          accessory: '',
+          doing: '',
+          style: '',
           url: item.url,
-        }
-      }),
-      skipDuplicates: true,
-    })
+        }),
+      })
 
-    console.log('Completed!: ', count)
+      if (!res.ok) {
+        console.error('Failed to create sticker:', item.url, res.status)
+      }
+    }
+
+    console.log('Completed!: ', urls.length)
   } catch (error) {
     console.error('Error reading the file:', error)
   }

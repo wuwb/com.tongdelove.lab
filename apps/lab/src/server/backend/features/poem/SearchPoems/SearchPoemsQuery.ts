@@ -1,50 +1,26 @@
-import type { PrismaClientDbMain } from '@tongdelove/prisma'
 import type { UnPromisify } from '@tongdelove/utils'
 import type { SearchPoemsParams } from './SearchPoems.types'
+import { labPoemApi } from '@/server/backend/lab-poem.api'
 
 type SearchPoems = UnPromisify<ReturnType<SearchPoemsQuery['searchPoems']>>
 
+/**
+ * 诗词查询（迁移自 apps/lab）。
+ *
+ * 数据访问已改为调用 services/server，lab 不再直连数据库；
+ * keywords 的聚合下推由服务端完成，避免 n+1。
+ */
 export class SearchPoemsQuery {
-  constructor(private readonly prisma: PrismaClientDbMain) {}
-
   execute = async (params: SearchPoemsParams) => {
-    return this.mapToResult(await this.searchPoems(params))
-  }
-
-  private mapToResult = (rows: SearchPoems) => {
-    return rows.map((poem) => {
-      const { createdAt, updatedAt, keywords, ...rest } = poem
-      return {
-        ...rest,
-        keywords: keywords.map((keyword) => keyword.keyword.name),
-      }
-    })
+    return this.searchPoems(params)
   }
 
   /**
-   * @todo for many-to-many better to use raw query for
-   * significantly better performance (n+1...)
+   * @todo 多对多关联后续可在服务端用 raw query 进一步优化。
    */
   private searchPoems = async (params: SearchPoemsParams) => {
     const { limit, offset } = params ?? {}
-    return this.prisma.poem
-      .findMany({
-        skip: offset,
-        take: limit,
-        include: {
-          keywords: {
-            include: {
-              keyword: true,
-            },
-          },
-        },
-        orderBy: { author: 'desc' },
-      })
-      .catch((e) => {
-        throw new Error({
-          message: `Poems can't be retrieved`,
-          cause: e instanceof Error ? e : undefined,
-        })
-      })
+
+    return labPoemApi.searchWithKeywords({ limit, offset })
   }
 }

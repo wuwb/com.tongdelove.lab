@@ -1,66 +1,39 @@
-/**
- * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
- * 1. You want to modify request context (see Part 1).
- * 2. You want to create a new middleware or type of procedure (see Part 3).
- *
- * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
- * need to use are documented accordingly near the end.
- */
-
-import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
-import { type Session } from 'next-auth'
-import { prisma } from '@/server/db/prisma'
-import { auth } from '@/auth'
+import type { Session } from 'next-auth'
 
 /**
- * 1. CONTEXT
+ * tRPC 上下文（App Router 版本）。
  *
- * This section defines the "contexts" that are available in the backend API.
+ * 原实现依赖 Pages Router 的 NextApiRequest/NextApiResponse，
+ * App Router 下改为从 fetch 的 Request/Response 读取信息。
  *
- * These allow you to access things when processing a request, like the database, the session, etc.
+ * 注意：lab 不持有数据库连接，数据访问统一通过 services/server 完成，
+ * 因此 context 中不注入 prisma client。
  */
 
-interface CreateContextOptions {
+export interface TRPCContext {
   session: Session | null
+  headers: Headers
 }
 
 /**
- * This helper generates the "internals" for a tRPC context. If you need to use it, you can export
- * it from here.
- *
- * Examples of things you may need it for:
- * - testing, so we don't have to mock Next.js' req/res
- * - tRPC's `createSSGHelpers`, where we don't have req/res
- *
- * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
+ * 生成供内部使用的 tRPC 上下文。
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
-  return {
-    session: opts.session,
-    prisma: prisma,
-  }
-}
+const createInnerTRPCContext = (opts: TRPCContext): TRPCContext => ({
+  session: opts.session,
+  headers: opts.headers,
+})
 
 /**
- * This is the actual context you will use in your router. It will be used to process every request
- * that goes through your tRPC endpoint.
+ * 处理每个到达 /api/trpc 的请求。
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts
-
-  const session = await auth(req, res)
-
-  // const session = opts.session
-  // const source = opts.headers.get('x-trpc-source') ?? 'unknown'
-
-  // console.log('>>> tRPC Request from', source, 'by', session?.user)
-
+export const createTRPCContext = async (opts: {
+  headers: Headers
+  session?: Session | null
+}): Promise<TRPCContext> => {
   return createInnerTRPCContext({
-    session,
+    session: opts.session ?? null,
+    headers: opts.headers,
   })
 }
-
-// export type Context = inferAsyncReturnType<typeof createTRPCContext>
-// export type Context = Awaited<ReturnType<typeof createTRPCContext>>

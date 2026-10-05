@@ -1,4 +1,4 @@
-import { UserLanguageCode } from '@prisma/client'
+import { UserLanguageCode } from '@/server/backend/enums/user-enums'
 
 export function getLocale(userLanguage: UserLanguageCode) {
   if (userLanguage === 'zh') {

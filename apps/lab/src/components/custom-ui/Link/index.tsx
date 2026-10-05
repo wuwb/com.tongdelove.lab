@@ -1,6 +1,8 @@
+'use client'
+
 import clsx from 'clsx'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import React from 'react'
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(

@@ -1,3 +1,5 @@
+'use client'
+
 import 'swiper/css/bundle'
 import Image from 'next/image'
 import clsx from 'clsx'

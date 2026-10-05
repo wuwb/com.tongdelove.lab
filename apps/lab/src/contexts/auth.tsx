@@ -1,3 +1,5 @@
+'use client'
+
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import axios from '@/utils/axios'
 import { setCookie, deleteCookie } from 'cookies-next'

@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { LayoutProvider } from './core/LayoutProvider'
 import { BaseLayout } from './components/BaseLayout'
 import { FullLayout } from './components/FullLayout'
@@ -8,7 +10,7 @@ import { useGlobalInit } from './useGlobalInit'
 // import {} './components/FullLayout' // 侧边
 // import {} './components/AccentHeaderLayout' // 头部+侧边，标准
 // import {} './components/AccentSidebarLayout' // 侧边+头部
-// import {} './components/BoxedSidebarLayout' // 侧边+小头部，盒型
+// import {} './components/BoxedSidebarLayout' // 盒型
 // import {} './components/BottomNavigationLayout' // 底部
 // import {} './components/CollapsedSidebarLayout' // 小侧边+头部
 // import {} './components/DocsLayout' // 头部+文档侧边
@@ -19,14 +21,18 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
+/**
+ * App Router 下 pathname 形如 /zh/tool，layout 判定需要去掉 locale 前缀，
+ * 与原 Pages Router 中 router.asPath 的语义保持一致。
+ */
+const stripLocale = (pathname: string) =>
+  pathname.replace(/^\/[a-zA-Z]{2}(-[a-zA-Z]{2})?(?=\/|$)/, '') || '/'
+
 export const Layout = ({ children }: LayoutProps) => {
-  useGlobalInit().catch((err) => {
-    console.error(err)
-  })
+  useGlobalInit()
 
-  const router = useRouter()
-
-  const asPath = decodeURIComponent(router.asPath)
+  const pathname = usePathname()
+  const asPath = decodeURIComponent(stripLocale(pathname ?? '/'))
 
   const hasHeader = [
     '/tool',

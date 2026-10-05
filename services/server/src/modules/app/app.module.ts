@@ -53,6 +53,7 @@ import { AuthModule } from '@/modules/system/auth/auth.module'
 import { UserModule } from '@/modules/system/user/user.module'
 import { UserVerificationModule } from '@/modules/system/user/user-verification.module'
 import { TemuRequestModule } from '@/modules/temu-request/temu-request.module'
+import { LabModule } from '@/modules/lab/lab.module'
 
 // root
 import { AppController } from './app.controller'
@@ -90,6 +91,7 @@ import { ConfigService } from '@nestjs/config'
     UserVerificationModule,
     AuthModule,
     TemuRequestModule,
+    LabModule,
 
     // SentryModule.forRoot(),
     // TypeOrmModule.forRoot({

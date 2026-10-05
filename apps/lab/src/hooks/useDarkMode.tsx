@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 
 import { CSS_THEME_DARK } from '@/utils/constants'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@/components/ui/'
+import { Link } from '@/components/custom-ui/Link'
 import styles from './Logo.module.scss'
 
 export function Logo({ siteTitle }) {

@@ -1,3 +1,5 @@
+'use client'
+
 import { fetchFundData, Resource } from '@/server/resource'
 import { FundDataItem } from '@/server/service'
 import { useCallback, useEffect, useRef, useState } from 'react'

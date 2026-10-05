@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Buttom } from '@tongdelove/ui/components/button'
 import { TbCalendarStats, TbChevronRight } from 'react-icons/tb'

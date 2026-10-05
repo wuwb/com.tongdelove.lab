@@ -1,3 +1,5 @@
+'use client'
+
 import { UseQueryResult } from '@tanstack/react-query'
 import { useWatch } from '@tongdelove/hooks'
 import { DependencyList, useRef, useState } from 'react'

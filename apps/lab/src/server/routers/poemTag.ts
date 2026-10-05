@@ -2,8 +2,9 @@ import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'
 import { pick } from 'es-toolkit'
-import { type PoemAuthor, type PrismaClient } from '@prisma/client'
+import { type PoemAuthor } from '@tongdelove/schema'
 import { type Locale } from '@/i18n/config'
+import { labPoemTagApi } from '@/server/backend/lab-poem.api'
 
 interface FindMany {
   input: {
@@ -13,51 +14,18 @@ interface FindMany {
     lang: Locale
     type?: string | null | undefined
   }
-  ctx: {
-    db: PrismaClient
-  }
 }
 
-const findMany = async ({ ctx, input }: FindMany) => {
+const findMany = async ({ input }: FindMany) => {
   const { select, page, pageSize, lang } = input
 
-  const [total, data] = await ctx.prisma.$transaction([
-    ctx.prisma.poemTag.count({
-      where: {
-        type: {
-          equals: input.type,
-        },
-      },
-    }),
-    ctx.prisma.poemTag.findMany({
-      where: {
-        type: {
-          equals: input.type,
-        },
-      },
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-      include: {
-        _count: {
-          select: {
-            poems: true,
-          },
-        },
-      },
-      orderBy: {
-        poems: {
-          _count: 'desc',
-        },
-      },
-    }),
-  ])
+  const res = await labPoemTagApi.findMany({ type: input.type, page, pageSize })
 
   return {
-    data: data.map((item) => pick(transformTag(item, lang), [...select, 'id'])),
-    page,
-    pageSize,
-    hasNext: page * pageSize < total,
-    total,
+    ...res,
+    data: (res.data ?? []).map((item: any) =>
+      pick(transformTag(item, lang), [...select, 'id']),
+    ),
   }
 }
 
@@ -87,9 +55,8 @@ export const poemTagRouter = createTRPCRouter({
         lang: LangZod,
       })
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       return await findMany({
-        ctx,
         input: {
           ...input,
           type: '词牌名',
@@ -103,26 +70,9 @@ export const poemTagRouter = createTRPCRouter({
         type: z.string().optional(),
       })
     )
-    .query(async ({ ctx, input }) => {
-      return ctx.prisma.poemTag.findMany({
-        where: { type: input.type },
-        select: {
-          id: true,
-          updatedAt: true,
-        },
-      })
-    }),
+    .query(async ({ input }) => labPoemTagApi.sitemap(input.type)),
 
-  count: publicProcedure.query(async ({ ctx }) => {
-    return ctx.prisma.$transaction([
-      ctx.prisma.poemTag.count(),
-      ctx.prisma.poemTag.count({
-        where: {
-          type: '词牌名',
-        },
-      }),
-    ])
-  }),
+  count: publicProcedure.query(async () => labPoemTagApi.count()),
 
   findStatisticsById: publicProcedure
     .input(
@@ -131,25 +81,15 @@ export const poemTagRouter = createTRPCRouter({
         lang: LangZod,
       })
     )
-    .query(async ({ input, ctx }) => {
-      const { id } = input
+    .query(async ({ input }) => {
+      const res = await labPoemTagApi.findStatisticsById(input.id)
 
-      const [data, total, tag] = await ctx.prisma.$transaction([
-        ctx.prisma.poem.findMany({
-          where: { tags: { some: { id } } },
-          include: { author: true },
-        }),
-        ctx.prisma.poem.count({
-          where: { tags: { some: { id } } },
-        }),
-        ctx.prisma.poemTag.findUnique({ where: { id } }),
-      ])
-
-      if (!tag) return
+      if (!res) return
 
       return {
-        data: data.map((item) => {
-          const json = pick(transformPoem(item, input.lang), [
+        ...res,
+        data: (res.data ?? []).map((item: any) => {
+          const json = pick(transformPoem(item.poem ?? item, input.lang), [
             'id',
             'title',
             'titlePinYin',
@@ -157,25 +97,24 @@ export const poemTagRouter = createTRPCRouter({
             'views',
           ])
 
-          json.author = pick(json.author, [
-            'id',
-            'name',
-            'namePinYin',
-          ]) as PoemAuthor
+          const author = json.author as Record<string, unknown> | undefined
+          if (author) {
+            json.author = pick(author, [
+              'id',
+              'name',
+              'namePinYin',
+            ]) as PoemAuthor
+          }
 
           return json
         }),
-        tag: transformTag(tag, input.lang),
-        total,
+        tag: transformTag(res.tag, input.lang),
       }
     }),
 
-  findById: publicProcedure.input(z.number()).query(({ input, ctx }) =>
-    ctx.prisma.poemTag.findFirst({
-      where: { id: input },
-      include: { poems: true },
-    })
-  ),
+  findById: publicProcedure.input(z.number()).query(async ({ input }) => {
+    return labPoemTagApi.findById(input)
+  }),
 
   conntentPoemIds: publicProcedure
     .input(
@@ -185,24 +124,15 @@ export const poemTagRouter = createTRPCRouter({
         tagId: z.number(),
       })
     )
-    .mutation(({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
 
-      return ctx.prisma.poemTag.update({
-        where: { id: input.tagId },
-        data: {
-          poems: {
-            connect: input.ids.map((id) => ({ id })),
-          },
-        },
-      })
+      return labPoemTagApi.connectPoemIds(input)
     }),
 
   deleteById: publicProcedure
     .input(z.number())
-    .mutation(({ input, ctx }) =>
-      ctx.prisma.poemTag.delete({ where: { id: input } })
-    ),
+    .mutation(async ({ input }) => labPoemTagApi.deleteById(input)),
 
   create: publicProcedure
     .input(
@@ -217,26 +147,17 @@ export const poemTagRouter = createTRPCRouter({
         introduce_zh_Hant: z.string().optional(),
       })
     )
-    .mutation(({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-      const { id } = input
 
-      const objJson = {
-        ...input,
-        token: undefined,
-      }
+      const { token, name_zh_Hant, type_zh_Hant, introduce_zh_Hant, ...rest } =
+        input
 
-      if (id) {
-        delete objJson.id
-
-        return ctx.prisma.poemTag.update({
-          where: { id },
-          data: objJson,
-        })
-      }
-
-      return ctx.prisma.poemTag.create({
-        data: objJson,
+      return labPoemTagApi.create({
+        ...rest,
+        nameZhHant: name_zh_Hant,
+        typeZhHant: type_zh_Hant,
+        introduceZhHant: introduce_zh_Hant,
       })
     }),
 })

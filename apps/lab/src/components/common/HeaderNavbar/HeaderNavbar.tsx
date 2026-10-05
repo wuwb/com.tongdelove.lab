@@ -2,7 +2,7 @@ import { TbMoon, TbPercentage, TbHistory } from 'react-icons/tb'
 import { Button } from '@tongdelove/ui/components/button'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import React from 'react'
 import styles from './styles.module.scss'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { nanoid } from 'nanoid'
 import { useState, useEffect } from 'react'
 import { getCookie } from '@/utils/cookie'

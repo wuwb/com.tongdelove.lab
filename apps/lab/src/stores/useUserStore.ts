@@ -1,7 +1,7 @@
 import { persist } from 'zustand/middleware'
 import { create } from 'zustand'
 import { UserData } from '@/types/user'
-import { UserPermissionRole } from '@prisma/client'
+import { UserPermissionRole } from '@/server/backend/enums/user-enums'
 import { DEFAULT_USER_DATA } from '@/utils/constants/user'
 
 interface UserStore {

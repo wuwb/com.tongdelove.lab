@@ -1,13 +1,14 @@
+'use client'
+
 import { useEvent } from '@tongdelove/hooks'
 import { crc32 } from 'crc'
 import {
   Trans,
-  appWithTranslation,
   useTranslation as _useTranslation,
-  TFunction,
-} from 'next-i18next'
+} from 'react-i18next'
+import type { TFunction } from 'next-i18next'
 
-export { Trans, appWithTranslation }
+export { Trans }
 
 export let t: TFunction = ((key: string) => {
   return key
@@ -19,7 +20,12 @@ let globalTReady = false
  * use customTranslation to place
  */
 export function useTranslation() {
-  const { i18n, ready, t: originT } = _useTranslation()
+  const translation = _useTranslation() as unknown as {
+    i18n: unknown
+    ready: boolean
+    t: (key: any, defaultValue?: any, options?: any) => any
+  }
+  const { i18n, ready, t: originT } = translation
 
   const _t = useEvent<typeof originT>(
     (key: any, defaultValue?: any, options?: any) => {

@@ -1,9 +1,5 @@
-import { prisma } from '@/server/db/prisma'
+import { labLinkApi } from '@/server/backend/lab-content.api'
 
 export async function getLinks() {
-  const result = await prisma.link.findMany({
-    take: 10,
-    skip: 0,
-  })
-  return result
+  return labLinkApi.getLinks()
 }

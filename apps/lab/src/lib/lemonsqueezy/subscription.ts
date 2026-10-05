@@ -3,19 +3,11 @@ import {
   LemonsqueezySubscriptionURLPatch,
   SubScriptionInfo,
 } from '@/types/subscribe'
-import { prisma } from '@/server/db/prisma'
+import { labUserApi } from '@/server/backend/lab-content.api'
 import { getSubscription } from '@lemonsqueezy/lemonsqueezy.js'
 
 export async function getUserSubscriptionPlan({ userId }: { userId: string }) {
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: {
-      subscriptionId: true,
-      currentPeriodEnd: true,
-      customerId: true,
-      variantId: true,
-    },
-  })
+  const user = await labUserApi.getSubscriptionFields(userId)
 
   if (!user) throw new Error('User not found')
   if (!user.subscriptionId) return null

@@ -1,3 +1,5 @@
+'use client'
+
 import type { User } from '@/models/user'
 import AuthService from '@/server/AuthService'
 import { createContext, FC, ReactNode, useEffect, useReducer } from 'react'

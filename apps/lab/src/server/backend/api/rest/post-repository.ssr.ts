@@ -1,17 +1,17 @@
-import type { PrismaClientDbMain } from '@tongdelove/prisma'
+import { labPostApi } from '@/server/backend/lab-post.api'
 
+/**
+ * 文章读取仓储（迁移自 apps/lab）。
+ *
+ * 数据访问改为调用 services/server，lab 不再直连数据库。
+ */
 export class PostRepositorySsr {
-  constructor(private prisma: PrismaClientDbMain) {}
-
   /**
    * @throws Error
    */
-  getPost = async (postId: number) => {
+  getPost = async (postId: string) => {
     try {
-      const post = this.prisma.post.findUnique({
-        where: { id: postId },
-        include: { author: true },
-      })
+      const post = await labPostApi.getById(postId)
       if (!post) {
         throw new Error(`Post ${postId} can't be found`)
       }
@@ -25,27 +25,8 @@ export class PostRepositorySsr {
    * @throws Error
    */
   getPosts = async (options?: { limit?: number; offset?: number }) => {
-    const { limit, offset } = options ?? {}
     try {
-      return await this.prisma.post.findMany({
-        skip: offset,
-        take: limit,
-        where: {
-          publishedAt: {
-            not: null,
-          },
-        },
-        include: {
-          author: {
-            select: {
-              firstName: true,
-              lastName: true,
-              username: true,
-            },
-          },
-        },
-        orderBy: { publishedAt: 'desc' },
-      })
+      return await labPostApi.list(options)
     } catch (e) {
       throw new Error(`Posts can't be retrieved`)
     }

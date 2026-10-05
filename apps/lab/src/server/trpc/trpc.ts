@@ -9,7 +9,7 @@
 
 import { initTRPC, TRPCError } from '@trpc/server'
 import superjson from 'superjson'
-import type { createTRPCContext } from './context'
+import type { TRPCContext } from './context'
 import { ZodError } from 'zod'
 // dns.setDefaultResultOrder("ipv4first");
 
@@ -23,7 +23,7 @@ import { ZodError } from 'zod'
  * errors on the backend.
  */
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.context<TRPCContext>().create({
   transformer: superjson,
   errorFormatter({ shape, error }) {
     return {

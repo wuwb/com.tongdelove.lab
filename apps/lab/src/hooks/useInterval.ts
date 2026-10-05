@@ -1,3 +1,5 @@
+'use client'
+
 // From https://github.com/donavon/use-interval/blob/master/src/index.tsx
 
 import { useEffect, useRef } from 'react'

@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from '@/components/custom-ui/Link'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'

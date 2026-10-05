@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { useRouter } from '@/lib/compat/router'
 import Link, { LinkProps } from 'next/link'
 import React, { PropsWithChildren, useState, useEffect } from 'react'
 

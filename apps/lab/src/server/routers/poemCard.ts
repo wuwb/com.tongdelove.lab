@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
-import { getRandom } from '@/server/third/unsplash'
+import { labPoemCardApi } from '@/server/backend/lab-poem.api'
 
 export const poemCardRouter = createTRPCRouter({
   /**
@@ -14,47 +14,16 @@ export const poemCardRouter = createTRPCRouter({
         tagName: z.string().default('七言律诗'),
       })
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       if (input.token !== process.env.TOKEN) {
         throw new Error('token error')
       }
 
-      const where = {
-        AND: [
-          { tags: { some: { name: input.tagName } } },
-          {
-            cards: { none: {} },
-          },
-        ],
-      }
-
-      const [result, count, urls] = await Promise.all([
-        ctx.prisma.poem.findMany({
-          where,
-          select: {
-            author: true,
-            id: true,
-            content: true,
-            title: true,
-          },
-          orderBy: {
-            id: 'asc',
-          },
-          skip: (input.page - 1) * 30,
-          take: 30,
-        }),
-        ctx.prisma.poem.count({
-          where,
-        }),
-        getRandom(),
-      ])
-
-      return {
-        data: result,
-        total: count,
-        urls,
-        pageCount: Math.ceil(count / 30),
-      }
+      return labPoemCardApi.getGenerateCard({
+        token: input.token,
+        page: input.page,
+        tagName: input.tagName,
+      })
     }),
 
   createCardItem: publicProcedure
@@ -66,18 +35,12 @@ export const poemCardRouter = createTRPCRouter({
         url: z.string(),
       })
     )
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) {
         throw new Error('token error')
       }
 
-      return ctx.prisma.poemCard.create({
-        data: {
-          poemId: input.poemId,
-          url: input.url,
-          content: input.content,
-        },
-      })
+      return labPoemCardApi.createCardItem(input)
     }),
 
   find: publicProcedure
@@ -87,54 +50,11 @@ export const poemCardRouter = createTRPCRouter({
         pageSize: z.number().default(28),
       })
     )
-    .query(async ({ ctx, input }) => {
-      const { page, pageSize } = input
+    .query(async ({ input }) => labPoemCardApi.find(input)),
 
-      const [data, total] = await ctx.prisma.$transaction([
-        ctx.prisma.poemCard.findMany({
-          take: pageSize,
-          skip: (page - 1) * pageSize,
-          orderBy: {
-            id: 'desc',
-          },
-        }),
-        ctx.prisma.poemCard.count(),
-      ])
+  random: publicProcedure.query(async () => labPoemCardApi.random()),
 
-      return {
-        data,
-        hasNext: page * pageSize < total,
-        total,
-        page,
-        pageSize,
-      }
-    }),
-
-  random: publicProcedure.query(async ({ ctx }) => {
-    const count = await ctx.prisma.poemCard.count()
-    const skip = Math.floor(Math.random() * count)
-
-    return ctx.prisma.poemCard.findMany({
-      take: 30,
-      skip: skip,
-      select: {
-        id: true,
-        content: true,
-        url: true,
-        poemId: true,
-        poem: {
-          select: { title: true },
-        },
-      },
-      orderBy: {
-        id: 'desc',
-      },
-    })
-  }),
-
-  count: publicProcedure.query(async ({ ctx }) => {
-    return ctx.prisma.poemCard.count()
-  }),
+  count: publicProcedure.query(async () => labPoemCardApi.count()),
 
   findNeedCreateByQuota: publicProcedure
     .input(
@@ -143,7 +63,7 @@ export const poemCardRouter = createTRPCRouter({
         quotas: z.array(z.string()),
       })
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       if (input.token !== process.env.TOKEN) {
         throw new Error('token error')
       }
@@ -152,60 +72,9 @@ export const poemCardRouter = createTRPCRouter({
         throw new Error('quotas is empty')
       }
 
-      const result = await ctx.prisma.$transaction(
-        input.quotas.map((item) =>
-          ctx.prisma.poem.findFirst({
-            where: {
-              content: {
-                contains: item,
-              },
-            },
-            select: {
-              id: true,
-              title: true,
-              content: true,
-              author: true,
-            },
-          })
-        )
-      )
-
-      const exist = await ctx.prisma.$transaction(
-        input.quotas.map((item) =>
-          ctx.prisma.poemCard.findFirst({
-            where: {
-              content: { contains: item },
-            },
-            select: {
-              id: true,
-            },
-          })
-        )
-      )
-
-      const urls = await getRandom()
-
-      type Result = Exclude<(typeof result)[number], null>
-
-      const data = result
-        .map((item, index) => {
-          if (item) {
-            item.content = input.quotas[index]!
-          }
-
-          return item
-        })
-        .filter((item, index) => {
-          if (!item) return false
-          if (exist[index]) return false
-
-          return true
-        })
-        .slice(0, 30) as Result[]
-
-      return {
-        data,
-        urls,
-      }
+      return labPoemCardApi.findNeedCreateByQuota({
+        token: input.token,
+        quotas: input.quotas,
+      })
     }),
 })

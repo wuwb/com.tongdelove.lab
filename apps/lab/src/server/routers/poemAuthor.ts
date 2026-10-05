@@ -1,17 +1,11 @@
 import { z } from 'zod'
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
+import { labPoemAuthorApi } from '@/server/backend/lab-poem.api'
 
 export const poemAuthorRouter = createTRPCRouter({
-  count: publicProcedure.query(({ ctx }) => ctx.prisma.poemAuthor.count()),
+  count: publicProcedure.query(async () => labPoemAuthorApi.count()),
 
-  sitemap: publicProcedure.query(async ({ ctx }) =>
-    ctx.prisma.poemAuthor.findMany({
-      select: {
-        id: true,
-        updatedAt: true,
-      },
-    })
-  ),
+  sitemap: publicProcedure.query(async () => labPoemAuthorApi.sitemap()),
 
   findMany: publicProcedure
     .input(
@@ -51,76 +45,17 @@ export const poemAuthorRouter = createTRPCRouter({
         })
         .optional()
     )
-    .query(async ({ ctx, input }) => {
-      const { page = 1, pageSize = 28, select = [], keyword } = input ?? {}
+    .query(async ({ input }) => {
+      const { page = 1, pageSize = 28, keyword } = input ?? {}
 
-      const total = await ctx.prisma.poemAuthor.count({
-        where: { name: { contains: keyword } },
-      })
-      const data = await ctx.prisma.poemAuthor.findMany({
-        where: { name: { contains: keyword } },
-        orderBy: {
-          poems: {
-            _count: 'desc',
-          },
-        },
-        select: {
-          id: true,
-          name: select.includes('name'),
-          namePinYin: select.includes('namePinYin'),
-          introduce: select.includes('introduce'),
-          birthDate: select.includes('birthDate'),
-          deathDate: select.includes('deathDate'),
-          dynasty: select.includes('dynasty'),
-          poems: select.includes('poems'),
-          createdAt: select.includes('createdAt'),
-          updatedAt: select.includes('updatedAt'),
-          _count: {
-            select: {
-              poems: true,
-            },
-          },
-        },
-        skip: (page - 1) * pageSize,
-        take: pageSize,
-      })
-
-      return {
-        data,
-        page,
-        pageSize,
-        hasNext: page * pageSize < total,
-        total,
-      }
+      return labPoemAuthorApi.findMany({ page, pageSize, keyword })
     }),
 
-  findById: publicProcedure.input(z.number()).query(({ input, ctx }) =>
-    ctx.prisma.poemAuthor.findUnique({
-      where: { id: input },
-      include: {
-        _count: {
-          select: {
-            poems: true,
-          },
-        },
-      },
-    })
-  ),
+  findById: publicProcedure.input(z.number()).query(async ({ input }) => {
+    return labPoemAuthorApi.findById(input)
+  }),
 
-  findNotPoem: publicProcedure.query(async ({ ctx }) =>
-    ctx.prisma.poemAuthor.findMany({
-      where: {
-        poems: {
-          none: {},
-        },
-      },
-      select: {
-        id: true,
-        name: true,
-        dynasty: true,
-      },
-    })
-  ),
+  findNotPoem: publicProcedure.query(async () => labPoemAuthorApi.findNotPoem()),
 
   create: publicProcedure
     .input(
@@ -136,39 +71,18 @@ export const poemAuthorRouter = createTRPCRouter({
         dynasty: z.string(),
       })
     )
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
 
-      if (input.id) {
-        return ctx.prisma.poemAuthor.update({
-          where: { id: input.id },
-          data: {
-            name: input.name.toLocaleLowerCase(),
-            name_zh_Hant: input.name_zh_Hant,
-            introduce: input.introduce,
-            birthDate: input.birthDate,
-            deathDate: input.deathDate,
-            namePinYin: input.namePinYin,
-            dynasty: input.dynasty,
-          },
-        })
-      }
-
-      const res = await ctx.prisma.poemAuthor.findMany({
-        where: {
-          name: input.name.toLocaleLowerCase(),
-          dynasty: input.dynasty,
-        },
-      })
-
-      if (res.length > 0) throw new Error('Author already exists')
-
-      return ctx.prisma.poemAuthor.create({
-        data: {
-          name: input.name.toLocaleLowerCase(),
-          name_zh_Hant: input.name_zh_Hant,
-          dynasty: input.dynasty,
-        },
+      return labPoemAuthorApi.create({
+        id: input.id,
+        name: input.name,
+        nameZhHant: input.name_zh_Hant,
+        birthDate: input.birthDate,
+        deathDate: input.deathDate,
+        introduce: input.introduce,
+        namePinYin: input.namePinYin,
+        dynasty: input.dynasty,
       })
     }),
 
@@ -179,11 +93,8 @@ export const poemAuthorRouter = createTRPCRouter({
         id: z.number(),
       })
     )
-    .mutation(({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-
-      return ctx.prisma.poemAuthor.delete({
-        where: { id: input.id },
-      })
+      return labPoemAuthorApi.deleteById({ id: input.id, token: input.token })
     }),
 })

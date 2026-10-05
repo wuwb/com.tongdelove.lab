@@ -1,5 +1,7 @@
+'use client'
+
 import Link, { LinkProps } from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import React, { Children, ReactElement, useEffect, useState } from 'react'
 
 type ActiveLinkChildProps = {

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { SidebarSection } from './SidebarSection'
 import { useTranslation } from '@/i18n'

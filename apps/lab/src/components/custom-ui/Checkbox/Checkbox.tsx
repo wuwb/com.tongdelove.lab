@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useCallback, ChangeEvent } from 'react'
 
 import { useUpdateEffect } from '@/hooks/useUpdateEffect'

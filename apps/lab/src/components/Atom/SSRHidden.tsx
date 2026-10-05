@@ -1,3 +1,5 @@
+'use client'
+
 import React, { PropsWithChildren, useEffect, useState } from 'react'
 
 /**

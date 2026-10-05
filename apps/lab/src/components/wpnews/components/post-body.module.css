@@ -1,3 +1,5 @@
+@reference '../../../styles/globals.css';
+
 .content {
   @apply text-lg leading-relaxed;
 }

@@ -2,7 +2,7 @@ export interface UserData {
   id: string
 }
 
-import { User } from '@prisma/client'
+import { type User } from '@/server/backend/enums/poem-types'
 
 export type Role = 0 | 2 // 0 Standard User; 2 Member User
 
@@ -28,4 +28,5 @@ export interface UserInfo {
   accessToken?: string
 }
 
-export interface PrismaUser extends User {}
+/** 用户资料（来源于 services/server 的用户接口） */
+export type UserProfile = User

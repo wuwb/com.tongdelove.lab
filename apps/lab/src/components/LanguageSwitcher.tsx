@@ -1,8 +1,10 @@
+'use client'
+
 import { useTranslation } from '@/i18n'
 import { getLocale } from '@/i18n/locale'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import { popularUserLanguages } from '@/i18n/language'
-import { UserLanguageCode } from '@prisma/client'
+import { UserLanguageCode } from '@/server/backend/enums/user-enums'
 import { RiTranslate2 } from 'react-icons/ri'
 import {
   DropdownMenu,

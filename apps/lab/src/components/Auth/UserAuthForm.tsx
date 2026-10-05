@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, useState } from 'react'
 import { cn } from '@tongdelove/ui/lib/utils'
 import { Button } from '@tongdelove/ui/components/button'

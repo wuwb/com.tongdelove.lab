@@ -1,4 +1,4 @@
-import { UserLanguageCode } from '@prisma/client'
+import { UserLanguageCode } from '@/server/backend/enums/user-enums'
 
 interface UserLanguageType {
   code: UserLanguageCode

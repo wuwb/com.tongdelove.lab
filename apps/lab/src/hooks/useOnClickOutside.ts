@@ -1,3 +1,5 @@
+'use client'
+
 import { RefObject, MutableRefObject, useEffect, useRef } from 'react'
 
 export function useOnClickOutside<T extends HTMLElement>(

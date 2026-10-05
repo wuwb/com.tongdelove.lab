@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from '@/components/custom-ui/Link'
 import { useTranslation } from '@/i18n'
 

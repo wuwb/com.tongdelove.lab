@@ -1,74 +1,13 @@
-import { type Poem, Author } from '@prisma/client'
 import { z } from 'zod'
 import { publicProcedure } from '@/server/trpc/trpc'
 import { LangZod, transformPoem, transformTag } from '../trpc/utils'
 import { splitChineseSymbol } from '@/utils'
-
-let token: {
-  access_token: string
-  expires_in: number
-  time: number
-}
-
-const getToken = async () => {
-  if (!token || token.time + token.expires_in * 1000 < Date.now()) {
-    const res = await fetch(
-      `https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${process.env.BAIDU_YIYAN_API_KEY}&client_secret=${process.env.BAIDU_YIYAN_SECRET_KEY}`,
-      { method: 'POST' }
-    )
-
-    const data = (await res.json()) as {
-      access_token: string
-      expires_in: number
-    }
-
-    token = {
-      ...data,
-      time: Date.now(),
-    }
-  }
-
-  return token
-}
-
-const getTranslation = async (content: string) => {
-  const _token = await getToken()
-
-  const res = await fetch(
-    `https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-8k-preview?access_token=${_token.access_token}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        messages: [
-          {
-            role: 'user',
-            content:
-              '你只需要将我发送的诗词内容进行白话文翻译，不需要赏析，不需要任何多余内容，只需要白话文翻译。不需要加上描述性文字“希望能符合我的要求”类似的结束语。不需要“以下是 xxx “的开始语， 确认请回复“确认”',
-          },
-          {
-            role: 'assistant',
-            content:
-              '确认。请提供您需要翻译的诗词内容，我会直接将其翻译成白话文。',
-          },
-          {
-            role: 'user',
-            content: content,
-          },
-        ],
-      }),
-    }
-  )
-
-  const json = (await res.json()) as { result: string }
-
-  return json.result
-}
+import { labPoemApi, labPoemTagApi } from '@/server/backend/lab-poem.api'
 
 export const poemRouter = {
-  count: publicProcedure.query(({ ctx }) => ctx.prisma.poem.count()),
+  count: publicProcedure.query(async () => {
+    return labPoemApi.count()
+  }),
 
   isSame: publicProcedure
     .input(
@@ -77,15 +16,11 @@ export const poemRouter = {
         title: z.string(),
       })
     )
-    .mutation(async ({ input, ctx }) => {
-      const res = await ctx.prisma.poem.count({
-        where: {
-          authorId: input.authorId,
-          title: input.title.toLocaleLowerCase(),
-        },
+    .mutation(async ({ input }) => {
+      return labPoemApi.isSame({
+        authorId: input.authorId,
+        title: input.title.toLocaleLowerCase(),
       })
-
-      return res > 1
     }),
 
   /**
@@ -98,10 +33,9 @@ export const poemRouter = {
         token: z.string(),
       })
     )
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-      await ctx.prisma.card.deleteMany({ where: { poemId: input.id } })
-      return ctx.prisma.poem.delete({ where: { id: input.id } })
+      return labPoemApi.deleteById({ id: input.id, token: input.token })
     }),
 
   findByAuthorId: publicProcedure
@@ -115,73 +49,20 @@ export const poemRouter = {
           .optional(),
       })
     )
-    .query(async ({ input, ctx }) => {
-      const { authorId, page, pageSize } = input
-      const select = input.select ?? ['title', 'titlePinYin']
-
-      const total = await ctx.prisma.poem.count({
-        where: { authorId },
+    .query(async ({ input }) => {
+      return labPoemApi.findByAuthorId({
+        authorId: input.authorId,
+        page: input.page,
+        pageSize: input.pageSize,
+        select: input.select,
       })
-      const data = await ctx.prisma.poem.findMany({
-        skip: (page - 1) * pageSize,
-        take: pageSize,
-        where: { authorId },
-        select: {
-          id: true,
-          title: select.includes('title'),
-          titlePinYin: select.includes('titlePinYin'),
-          content: select.includes('content'),
-          views: select.includes('views'),
-          author: true,
-        },
-      })
-
-      return {
-        data,
-        page,
-        pageSize,
-        hasNext: page * pageSize < total,
-        total,
-      }
     }),
 
-  sitemap: publicProcedure.query(async ({ ctx }) =>
-    ctx.prisma.poem.findMany({
-      select: {
-        id: true,
-        updatedAt: true,
-      },
-    })
-  ),
+  sitemap: publicProcedure.query(async () => labPoemApi.sitemap()),
 
   search: publicProcedure
     .input(z.string().default(''))
-    .query(({ input, ctx }) => {
-      return ctx.prisma.poem.findMany({
-        where: {
-          OR: [
-            { title: { contains: input } },
-            { content: { contains: input } },
-            { author: { name: { contains: input } } },
-          ],
-        },
-        select: {
-          author: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
-          title: true,
-          content: true,
-          id: true,
-        },
-        orderBy: {
-          titlePinYin: { sort: 'desc', nulls: 'last' },
-        },
-        take: 50,
-      })
-    }),
+    .query(async ({ input }) => labPoemApi.search(input)),
 
   find: publicProcedure
     .input(
@@ -194,57 +75,17 @@ export const poemRouter = {
         })
         .optional()
     )
-    .query(async ({ input = {}, ctx }) => {
-      const { page = 1, pageSize = 28 } = input
-
-      let data: (Poem & { author: Author })[]
-
-      if (input.sort === 'improve') {
-        // 待优化的 待完善
-        data = await ctx.prisma.poem.findMany({
-          skip: (page - 1) * pageSize,
-          take: pageSize,
-          orderBy: {
-            translation: { sort: 'desc', nulls: 'first' },
-          },
-          include: {
-            author: true,
-          },
-        })
-      } else if (input.sort === 'updatedAt') {
-        // 首页推荐
-        const temp = await ctx.prisma.poem.findMany({
-          orderBy: {
-            updatedAt: 'desc',
-          },
-          include: {
-            author: true,
-          },
-          take: 500,
-        })
-
-        data = temp.filter((item) => item.translation).slice(0, pageSize)
-      } else {
-        data = await ctx.prisma.poem.findMany({
-          orderBy: {
-            createdAt: 'desc',
-          },
-          include: {
-            author: true,
-          },
-          skip: (page - 1) * pageSize,
-          take: pageSize,
-        })
-      }
-
-      const total = await ctx.prisma.poem.count()
+    .query(async ({ input = {} }) => {
+      const lang = input.lang || 'zh-Hans'
+      const res = await labPoemApi.find({
+        page: input.page ?? 1,
+        pageSize: input.pageSize ?? 28,
+        sort: input.sort,
+      })
 
       return {
-        data: data.map((item) => transformPoem(item, input.lang || 'zh-Hans')),
-        page,
-        pageSize,
-        hasNext: page * pageSize < total,
-        total,
+        ...res,
+        data: (res.data ?? []).map((item: any) => transformPoem(item, lang)),
       }
     }),
 
@@ -257,49 +98,19 @@ export const poemRouter = {
         lang: LangZod,
       })
     )
-    .query(async ({ input, ctx }) => {
-      const { page, pageSize, id } = input
-      console.log(typeof id)
-      const intId = String(id)
+    .query(async ({ input }) => {
+      const res = await labPoemApi.findByTagId({
+        id: input.id,
+        page: input.page,
+        pageSize: input.pageSize,
+      })
 
-      const [data, total, tag] = await ctx.prisma.$transaction([
-        ctx.prisma.poem.findMany({
-          where: {
-            tags: {
-              some: {
-                id: intId,
-              },
-            },
-          },
-          include: { author: true },
-          skip: (page - 1) * pageSize,
-          take: pageSize,
-        }),
-        ctx.prisma.poem.count({
-          where: {
-            tags: {
-              some: {
-                id: intId,
-              },
-            },
-          },
-        }),
-        ctx.prisma.tag.findUnique({
-          where: {
-            id: intId,
-          },
-        }),
-      ])
-
-      if (!tag) return
+      if (!res) return
 
       return {
-        data: data.map((item) => transformPoem(item, input.lang)),
-        page,
-        pageSize,
-        hasNext: page * pageSize < total,
-        tag: transformTag(tag, input.lang),
-        total,
+        ...res,
+        data: (res.data ?? []).map((item: any) => transformPoem(item, input.lang)),
+        tag: transformTag(res.tag, input.lang),
       }
     }),
 
@@ -315,9 +126,10 @@ export const poemRouter = {
     )
     .mutation(async ({ input }) => {
       if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-
-      const translation = await getTranslation(input.content)
-      return translation
+      return labPoemApi.genTranslation({
+        token: input.token,
+        content: input.content,
+      })
     }),
 
   /**
@@ -330,31 +142,15 @@ export const poemRouter = {
         lang: LangZod,
       })
     )
-    .query(async ({ input, ctx }) => {
+    .query(async ({ input }) => {
       const { id } = input
-
-      ctx.prisma.poem
-        .update({
-          where: { id },
-          data: { views: { increment: 1 } },
-        })
-        .then(console.log)
-        .catch(console.error)
-
-      const res = await ctx.prisma.poem.findUnique({
-        where: { id },
-        include: {
-          tags: true,
-          author: true,
-          cards: true,
-        },
-      })
+      const res = await labPoemApi.findById(id)
 
       if (!res) return
 
       // 特殊逻辑，自动标注五言绝句/七言绝句
-      const has = res.tags.find((tag) =>
-        ['五言绝句', '七言绝句', '五言律诗', '七言律诗'].includes(tag.name)
+      const has = (res.tags ?? []).find((tag: any) =>
+        ['五言绝句', '七言绝句', '五言律诗', '七言律诗'].includes(tag.name),
       )
 
       if (!has) {
@@ -384,10 +180,11 @@ export const poemRouter = {
         }
 
         if (connectTagId !== -1) {
-          void ctx.prisma.poem
-            .update({
-              where: { id },
-              data: { tags: { connect: [{ id: connectTagId }] } },
+          void labPoemTagApi
+            .connectPoemIds({
+              token: process.env.TOKEN ?? '',
+              ids: [id],
+              tagId: connectTagId,
             })
             .catch((e) => {
               console.log(e)
@@ -396,156 +193,5 @@ export const poemRouter = {
       }
 
       return transformPoem(res, input.lang)
-    }),
-
-  findByIdSelected: publicProcedure
-    .input(
-      z.object({
-        id: z.number(),
-        selected: z.array(z.enum(['translation_en'])).default([]),
-      })
-    )
-    .query(async ({ input, ctx }) => {
-      return ctx.prisma.poem.findUnique({
-        where: { id: input.id },
-        select: {
-          id: true,
-          translation_en: input.selected.includes('translation_en'),
-        },
-      })
-    }),
-  /**
-   * 创建诗词
-   */
-  create: publicProcedure
-    .input(
-      z.object({
-        id: z.number().optional(),
-        token: z.string(),
-        title: z.string(),
-        titlePinYin: z.string().optional(),
-        title_zh_hant: z.string().optional(),
-        content: z.string(),
-        contentPinYin: z.string().optional(),
-        content_zh_hant: z.string().optional(),
-        authorId: z.number(),
-        tagIds: z.array(z.number()).optional(),
-        disconnectTagIds: z.array(z.number()).optional(),
-        classify: z.string().optional(),
-        genre: z.string().optional(),
-        introduce: z.string().optional(),
-        introduce_zh_hant: z.string().optional(),
-        translation: z.string().optional(),
-        translation_zh_hant: z.string().optional(),
-        annotation: z.string().optional(),
-        annotation_zh_hant: z.string().optional(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-      if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-
-      const data = {
-        title: input.title.toLocaleLowerCase(),
-        titlePinYin: input.titlePinYin,
-        title_zh_Hant: input.title_zh_hant,
-        contentPinYin: input.contentPinYin,
-        content: input.content,
-        content_zh_Hant: input.content_zh_hant,
-        classify: input.classify,
-        genre: input.genre,
-        introduce: input.introduce,
-        introduce_zh_Hant: input.introduce_zh_hant,
-        translation: input.translation,
-        translation_zh_Hant: input.translation_zh_hant,
-        annotation: input.annotation,
-        annotation_zh_Hant: input.annotation_zh_hant,
-      }
-
-      if (input.id) {
-        const res = await ctx.prisma.poem.findMany({
-          where: {
-            authorId: input.authorId,
-            title: input.title.toLocaleLowerCase(),
-          },
-        })
-
-        if (res.length > 1) throw new Error('诗词已存在')
-
-        return ctx.prisma.poem.update({
-          where: { id: input.id },
-          data: {
-            ...data,
-            author: {
-              connect: { id: input.authorId },
-            },
-            tags: input.tagIds && {
-              connect: input.tagIds.map((id) => ({ id })),
-              disconnect: input.disconnectTagIds?.map((id) => ({ id })),
-            },
-          },
-        })
-      }
-
-      const res = await ctx.prisma.poem.findFirst({
-        where: {
-          authorId: input.authorId,
-          title: input.title.toLocaleLowerCase(),
-        },
-      })
-
-      if (res) throw new Error('诗词已存在')
-
-      return ctx.prisma.poem.create({
-        data: {
-          ...data,
-          authorId: input.authorId,
-          tags: input.tagIds && {
-            connect: input.tagIds.map((id) => ({ id })),
-          },
-        },
-      })
-    }),
-
-  checkedExist: publicProcedure
-    .input(
-      z.object({
-        title: z.string(),
-        authorName: z.string(),
-      })
-    )
-    .query(async ({ ctx, input }) => {
-      const res = await ctx.prisma.poem.findFirst({
-        where: {
-          title: input.title.toLocaleLowerCase(),
-          author: {
-            name: input.authorName,
-          },
-        },
-      })
-
-      return res ? true : false
-    }),
-
-  updateLocale: publicProcedure
-    .input(
-      z.object({
-        translation_en: z.string().optional(),
-        id: z.number(),
-        token: z.string(),
-      })
-    )
-    .mutation(async ({ ctx, input }) => {
-      if (input.token !== process.env.TOKEN) throw new Error('Invalid token')
-
-      const json: Record<string, string> = {}
-
-      if (input.translation_en) {
-        json.translation_en = input.translation_en
-      }
-
-      return ctx.prisma.poem.update({
-        where: { id: input.id },
-        data: json,
-      })
     }),
 }

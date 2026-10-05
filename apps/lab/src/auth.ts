@@ -1,12 +1,10 @@
 import NextAuth, { NextAuthConfig } from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
 // import GoogleProvider from 'next-auth/providers/google'
-import { prisma } from '@/server/db/prisma'
+import { LabAuthAdapter } from '@/server/backend/auth/lab-auth-adapter'
 // import Credentials from 'next-auth/providers/credentials'
 // import { env } from '@/env/server'
 // import { createHttpUnauthorized } from '@/lib/auth/error'
 import { authConfig } from './auth.config'
-// import { customSendVerificationRequest } from '@/pages/api/auth/signinemail'
 // import Resend from 'next-auth/providers/resend'
 // import type { Adapter } from 'next-auth/adapters'
 
@@ -21,7 +19,8 @@ const config: NextAuthConfig = {
     brandColor: '#333',
   },
   // https://github.com/nextauthjs/next-auth/issues/9493
-  adapter: PrismaAdapter(prisma),
+  // 认证数据（user/account/session）由 services/server 持有，lab 通过远程适配器访问。
+  adapter: LabAuthAdapter(),
   // secret: env.AUTH_SECRET,
   session: {
     strategy: 'jwt',
@@ -38,10 +37,10 @@ const config: NextAuthConfig = {
   debug: false,
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth((req) => {
-  if (req) {
-    console.log(req)
-  }
-
-  return config
-})
+/**
+ * 直接传入配置对象。
+ *
+ * 之前用 `NextAuth((req) => config)` 形式，该签名在 App Router 下
+ * 收到的并非标准 Request，导致 auth() 内部 headers.get 抛错。
+ */
+export const { handlers, signIn, signOut, auth } = NextAuth(config)

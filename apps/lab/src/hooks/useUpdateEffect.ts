@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, DependencyList, EffectCallback } from 'react'
 
 export const useUpdateEffect: typeof useEffect = (

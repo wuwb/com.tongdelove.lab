@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 
 // Got from https://usehooks.com/useLockBodyScroll/

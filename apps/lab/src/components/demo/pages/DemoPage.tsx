@@ -1,3 +1,5 @@
+'use client'
+
 import type { FC } from 'react'
 import { MainLayout } from '@/layouts/main'
 import { Jumbotron } from '../blocks'

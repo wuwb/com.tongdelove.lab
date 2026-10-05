@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, ReactNode, createContext } from 'react'
 
 type SidebarContextProps = {

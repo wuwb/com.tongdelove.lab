@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import { useTranslation } from '@/i18n'
 import {
   RiCoreosFill,

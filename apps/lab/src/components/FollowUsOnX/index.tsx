@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslation } from '@/i18n'
 import { MY_X_URL } from '@/utils/constants/site'
 import Link from 'next/link'

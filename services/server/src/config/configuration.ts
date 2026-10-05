@@ -8,7 +8,7 @@ export function isDev(): boolean {
 }
 
 export default () => ({
-  port: parseInt(process.env.PORT ? process.env.PORT : '3000', 10),
+  port: parseInt(process.env.PORT ? process.env.PORT : '8001', 10),
 
   isDev: process.env.NODE_ENV === 'development',
 

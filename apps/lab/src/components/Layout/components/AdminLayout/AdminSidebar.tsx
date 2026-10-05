@@ -1,3 +1,5 @@
+'use client'
+
 import { useSession } from 'next-auth/react'
 import { TextAvatar } from '@/components/avatar/TextAvatar'
 import { useTranslation } from '@/i18n'

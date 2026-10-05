@@ -1,6 +1,8 @@
+'use client'
+
 import { useEffect } from 'react'
 
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 import Script from 'next/script'
 
 import { GA_ADS_ID } from '@/lib/googleAds'

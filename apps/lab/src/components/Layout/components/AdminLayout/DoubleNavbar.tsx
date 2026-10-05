@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Tooltip } from '@tongdelove/ui/components/tooltip'
 import { Button } from '@tongdelove/ui/components/button'

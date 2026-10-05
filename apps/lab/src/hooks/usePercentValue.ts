@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 const numberToPercent = (v: number): string => String((v * 100).toFixed(0))

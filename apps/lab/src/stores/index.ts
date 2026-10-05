@@ -17,7 +17,6 @@ export const store = configureStore({
       },
     }).concat(sagaMiddleware)
   },
-  enhancers: [],
 })
 
 sagaMiddleware.run(syncSaga)

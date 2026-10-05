@@ -1,8 +1,17 @@
+'use client'
+
 import { trpc } from '@/utils/trpc'
 import { useSession } from 'next-auth/react'
 import { useUserStore } from '@/stores'
 
-export const useGlobalInit = async () => {
+/**
+ * 全局初始化：登录后拉取用户资料写入 store。
+ *
+ * 内部全部是同步 hook，不能声明为 async ——
+ * async 函数中的 hook 调用发生在微任务里，调用顺序不稳定，
+ * 会触发 "hooks[lastArg] is not a function"。
+ */
+export const useGlobalInit = () => {
   const { data: session } = useSession()
 
   const setUserData = useUserStore((store) => store.setUserData)

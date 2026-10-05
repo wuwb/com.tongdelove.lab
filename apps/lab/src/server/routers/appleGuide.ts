@@ -1,9 +1,8 @@
 import { createTRPCRouter, publicProcedure } from '@/server/trpc/trpc'
-import { prisma } from '@/server/db/prisma'
+import { labAppleGuideApi } from '@/server/backend/lab-content.api'
 
 export const appleGuideRouter = createTRPCRouter({
-  getAll: publicProcedure.query(({ ctx }) => {
-    const result = prisma.appleGuide.findMany()
-    return result
+  getAll: publicProcedure.query(async () => {
+    return labAppleGuideApi.getAll()
   }),
 })

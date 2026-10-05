@@ -1,66 +1,31 @@
 import { headers } from 'next/headers'
 import { createCaller } from '@/server/trpc'
 import { auth } from '@/auth'
-import {
-  createTRPCProxyClient,
-  loggerLink,
-  TRPCClientError,
-} from '@trpc/client'
-import { callProcedure } from '@trpc/server'
-import { observable } from '@trpc/server/observable'
-import { type TRPCErrorResponse } from '@trpc/server/rpc'
-// import { cookies } from 'next/headers'
-import { cache } from 'react'
-import { appRouter, type AppRouter } from '@/server/trpc/root'
 import { createTRPCContext } from '@/server/trpc/context'
-import { transformer } from './shared'
 
 /**
- * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
- * handling a tRPC call from a React Server Component.
+ * RSC（Server Component）中调用 tRPC 的服务端入口。
+ *
+ * Server Component 运行在服务端，可以直接调用 procedure，
+ * 不经过 HTTP，省去一次网络往返。
  */
-const createContext = cache(async () => {
-  const heads = new Headers(headers())
+const createContext = async () => {
+  const heads = new Headers()
   heads.set('x-trpc-source', 'rsc')
 
   return createTRPCContext({
     session: await auth(),
     headers: heads,
   })
-})
+}
 
-export const trpc = createCaller(createContext)
+/**
+ * 调用前需显式创建 context：
+ * `const trpc = createCaller(await createContext())`
+ */
+export { createContext, createCaller }
 
-// export const trpc = createTRPCProxyClient<AppRouter>({
-//   transformer,
-//   links: [
-//     loggerLink({
-//       enabled: op => process.env.NODE_ENV === 'development' || (op.direction === 'down' && op.result instanceof Error),
-//     }),
-//     /**
-//      * Custom RSC link that lets us invoke procedures without using http requests. Since Server
-//      * Components always run on the server, we can just call the procedure as a function.
-//      */
-//     () =>
-//       ({ op }) =>
-//         observable(observer => {
-//           createContext()
-//             .then(ctx => {
-//               return callProcedure({
-//                 procedures: appRouter._def.procedures,
-//                 path: op.path,
-//                 rawInput: op.input,
-//                 ctx,
-//                 type: op.type,
-//               })
-//             })
-//             .then(data => {
-//               observer.next({ result: { data } })
-//               observer.complete()
-//             })
-//             .catch((cause: TRPCErrorResponse) => {
-//               observer.error(TRPCClientError.from(cause))
-//             })
-//         }),
-//   ],
-// })
+export type { TRPCContext } from '@/server/trpc/context'
+
+/** 兼容旧引用：headers() 仅在需要透传请求头时使用 */
+export const getRequestHeaders = () => headers()

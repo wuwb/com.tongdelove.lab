@@ -1,3 +1,5 @@
+'use client'
+
 import isMobileDetect from 'is-mobile'
 import { useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@tongdelove/hooks'

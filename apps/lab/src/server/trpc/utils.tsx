@@ -1,4 +1,4 @@
-import { type PoemTag, type Poem } from '@prisma/client'
+import { type PoemTag, type Poem } from '@/server/backend/enums/poem-types'
 import { mapKeys, pick } from 'es-toolkit'
 import { z } from 'zod'
 import { locales } from '@/i18n/config'

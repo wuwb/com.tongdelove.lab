@@ -101,7 +101,34 @@ const config = {
   turbopack: {
     resolveAlias: {
       fs: {
-        browser: './empty.ts', // We recommend to fix code imports before using this method
+        browser: './src/lib/empty.ts', // We recommend to fix code imports before using this method
+      },
+      // jimp@1.6.1 的 package.json exports 把 browser 条件指向 dist/browser/index.js，
+      // 而该文件内容只有 `export {}`（无任何导出），导致 client 组件
+      // `import { Jimp } from 'jimp'` 在 Turbopack 下报 "Export Jimp doesn't exist"。
+      // dist/esm/index.js 才是含真实导出的入口，但不在 exports 白名单内，
+      // 因此显式 alias 过去。
+      jimp: {
+        // Turbopack 会把绝对路径当成相对路径处理，这里必须给相对路径。
+        browser: path.relative(
+          process.cwd(),
+          path.join(
+            path.dirname(require.resolve('jimp/package.json')),
+            'dist/esm/index.js'
+          )
+        ),
+      },
+    },
+    rules: {
+      // App Router 默认走 Turbopack，webpack 段的 yaml-loader 规则不生效，
+      // 需要在这里单独注册（src/data/links 与 components/LinksPage 依赖 .yml 资源）。
+      '*.yml': {
+        loaders: ['yaml-loader'],
+        as: '*.js',
+      },
+      '*.yaml': {
+        loaders: ['yaml-loader'],
+        as: '*.js',
       },
     },
   },
@@ -112,12 +139,14 @@ const config = {
   // basePath: '',
   // productionBrowserSourceMaps: process.env.NEXT_BUILD_ENV_SOURCEMAPS === true,
   /**
-   * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
-   * out.
+   * App Router 不支持 next.config 的 `i18n` 配置：
+   * Next.js 会剥离 URL 首段作为 locale，与 app/[locale] 动态段冲突。
    *
-   * @see https://github.com/vercel/next.js/issues/41980
+   * 多语言改由 app/[locale] 动态段 + src/i18n/routing.ts 承载，
+   * locale 列表与本文件原先引用的 next-i18next.config.js 保持一致。
+   *
+   * @see https://nextjs.org/docs/app/building-your-application/routing/internationalization
    */
-  i18n: nextI18NextConfig.i18n,
 
   // Required by Next i18n with API routes, otherwise API routes 404 when fetching without trailing slash
   // trailingSlash: true,

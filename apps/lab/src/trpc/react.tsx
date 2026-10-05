@@ -6,8 +6,6 @@ import { createTRPCReact } from '@trpc/react-query'
 import { useState } from 'react'
 import { type AppRouter } from '@/server/trpc/root'
 import { getUrl, transformer } from './shared'
-import SuperJSON from 'superjson'
-import { env } from '@/env/server'
 
 const createQueryClient = () =>
   new QueryClient({
@@ -38,6 +36,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
 
   const [trpcClient] = useState(() =>
     api.createClient({
+      transformer,
       links: [
         loggerLink({
           enabled: (op) =>
@@ -45,13 +44,11 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             (op.direction === 'down' && op.result instanceof Error),
         }),
         unstable_httpBatchStreamLink({
-          transformer: SuperJSON,
-          // url: getUrl(),
-          url: getBaseUrl() + '/api/trpc',
+          url: getUrl(),
           headers() {
-            const headers = new Headers()
-            headers.set('x-trpc-source', 'nextjs-react')
-            return headers
+            return {
+              'x-trpc-source': 'nextjs-react',
+            }
           },
         }),
       ],
@@ -67,9 +64,9 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
   )
 }
 
-const getBaseUrl = () => {
-  if (typeof window !== 'undefined') return window.location.origin
-  if (env.VERCEL_URL) return `https://${env.VERCEL_URL}`
-  // eslint-disable-next-line no-restricted-properties
-  return `http://localhost:${process.env.PORT ?? 3000}`
-}
+/**
+ * 兼容层：迁移前业务代码统一从 '@/utils/trpc' 引入 trpc。
+ * App Router 下不再使用 @trpc/next 的 createTRPCNext，这里导出同一实例，
+ * 使 `trpc.router.proc.useQuery()` / `.useMutation()` 调用形式保持不变。
+ */
+export const trpc = api

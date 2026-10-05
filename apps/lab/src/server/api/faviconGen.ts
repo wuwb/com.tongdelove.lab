@@ -1,39 +1,19 @@
-import { prisma } from '@/server/db/prisma'
+import { labFaviconGenApi } from '@/server/backend/lab-content.api'
 
-export async function createFavicon({
-  text,
-  size,
-  radius = 0,
-  backgroundColor,
-  fontFamily,
-  fontWeight = 400,
-  fontSize,
-  fontRotate = 0,
-  textColor,
-  textOpacity = 1,
-  textStrokeColor,
-  textStrokeOpacity = 1,
-  textStrokeWidth = 0,
-  fineTuneVerticalPosition = 0,
-  fineTuneHorizontalPosition = 0,
-  deviceId,
-  userId,
-  live = true,
-  fork = true,
-}: {
+export async function createFavicon(params: {
   text: string
   size: number
-  radius: number
+  radius?: number
   backgroundColor: string
   fontFamily: string
-  fontWeight: number
+  fontWeight?: number
   fontSize: number
-  fontRotate: number
+  fontRotate?: number
   textColor: string
-  textOpacity: number
+  textOpacity?: number
   textStrokeColor: string
-  textStrokeOpacity: number
-  textStrokeWidth: number
+  textStrokeOpacity?: number
+  textStrokeWidth?: number
   fineTuneVerticalPosition: number
   fineTuneHorizontalPosition: number
   deviceId?: string | null
@@ -41,33 +21,7 @@ export async function createFavicon({
   live?: boolean
   fork?: boolean
 }) {
-  if (size < 16 || size > 2048) {
-    throw new Error('size error.')
-  }
-  const result = await prisma.faviconGen.create({
-    data: {
-      text,
-      size,
-      radius,
-      backgroundColor,
-      fontFamily,
-      fontWeight,
-      fontSize,
-      fontRotate,
-      textColor,
-      textOpacity,
-      textStrokeColor,
-      textStrokeWidth,
-      textStrokeOpacity,
-      fineTuneVerticalPosition,
-      fineTuneHorizontalPosition,
-      deviceId,
-      userId,
-      live,
-      fork,
-    },
-  })
-  return result
+  return labFaviconGenApi.create(params)
 }
 
 export async function listFavicons({
@@ -81,45 +35,5 @@ export async function listFavicons({
   take: number
   live?: boolean
 }) {
-  const where: any = {}
-  if (userId) {
-    where.userId = userId
-  }
-  if (live) {
-    where.live = live
-  }
-  const result = await prisma.faviconGen.findMany({
-    skip: (page - 1) * take,
-    take: take,
-    where: where,
-    select: {
-      id: true,
-      text: true,
-      size: true,
-      radius: true,
-      backgroundColor: true,
-      fontFamily: true,
-      fontWeight: true,
-      fontSize: true,
-      fontRotate: true,
-      textColor: true,
-      textOpacity: true,
-      textStrokeColor: true,
-      textStrokeWidth: true,
-      textStrokeOpacity: true,
-      fineTuneVerticalPosition: true,
-      fineTuneHorizontalPosition: true,
-      deviceId: true,
-      userId: true,
-      live: true,
-      fork: true,
-      createdAt: true,
-    },
-    orderBy: [
-      {
-        createdAt: 'desc',
-      },
-    ],
-  })
-  return result
+  return labFaviconGenApi.list({ userId, page, take, live })
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { NextSeo } from 'next-seo'
 import type { FC } from 'react'
 import { LoginForm } from '@/components/auth/components/LoginForm'

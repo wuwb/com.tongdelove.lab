@@ -1,8 +1,10 @@
+'use client'
+
 import { TbWorld, TbChevronDown } from 'react-icons/tb'
 import { Button } from '@tongdelove/ui/components/button'
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from '@/lib/compat/router'
 
 // https://headlessui.dev/react/div#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
