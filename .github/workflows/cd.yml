@@ -18,7 +18,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
 
       # https://github.com/semantic-release/git/issues/209
       - name: ci

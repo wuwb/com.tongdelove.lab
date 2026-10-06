@@ -10,12 +10,13 @@
 
 ## 技术栈
 
-- **基础**: Radix UI primitives, React 18, TypeScript
-- **样式**: TailwindCSS, Tailwind Animate, Class Variance Authority
+- **基础**: Radix UI primitives, React 19, TypeScript
+- **样式**: TailwindCSS v4 (OKLCH, CSS-first), tw-animate-css, Class Variance Authority
+- **架构**: Shadcn UI v4 (`data-slot`, React 19 函数组件规范)
 - **表单**: React Hook Form, Zod
 - **主题**: Next Themes, @radix-ui/themes
 - **图标**: Lucide React, @radix-ui/react-icons
-- **通知**: Sonner
+- **通知**: Sonner (替代旧版 Radix Toast)
 
 ## 目录结构
 
@@ -245,67 +246,68 @@ pnpm clean                          # 清理缓存
 
 ### 1. 创建新组件
 ```bash
-# 使用Shadcn CLI
-pnpm dlx shadcn-ui add button
+# 使用Shadcn CLI (官方最新)
+pnpm dlx shadcn@latest add <component-name>
 
-# 手动创建
-# 1. 在 src/components/ui/ 下创建文件
-# 2. 导出组件和类型
-# 3. 在 index.ts 中导出
+# 或者在根目录运行
+pnpm ui-add
 ```
 
-### 2. 组件模式
+### 2. 组件模式 (Shadcn v4 / React 19)
 ```typescript
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@tongdelove/ui/lib/utils"
 
 // 定义变体
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2',
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border border-input hover:bg-accent hover:text-accent-foreground',
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-white hover:bg-destructive/90",
+        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
-        icon: 'h-10 w-10',
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: "default",
+      size: "default",
     },
   }
 )
 
-// 组件接口
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
+// 组件实现 (React 19 无需 forwardRef，内置 data-slot)
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot : "button"
 
-// 组件实现
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = 'Button'
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
 
 // 导出
 export { Button, buttonVariants }
