@@ -169,6 +169,7 @@
   },
   "workspaces": [
     "apps/admin",
+    "apps/blog",
     "apps/design",
     "apps/desktop",
     "apps/extension",

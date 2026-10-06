@@ -5,7 +5,7 @@ import type {
   CartItem,
   Product,
   ProductVariant,
-} from '@/lib/shopify/types'
+} from '@/libtypes'
 import React, {
   createContext,
   use,
@@ -18,9 +18,9 @@ type UpdateType = 'plus' | 'minus' | 'delete'
 
 type CartAction =
   | {
-      type: 'UPDATE_ITEM'
-      payload: { merchandiseId: string; updateType: UpdateType }
-    }
+    type: 'UPDATE_ITEM'
+    payload: { merchandiseId: string; updateType: UpdateType }
+  }
   | { type: 'ADD_ITEM'; payload: { variant: ProductVariant; product: Product } }
 
 type CartContextType = {
@@ -170,8 +170,8 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
 
       const updatedLines = existingItem
         ? currentCart.lines.map((item) =>
-            item.merchandise.id === variant.id ? updatedItem : item
-          )
+          item.merchandise.id === variant.id ? updatedItem : item
+        )
         : [...currentCart.lines, updatedItem]
 
       return {

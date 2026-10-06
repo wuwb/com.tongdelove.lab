@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import { type FC } from 'react'
 
-type Props = any
+type ContainerProps = any
 
-export const Container: FC<Props & React.HTMLAttributes<HTMLDivElement>> = (
+export const Container: FC<ContainerProps & React.HTMLAttributes<HTMLDivElement>> = (
   props
 ) => {
   return (

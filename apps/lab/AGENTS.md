@@ -1,8 +1,7 @@
 # AGENTS.md - Lab Application
 
-> **Last Updated**: 2026-09-30
+> **Last Updated**: 2026-10-05
 > **Framework**: Next.js 16 (App Router 3+)
-> **Features**: Multi-module app (resume, holiday avatar, study materials)
 > **Node**: >=20.x
 > **架构**: 前后端分离，lab 不直连数据库（详见下方「前后端分离」）
 
@@ -14,10 +13,9 @@ The lab app is a **Next.js 16** application using the latest App Router with mul
 
 ```
 apps/lab/
+├── public/                      # Public routes
 ├── src/
 │   ├── app/                     # App Router (Next.js 16)
-│   │   ├── (public)/            # Public routes
-│   │   ├── (dashboard)/         # Dashboard routes
 │   │   └── resume/              # Resume feature
 │   ├── components/              # Components
 │   ├── lib/                     # Utilities
@@ -27,26 +25,6 @@ apps/lab/
 ├── tailwind.config.ts
 └── package.json
 ```
-
----
-
-## 🎯 Features
-
-### Resume Generator
-
-- Route: `/resume`
-- Templates, customization
-
-### Holiday Avatar Creator
-
-- Route: `/avatar`
-- Canvas-based avatar creation
-- Image processing
-
-### Study Materials Printing
-
-- Route: `/printing`
-- Document formatting
 
 ---
 
@@ -114,9 +92,6 @@ app/
 ├── (auth)/
 │   ├── login/
 │   └── register/
-├── (dashboard)/
-│   ├── layout.tsx
-│   └── page.tsx
 ├── resume/
 │   ├── page.tsx
 │   └── edit/
@@ -144,7 +119,7 @@ pnpm typecheck
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Next.js 16 App Router:
 
@@ -156,3 +131,9 @@ Next.js 16 App Router:
 ---
 
 _For Next.js 16 patterns, see [Next.js Documentation](https://nextjs.org/docs/app)_
+
+## 
+
+- 组件文件名和组件名相同使用首字母大写的驼峰命名
+- 不使用 emoji
+- 中文注释

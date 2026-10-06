@@ -2,7 +2,7 @@
 
 import { Container } from '@/components/common'
 import { useTranslation } from '@/i18n'
-import { ToolPage } from '@/components/Tool/ToolPage/index'
+import { ToolPage } from './(main)/index'
 import { NextSeo } from 'next-seo'
 import { buildSharedServerSideProps } from '@/server/common/factory'
 

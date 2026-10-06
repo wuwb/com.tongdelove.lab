@@ -2,8 +2,8 @@
 
 import { Fragment, memo, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { CategoryLayout } from '@/components/LinksPage/CategoryLayout'
-import { LinksPage } from '@/components/LinksPage'
+import { CategoryLayout } from './LinksPage/CategoryLayout'
+import { LinksPage } from './LinksPage'
 import { useRouter } from '@/lib/compat/router'
 
 const Category = memo((props) => {
