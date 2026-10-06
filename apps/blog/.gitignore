@@ -2,6 +2,6 @@ node_modules
 .next
 out
 .vercel
-# .vendor/ui 是打包进仓库的组件库副本，必须随部署上传，故不忽略
+.vendor
 *.tsbuildinfo
 next-env.d.ts
