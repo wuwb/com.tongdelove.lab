@@ -20,6 +20,7 @@ export type PostMeta = {
   tags: string[];
   author: string;
   draft: boolean;
+  type?: string;
   readingTime: number;
   wordCount: number;
 };
@@ -77,6 +78,7 @@ function readPostFile(fileName: string): PostMeta | null {
     tags: Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [],
     author: String(data.author ?? "WuWenbin"),
     draft: Boolean(data.draft ?? false),
+    type: data.type ? String(data.type) : undefined,
     readingTime: calcReadingTime(content),
     wordCount: countWords(content).total,
   };
@@ -98,6 +100,14 @@ function listPostMetas(): PostMeta[] {
 
 export function getAllPosts(): PostMeta[] {
   return listPostMetas();
+}
+
+export function getAllWorks(): PostMeta[] {
+  return getAllPosts().filter((post) => post.type === "work");
+}
+
+export function getAllRegularPosts(): PostMeta[] {
+  return getAllPosts().filter((post) => post.type !== "work");
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {

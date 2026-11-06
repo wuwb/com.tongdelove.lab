@@ -6,11 +6,12 @@ import { Button } from "@tongdelove/ui/components/button";
 import { Separator } from "@tongdelove/ui/components/separator";
 
 import { PostCard } from "@/components/post-card";
-import { getAllPosts, getAllTags } from "@/lib/posts";
+import { getAllRegularPosts, getAllTags, getAllWorks } from "@/lib/posts";
 import { siteConfig } from "@/lib/site";
 
 export default function HomePage() {
-  const posts = getAllPosts();
+  const posts = getAllRegularPosts();
+  const works = getAllWorks();
   const tags = getAllTags().slice(0, 10);
 
   return (
@@ -29,6 +30,12 @@ export default function HomePage() {
           <Button asChild>
             <Link href="/posts">
               浏览文章
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/works">
+              作品集
               <ArrowRight className="size-4" />
             </Link>
           </Button>
@@ -65,6 +72,28 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {works.length ? (
+        <>
+          <Separator className="my-14" />
+          <section className="flex flex-col gap-6">
+            <div className="flex items-end justify-between">
+              <h2 className="text-2xl font-semibold tracking-tight">作品集</h2>
+              <Link
+                href="/works"
+                className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 hover:underline"
+              >
+                全部 {works.length} 个
+              </Link>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {works.slice(0, 4).map((work) => (
+                <PostCard key={work.slug} post={work} />
+              ))}
+            </div>
+          </section>
+        </>
+      ) : null}
 
       {tags.length ? (
         <section className="mt-14 flex flex-col gap-6">

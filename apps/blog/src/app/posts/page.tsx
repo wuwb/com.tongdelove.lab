@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { PostCard } from "@/components/post-card";
-import { getAllPosts } from "@/lib/posts";
+import { getAllRegularPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "文章",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function PostsPage() {
-  const posts = getAllPosts();
+  const posts = getAllRegularPosts();
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6">

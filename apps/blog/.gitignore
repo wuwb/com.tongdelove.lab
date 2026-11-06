@@ -5,3 +5,8 @@ out
 .vendor
 *.tsbuildinfo
 next-env.d.ts
+
+# Wayback importer
+.wayback-cache/
+.venv-import/
+public/images/wayback/

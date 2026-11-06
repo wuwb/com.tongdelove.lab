@@ -45,13 +45,15 @@ export default async function PostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const related = getRelatedPosts(post.slug, post.tags);
+  const backHref = post.type === "work" ? "/works" : "/posts";
+  const backLabel = post.type === "work" ? "返回作品集" : "返回文章列表";
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-14 sm:px-6">
       <Button asChild variant="ghost" size="sm" className="mb-8 -ml-2">
-        <Link href="/posts">
+        <Link href={backHref}>
           <ArrowLeft className="size-4" />
-          返回文章列表
+          {backLabel}
         </Link>
       </Button>
 
